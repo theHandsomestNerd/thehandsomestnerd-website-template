@@ -38,6 +38,15 @@ import serviceAmenity from "./sections/transform-hw/services/serviceAmenity";
 import proprietorService from "./sections/transform-hw/proprietorService";
 import modal from "./modal/Modal";
 import faq from "./modal/faq";
+import ResumeFile from "./resume/resume-bio/ResumeFile";
+import ResumeBioSection from "./resume/resume-bio/ResumeBioSection";
+import ResumeSkillSet from "./resume/resume-skills/ResumeSkillSet";
+import ResumeSkill from "./resume/resume-skills/ResumeSkill";
+import ResumeSkillsSection from "./resume/resume-skills/ResumeSkillsSection";
+import ResumeExperience from "./resume/resume-experience/ResumeExperience";
+import ResumeExperienceSection from "./resume/resume-experience/ResumeExperienceSection";
+import ResumeEducationSection from "./resume/resume-education/ResumeEducationSection";
+import ResumeEducation from "./resume/resume-education/ResumeEducation";
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -86,5 +95,15 @@ export default createSchema({
         proprietorService,
         modal,
         faq,
+
+        ResumeBioSection,
+        ResumeFile,
+        ResumeSkillSet,
+        ResumeSkill,
+        ResumeSkillsSection,
+        ResumeExperience,
+        ResumeExperienceSection,
+        ResumeEducationSection,
+        ResumeEducation
     ]),
 })

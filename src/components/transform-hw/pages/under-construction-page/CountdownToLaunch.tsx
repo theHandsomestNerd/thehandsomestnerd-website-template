@@ -2,7 +2,7 @@ import React, {FunctionComponent} from 'react'
 import {makeStyles, Theme} from '@material-ui/core/styles'
 import {Grid, Typography, useMediaQuery} from '@material-ui/core'
 import Countdown from "react-countdown";
-import MixedFeelingsByTTheme, {COLORS} from "../../../../theme/MixedFeelingsByTTheme";
+import DigitalResumeTheme, {COLORS} from "../../../../theme/DigitalResumeTheme";
 
 export const useStyles = makeStyles((theme: Theme) => ({
     counterSection: {
@@ -20,10 +20,10 @@ interface IProps {
 }
 
 const CountdownToLaunch: FunctionComponent<IProps> = (props) => {
-    const classes = useStyles(MixedFeelingsByTTheme)
+    const classes = useStyles(DigitalResumeTheme)
     const Completionist = () => <span>Congratulations! If your site is not already here please contact hello@thehandsomestnerd.com launched!</span>
 
-    const smDown = useMediaQuery(MixedFeelingsByTTheme.breakpoints.down('sm'))
+    const smDown = useMediaQuery(DigitalResumeTheme.breakpoints.down('sm'))
 
     const pluralize = (subject: string) => {
         return subject + 's'

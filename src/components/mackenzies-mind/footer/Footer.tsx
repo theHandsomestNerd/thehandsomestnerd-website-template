@@ -3,11 +3,11 @@ import {makeStyles, Theme} from '@material-ui/core/styles'
 import {Grid} from '@material-ui/core'
 import FooterMenuContainer from './FooterMenuContainer'
 import {SanityTransformHwHomePage} from "../../../common/sanityIo/Types";
-import MixedFeelingsByTTheme, {COLORS} from "../../../theme/MixedFeelingsByTTheme";
+import DigitalResumeTheme, {COLORS} from "../../../theme/DigitalResumeTheme";
 
 export const useStyles = makeStyles((theme: Theme) => ({
   root: {
-    backgroundColor: COLORS.DARKBLUE,
+    backgroundColor: COLORS.DARK_GRAY,
     // color: '#FDF3EB',
     // marginLeft: -1 * theme.spacing(1),
     // zIndex: 1000,
@@ -43,7 +43,7 @@ interface IProps {
 }
 
 const Footer: FunctionComponent<IProps> = (props:IProps) => {
-  const classes = useStyles(MixedFeelingsByTTheme)
+  const classes = useStyles(DigitalResumeTheme)
 
   return (
     <Grid container className={classes.root}>

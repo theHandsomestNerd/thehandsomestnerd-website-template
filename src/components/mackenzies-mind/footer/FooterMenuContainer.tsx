@@ -3,7 +3,7 @@ import {Divider, Grid, Typography} from '@material-ui/core'
 import FooterMenuGroup from './FooterMenuGroup'
 import {makeStyles, Theme} from '@material-ui/core/styles'
 import {SanityTransformHwHomePage} from "../../../common/sanityIo/Types";
-import MixedFeelingsByTTheme, {COLORS} from "../../../theme/MixedFeelingsByTTheme";
+import DigitalResumeTheme, {COLORS, rainbow} from "../../../theme/DigitalResumeTheme";
 import PageContext from "../../page-context/PageContext";
 import MediaQueriesContext from "../../media-queries-context/MediaQueriesContext";
 import MailTo from "../../mail-to/MailTo";
@@ -24,7 +24,7 @@ interface IProps {
 }
 
 const FooterMenuContainer: FunctionComponent<IProps> = (props: IProps) => {
-    const classes = useStyles(MixedFeelingsByTTheme)
+    const classes = useStyles(DigitalResumeTheme)
 
     const pageContext = useContext(PageContext)
     const mediaQueriesContext = useContext(MediaQueriesContext)
@@ -33,9 +33,9 @@ const FooterMenuContainer: FunctionComponent<IProps> = (props: IProps) => {
     return (
         <Grid container item className={classes.root} spacing={5}>
             <Grid container item xs={12} md={4} style={mediaQueriesContext.smDown ? {
-                borderLeft: `4px solid ${MixedFeelingsByTTheme.palette.primary.main}`,
+                borderLeft: `4px solid ${DigitalResumeTheme.palette.primary.main}`,
                 backgroundColor: "rgba(117,117,117,.5)",
-                borderRight: `4px solid ${MixedFeelingsByTTheme.palette.primary.main}`,
+                borderRight: `4px solid ${DigitalResumeTheme.palette.primary.main}`,
             } : {}}>
                 {
                     pageContext.pageFooter?.subMenus?.map((menuGroup: any, index: number) => {
@@ -48,8 +48,10 @@ const FooterMenuContainer: FunctionComponent<IProps> = (props: IProps) => {
                 }
             </Grid>
             <Grid item container xs={12} md={4} justifyContent='center'>
-                {pageContext.pageFooter?.logoImageSrc &&
-                    <Logo isCenter logoImageSrc={pageContext.pageFooter.logoImageSrc} height={108}/>}
+                {pageContext.pageFooter?.logoImageSrc ?
+                    <Logo isCenter logoImageSrc={pageContext.pageFooter.logoImageSrc} height={108}/>:<Grid container item justifyContent='center'>
+                        <Typography variant='h2' style={{...rainbow, color: "#383838"}}>James Terrell Singleton</Typography>
+                    </Grid>}
                 <Grid item container justifyContent='center' style={{
                     paddingBottom: "16px",
                     marginTop: "12px",
@@ -78,7 +80,7 @@ const FooterMenuContainer: FunctionComponent<IProps> = (props: IProps) => {
                     </Grid>
                     <Grid container item spacing={1} justifyContent='center'>
                         {<Grid item>
-                            <MailTo color={COLORS.DARK_GRAY} email={props.homePage.email??""} subject={"Information Request"} body={""}/>
+                            <MailTo color={"#383838"} email={props.homePage.email??""} subject={"Information Request"} body={""}><Typography color='inherit'>{props.homePage.email}</Typography></MailTo>
                         </Grid>}
                     </Grid>
                 </Grid>

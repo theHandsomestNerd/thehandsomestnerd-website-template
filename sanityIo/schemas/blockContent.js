@@ -14,7 +14,7 @@ import {
 } from '../../src/common/sanityIo/BlockContentMarkRenderers'
 import {ButtonRender, CtaRender, HeaderRender, HrRender} from '../../src/common/sanityIo/BlockContentRenderer'
 import {ListRender, UtmLinkRender} from '../../src/common/sanityIo/BlockContentAnnotations'
-import MixedFeelingsByTTheme from "../../src/theme/MixedFeelingsByTTheme";
+import DigitalResumeTheme from "../../src/theme/DigitalResumeTheme";
 
 const highlightIcon = color => {
   console.log("highlightIcon color", color)
@@ -97,7 +97,7 @@ const internalLinkRender = props => {
 
   return <Link href={props.href}>
     <Typography
-      style={{display: 'inline-block', color: MixedFeelingsByTTheme.palette.primary.main}}>
+      style={{display: 'inline-block', color: DigitalResumeTheme.palette.primary.main}}>
       {props.children}
     </Typography>
   </Link>
@@ -218,7 +218,7 @@ export const blockContentConfig = {
         title: 'Light',
         value: 'light',
         blockEditor: {
-          icon: () => lightIcon(MixedFeelingsByTTheme.palette.primary.main),
+          icon: () => lightIcon(DigitalResumeTheme.palette.primary.main),
           render: LightRender
         }
       },
@@ -226,24 +226,24 @@ export const blockContentConfig = {
         title: 'Primary Text Color',
         value: 'primaryTextColor',
         blockEditor: {
-          icon: () => highlightIcon(MixedFeelingsByTTheme.palette.primary.main),
-          render: (props) => (TextColorRender(props, MixedFeelingsByTTheme.palette.primary.main))
+          icon: () => highlightIcon(DigitalResumeTheme.palette.primary.main),
+          render: (props) => (TextColorRender(props, DigitalResumeTheme.palette.primary.main))
         }
       },
       {
         title: 'Secondary Text Color',
         value: 'secondaryTextColor',
         blockEditor: {
-          icon: () => highlightIcon(MixedFeelingsByTTheme.palette.secondary.main),
-          render: (props) => (TextColorRender(props, MixedFeelingsByTTheme.palette.secondary.main))
+          icon: () => highlightIcon(DigitalResumeTheme.palette.secondary.main),
+          render: (props) => (TextColorRender(props, DigitalResumeTheme.palette.secondary.main))
         }
       },
       {
         title: 'Underline Primary Color',
         value: 'underlinePrimaryColor',
         blockEditor: {
-          icon: () => underlineIcon(MixedFeelingsByTTheme.palette.primary.main),
-          render: (props) => UnderlineRender(props, MixedFeelingsByTTheme.palette.primary.main)
+          icon: () => underlineIcon(DigitalResumeTheme.palette.primary.main),
+          render: (props) => UnderlineRender(props, DigitalResumeTheme.palette.primary.main)
         }
       },
       {

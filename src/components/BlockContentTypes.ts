@@ -1,5 +1,6 @@
 import {SanityImageSource} from "@sanity/asset-utils";
 import {SanityRef, SanitySlug} from "../common/sanityIo/Types";
+import {FileAsset, ImageAsset} from "@sanity/types";
 
 export type HeroContentSectionType = {
     name: string
@@ -209,4 +210,76 @@ export type ThwContactUsSectionType = {
     youtube?: string,
     rhsTitle:string,
     formSubmitButtonText: string
+}
+
+export type ResumeBioSectionType = {
+    name?: string
+    title?: string
+    introduction?: string
+    contactMeButtonTitle?: string
+    resumeFileDownloadText?: string
+    resumeFile?: FileAsset
+    cvFileDownloadText?: string,
+    cvFile?: FileAsset
+    mainImage?: ImageAsset
+}
+
+
+
+export type ResumeSkill = {
+    name?: string
+    title?: string
+}
+export type ResumeSkillSet = {
+    name?: string
+    title?: string
+    skills?: ResumeSkill[]
+}
+
+export type ResumeSkillSectionType = {
+    name?: string
+    title?: string
+    introduction?: string
+    skillsets?: ResumeSkillSet[]
+}
+
+
+
+
+export type ResumeExperience = {
+    name?: string
+    title?: string
+    companySubtitle?: string
+    companyName?: string
+    locationCity?: string
+    locationState?: string
+    dateStart?: Date
+    dateEnd?: Date
+    description?: string
+    skillsUsed?: ResumeSkill[]
+}
+
+export type ResumeExperienceSectionType = {
+    name?: string
+    title?: string
+    introduction?: string
+    experiences?: ResumeExperience[]
+}
+
+export type ResumeEducation = {
+    name?: string
+    institutionName?: string
+    qualification?:string
+    locationCity?: string
+    locationState?: string
+    dateStart?: Date
+    dateEnd?: Date
+    description?: string
+}
+
+export type ResumeEducationSectionType = {
+    name?: string
+    title?: string
+    introduction?: string
+    educationExperiences?: ResumeEducation[]
 }

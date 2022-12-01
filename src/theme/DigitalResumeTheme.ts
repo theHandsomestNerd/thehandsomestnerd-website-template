@@ -83,7 +83,7 @@ export const rainbow: FontFace = {
 //   `
 // }
 
-const fonts = ['Bitter Pro', 'Raleway'].join(',')
+const fonts = ['Raleway', 'Bitter Pro'].join(',')
 
 export enum COLORS {
     DARKBLUE = 'rgba(0,0,53,1)',
@@ -103,7 +103,7 @@ export enum COLORS {
 
 }
 
-const MixedFeelingsByTTheme = createTheme({
+const DigitalResumeTheme = createTheme({
     breakpoints: {
         values: {
             xs: 0,
@@ -116,14 +116,14 @@ const MixedFeelingsByTTheme = createTheme({
 // @ts-ignore
     palette: {
         background: {
-            default: COLORS.LIGHTGRAY,
+            default: "#f6f6f6",
             paper: COLORS.DARKGRAY
         },
         primary: {
-            main: "#dd4f11",
+            main: "#d20027",
         },
         secondary: {
-            main: COLORS.DARKGRAY,
+            main: "#e6e6e6",
         },
         error: {
             main: '#840E0E',
@@ -141,8 +141,8 @@ const MixedFeelingsByTTheme = createTheme({
             dark: '#CF800A'
         },
         text: {
-            primary: "#383838",
-            secondary: COLORS.LIGHTGRAY,
+            primary: "#404040",
+            secondary: "#FFFFFF",
             disabled: COLORS.LIGHT_GRAY
         }
     },
@@ -175,29 +175,35 @@ const MixedFeelingsByTTheme = createTheme({
         h4: {
             fontWeight: 'bold',
             fontStyle: 'normal',
-            fontSize: '34px',
-            lineHeight: 1.5
+            fontSize: '30px',
+            lineHeight: 1
+        },
+        h5: {
+            fontWeight: 'bold',
+            fontStyle: 'normal',
+            fontSize: '28px',
+            lineHeight: 1
         },
         h6: {
             fontWeight: 'bold',
             fontStyle: 'normal',
-            fontSize: '20px',
-            lineHeight: 1.5
+            fontSize: '24px',
+            lineHeight: 1
         },
         body1: {
             // Body
-            fontSize: '18px',
+            fontSize: '15px',
             fontStyle: 'normal',
-            fontWeight: 350,
+            fontWeight: 400,
             lineHeight: 1.5,
-            letterSpacing: '-0.01em'
+            letterSpacing: '-0.02em'
         },
         body2: {
             // Large
-            fontSize: '20px',
+            fontSize: '18px',
             fontStyle: 'normal',
-            fontWeight: 600,
-            lineHeight: 1.2,
+            fontWeight: 550,
+            lineHeight: 1.5,
             letterSpacing: '0.0em'
         },
         button: {
@@ -211,10 +217,10 @@ const MixedFeelingsByTTheme = createTheme({
         },
         subtitle1: {
             // Small
-            fontSize: '16px',
+            fontSize: '14px',
             fontStyle: 'normal',
             fontWeight: 750,
-            lineHeight: 1.45,
+            lineHeight: 1,
             letterSpacing: '-0.03em'
         },
         subtitle2: {
@@ -366,4 +372,4 @@ const MixedFeelingsByTTheme = createTheme({
     }
 })
 
-export default MixedFeelingsByTTheme
+export default DigitalResumeTheme

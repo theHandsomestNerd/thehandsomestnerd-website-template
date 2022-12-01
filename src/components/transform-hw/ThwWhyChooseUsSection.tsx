@@ -2,7 +2,7 @@ import React, {FunctionComponent, useContext, useState} from 'react'
 import {makeStyles, Theme} from '@material-ui/core/styles'
 import {Divider, Grid, Typography} from '@material-ui/core'
 import {ThwWhyChooseUsItemType, ThwWhyChooseUsSectionType} from "../BlockContentTypes";
-import MixedFeelingsByTTheme from "../../theme/MixedFeelingsByTTheme";
+import DigitalResumeTheme from "../../theme/DigitalResumeTheme";
 import cmsClient from "../block-content-ui/cmsClient";
 import {urlFor} from "../block-content-ui/static-pages/cmsStaticPagesClient";
 import PageContext from "../page-context/PageContext";
@@ -25,7 +25,7 @@ interface IProps {
 }
 
 const ThwServicesSection: FunctionComponent<IProps> = (props) => {
-    const classes = useStyles(MixedFeelingsByTTheme)
+    const classes = useStyles(DigitalResumeTheme)
     const pageContext = useContext(PageContext)
     const mediaQueriesContext = useContext(MediaQueriesContext)
 
@@ -55,7 +55,7 @@ const ThwServicesSection: FunctionComponent<IProps> = (props) => {
                 }}>
                 </Grid>
                 <Grid item container alignItems='center' alignContent='center' justifyContent='center' xs={12} md={7}
-                      style={{padding: mediaQueriesContext.xsOnly?MixedFeelingsByTTheme.spacing(1.75,1.5, 3):MixedFeelingsByTTheme.spacing(5,4, 7)}}>
+                      style={{padding: mediaQueriesContext.xsOnly?DigitalResumeTheme.spacing(1.75,1.5, 3):DigitalResumeTheme.spacing(5,4, 7)}}>
                     <Grid item container style={{marginBottom: "24px"}}>
                         <Typography display='inline'  gutterBottom color='secondary' variant='h4'
                                     align='center'>{props.sectionData.sectionTitle}</Typography>

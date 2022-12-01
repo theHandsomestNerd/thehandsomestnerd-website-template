@@ -27,7 +27,7 @@ const PageLayout: FunctionComponent<IProps> = (props: IProps) => {
         <Grid container item>
             <Header pageHeader={props.homePage.headerMenuRef}/>
         </Grid>
-        <Grid container item style={{height: "102px"}}>
+        <Grid container item style={{height: "48px"}}>
 
         </Grid>
         <Grid item container>

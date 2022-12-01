@@ -20,7 +20,7 @@ const MailTo: FunctionComponent<IProps & PropsWithChildren> = (props:IProps & Pr
     React.useEffect(()=>{
     }, [])
 
-    return (<Button style={{color:props.color}} href={`mailto:${props.email}?subject=${props.subject || ""}&body=${props.body || ""}`}>
+    return (<Button fullWidth style={{color:props.color}} href={`mailto:${props.email}?subject=${props.subject || ""}&body=${props.body || ""}`}>
         <Typography color='inherit' align='center'
                     variant='subtitle1'>{props.children}</Typography>
     </Button>)

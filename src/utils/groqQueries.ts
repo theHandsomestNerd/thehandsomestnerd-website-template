@@ -81,7 +81,20 @@ const HOMEPAGE = `_type,
                 "servicesList": servicesList[]->{
                     ${SERVICE}
                 },
-                "serviceAmenities": serviceAmenities[]->
+                "serviceAmenities": serviceAmenities[]->,
+                "skillsets": skillsets[]{
+                    ...,
+                    "skills": skills[]->{
+                        _id,
+                        name,
+                        title,
+                    },
+                }, 
+                "experiences": experiences[]->{
+                    ...,
+                    "skillsUsed": skillsUsed[]->
+                },
+                "educationExperiences": educationExperiences[]->,
             }
           },
           "servicesAvailable": servicesAvailable[]->{

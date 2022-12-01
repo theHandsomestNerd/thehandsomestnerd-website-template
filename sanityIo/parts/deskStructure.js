@@ -15,6 +15,27 @@ export default () =>
                 .title('Page')
                 .child(createSuperPane('homePage', S)),
             S.listItem()
+                .title('Resume Bio Section')
+                .child(createSuperPane('ResumeBioSection', S)),
+            S.listItem()
+                .title('Resume Skill Section')
+                .child(createSuperPane('ResumeSkillSection', S)),
+            S.listItem()
+                .title('Resume Skill')
+                .child(createSuperPane('ResumeSkill', S)),
+             S.listItem()
+                .title('Resume Experience Section')
+                .child(createSuperPane('ResumeExperienceSection', S)),
+            S.listItem()
+                .title('Resume Experience')
+                .child(createSuperPane('ResumeExperience', S)),
+            S.listItem()
+                .title('Resume Education')
+                .child(createSuperPane('ResumeEducation', S)),
+             S.listItem()
+                .title('Resume Education Section')
+                .child(createSuperPane('ResumeEducationSection', S)),
+            S.listItem()
                 .title('Modal')
                 .child(createSuperPane('modal', S)),
              S.listItem()

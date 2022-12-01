@@ -3,7 +3,7 @@ import {makeStyles, Theme} from '@material-ui/core/styles'
 import {Button, Grid, Typography} from '@material-ui/core'
 import {urlFor} from '../block-content-ui/static-pages/cmsStaticPagesClient'
 import {ThwPositivePsychologySectionType} from "../BlockContentTypes";
-import MixedFeelingsByTTheme from "../../theme/MixedFeelingsByTTheme";
+import DigitalResumeTheme from "../../theme/DigitalResumeTheme";
 import {v4 as uuidv4} from 'uuid'
 import mediaQueries from "../../utils/mediaQueries";
 import ResponsiveBullet from "../ResponsiveBullet";
@@ -29,7 +29,7 @@ interface IProps {
 }
 
 const PositivePsychologySection: FunctionComponent<IProps> = (props) => {
-    const classes = useStyles(MixedFeelingsByTTheme)
+    const classes = useStyles(DigitalResumeTheme)
 
     const pageContext = useContext(PageContext)
     const mediaQueriesContext = useContext(MediaQueriesContext)
@@ -71,7 +71,7 @@ const PositivePsychologySection: FunctionComponent<IProps> = (props) => {
                     </Grid>
                     {props.sectionData.ctaButtonLink && props.sectionData.ctaButtonText && <Grid container item>
                         <Button variant='contained' color='secondary'
-                                style={{backgroundColor: MixedFeelingsByTTheme.palette.secondary.main}}
+                                style={{backgroundColor: DigitalResumeTheme.palette.secondary.main}}
                                 href={props.sectionData.ctaButtonLink ?? ''}>
                             {props.sectionData.ctaButtonText}
                         </Button>

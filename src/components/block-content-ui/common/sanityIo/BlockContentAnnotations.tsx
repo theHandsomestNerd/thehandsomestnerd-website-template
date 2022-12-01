@@ -6,7 +6,7 @@ import {Grid, Link, List, ListItem, ListItemIcon, ListItemText, Typography} from
 import {FiberManualRecord} from '@material-ui/icons'
 import {useCommonStyles} from './CommonStyles'
 import {TypographyVariantType} from './BlockContentMarkRenderers'
-import MixedFeelingsByTTheme from "../../../../theme/MixedFeelingsByTTheme";
+import DigitalResumeTheme from "../../../../theme/DigitalResumeTheme";
 
 export const UtmLinkRender: React.FunctionComponent = (props: React.PropsWithChildren<{}> & BlockContentPropsType<LinkType>) => {
   let href = props?.mark?.href
@@ -25,7 +25,7 @@ export const UtmLinkRender: React.FunctionComponent = (props: React.PropsWithChi
     }
   } catch (e) {
   }
-  return <Link href={href} style={{color: props?.mark?.color ? props.mark.color.value:MixedFeelingsByTTheme.palette.primary.main}}>{props.children}</Link>
+  return <Link href={href} style={{color: props?.mark?.color ? props.mark.color.value:DigitalResumeTheme.palette.primary.main}}>{props.children}</Link>
 }
 
 export const ListRender: React.FunctionComponent = (props: React.PropsWithChildren<{}>) => {
