@@ -4,7 +4,11 @@ import {Card, Grid, Link} from '@material-ui/core'
 import sanityClient from '../sanityClient'
 import {blockSerializers} from '../common/sanityIo/BlockContentRenderer'
 import {
-    ResumeBioSectionType, ResumeEducationSectionType, ResumeExperienceSectionType, ResumeSkillSectionType,
+    ResumeBioSectionType, ResumeContactUsSectionType,
+    ResumeEducationSectionType,
+    ResumeExperienceSectionType,
+    ResumeFeedbackSectionType,
+    ResumeSkillSectionType,
     ThwAboutProprietorSectionType,
     ThwContactUsSectionType,
     ThwHeroContentSectionType,
@@ -30,6 +34,8 @@ import MMHeroContentSection from "./mackenzies-mind/MMHeroContentSection";
 import ResumeSkillsSection from "./my-digital-resume/ResumeSkillsSection";
 import ResumeExperienceSection from "./my-digital-resume/ResumeExperienceSection";
 import ResumeEducationSection from "./my-digital-resume/ResumeEducationSection";
+import ResumeFeedbackSection from "./my-digital-resume/ResumeFeedbackSection";
+import ResumeContactUsSection from "./my-digital-resume/ResumeContactUsSection";
 
 export type BlockContentLayoutContainerProps = {
     content?: any,
@@ -196,6 +202,22 @@ const BlockContentLayoutContainer: FunctionComponent<BlockContentLayoutContainer
                     return <Grid key={'ResumeEducationSection'} container item xs={12} justifyContent='center'>
                         <ResumeEducationSection
                             sectionData={resumeEducationSection}
+                        />
+                    </Grid>
+                case 'ResumeFeedbackSection':
+                    const resumeFeedbackSection: ResumeFeedbackSectionType = columnLayoutContainer
+
+                    return <Grid key={'ResumeFeedbackSection'} container item xs={12} justifyContent='center'>
+                        <ResumeFeedbackSection
+                            sectionData={resumeFeedbackSection}
+                        />
+                    </Grid>
+                case 'ResumeContactUsSection':
+                    const resumeContactUsSection: ResumeContactUsSectionType = columnLayoutContainer
+
+                    return <Grid key={'ResumeContactUsSection'} container item xs={12} justifyContent='center'>
+                        <ResumeContactUsSection
+                            sectionData={resumeContactUsSection}
                         />
                     </Grid>
                 default:

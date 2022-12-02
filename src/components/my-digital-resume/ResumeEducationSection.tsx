@@ -28,25 +28,35 @@ const ResumeEducationSection: FunctionComponent<IProps> = (props: IProps) => {
     React.useEffect(() => {
     }, [])
 
-    return (<Grid container item style={{padding: theme.spacing(4)}}  className={globalClasses.resumeSection}> <Grid container item spacing={3}>
+    return (<Grid container item style={{padding: theme.spacing(4)}} className={globalClasses.resumeSection}> <Grid
+        container item spacing={3}>
         <Grid item container sm={4} alignContent='flex-start' spacing={1}>
-            <Grid item><Typography variant='h6'>{props.sectionData.title}<Typography variant='h6'
-                                                                                     color='primary'
-                                                                                     display='inline'>.</Typography></Typography></Grid>
-            <Grid item><Typography variant='body1'>{props.sectionData.introduction}</Typography></Grid>
+            <Grid item>
+                <Typography
+                    variant='h6'
+                >{props.sectionData.title}
+                    <Typography
+                        variant='h6'
+                        color='primary'
+                        display='inline'
+                    >.</Typography>
+                </Typography>
+            </Grid>
+            <Grid item>
+                <Typography variant='body1'>{props.sectionData.introduction}</Typography></Grid>
         </Grid>
-        <Grid item container sm={8} spacing={2} justifyContent='center'>
+        <Grid item container sm={8} spacing={2} justifyContent='space-between'>
             {
-                props.sectionData.educationExperiences?.map((experience: ResumeEducation, index2:number) => {
+                props.sectionData.educationExperiences?.map((experience: ResumeEducation, index2: number) => {
                     return <Grid item container alignContent='flex-start'
                                  style={{
-                                     borderBottom: `1px solid ${index2 >= (props.sectionData.educationExperiences?.length ?? 0) - 2?"transparent":COLORS.LIGHTGRAY}`,
-                                     padding: theme.spacing(1.75,0)
+                                     borderBottom: `1px solid ${index2 >= (props.sectionData.educationExperiences?.length ?? 0) - 2 ? "transparent" : COLORS.LIGHTGRAY}`,
+                                     padding: theme.spacing(1.75, 0)
                                  }} xs={11}>
                         <Grid container item spacing={2}>
                             <Grid item>
-                            <Typography display='inline'
-                                        variant='body2'>{experience.institutionName}</Typography>
+                                <Typography display='inline'
+                                            variant='body2'>{experience.institutionName}</Typography>
                             </Grid>
                         </Grid>
                         <Grid container item spacing={2}>
@@ -57,25 +67,19 @@ const ResumeEducationSection: FunctionComponent<IProps> = (props: IProps) => {
                             </Grid>
                         </Grid>
                         <Grid container item>
-
-
-
                             <Grid item md={4}>
                                 <Typography display='inline'
-                                            variant='body1'>{experience.dateStart?.toString().replaceAll('-','.')}</Typography>
-
-                                {/*</Grid>*/}
-                                {/*<Grid item xs={1} container justifyContent='center'>*/}
+                                            variant='body1'
+                                >{experience.dateStart?.toString().replaceAll('-', '.')}</Typography>
                                 <Typography display='inline'
-                                            variant='body1'style={{margin: theme.spacing(0,1)}}>—</Typography>
-
-                                {/*</Grid>*/}
-                                {/*<Grid item xs={2} container>*/}
+                                            variant='body1'
+                                            style={{
+                                                margin: theme.spacing(0, 1)
+                                            }}>—</Typography>
                                 <Typography display='inline'
-                                            variant='body1'>{experience.dateEnd?.toString().replaceAll('-','.')}</Typography>
-
+                                            variant='body1'
+                                >{experience.dateEnd?.toString().replaceAll('-', '.')}</Typography>
                             </Grid>
-
                         </Grid>
                         <Grid container item>
                             <Typography

@@ -36,6 +36,8 @@ export type SanityTransformHwHomePage = {
   phone?: string
   facebook?: string
   facebookIconSrc?: SanityImageSource
+  linkedIn?: string
+  linkedInIconSrc?: SanityImageSource
   twitter?: string
   twitterIconSrc?: SanityImageSource
   instagram?: string

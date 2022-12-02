@@ -91,6 +91,19 @@ export default {
             },
         },
         {
+            name: 'linkedIn',
+            title: 'LinkedIn Handle',
+            type: 'string',
+        },
+        {
+            name: 'linkedInIconSrc',
+            title: 'LinkedIn Icon',
+            type: 'image',
+            options: {
+                hotspot: true,
+            },
+        },
+        {
             name: 'twitter',
             title: 'Twitter Handle',
             type: 'string',

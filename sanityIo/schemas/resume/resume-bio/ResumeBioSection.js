@@ -40,7 +40,7 @@ export default {
         },
         {
             name: 'cvFile',
-            title: 'Upload Resume',
+            title: 'Upload CV',
             type: 'ResumeFile',
         },
         {

@@ -78,6 +78,12 @@ const useCustomStyles = makeStyles({
     fullContainer: {
         width: '100%',
         height: '100%'
+    },
+    resumeSection: {
+        borderBottom: `1px solid ${COLORS.LIGHTGRAY}`
+    },
+    iconOnButton:{
+        marginRight: "8px"
     }
 })
 

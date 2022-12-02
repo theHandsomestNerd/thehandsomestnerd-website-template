@@ -95,6 +95,9 @@ const HOMEPAGE = `_type,
                     "skillsUsed": skillsUsed[]->
                 },
                 "educationExperiences": educationExperiences[]->,
+                "feedbackEntries": feedbackEntries[]->,
+                "resumeFile": resumeFile.asset->,
+                "cvFile": cvFile.asset->
             }
           },
           "servicesAvailable": servicesAvailable[]->{

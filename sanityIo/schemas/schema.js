@@ -47,6 +47,9 @@ import ResumeExperience from "./resume/resume-experience/ResumeExperience";
 import ResumeExperienceSection from "./resume/resume-experience/ResumeExperienceSection";
 import ResumeEducationSection from "./resume/resume-education/ResumeEducationSection";
 import ResumeEducation from "./resume/resume-education/ResumeEducation";
+import ResumeFeedback from "./resume/resume-feedback/ResumeFeedback";
+import ResumeFeedbackSection from "./resume/resume-feedback/ResumeFeedbackSection";
+import ResumeContactUsSection from "./resume/resume-contact-us/ResumeContactUsSection";
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -104,6 +107,9 @@ export default createSchema({
         ResumeExperience,
         ResumeExperienceSection,
         ResumeEducationSection,
-        ResumeEducation
+        ResumeEducation,
+        ResumeFeedback,
+        ResumeFeedbackSection,
+        ResumeContactUsSection
     ]),
 })

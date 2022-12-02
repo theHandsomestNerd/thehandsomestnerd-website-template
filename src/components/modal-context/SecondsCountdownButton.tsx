@@ -17,7 +17,7 @@ const SecondsCountdownButton: FunctionComponent<IProps> = ({date}: IProps) => {
 
     return (<IconButton
         aria-label="close"
-        color='primary'
+        color='secondary'
         onClick={snackbarContext.handleSnackbarClose}
     >
         {
@@ -53,7 +53,7 @@ const SecondsCountdownButton: FunctionComponent<IProps> = ({date}: IProps) => {
                     </Grid>
                     <Grid item style={{position: "absolute", top: 0}}>
                         <Grid container item justifyContent='center' alignContent='center' alignItems='center'>
-                            <CircularProgress variant='determinate' size={30} value={(date.seconds / 15) * 100}/>
+                            <CircularProgress color='secondary' variant='determinate' size={30} value={(date.seconds / 15) * 100}/>
                         </Grid>
                     </Grid>
                 </Grid>

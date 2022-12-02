@@ -113,7 +113,7 @@ const serveIndexFile = (req: any, res: any) => {
         ogTitle: pageFromSanity?.title,
         description: pageFromSanity?.description,
         ogDescription: pageFromSanity?.description,
-        ogImage: pageFromSanity.metaImage && urlFor(pageFromSanity.metaImage).url()?.replace("undefined", process.env.SANITY_DB ?? "development"),
+        ogImage: pageFromSanity?.metaImage && urlFor(pageFromSanity?.metaImage).url()?.replace("undefined", process.env.SANITY_DB ?? "development"),
       };
 
       logClient.log("server-side", "NOTICE",
@@ -152,11 +152,11 @@ app.post("/collect-email-address",
           leadName: reqBody.leadName,
           source: reqBody.source,
         });
-        functionRes.send({status: "200", response, email: reqBody.email});
+        functionRes.send({status: "200", response, email: reqBody.email, message: "Thank you! We will talk soon."});
       } catch (e) {
         logClient.log("collect-email-address", "ERROR",
             "Could not create Lead", {email: reqBody.email});
-        functionRes.error({status: "400", e});
+        functionRes.send({status: "400", e});
       }
     });
 

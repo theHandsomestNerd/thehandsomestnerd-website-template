@@ -212,6 +212,7 @@ export type ThwContactUsSectionType = {
     formSubmitButtonText: string
 }
 
+
 export type ResumeBioSectionType = {
     name?: string
     title?: string
@@ -282,4 +283,29 @@ export type ResumeEducationSectionType = {
     title?: string
     introduction?: string
     educationExperiences?: ResumeEducation[]
+}
+
+export type ResumeFeedback = {
+    name?: string
+    customerName?: string
+    customerTitle?: string
+    companyName?: string
+    qualification?:string
+    quote?: string
+    imageSrc?:SanityImageAsset
+}
+
+export type ResumeFeedbackSectionType = {
+    name?: string
+    title?: string
+    introduction?: string
+    feedbackEntries?: ResumeFeedback[]
+}
+
+
+export type ResumeContactUsSectionType = {
+    name: string
+    title?: string
+    introduction?: string
+    formSubmitButtonText: string
 }

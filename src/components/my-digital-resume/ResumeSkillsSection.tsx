@@ -21,19 +21,27 @@ const ResumeSkillsSection: FunctionComponent<IProps> = (props: IProps) => {
     React.useEffect(() => {
     }, [])
 
-    return (<Grid container item style={{padding:theme.spacing(4)}}  className={globalClasses.resumeSection}> <Grid container item spacing={3}>
+    return (<Grid
+        container
+        item
+        style={{
+            padding:theme.spacing(4)
+    }}
+        className={globalClasses.resumeSection}
+    >
+        <Grid container item spacing={3}>
         <Grid item container md={4} alignContent='flex-start' spacing={1}>
             <Grid item><Typography variant='h6'>{props.sectionData.title}<Typography variant='h6'
                                                                                      color='primary'
                                                                                      display='inline'>.</Typography></Typography></Grid>
             <Grid item><Typography variant='body1'>{props.sectionData.introduction}</Typography></Grid>
         </Grid>
-        <Grid item container md={8} spacing={2} justifyContent='center'>
+        <Grid item container md={8} spacing={2} justifyContent='space-between'>
             {
                 props.sectionData.skillsets?.map((skillset: ResumeSkillSet, index2:number) => {
                     return <Grid item container xs={11} sm={6} md={6} alignContent='flex-start'
                                  style={{
-                                     borderBottom: `3px solid ${index2 >= (props.sectionData.skillsets?.length ?? 0) - 2 ?  'transparent':COLORS.LIGHTGRAY }`
+                                     borderBottom: `1px solid ${index2 >= (props.sectionData.skillsets?.length ?? 0) - 2 ?  'transparent':COLORS.LIGHTGRAY }`
                                  }}>
                         <Grid container item>
                             <Typography display='inline'

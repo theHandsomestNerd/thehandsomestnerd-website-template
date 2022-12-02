@@ -240,7 +240,8 @@ const DigitalResumeTheme = createTheme({
         },
         MuiInputBase: {
             root: {
-                color: "#FAFAFA",
+                borderRadius: 0,
+                // color: "#FAFAFA",
                 "&:focus": {
                     borderBottom: 0
                 }
@@ -261,12 +262,17 @@ const DigitalResumeTheme = createTheme({
             root: {
                 marginTop: "100px",
                 border: "3px solid white",
-                backgroundColor: 'rgba(16, 43, 136, .95) !important'
+                backgroundColor: 'rgba(210,0,39,0.9) !important'
+            }
+        },
+        MuiOutlinedInput: {
+            root:{
+                // borderRadius: 0
             }
         },
         MuiFilledInput: {
             root: {
-                backgroundColor: "rgba(0,0,0,.3)",
+                // backgroundColor: "rgba(0,0,0,.3)",
                 // borderBottom: "1px solid "+ COLORS.MAIN,
                 "& .Mui-focused": {
                     borderBottomWidth: '0px solid black'
