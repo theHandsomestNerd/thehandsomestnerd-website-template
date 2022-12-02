@@ -50,7 +50,7 @@ const FooterMenuContainer: FunctionComponent<IProps> = (props: IProps) => {
             <Grid item container xs={12} md={4} justifyContent='center'>
                 {pageContext.pageFooter?.logoImageSrc ?
                     <Logo isCenter logoImageSrc={pageContext.pageFooter.logoImageSrc} height={108}/>:<Grid container item justifyContent='center'>
-                        <Typography variant='h2' style={{...rainbow, color: "#383838"}}>James Terrell Singleton</Typography>
+                        <Typography component='div' variant='h2' style={{...rainbow, color: "#383838"}}>James <Typography display='inline' style={{...rainbow,}} variant='h2' color='primary'>Terrell</Typography> Singleton<Typography display='inline' style={{...rainbow,}} variant='h2' color='primary'>.</Typography></Typography>
                     </Grid>}
                 <Grid item container justifyContent='center' style={{
                     paddingBottom: "16px",

@@ -1,4 +1,4 @@
-import React, {FunctionComponent} from 'react'
+import React, {FunctionComponent, useContext} from 'react'
 import {makeStyles, Theme} from "@material-ui/core/styles"
 import {Chip, Grid, Typography, useTheme} from '@material-ui/core'
 import {
@@ -9,6 +9,7 @@ import {
 } from "../BlockContentTypes";
 import {COLORS} from "../../theme/DigitalResumeTheme";
 import useThwCommonStyles from "../../common/sanityIo/ThwCommonStyles";
+import MediaQueriesContext from "../media-queries-context/MediaQueriesContext";
 
 export const useStyles = makeStyles((theme: Theme) => ({
     root: {},
@@ -22,8 +23,8 @@ const ResumeExperienceSection: FunctionComponent<IProps> = (props: IProps) => {
     const classes = useThwCommonStyles()
     const theme = useTheme()
 
-    React.useEffect(() => {
-    }, [])
+    const mediaQueryContext = useContext(MediaQueriesContext)
+    const xsOnly = mediaQueryContext.xsOnly
 
     return (<Grid
         container
@@ -40,14 +41,14 @@ const ResumeExperienceSection: FunctionComponent<IProps> = (props: IProps) => {
                                                                                          display='inline'>.</Typography></Typography></Grid>
                 <Grid item><Typography variant='body1'>{props.sectionData.introduction}</Typography></Grid>
             </Grid>
-            <Grid item container md={8} spacing={2} justifyContent='space-between'>
+            <Grid item container md={8} spacing={2} justifyContent={xsOnly?'center':'flex-start'}>
                 {
                     props.sectionData.experiences?.map((experience: ResumeExperience, index2: number) => {
                         return <Grid item container alignContent='flex-start'
                                      style={{
                                          borderBottom: `1px solid ${index2 >= (props.sectionData.experiences?.length ?? 0) - 1 ? "transparent" : COLORS.LIGHTGRAY}`,
                                          // padding: theme.spacing(1.75, 0)
-                                     }} xs={11}>
+                                     }} xs={12}>
                             <Grid container item>
                                 <Grid item xs={12} md={4}>
                                     <Typography display='inline'

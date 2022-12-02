@@ -1,4 +1,4 @@
-import React, {FunctionComponent} from 'react'
+import React, {FunctionComponent, useContext} from 'react'
 import {makeStyles, Theme} from "@material-ui/core/styles"
 import {Chip, Grid, Typography, useTheme} from '@material-ui/core'
 import {
@@ -11,6 +11,7 @@ import {
 } from "../BlockContentTypes";
 import {COLORS} from "../../theme/DigitalResumeTheme";
 import useThwCommonStyles from "../../common/sanityIo/ThwCommonStyles";
+import MediaQueriesContext from "../media-queries-context/MediaQueriesContext";
 
 export const useStyles = makeStyles((theme: Theme) => ({
     root: {},
@@ -25,12 +26,16 @@ const ResumeEducationSection: FunctionComponent<IProps> = (props: IProps) => {
     const globalClasses = useThwCommonStyles()
     const theme = useTheme()
 
+
+    const mediaQueryContext = useContext(MediaQueriesContext)
+    const xsOnly = mediaQueryContext.xsOnly
+
     React.useEffect(() => {
     }, [])
 
     return (<Grid container item style={{padding: theme.spacing(4)}} className={globalClasses.resumeSection}> <Grid
         container item spacing={3}>
-        <Grid item container sm={4} alignContent='flex-start' spacing={1}>
+        <Grid item container md={4} alignContent='flex-start' spacing={1}>
             <Grid item>
                 <Typography
                     variant='h6'
@@ -45,14 +50,14 @@ const ResumeEducationSection: FunctionComponent<IProps> = (props: IProps) => {
             <Grid item>
                 <Typography variant='body1'>{props.sectionData.introduction}</Typography></Grid>
         </Grid>
-        <Grid item container sm={8} spacing={2} justifyContent='space-between'>
+        <Grid item container md={8} spacing={2} justifyContent={xsOnly?'center':'flex-start'}>
             {
                 props.sectionData.educationExperiences?.map((experience: ResumeEducation, index2: number) => {
                     return <Grid item container alignContent='flex-start'
                                  style={{
                                      borderBottom: `1px solid ${index2 >= (props.sectionData.educationExperiences?.length ?? 0) - 2 ? "transparent" : COLORS.LIGHTGRAY}`,
-                                     padding: theme.spacing(1.75, 0)
-                                 }} xs={11}>
+                                     // padding: theme.spacing(1.75, 0)
+                                 }} xs={12}>
                         <Grid container item spacing={2}>
                             <Grid item>
                                 <Typography display='inline'
