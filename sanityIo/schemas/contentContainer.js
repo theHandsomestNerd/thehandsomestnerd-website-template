@@ -30,6 +30,7 @@ export default {
         {name: 'Resume Education Section', title: 'Resume Education Section',type: 'reference', to: [{type: 'ResumeEducationSection'}]},
         {name: 'Resume Feedback Section', title: 'Resume Feedback Section',type: 'reference', to: [{type: 'ResumeFeedbackSection'}]},
         {name: 'Resume ContactUs Section', title: 'Resume ContactUs Section',type: 'reference', to: [{type: 'ResumeContactUsSection'}]},
+        {name: 'Resume Portfolio Section', title: 'Resume Portfolio Section',type: 'reference', to: [{type: 'ResumePortfolioSection'}]},
         {name: 'transformServiceItem', title: 'Business Service',type: 'reference', to: [{type: 'transformServiceItem'}]},
         {name: 'heroContentSection', title: 'Hero + Content Section',type: 'reference', to: [{type: 'heroContentSection'}]},
         {name: 'transformHeroContentSection', title: SanitySectionTitlesEnum.HERO_CONTENT,type: 'reference', to: [{type: 'transformHeroContentSection'}]},

@@ -36,6 +36,12 @@ export default () =>
                 .title('Resume Education Section')
                 .child(createSuperPane('ResumeEducationSection', S)),
             S.listItem()
+                .title('Resume Portfolio')
+                .child(createSuperPane('ResumePortfolioItem', S)),
+             S.listItem()
+                .title('Resume Portfolio Section')
+                .child(createSuperPane('ResumePortfolioSection', S)),
+            S.listItem()
                 .title('Resume Feedback')
                 .child(createSuperPane('ResumeFeedback', S)),
              S.listItem()

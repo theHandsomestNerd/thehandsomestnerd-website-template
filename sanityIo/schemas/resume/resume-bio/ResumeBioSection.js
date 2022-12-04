@@ -19,6 +19,27 @@ export default {
             type: 'text',
         },
         {
+            name: 'careerTitle',
+            title: 'Career Title',
+            type: 'string',
+        },
+        {
+            name: 'yearsOfExperience',
+            title: 'Years of Experience',
+            type: 'number',
+        },
+        {
+            name: 'skillWordCloud',
+            title: 'Skill Word Cloud',
+            type: "array",
+            of: [
+                {type: "reference",
+                    to:
+                        [{type: "ResumePortfolioItem"}],
+                }
+            ]
+        },
+        {
             name: 'contactMeButtonTitle',
             title: 'Contact Me Button Text',
             type: 'string',

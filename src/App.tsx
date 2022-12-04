@@ -11,6 +11,7 @@ import AmenityProvider from "./components/amenity-context/AmenityProvider";
 import ModalProvider from "./components/snackbar-context/ModalProvider";
 import SnackbarProvider from "./components/modal-context/SnackbarProvider";
 import PageMux from "./components/mackenzies-mind/pages/PageMux";
+import QrCodeProvider from "./components/qr-code-context/QrCodeProvider";
 
 export enum RoutesEnum {
     MACKENZIES_MIND = "/the-handsomest-nerd-internal/:pageSlug",
@@ -39,23 +40,25 @@ function App() {
                             <ModalProvider>
                                 <PageProvider>
                                     <AmenityProvider>
-                                        <Grid container item alignItems="center"
-                                              style={{
-                                                  backgroundColor: theme.palette.background.default,
-                                                  overflow: "hidden",
-                                                  width: "100vw"
-                                              }}>
+                                        <QrCodeProvider>
+                                            <Grid container item alignItems="center"
+                                                  style={{
+                                                      backgroundColor: theme.palette.background.default,
+                                                      overflow: "hidden",
+                                                      width: "100vw"
+                                                  }}>
 
-                                            <Grid item>
-                                                <Routes>
-                                                    <Route path={RoutesEnum.MACKENZIES_MIND} element={<PageMux/>}/>
-                                                    <Route path={RoutesEnum.ERROR} element={<FourOhFour/>}/>
-                                                    <Route path={"/*"}
-                                                           element={<Navigate
-                                                               to={'/the-handsomest-nerd-internal/home'}/>}/>
-                                                </Routes>
+                                                <Grid item>
+                                                    <Routes>
+                                                        <Route path={RoutesEnum.MACKENZIES_MIND} element={<PageMux/>}/>
+                                                        <Route path={RoutesEnum.ERROR} element={<FourOhFour/>}/>
+                                                        <Route path={"/*"}
+                                                               element={<Navigate
+                                                                   to={'/the-handsomest-nerd-internal/home'}/>}/>
+                                                    </Routes>
+                                                </Grid>
                                             </Grid>
-                                        </Grid>
+                                        </QrCodeProvider>
                                     </AmenityProvider>
                                 </PageProvider>
                             </ModalProvider>

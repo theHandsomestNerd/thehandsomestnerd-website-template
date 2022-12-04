@@ -8,6 +8,7 @@ import clsx from "clsx";
 import MediaQueriesContext from "../../media-queries-context/MediaQueriesContext";
 import Logo from "../../transform-hw/logo/Logo";
 import {urlFor} from "../../block-content-ui/static-pages/cmsStaticPagesClient";
+import BusinessCard from "../../my-digital-resume/BusinessCard";
 
 export const useStyles = makeStyles((theme: Theme) => ({
     root: {
@@ -36,10 +37,13 @@ const Header: FunctionComponent<HeaderProps> = (props) => {
     return (
         <AppBar className={clsx({[classes.opaque]: true}, classes.root)}>{props.pageHeader?.title ?
             <Grid style={{minHeight: "55px"}} item xs={12} container justifyContent="space-between" alignItems='center' alignContent='center' spacing={mediaQueriesContext.mdDown ? 3 : 0}>
+                <Grid container item xs={2}>
+                    <BusinessCard menu={props.pageHeader} anchor={'bottom'}/>
+                </Grid>
                 <Grid item container xs={4} alignItems='center' alignContent='center'>
                     <Typography variant='h4'  style={{...rainbow, color: "#282828"}}>Terrell</Typography><Typography variant='h4' color='primary' display='inline' style={{...rainbow}}>.</Typography>
                 </Grid>
-                <Grid item container xs={8} justifyContent='space-between' alignItems='center' alignContent='center'>
+                <Grid item container xs={6} justifyContent='space-between' alignItems='center' alignContent='center'>
                     {/*// @ts-ignore*/}
                     <Hidden xsDown>
                         <Grid xs={4} md={10} lg={12} container item justifyContent='flex-end'

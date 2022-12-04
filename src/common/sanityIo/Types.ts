@@ -25,6 +25,7 @@ export type SanityTransformHwHomePage = {
   description?: string
   imgSrc?: SanityImageSource
   metaImage?: SanityImageSource
+  businessCardImageSrc?: SanityImageSource
   slug?: any
   headerMenuRef?: SanityRef
   footerMenuRef?: SanityRef
@@ -32,6 +33,7 @@ export type SanityTransformHwHomePage = {
   servicesAvailable?: ThwServiceItemNoRefType[]
   structuredData?: any
   address?: string
+  website?: string
   email?: string
   phone?: string
   facebook?: string
@@ -42,6 +44,8 @@ export type SanityTransformHwHomePage = {
   twitterIconSrc?: SanityImageSource
   instagram?: string
   instagramIconSrc?: SanityImageSource
+  github?: string
+  githubIconSrc?: SanityImageSource
   androidPlayStoreLink?: string
   androidPlayStoreIconSrc?: string
   appStoreLink?: string

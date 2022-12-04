@@ -166,7 +166,7 @@ const DigitalResumeTheme = createTheme({
         },
         h3: {
             // Title3
-            fontSize: '44px',
+            fontSize: '32px',
             fontStyle: 'normal',
             fontWeight: 600,
             lineHeight: 1.4,
@@ -235,7 +235,7 @@ const DigitalResumeTheme = createTheme({
     overrides: {
         MuiCssBaseline: {
             '@global': {
-                '@font-face': [bitterPro, raleway, ralewayBold]
+                '@font-face': [bitterPro, raleway, ralewayBold, rainbow]
             },
         },
         MuiInputBase: {

@@ -7,7 +7,7 @@ import {
     ResumeBioSectionType, ResumeContactUsSectionType,
     ResumeEducationSectionType,
     ResumeExperienceSectionType,
-    ResumeFeedbackSectionType,
+    ResumeFeedbackSectionType, ResumePortfolioSectionType,
     ResumeSkillSectionType,
     ThwAboutProprietorSectionType,
     ThwContactUsSectionType,
@@ -36,6 +36,7 @@ import ResumeExperienceSection from "./my-digital-resume/ResumeExperienceSection
 import ResumeEducationSection from "./my-digital-resume/ResumeEducationSection";
 import ResumeFeedbackSection from "./my-digital-resume/ResumeFeedbackSection";
 import ResumeContactUsSection from "./my-digital-resume/ResumeContactUsSection";
+import ResumePortfolioSection from "./my-digital-resume/ResumePortfolioSection";
 
 export type BlockContentLayoutContainerProps = {
     content?: any,
@@ -210,6 +211,14 @@ const BlockContentLayoutContainer: FunctionComponent<BlockContentLayoutContainer
                     return <Grid key={'ResumeFeedbackSection'} container item xs={12} justifyContent='center'>
                         <ResumeFeedbackSection
                             sectionData={resumeFeedbackSection}
+                        />
+                    </Grid>
+                case 'ResumePortfolioSection':
+                    const resumePortfolioSection: ResumePortfolioSectionType = columnLayoutContainer
+
+                    return <Grid key={'ResumePortfolioSection'} container item xs={12} justifyContent='center'>
+                        <ResumePortfolioSection
+                            sectionData={resumePortfolioSection}
                         />
                     </Grid>
                 case 'ResumeContactUsSection':

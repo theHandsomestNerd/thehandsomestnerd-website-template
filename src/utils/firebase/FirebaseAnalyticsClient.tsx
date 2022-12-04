@@ -83,11 +83,18 @@ const amenityTooltipShown = (serviceName:string, amenityName: string, analyticsI
     amenityName
   });
 }
+const qrCodeShown = (qrCodeValue:string, analyticsId:string) =>{
+  utils.logEventWithData('qrCodeShown', {
+    analyticsId,
+    qrCodeValue,
+  });
+}
 
 export default {
   analyticsPageView,
   ctaClick,
   reportVital,
   setAppUserId,
-  amenityTooltipShown
+  amenityTooltipShown,
+  qrCodeShown
 };

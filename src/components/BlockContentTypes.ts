@@ -302,6 +302,27 @@ export type ResumeFeedbackSectionType = {
     feedbackEntries?: ResumeFeedback[]
 }
 
+export type ResumePortfolioItem = {
+    name?: string
+    title?: string
+    coverImage?: SanityImageAsset
+    inceptionDate?: Date
+    slug?: SanitySlug
+    skillsHighlighted?:ResumeSkill[]
+    detailTitle?: string
+    detailDescription?: string
+    linkToProd?: string
+    linkToDev?: string
+    imageGallery?:SanityImageAsset[]
+}
+
+export type ResumePortfolioSectionType = {
+    name?: string
+    title?: string
+    introduction?: string
+    portfolioEntries?: ResumePortfolioItem[]
+}
+
 
 export type ResumeContactUsSectionType = {
     name: string

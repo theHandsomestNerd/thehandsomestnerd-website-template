@@ -12,8 +12,21 @@ export default {
             },
         },
         {
+            name: 'businessCardImageSrc',
+            title: 'Business Card Image',
+            type: 'image',
+            options: {
+                hotspot: true,
+            },
+        },
+        {
             name: 'title',
             title: 'Title(Title in Browser Tab)',
+            type: 'string',
+        },
+        {
+            name: 'website',
+            title: 'Website(Featured Link)',
             type: 'string',
         },
         {
@@ -98,6 +111,19 @@ export default {
         {
             name: 'linkedInIconSrc',
             title: 'LinkedIn Icon',
+            type: 'image',
+            options: {
+                hotspot: true,
+            },
+        },
+        {
+            name: 'github',
+            title: 'Github Handle',
+            type: 'string',
+        },
+        {
+            name: 'githubIconSrc',
+            title: 'GitHub Icon',
             type: 'image',
             options: {
                 hotspot: true,

@@ -22,6 +22,7 @@ const SnackbarProvider: FunctionComponent<IProps & PropsWithChildren> = (
 ) => {
     const [snackbarOpen, setSnackbarOpen] = React.useState<boolean>(false)
     const [snackPack, setSnackPack] = React.useState<readonly SnackbarMessage[]>([]);
+    const [autoCloseTime, setAutoCloseTime] = React.useState<number | null>()
     const [messageInfo, setMessageInfo] = React.useState<SnackbarMessage | undefined>(
         undefined,
     );
@@ -51,7 +52,8 @@ const SnackbarProvider: FunctionComponent<IProps & PropsWithChildren> = (
         setMessageInfo(undefined);
     };
 
-    const openSnackbar = (message: any) => {
+    const openSnackbar = (message: any, time?: number | null) => {
+        setAutoCloseTime(time)
         setSnackPack((prev) => [...prev, {message, key: new Date().getTime()}]);
         setSnackbarOpen(true)
     }
@@ -65,7 +67,7 @@ const SnackbarProvider: FunctionComponent<IProps & PropsWithChildren> = (
     );
     return (
         <SnackbarContext.Provider value={newValue}>
-            <Grid container item>
+            <Grid container item justifyContent='center'>
             <Snackbar
                 key={messageInfo ? messageInfo.key : undefined}
                 anchorOrigin={{
@@ -74,18 +76,18 @@ const SnackbarProvider: FunctionComponent<IProps & PropsWithChildren> = (
                 }}
                 TransitionProps={{onExited: handleExited}}
                 open={snackbarOpen}
-                autoHideDuration={15000}
+                autoHideDuration={autoCloseTime == null ? null : autoCloseTime}
                 onClose={handleSnackbarClose}
                 message={messageInfo ? messageInfo.message : undefined}
                 action={
                     <Grid item container alignContent='center' alignItems='center'>
                         <Grid item>
-                            <Countdown
-                                date={(new Date(Date.now() + 14000))}
+                            {autoCloseTime ? <Countdown
+                                date={autoCloseTime ? (new Date(Date.now() + (autoCloseTime - 1000))) : undefined}
                                 renderer={
                                     (date) => (<SecondsCountdownButton date={date}/>)
                                 }
-                            />
+                            />:<Grid item container justifyContent='center'><SecondsCountdownButton /></Grid>}
                         </Grid>
                     </Grid>
                 }

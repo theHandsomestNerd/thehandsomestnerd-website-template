@@ -3,9 +3,10 @@ import {Button, ButtonGroup, Grid, IconButton, Link, Typography, useTheme} from 
 import {ResumeBioSectionType} from "../BlockContentTypes";
 import {urlFor} from "../block-content-ui/static-pages/cmsStaticPagesClient";
 import {SanityTransformHwHomePage} from "../../common/sanityIo/Types";
-import {CloudDownload, Facebook, Instagram, LinkedIn, Twitter} from "@material-ui/icons";
+import {CloudDownload, Facebook, GitHub, Instagram, LinkedIn, Twitter} from "@material-ui/icons";
 import useThwCommonStyles from "../../common/sanityIo/ThwCommonStyles";
 import MediaQueriesContext from "../media-queries-context/MediaQueriesContext";
+import ResumeSocialMedia from "./ResumeSocialMedia";
 
 interface IProps {
     sectionData: ResumeBioSectionType
@@ -50,23 +51,7 @@ const ResumeBio: FunctionComponent<IProps> = (props: IProps) => {
                 <Grid item><Typography gutterBottom variant='body1'>{props.homePage.address}</Typography></Grid>
             </Grid>
             <Grid container item xs={11} sm={12}>
-                <Grid item xs={12} container spacing={2} alignItems='center' justifyContent='center'>
-                    <Grid item>
-                        <IconButton color='primary' href={`https://facebook.com/${props.homePage.facebook}`}><Facebook/></IconButton>
-                    </Grid>
-                    <Grid item>
-                        <IconButton color='primary'
-                                    href={`https://twitter.com/${props.homePage.twitter}`}><Twitter/></IconButton>
-                    </Grid>
-                    <Grid item>
-                        <IconButton color='primary'
-                                    href={`https://instagram.com/${props.homePage.instagram}`}><Instagram/></IconButton>
-                    </Grid>
-                    <Grid item>
-                        <IconButton color='primary'
-                                    href={`https://linkedIn.com/in/${props.homePage.linkedIn}`}><LinkedIn/></IconButton>
-                    </Grid>
-                </Grid>
+                <ResumeSocialMedia homePage={props.homePage} />
             </Grid>
         </Grid>
         <Grid container item md={6} style={{

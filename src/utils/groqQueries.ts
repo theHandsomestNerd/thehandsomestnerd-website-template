@@ -68,6 +68,8 @@ const HOMEPAGE = `_type,
           email,
           phone,
           description,
+          businessCardImageSrc,
+          website,
           metaImage,
           headerMenuRef->{
              ${MENUGROUPCONTAINER}
@@ -96,6 +98,11 @@ const HOMEPAGE = `_type,
                 },
                 "educationExperiences": educationExperiences[]->,
                 "feedbackEntries": feedbackEntries[]->,
+                "portfolioEntries": portfolioEntries[]->{
+                    ...,
+                    "skillsHighlighted": skillsHighlighted[]->,
+                    "imageGallery": imageGallery[]
+                },
                 "resumeFile": resumeFile.asset->,
                 "cvFile": cvFile.asset->
             }
@@ -122,6 +129,8 @@ const HOMEPAGE = `_type,
              }
           },
           instagram,
+          linkedIn,
+          github,
           instagramIconSrc{
             asset->{
               _id,
