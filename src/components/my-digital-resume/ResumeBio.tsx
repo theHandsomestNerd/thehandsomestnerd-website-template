@@ -19,13 +19,13 @@ const ResumeBio: FunctionComponent<IProps> = (props: IProps) => {
 
     const mediaQueriesContext = useContext(MediaQueriesContext)
 
-    const xsDown = mediaQueriesContext.xsDown
+    const smDown = mediaQueriesContext.smDown
 
     return (<Grid container item style={{padding: theme.spacing(4)}} justifyContent='center'
                   className={classes.resumeSection} spacing={3}>
         <Grid container item md={6} justifyContent='center'>
             <Grid item container>
-                <Typography component='div' display='inline' variant='h5'>{props.sectionData.title}
+                <Typography component='div' display='inline' variant='h5' gutterBottom>{props.sectionData.title}
                     <Typography variant='h5'
                                 color='primary'
                                 display='inline'>.</Typography>
@@ -38,17 +38,17 @@ const ResumeBio: FunctionComponent<IProps> = (props: IProps) => {
                 <Grid item xs={3}>
                     <Typography gutterBottom variant='body1' style={{textTransform: "uppercase"}}>Phone</Typography>
                 </Grid>
-                <Grid item><Typography gutterBottom variant='body1'>{props.homePage.phone}</Typography></Grid>
+                <Grid item xs={9}><Typography gutterBottom variant='body1'>{props.homePage.phone}</Typography></Grid>
             </Grid>
             <Grid container item xs={11} sm={12}>
                 <Grid item xs={3}><Typography gutterBottom variant='body1'
                                               style={{textTransform: "uppercase"}}>Email</Typography></Grid>
-                <Grid item><Typography gutterBottom variant='body1'>{props.homePage.email}</Typography></Grid>
+                <Grid item xs={9}><Typography gutterBottom variant='body1'>{props.homePage.email}</Typography></Grid>
             </Grid>
             <Grid container item xs={11} sm={12}>
                 <Grid item xs={3}><Typography gutterBottom variant='body1'
-                                              style={{textTransform: "uppercase"}}>Address</Typography></Grid>
-                <Grid item><Typography gutterBottom variant='body1'>{props.homePage.address}</Typography></Grid>
+                                              style={{textTransform: "uppercase"}}>MAIL</Typography></Grid>
+                <Grid item xs={9}><Typography noWrap gutterBottom variant='body1'>{props.homePage.address}</Typography></Grid>
             </Grid>
             <Grid container item xs={11} sm={12}>
                 <ResumeSocialMedia homePage={props.homePage} />
@@ -64,19 +64,20 @@ const ResumeBio: FunctionComponent<IProps> = (props: IProps) => {
         </Grid>
         <Grid container item xs={12} sm={10} spacing={1} style={{marginTop: theme.spacing(2)}}>
             <Grid item container>
-                <ButtonGroup fullWidth orientation={xsDown ? 'vertical' : "horizontal"}>
+                <ButtonGroup fullWidth orientation={smDown ? 'vertical' : "horizontal"}>
+                    <Button variant='contained' fullWidth color='primary' href={props.homePage.bookAppointmentLink}><Typography variant="button" align='center'>Meet with Me</Typography></Button>
+                    <Button variant='contained' fullWidth color='primary' href={'#CONTACT_ME'}><Typography variant="button" align='center'>Contact
+                        Me</Typography></Button>
                     <Button
                         href={props.sectionData.resumeFile?.url + "?dl=James Terrell Singleton - Software Engineer - Resume.pdf"}
                         variant='contained' fullWidth color='primary'><CloudDownload
                         className={classes.iconOnButton}/><Typography variant="button" align='center' noWrap>
-                        Resume</Typography></Button>
-                    <Button variant='contained' fullWidth color='primary'><Typography variant="button" align='center'>Contact
-                        Me</Typography></Button>
-                    {props.sectionData.cvFile && props.sectionData.cvFile.url.length > 0 && <Button
-                        href={props.sectionData.cvFile?.url + "?dl=James Terrell Singleton - Software Engineer - CV.pdf"}
-                        variant='contained' fullWidth color='primary'><CloudDownload
-                        className={classes.iconOnButton}/><Typography variant="button" align='center'>
-                        CV</Typography></Button>}
+                        ResuMe</Typography></Button>
+                    {/*{props.sectionData.cvFile && props.sectionData.cvFile.url.length > 0 && <Button*/}
+                    {/*    href={props.sectionData.cvFile?.url + "?dl=James Terrell Singleton - Software Engineer - CV.pdf"}*/}
+                    {/*    variant='contained' fullWidth color='primary'><CloudDownload*/}
+                    {/*    className={classes.iconOnButton}/><Typography variant="button" align='center'>*/}
+                    {/*    CV</Typography></Button>}*/}
                 </ButtonGroup>
             </Grid>
         </Grid>

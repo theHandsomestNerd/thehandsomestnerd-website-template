@@ -23,6 +23,8 @@ export type SanityTransformHwHomePage = {
   _type?:string
   title?: string
   description?: string
+  bookAppointmentLink?: string
+  bookAppointmentQrCode?: SanityImageSource
   imgSrc?: SanityImageSource
   metaImage?: SanityImageSource
   businessCardImageSrc?: SanityImageSource
@@ -34,6 +36,7 @@ export type SanityTransformHwHomePage = {
   structuredData?: any
   address?: string
   website?: string
+  websiteQrCode?: SanityImageSource
   email?: string
   phone?: string
   facebook?: string

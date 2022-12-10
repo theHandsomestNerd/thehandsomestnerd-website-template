@@ -70,7 +70,7 @@ const MainMenu: FunctionComponent<MainMenuProps> = ({menu, anchor}) => {
                                     height: "100%",
                                     margin: 0
                                 }} fullWidth>
-                                    <ListItemText primary={menuItem.displayText}/>
+                                    <ListItemText secondary={menuItem.displayText}/>
                                 </Button>
 
                             </ListItem>
@@ -84,7 +84,7 @@ const MainMenu: FunctionComponent<MainMenuProps> = ({menu, anchor}) => {
 
     return (<Grid item>
             <Button onClick={toggleDrawer(anchor, true)}>
-                <Menu color='secondary'
+                <Menu color='inherit'
                       fontSize='large'/>
             </Button>
             <Drawer anchor={anchor} open={isDrawerOpen}

@@ -176,6 +176,9 @@ const BlockContentLayoutContainer: FunctionComponent<BlockContentLayoutContainer
                     const resumeBioSection: ResumeBioSectionType = columnLayoutContainer
 
                     return <Grid key={'ResumeBioSection'} container item xs={12} justifyContent='center' >
+                        <Link id={"TOP_OF_PAGE"} style={{position: "relative", top: -80}}><></></Link>
+                        <Link id={"BIO"} style={{position: "relative", top: -80}}><></></Link>
+
                         <ResumeBio
                             homePage={props.homePage}
                             sectionData={resumeBioSection}
@@ -185,6 +188,8 @@ const BlockContentLayoutContainer: FunctionComponent<BlockContentLayoutContainer
                     const resumeSkillSection: ResumeSkillSectionType = columnLayoutContainer
 
                     return <Grid key={'ResumeSkillSection'} container item xs={12} justifyContent='center'>
+                        <Link id={"SKILLS"} style={{position: "relative", top: -80}}><></></Link>
+
                         <ResumeSkillsSection
                             sectionData={resumeSkillSection}
                         />
@@ -193,6 +198,8 @@ const BlockContentLayoutContainer: FunctionComponent<BlockContentLayoutContainer
                     const resumeExperienceSection: ResumeExperienceSectionType = columnLayoutContainer
 
                     return <Grid key={'ResumeExperienceSection'} container item xs={12} justifyContent='center'>
+                        <Link id={"EXPERIENCE"} style={{position: "relative", top: -80}}><></></Link>
+
                         <ResumeExperienceSection
                             sectionData={resumeExperienceSection}
                         />
@@ -201,6 +208,8 @@ const BlockContentLayoutContainer: FunctionComponent<BlockContentLayoutContainer
                     const resumeEducationSection: ResumeEducationSectionType = columnLayoutContainer
 
                     return <Grid key={'ResumeEducationSection'} container item xs={12} justifyContent='center'>
+                        <Link id={"EDUCATION"} style={{position: "relative", top: -80}}><></></Link>
+
                         <ResumeEducationSection
                             sectionData={resumeEducationSection}
                         />
@@ -209,6 +218,8 @@ const BlockContentLayoutContainer: FunctionComponent<BlockContentLayoutContainer
                     const resumeFeedbackSection: ResumeFeedbackSectionType = columnLayoutContainer
 
                     return <Grid key={'ResumeFeedbackSection'} container item xs={12} justifyContent='center'>
+                        <Link id={"FEEDBACK"} style={{position: "relative", top: -80}}><></></Link>
+
                         <ResumeFeedbackSection
                             sectionData={resumeFeedbackSection}
                         />
@@ -217,7 +228,9 @@ const BlockContentLayoutContainer: FunctionComponent<BlockContentLayoutContainer
                     const resumePortfolioSection: ResumePortfolioSectionType = columnLayoutContainer
 
                     return <Grid key={'ResumePortfolioSection'} container item xs={12} justifyContent='center'>
-                        <ResumePortfolioSection
+                        <Link id={"PORTFOLIO"} style={{position: "relative", top: -80}}><></></Link>
+
+                            <ResumePortfolioSection
                             sectionData={resumePortfolioSection}
                         />
                     </Grid>
@@ -225,7 +238,9 @@ const BlockContentLayoutContainer: FunctionComponent<BlockContentLayoutContainer
                     const resumeContactUsSection: ResumeContactUsSectionType = columnLayoutContainer
 
                     return <Grid key={'ResumeContactUsSection'} container item xs={12} justifyContent='center'>
-                        <ResumeContactUsSection
+                        <Link id={"CONTACT_ME"} style={{position: "relative", top: -80}}><></></Link>
+
+                            <ResumeContactUsSection
                             sectionData={resumeContactUsSection}
                         />
                     </Grid>

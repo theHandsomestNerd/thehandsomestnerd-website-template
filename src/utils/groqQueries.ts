@@ -69,7 +69,10 @@ const HOMEPAGE = `_type,
           phone,
           description,
           businessCardImageSrc,
+          bookAppointmentLink,
+          bookAppointmentQrCode,
           website,
+          websiteQrCode,
           metaImage,
           headerMenuRef->{
              ${MENUGROUPCONTAINER}

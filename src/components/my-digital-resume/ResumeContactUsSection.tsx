@@ -1,16 +1,12 @@
 import React, {FunctionComponent, useContext, useEffect, useState} from 'react'
 import {makeStyles, Theme} from "@material-ui/core/styles"
-import {Grid, IconButton, InputAdornment, Link, TextField, Typography, useTheme, withStyles} from "@material-ui/core";
-import {AccountCircle, Email, Facebook, LinkedIn, Message, Phone, Twitter, YouTube} from "@material-ui/icons";
-import DigitalResumeTheme, {COLORS} from "../../theme/DigitalResumeTheme";
-import {urlFor} from "../block-content-ui/static-pages/cmsStaticPagesClient";
-import {ResumeContactUsSectionType, ResumeFeedback, ThwContactUsSectionType} from "../BlockContentTypes";
-import clsx from "clsx";
+import {Grid, TextField, Typography, useTheme, withStyles} from "@material-ui/core";
+import DigitalResumeTheme from "../../theme/DigitalResumeTheme";
+import {ResumeContactUsSectionType} from "../BlockContentTypes";
 import useCustomStyles from "../mackenzies-mind/pages/Styles";
 import isEmail from "validator/lib/isEmail";
 import LoadingButton from "../loading-button/LoadingButton";
 import {useQuery} from "react-query";
-import {Parallax} from "react-parallax";
 import MediaQueriesContext from "../media-queries-context/MediaQueriesContext";
 import firebaseAnalyticsClient from "../../utils/firebase/FirebaseAnalyticsClient";
 import PageContext from "../page-context/PageContext";

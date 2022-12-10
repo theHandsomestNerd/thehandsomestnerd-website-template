@@ -216,6 +216,7 @@ export type ThwContactUsSectionType = {
 export type ResumeBioSectionType = {
     name?: string
     title?: string
+    careerTitle?: string
     introduction?: string
     contactMeButtonTitle?: string
     resumeFileDownloadText?: string

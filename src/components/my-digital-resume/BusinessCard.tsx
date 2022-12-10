@@ -6,13 +6,13 @@ import {
     createStyles,
     Divider,
     Drawer,
-    Grid, Link,
+    Grid, IconButton, Link,
     List,
     ListItem,
     ListItemText, Typography,
     useTheme
 } from '@material-ui/core'
-import {Close, Menu} from "@material-ui/icons";
+import {Close, FileCopy, Menu} from "@material-ui/icons";
 import DigitalResumeTheme, {COLORS} from "../../theme/DigitalResumeTheme";
 import ResumeSocialMedia from "./ResumeSocialMedia";
 import MainMenuSubMenu from "../mackenzies-mind/header/MainMenuSubMenu";
@@ -35,10 +35,10 @@ import QrCodeContext from "../qr-code-context/QrCodeContext";
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
-        drawer:{
-          "& .MuiDrawer-paper":{
-              backgroundColor: "transparent"
-          }
+        drawer: {
+            "& .MuiDrawer-paper": {
+                backgroundColor: "transparent"
+            }
         },
         listItem: {
             "&.MuiListItem-gutters": {
@@ -91,20 +91,23 @@ const BusinessCard: FunctionComponent<MainMenuProps> = ({menu, anchor}) => {
     }, [pageContext.page?.pageContent])
 
     const qrCodeContext = useContext(QrCodeContext)
-    const share = (e: any) => {
+    const share = async (url: string) => {
         console.log("share")
         //
 
-        qrCodeContext.openSnackbar && qrCodeContext.openSnackbar("https://terrellsingleton.com/", ['website', 'email'])
+        qrCodeContext.init && await qrCodeContext.init(url)
     }
-    const shareSelected = (e: any) => {
-        console.log("share")
-    }
+
+    React.useEffect(() => {
+        qrCodeContext.qr_code_value && qrCodeContext.openSnackbar && qrCodeContext.openSnackbar(['email'])
+
+    }, [qrCodeContext.qr_code_value])
+
     const list = (anchor: MainMenuAnchorType) => (
         <Grid xs={12} md={6} container item
               role="presentation"
-              // onClick={toggleDrawer(anchor, false)}
-              // onKeyDown={toggleDrawer(anchor, false)}
+            // onClick={toggleDrawer(anchor, false)}
+            // onKeyDown={toggleDrawer(anchor, false)}
               style={{backgroundColor: COLORS.LIGHTGRAY}}
         >
             <Grid container item alignContent='flex-end'>
@@ -128,15 +131,26 @@ const BusinessCard: FunctionComponent<MainMenuProps> = ({menu, anchor}) => {
                 </Grid>
             </Grid>
             <Grid container item>
-                <List style={{width: "100%", }}>
+                <List style={{width: "100%",}}>
+                    <ListItem>
+                        <Grid container>
+
+                            <Grid container justifyContent='center'>
+                                <Typography color='primary' variant='h6'>{userBio?.name}</Typography>
+                            </Grid>
+                            <Grid container justifyContent='center'>
+                                <Typography variant='body2'>{userBio?.careerTitle}</Typography>
+                            </Grid>
+                        </Grid>
+                    </ListItem>
                     <ListItem>
                         <Grid container>
                             <Grid item xs={3}>
-                                <Typography variant='h6'>Phone:</Typography>
+                                <Typography variant='body2'>Phone:</Typography>
 
                             </Grid>
                             <Grid item xs={9} container justifyContent='flex-end'>
-                                <Typography variant='h6'>{pageContext.page?.phone}</Typography>
+                                <Typography variant='body2'>{pageContext.page?.phone}</Typography>
 
                             </Grid>
                         </Grid>
@@ -145,75 +159,138 @@ const BusinessCard: FunctionComponent<MainMenuProps> = ({menu, anchor}) => {
                     <Divider/>
                     <ListItem>
                         <Grid item xs={3}>
-                            <Typography variant='h6'>Email:</Typography>
+                            <Typography variant='body2'>Email:</Typography>
 
                         </Grid>
                         <Grid item xs={9} container justifyContent='flex-end'>
                             <MailTo color={theme.palette.primary.main} email={pageContext.page?.email ?? ""}
                                     subject={"Information Request"} body={""}>
-                                <Typography color='textPrimary' variant='button'>{pageContext.page?.email}</Typography>
+                                <Typography color='textPrimary' variant='button' align='right'>{pageContext.page?.email}</Typography>
                             </MailTo>
-                            {/*<Typography variant='h6'>{pageContext.page?.email}</Typography>*/}
+                            {/*<Typography variant='body2'>{pageContext.page?.email}</Typography>*/}
                         </Grid>
                     </ListItem>
                     <Divider/>
                     <ListItem>
-                        <Grid item xs={3}>
-                            <Typography variant='h6'>Website:</Typography>
+                        <Grid container>
+                            <Grid item xs={8} container alignContent='flex-end'>
+                                <Typography variant='h6' gutterBottom>Website</Typography>
+                                <Button variant='outlined' size='small' fullWidth color='primary' href={pageContext.page?.website}><Grid style={{height: "48px"}} container justifyContent='center' alignContent='center' alignItems='center'><Grid item><Typography
 
-                        </Grid>
-                        <Grid item xs={9}>
-                            <Button color='primary' fullWidth href={pageContext.page?.website}><Typography
-                                variant='button'>{pageContext.page?.website}</Typography></Button>
+                                    variant='subtitle1' align='center'>{pageContext.page?.website}</Typography></Grid></Grid></Button>
+                            </Grid>
+                            <Grid item xs={3} container>
+                                <Grid container item justifyContent='flex-end'>
+
+                                    <Grid item xs={2} container justifyContent='flex-end'>
+                                        <Button variant='contained' color='primary' fullWidth onClick={() => {
+                                            navigator.clipboard.writeText(pageContext.page?.website ?? "")
+                                        }}>
+                                            <Grid item>
+                                                <FileCopy style={{height: "42px"}}/>
+                                                <Typography variant='subtitle1'>Copy</Typography>
+                                            </Grid>
+                                        </Button>
+                                    </Grid>
+                                    <Grid item xs={2}>
+                                        <Button variant='contained' color='primary' fullWidth onClick={() => share(pageContext.page?.website ?? "")}>
+                                            <Grid item>
+                                                <img height={42}
+                                                     src={urlFor(pageContext.page?.websiteQrCode ?? "").url() ?? ""}/>
+                                                <Typography variant='subtitle1'>Qr</Typography>
+                                            </Grid>
+                                        </Button>
+                                    </Grid>
+                                </Grid>
+                            </Grid>
                         </Grid>
                     </ListItem>
+                    <Divider/>
                     <ListItem>
-                        <Grid item xs={11}>
-                            <ButtonGroup fullWidth>
+                        <Grid container>
+                            <Grid item xs={8} container alignContent='flex-end'>
+                                <Typography variant='h6' gutterBottom>Virtual Meeting</Typography>
+                                <Button  variant='outlined' size='small'  fullWidth color='primary'
+                                        href={pageContext.page?.bookAppointmentLink}><Grid style={{height: "48px"}} container justifyContent='center' alignContent='center' alignItems='center'><Grid item><Typography
 
-                                <Button variant='contained' color='primary' fullWidth onClick={share}><Typography
-                                    variant='button'>Share All</Typography></Button>
-                                <Button variant='contained' color='secondary' fullWidth onClick={shareSelected}><Typography
-                                    variant='button'>Share Selected</Typography></Button>
-                            </ButtonGroup>
+                                    variant='subtitle1' align='center'>{pageContext.page?.bookAppointmentLink}</Typography></Grid></Grid></Button>
+                            </Grid>
+                            <Grid item xs={3} container>
+                                <Grid container item justifyContent='flex-end'>
+
+                                    <Grid item xs={2} container justifyContent='flex-end'>
+                                        <Button variant='contained' color='primary' fullWidth onClick={() => {
+                                            navigator.clipboard.writeText(pageContext.page?.bookAppointmentLink ?? "")
+                                        }}
+                                        >
+                                            <Grid item>
+                                                <FileCopy style={{height: "42px"}}/>
+                                                <Typography variant='subtitle1'>Copy</Typography>
+                                            </Grid>
+                                        </Button>
+                                    </Grid>
+                                    <Grid item xs={2}>
+                                        <Button variant='contained' color='primary' fullWidth onClick={() => share(pageContext.page?.bookAppointmentLink ?? "")}>
+                                            <Grid item>
+                                                <img height={42}
+                                                     src={urlFor(pageContext.page?.bookAppointmentQrCode ?? "").url() ?? ""}/>
+                                                <Typography variant='subtitle1'>Qr</Typography>
+                                            </Grid>
+                                        </Button>
+                                    </Grid>
+                                </Grid>
+                            </Grid>
                         </Grid>
                     </ListItem>
+
+                    {/*<ListItem>*/}
+                    {/*    <Grid item xs={12} justifyContent='center'>*/}
+                    {/*        /!*<ButtonGroup fullWidth>*!/*/}
+
+                    {/*        <Button variant='outlined' color='primary' fullWidth*/}
+                    {/*                onClick={() => share(pageContext.page?.website ?? "")}><Typography*/}
+                    {/*            variant='button'>Share All</Typography></Button>*/}
+                    {/*        /!*<Button variant='contained' color='secondary' fullWidth onClick={shareSelected}><Typography*!/*/}
+                    {/*        /!*    variant='button'>Share Selected</Typography></Button>*!/*/}
+                    {/*        /!*</ButtonGroup>*!/*/}
+                    {/*    </Grid>*/}
+                    {/*</ListItem>*/}
                 </List>
             </Grid>
-            <Divider/>
-            {menu?.subMenus?.map((subMenu: any, index: number) => {
-                switch (subMenu._type) {
-                    case 'menuGroup':
-                        const menuGroup: SanityMenuGroup = subMenu
-                        return <MainMenuSubMenu key={index} menuGroup={menuGroup}/>
-                    case 'menuItem':
-                    default:
-                        const menuItem: SanityMenuItem = subMenu
-                        return <List style={{padding: 0}} key={menuItem.displayText}>
-                            <ListItem href={menuItem.url ?? ""} className={classes.listItem} button>
-                                <Button variant='text' href={menuItem.isModalButton ? undefined : menuItem.url}
-                                        onClick={menuItem.isModalButton ? () => {
-                                            console.log()
-                                            if (menuItem.isModalButton) {
-                                                modalContext.openModal && modalContext.openModal(menuItem.modalRef)
-                                            }
-                                        } : undefined}
-                                        style={{
-                                            paddingTop: DigitalResumeTheme.spacing(2.25),
-                                            paddingLeft: DigitalResumeTheme.spacing(2),
-                                            paddingBottom: DigitalResumeTheme.spacing(2.25),
-                                            height: "100%",
-                                            margin: 0
-                                        }} fullWidth>
-                                    <ListItemText primary={menuItem.displayText}/>
-                                </Button>
+            {/*<Divider/>*/}
+            {/*{menu?.subMenus?.map((subMenu: any, index: number) => {*/}
+            {/*    switch (subMenu._type) {*/}
+            {/*        case 'menuGroup':*/}
+            {/*            const menuGroup: SanityMenuGroup = subMenu*/}
+            {/*            return <MainMenuSubMenu key={index} menuGroup={menuGroup}/>*/}
+            {/*        case 'menuItem':*/}
+            {/*        default:*/}
+            {/*            const menuItem: SanityMenuItem = subMenu*/}
+            {/*            return <List style={{padding: 0}} key={menuItem.displayText}>*/}
+            {/*                <ListItem href={menuItem.url ?? ""} className={classes.listItem} button>*/}
+            {/*                    <Button variant='text' href={menuItem.isModalButton ? undefined : menuItem.url}*/}
+            {/*                            onClick={menuItem.isModalButton ? () => {*/}
+            {/*                                console.log()*/}
+            {/*                                if (menuItem.isModalButton) {*/}
+            {/*                                    modalContext.openModal && modalContext.openModal(menuItem.modalRef)*/}
+            {/*                                }*/}
+            {/*                            } : undefined}*/}
+            {/*                            style={{*/}
+            {/*                                paddingTop: DigitalResumeTheme.spacing(2.25),*/}
+            {/*                                paddingLeft: DigitalResumeTheme.spacing(2),*/}
+            {/*                                paddingBottom: DigitalResumeTheme.spacing(2.25),*/}
+            {/*                                height: "100%",*/}
+            {/*                                margin: 0*/}
+            {/*                            }} fullWidth>*/}
+            {/*                        <ListItemText primary={menuItem.displayText}/>*/}
+            {/*                    </Button>*/}
 
-                            </ListItem>
-                            <Divider/>
-                        </List>
-                }
+            {/*                </ListItem>*/}
+            {/*                <Divider/>*/}
+            {/*            </List>*/}
+            {/*    }*/}
 
-            })}
+            {/*})}*/}
         </Grid>
     );
 
@@ -224,8 +301,8 @@ const BusinessCard: FunctionComponent<MainMenuProps> = ({menu, anchor}) => {
 
             <Drawer
                 className={classes.drawer}
-                    anchor={anchor} open={isDrawerOpen}
-                    onClose={toggleDrawer(anchor, false)}
+                anchor={anchor} open={isDrawerOpen}
+                onClose={toggleDrawer(anchor, false)}
             >
                 <Grid container alignItems='center' justifyContent='space-between'
                       style={{
@@ -245,10 +322,10 @@ const BusinessCard: FunctionComponent<MainMenuProps> = ({menu, anchor}) => {
                 </Grid>
                 <Grid container item justifyContent='center'>
 
-                {list(anchor)}
+                    {list(anchor)}
                 </Grid>
             </Drawer>
-    </Grid>
+        </Grid>
     )
 }
 

@@ -30,6 +30,27 @@ export default {
             type: 'string',
         },
         {
+            name: 'websiteQrCode',
+            title: 'Website Qr Code',
+            type: 'image',
+            options: {
+                hotspot: true,
+            },
+        },
+        {
+            name: 'bookAppointmentLink',
+            title: 'Book Appointment Link',
+            type: 'string',
+        },
+        {
+            name: 'bookAppointmentQrCode',
+            title: 'Book Appointment Qr Code',
+            type: 'image',
+            options: {
+                hotspot: true,
+            },
+        },
+        {
             name: 'description',
             title: 'Description(Meta tag description)',
             type: 'text',

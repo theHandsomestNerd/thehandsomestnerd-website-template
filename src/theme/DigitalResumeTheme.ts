@@ -192,7 +192,7 @@ const DigitalResumeTheme = createTheme({
         },
         body1: {
             // Body
-            fontSize: '15px',
+            fontSize: '14.5px',
             fontStyle: 'normal',
             fontWeight: 400,
             lineHeight: 1.5,

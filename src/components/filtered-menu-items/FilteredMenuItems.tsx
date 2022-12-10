@@ -34,7 +34,7 @@ const FilteredMenuItems: FunctionComponent<FilteredMenuItemsProps> = ({
                                                              }) => {
     // const anchorRef = useRef<HTMLButtonElement | null>(null)
     const mediaQueriesContext = useContext(MediaQueriesContext)
-    return (<Grid item container justifyContent={mediaQueriesContext.mdDown ? 'flex-start' : 'flex-end'} alignItems='stretch'>
+    return (<Grid item container justifyContent={mediaQueriesContext.mdDown ? 'flex-start' : 'flex-end'} alignItems='stretch' style={{height: "100%"}}>
             {
                 subMenus?.reduce(
                     (accumulated: JSX.Element[], menuButton:any, index) => {
