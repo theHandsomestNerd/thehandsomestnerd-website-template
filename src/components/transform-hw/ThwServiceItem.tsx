@@ -31,10 +31,10 @@ const ThwServiceItem: FunctionComponent<IProps> = (props: IProps) => {
 
     const LearnMoreButton = () => {
         return <Grid item container justifyContent='center'>
-            {props.service.learnMoreText && props.service.learnMoreText.length > 0 &&
+            {props.service.learnMoreText && props.service?.learnMoreText.length > 0 &&
                 <LoadingButton
                     clickHandler={()=>
-                    firebaseAnalyticsClient.ctaClick(props.service.slug.current ?? "", props.service.learnMoreText, pageContext.analyticsId,)
+                    firebaseAnalyticsClient.ctaClick(props.service.slug?.current ?? "", props.service.learnMoreText, pageContext.analyticsId,)
 
                 } color='secondary' href={props.service.learnMoreLink}
                                variant='outlined'><Typography variant='button'
@@ -49,7 +49,7 @@ const ThwServiceItem: FunctionComponent<IProps> = (props: IProps) => {
                 <Grid container item direction={"column"}>
                     <Grid item container>
                         <ImageWIthButtonOverlay
-                            source={props.service.slug.current}
+                            source={props.service.slug?.current}
                             // hideCtaButton={prop.hideCtaButton}
                             tooltip={'Click to Learn More'}
                             learnMoreLink={props.service.learnMoreLink}

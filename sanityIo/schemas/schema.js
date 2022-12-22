@@ -52,6 +52,19 @@ import ResumeFeedbackSection from "./resume/resume-feedback/ResumeFeedbackSectio
 import ResumeContactUsSection from "./resume/resume-contact-us/ResumeContactUsSection";
 import ResumePortfolioItem from "./resume/resume-portfolio/ResumePortfolioItem";
 import ResumePortfolioSection from "./resume/resume-portfolio/ResumePortfolioSection";
+import WebDevHeroContentSection from "./web-dev/WebDevHeroContentSection";
+import WebDevStatistic from "./web-dev/WebDevStatistic";
+import WebDevStatsCounterSection from "./web-dev/WebDevStatsCounterSection";
+import WebDevAboutUs from "./web-dev/WebDevAboutUs";
+import ServiceItem from "./services/ServiceItem";
+import ServiceAmenity from "./services/serviceAmenity";
+import ServicesSection from "./services/ServicesSection";
+import PortfolioSection from "./portfolio/PortfolioSection";
+import PortfolioItem from "./portfolio/PortfolioItem";
+import Testimonials from "./testimonials/Testimonials";
+import TestimonialsSection from "./testimonials/TestimonialsSection";
+import WebDevHowItWorksStep from "./web-dev/WebDevHowItWorksStep";
+import WebDevHowItWorksSection from "./web-dev/WebDevHowItWorksSection";
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -114,6 +127,19 @@ export default createSchema({
         ResumeFeedbackSection,
         ResumeContactUsSection,
         ResumePortfolioItem,
-        ResumePortfolioSection
+        ResumePortfolioSection,
+        WebDevHeroContentSection,
+        WebDevStatistic,
+        WebDevStatsCounterSection,
+        WebDevAboutUs,
+        ServicesSection,
+        ServiceItem,
+        ServiceAmenity,
+        PortfolioSection,
+        PortfolioItem,
+        Testimonials,
+        TestimonialsSection,
+        WebDevHowItWorksStep,
+        WebDevHowItWorksSection
     ]),
 })

@@ -1,14 +1,7 @@
 import React, {FunctionComponent, useContext} from 'react'
 import {makeStyles, Theme} from "@material-ui/core/styles"
 import {Button, ButtonGroup, Chip, Grid, IconButton, Modal, Typography, useTheme} from '@material-ui/core'
-import {
-    ResumeEducation,
-    ResumeEducationSectionType,
-    ResumeExperience,
-    ResumeExperienceSectionType, ResumePortfolioItem, ResumePortfolioSectionType,
-    ResumeSkillSectionType,
-    ResumeSkillSet
-} from "../BlockContentTypes";
+import {ResumePortfolioItem, ResumePortfolioSectionType} from "../BlockContentTypes";
 import {COLORS} from "../../theme/DigitalResumeTheme";
 import useThwCommonStyles from "../../common/sanityIo/ThwCommonStyles";
 import MediaQueriesContext from "../media-queries-context/MediaQueriesContext";

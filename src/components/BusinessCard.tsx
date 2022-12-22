@@ -13,11 +13,11 @@ import {
     useTheme
 } from '@material-ui/core'
 import {Close, FileCopy, Menu} from "@material-ui/icons";
-import DigitalResumeTheme, {COLORS} from "../../theme/DigitalResumeTheme";
-import ResumeSocialMedia from "./ResumeSocialMedia";
-import MainMenuSubMenu from "../mackenzies-mind/header/MainMenuSubMenu";
-import {urlFor} from "../block-content-ui/static-pages/cmsStaticPagesClient";
-import ModalContext from "../snackbar-context/ModalContext";
+import DigitalResumeTheme, {COLORS} from "../theme/DigitalResumeTheme";
+import ResumeSocialMedia from "./my-digital-resume/ResumeSocialMedia";
+import MainMenuSubMenu from "./mackenzies-mind/header/MainMenuSubMenu";
+import {urlFor} from "./block-content-ui/static-pages/cmsStaticPagesClient";
+import ModalContext from "./snackbar-context/ModalContext";
 import QRCode from "react-qr-code";
 import {
     MainMenuAnchorType,
@@ -25,12 +25,13 @@ import {
     SanityMenuGroup,
     SanityMenuItem,
     SanityTransformHwHomePage
-} from "../../common/sanityIo/Types";
-import PageContext from "../page-context/PageContext";
-import Logo from "../transform-hw/logo/Logo";
-import {ResumeBioSectionType} from "../BlockContentTypes";
-import MailTo from "../mail-to/MailTo";
-import QrCodeContext from "../qr-code-context/QrCodeContext";
+} from "../common/sanityIo/Types";
+import PageContext from "./page-context/PageContext";
+import Logo from "./transform-hw/logo/Logo";
+import {ResumeBioSectionType} from "./BlockContentTypes";
+import MailTo from "./mail-to/MailTo";
+import QrCodeContext from "./qr-code-context/QrCodeContext";
+import SnackbarContext from "./modal-context/SnackbarContext";
 
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -67,7 +68,7 @@ const BusinessCard: FunctionComponent<MainMenuProps> = ({menu, anchor}) => {
         setIsDrawerOpen(open);
     };
 
-    const modalContext = useContext(ModalContext)
+    const snackbarContext = useContext(SnackbarContext)
     const classes = useStyles(DigitalResumeTheme)
     const theme = useTheme()
 
@@ -94,14 +95,14 @@ const BusinessCard: FunctionComponent<MainMenuProps> = ({menu, anchor}) => {
     const share = async (url: string) => {
         console.log("share")
         //
-
-        qrCodeContext.init && await qrCodeContext.init(url)
+        qrCodeContext.openSnackbar && qrCodeContext.openSnackbar(url)
+        // qrCodeContext.init && await qrCodeContext.init(url)
     }
 
-    React.useEffect(() => {
-        qrCodeContext.qr_code_value && qrCodeContext.openSnackbar && qrCodeContext.openSnackbar(['email'])
-
-    }, [qrCodeContext.qr_code_value])
+    // React.useEffect(() => {
+    //     qrCodeContext.qr_code_value && qrCodeContext.openSnackbar && qrCodeContext.openSnackbar(['email'])
+    //
+    // }, [qrCodeContext.qr_code_value])
 
     const list = (anchor: MainMenuAnchorType) => (
         <Grid xs={12} md={6} container item
@@ -185,6 +186,11 @@ const BusinessCard: FunctionComponent<MainMenuProps> = ({menu, anchor}) => {
                                     <Grid item xs={2} container justifyContent='flex-end'>
                                         <Button variant='contained' color='primary' fullWidth onClick={() => {
                                             navigator.clipboard.writeText(pageContext.page?.website ?? "")
+                                            const snack = <Grid container item>
+                                                Copied!
+                                            </Grid>
+
+                                            snackbarContext.openSnackbar && snackbarContext.openSnackbar(snack, 15000)
                                         }}>
                                             <Grid item>
                                                 <FileCopy style={{height: "42px"}}/>
@@ -221,6 +227,11 @@ const BusinessCard: FunctionComponent<MainMenuProps> = ({menu, anchor}) => {
                                     <Grid item xs={2} container justifyContent='flex-end'>
                                         <Button variant='contained' color='primary' fullWidth onClick={() => {
                                             navigator.clipboard.writeText(pageContext.page?.bookAppointmentLink ?? "")
+                                            const snack = <Grid container item>
+                                                Copied!
+                                            </Grid>
+
+                                            snackbarContext.openSnackbar && snackbarContext.openSnackbar(snack,15000)
                                         }}
                                         >
                                             <Grid item>

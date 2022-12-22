@@ -1,16 +1,11 @@
-import React, {FunctionComponent, ReactNode, useContext} from 'react'
+import React, {FunctionComponent, useContext} from 'react'
 import {makeStyles, Theme} from "@material-ui/core/styles"
-import {CircularProgress, Grid, List, Typography} from '@material-ui/core'
+import {Grid, List} from '@material-ui/core'
 import {ArrowLeft, ArrowRight} from "@material-ui/icons";
 import DigitalResumeTheme from "../../theme/DigitalResumeTheme";
-import {ServiceAmenityType, ThwServiceItemNoRefType} from "../BlockContentTypes";
-import {v4 as uuidv4} from "uuid";
-import ToolTipWrap from "./ToolTipWrap";
-import {urlFor} from "../block-content-ui/static-pages/cmsStaticPagesClient";
+import {ThwServiceItemNoRefType} from "../BlockContentTypes";
 import PageContext from "../page-context/PageContext";
 import AmenityContext from "../amenity-context/AmenityContext";
-import ProgressCircle
-    from "@sanity/types/parts/part.@sanity/components/build-snapshot/__legacy/@sanity/components/progress/ProgressCircle";
 import {useIsHorizontalOverflow} from "../../utils/useIsHorizontalOverflow";
 
 export const useStyles = makeStyles((theme: Theme) => ({

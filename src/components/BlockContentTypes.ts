@@ -319,6 +319,7 @@ export type ResumePortfolioItem = {
 
 export type ResumePortfolioSectionType = {
     name?: string
+    preTitle?:string
     title?: string
     introduction?: string
     portfolioEntries?: ResumePortfolioItem[]
@@ -330,4 +331,102 @@ export type ResumeContactUsSectionType = {
     title?: string
     introduction?: string
     formSubmitButtonText: string
+}
+
+
+export type WebDevHeroContentSectionType = {
+    name: string
+    title: string
+    heroImageBackground?: SanityImageAsset
+    contentTitle: string
+    contentText: string
+    ctaButtonTitle: string
+    ctaButtonLink: string
+}
+
+export type WebDevStatsCounterSectionType = {
+    name: string
+    title: string
+    stats: {statValue: string, statContent:string}[]
+}
+
+
+export type WebDevAboutUsSectionType = {
+    name: string
+    imageSrc: SanityImageAsset
+    welcomeMessage: string
+    contentTitle: string
+    contentText: string[]
+    ctaButtonText: string
+    ctaButtonLink: string
+}
+
+
+export type ServiceItemNoRefType = {
+    name: string
+    imageSrc: SanityImageAsset
+    imageSrcAltText: string
+    contentTitle: string
+    contentText: string
+    ctaButtonText: string
+    ctaButtonLink: string
+    learnMoreLink: string
+    learnMoreText: string
+    educationPageTitle: string
+    educationPageSlimHeroImage: SanityImageAsset
+    extendedDescriptions: string[]
+    benefitsOfServiceTitle:string
+    benefitsOfServiceContents:string[]
+    benefitsOfServiceBullets:string[]
+    serviceAmenities: ServiceAmenityType[]
+    slug: SanitySlug
+}
+
+export type PortfolioSectionType = {
+    name: string
+    contentTitle: string
+    contentPreTitle: string
+    contentText: string
+    contentTexts: string[]
+    servicesList: ServiceItemNoRefType[]
+}
+
+export type WebDevTestimonialsType = {
+    name?: string
+    customerName?: string
+    customerTitle?: string
+    companyName?: string
+    qualification?:string
+    quoteSummary?: string
+    quote?: string
+    imageSrc?:SanityImageAsset
+}
+
+export type WebDevTestimonialsSectionType = {
+    name?: string
+    preTitle?: string
+    backgroundImage?: SanityImageAsset
+    title?: string
+    introduction?: string
+    feedbackEntries?: WebDevTestimonialsType[]
+}
+
+
+export type HowItWorksStepNoRefType = {
+    title: string
+    slug: SanitySlug
+    content: string
+    imageSrc: SanityImageAsset
+    isEnabled: boolean
+    contentText: string
+    contentTexts: string[]
+    learnMoreLink: string
+    learnMoreText: string
+}
+export type HowItWorksSectionType = {
+    name: string
+    contentTitle: string
+    contentPreTitle: string
+    contentTexts: string[]
+    steps: HowItWorksStepNoRefType[]
 }

@@ -43,6 +43,11 @@ export default {
             type: 'string',
         },
         {
+            name: 'googleReviewLink',
+            title: 'Google Review Link',
+            type: 'string',
+        },
+        {
             name: 'bookAppointmentQrCode',
             title: 'Book Appointment Qr Code',
             type: 'image',

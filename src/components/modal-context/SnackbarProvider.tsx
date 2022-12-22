@@ -1,10 +1,7 @@
-import React, {FunctionComponent, PropsWithChildren, useContext, useMemo,} from 'react';
+import React, {FunctionComponent, PropsWithChildren, useMemo,} from 'react';
 import SnackbarContext from './SnackbarContext';
-import {CircularProgress, Grid, IconButton, LinearProgress, Slide, Snackbar, Typography} from "@material-ui/core";
-import {Close} from "@material-ui/icons";
+import {Grid, Snackbar} from "@material-ui/core";
 import Countdown from "react-countdown";
-import GridItem
-    from "@sanity/types/parts/part.@sanity/components/build-snapshot/__legacy/@sanity/components/lists/grid/GridItem";
 import SecondsCountdownButton from "./SecondsCountdownButton";
 
 type IProps = {
@@ -22,7 +19,7 @@ const SnackbarProvider: FunctionComponent<IProps & PropsWithChildren> = (
 ) => {
     const [snackbarOpen, setSnackbarOpen] = React.useState<boolean>(false)
     const [snackPack, setSnackPack] = React.useState<readonly SnackbarMessage[]>([]);
-    const [autoCloseTime, setAutoCloseTime] = React.useState<number | null>()
+    const [autoCloseTime, setAutoCloseTime] = React.useState<number | undefined>(15)
     const [messageInfo, setMessageInfo] = React.useState<SnackbarMessage | undefined>(
         undefined,
     );
@@ -42,6 +39,7 @@ const SnackbarProvider: FunctionComponent<IProps & PropsWithChildren> = (
 
     const handleSnackbarClose = (event: React.SyntheticEvent | Event, reason?: string) => {
         if (reason === 'clickaway') {
+
             return;
         }
 
@@ -50,12 +48,14 @@ const SnackbarProvider: FunctionComponent<IProps & PropsWithChildren> = (
 
     const handleExited = () => {
         setMessageInfo(undefined);
+        setSnackbarOpen(false)
     };
 
-    const openSnackbar = (message: any, time?: number | null) => {
+    const openSnackbar = (message: any, time?: number) => {
         setAutoCloseTime(time)
         setSnackPack((prev) => [...prev, {message, key: new Date().getTime()}]);
-        setSnackbarOpen(true)
+
+        // setSnackbarOpen(state=>!state)
     }
 
     const newValue = useMemo(
@@ -85,9 +85,9 @@ const SnackbarProvider: FunctionComponent<IProps & PropsWithChildren> = (
                             {autoCloseTime ? <Countdown
                                 date={autoCloseTime ? (new Date(Date.now() + (autoCloseTime - 1000))) : undefined}
                                 renderer={
-                                    (date) => (<SecondsCountdownButton date={date}/>)
+                                    (date) => (<SecondsCountdownButton date={date} totalTimeSeconds={autoCloseTime}/>)
                                 }
-                            />:<Grid item container justifyContent='center'><SecondsCountdownButton /></Grid>}
+                            />:<Grid item container justifyContent='center'><SecondsCountdownButton totalTimeSeconds={autoCloseTime}/></Grid>}
                         </Grid>
                     </Grid>
                 }

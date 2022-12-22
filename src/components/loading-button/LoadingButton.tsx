@@ -7,14 +7,14 @@ import PageContext from "../page-context/PageContext";
 
 
 type CssProps = {
-    buttonGroupiness?: ButtonGroupMemberEnum, width?: number
+    buttonGroupiness?: ButtonGroupMemberEnum, width?: number, isRounded?: boolean
 }
 
 export const useStyles = makeStyles((theme) => ({
     root: {
         height: "100%",
         width: (props: any) => props.width ? `${props.width}px` : 'unset',
-        borderRadius: "0 5px 5px 0",
+        borderRadius: `0 ${theme.shape.borderRadius} ${theme.shape.borderRadius} 0`,
         borderTopLeftRadius: (props: CssProps) => {
             switch (props.buttonGroupiness) {
                 case ButtonGroupMemberEnum.CENTER:
@@ -23,7 +23,7 @@ export const useStyles = makeStyles((theme) => ({
                     return 0
                 case ButtonGroupMemberEnum.LEFT:
                 default:
-                    return DigitalResumeTheme.shape.borderRadius
+                    return theme.shape.borderRadius
             }
         },
         borderTopRightRadius: (props: CssProps) => {
@@ -34,7 +34,7 @@ export const useStyles = makeStyles((theme) => ({
                     return 0
                 case ButtonGroupMemberEnum.RIGHT:
                 default:
-                    return DigitalResumeTheme.shape.borderRadius
+                    return theme.shape.borderRadius
             }
         },
         borderBottomRightRadius: (props: CssProps) => {
@@ -45,7 +45,7 @@ export const useStyles = makeStyles((theme) => ({
                     return 0
                 case ButtonGroupMemberEnum.RIGHT:
                 default:
-                    return DigitalResumeTheme.shape.borderRadius
+                    return theme.shape.borderRadius
 
             }
         },
@@ -57,7 +57,7 @@ export const useStyles = makeStyles((theme) => ({
                     return 0
                 case ButtonGroupMemberEnum.LEFT:
                 default:
-                    return DigitalResumeTheme.shape.borderRadius
+                    return theme.shape.borderRadius
             }
         },
     }
@@ -66,6 +66,7 @@ export const useStyles = makeStyles((theme) => ({
 
 interface LoadingButtonProps {
     disabled?: boolean
+    isRounded?: boolean
     clickHandler?: (e: any) => void
     isLoading?: boolean
     color?: PropTypes.Color
@@ -77,7 +78,7 @@ interface LoadingButtonProps {
 }
 
 const LoadingButton: FunctionComponent<PropsWithChildren<LoadingButtonProps>> = (props) => {
-    const classes = useStyles({buttonGroupiness: props.groupiness, width: props.width})
+    const classes = useStyles({buttonGroupiness: props.groupiness, width: props.width, isRounded: props.isRounded})
     const getProgressContrastColor = () => {
         switch (props.color) {
             case 'primary':
@@ -91,7 +92,7 @@ const LoadingButton: FunctionComponent<PropsWithChildren<LoadingButtonProps>> = 
     const pageContext = useContext(PageContext)
 
     return (
-        <Grid item style={{minHeight: "60px", height:"100%", maxWidth:"max-content"}}>
+        <Grid item style={{minHeight: "60px", height:"100%"}} container>
             <Button
                     href={props.href}
                     disabled={props.disabled}

@@ -15,6 +15,42 @@ export default () =>
                 .title('Page')
                 .child(createSuperPane('homePage', S)),
             S.listItem()
+                .title('Web Dev Hero Section')
+                .child(createSuperPane('WebDevHeroContentSection', S)),
+            S.listItem()
+                .title('Web Dev Stats Counter Section')
+                .child(createSuperPane('WebDevStatsCounterSection', S)),
+            S.listItem()
+                .title('Web Dev About Us Section')
+                .child(createSuperPane('WebDevAboutUsSection', S)),
+            S.listItem()
+                .title('Portfolio')
+                .child(createSuperPane('PortfolioItem', S)),
+            S.listItem()
+                .title('Portfolio Section')
+                .child(createSuperPane('PortfolioSection', S)),
+            S.listItem()
+                .title("Services Section")
+                .child(createSuperPane('ServicesSection', S)),
+            S.listItem()
+                .title("Service Item")
+                .child(createSuperPane('ServiceItem', S)),
+            S.listItem()
+                .title("How it works Section")
+                .child(createSuperPane('WebDevHowItWorksSection', S)),
+            S.listItem()
+                .title("How it works Item")
+                .child(createSuperPane('WebDevHowItWorksStep', S)),
+            S.listItem()
+                .title("Service Amenity")
+                .child(createSuperPane('ServiceAmenityItem', S)),
+            S.listItem()
+                .title('Testimonials')
+                .child(createSuperPane('Testimonials', S)),
+            S.listItem()
+                .title('Testimonials Section')
+                .child(createSuperPane('TestimonialsSection', S)),
+            S.listItem()
                 .title('Resume Bio Section')
                 .child(createSuperPane('ResumeBioSection', S)),
             S.listItem()

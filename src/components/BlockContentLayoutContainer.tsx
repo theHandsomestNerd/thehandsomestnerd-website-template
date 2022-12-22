@@ -4,11 +4,14 @@ import {Card, Grid, Link} from '@material-ui/core'
 import sanityClient from '../sanityClient'
 import {blockSerializers} from '../common/sanityIo/BlockContentRenderer'
 import {
-    ResumeBioSectionType, ResumeContactUsSectionType,
+    ResumeBioSectionType,
+    ResumeContactUsSectionType,
     ResumeEducationSectionType,
     ResumeExperienceSectionType,
-    ResumeFeedbackSectionType, ResumePortfolioSectionType,
+    ResumeFeedbackSectionType,
+    ResumePortfolioSectionType,
     ResumeSkillSectionType,
+    PortfolioSectionType,
     ThwAboutProprietorSectionType,
     ThwContactUsSectionType,
     ThwHeroContentSectionType,
@@ -17,6 +20,10 @@ import {
     ThwServiceItemType,
     ThwServicesSectionType,
     ThwWhyChooseUsSectionType,
+    WebDevAboutUsSectionType,
+    WebDevHeroContentSectionType,
+    WebDevStatsCounterSectionType,
+    WebDevTestimonialsSectionType, HowItWorksSectionType,
 } from "./BlockContentTypes";
 import DigitalResumeTheme from "../theme/DigitalResumeTheme";
 import useThwCommonStyles from "../common/sanityIo/ThwCommonStyles";
@@ -37,6 +44,13 @@ import ResumeEducationSection from "./my-digital-resume/ResumeEducationSection";
 import ResumeFeedbackSection from "./my-digital-resume/ResumeFeedbackSection";
 import ResumeContactUsSection from "./my-digital-resume/ResumeContactUsSection";
 import ResumePortfolioSection from "./my-digital-resume/ResumePortfolioSection";
+import WebDevHeroContentSection from "./web-dev-site/WebDevHeroContentSection";
+import WebDevStatsCounterSection from "./web-dev-site/WebDevStatsCounterSection";
+import WebDevAboutUsSection from "./web-dev-site/WebDevAboutUsSection";
+import WebDevServicesSection from "./web-dev-site/WebDevServicesSection";
+import WebDevPortfolioSection from "./web-dev-site/WebDevPortfolioSection";
+import WebDevTestimonialsSection from "./web-dev-site/WebDevTestimonialsSection";
+import WebDevHowItWorksSection from "./web-dev-site/WebDevHowItWorksSection";
 
 export type BlockContentLayoutContainerProps = {
     content?: any,
@@ -242,6 +256,71 @@ const BlockContentLayoutContainer: FunctionComponent<BlockContentLayoutContainer
 
                             <ResumeContactUsSection
                             sectionData={resumeContactUsSection}
+                        />
+                    </Grid>
+                case 'WebDevHeroContentSection':
+                    const webDevHeroSection: WebDevHeroContentSectionType = columnLayoutContainer
+
+                    return <Grid key={'webDevHeroContentSection'} container item xs={12}>
+                        <Link id={"TOP_OF_PAGE"}><></></Link>
+                        <WebDevHeroContentSection
+                            sectionData={webDevHeroSection}
+                        />
+                    </Grid>
+                case 'WebDevStatsCounterSection':
+                    const webDevStatsCounterSection: WebDevStatsCounterSectionType = columnLayoutContainer
+
+                    return <Grid key={'webDevStatsCounterSection'} container item xs={12}>
+                        <WebDevStatsCounterSection
+                            sectionData={webDevStatsCounterSection}
+                        />
+                    </Grid>
+                case 'WebDevAboutUsSection':
+                    const webDevAboutUsSection: WebDevAboutUsSectionType = columnLayoutContainer
+
+                    return <Grid key={'webDevAboutUsSection'} container item xs={12}>
+                        <Link id={"ABOUT_US"}><></></Link>
+                        <WebDevAboutUsSection
+                            sectionData={webDevAboutUsSection}
+                        />
+                    </Grid>
+                case 'ServicesSection':
+                    const webDevServicesSection: PortfolioSectionType = columnLayoutContainer
+
+                    return <Grid key={'webDevServicesSection'} container item xs={12}>
+                        <Link id={"SERVICES"}><></></Link>
+
+                        <WebDevServicesSection
+                            sectionData={webDevServicesSection}
+                        />
+                    </Grid>
+                case 'PortfolioSection':
+                    const webDevPortfolioSection: PortfolioSectionType = columnLayoutContainer
+
+                    return <Grid key={'webDevPortfolioSection'} container item xs={12}>
+                        <Link id={"PORTFOLIO"}><></></Link>
+
+                        <WebDevPortfolioSection
+                            sectionData={webDevPortfolioSection}
+                        />
+                    </Grid>
+                case 'TestimonialsSection':
+                    const webDevTestimonialsSection: WebDevTestimonialsSectionType = columnLayoutContainer
+
+                    return <Grid key={'webDevTestimonialsSection'} container item xs={12}>
+                        <Link id={"TESTIMONIALS"}><></></Link>
+
+                        <WebDevTestimonialsSection
+                            sectionData={webDevTestimonialsSection}
+                        />
+                    </Grid>
+                case 'WebDevHowItWorksSection':
+                    const webDevHowItWorksSection: HowItWorksSectionType = columnLayoutContainer
+
+                    return <Grid key={'webDevHowItWorksSection'} container item xs={12}>
+                        <Link id={"HOW_IT_WORKS"}><></></Link>
+                        <WebDevHowItWorksSection
+                            sectionData={webDevHowItWorksSection}
                         />
                     </Grid>
                 default:

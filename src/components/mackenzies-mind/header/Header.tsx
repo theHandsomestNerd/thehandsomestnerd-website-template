@@ -6,9 +6,7 @@ import MainMenu from "./MainMenu";
 import FilteredMenuItems from "../../filtered-menu-items/FilteredMenuItems";
 import clsx from "clsx";
 import MediaQueriesContext from "../../media-queries-context/MediaQueriesContext";
-import Logo from "../../transform-hw/logo/Logo";
-import {urlFor} from "../../block-content-ui/static-pages/cmsStaticPagesClient";
-import BusinessCard from "../../my-digital-resume/BusinessCard";
+import BusinessCard from "../../BusinessCard";
 
 export const useStyles = makeStyles((theme: Theme) => ({
     root: {

@@ -1,8 +1,10 @@
 import {createTheme} from '@material-ui/core'
+import ElaineSans from './common/fonts/Elaine-Sans/ElaineSans-ExtraBold.ttf'
 import BitterPro from './common/fonts/bitter_pro/fonts/ttf/BitterPro-Black.ttf'
 import Raleway from './common/fonts/Raleway/variable/TTF/Raleway-VF.ttf'
 import RalewayBold from './common/fonts/Raleway/static/TTF/Raleway-Bold.ttf'
 import Rainbow from './common/fonts/rainbow/Rainbow.ttf'
+import {COLORS} from "./DigitalResumeTheme";
 
 type FontFace = {
     fontDisplay?: any
@@ -12,14 +14,14 @@ type FontFace = {
     src?: string
 }
 
-export const bitterPro: FontFace = {
-    fontFamily: 'Bitter Pro',
+export const elainSansExtraBold: FontFace = {
+    fontFamily: 'Elaine Sans',
     fontStyle: 'normal',
     fontDisplay: 'swap', // uses the fallback font to display the text until the custom font has fully downloaded. This is also known as a “flash of unstyled text” or FOUT.
-    fontWeight: 400,
+    fontWeight: 800,
     src: `
-    local('Bitter Pro'),
-    url(${BitterPro}) format('truetype')
+    local('Elaine Sans'),
+    url(${ElaineSans}) format('truetype')
   `
 }
 
@@ -56,25 +58,8 @@ export const rainbow: FontFace = {
   `
 }
 
-const fonts = ['Raleway', 'Bitter Pro'].join(',')
+const fonts = ['Raleway', 'Elaine Sans'].join(',')
 
-export enum COLORS {
-    DARKBLUE = 'rgba(0,0,53,1)',
-    TRANSPARENT_DARKBLUE = 'rgba(0,0,53,.85)',
-    BLUE = 'rgba(16, 43, 136, 1)',
-    DARK_GRAY = '#A8A9AC',
-    GRAY = 'rgba(207, 207, 207, 1)',
-    LIGHT_GRAY = '#949495',
-    TRANSPARENTWHITE = 'rgba(255,255,255,0.75)',
-    LIGHTBLUE = '#2CC4D7',
-    ALMOSTPURPLE = "#331BAD",
-    LIGHTGRAY = "#F4F3F5",
-    TRANSPARENTLIGHTGRAY = "rgba(244,243,245,0.87)",
-    MEDIUMGRAY = "#BCB9B0",
-    DARKGRAY = "#43424A",
-    TRANSPARENTDARKGRAY = "rgba(67,66,74,0.78)",
-    AQUA="#12b3be"
-}
 
 const DigitalResumeTheme = createTheme({
     breakpoints: {
@@ -86,17 +71,20 @@ const DigitalResumeTheme = createTheme({
             xl: 1320,
         }
     },
+    shape:{
+        borderRadius: 32
+    },
 // @ts-ignore
     palette: {
         background: {
-            default: "#f6f6f6",
+            default: "#131313",
             paper: "#43424A"
         },
         primary: {
-            main: "#d20027",
+            main: "#FAFAFA",
         },
         secondary: {
-            main: "#e6e6e6",
+            main: "#333784",
         },
         error: {
             main: '#840E0E',
@@ -116,7 +104,7 @@ const DigitalResumeTheme = createTheme({
         text: {
             primary: "#404040",
             secondary: "#FFFFFF",
-            disabled: COLORS.LIGHT_GRAY
+            disabled: '#949495'
         }
     },
     typography: {
@@ -126,7 +114,7 @@ const DigitalResumeTheme = createTheme({
             fontSize: '70px',
             fontStyle: 'normal',
             fontWeight: "bold",
-            lineHeight: 1.3,
+            lineHeight: 1,
             letterSpacing: '-0.01em'
         },
         h2: {
@@ -134,8 +122,8 @@ const DigitalResumeTheme = createTheme({
             fontSize: '53px',
             fontStyle: 'normal',
             fontWeight: 700,
-            lineHeight: 1.25,
-            letterSpacing: '-0.02em'
+            lineHeight: 1,
+            letterSpacing: '0.02em'
         },
         h3: {
             // Title3
@@ -143,7 +131,7 @@ const DigitalResumeTheme = createTheme({
             fontStyle: 'normal',
             fontWeight: 600,
             lineHeight: 1.4,
-            letterSpacing: '-0.03em'
+            letterSpacing: '0.01em'
         },
         h4: {
             fontWeight: 'bold',
@@ -168,7 +156,7 @@ const DigitalResumeTheme = createTheme({
             fontSize: '14.5px',
             fontStyle: 'normal',
             fontWeight: 400,
-            lineHeight: 1.5,
+            lineHeight: 1.2,
             letterSpacing: '-0.02em'
         },
         body2: {
@@ -198,17 +186,18 @@ const DigitalResumeTheme = createTheme({
         },
         subtitle2: {
             // Micro
-            fontSize: '11px',
+            fontSize: '14px',
+            textTransform: "uppercase",
             fontStyle: 'normal',
-            fontWeight: 600,
-            lineHeight: 1.45,
-            letterSpacing: '-0.03em'
+            fontWeight: 750,
+            lineHeight: 1,
+            letterSpacing: '0.20em'
         }
     },
     overrides: {
         MuiCssBaseline: {
             '@global': {
-                '@font-face': [bitterPro, raleway, ralewayBold, rainbow]
+                '@font-face': [elainSansExtraBold, raleway, ralewayBold, rainbow]
             },
         },
         MuiInputBase: {
@@ -271,7 +260,7 @@ const DigitalResumeTheme = createTheme({
                 // color: '#FFFFFF',
                 // height: '35px',
                 // padding: '8px 16px 8px 16px',
-                borderRadius: '5px',
+                // borderRadius: '32px',
                 paddingTop: "16px",
                 paddingBottom: "16px"
             },
@@ -313,29 +302,29 @@ const DigitalResumeTheme = createTheme({
                 //   backgroundColor: '#4C2FCD'
                 // }
             },
-            outlinedPrimary: {
-                borderWidth: '3px',
-                paddingTop: "16px",
-                paddingBottom: "16px",
-                paddingLeft: "64px",
-                paddingRight: "64px"
-                // color: '#FF4122',
-                // borderColor: '#FF4122',
-                // '&:hover': {
-                //   backgroundColor: '#FF4122',
-                //   color: '#FCE3CC'
-                // },
-                // '&:disabled': {
-                //   borderColor: '#FFA091',
-                //   color: '#FFA091'
-                // },
-                // '&:focus': {
-                //   backgroundColor: 'transparent',
-                //   borderColor: '#FF4122',
-                //   color: '#FF4122'
-                // }
-            },
-            outlinedSecondary: {
+            // outlined: {
+            //     borderWidth: '3px',
+            //     paddingTop: "16px",
+            //     paddingBottom: "16px",
+            //     paddingLeft: "64px",
+            //     paddingRight: "64px"
+            //     // color: '#FF4122',
+            //     // borderColor: '#FF4122',
+            //     // '&:hover': {
+            //     //   backgroundColor: '#FF4122',
+            //     //   color: '#FCE3CC'
+            //     // },
+            //     // '&:disabled': {
+            //     //   borderColor: '#FFA091',
+            //     //   color: '#FFA091'
+            //     // },
+            //     // '&:focus': {
+            //     //   backgroundColor: 'transparent',
+            //     //   borderColor: '#FF4122',
+            //     //   color: '#FF4122'
+            //     // }
+            // },
+            outlined: {
                 borderWidth: '3px',
                 paddingTop: "16px",
                 paddingBottom: "16px",

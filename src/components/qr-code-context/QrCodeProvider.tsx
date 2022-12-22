@@ -13,67 +13,43 @@ import QRCode from "react-qr-code";
 
 type IProps = {};
 
-type QrCodeStateType = {
-    qr_code_value?: string
-    // elementsObj?: { [key: string]: JSX.Element }
-};
-const initialState: QrCodeStateType = {};
-
-const reducer = (state: any, action: any): QrCodeStateType => {
-    switch (action.type) {
-        case 'INITIAL':
-            return initialState;
-        case 'LOAD_QR_CODE':
-            return {
-                ...state,
-                qr_code_value: action.payload.qr_code_value,
-            };
-        default:
-            throw new Error();
-    }
-}
 
 const QrCodeProvider: FunctionComponent<IProps & PropsWithChildren> = (
     props: PropsWithChildren<IProps>,
 ) => {
-    const [state, dispatch] = useReducer(reducer, initialState)
     const pageContext = useContext(PageContext)
-
-    const init = async (url: string) => {
-        await dispatch({type: "LOAD_QR_CODE", payload: {qr_code_value: url}})
-    }
+    const [qrCodeValue, setQrCodeValue] = React.useState<string>("")
 
     const snackbarContext = useContext(SnackbarContext)
 
-    const openSnackbar = async (selectedContacts: any[]) => {
-        pageContext.analyticsId && firebaseAnalyticsClient.qrCodeShown && firebaseAnalyticsClient.qrCodeShown(state.qr_code_value ?? "", pageContext.analyticsId)
+    const openSnackbar = async (url: string) => {
+        pageContext.analyticsId && firebaseAnalyticsClient.qrCodeShown && firebaseAnalyticsClient.qrCodeShown(url ?? "", pageContext.analyticsId)
         // await dispatch({type: "LOAD_QR_CODE", payload: {qr_code_value: qr_code_value}})
+        setQrCodeValue(url)
         const snack = <Grid
             container
             style={{minWidth: "200px"}}
         >
             <div style={{ height: "256px",width: "256px" }}>
-                {state.qr_code_value && <QRCode
+                {url && <QRCode
                     size={256}
                     style={{height: "auto", maxWidth: "100%", width: "100%"}}
-                    value={state.qr_code_value}
+                    value={url}
                     viewBox={`0 0 256 256`}
                 />}
         </div>
         </Grid>
 
-        snackbarContext.openSnackbar && await snackbarContext.openSnackbar(snack, null)
+        snackbarContext.openSnackbar && await snackbarContext.openSnackbar(snack)
     }
 
     const newValue = useMemo(
         () => ({
-            qr_code_value: state.qr_code_value,
-            init,
+            qr_code_value: qrCodeValue,
             openSnackbar
         }),
         [
-            state.qr_code_value,
-            init,
+            qrCodeValue,
             openSnackbar
         ]
     );
