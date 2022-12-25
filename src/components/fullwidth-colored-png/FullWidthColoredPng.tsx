@@ -7,7 +7,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
     },
 }))
 
-interface IProps { maskUrl:string, color: any, height: number}
+interface IProps { maskUrl:string, color: any, height: number, isCenter?: boolean}
 
 const FullWidthColoredPng: FunctionComponent<IProps> = (props:IProps) => {
 
@@ -17,15 +17,15 @@ const FullWidthColoredPng: FunctionComponent<IProps> = (props:IProps) => {
         maskImage: `url(${props.maskUrl})`,
         WebkitMaskRepeat: "no-repeat",
         maskRepeat: "no-repeat",
-        backgroundPosition: "center",
+        backgroundPosition: props.isCenter?"center":"left",
         // opacity: .55555555555,
         height: `${props.height? props.height:100}px`,
         width: '100%',
         backgroundColor: props.color,
         WebkitMaskSize: "contain",
         maskSize: "contain",
-        maskPosition: "center",
-        WebkitMaskPosition: "center"
+        maskPosition: props.isCenter?"center":"left",
+        WebkitMaskPosition: props.isCenter?"center":"left"
         // marginBottom: TransformHWTheme.spacing(2)
     }}>
     </Grid>)

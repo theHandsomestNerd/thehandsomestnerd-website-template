@@ -74,16 +74,18 @@ const HOMEPAGE = `_type,
           website,
           websiteQrCode,
           metaImage,
-          headerMenuRef->{
-             ${MENUGROUPCONTAINER}
-           },
-          footerMenuRef->{
-             ${MENUGROUPCONTAINER}
-          },
           headerContent {
             "content": content[]->{
                 ...,
                 headerMenuRef->{
+                 ${MENUGROUPCONTAINER}
+               },
+            }
+          },
+          footerContent {
+            "content": content[]->{
+                ...,
+                footerMenuRef->{
                  ${MENUGROUPCONTAINER}
                },
             }

@@ -68,6 +68,9 @@ import WebDevHowItWorksSection from "./web-dev/WebDevHowItWorksSection";
 import headerContentContainer from "./headerContentContainer";
 import HeaderSection from "./sections/HeaderSection";
 import DevelopmentHeaderSection from "./sections/DevelopmentHeaderSection";
+import FooterSection from "./web-dev/FooterSection";
+import DevelopmentFooterSection from "./web-dev/DevelopmentFooterSection";
+import footerContentContainer from "./footerContentContainer";
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -146,6 +149,9 @@ export default createSchema({
         WebDevHowItWorksSection,
         HeaderSection,
         DevelopmentHeaderSection,
-        headerContentContainer
+        headerContentContainer,
+        FooterSection,
+        DevelopmentFooterSection,
+        footerContentContainer
     ]),
 })

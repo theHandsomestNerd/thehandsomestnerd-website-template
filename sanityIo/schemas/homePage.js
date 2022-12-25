@@ -69,12 +69,6 @@ export default {
               ]
         },
         {
-            name: 'headerMenuRef',
-            title: 'Header Menu',
-            type: 'reference',
-            to: [{type:'menuContainer'}]
-        },
-        {
             name: 'headerContent',
             title: 'Header Content',
             type: 'headerContentContainer',
@@ -85,10 +79,9 @@ export default {
             type: 'contentContainer',
         },
         {
-            name: 'footerMenuRef',
-            title: 'Footer Menu',
-            type: 'reference',
-            to: [{type:'menuContainer'}]
+            name: 'footerContent',
+            title: 'Footer Content',
+            type: 'footerContentContainer',
         },
         {
             name: 'servicesAvailable',

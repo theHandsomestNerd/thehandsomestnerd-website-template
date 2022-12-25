@@ -50,7 +50,7 @@ const WebDevServiceItem: FunctionComponent<IProps> = (props: IProps) => {
 
     return (
         <MuiThemeProvider theme={WebDevSiteTheme}>
-            <Grid className={classes.root} key={uuidv4()} container item xs={12} sm={6} md={6} style={{backgroundColor:COLOR_ROTATION[(props.index??0) % 3]}} alignContent='center' alignItems='center'>
+            <Grid className={classes.root} key={uuidv4()} container item  md={6} style={{backgroundColor:COLOR_ROTATION[(props.index??0) % 3]}} alignContent='center' alignItems='center'>
             <Grid container item direction='column' >
                 <Grid container item spacing={2} alignContent='center'
                       alignItems='center'>

@@ -48,7 +48,7 @@ const WebDevStatsCounterSection: FunctionComponent<IProps> = (props) => {
             <Grid container item className={classes.marketingBackground}>
                 <Grid container spacing={3}>
                     {
-                        props.sectionData?.stats?.map((particularStat, index:number)=><Grid key={index} item xs={3} container spacing={1}  alignItems='center' alignContent='center'>
+                        props.sectionData?.stats?.map((particularStat, index:number)=><Grid key={index} item sm={6} md={3} container spacing={1}  alignItems='center' alignContent='center'>
                             <Grid item xs={4}><Typography variant='h4'
                                                           align='right'
                                                    color={'textPrimary'}

@@ -439,3 +439,11 @@ export type HeaderSectionType = {
     name:string
     headerMenuRef: SanityMenuContainer
 }
+export type DevelopmentFooterSectionType = {
+    name:string
+    footerMenuRef: SanityMenuContainer
+}
+export type FooterSectionType = {
+    name:string
+    footerMenuRef: SanityMenuContainer
+}

@@ -7,6 +7,7 @@ import {useLocation} from "react-router";
 import Footer from "../footer/Footer";
 import Header from "../header/Header";
 import HeaderBlockContentLayoutContainer from "../../HeaderBlockContentLayoutContainer";
+import FooterBlockContentLayoutContainer from "../../FooterBlockContentLayoutContainer";
 
 interface IProps {
     homePage: SanityTransformHwHomePage
@@ -44,7 +45,10 @@ const PageLayout: FunctionComponent<IProps> = (props: IProps) => {
             }
         </Grid>
         <Grid container item>
-            <Footer homePage={props.homePage}/>
+            {props.homePage.footerContent && <Grid container item>
+                <FooterBlockContentLayoutContainer
+                    content={props.homePage.footerContent.content}/>
+            </Grid>}
         </Grid>
         <Grid container item
               alignContent='center'
