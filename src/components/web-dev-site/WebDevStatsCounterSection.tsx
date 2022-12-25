@@ -51,10 +51,10 @@ const WebDevStatsCounterSection: FunctionComponent<IProps> = (props) => {
                         props.sectionData?.stats?.map((particularStat, index:number)=><Grid key={index} item xs={3} container spacing={1}  alignItems='center' alignContent='center'>
                             <Grid item xs={4}><Typography variant='h4'
                                                           align='right'
-                                                   color={'textSecondary'}
+                                                   color={'textPrimary'}
                                                    style={{...elainSansExtraBold}}>{particularStat.statValue}</Typography></Grid>
                             <Grid item xs={8}><Typography variant='body1'
-                                                   color={'textSecondary'}
+                                                   color={'textPrimary'}
                                                    style={{...elainSansExtraBold}}>{particularStat.statContent}</Typography></Grid>
                         </Grid>)
                     }

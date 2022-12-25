@@ -74,11 +74,11 @@ const WebDevSiteTheme = createTheme({
     shape:{
         borderRadius: 32
     },
-    // mixins: {
-    //     toolbar: {
-    //         height: "105px"
-    //     }
-    // },
+    mixins: {
+        toolbar: {
+            height: "105px"
+        }
+    },
 // @ts-ignore
     palette: {
         background: {
@@ -107,8 +107,8 @@ const WebDevSiteTheme = createTheme({
             dark: '#CF800A'
         },
         text: {
-            primary: "#404040",
-            secondary: "#FFFFFF",
+            primary: "#FFFFFF",
+            secondary: "#404040",
             disabled: '#949495'
         }
     },

@@ -60,12 +60,12 @@ const WebDevHeroContentSection: FunctionComponent<IProps> = (props) => {
                         <Grid container spacing={2}>
                             <Grid item xs={8} container>
                                 <Typography variant='h1'
-                                            color={'textSecondary'}
+                                            color={'textPrimary'}
                                             style={{...elainSansExtraBold}}>{props.sectionData.contentTitle}</Typography>
                             </Grid>
                             <Grid container item xs={8}>
                                 <Typography variant='body1'
-                                            color='textSecondary'
+                                            color='textPrimary'
                                             style={{...raleway}}>{props.sectionData.contentText}</Typography>
                             </Grid>
                             <Grid item container>

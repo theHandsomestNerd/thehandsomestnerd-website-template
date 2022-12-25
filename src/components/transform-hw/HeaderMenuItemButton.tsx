@@ -1,4 +1,4 @@
-import React, {FunctionComponent, useContext} from 'react'
+import React, {CSSProperties, FunctionComponent, useContext} from 'react'
 import {Button, Typography} from '@material-ui/core'
 import DigitalResumeTheme, {COLORS} from "../../theme/DigitalResumeTheme";
 import {SanityMenuItem} from "../../common/sanityIo/Types";
@@ -18,9 +18,10 @@ const useStyles = makeStyles((theme: Theme) => ({
 
 interface HeaderMenuItemButtonProps {
     menuItem: SanityMenuItem
+    textStyle?: CSSProperties
 }
 
-const HeaderMenuItemButton: FunctionComponent<HeaderMenuItemButtonProps> = ({menuItem}) => {
+const HeaderMenuItemButton: FunctionComponent<HeaderMenuItemButtonProps> = ({menuItem, textStyle}) => {
     const classes = useStyles(DigitalResumeTheme)
 
     const modalContext = useContext(ModalContext)
@@ -44,7 +45,7 @@ const HeaderMenuItemButton: FunctionComponent<HeaderMenuItemButtonProps> = ({men
         <Typography noWrap
                     color={menuItem.isOutlinedButton || menuItem.isContainedButton ? 'textPrimary' : 'textPrimary'}
                     variant={menuItem.isOutlinedButton || menuItem.isContainedButton ? "button" : 'body2'}
-                    style={{fontSize: "18px"}}>{menuItem.displayText}</Typography>
+                    style={{fontSize: "18px", ...textStyle}}>{menuItem.displayText}</Typography>
     </Button>)
 }
 

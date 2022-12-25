@@ -34,7 +34,7 @@ interface IProps {
 }
 
 const COLOR_ROTATION = ["#d9dde9", "#333784"]
-const COLOR_ROTATION_FONT: any[] = ["textPrimary", "primary",]
+const COLOR_ROTATION_FONT: any[] = ["textSecondary", "textPrimary",]
 
 const WebDevPortfolioSection: FunctionComponent<IProps> = (props: IProps) => {
     const globalClasses = useThwCommonStyles()

@@ -1,23 +1,33 @@
 import React, {FunctionComponent, useContext} from 'react'
 import {makeStyles, Theme} from "@material-ui/core/styles"
-import {AppBar, Grid, Hidden, Typography} from '@material-ui/core'
-import DigitalResumeTheme, {COLORS, rainbow} from "../../../theme/DigitalResumeTheme";
+import {AppBar, Grid, Hidden} from '@material-ui/core'
+import DigitalResumeTheme, {COLORS} from "../../../theme/DigitalResumeTheme";
 import MainMenu from "./MainMenu";
 import FilteredMenuItems from "../../filtered-menu-items/FilteredMenuItems";
-import clsx from "clsx";
 import MediaQueriesContext from "../../media-queries-context/MediaQueriesContext";
-import BusinessCard from "../../BusinessCard";
 import {SanityMenuContainer} from "../../../common/sanityIo/Types";
+import {elainSansExtraBold} from "../../../theme/WebDevSiteTheme";
+import PageContext from "../../page-context/PageContext";
+import {urlFor} from "../../block-content-ui/static-pages/cmsStaticPagesClient";
+import FullWidthColoredPng from "../../fullwidth-colored-png/FullWidthColoredPng";
+import {useScrollPosition} from "../../../utils/useScrollPosition";
+import clsx from "clsx";
 
 export const useStyles = makeStyles((theme: Theme) => ({
     root: {
-        backgroundColor: COLORS.TRANSPARENTWHITE,
-        transition: 'background-color .5s ease 0s',
+        // transition: 'background-color .5s ease 0s',
+        // backgroundColor:"transparent",
+        backgroundColor: `black !important`,
+
         paddingLeft: theme.spacing(4),
-        height: theme.mixins.toolbar.height
+        height: theme.mixins.toolbar.height,
+        "& .MuiPaper-root":{
+            backgroundColor: "transparent"
+        }
+        // boxShadow: 'none'
     },
     opaque: {
-        backgroundColor: `${COLORS.LIGHTGRAY} !important`,
+        backgroundColor: `black !important`,
     }
 }))
 
@@ -34,48 +44,61 @@ const DevelopmentHeader: FunctionComponent<DevelopmentHeaderProps> = (props) => 
         console.log("Page header in the header", props.pageHeader)
     }, [props.pageHeader])
 
+    const pageContext = useContext(PageContext)
+
+    const [opaqueOnScroll, setOpaqueOnScroll] = React.useState<boolean>()
+
+    useScrollPosition(({prevPos, currPos}: any) => {
+            const isShow = currPos.y === 0
+        console.log(currPos, isShow, opaqueOnScroll)
+             if(isShow !== opaqueOnScroll) setOpaqueOnScroll(isShow)
+        }, [opaqueOnScroll])
+
     return (<Grid container item>
-        <AppBar className={classes.root}>{props.pageHeader?.title ?
-            <Grid item xs={12} container justifyContent="space-between" alignItems='stretch' alignContent='center' spacing={mediaQueriesContext.mdDown ? 3 : 0}>
-                <Grid container item xs={2} sm={1}>
-                    <BusinessCard menu={props.pageHeader} anchor={'bottom'}/>
-                </Grid>
-                <Grid item container xs={3} sm={2} md={1} alignItems='center' alignContent='center'>
-                    <Typography variant='h4' color='textPrimary'  style={{...rainbow}}>Terrell</Typography><Typography variant='h4' color='primary' display='inline' style={{...rainbow}}>.</Typography>
-                </Grid>
-                <Grid item container xs={7} sm={9} md={10} justifyContent='space-between' alignItems='center' alignContent='center'>
-                    {/*// @ts-ignore*/}
-                    <Hidden xsDown>
-                        <Grid xs={4} md={10} lg={12} container item justifyContent='flex-end'
-                              alignItems='center'
-                              style={{
-                                  height: "100%",
-                                  paddingRight: mediaQueriesContext.mdDown ? DigitalResumeTheme.spacing(0) : DigitalResumeTheme.spacing(4)
-                              }}>
-                            <FilteredMenuItems
-                                // bgColor={!mdDown ? TransformHWTheme.palette.primary.main : COLORS.TRANSPARENTWHITE}
-                                subMenus={props.pageHeader.subMenus ?? []} onlyButtons={mediaQueriesContext.mdDown}
-                                includeMenuItems={!mediaQueriesContext.mdDown}
-                                includeMenuGroups={!mediaQueriesContext.mdDown}/>
-                        </Grid>
-                    </Hidden>
-                    {/*// @ts-ignore*/}
-                    <Hidden lgUp>
-                        <Grid item xs={12} sm={2} container justifyContent='flex-end'>
-                            <Grid container item
-                                  justifyContent='flex-end'
+            <AppBar color={opaqueOnScroll?'transparent':'secondary'} style={{ background: 'transparent', boxShadow: 'none'}} className={clsx({[classes.opaque]: !opaqueOnScroll}, classes.root)}>{props.pageHeader?.title ?
+                <Grid item xs={12} container justifyContent="space-between" alignItems='stretch' alignContent='center'
+                      spacing={mediaQueriesContext.mdDown ? 3 : 0}>
+                    <Grid item container xs={5} md={3} alignItems='center' alignContent='center'>
+                        <FullWidthColoredPng maskUrl={urlFor(pageContext.page?.metaImage ?? "").url() ?? ""}
+                                             color={'white'} height={80}/>
+                        {/*<ColoredPng maskUrl={urlFor(pageContext.page?.metaImage??"").url()??""} color={'white'}/>*/}
+                    </Grid>
+                    <Grid item container xs={7} md={9} justifyContent='space-between' alignItems='center'
+                          alignContent='center'>
+                        {/*// @ts-ignore*/}
+                        <Hidden xsDown>
+                            <Grid xs={4} md={10} lg={12} container item justifyContent='flex-start'
                                   alignItems='center'
-                            >
-                                <Grid item>
-                                    <MainMenu menu={props.pageHeader} anchor='top'/>
+                                  style={{
+                                      height: "100%",
+                                      paddingRight: mediaQueriesContext.mdDown ? DigitalResumeTheme.spacing(0) : DigitalResumeTheme.spacing(4)
+                                  }}>
+                                <FilteredMenuItems
+                                    contentJustification={'flex-start'}
+                                    textStyle={{...elainSansExtraBold}}
+                                    // bgColor={!mdDown ? TransformHWTheme.palette.primary.main : COLORS.TRANSPARENTWHITE}
+                                    subMenus={props.pageHeader.subMenus ?? []} onlyButtons={mediaQueriesContext.mdDown}
+                                    includeMenuItems={!mediaQueriesContext.mdDown}
+                                    includeMenuGroups={!mediaQueriesContext.mdDown}/>
+                            </Grid>
+                        </Hidden>
+                        {/*// @ts-ignore*/}
+                        <Hidden lgUp>
+                            <Grid item xs={12} sm={2} container justifyContent='flex-end'>
+                                <Grid container item
+                                      justifyContent='flex-end'
+                                      alignItems='center'
+                                >
+                                    <Grid item>
+                                        <MainMenu menu={props.pageHeader} anchor='top'/>
+                                    </Grid>
                                 </Grid>
                             </Grid>
-                        </Grid>
-                    </Hidden>
+                        </Hidden>
+                    </Grid>
                 </Grid>
-            </Grid>
-            : <></>
-        }</AppBar></Grid>
+                : <></>
+            }</AppBar></Grid>
     )
 }
 
