@@ -61,7 +61,7 @@ export const rainbow: FontFace = {
 const fonts = ['Raleway', 'Elaine Sans'].join(',')
 
 
-const DigitalResumeTheme = createTheme({
+const WebDevSiteTheme = createTheme({
     breakpoints: {
         values: {
             xs: 0,
@@ -74,6 +74,11 @@ const DigitalResumeTheme = createTheme({
     shape:{
         borderRadius: 32
     },
+    // mixins: {
+    //     toolbar: {
+    //         height: "105px"
+    //     }
+    // },
 // @ts-ignore
     palette: {
         background: {
@@ -340,4 +345,4 @@ const DigitalResumeTheme = createTheme({
     }
 })
 
-export default DigitalResumeTheme
+export default WebDevSiteTheme

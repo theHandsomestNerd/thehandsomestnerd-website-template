@@ -65,6 +65,9 @@ import Testimonials from "./testimonials/Testimonials";
 import TestimonialsSection from "./testimonials/TestimonialsSection";
 import WebDevHowItWorksStep from "./web-dev/WebDevHowItWorksStep";
 import WebDevHowItWorksSection from "./web-dev/WebDevHowItWorksSection";
+import headerContentContainer from "./headerContentContainer";
+import HeaderSection from "./sections/HeaderSection";
+import DevelopmentHeaderSection from "./sections/DevelopmentHeaderSection";
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -140,6 +143,9 @@ export default createSchema({
         Testimonials,
         TestimonialsSection,
         WebDevHowItWorksStep,
-        WebDevHowItWorksSection
+        WebDevHowItWorksSection,
+        HeaderSection,
+        DevelopmentHeaderSection,
+        headerContentContainer
     ]),
 })

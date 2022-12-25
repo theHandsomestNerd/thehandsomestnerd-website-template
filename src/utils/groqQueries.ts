@@ -80,6 +80,14 @@ const HOMEPAGE = `_type,
           footerMenuRef->{
              ${MENUGROUPCONTAINER}
           },
+          headerContent {
+            "content": content[]->{
+                ...,
+                headerMenuRef->{
+                 ${MENUGROUPCONTAINER}
+               },
+            }
+          },
           pageContent {
             "content": content[]->{
                 ...,

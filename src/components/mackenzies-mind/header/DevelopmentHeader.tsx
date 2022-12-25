@@ -7,6 +7,7 @@ import FilteredMenuItems from "../../filtered-menu-items/FilteredMenuItems";
 import clsx from "clsx";
 import MediaQueriesContext from "../../media-queries-context/MediaQueriesContext";
 import BusinessCard from "../../BusinessCard";
+import {SanityMenuContainer} from "../../../common/sanityIo/Types";
 
 export const useStyles = makeStyles((theme: Theme) => ({
     root: {
@@ -20,12 +21,12 @@ export const useStyles = makeStyles((theme: Theme) => ({
     }
 }))
 
-export type HeaderProps = {
-    pageHeader?: any
+export type DevelopmentHeaderProps = {
+    pageHeader?: SanityMenuContainer
     updateIsLoading?: (value: boolean) => void
 }
 
-const Header: FunctionComponent<HeaderProps> = (props) => {
+const DevelopmentHeader: FunctionComponent<DevelopmentHeaderProps> = (props) => {
     const classes = useStyles()
     const mediaQueriesContext = useContext(MediaQueriesContext)
 
@@ -33,8 +34,8 @@ const Header: FunctionComponent<HeaderProps> = (props) => {
         console.log("Page header in the header", props.pageHeader)
     }, [props.pageHeader])
 
-    return (
-        <AppBar className={clsx({[classes.opaque]: true}, classes.root)}>{props.pageHeader?.title ?
+    return (<Grid container item>
+        <AppBar className={classes.root}>{props.pageHeader?.title ?
             <Grid item xs={12} container justifyContent="space-between" alignItems='stretch' alignContent='center' spacing={mediaQueriesContext.mdDown ? 3 : 0}>
                 <Grid container item xs={2} sm={1}>
                     <BusinessCard menu={props.pageHeader} anchor={'bottom'}/>
@@ -74,8 +75,8 @@ const Header: FunctionComponent<HeaderProps> = (props) => {
                 </Grid>
             </Grid>
             : <></>
-        }</AppBar>
+        }</AppBar></Grid>
     )
 }
 
-export default Header
+export default DevelopmentHeader

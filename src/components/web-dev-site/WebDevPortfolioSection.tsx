@@ -96,7 +96,7 @@ const WebDevPortfolioSection: FunctionComponent<IProps> = (props: IProps) => {
             <Grid item container justifyContent={xsOnly ? 'center' : 'flex-start'}>
                 {
                     props.sectionData.portfolioEntries?.map((portfolioItem: ResumePortfolioItem, index2: number) => {
-                        return <Grid container item xs={12} alignContent='flex-start'>
+                        return <Grid container item xs={12} alignContent='flex-start' key={index2}>
                             <Grid container item alignItems='stretch'
                                   direction={index2 % 2 === 1 ? 'row-reverse' : "row"}>
                                 <Grid container item md={6} style={{
@@ -109,7 +109,7 @@ const WebDevPortfolioSection: FunctionComponent<IProps> = (props: IProps) => {
                                       style={{padding: theme.spacing(8), backgroundColor: COLOR_ROTATION[(index2 + 1 ?? 1) % 2]}}>
                                     <Grid item container spacing={1}>
                                         {portfolioItem.skillsHighlighted?.map((skill, skillIndex: number) => {
-                                                return <Grid item wrap='nowrap' container style={{width:"max-content", color:(index2) % 2 === 1?COLORS.AQUA:theme.palette.secondary.main}} justifyContent='space-around' spacing={1}><Grid item>
+                                                return <Grid key={skillIndex} item wrap='nowrap' container style={{width:"max-content", color:(index2) % 2 === 1?COLORS.AQUA:theme.palette.secondary.main}} justifyContent='space-around' spacing={1}><Grid item>
                                                     <Typography display='inline' variant='subtitle2'
                                                                 color='inherit'
                                                                 noWrap

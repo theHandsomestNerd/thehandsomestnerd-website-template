@@ -119,6 +119,11 @@ const DigitalResumeTheme = createTheme({
             disabled: COLORS.LIGHT_GRAY
         }
     },
+    mixins: {
+      toolbar: {
+          height: "55px"
+      }
+    },
     typography: {
         fontFamily: fonts,
         h1: {

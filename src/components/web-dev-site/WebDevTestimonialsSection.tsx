@@ -58,6 +58,7 @@ const WebDevTestimonialsSection: FunctionComponent<IProps> = (props: IProps) => 
                 {
                     props.sectionData.feedbackEntries?.map((feedbackEntry: WebDevTestimonialsType, index2: number) => {
                         return <Grid item container alignContent='space-between'
+                                     key={index2}
                                      style={{
                                          border: `1px solid black`,
                                          backgroundColor: "white",

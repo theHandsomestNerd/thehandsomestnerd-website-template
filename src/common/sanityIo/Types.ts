@@ -30,6 +30,7 @@ export type SanityTransformHwHomePage = {
   businessCardImageSrc?: SanityImageSource
   slug?: any
   headerMenuRef?: SanityRef
+  headerContent?: any
   footerMenuRef?: SanityRef
   pageContent?: any
   servicesAvailable?: ThwServiceItemNoRefType[]

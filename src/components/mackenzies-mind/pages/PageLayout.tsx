@@ -6,6 +6,7 @@ import firebaseAnalyticsClient from "../../../utils/firebase/FirebaseAnalyticsCl
 import {useLocation} from "react-router";
 import Footer from "../footer/Footer";
 import Header from "../header/Header";
+import HeaderBlockContentLayoutContainer from "../../HeaderBlockContentLayoutContainer";
 
 interface IProps {
     homePage: SanityTransformHwHomePage
@@ -24,11 +25,14 @@ const PageLayout: FunctionComponent<IProps> = (props: IProps) => {
     }, []);
 
     return (<Grid container item style={{width: "100vw"}}>
+        {/*<Grid container item>*/}
+        {/*    <Header pageHeader={props.homePage.headerMenuRef}/>*/}
+        {/*</Grid>*/}
         <Grid container item>
-            <Header pageHeader={props.homePage.headerMenuRef}/>
-        </Grid>
-        <Grid container item style={{height: "48px"}}>
-
+            {props.homePage.headerContent && <Grid container item>
+                <HeaderBlockContentLayoutContainer
+                    content={props.homePage.headerContent.content}/>
+            </Grid>}
         </Grid>
         <Grid item container>
             {

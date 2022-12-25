@@ -15,6 +15,12 @@ export default () =>
                 .title('Page')
                 .child(createSuperPane('homePage', S)),
             S.listItem()
+                .title('Header')
+                .child(createSuperPane('HeaderSection', S)),
+            S.listItem()
+                .title('Development Header')
+                .child(createSuperPane('DevelopmentHeaderSection', S)),
+            S.listItem()
                 .title('Web Dev Hero Section')
                 .child(createSuperPane('WebDevHeroContentSection', S)),
             S.listItem()

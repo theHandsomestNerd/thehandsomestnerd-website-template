@@ -75,6 +75,11 @@ export default {
             to: [{type:'menuContainer'}]
         },
         {
+            name: 'headerContent',
+            title: 'Header Content',
+            type: 'headerContentContainer',
+        },
+        {
             name: 'pageContent',
             title: 'Page Content',
             type: 'contentContainer',

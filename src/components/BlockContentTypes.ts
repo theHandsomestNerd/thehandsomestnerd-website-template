@@ -1,5 +1,5 @@
 import {SanityImageSource} from "@sanity/asset-utils";
-import {SanityRef, SanitySlug} from "../common/sanityIo/Types";
+import {SanityMenuContainer, SanityRef, SanitySlug} from "../common/sanityIo/Types";
 import {FileAsset, ImageAsset} from "@sanity/types";
 
 export type HeroContentSectionType = {
@@ -429,4 +429,13 @@ export type HowItWorksSectionType = {
     contentPreTitle: string
     contentTexts: string[]
     steps: HowItWorksStepNoRefType[]
+}
+
+export type DevelopmentHeaderSectionType = {
+    name:string
+    headerMenuRef: SanityMenuContainer
+}
+export type HeaderSectionType = {
+    name:string
+    headerMenuRef: SanityMenuContainer
 }
