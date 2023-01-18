@@ -1,10 +1,8 @@
 import {createTheme} from '@material-ui/core'
-import ElaineSans from './common/fonts/Elaine-Sans/ElaineSans-ExtraBold.ttf'
-import BitterPro from './common/fonts/bitter_pro/fonts/ttf/BitterPro-Black.ttf'
+import ElaineSans from './common/fonts/elaine-sans/elaineSans-extrabold.ttf'
 import Raleway from './common/fonts/Raleway/variable/TTF/Raleway-VF.ttf'
 import RalewayBold from './common/fonts/Raleway/static/TTF/Raleway-Bold.ttf'
 import Rainbow from './common/fonts/rainbow/Rainbow.ttf'
-import {COLORS} from "./DigitalResumeTheme";
 
 type FontFace = {
     fontDisplay?: any
@@ -58,7 +56,7 @@ export const rainbow: FontFace = {
   `
 }
 
-const fonts = ['Raleway', 'Elaine Sans'].join(',')
+const fonts = [ 'Elaine Sans', 'Raleway'].join(',')
 
 
 const WebDevSiteTheme = createTheme({
@@ -83,7 +81,7 @@ const WebDevSiteTheme = createTheme({
     palette: {
         background: {
             default: "#131313",
-            paper: "#43424A"
+            paper: "#131313"
         },
         primary: {
             main: "#FAFAFA",
@@ -114,6 +112,7 @@ const WebDevSiteTheme = createTheme({
     },
     typography: {
         fontFamily: fonts,
+
         h1: {
             // Title1
             fontSize: '70px',
@@ -200,9 +199,28 @@ const WebDevSiteTheme = createTheme({
         }
     },
     overrides: {
+        MuiListItemText:{
+            secondary:{
+                color: "inherit",
+                "& :hover": {
+                    background: "white",
+                    color: "#383838"
+                }
+            },
+        },
+        MuiListItem:{
+            root:{
+                textAlign:'center',
+                color: "#FAFAFA",
+                "& :hover": {
+                    background: "white",
+                    color: "#383838"
+                }
+            }
+        },
         MuiCssBaseline: {
             '@global': {
-                '@font-face': [elainSansExtraBold, raleway, ralewayBold, rainbow]
+                '@font-face': [raleway, ralewayBold, elainSansExtraBold, rainbow]
             },
         },
         MuiInputBase: {
@@ -342,7 +360,7 @@ const WebDevSiteTheme = createTheme({
             //   color: '#A697E6'
             // }
         }
-    }
+    },
 })
 
 export default WebDevSiteTheme

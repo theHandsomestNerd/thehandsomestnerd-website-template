@@ -3,54 +3,9 @@ import BlockContent from '@sanity/block-content-to-react'
 import {Card, Grid, Link, MuiThemeProvider} from '@material-ui/core'
 import sanityClient from '../sanityClient'
 import {blockSerializers} from '../common/sanityIo/BlockContentRenderer'
-import {
-    ResumeBioSectionType,
-    ResumeContactUsSectionType,
-    ResumeEducationSectionType,
-    ResumeExperienceSectionType,
-    ResumeFeedbackSectionType,
-    ResumePortfolioSectionType,
-    ResumeSkillSectionType,
-    PortfolioSectionType,
-    ThwAboutProprietorSectionType,
-    ThwContactUsSectionType,
-    ThwHeroContentSectionType,
-    ThwMottoSectionType,
-    ThwPositivePsychologySectionType,
-    ThwServiceItemType,
-    ThwServicesSectionType,
-    ThwWhyChooseUsSectionType,
-    WebDevAboutUsSectionType,
-    WebDevHeroContentSectionType,
-    WebDevStatsCounterSectionType,
-    WebDevTestimonialsSectionType, HowItWorksSectionType, DevelopmentHeaderSectionType, HeaderSectionType,
-} from "./BlockContentTypes";
+import {DevelopmentHeaderSectionType, HeaderSectionType,} from "./BlockContentTypes";
 import DigitalResumeTheme from "../theme/DigitalResumeTheme";
 import useThwCommonStyles from "../common/sanityIo/ThwCommonStyles";
-import ThwHeroContentSection from "./transform-hw/ThwHeroContentSection";
-import ThwPositivePsychology from "./transform-hw/ThwPositivePsychology";
-import ThwMottoSection from "./transform-hw/ThwMottoSection";
-import AboutTheProprietorSection from "./transform-hw/AboutTheProprietorSection";
-import ThwServicesSection from "./transform-hw/ThwServicesSection";
-import ThwWhyChooseUsSection from "./transform-hw/ThwWhyChooseUsSection";
-import ThwContactUsSection from "./transform-hw/ThwContactUsSection";
-import {SanityHomePage} from "./block-content-ui/static-pages/cmsStaticPagesClient";
-import ThwServicesEducationPage from "./transform-hw/service-education-page/ThwServiceEducationPage";
-import ResumeBio from "./my-digital-resume/ResumeBio";
-import MMHeroContentSection from "./mackenzies-mind/MMHeroContentSection";
-import ResumeSkillsSection from "./my-digital-resume/ResumeSkillsSection";
-import ResumeExperienceSection from "./my-digital-resume/ResumeExperienceSection";
-import ResumeEducationSection from "./my-digital-resume/ResumeEducationSection";
-import ResumeFeedbackSection from "./my-digital-resume/ResumeFeedbackSection";
-import ResumeContactUsSection from "./my-digital-resume/ResumeContactUsSection";
-import ResumePortfolioSection from "./my-digital-resume/ResumePortfolioSection";
-import WebDevHeroContentSection from "./web-dev-site/WebDevHeroContentSection";
-import WebDevStatsCounterSection from "./web-dev-site/WebDevStatsCounterSection";
-import WebDevAboutUsSection from "./web-dev-site/WebDevAboutUsSection";
-import WebDevServicesSection from "./web-dev-site/WebDevServicesSection";
-import WebDevPortfolioSection from "./web-dev-site/WebDevPortfolioSection";
-import WebDevTestimonialsSection from "./web-dev-site/WebDevTestimonialsSection";
-import WebDevHowItWorksSection from "./web-dev-site/WebDevHowItWorksSection";
 import DevelopmentHeader from "./mackenzies-mind/header/DevelopmentHeader";
 import Header from "./mackenzies-mind/header/Header";
 import WebDevSiteTheme from "../theme/WebDevSiteTheme";
@@ -109,7 +64,7 @@ const HeaderBlockContentLayoutContainer: FunctionComponent<HeaderBlockContentLay
                 case 'DevelopmentHeaderSection':
                     const developmentHeader: DevelopmentHeaderSectionType = columnLayoutContainer
 
-                    return <MuiThemeProvider theme={WebDevSiteTheme}><Grid key={'TOP_OF_PAGE_DEV'} container item xs={12} style={{height: WebDevSiteTheme.mixins.toolbar.height}}>
+                    return <MuiThemeProvider theme={WebDevSiteTheme}><Grid key={'TOP_OF_PAGE_DEV'} container item xs={12} style={{height: WebDevSiteTheme.mixins.toolbar.height}} alignContent='center' alignItems='center'>
                         <Link id={"TOP_OF_PAGE"}><></>
                         </Link>
                         <DevelopmentHeader

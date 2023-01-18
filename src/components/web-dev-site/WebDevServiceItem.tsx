@@ -5,7 +5,7 @@ import ImageWIthButtonOverlay from "../image-with-button-overlay/ImageWithButton
 import {ImageWithButtonOverlayAligmentEnum} from "../image-with-button-overlay/ImageWithButtonOverlayAligmentEnum";
 import LoadingButton from "../loading-button/LoadingButton";
 import {v4 as uuidv4} from 'uuid'
-import WebDevSiteTheme, {elainSansExtraBold} from "../../theme/WebDevSiteTheme";
+import WebDevSiteTheme, {elainSansExtraBold, raleway} from "../../theme/WebDevSiteTheme";
 import PageContext from "../page-context/PageContext";
 import MediaQueriesContext from "../media-queries-context/MediaQueriesContext";
 import {ServiceItemNoRefType} from "../BlockContentTypes";
@@ -13,11 +13,12 @@ import firebaseAnalyticsClient from "../../utils/firebase/FirebaseAnalyticsClien
 import AmenitiesSection from "../transform-hw/AmenitiesSection";
 import ColoredPng from "../colored-png/ColoredPng";
 import {urlFor} from "../block-content-ui/static-pages/cmsStaticPagesClient";
+import mediaQueries from "../../utils/mediaQueries";
 
 export const useStyles = makeStyles((theme: Theme) => ({
-    root: {
-        padding: theme.spacing(4)
-    },
+    // root: {
+    //
+    // },
 }))
 
 interface IProps {
@@ -47,10 +48,13 @@ const WebDevServiceItem: FunctionComponent<IProps> = (props: IProps) => {
                                                               noWrap>{props.service.learnMoreText}</Typography></Button>}
         </Grid>
     }
+    const theme = useTheme()
+    // const mediaContext = useContext(MediaQueriesContext)
+    // const mdDown = mediaContext.mdDown
 
     return (
         <MuiThemeProvider theme={WebDevSiteTheme}>
-            <Grid className={classes.root} key={uuidv4()} container item  md={6} style={{backgroundColor:COLOR_ROTATION[(props.index??0) % 3]}} alignContent='center' alignItems='center'>
+            <Grid key={uuidv4()} container item  md={6} style={{backgroundColor:COLOR_ROTATION[(props.index??0) % 3], padding: theme.spacing(4)}} alignContent='center' alignItems='center'>
             <Grid container item direction='column' >
                 <Grid container item spacing={2} alignContent='center'
                       alignItems='center'>
@@ -75,6 +79,7 @@ const WebDevServiceItem: FunctionComponent<IProps> = (props: IProps) => {
                     </Grid>
                     <Grid container item>
                         <Typography variant='body1'
+                                    style={{...raleway}}
                                     color='primary'
                                     >{props.service.contentText}</Typography>
                     </Grid>

@@ -4,6 +4,7 @@ import {makeStyles, Theme} from '@material-ui/core/styles'
 import {Grid, Link, Typography} from '@material-ui/core'
 import DigitalResumeTheme from "../../../theme/DigitalResumeTheme";
 import {SanityMenuGroup, SanityMenuItem} from "../../../common/sanityIo/Types";
+import {raleway} from "../../../theme/WebDevSiteTheme";
 
 export const useStyles = makeStyles((theme: Theme) => ({
     root: {
@@ -67,7 +68,7 @@ const WebDevFooterMenuGroup: FunctionComponent<LandingPagesFooterMenuGroupProps>
                             return (
                                 <Grid key={index} item>
                                     <Link href={menuLink.url} className={classes.footerLink}>
-                                        <Typography variant="body1" color='textPrimary' noWrap>
+                                        <Typography variant="body1" color='textPrimary' noWrap  style={{...raleway}}>
                                             {menuLink.displayText}
                                         </Typography>
                                     </Link>
@@ -78,7 +79,7 @@ const WebDevFooterMenuGroup: FunctionComponent<LandingPagesFooterMenuGroupProps>
                     {
                         menuItemContents && <Grid item>
                             <Link href={menuItemContents.url} className={classes.footerLink}>
-                                <Typography variant="body1" color='textPrimary' noWrap>
+                                <Typography variant="body1" color='textPrimary' noWrap style={{...raleway}}>
                                     {menuItemContents.displayText}
                                 </Typography>
                             </Link>

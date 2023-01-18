@@ -4,6 +4,8 @@ import {Card, Grid, Link} from '@material-ui/core'
 import sanityClient from '../sanityClient'
 import {blockSerializers} from '../common/sanityIo/BlockContentRenderer'
 import {
+    HowItWorksSectionType,
+    PortfolioSectionType,
     ResumeBioSectionType,
     ResumeContactUsSectionType,
     ResumeEducationSectionType,
@@ -11,7 +13,6 @@ import {
     ResumeFeedbackSectionType,
     ResumePortfolioSectionType,
     ResumeSkillSectionType,
-    PortfolioSectionType,
     ThwAboutProprietorSectionType,
     ThwContactUsSectionType,
     ThwHeroContentSectionType,
@@ -23,11 +24,10 @@ import {
     WebDevAboutUsSectionType,
     WebDevHeroContentSectionType,
     WebDevStatsCounterSectionType,
-    WebDevTestimonialsSectionType, HowItWorksSectionType,
+    WebDevTestimonialsSectionType,
 } from "./BlockContentTypes";
 import DigitalResumeTheme from "../theme/DigitalResumeTheme";
 import useThwCommonStyles from "../common/sanityIo/ThwCommonStyles";
-import ThwHeroContentSection from "./transform-hw/ThwHeroContentSection";
 import ThwPositivePsychology from "./transform-hw/ThwPositivePsychology";
 import ThwMottoSection from "./transform-hw/ThwMottoSection";
 import AboutTheProprietorSection from "./transform-hw/AboutTheProprietorSection";
@@ -252,7 +252,7 @@ const BlockContentLayoutContainer: FunctionComponent<BlockContentLayoutContainer
                     const resumeContactUsSection: ResumeContactUsSectionType = columnLayoutContainer
 
                     return <Grid key={'ResumeContactUsSection'} container item xs={12} justifyContent='center'>
-                        <Link id={"CONTACT_ME"} style={{position: "relative", top: -80}}><></></Link>
+                        <Link id={"CONTACT"} style={{position: "relative", top: -80}}><></></Link>
 
                             <ResumeContactUsSection
                             sectionData={resumeContactUsSection}

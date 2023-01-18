@@ -2,7 +2,7 @@ import React, {FunctionComponent, useContext} from 'react'
 import {makeStyles, MuiThemeProvider, Theme} from "@material-ui/core/styles"
 import {Button, Grid, Typography} from '@material-ui/core'
 import {v4 as uuidv4} from 'uuid'
-import WebDevSiteTheme, {elainSansExtraBold} from "../../theme/WebDevSiteTheme";
+import WebDevSiteTheme, {elainSansExtraBold, raleway} from "../../theme/WebDevSiteTheme";
 import PageContext from "../page-context/PageContext";
 import {HowItWorksStepNoRefType} from "../BlockContentTypes";
 import firebaseAnalyticsClient from "../../utils/firebase/FirebaseAnalyticsClient";
@@ -60,6 +60,7 @@ const WebDevHowItWorksStep: FunctionComponent<IProps> = (props: IProps) => {
                         <Grid container item>
                             <Typography variant='body1'
                                         color='primary'
+                                        style={{...raleway}}
                             >{props.step.contentText}</Typography>
                         </Grid>
                         <Grid container item>

@@ -36,13 +36,10 @@ const Header: FunctionComponent<HeaderProps> = (props) => {
     return (
         <AppBar className={clsx({[classes.opaque]: true}, classes.root)}>{props.pageHeader?.title ?
             <Grid item xs={12} container justifyContent="space-between" alignItems='stretch' alignContent='center' spacing={mediaQueriesContext.mdDown ? 3 : 0}>
-                <Grid container item xs={2} sm={1}>
-                    <BusinessCard menu={props.pageHeader} anchor={'bottom'}/>
-                </Grid>
                 <Grid item container xs={3} sm={2} md={1} alignItems='center' alignContent='center'>
                     <Typography variant='h4' color='textPrimary'  style={{...rainbow}}>Terrell</Typography><Typography variant='h4' color='primary' display='inline' style={{...rainbow}}>.</Typography>
                 </Grid>
-                <Grid item container xs={7} sm={9} md={10} justifyContent='space-between' alignItems='center' alignContent='center'>
+                <Grid item container xs={9} sm={10} md={11} justifyContent='space-between' alignItems='center' alignContent='center'>
                     {/*// @ts-ignore*/}
                     <Hidden xsDown>
                         <Grid xs={4} md={10} lg={12} container item justifyContent='flex-end'

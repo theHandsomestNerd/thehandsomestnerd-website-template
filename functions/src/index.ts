@@ -12,6 +12,7 @@ import {SanityColdLead, SanityTransformHwHomePage}
   from "../../src/common/sanityIo/Types";
 import {urlFor} from
   "../../src/components/block-content-ui/static-pages/cmsStaticPagesClient";
+import sendGridClient from "./sendGridClient";
 // To Throttle requests to sanity
 
 Promise.polyfill();
@@ -137,6 +138,40 @@ const serveIndexFile = (req: any, res: any) => {
 };
 
 
+app.post("/send-email-resume",
+    async (req: any, functionRes: any) => {
+      const reqBody: SanityColdLead = JSON.parse(req.body);
+
+      logClient.log("send-email-address", "NOTICE",
+          "Request to collect an email address and send them an email", reqBody.email);
+
+      try {
+        const response = await cmsClient.createColdLead({
+          email: reqBody.email,
+          leadPhone: reqBody.leadPhone,
+          leadMessage: reqBody.leadMessage,
+          leadName: reqBody.leadName,
+          source: reqBody.source,
+        });
+        console.log("Cold Lead Created before Resume send.", response);
+        // functionRes.send({status: "200", response, email: reqBody.email, message: "Thank you! We will talk soon."});
+      } catch (e) {
+        logClient.log("collect-email-address", "ERROR",
+            "Could not create Lead", {email: reqBody.email});
+        // functionRes.send({status: "400", e});
+      }
+
+      try {
+        const response = await sendGridClient.sendLeadEmail(reqBody.email);
+        console.log(`Resume send attempt to ${reqBody.email}:`, response);
+        functionRes.send({status: "200", response, email: reqBody.email, message: "Success"});
+      } catch (e) {
+        logClient.log("collect-email-address", "ERROR",
+            "Could not create Lead", {email: reqBody.email});
+        functionRes.send({status: "400", e});
+      }
+    });
+
 app.post("/collect-email-address",
     async (req: any, functionRes: any) => {
       const reqBody: SanityColdLead = JSON.parse(req.body);
@@ -159,6 +194,7 @@ app.post("/collect-email-address",
         functionRes.send({status: "400", e});
       }
     });
+
 
 app.use(express.static(
     path.resolve(__dirname, "../../../../", "build"),

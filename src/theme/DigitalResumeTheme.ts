@@ -3,6 +3,7 @@ import BitterPro from './common/fonts/bitter_pro/fonts/ttf/BitterPro-Black.ttf'
 import Raleway from './common/fonts/Raleway/variable/TTF/Raleway-VF.ttf'
 import RalewayBold from './common/fonts/Raleway/static/TTF/Raleway-Bold.ttf'
 import Rainbow from './common/fonts/rainbow/Rainbow.ttf'
+import ElaineSans from "./common/fonts/elaine-sans/elaineSans-extrabold.ttf";
 
 type FontFace = {
     fontDisplay?: any
@@ -56,7 +57,18 @@ export const rainbow: FontFace = {
   `
 }
 
-const fonts = ['Raleway', 'Bitter Pro'].join(',')
+const elainSansExtraBold: FontFace = {
+    fontFamily: 'Elaine Sans',
+    fontStyle: 'normal',
+    fontDisplay: 'swap', // uses the fallback font to display the text until the custom font has fully downloaded. This is also known as a “flash of unstyled text” or FOUT.
+    fontWeight: 800,
+    src: `
+    local('Elaine Sans'),
+    url(${ElaineSans}) format('truetype')
+  `
+}
+
+const fonts = ['Raleway', 'Bitter Pro', 'Elaine Sans'].join(',')
 
 export enum COLORS {
     DARKBLUE = 'rgba(0,0,53,1)',
@@ -213,7 +225,7 @@ const DigitalResumeTheme = createTheme({
     overrides: {
         MuiCssBaseline: {
             '@global': {
-                '@font-face': [bitterPro, raleway, ralewayBold, rainbow]
+                '@font-face': [bitterPro, raleway, ralewayBold, rainbow, elainSansExtraBold]
             },
         },
         MuiInputBase: {
@@ -247,6 +259,12 @@ const DigitalResumeTheme = createTheme({
             root:{
                 // borderRadius: 0
             }
+        },
+        MuiFormLabel:{
+          root:{
+              color: "#383838",
+              paddingTop: "4px",
+          }
         },
         MuiFilledInput: {
             root: {

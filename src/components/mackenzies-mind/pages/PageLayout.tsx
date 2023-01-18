@@ -1,4 +1,4 @@
-import React, {FunctionComponent} from 'react'
+import React, {FunctionComponent, useContext} from 'react'
 import {Grid, Link, useTheme} from '@material-ui/core'
 import {SanityTransformHwHomePage} from "../../../common/sanityIo/Types";
 import BlockContentLayoutContainer from "../../BlockContentLayoutContainer";
@@ -8,6 +8,8 @@ import Footer from "../footer/Footer";
 import Header from "../header/Header";
 import HeaderBlockContentLayoutContainer from "../../HeaderBlockContentLayoutContainer";
 import FooterBlockContentLayoutContainer from "../../FooterBlockContentLayoutContainer";
+import BusinessCard from "../../BusinessCard";
+import PageContext from "../../page-context/PageContext";
 
 interface IProps {
     homePage: SanityTransformHwHomePage
@@ -16,6 +18,8 @@ interface IProps {
 const PageLayout: FunctionComponent<IProps> = (props: IProps) => {
     const location = useLocation();
     const theme = useTheme()
+
+    const pageContext = useContext(PageContext)
 
     React.useEffect(() => {
         props.homePage.title && firebaseAnalyticsClient.analyticsPageView(
@@ -29,6 +33,9 @@ const PageLayout: FunctionComponent<IProps> = (props: IProps) => {
         {/*<Grid container item>*/}
         {/*    <Header pageHeader={props.homePage.headerMenuRef}/>*/}
         {/*</Grid>*/}
+        <Grid container item style={{position: "fixed", bottom: 0, right: 0, zIndex: 9999}}>
+            <BusinessCard menu={pageContext.page?.headerContent.content[0].headerMenuRef} anchor={'bottom'}/>
+        </Grid>
         <Grid container item>
             {props.homePage.headerContent && <Grid container item>
                 <HeaderBlockContentLayoutContainer
@@ -57,7 +64,7 @@ const PageLayout: FunctionComponent<IProps> = (props: IProps) => {
                   backgroundColor: "white",
                   position: "static",
                   bottom: 0,
-                  padding: theme.spacing(1, 3, 1.5)
+                  padding: theme.spacing(1, 3, .5)
               }}
             // xs={11}
         >

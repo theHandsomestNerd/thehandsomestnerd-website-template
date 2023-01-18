@@ -6,7 +6,7 @@ import {COLORS} from "../../theme/DigitalResumeTheme";
 import useThwCommonStyles from "../../common/sanityIo/ThwCommonStyles";
 import {urlFor} from "../block-content-ui/static-pages/cmsStaticPagesClient";
 import MediaQueriesContext from "../media-queries-context/MediaQueriesContext";
-import WebDevSiteTheme, {elainSansExtraBold} from "../../theme/WebDevSiteTheme";
+import WebDevSiteTheme, {elainSansExtraBold, raleway} from "../../theme/WebDevSiteTheme";
 
 interface IProps {
     sectionData: WebDevTestimonialsSectionType
@@ -26,14 +26,16 @@ const WebDevTestimonialsSection: FunctionComponent<IProps> = (props: IProps) => 
         container
         item
         style={{
-            padding: theme.spacing(4),
+            paddingTop: theme.spacing(8),
+            paddingBottom: theme.spacing(8),
             backgroundImage: `url('${urlFor(props.sectionData.backgroundImage??"").url()??""}')`,
             backgroundSize:"cover",
             backgroundRepeat:"no-repeat",
             backgroundColor: "#1F1F1F"
         }}
+        justifyContent='center'
     >
-        <Grid container item spacing={3}>
+        <Grid container item spacing={3} xs={11}>
             <Grid item container alignContent='flex-start' spacing={1}>
                 <Grid container item>
                     <Grid item container>
@@ -51,7 +53,7 @@ const WebDevTestimonialsSection: FunctionComponent<IProps> = (props: IProps) => 
                     </Grid>
                 </Grid>
                 <Grid item>
-                    <Typography color='primary' variant='body1'>{props.sectionData.introduction}</Typography>
+                    <Typography color='primary' variant='body1' style={{...raleway}}>{props.sectionData.introduction}</Typography>
                 </Grid>
             </Grid>
             <Grid item container justifyContent='center'>

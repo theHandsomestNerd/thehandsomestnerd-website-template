@@ -7,6 +7,7 @@ import {CloudDownload, Facebook, GitHub, Instagram, LinkedIn, Twitter} from "@ma
 import useThwCommonStyles from "../../common/sanityIo/ThwCommonStyles";
 import MediaQueriesContext from "../media-queries-context/MediaQueriesContext";
 import ResumeSocialMedia from "./ResumeSocialMedia";
+import BusinessCardSubmitEmail from "../transform-hw/pages/BusinessCardSubmitEmail";
 
 interface IProps {
     sectionData: ResumeBioSectionType
@@ -23,6 +24,11 @@ const ResumeBio: FunctionComponent<IProps> = (props: IProps) => {
 
     return (<Grid container item style={{padding: theme.spacing(4)}} justifyContent='center'
                   className={classes.resumeSection} spacing={3}>
+        <Grid item xs={12}>
+            <BusinessCardSubmitEmail emailFieldText={'Email Address'}
+                                     emailButtonText={'Submit'}
+                                     subscribeText={'Want a copy of my resume emailed to you?'}/>
+        </Grid>
         <Grid container item md={6} justifyContent='center'>
             <Grid item container>
                 <Typography component='div' display='inline' variant='h5' gutterBottom>{props.sectionData.title}
@@ -70,9 +76,8 @@ const ResumeBio: FunctionComponent<IProps> = (props: IProps) => {
                         Me</Typography></Button>
                     <Button
                         href={props.sectionData.resumeFile?.url + "?dl=James Terrell Singleton - Software Engineer - Resume.pdf"}
-                        variant='contained' fullWidth color='primary'><CloudDownload
-                        className={classes.iconOnButton}/><Typography variant="button" align='center' noWrap>
-                        ResuMe</Typography></Button>
+                        variant='contained' fullWidth color='primary'><Typography variant="button" align='center' noWrap>
+                        Download Resume</Typography></Button>
                     {/*{props.sectionData.cvFile && props.sectionData.cvFile.url.length > 0 && <Button*/}
                     {/*    href={props.sectionData.cvFile?.url + "?dl=James Terrell Singleton - Software Engineer - CV.pdf"}*/}
                     {/*    variant='contained' fullWidth color='primary'><CloudDownload*/}

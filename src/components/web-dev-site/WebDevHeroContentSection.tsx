@@ -30,7 +30,6 @@ export const useStyles = makeStyles((theme: Theme) => ({
     }),
     contentSection: {
         marginTop: '16px',
-        padding: theme.spacing(8),
         backgroundColor: 'transparent',
     },
     contentBullets: {
@@ -50,16 +49,16 @@ const WebDevHeroContentSection: FunctionComponent<IProps> = (props) => {
     const globalClasses = useCustomStyles({})
     return (
         <MuiThemeProvider theme={WebDevSiteTheme}>
-        <Grid container item className={classes.marketingBackground}>
+        <Grid container item className={classes.marketingBackground} justifyContent='center'>
             <Grid container item
                   className={clsx(globalClasses.fullSection, globalClasses.fullSectionOverlay)}>
             </Grid>
-            <Grid container direction='column' style={{zIndex: 2}}>
+            <Grid container direction='column' style={{zIndex: 2}} xs={11} justifyContent='center'>
                 <Grid item>
-                    <Grid container className={classes.contentSection} item xs={12}>
-                        <Grid container spacing={2}>
+                    <Grid container className={classes.contentSection} item xs={12} justifyContent='flex-start' alignContent='center' alignItems='center'>
+                        <Grid container spacing={2} xs={8}>
                             <Grid item xs={8} container>
-                                <Typography variant='h1'
+                                <Typography variant='h2'
                                             color={'textPrimary'}
                                             style={{...elainSansExtraBold}}>{props.sectionData.contentTitle}</Typography>
                             </Grid>

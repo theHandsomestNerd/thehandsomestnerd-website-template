@@ -10,7 +10,30 @@ import DigitalResumeTheme from "../../../theme/DigitalResumeTheme";
 import useCustomStyles from "../../mackenzies-mind/pages/Styles";
 
 export const useStyles = makeStyles((theme: Theme) => ({
-    root: {},
+    endAdornedInput: {
+        "& .MuiFilledInput-adornedEnd": {
+            border: "1px solid red",
+            // marginRight: '-12px',
+            borderTopRightRadius: DigitalResumeTheme.shape.borderRadius,
+            borderBottomRightRadius: DigitalResumeTheme.shape.borderRadius,
+        },
+        "& .MuiOutlinedInput-adornedEnd": {
+            border: "1px solid white",
+            // paddingRight: 0,
+            borderTopRightRadius: DigitalResumeTheme.shape.borderRadius,
+            borderBottomRightRadius: DigitalResumeTheme.shape.borderRadius,
+        },
+        "& .MuiInputBase-input": {
+            borderRightWidth: 0,
+            "&:hover": {
+                borderBottomColor: "white"
+            },
+        },
+        "& .MuiButton-containedSecondary": {
+            border: 0,
+            borderLeft: '1px solid white'
+        },
+    },
 }))
 
 interface IProps {
@@ -19,16 +42,17 @@ interface IProps {
     subscribeText: string
 }
 
-const SubmitEmail: FunctionComponent<IProps> = (props: IProps) => {
+const BusinessCardSubmitEmail: FunctionComponent<IProps> = (props: IProps) => {
     const theme = useTheme()
     const classes = useCustomStyles(DigitalResumeTheme)
+    const myClasses = useStyles(DigitalResumeTheme)
     const [email, setEmail] = useState("")
 
     const {isLoading, isError, data, refetch} = useQuery(
-        ['createLead'],
+        ['sendBusinessCard Email'],
         () => {
             if ((!data && !isError) && email && email.length > 0) {
-                return leadClient.createLead({email, source: "Coming Soon Page"});
+                return leadClient.sendBusinessCardEmail({email, source: "Business Card"});
             }
             return undefined
         }
@@ -50,33 +74,34 @@ const SubmitEmail: FunctionComponent<IProps> = (props: IProps) => {
         }
         if (isError) {
             return <Typography style={{color: theme.palette.error.main}} variant='subtitle1'>Please Try your
-                submission again later or contact jgreene@transformHW.org.</Typography>
+                submission again later or contact hello@thehandsomestnerd.com.</Typography>
         }
 
         return <Typography variant='subtitle1'>&nbsp;</Typography>
     }
 
 
-    return (<Grid container item>
+    return (<Grid container item justifyContent='center'>
         <Grid item container justifyContent='center'>
             <Typography color='primary' gutterBottom variant='body2'
                         align='center'
                         style={{marginBottom: theme.spacing(2)}}>{props.subscribeText}</Typography>
         </Grid>
-        <Grid item container xs={12}>
+        <Grid item container xs={11} md={10}>
             <TextField fullWidth
                        label={props.emailFieldText}
-                       variant='filled'
+                       variant='outlined'
+                       style={{paddingRight: "0"}}
                        type='email'
                        value={email}
                        onChange={(event: ChangeEvent<HTMLInputElement>) => {
                            setEmail(event.target.value)
                        }}
-                       className={classes.endAdornedInput}
+                       className={myClasses.endAdornedInput}
                        InputProps={{
                            endAdornment:
                                <LoadingButton
-                                   width={150}
+                                   width={100}
                                    isLoading={isLoading}
                                    groupiness={ButtonGroupMemberEnum.RIGHT}
                                    disabled={!!(data || isError || (email && (email.length > 0) && !isEmail(email)))}
@@ -91,4 +116,4 @@ const SubmitEmail: FunctionComponent<IProps> = (props: IProps) => {
         </Grid></Grid>)
 }
 
-export default SubmitEmail
+export default BusinessCardSubmitEmail
