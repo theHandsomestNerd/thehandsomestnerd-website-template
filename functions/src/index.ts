@@ -8,11 +8,14 @@ import * as cmsClient from "./cmsClient";
 import * as Promise from "es6-promise";
 import * as path from "path";
 import * as fs from "fs";
-import {SanityColdLead, SanityTransformHwHomePage}
-  from "../../src/common/sanityIo/Types";
-import {urlFor} from
-  "../../src/components/block-content-ui/static-pages/cmsStaticPagesClient";
+// import {SanityColdLead, SanityTransformHwHomePage}
+//   from "../../src/common/sanityIo/Types";
+// import {urlFor} from
+//   "../../src/components/block-content-ui/static-pages/cmsStaticPagesClient";
 import sendGridClient from "./sendGridClient";
+import imageUrlBuilder from "@sanity/image-url";
+// import {SanityImageSource} from "@sanity/asset-utils";
+import {sanityClient} from "./sanityClient";
 // To Throttle requests to sanity
 
 Promise.polyfill();
@@ -49,6 +52,10 @@ const Logger = function(req: any, res: any, next: any) {
 // app.use(require("prerender-node")
 // .set("prerenderToken", process.env.PRERENDER_TOKEN));
 
+const builder = imageUrlBuilder(sanityClient);
+export const urlFor = (source: any) => {
+  return builder.image(source);
+};
 
 app.use(Logger);
 // https://blog.logrocket.com/adding-dynamic-meta-tags-react-app-without-ssr/
@@ -107,7 +114,7 @@ const serveIndexFile = (req: any, res: any) => {
     logClient.log("server-side", "NOTICE",
         "Loading this page from sanity", pageSlug);
     try {
-      const pageFromSanity: SanityTransformHwHomePage = await cmsClient.fetchPage(pageSlug);
+      const pageFromSanity: any = await cmsClient.fetchPage(pageSlug);
 
       // console.log("IMAGE URL", pageFromSanity.metaImage && urlFor(pageFromSanity.metaImage).url()?.replace("undefined", process.env.SANITY_DB ?? "development"));
       const page = {
@@ -140,7 +147,7 @@ const serveIndexFile = (req: any, res: any) => {
 
 app.post("/send-email-resume",
     async (req: any, functionRes: any) => {
-      const reqBody: SanityColdLead = JSON.parse(req.body);
+      const reqBody: any = JSON.parse(req.body);
 
       logClient.log("send-email-address", "NOTICE",
           "Request to collect an email address and send them an email", reqBody.email);
@@ -174,7 +181,7 @@ app.post("/send-email-resume",
 
 app.post("/collect-email-address",
     async (req: any, functionRes: any) => {
-      const reqBody: SanityColdLead = JSON.parse(req.body);
+      const reqBody: any = JSON.parse(req.body);
 
       logClient.log("collect-email-address", "NOTICE",
           "Request to collect an email address", reqBody.email);

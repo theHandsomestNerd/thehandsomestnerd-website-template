@@ -12,6 +12,8 @@ import ModalProvider from "./components/snackbar-context/ModalProvider";
 import SnackbarProvider from "./components/modal-context/SnackbarProvider";
 import PageMux from "./components/mackenzies-mind/pages/PageMux";
 import QrCodeProvider from "./components/qr-code-context/QrCodeProvider";
+import TheOtherSide from "./components/the-drinkery/TheOtherSide";
+import TheDrinkerySpecials from "./components/the-drinkery/TheDrinkerySpecials";
 
 export enum RoutesEnum {
     THN = "/the-handsomest-nerd-internal/:pageSlug",
@@ -50,6 +52,8 @@ function App() {
 
                                                 <Grid item>
                                                     <Routes>
+                                                        <Route path={"/theOtherSide"} element={<TheOtherSide />}/>
+                                                        <Route path={"/drinkerySpecials"} element={<TheDrinkerySpecials />}/>
                                                         <Route path={RoutesEnum.THN} element={<PageMux/>}/>
                                                         <Route path={RoutesEnum.ERROR} element={<FourOhFour/>}/>
                                                         <Route path={"/*"}

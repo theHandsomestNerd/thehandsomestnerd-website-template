@@ -9,9 +9,21 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - run: npm ci && tsc && yarn build
-      - uses: FirebaseExtended/action-hosting-deploy@v0
+      - name: Creating env file
+        run: |
+          set -e
+          # Put your environment variables here. Don't forget
+          # to create secrets for them on GitHub:
+          # https://docs.github.com/en/actions/configuring-and-managing-workflows/creating-and-storing-encrypted-secrets
+          cat << EOF > .env.production
+          REACT_APP_SANITY_PROJECTID="${{ secrets.REACT_APP_SANITY_PROJECTID }}"
+          REACT_APP_SANITY_DB="${{ secrets.REACT_APP_SANITY_DB }}"
+          EOF
+      - name: Building code
+        run: unset CI && npm ci && npm run build
+      - name: Deploying to hosting
+        uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
-          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_THE_HANDSOMEST_NERD }}'
-          projectId: transform-hw
+          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_ST_JOSEPH_FWBC }}'
+          projectId: st-joseph-fwbc

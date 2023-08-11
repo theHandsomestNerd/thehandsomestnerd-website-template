@@ -58,7 +58,7 @@ const useCustomStyles = makeStyles({
         position: "relative",
         backgroundImage: (props: any) => `url(${props.bgImage})`,
         backgroundSize: 'cover',
-        backgroundPosition: 'right',
+        backgroundPosition: 'center',
         backgroundColor: DigitalResumeTheme.palette.background.default
     },
     fullSection: {
