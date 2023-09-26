@@ -68,6 +68,11 @@ const HOMEPAGE = `_type,
           email,
           phone,
           description,
+          businessCardImageSrc,
+          bookAppointmentLink,
+          bookAppointmentQrCode,
+          website,
+          websiteQrCode,
           metaImage,
           headerContent {
             "content": content[]->{
@@ -116,6 +121,9 @@ const HOMEPAGE = `_type,
             }
           },
           isFabActivated,
+          "servicesAvailable": servicesAvailable[]->{
+            ${SERVICE}
+          },
           underConstructionPageRef,
           structuredData,
           facebook,
@@ -135,6 +143,8 @@ const HOMEPAGE = `_type,
              }
           },
           instagram,
+          linkedIn,
+          github,
           instagramIconSrc{
             asset->{
               _id,
@@ -150,6 +160,7 @@ const HOMEPAGE = `_type,
 //           menuGroupTitle,
 //           "links": links[]->{title, displayText, url, isOutlinedButton, isContainedButton}
 // `
+
 
 enum SANITY_TYPES_ENUM {
     SERVICE="transformServiceItem"

@@ -15,6 +15,90 @@ export default () =>
                 .title('Page')
                 .child(createSuperPane('homePage', S)),
             S.listItem()
+                .title('Header')
+                .child(createSuperPane('HeaderSection', S)),
+            S.listItem()
+                .title('Development Header')
+                .child(createSuperPane('DevelopmentHeaderSection', S)),
+            S.listItem()
+                .title('Footer')
+                .child(createSuperPane('FooterSection', S)),
+            S.listItem()
+                .title('Development Footer')
+                .child(createSuperPane('DevelopmentFooterSection', S)),
+            S.listItem()
+                .title('Web Dev Hero Section')
+                .child(createSuperPane('WebDevHeroContentSection', S)),
+            S.listItem()
+                .title('Web Dev Stats Counter Section')
+                .child(createSuperPane('WebDevStatsCounterSection', S)),
+            S.listItem()
+                .title('Web Dev About Us Section')
+                .child(createSuperPane('WebDevAboutUsSection', S)),
+            S.listItem()
+                .title('Portfolio')
+                .child(createSuperPane('PortfolioItem', S)),
+            S.listItem()
+                .title('Portfolio Section')
+                .child(createSuperPane('PortfolioSection', S)),
+            S.listItem()
+                .title("Services Section")
+                .child(createSuperPane('ServicesSection', S)),
+            S.listItem()
+                .title("Service Item")
+                .child(createSuperPane('ServiceItem', S)),
+            S.listItem()
+                .title("How it works Section")
+                .child(createSuperPane('WebDevHowItWorksSection', S)),
+            S.listItem()
+                .title("How it works Item")
+                .child(createSuperPane('WebDevHowItWorksStep', S)),
+            S.listItem()
+                .title("Service Amenity")
+                .child(createSuperPane('ServiceAmenityItem', S)),
+            S.listItem()
+                .title('Testimonials')
+                .child(createSuperPane('Testimonials', S)),
+            S.listItem()
+                .title('Testimonials Section')
+                .child(createSuperPane('TestimonialsSection', S)),
+            S.listItem()
+                .title('Resume Bio Section')
+                .child(createSuperPane('ResumeBioSection', S)),
+            S.listItem()
+                .title('Resume Skill Section')
+                .child(createSuperPane('ResumeSkillSection', S)),
+            S.listItem()
+                .title('Resume Skill')
+                .child(createSuperPane('ResumeSkill', S)),
+             S.listItem()
+                .title('Resume Experience Section')
+                .child(createSuperPane('ResumeExperienceSection', S)),
+            S.listItem()
+                .title('Resume Experience')
+                .child(createSuperPane('ResumeExperience', S)),
+            S.listItem()
+                .title('Resume Education')
+                .child(createSuperPane('ResumeEducation', S)),
+             S.listItem()
+                .title('Resume Education Section')
+                .child(createSuperPane('ResumeEducationSection', S)),
+            S.listItem()
+                .title('Resume Portfolio')
+                .child(createSuperPane('ResumePortfolioItem', S)),
+             S.listItem()
+                .title('Resume Portfolio Section')
+                .child(createSuperPane('ResumePortfolioSection', S)),
+            S.listItem()
+                .title('Resume Feedback')
+                .child(createSuperPane('ResumeFeedback', S)),
+             S.listItem()
+                .title('Resume Feedback Section')
+                .child(createSuperPane('ResumeFeedbackSection', S)),
+            S.listItem()
+                .title('Resume Contact Us Section')
+                .child(createSuperPane('ResumeContactUsSection', S)),
+            S.listItem()
                 .title('Modal')
                 .child(createSuperPane('modal', S)),
              S.listItem()

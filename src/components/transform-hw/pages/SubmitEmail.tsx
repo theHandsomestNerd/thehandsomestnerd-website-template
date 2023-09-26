@@ -6,7 +6,7 @@ import {ButtonGroupMemberEnum} from "../../loading-button/ButtonGroupMemberEnum"
 import isEmail from "validator/lib/isEmail";
 import {useQuery} from "react-query";
 import leadClient from "./under-construction-page/leadClient";
-import MixedFeelingsByTTheme from "../../../theme/MixedFeelingsByTTheme";
+import DigitalResumeTheme from "../../../theme/DigitalResumeTheme";
 import useCustomStyles from "../../mackenzies-mind/pages/Styles";
 
 export const useStyles = makeStyles((theme: Theme) => ({
@@ -21,7 +21,7 @@ interface IProps {
 
 const SubmitEmail: FunctionComponent<IProps> = (props: IProps) => {
     const theme = useTheme()
-    const classes = useCustomStyles(MixedFeelingsByTTheme)
+    const classes = useCustomStyles(DigitalResumeTheme)
     const [email, setEmail] = useState("")
 
     const {isLoading, isError, data, refetch} = useQuery(
@@ -57,13 +57,13 @@ const SubmitEmail: FunctionComponent<IProps> = (props: IProps) => {
     }
 
 
-    return (<Grid container item justifyContent='center'>
+    return (<Grid container item>
         <Grid item container justifyContent='center'>
             <Typography color='primary' gutterBottom variant='body2'
                         align='center'
                         style={{marginBottom: theme.spacing(2)}}>{props.subscribeText}</Typography>
         </Grid>
-        <Grid item container xs={11} md={8}>
+        <Grid item container xs={12}>
             <TextField fullWidth
                        label={props.emailFieldText}
                        variant='filled'
@@ -76,12 +76,12 @@ const SubmitEmail: FunctionComponent<IProps> = (props: IProps) => {
                        InputProps={{
                            endAdornment:
                                <LoadingButton
-                                   width={200}
+                                   width={150}
                                    isLoading={isLoading}
                                    groupiness={ButtonGroupMemberEnum.RIGHT}
                                    disabled={!!(data || isError || (email && (email.length > 0) && !isEmail(email)))}
                                    clickHandler={createLead}
-                                   color='secondary'
+                                   color='primary'
                                    variant='contained'>{props.emailButtonText}</LoadingButton>
                            ,
                        }}/>

@@ -29,9 +29,8 @@ import {
     WebDevStatsCounterSectionType,
     WebDevTestimonialsSectionType,
 } from "./BlockContentTypes";
-import MixedFeelingsByTTheme from "../theme/MixedFeelingsByTTheme";
+import DigitalResumeTheme from "../theme/DigitalResumeTheme";
 import useThwCommonStyles from "../common/sanityIo/ThwCommonStyles";
-import ThwHeroContentSection from "./transform-hw/ThwHeroContentSection";
 import ThwPositivePsychology from "./transform-hw/ThwPositivePsychology";
 import ThwMottoSection from "./transform-hw/ThwMottoSection";
 import AboutTheProprietorSection from "./transform-hw/AboutTheProprietorSection";
@@ -40,23 +39,22 @@ import ThwWhyChooseUsSection from "./transform-hw/ThwWhyChooseUsSection";
 import ThwContactUsSection from "./transform-hw/ThwContactUsSection";
 import {SanityHomePage} from "./block-content-ui/static-pages/cmsStaticPagesClient";
 import ThwServicesEducationPage from "./transform-hw/service-education-page/ThwServiceEducationPage";
-import MfbtHeroContentSection from "./mixed-feelings-by-t/MfbtHeroContentSection";
-import MfbtAboutTheProprietor from "./mixed-feelings-by-t/MFBTAboutTheProprietor";
-import MFBTPaymentMethodsSection from "./mixed-feelings-by-t/MFBTPaymentMethodsSection";
 import ResumeBio from "./my-digital-resume/ResumeBio";
-import ResumeExperienceSection from "./my-digital-resume/ResumeExperienceSection";
-import ResumePortfolioSection from "./my-digital-resume/ResumePortfolioSection";
+import MMHeroContentSection from "./mackenzies-mind/MMHeroContentSection";
 import ResumeSkillsSection from "./my-digital-resume/ResumeSkillsSection";
+import ResumeExperienceSection from "./my-digital-resume/ResumeExperienceSection";
+import ResumeEducationSection from "./my-digital-resume/ResumeEducationSection";
 import ResumeFeedbackSection from "./my-digital-resume/ResumeFeedbackSection";
 import ResumeContactUsSection from "./my-digital-resume/ResumeContactUsSection";
-import ResumeEducationSection from "./my-digital-resume/ResumeEducationSection";
+import ResumePortfolioSection from "./my-digital-resume/ResumePortfolioSection";
 import WebDevHeroContentSection from "./web-dev-site/WebDevHeroContentSection";
 import WebDevStatsCounterSection from "./web-dev-site/WebDevStatsCounterSection";
-import WebDevServicesSection from "./web-dev-site/WebDevServicesSection";
 import WebDevAboutUsSection from "./web-dev-site/WebDevAboutUsSection";
+import WebDevServicesSection from "./web-dev-site/WebDevServicesSection";
+import WebDevPortfolioSection from "./web-dev-site/WebDevPortfolioSection";
 import WebDevTestimonialsSection from "./web-dev-site/WebDevTestimonialsSection";
 import WebDevHowItWorksSection from "./web-dev-site/WebDevHowItWorksSection";
-import WebDevPortfolioSection from "./web-dev-site/WebDevPortfolioSection";
+import ThwHeroContentSection from './transform-hw/ThwHeroContentSection'
 
 export type BlockContentLayoutContainerProps = {
     content?: any,
@@ -116,7 +114,7 @@ const BlockContentLayoutContainer: FunctionComponent<BlockContentLayoutContainer
                     return <Grid key={'transformHeroContentSection'} container item xs={12}>
                         <Link id={"TOP_OF_PAGE"}><></>
                         </Link>
-                        <ThwHeroContentSection
+                        <MMHeroContentSection
                             sectionData={thwHeroSection}
                         />
                     </Grid>
@@ -136,7 +134,7 @@ const BlockContentLayoutContainer: FunctionComponent<BlockContentLayoutContainer
                     const thwPositivePsychologySection: ThwPositivePsychologySectionType = columnLayoutContainer
 
                     return <Grid key={'transformPositivePsychologySection'} container item xs={12} justifyContent='center'
-                                 style={{backgroundColor: MixedFeelingsByTTheme.palette.background.paper}}>
+                                 style={{backgroundColor: DigitalResumeTheme.palette.background.paper}}>
                         <Link id={"ABOUT_US"} style={{position: "relative", top: -80}}><></>
                         </Link>
                         <ThwPositivePsychology
@@ -147,7 +145,7 @@ const BlockContentLayoutContainer: FunctionComponent<BlockContentLayoutContainer
                     const thwMottoSection: ThwMottoSectionType = columnLayoutContainer
 
                     return <Grid key={'transformMottoSection'} container item xs={12} justifyContent='center'
-                                 style={{backgroundColor: MixedFeelingsByTTheme.palette.background.paper}}>
+                                 style={{backgroundColor: DigitalResumeTheme.palette.background.paper}}>
                         <ThwMottoSection
                             sectionData={thwMottoSection}
                         />
@@ -156,7 +154,7 @@ const BlockContentLayoutContainer: FunctionComponent<BlockContentLayoutContainer
                     const thwProprietorSection: ThwAboutProprietorSectionType = columnLayoutContainer
 
                     return <Grid key={'transformAboutProprietorSection'} container item xs={12} justifyContent='center'
-                                 style={{backgroundColor: MixedFeelingsByTTheme.palette.background.paper}}>
+                                 style={{backgroundColor: DigitalResumeTheme.palette.background.paper}}>
                         <Link id={"ABOUT_PROPRIETOR"} style={{position: "relative", top: -80}}><></>
                         </Link>
                         <AboutTheProprietorSection
@@ -167,7 +165,7 @@ const BlockContentLayoutContainer: FunctionComponent<BlockContentLayoutContainer
                     const thwServicesSection: ThwServicesSectionType = columnLayoutContainer
 
                     return <Grid key={'transformServicesSection'} container item xs={12} justifyContent='center'
-                                 style={{backgroundColor: MixedFeelingsByTTheme.palette.background.paper}}>
+                                 style={{backgroundColor: DigitalResumeTheme.palette.background.paper}}>
                         <Link id={"SERVICES"} style={{position: "relative", top: -80}}><></>
                         </Link>
                         <ThwServicesSection
@@ -178,7 +176,7 @@ const BlockContentLayoutContainer: FunctionComponent<BlockContentLayoutContainer
                     const thwWCUSection: ThwWhyChooseUsSectionType = columnLayoutContainer
 
                     return <Grid key={'transformWhyChooseUsSection'} container item xs={12} justifyContent='center'
-                                 style={{backgroundColor: MixedFeelingsByTTheme.palette.background.paper}}>
+                                 style={{backgroundColor: DigitalResumeTheme.palette.background.paper}}>
                         <ThwWhyChooseUsSection
                             sectionData={thwWCUSection}
                         />
@@ -187,50 +185,11 @@ const BlockContentLayoutContainer: FunctionComponent<BlockContentLayoutContainer
                     const thwCUSection: ThwContactUsSectionType = columnLayoutContainer
 
                     return <Grid key={'transformContactUsSection'} container item xs={12} justifyContent='center'
-                                 style={{backgroundColor: MixedFeelingsByTTheme.palette.background.paper}}>
+                                 style={{backgroundColor: DigitalResumeTheme.palette.background.paper}}>
                         <ThwContactUsSection
                             sectionData={thwCUSection}
                         />
                     </Grid>
-                case 'mfbtHeroContentSection':
-                    const mfbtHeroSection: MfbtHeroContentSectionType = columnLayoutContainer
-
-                    return <Grid key={'mfbtContactUsSection'} container item xs={12} justifyContent='center'
-                                 style={{backgroundColor: MixedFeelingsByTTheme.palette.background.paper}}>
-                        <MfbtHeroContentSection
-                            sectionData={mfbtHeroSection}
-                        />
-                    </Grid>
-                case 'mfbtAboutProprietorSection':
-                    const mfbtAboutTheProprietorSection: MfbtAboutProprietorSectionType = columnLayoutContainer
-
-                    return <Grid key={'mfbtAboutProprietorSection'} container item xs={12} justifyContent='center'
-                                 style={{backgroundColor: MixedFeelingsByTTheme.palette.background.paper}}>
-                        <MfbtAboutTheProprietor
-                            sectionData={mfbtAboutTheProprietorSection}
-                        />
-                    </Grid>
-                case 'mfbtPaymentMethods':
-                    const mfbtPaymentMethodsSection:  MfbtPaymentMethodSectionType = columnLayoutContainer
-
-                    return <Grid key={'mfbtAboutProprietorSection'} container item xs={12} justifyContent='center'
-                                 style={{backgroundColor: "white"}}>
-                        <MFBTPaymentMethodsSection
-                            sectionData={mfbtPaymentMethodsSection}
-                        />
-                    </Grid>
-                // case 'menuContainer':
-                //     if (columnLayoutContainer.slug.current.includes('header')) {
-                //         const pageHeader: SanityMenuContainer = columnLayoutContainer
-                //         return <Grid container item xs={12} key='transform-hw-header'>
-                //             <ThwHeader menuSlug={pageHeader.slug?.current}/>
-                //         </Grid>
-                //     } else {
-                //         const pageFooter: SanityMenuContainer = columnLayoutContainer
-                //         return <Grid container item xs={12} key='transform-hw-footer'>
-                //             <ThwFooter footerMenuSlug={pageFooter.slug?.current} homePage={props.homePage}/>
-                //         </Grid>
-                //     }
                 case 'ResumeBioSection':
                     const resumeBioSection: ResumeBioSectionType = columnLayoutContainer
 
@@ -289,7 +248,7 @@ const BlockContentLayoutContainer: FunctionComponent<BlockContentLayoutContainer
                     return <Grid key={'ResumePortfolioSection'} container item xs={12} justifyContent='center'>
                         <Link id={"PORTFOLIO"} style={{position: "relative", top: -80}}><></></Link>
 
-                        <ResumePortfolioSection
+                            <ResumePortfolioSection
                             sectionData={resumePortfolioSection}
                         />
                     </Grid>
@@ -299,7 +258,7 @@ const BlockContentLayoutContainer: FunctionComponent<BlockContentLayoutContainer
                     return <Grid key={'ResumeContactUsSection'} container item xs={12} justifyContent='center'>
                         <Link id={"CONTACT"} style={{position: "relative", top: -80}}><></></Link>
 
-                        <ResumeContactUsSection
+                            <ResumeContactUsSection
                             sectionData={resumeContactUsSection}
                         />
                     </Grid>

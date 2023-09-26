@@ -1,7 +1,7 @@
 import React, {FunctionComponent, useEffect, useState} from 'react'
 import {Grid, Typography, useMediaQuery, useTheme} from '@material-ui/core'
 import useCustomStyles from "../../../mackenzies-mind/pages/Styles";
-import MixedFeelingsByTTheme, {COLORS, raleway, ralewayBold} from "../../../../theme/MixedFeelingsByTTheme";
+import DigitalResumeTheme, {COLORS, raleway, ralewayBold} from "../../../../theme/DigitalResumeTheme";
 import CountdownToLaunch from "./CountdownToLaunch";
 import clsx from "clsx";
 import CssFadeToColor from "../../../css-fade-to-color/CssFadeToColor";
@@ -95,7 +95,7 @@ const UnderConstruction: FunctionComponent<IProps> = (props) => {
                             <Grid item container justifyContent='center'>
                                 <Grid item>
 
-                                    <MailTo color={MixedFeelingsByTTheme.palette.primary.main} email={props.email??""} subject={"Information Request"} body={""}>
+                                    <MailTo color={DigitalResumeTheme.palette.primary.main} email={props.email??""} subject={"Information Request"} body={""}>
                                         {props.email}
                                     </MailTo>
                                 </Grid>

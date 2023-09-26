@@ -6,7 +6,7 @@ import {ThwHeroContentSectionType} from "../BlockContentTypes";
 import clsx from "clsx";
 import PageContext from "../page-context/PageContext";
 import useCustomStyles from "../mackenzies-mind/pages/Styles";
-import MixedFeelingsByTTheme from "../../theme/MixedFeelingsByTTheme";
+import DigitalResumeTheme, {rainbow, raleway} from "../../theme/DigitalResumeTheme";
 import firebaseAnalyticsClient from "../../utils/firebase/FirebaseAnalyticsClient";
 
 interface IProps {
@@ -65,7 +65,7 @@ const ThwHeroContentSection: FunctionComponent<IProps> = (props) => {
                         <Grid container direction='column' style={{paddingLeft: "40px", paddingTop: "80px"}}>
                             <Grid item>
                                 <Typography variant='subtitle1'
-                                            style={{color: MixedFeelingsByTTheme.palette.text.secondary}}>{props.sectionData.contentWelcomeMessage}</Typography>
+                                            style={{color: DigitalResumeTheme.palette.text.secondary}}>{props.sectionData.contentWelcomeMessage}</Typography>
                             </Grid>
                             <Grid item style={{marginBottom: "30px"}}>
                                 <Typography variant='h3'

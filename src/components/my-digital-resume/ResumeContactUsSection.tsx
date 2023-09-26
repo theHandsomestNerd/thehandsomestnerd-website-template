@@ -117,7 +117,6 @@ export type ContactUsProps = {
     sectionData: ResumeContactUsSectionType
 }
 const ResumeContactUsSection: FunctionComponent<ContactUsProps> = (props) => {
-
     const classes = useStyles(DigitalResumeTheme)
 
     const snackbarContext = useContext(SnackbarContext)

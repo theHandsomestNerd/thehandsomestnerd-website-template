@@ -13,7 +13,7 @@ import {
 } from '@material-ui/core'
 import { FiberManualRecord } from '@material-ui/icons'
 import { useCommonStyles } from './CommonStyles'
-import MixedFeelingsByTTheme from "../../theme/MixedFeelingsByTTheme";
+import DigitalResumeTheme from "../../theme/DigitalResumeTheme";
 
 export const UtmLinkRender: React.FunctionComponent = (props: React.PropsWithChildren<{}> & BlockContentPropsType<LinkType>) => {
 
@@ -27,10 +27,10 @@ export const ButtonMarkRender = (props: React.PropsWithChildren<{}> & BlockConte
     case 'outlined':
       switch(props.mark?.color) {
         case 'secondary':
-          textColor = MixedFeelingsByTTheme.palette.secondary.main
+          textColor = DigitalResumeTheme.palette.secondary.main
           break;
         case 'primary':
-          textColor = MixedFeelingsByTTheme.palette.primary.main
+          textColor = DigitalResumeTheme.palette.primary.main
           break;
         case 'mint':
           textColor = ""
@@ -48,26 +48,26 @@ export const ButtonMarkRender = (props: React.PropsWithChildren<{}> & BlockConte
           textColor = "whitesmoke"
           break;
         case 'mint':
-          textColor = MixedFeelingsByTTheme.palette.secondary.main
+          textColor = DigitalResumeTheme.palette.secondary.main
           break;
         default:
-          textColor = MixedFeelingsByTTheme.palette.background.paper
+          textColor = DigitalResumeTheme.palette.background.paper
       }
       break
     case 'text':
     default:
       switch(props.mark?.color) {
         case 'secondary':
-          textColor = MixedFeelingsByTTheme.palette.secondary.main
+          textColor = DigitalResumeTheme.palette.secondary.main
           break;
         case 'primary':
-          textColor = MixedFeelingsByTTheme.palette.primary.main
+          textColor = DigitalResumeTheme.palette.primary.main
           break;
         case 'mint':
           textColor = ""
           break;
         default:
-          textColor = MixedFeelingsByTTheme.palette.text.primary
+          textColor = DigitalResumeTheme.palette.text.primary
       }
       break
   }

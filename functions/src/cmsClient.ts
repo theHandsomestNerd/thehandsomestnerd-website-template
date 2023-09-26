@@ -1,11 +1,12 @@
 import {log} from "./logClient";
 import {sanityClient} from "./sanityClient";
+// import {SanityColdLead, SanityTransformHwHomePage} from "../../src/common/sanityIo/Types";
 import groqQueries from "./groqQueries";
 
-const createColdLead = async (coldLead:any) => {
+const createColdLead = async (coldLead: any) => {
   log("createSanityColdLead", "DEBUG", "creating cold lead ", coldLead.email);
 
-  const newColdLead = {
+  const newColdLead: any = {
     ...coldLead,
   };
 

@@ -1,10 +1,10 @@
 import React, {FunctionComponent, PropsWithChildren, useContext, useMemo, useReducer,} from 'react';
 import {SanityMenuContainer, SanityTransformHwHomePage} from "../../common/sanityIo/Types";
-import thwClient from "../transform-hw/thwClient";
 import {ThwServiceItemNoRefType} from "../BlockContentTypes";
 import PageContext from './PageContext';
 import SnackbarContext from "../modal-context/SnackbarContext";
 import {v4 as uuidv4} from 'uuid'
+import cmsClient from "../block-content-ui/cmsClient";
 type IProps = {};
 
 type PageProviderState = {
@@ -82,7 +82,7 @@ const PageProvider: FunctionComponent<IProps & PropsWithChildren> = (
     const [state, dispatch] = useReducer(reducer, initialState)
 
 
-    const loadedPageQuery = thwClient.useFetchPageBySlugQuery(state.pageSlug)
+    const loadedPageQuery = cmsClient.useFetchPageBySlugQuery(state.pageSlug)
 
     React.useEffect(() => {
         if (state.analyticsId) {

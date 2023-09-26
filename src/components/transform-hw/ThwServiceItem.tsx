@@ -6,7 +6,7 @@ import {ImageWithButtonOverlayAligmentEnum} from "../image-with-button-overlay/I
 import LoadingButton from "../loading-button/LoadingButton";
 import {v4 as uuidv4} from 'uuid'
 import amenitiesIcon from "./amenitiesIcon.png";
-import MixedFeelingsByTTheme from "../../theme/MixedFeelingsByTTheme";
+import DigitalResumeTheme from "../../theme/DigitalResumeTheme";
 import AmenitiesSection from "./AmenitiesSection";
 import PageContext from "../page-context/PageContext";
 import MediaQueriesContext from "../media-queries-context/MediaQueriesContext";
@@ -31,10 +31,10 @@ const ThwServiceItem: FunctionComponent<IProps> = (props: IProps) => {
 
     const LearnMoreButton = () => {
         return <Grid item container justifyContent='center'>
-            {props.service.learnMoreText && props.service.learnMoreText.length > 0 &&
+            {props.service.learnMoreText && props.service?.learnMoreText.length > 0 &&
                 <LoadingButton
                     clickHandler={()=>
-                    firebaseAnalyticsClient.ctaClick(props.service.slug.current ?? "", props.service.learnMoreText, pageContext.analyticsId,)
+                    firebaseAnalyticsClient.ctaClick(props.service.slug?.current ?? "", props.service.learnMoreText, pageContext.analyticsId,)
 
                 } color='secondary' href={props.service.learnMoreLink}
                                variant='outlined'><Typography variant='button'
@@ -43,13 +43,13 @@ const ThwServiceItem: FunctionComponent<IProps> = (props: IProps) => {
     }
 
     return (
-        <Grid key={uuidv4()} container item xs={12} sm={12} md={6} style={{marginBottom: MixedFeelingsByTTheme.spacing(4)}}>
+        <Grid key={uuidv4()} container item xs={12} sm={12} md={6} style={{marginBottom: DigitalResumeTheme.spacing(4)}}>
             <Grid container item direction='column' justifyContent='space-between' alignContent='center'
                   alignItems='center'>
                 <Grid container item direction={"column"}>
                     <Grid item container>
                         <ImageWIthButtonOverlay
-                            source={props.service.slug.current}
+                            source={props.service.slug?.current}
                             // hideCtaButton={prop.hideCtaButton}
                             tooltip={'Click to Learn More'}
                             learnMoreLink={props.service.learnMoreLink}

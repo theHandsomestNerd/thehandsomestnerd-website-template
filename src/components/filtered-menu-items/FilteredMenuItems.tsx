@@ -30,12 +30,12 @@ type HeaderMenuButtonType = {
     button: any
 }
 const FilteredMenuItems: FunctionComponent<FilteredMenuItemsProps> = ({
-                                                                          subMenus,
-                                                                          onlyButtons,
-                                                                          includeMenuItems,
-                                                                          includeMenuGroups,
-                                                                          textStyle,contentJustification
-                                                                      }) => {
+                                                                 subMenus,
+                                                                 onlyButtons,
+                                                                 includeMenuItems,
+                                                                 includeMenuGroups,
+    textStyle,contentJustification
+                                                             }) => {
     // const anchorRef = useRef<HTMLButtonElement | null>(null)
     const mediaQueriesContext = useContext(MediaQueriesContext)
     return (<Grid item container justifyContent={contentJustification ? contentJustification: (mediaQueriesContext.mdDown ? 'flex-start' : 'flex-end')} alignItems='stretch' style={{height: "100%"}}>

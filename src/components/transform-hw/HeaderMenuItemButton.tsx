@@ -10,7 +10,7 @@ const useStyles = makeStyles((theme: Theme) => ({
         "&:hover":{
             backgroundColor: 'rgba(16,43,136, 0.04)',
             "& .MuiTypography-root": {
-                color: theme.palette.primary.main
+            color: theme.palette.primary.main
             }
         }
     }

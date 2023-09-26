@@ -3,7 +3,7 @@ import {makeStyles, Theme} from '@material-ui/core/styles'
 import {Chip, Grid, Typography} from '@material-ui/core'
 import {urlFor} from '../block-content-ui/static-pages/cmsStaticPagesClient'
 import {ProprietorAtAGlanceType, ThwAboutProprietorSectionType} from "../BlockContentTypes";
-import MixedFeelingsByTTheme from "../../theme/MixedFeelingsByTTheme";
+import DigitalResumeTheme from "../../theme/DigitalResumeTheme";
 import ImageWIthButtonOverlay from "../image-with-button-overlay/ImageWithButtonOverlay";
 import LoadingButton from "../loading-button/LoadingButton";
 import ResponsiveBullet from "../ResponsiveBullet";
@@ -36,10 +36,10 @@ const ProprietorAtAGlance = (props: {sectionData: ProprietorAtAGlanceType, sourc
     return <Grid item container
                  justifyContent='center'
                  style={{
-                     backgroundColor: MixedFeelingsByTTheme.palette.secondary.dark,
+                     backgroundColor: DigitalResumeTheme.palette.secondary.dark,
                      border: mediaQueriesContext.smDown?"0px solid transparent":"1px solid white",
-                     margin: mediaQueriesContext.smDown?MixedFeelingsByTTheme.spacing(0, 0, 0, 0):MixedFeelingsByTTheme.spacing(2, 0, 0, 0),
-                     padding: MixedFeelingsByTTheme.spacing(2, 0, mediaQueriesContext.smDown?6:2, 0)
+                     margin: mediaQueriesContext.smDown?DigitalResumeTheme.spacing(0, 0, 0, 0):DigitalResumeTheme.spacing(2, 0, 0, 0),
+                     padding: DigitalResumeTheme.spacing(2, 0, mediaQueriesContext.smDown?6:2, 0)
                  }}
                  spacing={6}
                  xs={12}
@@ -101,13 +101,13 @@ const ProprietorAtAGlance = (props: {sectionData: ProprietorAtAGlanceType, sourc
 
 
 const AboutTheProprietorSection: FunctionComponent<IProps> = (props) => {
-    const classes = useStyles(MixedFeelingsByTTheme)
+    const classes = useStyles(DigitalResumeTheme)
     const mediaQueriesContext = useContext(MediaQueriesContext)
 
     return (
         <Grid container item className={classes.root} xs={mediaQueriesContext.xsOnly?12:11} style={mediaQueriesContext.xsOnly ? {paddingBottom: 0, paddingTop: 0} : {
-            paddingBottom: MixedFeelingsByTTheme.spacing(10),
-            paddingTop: MixedFeelingsByTTheme.spacing(10),
+            paddingBottom: DigitalResumeTheme.spacing(10),
+            paddingTop: DigitalResumeTheme.spacing(10),
         }}>
             <Grid container item justifyContent='space-around'
             >
@@ -128,7 +128,7 @@ const AboutTheProprietorSection: FunctionComponent<IProps> = (props) => {
                         overflow: "hidden",
                         position: "relative",
                         backgroundColor: "white",
-                        marginBottom: MixedFeelingsByTTheme.spacing(3)
+                        marginBottom: DigitalResumeTheme.spacing(3)
                     }} container
                           sm={8} md={12}
                           justifyContent='center'>
@@ -197,7 +197,7 @@ const AboutTheProprietorSection: FunctionComponent<IProps> = (props) => {
                     alignContent='flex-start'
                     alignItems='flex-start'
                     style={{
-                        paddingTop: MixedFeelingsByTTheme.spacing(3),
+                        paddingTop: DigitalResumeTheme.spacing(3),
                         minWidth: "min-content"
                     }}
                 ><ProprietorAtAGlance source={'about-the-proprietor'} sectionData={props.sectionData.proprietorServices}/></Grid>}

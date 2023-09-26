@@ -23,9 +23,9 @@ import {ResumeBioSectionType} from "./BlockContentTypes";
 import MailTo from "./mail-to/MailTo";
 import QrCodeContext from "./qr-code-context/QrCodeContext";
 import SnackbarContext from "./modal-context/SnackbarContext";
+import BusinessCardSubmitEmail from "./transform-hw/pages/BusinessCardSubmitEmail";
 import firebaseAnalyticsClient from "../utils/firebase/FirebaseAnalyticsClient";
 import {useLocation} from "react-router";
-import BusinessCardSubmitEmail from "./transform-hw/pages/BusinessCardSubmitEmail";
 
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -320,8 +320,7 @@ const BusinessCard: FunctionComponent<MainMenuProps> = ({menu, anchor}) => {
                 <Button variant='contained' color='primary' onClick={toggleDrawer(anchor, true)}>
                     <Grid container spacing={2} alignItems='center'>
                         <Grid item>
-                            <Avatar style={{backgroundColor: "whitesmoke"}}
-                                    src={urlFor(menu.logoImageSrc ?? "").url() ?? ""}/>
+                            <Avatar style={{backgroundColor: "whitesmoke"}} src={urlFor(menu.logoImageSrc ?? "").url() ?? ""}/>
 
                         </Grid>
                         <Grid item>

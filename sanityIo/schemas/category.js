@@ -1,4 +1,4 @@
-import MixedFeelingsByTTheme from "../../src/theme/MixedFeelingsByTTheme";
+import DigitalResumeTheme from "../../src/theme/DigitalResumeTheme";
 
 export default {
   name: 'category',
@@ -22,7 +22,7 @@ export default {
       type: "colorlist", // required
       options: {
         list: [
-          { title: MixedFeelingsByTTheme.palette.primary.main, value: MixedFeelingsByTTheme.palette.primary.main },
+          { title: DigitalResumeTheme.palette.primary.main, value: DigitalResumeTheme.palette.primary.main },
           { title: "#3D3D3D", value: "#3D3D3D" },
           { title: "rgba(75,75,229,1)", value: "rgba(75,75,229,1)" },
           { title: "rgba(75,135,75,1)", value: "rgba(75,135,75,1)" },

@@ -5,7 +5,7 @@ import {urlFor} from '../block-content-ui/static-pages/cmsStaticPagesClient'
 import {ThwMottoSectionType} from "../BlockContentTypes";
 import {Parallax} from 'react-parallax';
 import clsx from "clsx";
-import MixedFeelingsByTTheme from "../../theme/MixedFeelingsByTTheme";
+import DigitalResumeTheme from "../../theme/DigitalResumeTheme";
 import MediaQueriesContext from "../media-queries-context/MediaQueriesContext";
 import useCustomStyles from "../mackenzies-mind/pages/Styles";
 
@@ -27,7 +27,7 @@ interface IProps {
 }
 
 const ThwMottoSection: FunctionComponent<IProps> = (props) => {
-    const globalClasses = useCustomStyles(MixedFeelingsByTTheme)
+    const globalClasses = useCustomStyles(DigitalResumeTheme)
     const classes = useStyles()
     const mediaQueriesContext = useContext(MediaQueriesContext)
 

@@ -68,6 +68,11 @@ const HOMEPAGE = `_type,
           email,
           phone,
           description,
+          businessCardImageSrc,
+          bookAppointmentLink,
+          bookAppointmentQrCode,
+          website,
+          websiteQrCode,
           metaImage,
           headerContent {
             "content": content[]->{
@@ -138,6 +143,8 @@ const HOMEPAGE = `_type,
              }
           },
           instagram,
+          linkedIn,
+          github,
           instagramIconSrc{
             asset->{
               _id,

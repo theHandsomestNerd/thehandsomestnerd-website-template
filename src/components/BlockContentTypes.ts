@@ -35,7 +35,7 @@ export type WhySwitchReasonType = {
 }
 
 export type WhySwitchSectionType = {
-    _id: string
+    _id:string
     imageSrc: SanityImageAsset
     imageAlt: string
     reasons: WhySwitchReasonType[]
@@ -54,10 +54,10 @@ export type CryptoInYourPocketSectionType = {
 }
 
 export type SanityImageAsset = SanityImageSource | {
-    _type: string,
+    _type:string,
     asset: {
-        _ref: string,
-        _type: "reference"
+        _ref:string,
+        _type:"reference"
     }
 }
 
@@ -87,7 +87,7 @@ export type ServiceAmenityType = {
 
 export type ThwPositivePsychologySectionType = {
     name: string
-    superTitle: string
+    superTitle:string
     contentTitle: string
     contentText: string
     contentBullets: string[]
@@ -99,7 +99,7 @@ export type ThwPositivePsychologySectionType = {
 
 export type ProprietorAtAGlanceType = {
     serviceName: string
-    serviceTitle: string
+    serviceTitle:string
     sessionList: string[]
     dividerImage: SanityImageAsset
     amenitiesSectionTitle: string
@@ -111,7 +111,7 @@ export type ProprietorAtAGlanceType = {
 export type ThwAboutProprietorSectionType = {
     name: string
     proprietorImage: SanityImageAsset
-    proprietorName: string
+    proprietorName:string
     proprietorTitle: string
     proprietorServices: ProprietorAtAGlanceType
     contentTitle: string
@@ -127,7 +127,7 @@ export type ThwMottoSectionType = {
     name: string
     contentText: string
     parallaxImage: SanityImageAsset
-    contentSuperTitle: string
+    contentSuperTitle:string
 }
 
 export type ThwServiceItemType = {
@@ -143,9 +143,9 @@ export type ThwServiceItemType = {
     educationPageTitle: string
     educationPageSlimHeroImage: SanityImageAsset
     extendedDescriptions: string[]
-    benefitsOfServiceTitle: string
-    benefitsOfServiceContents: string[]
-    benefitsOfServiceBullets: string[]
+    benefitsOfServiceTitle:string
+    benefitsOfServiceContents:string[]
+    benefitsOfServiceBullets:string[]
     serviceAmenities: ServiceAmenityType[]
     slug: SanitySlug
 }
@@ -163,9 +163,9 @@ export type ThwServiceItemNoRefType = {
     educationPageTitle: string
     educationPageSlimHeroImage: SanityImageAsset
     extendedDescriptions: string[]
-    benefitsOfServiceTitle: string
-    benefitsOfServiceContents: string[]
-    benefitsOfServiceBullets: string[]
+    benefitsOfServiceTitle:string
+    benefitsOfServiceContents:string[]
+    benefitsOfServiceBullets:string[]
     serviceAmenities: ServiceAmenityType[]
     slug: SanitySlug
 }
@@ -208,56 +208,8 @@ export type ThwContactUsSectionType = {
     twitter?: string,
     linkedIn?: string,
     youtube?: string,
-    rhsTitle: string,
+    rhsTitle:string,
     formSubmitButtonText: string
-}
-
-
-//MixedFeelingsByT Types
-export type MfbtHeroContentSectionType = {
-    name: string
-    title: string
-    heroImage: SanityImageAsset
-    heroImageAltText: string
-    heroImageBackground?: SanityImageAsset
-    contentWelcomeMessage: string
-    contentTitle: string
-    contentText: string
-    ctaButtonTitle: string
-    ctaButtonLink: string
-}
-
-export type MfbtAboutProprietorSectionType = {
-    name: string
-    proprietorImage: SanityImageAsset
-    proprietorName: string
-    proprietorTitle: string
-    // proprietorServices: ProprietorAtAGlanceType
-    contentTitle: string
-    favDrinkTitle: string
-    favDrinkSectionTitle: string
-    favDrinkImage: SanityImageAsset
-    favDrinkImage2: SanityImageAsset
-    favDrinkDescription: string
-    contentText: string[]
-    proprietorImageAltText: string
-    // proprietorSignatureImage: SanityImageAsset
-    // proprietorSignatureImageAltText: string
-    ctaButtonText: string
-    ctaButtonLink: string
-}
-
-export type MfbtPaymentMethodSectionType = {
-    name: string
-    title: string
-    mainPaymentImage: SanityImageAsset,
-    mainPaymentName: string,
-    paymentImage1: SanityImageAsset,
-    paymentName1: string,
-    paymentImage2: SanityImageAsset,
-    paymentName2: string,
-    paymentImage3: SanityImageAsset,
-    paymentName3: string,
 }
 
 
@@ -478,7 +430,6 @@ export type HowItWorksSectionType = {
     contentTexts: string[]
     steps: HowItWorksStepNoRefType[]
 }
-
 
 export type DevelopmentHeaderSectionType = {
     name:string

@@ -11,6 +11,12 @@ import * as fs from "fs";
 import imageUrlBuilder from "@sanity/image-url";
 import sanityClient from "./sanityClient";
 
+// import {SanityColdLead, SanityTransformHwHomePage}
+//   from "../../src/common/sanityIo/Types";
+// import {urlFor} from
+//   "../../src/components/block-content-ui/static-pages/cmsStaticPagesClient";
+import sendGridClient from "./sendGridClient";
+// import {SanityImageSource} from "@sanity/asset-utils";
 // To Throttle requests to sanity
 
 Promise.polyfill();
@@ -47,6 +53,10 @@ const Logger = function(req: any, res: any, next: any) {
 // app.use(require("prerender-node")
 // .set("prerenderToken", process.env.PRERENDER_TOKEN));
 
+const builder = imageUrlBuilder(sanityClient);
+export const urlFor = (source: any) => {
+  return builder.image(source);
+};
 
 app.use(Logger);
 // https://blog.logrocket.com/adding-dynamic-meta-tags-react-app-without-ssr/
@@ -85,7 +95,6 @@ const indexPath = path.resolve(__dirname, ...indexPathParts, "index.html");
 
 console.log(path.resolve(__dirname, ...indexPathParts), files);
 
-const builder = imageUrlBuilder(sanityClient);
 
 const serveIndexFile = (req: any, res: any) => {
   fs.readFile(indexPath, "utf8", async (err, htmlData) => {
@@ -107,7 +116,7 @@ const serveIndexFile = (req: any, res: any) => {
     logClient.log("server-side", "NOTICE",
         "Loading this page from sanity", pageSlug);
     try {
-      const pageFromSanity = await cmsClient.fetchPage(pageSlug);
+      const pageFromSanity: any = await cmsClient.fetchPage(pageSlug);
 
       // console.log("IMAGE URL", pageFromSanity.metaImage && urlFor(pageFromSanity.metaImage).url()?.replace("undefined", process.env.SANITY_DB ?? "development"));
       const page = {
@@ -137,6 +146,40 @@ const serveIndexFile = (req: any, res: any) => {
   });
 };
 
+
+app.post("/send-email-resume",
+    async (req: any, functionRes: any) => {
+      const reqBody: any = JSON.parse(req.body);
+
+      logClient.log("send-email-address", "NOTICE",
+          "Request to collect an email address and send them an email", reqBody.email);
+
+      try {
+        const response = await cmsClient.createColdLead({
+          email: reqBody.email,
+          leadPhone: reqBody.leadPhone,
+          leadMessage: reqBody.leadMessage,
+          leadName: reqBody.leadName,
+          source: reqBody.source,
+        });
+        console.log("Cold Lead Created before Resume send.", response);
+        // functionRes.send({status: "200", response, email: reqBody.email, message: "Thank you! We will talk soon."});
+      } catch (e) {
+        logClient.log("collect-email-address", "ERROR",
+            "Could not create Lead", {email: reqBody.email});
+        // functionRes.send({status: "400", e});
+      }
+
+      try {
+        const response = await sendGridClient.sendLeadEmail(reqBody.email);
+        console.log(`Resume send attempt to ${reqBody.email}:`, response);
+        functionRes.send({status: "200", response, email: reqBody.email, message: "Success"});
+      } catch (e) {
+        logClient.log("collect-email-address", "ERROR",
+            "Could not create Lead", {email: reqBody.email});
+        functionRes.send({status: "400", e});
+      }
+    });
 
 app.post("/collect-email-address",
     async (req: any, functionRes: any) => {

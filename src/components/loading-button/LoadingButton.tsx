@@ -91,23 +91,23 @@ const LoadingButton: FunctionComponent<PropsWithChildren<LoadingButtonProps>> = 
     return (
         <Grid item style={{minHeight: "60px", height:"100%", marginRight:"-16px"}}>
             <Button
-                style={{boxShadow: 'none'}}
-                href={props.href}
-                disabled={props.disabled}
-                onClick={props.clickHandler}
-                className={classes.root}
-                fullWidth={!props.width}
-                color={props.color ?? 'primary'}
-                variant={props.variant ?? 'contained'}>
-                {
-                    props.isLoading ?
-                        <CircularProgress style={{
-                            color: DigitalResumeTheme.palette.getContrastText(getProgressContrastColor()),
-                            width: "22px",
-                            height: "22px"
-                        }}/>
-                        : props.children
-                }</Button>
+                    style={{boxShadow: 'none'}}
+                    href={props.href}
+                    disabled={props.disabled}
+                    onClick={props.clickHandler}
+                    className={classes.root}
+                    fullWidth={!props.width}
+                    color={props.color ?? 'primary'}
+                    variant={props.variant ?? 'contained'}>
+                    {
+                        props.isLoading ?
+                            <CircularProgress style={{
+                                color: DigitalResumeTheme.palette.getContrastText(getProgressContrastColor()),
+                                width: "22px",
+                                height: "22px"
+                            }}/>
+                            : props.children
+                    }</Button>
         </Grid>
 
     )

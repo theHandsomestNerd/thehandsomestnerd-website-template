@@ -4,7 +4,7 @@ import {Button, Grid, Typography} from '@material-ui/core'
 import {urlFor} from '../block-content-ui/static-pages/cmsStaticPagesClient'
 import {ThwHeroContentSectionType} from "../BlockContentTypes";
 import clsx from "clsx";
-import MixedFeelingsByTTheme from "../../theme/MixedFeelingsByTTheme";
+import DigitalResumeTheme, {COLORS, rainbow} from "../../theme/DigitalResumeTheme";
 import firebaseAnalyticsClient from "../../utils/firebase/FirebaseAnalyticsClient";
 import PageContext from "../page-context/PageContext";
 import useCustomStyles from "./pages/Styles";
@@ -23,12 +23,12 @@ export const useStyles = makeStyles((theme: Theme) => ({
         backgroundRepeat: 'no-repeat',
         backgroundImage: `url('${props.heroBaseImageUrl}'), url('${props.heroOverlay}')`,
         backgroundSize: 'cover, contain',
-        minHeight: '521px',
-        backgroundColor: 'transparent',
+        maxHeight: '321px',
+        backgroundColor: COLORS.DARKGRAY,
         position: "relative"
     }),
     contentSection: {
-        height: '510px',
+        height: '310px',
         marginTop: '16px',
         backgroundColor: 'transparent',
     },
@@ -38,7 +38,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
     }
 }))
 
-const ThwHeroContentSection: FunctionComponent<IProps> = (props) => {
+const MMHeroContentSection: FunctionComponent<IProps> = (props) => {
     let classParameters: CSSProps = {
         heroBaseImageUrl: urlFor(props.sectionData.heroImage).url() ?? '',
     }
@@ -56,28 +56,19 @@ const ThwHeroContentSection: FunctionComponent<IProps> = (props) => {
     const globalClasses = useCustomStyles({})
     return (
         <Grid container item className={classes.marketingBackground}>
-            <Grid container item
-                  className={clsx(globalClasses.fullSection, globalClasses.fullSectionOverlay)}>
-            </Grid>
+            {/*<Grid container item*/}
+            {/*      className={clsx(globalClasses.fullSection, globalClasses.fullSectionOverlay)}>*/}
+            {/*</Grid>*/}
             <Grid container direction='column' style={{zIndex: 2}}>
                 <Grid item>
                     <Grid container className={classes.contentSection} item xs={11} sm={9} md={6}>
                         <Grid container direction='column' style={{paddingLeft: "40px", paddingTop: "80px"}}>
-                            <Grid item>
-                                <Typography variant='subtitle1'
-                                            style={{color: MixedFeelingsByTTheme.palette.text.secondary}}>{props.sectionData.contentWelcomeMessage}</Typography>
-                            </Grid>
                             <Grid item style={{marginBottom: "30px"}}>
-                                <Typography variant='h3'
-                                            color={'primary'}>{props.sectionData.contentTitle}</Typography>
-                            </Grid>
-                            <Grid container item className={classes.contentBullets}
-                                  style={{marginBottom: "60px"}}>
-                                <Typography variant='body1'
-                                            color='textSecondary'>{props.sectionData.contentText}</Typography>
+                                <Typography variant='h1'
+                                            color={'primary'} style={{...rainbow}}>{props.sectionData.contentTitle}</Typography>
                             </Grid>
                             <Grid container item>
-                                <Button color='primary' variant='contained'
+                                <Button color='primary' variant='text'
                                         onClick={() => {
                                             firebaseAnalyticsClient.ctaClick("hero-section", props.sectionData.ctaButtonTitle, pageContext.analyticsId,)
                                         }}
@@ -95,4 +86,4 @@ const ThwHeroContentSection: FunctionComponent<IProps> = (props) => {
     )
 }
 
-export default ThwHeroContentSection
+export default MMHeroContentSection

@@ -9,10 +9,6 @@ import FourOhFour from "../../transform-hw/pages/error-page/FourOhFour";
 import UnderConstruction from "../../transform-hw/pages/under-construction-page/UnderConstruction";
 import PageLayout from "./PageLayout";
 
-export const useStyles = makeStyles((theme: Theme) => ({
-    root: {},
-}))
-
 interface IProps {
     homePage?: SanityTransformHwHomePage
     isLoading?: boolean
@@ -20,7 +16,6 @@ interface IProps {
 }
 
 const PageMux: FunctionComponent<IProps> = (props: IProps) => {
-    const classes = useStyles()
     const pageContext = useContext(PageContext)
 
     const urlParams = useParams()
