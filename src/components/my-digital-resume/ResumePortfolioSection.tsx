@@ -1,8 +1,8 @@
 import React, {FunctionComponent, useContext} from 'react'
-import {makeStyles, Theme} from "@material-ui/core/styles"
+import {makeStyles, MuiThemeProvider, Theme} from "@material-ui/core/styles"
 import {Button, ButtonGroup, Chip, Grid, IconButton, Modal, Typography, useTheme} from '@material-ui/core'
 import {ResumePortfolioItem, ResumePortfolioSectionType} from "../BlockContentTypes";
-import {COLORS} from "../../theme/DigitalResumeTheme";
+import DigitalResumeTheme, {COLORS} from "../../theme/DigitalResumeTheme";
 import useThwCommonStyles from "../../common/sanityIo/ThwCommonStyles";
 import MediaQueriesContext from "../media-queries-context/MediaQueriesContext";
 import {urlFor} from "../block-content-ui/static-pages/cmsStaticPagesClient";
@@ -18,7 +18,6 @@ interface IProps {
 }
 
 const ResumePortfolioSection: FunctionComponent<IProps> = (props: IProps) => {
-    const classes = useStyles()
     const globalClasses = useThwCommonStyles()
     const theme = useTheme()
 
@@ -36,7 +35,8 @@ const ResumePortfolioSection: FunctionComponent<IProps> = (props: IProps) => {
     }
 
 
-    return (<Grid container item style={{padding: theme.spacing(4)}} className={globalClasses.resumeSection}>
+    return (<MuiThemeProvider theme={DigitalResumeTheme}><Grid container item style={{padding: theme.spacing(4)}}
+                                                               className={globalClasses.resumeSection}>
         <Grid
             container item spacing={3}>
             <Grid item container alignContent='flex-start' spacing={1}>
@@ -66,7 +66,9 @@ const ResumePortfolioSection: FunctionComponent<IProps> = (props: IProps) => {
                                     }} xs={12}>
                                     <Grid container item spacing={2} justifyContent='center'>
                                         <Grid item xs={11} sm={12} container justifyContent='center'>
-                                            <img src={urlFor(portfolioItem?.coverImage ?? "").url() ?? ""} style={{minHeight: 120, minWidth: 120,maxHeight: 300, maxWidth: 300}} height={"100%"} />
+                                            <img src={urlFor(portfolioItem?.coverImage ?? "").url() ?? ""}
+                                                 style={{minHeight: 120, minWidth: 120, maxHeight: 300, maxWidth: 300}}
+                                                 height={"100%"}/>
                                         </Grid>
                                     </Grid>
                                     <Grid container item justifyContent='center' style={{marginTop: theme.spacing(2)}}>
@@ -88,13 +90,14 @@ const ResumePortfolioSection: FunctionComponent<IProps> = (props: IProps) => {
         <Modal open={isOpen}>
             <Grid container item justifyContent='center' alignContent='center' alignItems='center'
                   style={{width: "100vw", height: "100vh", position: "relative"}}>
-                <IconButton color='secondary' style={{position: "absolute", top: 0, right:0}} onClick={()=>setIsOpen(false)}><Close fontSize={'large'}  /></IconButton>
+                <IconButton color='secondary' style={{position: "absolute", top: 0, right: 0}}
+                            onClick={() => setIsOpen(false)}><Close fontSize={'large'}/></IconButton>
                 <Grid container sm={8} item style={{
                     backgroundColor: "white",
                     padding: theme.spacing(4),
                     maxHeight: "800px",
                     overflowY: "scroll",
-                    maxWidth:"100%"
+                    maxWidth: "100%"
                 }} spacing={2}>
                     <Grid item container><Typography variant='h3'>{currentItem?.detailTitle}</Typography> </Grid>
                     <Grid item container><Typography
@@ -120,7 +123,7 @@ const ResumePortfolioSection: FunctionComponent<IProps> = (props: IProps) => {
                             <Button variant='contained' color="primary" href={currentItem?.linkToProd}>
                                 Go to this Project
                             </Button>
-                            <Button variant='contained' color='secondary' onClick={()=>setIsOpen(false)}>
+                            <Button variant='contained' color='secondary' onClick={() => setIsOpen(false)}>
                                 Back to Resume
                             </Button>
                         </ButtonGroup>
@@ -128,7 +131,7 @@ const ResumePortfolioSection: FunctionComponent<IProps> = (props: IProps) => {
                 </Grid>
             </Grid>
         </Modal>
-    </Grid>)
+    </Grid></MuiThemeProvider>)
 }
 
 export default ResumePortfolioSection

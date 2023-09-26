@@ -1,15 +1,8 @@
 import React, {FunctionComponent, useContext} from 'react'
-import {makeStyles, Theme} from "@material-ui/core/styles"
-import {Chip, Grid, Typography, useTheme} from '@material-ui/core'
-import {
-    ResumeEducation,
-    ResumeEducationSectionType,
-    ResumeExperience,
-    ResumeExperienceSectionType, ResumeFeedback, ResumeFeedbackSectionType,
-    ResumeSkillSectionType,
-    ResumeSkillSet
-} from "../BlockContentTypes";
-import {COLORS} from "../../theme/DigitalResumeTheme";
+import {makeStyles, MuiThemeProvider, Theme} from "@material-ui/core/styles"
+import {Grid, Typography, useTheme} from '@material-ui/core'
+import {ResumeFeedback, ResumeFeedbackSectionType} from "../BlockContentTypes";
+import DigitalResumeTheme, {COLORS} from "../../theme/DigitalResumeTheme";
 import useThwCommonStyles from "../../common/sanityIo/ThwCommonStyles";
 import {urlFor} from "../block-content-ui/static-pages/cmsStaticPagesClient";
 import MediaQueriesContext from "../media-queries-context/MediaQueriesContext";
@@ -33,7 +26,7 @@ const ResumeFeedbackSection: FunctionComponent<IProps> = (props: IProps) => {
     React.useEffect(() => {
     }, [])
 
-    return (<Grid
+    return (<MuiThemeProvider theme={DigitalResumeTheme}><Grid
         container
         item
         style={{
@@ -92,7 +85,7 @@ const ResumeFeedbackSection: FunctionComponent<IProps> = (props: IProps) => {
                 }
 
             </Grid>
-        </Grid></Grid>)
+        </Grid></Grid></MuiThemeProvider>)
 }
 
 export default ResumeFeedbackSection

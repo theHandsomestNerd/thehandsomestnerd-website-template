@@ -1,13 +1,8 @@
 import React, {FunctionComponent, useContext} from 'react'
-import {makeStyles, Theme} from "@material-ui/core/styles"
+import {makeStyles, MuiThemeProvider, Theme} from "@material-ui/core/styles"
 import {Chip, Grid, Typography, useTheme} from '@material-ui/core'
-import {
-    ResumeExperience,
-    ResumeExperienceSectionType,
-    ResumeSkillSectionType,
-    ResumeSkillSet
-} from "../BlockContentTypes";
-import {COLORS} from "../../theme/DigitalResumeTheme";
+import {ResumeExperience, ResumeExperienceSectionType} from "../BlockContentTypes";
+import DigitalResumeTheme, {COLORS} from "../../theme/DigitalResumeTheme";
 import useThwCommonStyles from "../../common/sanityIo/ThwCommonStyles";
 import MediaQueriesContext from "../media-queries-context/MediaQueriesContext";
 
@@ -26,7 +21,7 @@ const ResumeExperienceSection: FunctionComponent<IProps> = (props: IProps) => {
     const mediaQueryContext = useContext(MediaQueriesContext)
     const xsOnly = mediaQueryContext.xsOnly
 
-    return (<Grid
+    return (<MuiThemeProvider theme={DigitalResumeTheme}><Grid
         container
         item
         style={{
@@ -41,7 +36,7 @@ const ResumeExperienceSection: FunctionComponent<IProps> = (props: IProps) => {
                                                                                          display='inline'>.</Typography></Typography></Grid>
                 <Grid item><Typography variant='body1'>{props.sectionData.introduction}</Typography></Grid>
             </Grid>
-            <Grid item container md={8} spacing={2} justifyContent={xsOnly?'center':'flex-start'}>
+            <Grid item container md={8} spacing={2} justifyContent={xsOnly ? 'center' : 'flex-start'}>
                 {
                     props.sectionData.experiences?.map((experience: ResumeExperience, index2: number) => {
                         return <Grid item container alignContent='flex-start'
@@ -102,7 +97,7 @@ const ResumeExperienceSection: FunctionComponent<IProps> = (props: IProps) => {
                     })
                 }
             </Grid>
-        </Grid></Grid>)
+        </Grid></Grid></MuiThemeProvider>)
 }
 
 export default ResumeExperienceSection

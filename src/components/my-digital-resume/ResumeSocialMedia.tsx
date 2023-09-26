@@ -1,10 +1,11 @@
 import React, {FunctionComponent} from 'react'
-import {makeStyles, Theme} from "@material-ui/core/styles"
+import {makeStyles, MuiThemeProvider, Theme} from "@material-ui/core/styles"
 import {Grid, IconButton, PropTypes} from '@material-ui/core'
 import {SanityTransformHwHomePage} from "../../common/sanityIo/Types";
 import {Facebook, GitHub, Instagram, LinkedIn, Twitter} from "@material-ui/icons";
 import clsx from "clsx";
 import {GridSpacing} from "@material-ui/core/Grid/Grid";
+import DigitalResumeTheme from "../../theme/DigitalResumeTheme";
 
 export const useStyles = makeStyles((theme: Theme) => ({
     buttonBackground: {
@@ -23,7 +24,7 @@ interface IProps {
 
 const ResumeSocialMedia: FunctionComponent<IProps> = (props: IProps) => {
     const classes = useStyles()
-    return (<Grid item xs={12} container alignItems='center' justifyContent='center'
+    return (<MuiThemeProvider theme={DigitalResumeTheme}><Grid item xs={12} container alignItems='center' justifyContent='center'
                   spacing={props.spacing ? props.spacing : 0}>
         <Grid item>
             <Grid item className={clsx({[classes.buttonBackground]: props.bgColor})}>
@@ -55,7 +56,7 @@ const ResumeSocialMedia: FunctionComponent<IProps> = (props: IProps) => {
                             href={`https://github.com/${props.homePage?.github}`}><GitHub/></IconButton>
             </Grid>
         </Grid>
-    </Grid>)
+    </Grid></MuiThemeProvider>)
 }
 
 export default ResumeSocialMedia

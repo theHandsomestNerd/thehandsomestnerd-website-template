@@ -97,9 +97,6 @@ export const useThwCommonStyles = makeStyles((theme: Theme) => ({
     resumeSection: {
         borderBottom: `1px solid ${COLORS.LIGHTGRAY}`
     },
-    iconOnButton:{
-        marginRight: theme.spacing(1)
-    }
 }))
 
 export default useThwCommonStyles

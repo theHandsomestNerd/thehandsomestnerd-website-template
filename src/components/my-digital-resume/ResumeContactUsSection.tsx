@@ -1,5 +1,5 @@
 import React, {FunctionComponent, useContext, useEffect, useState} from 'react'
-import {makeStyles, Theme} from "@material-ui/core/styles"
+import {makeStyles, MuiThemeProvider, Theme} from "@material-ui/core/styles"
 import {Grid, TextField, Typography, useTheme, withStyles} from "@material-ui/core";
 import DigitalResumeTheme from "../../theme/DigitalResumeTheme";
 import {ResumeContactUsSectionType} from "../BlockContentTypes";
@@ -116,9 +116,9 @@ const StyledTextField = withStyles({
 export type ContactUsProps = {
     sectionData: ResumeContactUsSectionType
 }
-
 const ResumeContactUsSection: FunctionComponent<ContactUsProps> = (props) => {
     const classes = useStyles(DigitalResumeTheme)
+
     const snackbarContext = useContext(SnackbarContext)
 
     const globalClasses = useCustomStyles({})
@@ -187,7 +187,7 @@ const ResumeContactUsSection: FunctionComponent<ContactUsProps> = (props) => {
     const theme = useTheme()
 
     return (
-
+        <MuiThemeProvider theme={DigitalResumeTheme}>
         <Grid
             container
             item
@@ -244,7 +244,7 @@ const ResumeContactUsSection: FunctionComponent<ContactUsProps> = (props) => {
                                     setEmail(e.target.value)
                                 }}
                                 id="contact-email-input"
-                                label={<Typography  color='textPrimary'>Email</Typography>}
+                                label={<Typography color='textPrimary'>Email</Typography>}
                                 variant="outlined"
                                 InputProps={{
                                     // startAdornment: (
@@ -268,7 +268,7 @@ const ResumeContactUsSection: FunctionComponent<ContactUsProps> = (props) => {
                                 onChange={(e) => {
                                     setLeadMessage(e.target.value)
                                 }}
-                                label={<Typography  color='textPrimary'>Message</Typography>}
+                                label={<Typography color='textPrimary'>Message</Typography>}
                                 variant="outlined"
                                 multiline
                                 minRows="6"
@@ -286,20 +286,19 @@ const ResumeContactUsSection: FunctionComponent<ContactUsProps> = (props) => {
                                 }}
                             />
                         </Grid>
-                        <Grid container item justifyContent='flex-end' style={{marginTop:theme.spacing(1)}}>
+                        <Grid container item justifyContent='flex-end' style={{marginTop: theme.spacing(1)}}>
                             <LoadingButton
                                 width={200}
                                 isLoading={isLoading || isRefetching}
                                 disabled={!!(data || isError || (email && (email.length > 0) && !isEmail(email)))}
                                 clickHandler={createLead}
-                                color="primary" variant="contained"><Typography>Send Message</Typography></LoadingButton>
+                                color="primary" variant="contained"><Typography>Send
+                                Message</Typography></LoadingButton>
                         </Grid>
                     </Grid>
 
 
                 </Grid>
-            </Grid></Grid>
-    )
+            </Grid></Grid></MuiThemeProvider>)
 }
-
 export default ResumeContactUsSection

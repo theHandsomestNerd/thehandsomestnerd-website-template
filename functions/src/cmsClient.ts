@@ -27,7 +27,7 @@ const fetchPage = async (pageSlug:string)=>{
           `*[slug.current == $pageSlug]{
           ${groqQueries.HOMEPAGE}
        }`, {pageSlug})
-      .then((data:any) => {
+      .then((data: any[]) => {
         log("fetchPage", "NOTICE", "fetched page", {pageSlug, page: data[0]});
         return data[0];
       })

@@ -2,10 +2,10 @@ import React, {FunctionComponent, useContext} from 'react'
 import {makeStyles, MuiThemeProvider, Theme} from "@material-ui/core/styles"
 import {Grid, Typography, useTheme} from '@material-ui/core'
 import {ResumeFeedback, WebDevTestimonialsSectionType, WebDevTestimonialsType} from "../BlockContentTypes";
-import {COLORS} from "../../theme/DigitalResumeTheme";
 import useThwCommonStyles from "../../common/sanityIo/ThwCommonStyles";
 import {urlFor} from "../block-content-ui/static-pages/cmsStaticPagesClient";
 import MediaQueriesContext from "../media-queries-context/MediaQueriesContext";
+import { COLORS } from '../../theme/DigitalResumeTheme';
 import WebDevSiteTheme, {elainSansExtraBold, raleway} from "../../theme/WebDevSiteTheme";
 
 interface IProps {

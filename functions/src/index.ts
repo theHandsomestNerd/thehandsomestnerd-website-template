@@ -8,14 +8,15 @@ import * as cmsClient from "./cmsClient";
 import * as Promise from "es6-promise";
 import * as path from "path";
 import * as fs from "fs";
+import imageUrlBuilder from "@sanity/image-url";
+import sanityClient from "./sanityClient";
+
 // import {SanityColdLead, SanityTransformHwHomePage}
 //   from "../../src/common/sanityIo/Types";
 // import {urlFor} from
 //   "../../src/components/block-content-ui/static-pages/cmsStaticPagesClient";
 import sendGridClient from "./sendGridClient";
-import imageUrlBuilder from "@sanity/image-url";
 // import {SanityImageSource} from "@sanity/asset-utils";
-import {sanityClient} from "./sanityClient";
 // To Throttle requests to sanity
 
 Promise.polyfill();
@@ -94,6 +95,7 @@ const indexPath = path.resolve(__dirname, ...indexPathParts, "index.html");
 
 console.log(path.resolve(__dirname, ...indexPathParts), files);
 
+
 const serveIndexFile = (req: any, res: any) => {
   fs.readFile(indexPath, "utf8", async (err, htmlData) => {
     if (err) {
@@ -121,7 +123,7 @@ const serveIndexFile = (req: any, res: any) => {
         ogTitle: pageFromSanity?.title,
         description: pageFromSanity?.description,
         ogDescription: pageFromSanity?.description,
-        ogImage: pageFromSanity?.metaImage && urlFor(pageFromSanity?.metaImage).url()?.replace("undefined", process.env.SANITY_DB ?? "development"),
+        ogImage: pageFromSanity.metaImage && builder.image(pageFromSanity.metaImage).url()?.replace("undefined", process.env.SANITY_DB ?? "development"),
       };
 
       logClient.log("server-side", "NOTICE",
@@ -181,7 +183,7 @@ app.post("/send-email-resume",
 
 app.post("/collect-email-address",
     async (req: any, functionRes: any) => {
-      const reqBody: any = JSON.parse(req.body);
+      const reqBody = JSON.parse(req.body);
 
       logClient.log("collect-email-address", "NOTICE",
           "Request to collect an email address", reqBody.email);
@@ -194,14 +196,13 @@ app.post("/collect-email-address",
           leadName: reqBody.leadName,
           source: reqBody.source,
         });
-        functionRes.send({status: "200", response, email: reqBody.email, message: "Thank you! We will talk soon."});
+        functionRes.send({status: "200", response, email: reqBody.email});
       } catch (e) {
         logClient.log("collect-email-address", "ERROR",
             "Could not create Lead", {email: reqBody.email});
-        functionRes.send({status: "400", e});
+        functionRes.error({status: "400", e});
       }
     });
-
 
 app.use(express.static(
     path.resolve(__dirname, "../../../../", "build"),

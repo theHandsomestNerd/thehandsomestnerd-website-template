@@ -20,43 +20,44 @@ export declare type SanityColdLead = {
 }
 
 export type SanityTransformHwHomePage = {
-  _type?:string
-  title?: string
-  description?: string
-  bookAppointmentLink?: string
-  bookAppointmentQrCode?: SanityImageSource
-  imgSrc?: SanityImageSource
-  metaImage?: SanityImageSource
-  businessCardImageSrc?: SanityImageSource
-  slug?: any
-  headerContent?: any
-  footerContent?: any
-  pageContent?: any
-  servicesAvailable?: ThwServiceItemNoRefType[]
-  structuredData?: any
-  address?: string
-  website?: string
-  websiteQrCode?: SanityImageSource
-  email?: string
-  phone?: string
-  facebook?: string
-  facebookIconSrc?: SanityImageSource
-  linkedIn?: string
-  linkedInIconSrc?: SanityImageSource
-  twitter?: string
-  twitterIconSrc?: SanityImageSource
-  instagram?: string
-  instagramIconSrc?: SanityImageSource
-  github?: string
-  githubIconSrc?: SanityImageSource
-  androidPlayStoreLink?: string
-  androidPlayStoreIconSrc?: string
-  appStoreLink?: string
-  appStoreIconSrc?: string
-  fdicDisclaimer?: string
-  fdicImage?: string
-  isUnderConstruction?: boolean
-  underConstructionPageRef?: SanityRef
+    _type?: string
+    title?: string
+    description?: string
+    bookAppointmentLink?: string
+    bookAppointmentQrCode?: SanityImageSource
+    imgSrc?: SanityImageSource
+    metaImage?: SanityImageSource
+    businessCardImageSrc?: SanityImageSource
+    slug?: any
+    headerContent?: any
+    footerContent?: any
+    pageContent?: any
+    servicesAvailable?: ThwServiceItemNoRefType[]
+    structuredData?: any
+    address?: string
+    website?: string
+    websiteQrCode?: SanityImageSource
+    email?: string
+    phone?: string
+    facebook?: string
+    facebookIconSrc?: SanityImageSource
+    linkedIn?: string
+    linkedInIconSrc?: SanityImageSource
+    twitter?: string
+    twitterIconSrc?: SanityImageSource
+    instagram?: string
+    instagramIconSrc?: SanityImageSource
+    github?: string
+    githubIconSrc?: SanityImageSource
+    androidPlayStoreLink?: string
+    androidPlayStoreIconSrc?: string
+    appStoreLink?: string
+    appStoreIconSrc?: string
+    fdicDisclaimer?: string
+    fdicImage?: string
+    isUnderConstruction?: boolean
+    underConstructionPageRef?: SanityRef
+    isFabActivated?: boolean
 }
 
 export type SanityUnderConstructionPageType = {

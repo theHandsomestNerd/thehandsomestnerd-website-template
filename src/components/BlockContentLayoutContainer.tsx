@@ -5,6 +5,9 @@ import sanityClient from '../sanityClient'
 import {blockSerializers} from '../common/sanityIo/BlockContentRenderer'
 import {
     HowItWorksSectionType,
+    MfbtAboutProprietorSectionType,
+    MfbtHeroContentSectionType,
+    MfbtPaymentMethodSectionType,
     PortfolioSectionType,
     ResumeBioSectionType,
     ResumeContactUsSectionType,
@@ -51,6 +54,7 @@ import WebDevServicesSection from "./web-dev-site/WebDevServicesSection";
 import WebDevPortfolioSection from "./web-dev-site/WebDevPortfolioSection";
 import WebDevTestimonialsSection from "./web-dev-site/WebDevTestimonialsSection";
 import WebDevHowItWorksSection from "./web-dev-site/WebDevHowItWorksSection";
+import ThwHeroContentSection from './transform-hw/ThwHeroContentSection'
 
 export type BlockContentLayoutContainerProps = {
     content?: any,

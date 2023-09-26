@@ -82,7 +82,7 @@ const HeaderBlockContentLayoutContainer: FunctionComponent<HeaderBlockContentLay
                         />
                     </Grid></MuiThemeProvider>
                 default:
-                return <span key={index}>Undefined section {columnLayoutContainer._type}</span>
+                    return <span key={index}>Undefined section {columnLayoutContainer._type}</span>
             }
         }) ?? <></>
         }

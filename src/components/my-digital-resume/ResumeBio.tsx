@@ -1,13 +1,13 @@
 import React, {FunctionComponent, useContext} from 'react'
-import {Button, ButtonGroup, Grid, IconButton, Link, Typography, useTheme} from '@material-ui/core'
+import {Button, ButtonGroup, Grid, MuiThemeProvider, Typography, useTheme} from '@material-ui/core'
 import {ResumeBioSectionType} from "../BlockContentTypes";
 import {urlFor} from "../block-content-ui/static-pages/cmsStaticPagesClient";
 import {SanityTransformHwHomePage} from "../../common/sanityIo/Types";
-import {CloudDownload, Facebook, GitHub, Instagram, LinkedIn, Twitter} from "@material-ui/icons";
 import useThwCommonStyles from "../../common/sanityIo/ThwCommonStyles";
 import MediaQueriesContext from "../media-queries-context/MediaQueriesContext";
 import ResumeSocialMedia from "./ResumeSocialMedia";
 import BusinessCardSubmitEmail from "../transform-hw/pages/BusinessCardSubmitEmail";
+import DigitalResumeTheme from "../../theme/DigitalResumeTheme";
 
 interface IProps {
     sectionData: ResumeBioSectionType
@@ -22,7 +22,7 @@ const ResumeBio: FunctionComponent<IProps> = (props: IProps) => {
 
     const smDown = mediaQueriesContext.smDown
 
-    return (<Grid container item style={{padding: theme.spacing(4)}} justifyContent='center'
+    return (<MuiThemeProvider theme={DigitalResumeTheme}><Grid container item style={{padding: theme.spacing(4)}} justifyContent='center'
                   className={classes.resumeSection} spacing={3}>
         <Grid item xs={12}>
             <BusinessCardSubmitEmail emailFieldText={'Email Address'}
@@ -86,7 +86,7 @@ const ResumeBio: FunctionComponent<IProps> = (props: IProps) => {
                 </ButtonGroup>
             </Grid>
         </Grid>
-    </Grid>)
+    </Grid></MuiThemeProvider>)
 }
 
 export default ResumeBio

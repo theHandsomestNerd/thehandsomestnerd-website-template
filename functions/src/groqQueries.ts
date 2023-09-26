@@ -120,6 +120,7 @@ const HOMEPAGE = `_type,
                 "cvFile": cvFile.asset->
             }
           },
+          isFabActivated,
           "servicesAvailable": servicesAvailable[]->{
             ${SERVICE}
           },

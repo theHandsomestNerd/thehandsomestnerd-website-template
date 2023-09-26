@@ -4,7 +4,6 @@ import {Grid} from '@material-ui/core'
 import FooterMenuContainer from './FooterMenuContainer'
 import {SanityMenuContainer, SanityTransformHwHomePage} from "../../../common/sanityIo/Types";
 import DigitalResumeTheme, {COLORS} from "../../../theme/DigitalResumeTheme";
-import {FooterSectionType} from "../../BlockContentTypes";
 
 export const useStyles = makeStyles((theme: Theme) => ({
   root: {

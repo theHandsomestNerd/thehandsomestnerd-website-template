@@ -1,5 +1,5 @@
 import React, {FunctionComponent, useContext} from 'react'
-import {makeStyles, Theme} from "@material-ui/core/styles"
+import {makeStyles, MuiThemeProvider, Theme} from "@material-ui/core/styles"
 import {Chip, Grid, Typography, useTheme} from '@material-ui/core'
 import {
     ResumeEducation,
@@ -9,7 +9,7 @@ import {
     ResumeSkillSectionType,
     ResumeSkillSet
 } from "../BlockContentTypes";
-import {COLORS} from "../../theme/DigitalResumeTheme";
+import DigitalResumeTheme, {COLORS} from "../../theme/DigitalResumeTheme";
 import useThwCommonStyles from "../../common/sanityIo/ThwCommonStyles";
 import MediaQueriesContext from "../media-queries-context/MediaQueriesContext";
 
@@ -33,7 +33,7 @@ const ResumeEducationSection: FunctionComponent<IProps> = (props: IProps) => {
     React.useEffect(() => {
     }, [])
 
-    return (<Grid container item style={{padding: theme.spacing(4)}} className={globalClasses.resumeSection}> <Grid
+    return (<MuiThemeProvider theme={DigitalResumeTheme}><Grid container item style={{padding: theme.spacing(4)}} className={globalClasses.resumeSection}> <Grid
         container item spacing={3}>
         <Grid item container md={4} alignContent='flex-start' spacing={1}>
             <Grid item>
@@ -94,7 +94,7 @@ const ResumeEducationSection: FunctionComponent<IProps> = (props: IProps) => {
                 })
             }
         </Grid>
-    </Grid></Grid>)
+    </Grid></Grid></MuiThemeProvider>)
 }
 
 export default ResumeEducationSection

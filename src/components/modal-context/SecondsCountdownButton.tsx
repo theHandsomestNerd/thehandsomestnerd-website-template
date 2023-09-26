@@ -23,34 +23,34 @@ const SecondsCountdownButton: FunctionComponent<IProps> = ({date, totalTimeSecon
     >
         {
             <Grid
-                    item
-                    container
-                    justifyContent='center'
-                    alignContent='center'
-                    style={{
-                        position: "relative",
-                        minWidth: "32px",
-                        height: "32px"
-                    }}>
-                    <Grid item style={{
-                        position: "absolute",
-                        top: 3
-                    }}>
-                        <Grid
-                            container
-                            item
-                            justifyContent='center'
-                            alignContent='center'
-                            alignItems='center'>
-                            <Close/>
-                        </Grid>
-                    </Grid>
-                    <Grid item style={{position: "absolute", top: 0}}>
-                        <Grid container item justifyContent='center' alignContent='center' alignItems='center'>
-                            <CircularProgress color='secondary' variant='determinate' size={30} value={((date?.seconds ?? 0) / (totalTimeSeconds?totalTimeSeconds:15)) * 100}/>
-                        </Grid>
+                item
+                container
+                justifyContent='center'
+                alignContent='center'
+                style={{
+                    position: "relative",
+                    minWidth: "32px",
+                    height: "32px"
+                }}>
+                <Grid item style={{
+                    position: "absolute",
+                    top: 3
+                }}>
+                    <Grid
+                        container
+                        item
+                        justifyContent='center'
+                        alignContent='center'
+                        alignItems='center'>
+                        <Close/>
                     </Grid>
                 </Grid>
+                <Grid item style={{position: "absolute", top: 0}}>
+                    <Grid container item justifyContent='center' alignContent='center' alignItems='center'>
+                        <CircularProgress color='secondary' variant='determinate' size={30} value={((date?.seconds ?? 0) / (totalTimeSeconds?totalTimeSeconds:15)) * 100}/>
+                    </Grid>
+                </Grid>
+            </Grid>
         }</IconButton>)
 }
 

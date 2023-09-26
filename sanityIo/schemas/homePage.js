@@ -66,7 +66,7 @@ export default {
             type: "array",
             of: [{type: "structuredDataProduct"},
                 {type:"structuredDataEvent"},
-              ]
+            ]
         },
         {
             name: 'headerContent',
@@ -178,6 +178,11 @@ export default {
             options: {
                 hotspot: true,
             },
+        },
+        {
+            name: 'isFabActivated',
+            title: 'Is Fab Active',
+            type: 'boolean',
         },
         {
             name: 'isUnderConstruction',

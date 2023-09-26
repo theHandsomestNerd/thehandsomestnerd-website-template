@@ -2,22 +2,21 @@ import {makeStyles} from "@material-ui/core";
 import DigitalResumeTheme, {COLORS} from "../../../theme/DigitalResumeTheme";
 
 const useCustomStyles = makeStyles({
+    // transparentBacking: {
+    //     borderLeft: `4px solid ${MixedFeelingsByTTheme.palette.primary.main}`,
+    //     borderRight: `4px solid ${MixedFeelingsByTTheme.palette.primary.main}`,
+    //     padding: MixedFeelingsByTTheme.spacing(2,0),
+    //     backgroundColor:COLORS.TRANSPARENTWHITE
+    // },
     fullscreen: {
         width: 'calc(100vw)',
         height: 'calc(100vh)',
-        position: "relative",
-        overflowY: "scroll"
+        position: "relative"
     },
     fullscreenPlus: {
         width: 'calc(100vw)',
         height: 'calc(100vh)',
         position: "relative"
-    },
-    transparentBacking: {
-        borderLeft: `4px solid ${DigitalResumeTheme.palette.primary.main}`,
-        borderRight: `4px solid ${DigitalResumeTheme.palette.primary.main}`,
-        padding: DigitalResumeTheme.spacing(2,0),
-        backgroundColor:COLORS.TRANSPARENTWHITE
     },
     endAdornedInput: {
         "& .MuiFilledInput-adornedEnd": {
@@ -82,9 +81,6 @@ const useCustomStyles = makeStyles({
     resumeSection: {
         borderBottom: `1px solid ${COLORS.LIGHTGRAY}`
     },
-    iconOnButton:{
-        marginRight: "8px"
-    }
 })
 
 export default useCustomStyles
