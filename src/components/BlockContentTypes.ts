@@ -213,6 +213,54 @@ export type ThwContactUsSectionType = {
 }
 
 
+//MixedFeelingsByT Types
+export type MfbtHeroContentSectionType = {
+    name: string
+    title: string
+    heroImage: SanityImageAsset
+    heroImageAltText: string
+    heroImageBackground?: SanityImageAsset
+    contentWelcomeMessage: string
+    contentTitle: string
+    contentText: string
+    ctaButtonTitle: string
+    ctaButtonLink: string
+}
+
+export type MfbtAboutProprietorSectionType = {
+    name: string
+    proprietorImage: SanityImageAsset
+    proprietorName: string
+    proprietorTitle: string
+    // proprietorServices: ProprietorAtAGlanceType
+    contentTitle: string
+    favDrinkTitle: string
+    favDrinkSectionTitle: string
+    favDrinkImage: SanityImageAsset
+    favDrinkImage2: SanityImageAsset
+    favDrinkDescription: string
+    contentText: string[]
+    proprietorImageAltText: string
+    // proprietorSignatureImage: SanityImageAsset
+    // proprietorSignatureImageAltText: string
+    ctaButtonText: string
+    ctaButtonLink: string
+}
+
+export type MfbtPaymentMethodSectionType = {
+    name: string
+    title: string
+    mainPaymentImage: SanityImageAsset,
+    mainPaymentName: string,
+    paymentImage1: SanityImageAsset,
+    paymentName1: string,
+    paymentImage2: SanityImageAsset,
+    paymentName2: string,
+    paymentImage3: SanityImageAsset,
+    paymentName3: string,
+}
+
+
 export type ResumeBioSectionType = {
     name?: string
     title?: string

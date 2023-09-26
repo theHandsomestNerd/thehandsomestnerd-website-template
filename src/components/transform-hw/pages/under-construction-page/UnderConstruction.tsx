@@ -72,7 +72,7 @@ const UnderConstruction: FunctionComponent<IProps> = (props) => {
                 <Grid xs={10} container item justifyContent='center' className={classes.spacer}>
                     <CountdownToLaunch launchDate={releaseDate ?? new Date(Date.now() + 2000000000)}/>
                 </Grid>
-                <Grid container item sm={10} className={classes.transparentBacking} style={{paddingBottom: theme.spacing(5), marginBottom: xsDown? 0: theme.spacing(1)}}>
+                <Grid container item sm={10}  style={{paddingBottom: theme.spacing(5), marginBottom: xsDown? 0: theme.spacing(1)}}>
                     <Grid container item justifyContent='center' style={{marginTop: theme.spacing(2.5)}}>
                         <Grid item xs={11} sm={10}>
                             <Typography variant='body1'

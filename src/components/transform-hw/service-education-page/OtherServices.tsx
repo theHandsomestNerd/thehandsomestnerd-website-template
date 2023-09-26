@@ -1,13 +1,9 @@
 import React, {FunctionComponent, useContext} from 'react'
 import {makeStyles, Theme} from "@material-ui/core/styles"
-import {CircularProgress, Grid, Typography} from '@material-ui/core'
-import thwClient from "../thwClient";
+import {Grid, Typography} from '@material-ui/core'
 import {v4 as uuidv4} from 'uuid'
-import {ThwServiceItemType} from "../../BlockContentTypes";
 import ThwServiceItem from "../ThwServiceItem";
 import DigitalResumeTheme from "../../../theme/DigitalResumeTheme";
-import ProgressBar
-    from "@sanity/types/parts/part.@sanity/components/build-snapshot/__legacy/@sanity/components/progress/ProgressBar";
 import PageContext from "../../page-context/PageContext";
 
 export const useStyles = makeStyles((theme: Theme) => ({
