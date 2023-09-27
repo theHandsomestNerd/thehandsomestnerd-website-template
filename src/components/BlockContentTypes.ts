@@ -271,16 +271,18 @@ export type ResumeBioSectionType = {
     resumeFile?: FileAsset
     cvFileDownloadText?: string,
     cvFile?: FileAsset
-    mainImage?: ImageAsset
+    mainImage?: SanityImageAsset
 }
 
 
 
 export type ResumeSkill = {
+    _id?: string
     name?: string
     title?: string
 }
 export type ResumeSkillSet = {
+    _type?: "ResumeSkillset"
     name?: string
     title?: string
     skills?: ResumeSkill[]

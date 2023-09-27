@@ -1,8 +1,8 @@
-import {createTheme} from '@material-ui/core'
-import BitterPro from './common/fonts/bitter_pro/fonts/ttf/BitterPro-Black.ttf'
-import Raleway from './common/fonts/Raleway/variable/TTF/Raleway-VF.ttf'
-import RalewayBold from './common/fonts/Raleway/static/TTF/Raleway-Bold.ttf'
-import Rainbow from './common/fonts/rainbow/Rainbow.ttf'
+import {createTheme} from '@material-ui/core';
+import BitterPro from './common/fonts/bitter_pro/fonts/ttf/BitterPro-Black.ttf';
+import Raleway from './common/fonts/Raleway/variable/TTF/Raleway-VF.ttf';
+import RalewayBold from './common/fonts/Raleway/static/TTF/Raleway-Bold.ttf';
+import Rainbow from './common/fonts/rainbow/Rainbow.ttf';
 import ElaineSans from "./common/fonts/elaine-sans/elaineSans-extrabold.ttf";
 
 type FontFace = {
@@ -11,7 +11,7 @@ type FontFace = {
     fontStyle?: any
     fontWeight?: number
     src?: string
-}
+};
 
 export const bitterPro: FontFace = {
     fontFamily: 'Bitter Pro',
@@ -22,7 +22,7 @@ export const bitterPro: FontFace = {
     local('Bitter Pro'),
     url(${BitterPro}) format('truetype')
   `
-}
+};
 
 export const raleway: FontFace = {
     fontFamily: 'Raleway',
@@ -33,7 +33,7 @@ export const raleway: FontFace = {
     local('Raleway Regular'),
     url(${Raleway}) format('truetype')
   `
-}
+};
 
 export const ralewayBold: FontFace = {
     fontFamily: 'Raleway',
@@ -44,7 +44,7 @@ export const ralewayBold: FontFace = {
     local('Raleway Bold'),
     url(${RalewayBold}) format('truetype')
   `
-}
+};
 
 export const rainbow: FontFace = {
     fontFamily: 'Rainbow',
@@ -55,7 +55,7 @@ export const rainbow: FontFace = {
     local('Rainbow Regular'),
     url(${Rainbow}) format('truetype')
   `
-}
+};
 
 const elainSansExtraBold: FontFace = {
     fontFamily: 'Elaine Sans',
@@ -66,7 +66,7 @@ const elainSansExtraBold: FontFace = {
     local('Elaine Sans'),
     url(${ElaineSans}) format('truetype')
   `
-}
+};
 
 const fonts = ['Raleway', 'Bitter Pro', 'Elaine Sans'].join(',')
 

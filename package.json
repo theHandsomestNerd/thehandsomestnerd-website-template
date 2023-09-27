@@ -9,7 +9,7 @@
     "@sanity/block-content-to-react": "^3.0.0",
     "@sanity/client": "^2.8.0",
     "@sanity/types": "^2.34.0",
-    "@storybook/addon-docs": "^6.5.12",
+    "@storybook/addon-docs": "^7.4.5",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
@@ -63,8 +63,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "firebaseDeploy": "firebase deploy --only hosting",
-    "storybook": "start-storybook -p 6006 -s public",
-    "build-storybook": "build-storybook -s public"
+    "storybook": "storybook dev -p 6006 -s public",
+    "build-storybook": "storybook build -s public"
   },
   "eslintConfig": {
     "extends": [
@@ -95,15 +95,19 @@
     ]
   },
   "devDependencies": {
+
     "@sanity/image-url": "^0.140.22",
-    "@storybook/addon-actions": "^6.5.12",
-    "@storybook/addon-essentials": "^6.5.12",
-    "@storybook/addon-links": "^6.5.12",
-    "@storybook/node-logger": "^6.5.12",
-    "@storybook/preset-create-react-app": "^3.2.0",
-    "@storybook/react": "^6.5.12",
+    "@storybook/addon-actions": "^7.4.5",
+    "@storybook/addon-essentials": "^7.4.5",
+    "@storybook/addon-links": "^7.4.5",
+    "@storybook/addon-mdx-gfm": "^7.4.5",
+    "@storybook/node-logger": "^7.4.5",
+    "@storybook/preset-create-react-app": "^7.4.5",
+    "@storybook/react": "^7.4.5",
+    "@storybook/react-webpack5": "^7.4.5",
     "@types/react": "^18.0.22",
     "@types/react-syntax-highlighter": "^13.5.0",
-    "@types/validator": "^13.7.7"
+    "@types/validator": "^13.7.7",
+    "storybook": "^7.4.5"
   }
 }
