@@ -1,11 +1,12 @@
 import type {Meta, StoryObj} from '@storybook/react';
-import LoadingButton from "../../components/loading-button/LoadingButton";
+import LoadingButton, {LoadingButtonIProps} from "../../components/loading-button/LoadingButton";
 import {ButtonGroupMemberEnum} from "../../components/loading-button/ButtonGroupMemberEnum";
 import {Grid} from "@material-ui/core";
+import {PropsWithChildren} from "react";
 
 
 const meta: Meta<typeof LoadingButton> = {
-    title:"Resume/Components/Button",
+    title:"Resume/Components/Loading Button",
     component: LoadingButton,
 };
 
@@ -21,29 +22,68 @@ type Story = StoryObj<typeof LoadingButton>;
 
 const buttonText = "Button Text"
 export const Primary: Story = {
-    render: () => <LoadingButton color={"primary"} isLoading={false}>{buttonText}</LoadingButton>,
+    args: {
+      color: "primary",
+      isLoading: false,
+      children:buttonText
+    },
+    render: ({color, isLoading, children}:PropsWithChildren<LoadingButtonIProps>) => <LoadingButton color={color} isLoading={isLoading}>{children}</LoadingButton>,
 };
 export const PrimaryDisabled: Story = {
-    render: () => <LoadingButton color={"primary"} disabled={true}>{buttonText}</LoadingButton>,
+    args: {
+        color: "primary",
+        disabled: false,
+        children: buttonText
+    },
+    render: ({color, isLoading, children, disabled}:PropsWithChildren<LoadingButtonIProps>) => <LoadingButton color={color} isLoading={isLoading} disabled={disabled}>{children}</LoadingButton>,
 };
 export const Secondary: Story = {
-    render: () => <LoadingButton color={"secondary"} isLoading={false}>{buttonText}</LoadingButton>,
+    args: {
+        color: "secondary",
+        children: buttonText
+    },
+    render: ({color, children}:PropsWithChildren<LoadingButtonIProps>) => <LoadingButton color={color}>{children}</LoadingButton>,
 };
 
 
 export const Loading: Story = {
-    render: () => <LoadingButton color={"primary"} isLoading={true}>{buttonText}</LoadingButton>,
+    args: {
+        color: "primary",
+        isLoading: true,
+        width: 250,
+        children: buttonText
+    },
+    render: ({color,isLoading, children, width}:PropsWithChildren<LoadingButtonIProps>) => <LoadingButton width={width} isLoading={isLoading} color={color}>{children}</LoadingButton>,
 };
 
 export const SecondaryLoading: Story = {
-    render: () => <LoadingButton color={"secondary"} isLoading={true}>{buttonText}</LoadingButton>,
+    args: {
+        color: "secondary",
+        isLoading: true,
+        width: 250,
+        children: buttonText
+    },
+    render: ({color,isLoading, children, width}:PropsWithChildren<LoadingButtonIProps>) => <LoadingButton width={width} isLoading={isLoading} color={color}>{children}</LoadingButton>,
+
 };
 
 export const Grouped: Story = {
     render: () => <Grid container>
-        <LoadingButton width={250} color={"primary"} groupiness={ButtonGroupMemberEnum.LEFT} >One</LoadingButton>
-        <LoadingButton width={250} groupiness={ButtonGroupMemberEnum.CENTER}
-            color={"primary"} >Two</LoadingButton>
-        <LoadingButton width={250} groupiness={ButtonGroupMemberEnum.RIGHT} color={"primary"}
-                       >Three</LoadingButton></Grid>,
+        <Grid item>
+            <LoadingButton width={250} color={"primary"} groupiness={ButtonGroupMemberEnum.LEFT} >One</LoadingButton>
+
+        </Grid>
+        <Grid item>
+            <LoadingButton width={250} groupiness={ButtonGroupMemberEnum.CENTER}
+                           color={"primary"} >Two</LoadingButton>
+        </Grid>
+        <Grid item>
+            <LoadingButton width={250} groupiness={ButtonGroupMemberEnum.CENTER}
+                           color={"primary"} >Three</LoadingButton>
+        </Grid>
+        <Grid item>
+            <LoadingButton width={250} groupiness={ButtonGroupMemberEnum.RIGHT} color={"primary"}
+            >Four</LoadingButton></Grid>
+        </Grid>,
+
 };

@@ -1,9 +1,11 @@
 import type {Meta, StoryObj} from '@storybook/react';
 import ResumeSkillsSection from "../../components/my-digital-resume/ResumeSkillsSection";
-import ResumeSkillSectionData from "../data/ResumeSkillSection";
+import ResumeSkillSectionData from "../data/ResumeSkillSectionData";
+import ResumeBioSectionData from "../data/ResumeBioSectionData";
+import homePageResume from "../data/HomePageData";
 
 const meta: Meta<typeof ResumeSkillsSection> = {
-    title:"Resume/Resume Skills Section",
+    title:"Resume/Section/Resume Skills Section",
     component: ResumeSkillsSection,
 };
 
@@ -18,5 +20,8 @@ type Story = StoryObj<typeof ResumeSkillsSection>;
  */
 
 export const Primary: Story = {
-    render: () => <ResumeSkillsSection sectionData={ResumeSkillSectionData}></ResumeSkillsSection>,
+    args :{
+        sectionData: ResumeSkillSectionData,
+    },
+    render: ({sectionData}) => <ResumeSkillsSection sectionData={sectionData}></ResumeSkillsSection>,
 };

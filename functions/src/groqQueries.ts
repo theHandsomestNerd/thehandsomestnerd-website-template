@@ -97,6 +97,7 @@ const HOMEPAGE = `_type,
                     ${SERVICE}
                 },
                 "serviceAmenities": serviceAmenities[]->,
+                "prosList": prosList[]->,
                 "skillsets": skillsets[]{
                     ...,
                     "skills": skills[]->{

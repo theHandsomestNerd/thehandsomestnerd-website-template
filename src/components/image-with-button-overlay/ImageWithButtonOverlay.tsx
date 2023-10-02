@@ -33,6 +33,7 @@ interface IProps {
     learnMoreLink?: string
     tooltip?: string
     source?: string
+    placeholderWidth?: number
 }
 
 
@@ -48,6 +49,20 @@ const ImageWIthButtonOverlay: FunctionComponent<IProps> = (props) => {
                 return 'center'
         }
     }
+
+    const [displayImageUrl, setDisplayImageUrl] = React.useState<string>()
+
+    React.useEffect(() => {
+        if (props.imageUrl) {
+            setDisplayImageUrl(props.imageUrl)
+        }
+        if (props.imageSrc) {
+            setDisplayImageUrl(urlFor(props.imageSrc ?? "").height(props.height).url() ?? '')
+        } else {
+            setDisplayImageUrl(`https://placehold.co/${props.placeholderWidth ?? props.height}x${props.height}`)
+        }
+
+    }, [])
 
     const pageContext = useContext(PageContext)
     return (
@@ -67,18 +82,25 @@ const ImageWIthButtonOverlay: FunctionComponent<IProps> = (props) => {
                                     direction={props.direction}
                                     isResponsive={props.isResponsive}/>}
                 {
-                    <Tooltip
-                        title={<Typography variant='subtitle1'
-                                           style={{fontWeight: "normal"}}>{props.tooltip}</Typography>}>
-                        <Grid item container style={{
-                            backgroundImage: `url(${props.imageUrl ? props.imageUrl : urlFor(props.imageSrc ?? "").height(props.height).url() ?? ''})`,
-                            backgroundSize: "contain",
+                        props.tooltip ? <Tooltip
+                            title={<Typography variant='subtitle1'
+                                               style={{fontWeight: "normal"}}>{props.tooltip}</Typography>}>
+                            <Grid item container style={{
+                                backgroundImage: `url(${displayImageUrl})`,
+                                backgroundSize: "cover",
+                                backgroundPosition: "center",
+                                backgroundRepeat: "no-repeat",
+                                height: props.height
+                            }}>
+                            </Grid>
+                        </Tooltip> : <Grid item container style={{
+                            backgroundImage: `url(${displayImageUrl})`,
+                            backgroundSize: "cover",
                             backgroundPosition: "center",
-                            backgroundRepeat:"no-repeat",
+                            backgroundRepeat: "no-repeat",
                             height: props.height
                         }}>
                         </Grid>
-                    </Tooltip>
                 }
                 <Grid container
                       item

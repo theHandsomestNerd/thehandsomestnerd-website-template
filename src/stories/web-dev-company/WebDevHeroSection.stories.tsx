@@ -4,6 +4,7 @@ import {ButtonGroupMemberEnum} from "../../components/loading-button/ButtonGroup
 import {Grid} from "@material-ui/core";
 import WebDevHeroContentSection from "../../components/web-dev-site/WebDevHeroContentSection";
 import WebDevHeroSectionData from "../data/WebDevHeroContentSectionData";
+import ThwHeroContentSection from "../../components/transform-hw/ThwHeroContentSection";
 
 
 const meta: Meta<typeof WebDevHeroContentSection> = {

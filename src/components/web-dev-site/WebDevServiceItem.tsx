@@ -63,7 +63,7 @@ const WebDevServiceItem: FunctionComponent<IProps> = (props: IProps) => {
                             variant='h3'  style={{...elainSansExtraBold}} color='primary'>{props.service.contentTitle}</Typography></Grid>
 
                         <Grid item>
-                            <ColoredPng size={64} maskUrl={urlFor(props.service.imageSrc).url() ?? ""} color={'white'} />
+                            <ColoredPng size={64} maskAsset={props.service.imageSrc} color={'white'} />
                         {/*    <ImageWIthButtonOverlay*/}
                         {/*    source={props.service.slug?.current}*/}
                         {/*    // hideCtaButton={prop.hideCtaButton}*/}

@@ -3,8 +3,8 @@ import {makeStyles, Theme} from '@material-ui/core/styles'
 import {Chip, Grid, Typography} from '@material-ui/core'
 import {urlFor} from '../block-content-ui/static-pages/cmsStaticPagesClient'
 import {ProprietorAtAGlanceType, ThwAboutProprietorSectionType} from "../BlockContentTypes";
-import DigitalResumeTheme from "../../theme/DigitalResumeTheme";
-import ImageWIthButtonOverlay from "../image-with-button-overlay/ImageWithButtonOverlay";
+import TransformHWTheme from "../../theme/TransformHWTheme";
+import ImageWithButtonOverlay from "../image-with-button-overlay/ImageWithButtonOverlay";
 import LoadingButton from "../loading-button/LoadingButton";
 import ResponsiveBullet from "../ResponsiveBullet";
 import {FiberManualRecord} from "@material-ui/icons";
@@ -12,6 +12,7 @@ import ColoredPng from "../colored-png/ColoredPng";
 import MediaQueriesContext from "../media-queries-context/MediaQueriesContext";
 import firebaseAnalyticsClient from "../../utils/firebase/FirebaseAnalyticsClient";
 import PageContext from "../page-context/PageContext";
+import ImageWithPlaceholder from "../ImageWithPlaceholder";
 
 export const useStyles = makeStyles((theme: Theme) => ({
     root: {
@@ -36,10 +37,10 @@ const ProprietorAtAGlance = (props: {sectionData: ProprietorAtAGlanceType, sourc
     return <Grid item container
                  justifyContent='center'
                  style={{
-                     backgroundColor: DigitalResumeTheme.palette.secondary.dark,
+                     backgroundColor: TransformHWTheme.palette.secondary.dark,
                      border: mediaQueriesContext.smDown?"0px solid transparent":"1px solid white",
-                     margin: mediaQueriesContext.smDown?DigitalResumeTheme.spacing(0, 0, 0, 0):DigitalResumeTheme.spacing(2, 0, 0, 0),
-                     padding: DigitalResumeTheme.spacing(2, 0, mediaQueriesContext.smDown?6:2, 0)
+                     margin: mediaQueriesContext.smDown?TransformHWTheme.spacing(0, 0, 0, 0):TransformHWTheme.spacing(2, 0, 0, 0),
+                     padding: TransformHWTheme.spacing(2, 0, mediaQueriesContext.smDown?6:2, 0)
                  }}
                  spacing={6}
                  xs={12}
@@ -70,8 +71,9 @@ const ProprietorAtAGlance = (props: {sectionData: ProprietorAtAGlanceType, sourc
         <Grid item container xs={11} justifyContent='center' style={{
             // marginBottom: TransformHWTheme.spacing(5)
         }}>
-            <ColoredPng maskUrl={urlFor(props.sectionData.dividerImage).url()??""} color={"white"} />
-            <Grid item container justifyContent='center'>
+            {/*<ImageWithPlaceholder height={545} width={376} image={props.sectionData.dividerImage} />*/}
+            <ColoredPng maskAsset={props.sectionData.dividerImage} color={"white"}/>
+                    <Grid item container justifyContent='center'>
 
                 <Typography variant='h6' color='primary' gutterBottom align='center'>{props.sectionData.amenitiesSectionTitle}</Typography>
             </Grid>
@@ -101,13 +103,13 @@ const ProprietorAtAGlance = (props: {sectionData: ProprietorAtAGlanceType, sourc
 
 
 const AboutTheProprietorSection: FunctionComponent<IProps> = (props) => {
-    const classes = useStyles(DigitalResumeTheme)
+    const classes = useStyles(TransformHWTheme)
     const mediaQueriesContext = useContext(MediaQueriesContext)
 
     return (
         <Grid container item className={classes.root} xs={mediaQueriesContext.xsOnly?12:11} style={mediaQueriesContext.xsOnly ? {paddingBottom: 0, paddingTop: 0} : {
-            paddingBottom: DigitalResumeTheme.spacing(10),
-            paddingTop: DigitalResumeTheme.spacing(10),
+            paddingBottom: TransformHWTheme.spacing(10),
+            paddingTop: TransformHWTheme.spacing(10),
         }}>
             <Grid container item justifyContent='space-around'
             >
@@ -128,16 +130,17 @@ const AboutTheProprietorSection: FunctionComponent<IProps> = (props) => {
                         overflow: "hidden",
                         position: "relative",
                         backgroundColor: "white",
-                        marginBottom: DigitalResumeTheme.spacing(3)
+                        marginBottom: TransformHWTheme.spacing(3)
                     }} container
                           sm={8} md={12}
                           justifyContent='center'>
-                        <ImageWIthButtonOverlay variant='contained' ctaButtonText={props.sectionData.ctaButtonText}
+                        <ImageWithButtonOverlay variant='contained' ctaButtonText={props.sectionData.ctaButtonText}
                                                 ctaButtonLink={props.sectionData.ctaButtonLink}
                             // toColor={"rgb(19,35,35)"}
                                                 imageSrc={props.sectionData.proprietorImage} height={545}
                             // direction={CssFadeToColorDirectionEnum.RIGHT}
                                                 isResponsive
+                                                placeholderWidth={376}
                         />
                     </Grid>
                     {!mediaQueriesContext.smDown && <Grid container item><ProprietorAtAGlance source={'about-the-proprietor'} sectionData={props.sectionData.proprietorServices}/></Grid>}
@@ -179,8 +182,7 @@ const AboutTheProprietorSection: FunctionComponent<IProps> = (props) => {
                             })}
                             <Grid container item direction='column' alignItems='flex-end'>
                                 <Grid item>
-                                    <img alt={props.sectionData.proprietorSignatureImageAltText}
-                                         src={urlFor(props.sectionData.proprietorSignatureImage).height(70).url() ?? ''}/>
+                                    <ImageWithPlaceholder height={70} width={185} image={props.sectionData.proprietorSignatureImage} text={"Your Signature"}/>
                                 </Grid>
                             </Grid>
                         </Grid>
@@ -197,7 +199,7 @@ const AboutTheProprietorSection: FunctionComponent<IProps> = (props) => {
                     alignContent='flex-start'
                     alignItems='flex-start'
                     style={{
-                        paddingTop: DigitalResumeTheme.spacing(3),
+                        paddingTop: TransformHWTheme.spacing(3),
                         minWidth: "min-content"
                     }}
                 ><ProprietorAtAGlance source={'about-the-proprietor'} sectionData={props.sectionData.proprietorServices}/></Grid>}

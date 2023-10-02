@@ -62,7 +62,7 @@ export const useStyles = makeStyles((theme) => ({
 }))
 
 
-interface LoadingButtonProps {
+export interface LoadingButtonIProps {
     disabled?: boolean
     isRounded?: boolean
     clickHandler?: (e: any) => void
@@ -75,7 +75,7 @@ interface LoadingButtonProps {
     variant?: 'text' | 'outlined' | 'contained'
 }
 
-const LoadingButton: FunctionComponent<PropsWithChildren<LoadingButtonProps>> = (props) => {
+const LoadingButton: FunctionComponent<PropsWithChildren<LoadingButtonIProps>> = (props) => {
     const classes = useStyles({buttonGroupiness: props.groupiness, width: props.width, isRounded: props.isRounded})
     const getProgressContrastColor = () => {
         switch (props.color) {

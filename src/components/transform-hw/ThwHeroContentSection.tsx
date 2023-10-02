@@ -1,6 +1,6 @@
 import React, {FunctionComponent, useContext} from 'react'
 import {makeStyles, Theme} from '@material-ui/core/styles'
-import {Button, Grid, Typography} from '@material-ui/core'
+import {Button, Grid, MuiThemeProvider, Typography, useTheme} from '@material-ui/core'
 import {urlFor} from '../block-content-ui/static-pages/cmsStaticPagesClient'
 import {ThwHeroContentSectionType} from "../BlockContentTypes";
 import clsx from "clsx";
@@ -8,6 +8,7 @@ import PageContext from "../page-context/PageContext";
 import useCustomStyles from "../mackenzies-mind/pages/Styles";
 import DigitalResumeTheme, {rainbow, raleway} from "../../theme/DigitalResumeTheme";
 import firebaseAnalyticsClient from "../../utils/firebase/FirebaseAnalyticsClient";
+import TransformHWTheme from "../../theme/TransformHWTheme";
 
 interface IProps {
     sectionData: ThwHeroContentSectionType
@@ -33,7 +34,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
         backgroundColor: 'transparent',
     },
     contentBullets: {
-        borderLeft: `4px solid ${theme.palette.primary.main}`,
+        borderLeft: `4px solid ${TransformHWTheme.palette.primary.main}`,
         paddingLeft: '26px',
     }
 }))
@@ -51,11 +52,11 @@ const ThwHeroContentSection: FunctionComponent<IProps> = (props) => {
     }
 
     const pageContext = useContext(PageContext)
-
+const theme = useTheme();
     const classes = useStyles(classParameters)
     const globalClasses = useCustomStyles({})
     return (
-        <Grid container item className={classes.marketingBackground}>
+        <MuiThemeProvider theme={TransformHWTheme}><Grid container item className={classes.marketingBackground}>
             <Grid container item
                   className={clsx(globalClasses.fullSection, globalClasses.fullSectionOverlay)}>
             </Grid>
@@ -65,7 +66,7 @@ const ThwHeroContentSection: FunctionComponent<IProps> = (props) => {
                         <Grid container direction='column' style={{paddingLeft: "40px", paddingTop: "80px"}}>
                             <Grid item>
                                 <Typography variant='subtitle1'
-                                            style={{color: DigitalResumeTheme.palette.text.secondary}}>{props.sectionData.contentWelcomeMessage}</Typography>
+                                            style={{color: theme.palette.text.secondary}}>{props.sectionData.contentWelcomeMessage}</Typography>
                             </Grid>
                             <Grid item style={{marginBottom: "30px"}}>
                                 <Typography variant='h3'
@@ -91,7 +92,7 @@ const ThwHeroContentSection: FunctionComponent<IProps> = (props) => {
 
                 </Grid>
             </Grid>
-        </Grid>
+        </Grid></MuiThemeProvider>
     )
 }
 

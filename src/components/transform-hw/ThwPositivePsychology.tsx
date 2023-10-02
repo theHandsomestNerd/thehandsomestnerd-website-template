@@ -1,14 +1,13 @@
 import React, {FunctionComponent, useContext} from 'react'
 import {makeStyles, Theme} from '@material-ui/core/styles'
-import {Button, Grid, Typography} from '@material-ui/core'
+import {Button, Grid, MuiThemeProvider, Typography} from '@material-ui/core'
 import {urlFor} from '../block-content-ui/static-pages/cmsStaticPagesClient'
 import {ThwPositivePsychologySectionType} from "../BlockContentTypes";
 import DigitalResumeTheme from "../../theme/DigitalResumeTheme";
 import {v4 as uuidv4} from 'uuid'
-import mediaQueries from "../../utils/mediaQueries";
 import ResponsiveBullet from "../ResponsiveBullet";
-import PageContext from "../page-context/PageContext";
 import MediaQueriesContext from "../media-queries-context/MediaQueriesContext";
+import TransformHWTheme from "../../theme/TransformHWTheme";
 
 export const useStyles = makeStyles((theme: Theme) => ({
     root: {
@@ -29,14 +28,13 @@ interface IProps {
 }
 
 const PositivePsychologySection: FunctionComponent<IProps> = (props) => {
-    const classes = useStyles(DigitalResumeTheme)
+    const classes = useStyles(TransformHWTheme)
 
-    const pageContext = useContext(PageContext)
     const mediaQueriesContext = useContext(MediaQueriesContext)
 
 
     return (
-        <Grid container item className={classes.root} xs={11}>
+        <MuiThemeProvider theme={TransformHWTheme}><Grid container item className={classes.root} xs={11}>
             <Grid container item justifyContent='space-between' spacing={4}>
                 <Grid item xs={12} md={7} lg={8} container direction='column' spacing={2}>
                     <Grid container item>
@@ -64,7 +62,7 @@ const PositivePsychologySection: FunctionComponent<IProps> = (props) => {
                     </Grid>
                     <Grid container item>
                         <Grid item container className={classes.contentBullets} spacing={3}>
-                            {props.sectionData.contentBullets.map((reason: string) => {
+                            {props.sectionData.contentBullets?.map((reason: string) => {
                                 return <ResponsiveBullet key={uuidv4()} text={reason} bulletColor='secondary'/>
                             })}
                         </Grid>
@@ -79,14 +77,14 @@ const PositivePsychologySection: FunctionComponent<IProps> = (props) => {
                 </Grid>
                 <Grid item xs={12} md={5} lg={4} container justifyContent='flex-end' alignContent='center' alignItems='center'>
                     <Grid item style={{overflow: "hidden"}}>
-                        <img alt={props.sectionData.imageSrcAltText}
-
-                             src={urlFor(props.sectionData.imageSrc).width(mediaQueriesContext.mdUp ? 370 : 900).height(465).url() ?? ''}/>
-
+                        {!props.sectionData.imageSrc ? <img src={`https://placehold.co/465x${mediaQueriesContext.mdUp ? 370 : 900}`} alt={'placeholder'}/> :
+                            <img alt={props.sectionData.imageSrcAltText}
+                                 src={urlFor(props.sectionData.imageSrc ?? "").width(mediaQueriesContext.mdUp ? 370 : 900).height(465).url() ?? ''}/>
+                        }
                     </Grid>
                 </Grid>
             </Grid>
-        </Grid>
+        </Grid></MuiThemeProvider>
     )
 }
 

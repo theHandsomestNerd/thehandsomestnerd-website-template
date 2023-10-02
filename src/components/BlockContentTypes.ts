@@ -35,7 +35,7 @@ export type WhySwitchReasonType = {
 }
 
 export type WhySwitchSectionType = {
-    _id:string
+    _id: string
     imageSrc: SanityImageAsset
     imageAlt: string
     reasons: WhySwitchReasonType[]
@@ -54,10 +54,10 @@ export type CryptoInYourPocketSectionType = {
 }
 
 export type SanityImageAsset = SanityImageSource | {
-    _type:string,
+    _type: string,
     asset: {
-        _ref:string,
-        _type:"reference"
+        _ref: string,
+        _type: "reference"
     }
 }
 
@@ -79,29 +79,29 @@ export type ThwHeroContentSectionType = {
 export type ServiceAmenityTypeRef = SanityRef
 export type ServiceAmenityType = {
     name: string
-    imageSrc: SanityImageAsset
+    imageSrc?: SanityImageAsset
     title: string
     description: string
-}
+} & SanityDocumentFields
 
 
 export type ThwPositivePsychologySectionType = {
-    name: string
-    superTitle:string
-    contentTitle: string
-    contentText: string
-    contentBullets: string[]
-    imageSrc: SanityImageAsset
-    imageSrcAltText: string
-    ctaButtonText: string
-    ctaButtonLink: string
+    name?: string
+    superTitle?: string
+    contentTitle?: string
+    contentText?: string
+    contentBullets?: string[]
+    imageSrc?: SanityImageAsset
+    imageSrcAltText?: string
+    ctaButtonText?: string
+    ctaButtonLink?: string
 }
 
 export type ProprietorAtAGlanceType = {
     serviceName: string
-    serviceTitle:string
+    serviceTitle: string
     sessionList: string[]
-    dividerImage: SanityImageAsset
+    dividerImage?: SanityImageAsset
     amenitiesSectionTitle: string
     amenities: string[]
     ctaButtonText: string
@@ -110,14 +110,14 @@ export type ProprietorAtAGlanceType = {
 
 export type ThwAboutProprietorSectionType = {
     name: string
-    proprietorImage: SanityImageAsset
-    proprietorName:string
+    proprietorImage?: SanityImageAsset
+    proprietorName: string
     proprietorTitle: string
     proprietorServices: ProprietorAtAGlanceType
     contentTitle: string
     contentText: string[]
     proprietorImageAltText: string
-    proprietorSignatureImage: SanityImageAsset
+    proprietorSignatureImage?: SanityImageAsset
     proprietorSignatureImageAltText: string
     ctaButtonText: string
     ctaButtonLink: string
@@ -125,9 +125,10 @@ export type ThwAboutProprietorSectionType = {
 
 export type ThwMottoSectionType = {
     name: string
+    _type?: "transformMottoSection",
     contentText: string
     parallaxImage: SanityImageAsset
-    contentSuperTitle:string
+    contentSuperTitle: string
 }
 
 export type ThwServiceItemType = {
@@ -143,16 +144,16 @@ export type ThwServiceItemType = {
     educationPageTitle: string
     educationPageSlimHeroImage: SanityImageAsset
     extendedDescriptions: string[]
-    benefitsOfServiceTitle:string
-    benefitsOfServiceContents:string[]
-    benefitsOfServiceBullets:string[]
+    benefitsOfServiceTitle: string
+    benefitsOfServiceContents: string[]
+    benefitsOfServiceBullets: string[]
     serviceAmenities: ServiceAmenityType[]
     slug: SanitySlug
 }
 
 export type ThwServiceItemNoRefType = {
     name: string
-    imageSrc: SanityImageAsset
+    imageSrc?: SanityImageAsset
     imageSrcAltText: string
     contentTitle: string
     contentText: string
@@ -163,12 +164,12 @@ export type ThwServiceItemNoRefType = {
     educationPageTitle: string
     educationPageSlimHeroImage: SanityImageAsset
     extendedDescriptions: string[]
-    benefitsOfServiceTitle:string
-    benefitsOfServiceContents:string[]
-    benefitsOfServiceBullets:string[]
+    benefitsOfServiceTitle: string
+    benefitsOfServiceContents: string[]
+    benefitsOfServiceBullets: string[]
     serviceAmenities: ServiceAmenityType[]
     slug: SanitySlug
-}
+} & SanityDocumentFields
 
 
 export type ThwServicesSectionType = {
@@ -180,18 +181,18 @@ export type ThwServicesSectionType = {
     servicesList: ThwServiceItemNoRefType[]
 }
 export type ThwWhyChooseUsSectionType = {
-    name: string
-    sectionTitle: string
-    prosList: SanityRef[]
-    imageSrc: SanityImageAsset
-    imageSrcAltText: string
-    ctaButtonText: string
-    ctaButtonLink: string
+    name?: string
+    sectionTitle?: string
+    prosList?: ThwWhyChooseUsItemType[]
+    imageSrc?: SanityImageAsset
+    imageSrcAltText?: string
+    ctaButtonText?: string
+    ctaButtonLink?: string
 }
 
 export type ThwWhyChooseUsItemType = {
     name: string
-    imageSrc: SanityImageAsset
+    imageSrc?: SanityImageAsset
     imageSrcAltText: string
     contentTitle: string
     contentText: string
@@ -199,7 +200,7 @@ export type ThwWhyChooseUsItemType = {
 
 export type ThwContactUsSectionType = {
     name: string
-    bgImageSrc: SanityImageAsset
+    bgImageSrc?: SanityImageAsset
     lhsTitle: string
     lhsContentText: string
     phone?: string
@@ -208,7 +209,7 @@ export type ThwContactUsSectionType = {
     twitter?: string,
     linkedIn?: string,
     youtube?: string,
-    rhsTitle:string,
+    rhsTitle: string,
     formSubmitButtonText: string
 }
 
@@ -275,9 +276,12 @@ export type ResumeBioSectionType = {
 }
 
 
-
 export type ResumeSkill = {
     _id?: string
+    _createdAt?: string
+    _updatedAt?: string
+    _rev?: string
+    _type?: "ResumeSkill"
     name?: string
     title?: string
 }
@@ -296,23 +300,29 @@ export type ResumeSkillSectionType = {
 }
 
 
-
-
 export type ResumeExperience = {
     name?: string
+    _id?: string
+    _rev?: string
+    "_type": "ResumeExperience"
     title?: string
     companySubtitle?: string
     companyName?: string
     locationCity?: string
     locationState?: string
-    dateStart?: Date
-    dateEnd?: Date
+    dateStart?: Date | string
+    dateEnd?: Date | string
     description?: string
+    _createdAt?: string
+    _updatedAt?: string
     skillsUsed?: ResumeSkill[]
+
 }
 
 export type ResumeExperienceSectionType = {
     name?: string
+    _type?: "ResumeExperienceSection"
+
     title?: string
     introduction?: string
     experiences?: ResumeExperience[]
@@ -321,16 +331,18 @@ export type ResumeExperienceSectionType = {
 export type ResumeEducation = {
     name?: string
     institutionName?: string
-    qualification?:string
+    qualification?: string
     locationCity?: string
     locationState?: string
-    dateStart?: Date
-    dateEnd?: Date
+    dateStart?: Date | string
+    dateEnd?: Date | string
+    _type: "ResumeEducation"
     description?: string
 }
 
 export type ResumeEducationSectionType = {
     name?: string
+    "_type": "ResumeEducationSection"
     title?: string
     introduction?: string
     educationExperiences?: ResumeEducation[]
@@ -341,12 +353,14 @@ export type ResumeFeedback = {
     customerName?: string
     customerTitle?: string
     companyName?: string
-    qualification?:string
+    qualification?: string
     quote?: string
-    imageSrc?:SanityImageAsset
+    imageSrc?: SanityImageAsset
+    _type?: "ResumeFeedback"
 }
 
 export type ResumeFeedbackSectionType = {
+    _type?: "ResumeFeedbackSection"
     name?: string
     title?: string
     introduction?: string
@@ -354,22 +368,24 @@ export type ResumeFeedbackSectionType = {
 }
 
 export type ResumePortfolioItem = {
+    _type?: "ResumePortfolioItem"
     name?: string
     title?: string
     coverImage?: SanityImageAsset
-    inceptionDate?: Date
+    inceptionDate?: Date | string
     slug?: SanitySlug
-    skillsHighlighted?:ResumeSkill[]
+    skillsHighlighted?: ResumeSkill[]
     detailTitle?: string
     detailDescription?: string
     linkToProd?: string
     linkToDev?: string
-    imageGallery?:SanityImageAsset[]
+    imageGallery?: SanityImageAsset[]
 }
 
 export type ResumePortfolioSectionType = {
     name?: string
-    preTitle?:string
+    _type?: "ResumePortfolioSection"
+    preTitle?: string
     title?: string
     introduction?: string
     portfolioEntries?: ResumePortfolioItem[]
@@ -378,6 +394,7 @@ export type ResumePortfolioSectionType = {
 
 export type ResumeContactUsSectionType = {
     name: string
+    _type?: "ResumeContactUsSection"
     title?: string
     introduction?: string
     formSubmitButtonText: string
@@ -397,7 +414,7 @@ export type WebDevHeroContentSectionType = {
 export type WebDevStatsCounterSectionType = {
     name: string
     title: string
-    stats: {statValue: string, statContent:string}[]
+    stats: { statValue: string, statContent: string }[]
 }
 
 
@@ -414,7 +431,7 @@ export type WebDevAboutUsSectionType = {
 
 export type ServiceItemNoRefType = {
     name: string
-    imageSrc: SanityImageAsset
+    imageSrc?: SanityImageAsset
     imageSrcAltText: string
     contentTitle: string
     contentText: string
@@ -425,9 +442,9 @@ export type ServiceItemNoRefType = {
     educationPageTitle: string
     educationPageSlimHeroImage: SanityImageAsset
     extendedDescriptions: string[]
-    benefitsOfServiceTitle:string
-    benefitsOfServiceContents:string[]
-    benefitsOfServiceBullets:string[]
+    benefitsOfServiceTitle: string
+    benefitsOfServiceContents: string[]
+    benefitsOfServiceBullets: string[]
     serviceAmenities: ServiceAmenityType[]
     slug: SanitySlug
 }
@@ -446,10 +463,10 @@ export type WebDevTestimonialsType = {
     customerName?: string
     customerTitle?: string
     companyName?: string
-    qualification?:string
+    qualification?: string
     quoteSummary?: string
     quote?: string
-    imageSrc?:SanityImageAsset
+    imageSrc?: SanityImageAsset
 }
 
 export type WebDevTestimonialsSectionType = {
@@ -482,18 +499,26 @@ export type HowItWorksSectionType = {
 }
 
 export type DevelopmentHeaderSectionType = {
-    name:string
+    name: string
     headerMenuRef: SanityMenuContainer
 }
 export type HeaderSectionType = {
-    name:string
+    name: string
     headerMenuRef: SanityMenuContainer
 }
 export type DevelopmentFooterSectionType = {
-    name:string
+    name: string
     footerMenuRef: SanityMenuContainer
 }
 export type FooterSectionType = {
-    name:string
+    name: string
     footerMenuRef: SanityMenuContainer
+}
+
+export type SanityDocumentFields = {
+    _rev?: string
+    _createdAt?: string
+    _updatedAt?: string
+    _type?: string
+    _id?: string
 }

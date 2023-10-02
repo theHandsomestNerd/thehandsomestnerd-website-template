@@ -5,7 +5,10 @@ import PageContext from './PageContext';
 import SnackbarContext from "../modal-context/SnackbarContext";
 import {v4 as uuidv4} from 'uuid'
 import cmsClient from "../block-content-ui/cmsClient";
-type IProps = {};
+type IProps = {
+    page?: SanityTransformHwHomePage
+
+};
 
 type PageProviderState = {
     loading?: boolean,
@@ -26,7 +29,7 @@ const initialState: PageProviderState = {
     isRefetching: false,
     isPageError: false,
     error: undefined,
-    pageSlug: "",
+    pageSlug: "home",
     allServices: [],
     pageHeader: undefined,
     pageFooter: undefined,
@@ -90,8 +93,9 @@ const PageProvider: FunctionComponent<IProps & PropsWithChildren> = (
 
         }
     }, [state.analyticsId])
+
     React.useEffect(() => {
-        if ((state.pageSlug && state.pageSlug.length > 0)) {
+        if (!props.page && (state.pageSlug && state.pageSlug.length > 0)) {
             console.log("states pageslug changd", state.pageSlug)
             loadedPageQuery.refetch().then((resp) => {
                 console.log("reftecth?", resp)
@@ -100,7 +104,19 @@ const PageProvider: FunctionComponent<IProps & PropsWithChildren> = (
     }, [state.pageSlug])
 
     React.useEffect(() => {
-        if (loadedPageQuery.data) {
+        if (props.page && !state.page) {
+            console.log("page came in from storybook or test", props.page)
+            dispatch({
+                type: "LOAD_PAGE_COMPONENTS",
+                payload: {
+                    page: props.page,
+                }
+            })
+        }
+    }, [props.page, state.page])
+
+    React.useEffect(() => {
+        if (!props.page && loadedPageQuery.data) {
             console.log("context homepage data", loadedPageQuery.data)
             dispatch({
                 type: "LOAD_PAGE_COMPONENTS",

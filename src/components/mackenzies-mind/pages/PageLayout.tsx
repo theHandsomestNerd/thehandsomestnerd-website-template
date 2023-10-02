@@ -19,8 +19,6 @@ const PageLayout: FunctionComponent<IProps> = (props: IProps) => {
     const location = useLocation();
     const theme = useTheme()
 
-    const pageContext = useContext(PageContext)
-
     React.useEffect(() => {
         props.homePage.title && firebaseAnalyticsClient.analyticsPageView(
             location.pathname,
@@ -34,7 +32,7 @@ const PageLayout: FunctionComponent<IProps> = (props: IProps) => {
         {/*    <Header pageHeader={props.homePage.headerMenuRef}/>*/}
         {/*</Grid>*/}
         {props.homePage.isFabActivated && <Grid container item style={{position: "fixed", bottom: 0, right: 0, zIndex: 9999}}>
-            <BusinessCard menu={pageContext.page?.headerContent.content[0].headerMenuRef} anchor={'bottom'}/>
+            <BusinessCard homePage={props.homePage} anchor={'bottom'}/>
         </Grid>}
         <Grid container item>
             {props.homePage.headerContent && <Grid container item>

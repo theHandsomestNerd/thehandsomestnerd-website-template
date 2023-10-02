@@ -35,6 +35,7 @@ function App() {
     return (
         <BrowserRouter>
             <QueryClientProvider client={queryClient}>
+                <MuiThemeProvider theme={DigitalResumeTheme}>
                     <CssBaseline/>
                     <SnackbarProvider>
                         <MediaQueriesProvider>
@@ -63,6 +64,7 @@ function App() {
                             </ModalProvider>
                         </MediaQueriesProvider>
                     </SnackbarProvider>
+                </MuiThemeProvider>
             </QueryClientProvider>
         </BrowserRouter>
     )

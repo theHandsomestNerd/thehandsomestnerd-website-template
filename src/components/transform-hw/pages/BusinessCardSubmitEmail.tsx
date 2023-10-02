@@ -36,13 +36,13 @@ export const useStyles = makeStyles((theme: Theme) => ({
     },
 }))
 
-interface IProps {
+export interface SubmitEmailIProps {
     emailFieldText: string
     emailButtonText: string
     subscribeText: string
 }
 
-const BusinessCardSubmitEmail: FunctionComponent<IProps> = (props: IProps) => {
+const BusinessCardSubmitEmail: FunctionComponent<SubmitEmailIProps> = (props: SubmitEmailIProps) => {
     const theme = useTheme()
     const classes = useCustomStyles(DigitalResumeTheme)
     const myClasses = useStyles(DigitalResumeTheme)

@@ -3,7 +3,7 @@ const YearMonth = (date?:Date) =>{
     return new Date(date).toLocaleDateString('en-us', { year:"numeric", month:"short"})
 }
 
-const MonthYear = (date?:Date) =>{
+const MonthYear = (date?: Date | string | undefined) =>{
     if(!date) return ""
     return new Date(date).toLocaleDateString('en-us', { month:"short", year:"numeric"})
 }

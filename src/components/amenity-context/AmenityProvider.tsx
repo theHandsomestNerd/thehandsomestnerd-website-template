@@ -109,7 +109,7 @@ const AmenityProvider: FunctionComponent<IProps & PropsWithChildren> = (
                                   minWidth: "32px",
                                   backgroundSize: 'contain',
                                   backgroundPosition: 'center',
-                                  backgroundImage: `url(${urlFor(serviceAmenity.imageSrc).width(32).height(32).url()})`,
+                                  backgroundImage: `url(${serviceAmenity.imageSrc?urlFor(serviceAmenity.imageSrc).width(32).height(32).url():"https://placehold.co/32x32"})`,
                                   backgroundRepeat: "no-repeat",
 
                               }}
@@ -162,7 +162,7 @@ const AmenityProvider: FunctionComponent<IProps & PropsWithChildren> = (
                   alignItems='stretch' wrap={"nowrap"}>
                 <Grid style={{maxWidth: "72px"}} item xs={2} container justifyContent='center'
                       alignContent='center' alignItems='center'>
-                    <ColoredPng size={48} maskUrl={urlFor(amenity.imageSrc).url() ?? ""}
+                    <ColoredPng size={48} maskAsset={amenity.imageSrc}
                                 color={"white"}/>
                 </Grid>
                 <Grid item container alignItems='center' alignContent='center'>

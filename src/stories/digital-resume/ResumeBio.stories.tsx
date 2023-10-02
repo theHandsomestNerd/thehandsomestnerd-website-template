@@ -1,10 +1,10 @@
 import type {Meta, StoryObj} from '@storybook/react';
 import ResumeBio from "../../components/my-digital-resume/ResumeBio";
-import homePageResume from "../data/HomePage";
-import ResumeBioSectionData from "../data/ResumeBioSection";
+import homePageResume from "../data/HomePageData";
+import ResumeBioSectionData from "../data/ResumeBioSectionData";
 
 const meta: Meta<typeof ResumeBio> = {
-    title:"Resume/Resume Bio Section",
+    title:"Resume/Section/Resume Bio Section",
     component: ResumeBio,
 };
 
@@ -20,5 +20,9 @@ type Story = StoryObj<typeof ResumeBio>;
 
 const buttonText = "Button Text"
 export const Primary: Story = {
-    render: () => <ResumeBio sectionData={ResumeBioSectionData} homePage={homePageResume}></ResumeBio>,
+    args :{
+      sectionData: ResumeBioSectionData,
+        homePage: homePageResume
+    },
+    render: ({sectionData, homePage}) => <ResumeBio sectionData={sectionData} homePage={homePage}></ResumeBio>,
 };

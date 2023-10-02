@@ -74,7 +74,6 @@ const ThwServiceItem: FunctionComponent<IProps> = (props: IProps) => {
                                     style={{marginBottom: "48px"}}>{props.service.contentText}</Typography>
                     </Grid>
                 </Grid>
-                {/*//ts-ignore*/}
                 {props.showAmenities &&
                     <AmenitiesSection service={props.service} placeHolder={
 

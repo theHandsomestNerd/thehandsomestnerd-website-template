@@ -3,7 +3,7 @@ import LoadingButton from "../../components/loading-button/LoadingButton";
 import {ButtonGroupMemberEnum} from "../../components/loading-button/ButtonGroupMemberEnum";
 import {Grid} from "@material-ui/core";
 import ResumeSocialMedia from "../../components/my-digital-resume/ResumeSocialMedia";
-import homePageResume from "../data/HomePage";
+import homePageResume from "../data/HomePageData";
 
 
 const meta: Meta<typeof ResumeSocialMedia> = {
@@ -23,5 +23,8 @@ type Story = StoryObj<typeof ResumeSocialMedia>;
 
 const buttonText = "Button Text"
 export const Primary: Story = {
-    render: () => <ResumeSocialMedia homePage={homePageResume}></ResumeSocialMedia>,
+    args:{
+        homePage:homePageResume
+    },
+    render: ({homePage}) => <ResumeSocialMedia homePage={homePage}></ResumeSocialMedia>,
 };
