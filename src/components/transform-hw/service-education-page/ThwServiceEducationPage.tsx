@@ -11,6 +11,7 @@ import OtherServices from "./OtherServices";
 import {v4 as uuidv4} from 'uuid'
 import PageContext from "../../page-context/PageContext";
 import MediaQueriesContext from "../../media-queries-context/MediaQueriesContext";
+import imagePlaceholderClient from "../../../utils/imagePlaceholderClient";
 
 export const useStyles = makeStyles((theme: Theme) => ({
     root: {
@@ -151,7 +152,7 @@ const ThwServiceEducationPage: FunctionComponent<IProps> = (props) => {
                                                 // backgroundColor: "red",
                                                 backgroundRepeat: "no-repeat",
                                                 backgroundPosition: "center",
-                                                backgroundImage: `url(${urlFor(serviceAmenity.imageSrc).url()})`
+                                                backgroundImage: `url(${imagePlaceholderClient.placeholderOrImage(serviceAmenity.imageSrc)})`
                                             }}
                                             container>
 
