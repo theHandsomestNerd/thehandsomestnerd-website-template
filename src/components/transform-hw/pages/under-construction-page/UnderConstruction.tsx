@@ -1,5 +1,5 @@
 import React, {FunctionComponent, useEffect, useState} from 'react'
-import {Grid, Typography, useMediaQuery, useTheme} from '@material-ui/core'
+import {Grid, Typography, useMediaQuery, useTheme} from '@mui/material'
 import useCustomStyles from "../../../mackenzies-mind/pages/Styles";
 import DigitalResumeTheme, {COLORS, raleway, ralewayBold} from "../../../../theme/DigitalResumeTheme";
 import CountdownToLaunch from "./CountdownToLaunch";
@@ -21,8 +21,8 @@ const UnderConstruction: FunctionComponent<IProps> = (props) => {
     const [cmsPageData, setCmsPageData] = useState<SanityUnderConstructionPageType>()
     const classes = useCustomStyles({bgImage: urlFor(cmsPageData?.bgImage ?? "").url()})
     const theme = useTheme()
-    const smDown = useMediaQuery(theme.breakpoints.down('sm'))
-    const xsDown = useMediaQuery(theme.breakpoints.down('xs'))
+    const smDown = useMediaQuery(theme.breakpoints.down('lg'))
+    const xsDown = useMediaQuery(theme.breakpoints.down('md'))
 
     const [releaseDate, setReleaseDate] = useState<Date>()
 

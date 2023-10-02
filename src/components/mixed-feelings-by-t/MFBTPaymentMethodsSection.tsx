@@ -1,6 +1,7 @@
 import React, {FunctionComponent, useContext} from 'react'
-import {makeStyles, Theme} from '@material-ui/core/styles'
-import {Grid, Typography} from '@material-ui/core'
+import { Theme } from '@mui/material/styles';
+import makeStyles from '@mui/styles/makeStyles';
+import {Grid, Typography} from '@mui/material'
 import MixedFeelingsByTTheme from "../../theme/MixedFeelingsByTTheme";
 import ImageWIthButtonOverlay from "../image-with-button-overlay/ImageWithButtonOverlay";
 import MediaQueriesContext from "../media-queries-context/MediaQueriesContext";

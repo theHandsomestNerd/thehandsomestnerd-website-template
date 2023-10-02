@@ -4,7 +4,7 @@
 // it would also block other html elements causing that mark to line break
 import React, {PropsWithChildren} from 'react'
 import {useCommonStyles} from './CommonStyles'
-import {Grid, Typography} from '@material-ui/core'
+import {Grid, Typography} from '@mui/material'
 import DigitalResumeTheme from "../../../../theme/DigitalResumeTheme";
 
 export type TypographyVariantType =

@@ -1,13 +1,14 @@
 import React, {CSSProperties, FunctionComponent, useContext} from 'react'
 import {v4 as uuidv4} from 'uuid'
-import {makeStyles, Theme} from "@material-ui/core/styles"
-import {Grid} from '@material-ui/core'
+import { Theme } from "@mui/material/styles";
+import makeStyles from '@mui/styles/makeStyles';
+import {Grid} from '@mui/material'
 import HeaderMenuItemButton from "../transform-hw/HeaderMenuItemButton";
 import PopupStateWrapper from "./PopupStateWrapper";
 import {SanityMenuContainer, SanityMenuGroup, SanityMenuItem} from "../../common/sanityIo/Types";
 import PageContext from "../page-context/PageContext";
 import MediaQueriesContext from "../media-queries-context/MediaQueriesContext";
-import {GridJustification} from "@material-ui/core/Grid/Grid";
+import {GridJustification} from "@mui/material/Grid/Grid";
 
 
 export const useStyles = makeStyles((theme: Theme) => ({}))

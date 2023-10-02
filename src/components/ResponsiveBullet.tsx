@@ -1,8 +1,8 @@
 import React, {FunctionComponent, ReactNode} from 'react'
-import {Grid, Typography} from '@material-ui/core'
-import {Check, FormatListBulleted} from "@material-ui/icons";
+import {Grid, Typography} from '@mui/material'
+import {Check, FormatListBulleted} from "@mui/icons-material";
 import {v4 as uuidv4} from 'uuid'
-import {Variant} from "@material-ui/core/styles/createTypography";
+import { Variant } from '@mui/material/styles';
 
 
 interface IProps {

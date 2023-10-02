@@ -1,6 +1,6 @@
 import React, {FunctionComponent, PropsWithChildren, useMemo,} from 'react';
 import SnackbarContext from './SnackbarContext';
-import {Grid, Snackbar} from "@material-ui/core";
+import {Grid, Snackbar} from "@mui/material";
 import Countdown from "react-countdown";
 import SecondsCountdownButton from "./SecondsCountdownButton";
 

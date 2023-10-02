@@ -1,6 +1,7 @@
 import React, {FunctionComponent, useContext} from 'react'
-import {makeStyles, Theme} from "@material-ui/core/styles"
-import {Grid, Typography} from '@material-ui/core'
+import { Theme } from "@mui/material/styles";
+import makeStyles from '@mui/styles/makeStyles';
+import {Grid, Typography} from '@mui/material'
 import {v4 as uuidv4} from 'uuid'
 import ThwServiceItem from "../ThwServiceItem";
 import DigitalResumeTheme from "../../../theme/DigitalResumeTheme";

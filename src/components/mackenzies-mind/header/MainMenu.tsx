@@ -1,7 +1,9 @@
 import React, {FunctionComponent, useContext, useState} from 'react'
-import {makeStyles, Theme} from "@material-ui/core/styles"
-import {Button, createStyles, Divider, Drawer, Grid, List, ListItem, ListItemText} from '@material-ui/core'
-import {Close, Menu} from "@material-ui/icons";
+import { Theme } from "@mui/material/styles";
+import makeStyles from '@mui/styles/makeStyles';
+import { Button, Divider, Drawer, Grid, List, ListItem, ListItemText } from '@mui/material';
+import createStyles from '@mui/styles/createStyles';
+import {Close, Menu} from "@mui/icons-material";
 import DigitalResumeTheme from "../../../theme/DigitalResumeTheme";
 import MainMenuSubMenu from "./MainMenuSubMenu";
 import {MainMenuAnchorType, SanityMenuContainer, SanityMenuGroup, SanityMenuItem} from "../../../common/sanityIo/Types";

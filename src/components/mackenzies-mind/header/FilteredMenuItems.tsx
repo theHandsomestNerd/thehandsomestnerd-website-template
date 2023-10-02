@@ -1,8 +1,9 @@
 import React, {FunctionComponent, useContext} from 'react'
 import {v4 as uuidv4} from 'uuid'
-import {makeStyles, Theme} from "@material-ui/core/styles"
-import {Button, Grid, Popover, Typography} from '@material-ui/core'
-import {ArrowDropDown} from "@material-ui/icons";
+import { Theme } from "@mui/material/styles";
+import makeStyles from '@mui/styles/makeStyles';
+import {Button, Grid, Popover, Typography} from '@mui/material'
+import {ArrowDropDown} from "@mui/icons-material";
 import DigitalResumeTheme, {COLORS} from "../../../theme/DigitalResumeTheme";
 import SubMenu from "./SubMenu";
 import {SanityMenuGroup, SanityMenuItem} from "../../../common/sanityIo/Types";

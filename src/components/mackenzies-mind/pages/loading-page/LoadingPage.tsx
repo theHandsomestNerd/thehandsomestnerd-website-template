@@ -1,4 +1,5 @@
-import {CircularProgress, Grid, makeStyles, Theme, Typography, useTheme} from '@material-ui/core'
+import { CircularProgress, Grid, Theme, Typography, useTheme } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import React, {FunctionComponent} from 'react'
 import DigitalResumeTheme, {raleway} from "../../../../theme/DigitalResumeTheme";
 import useCustomStyles from "../Styles";

@@ -1,6 +1,6 @@
 import React, {FunctionComponent, PropsWithChildren, useContext, useMemo, useReducer,} from 'react';
 import {ServiceAmenityType} from "../BlockContentTypes";
-import {Grid, ListItem, ListItemIcon, ListItemText, Typography} from "@material-ui/core";
+import {Grid, ListItem, ListItemIcon, ListItemText, Typography} from "@mui/material";
 import {v4 as uuidv4} from "uuid";
 import ToolTipWrap from "../transform-hw/ToolTipWrap";
 import {urlFor} from "../block-content-ui/static-pages/cmsStaticPagesClient";
@@ -40,7 +40,7 @@ const QrCodeProvider: FunctionComponent<IProps & PropsWithChildren> = (
         </div>
         </Grid>
 
-        snackbarContext.openSnackbar && await snackbarContext.openSnackbar(snack)
+        snackbarContext.openSnackbar && (await snackbarContext.openSnackbar(snack))
     }
 
     const newValue = useMemo(

@@ -1,5 +1,5 @@
 import React, {FunctionComponent, useContext, useState} from 'react'
-import {Button, Grid, List, ListItem, Typography} from '@material-ui/core'
+import {Button, Grid, List, ListItem, Typography} from '@mui/material'
 import {v4 as uuidv4} from 'uuid'
 import {SanityMenuGroup, SanityMenuItem} from "../../../common/sanityIo/Types";
 import DigitalResumeTheme from "../../../theme/DigitalResumeTheme";

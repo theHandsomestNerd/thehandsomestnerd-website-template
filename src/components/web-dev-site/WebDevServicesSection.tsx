@@ -1,10 +1,26 @@
 import React, {FunctionComponent} from 'react'
-import {makeStyles, MuiThemeProvider, Theme} from '@material-ui/core/styles'
-import {Grid, Typography} from '@material-ui/core'
+import { Theme, ThemeProvider, StyledEngineProvider } from '@mui/material/styles';
+import makeStyles from '@mui/styles/makeStyles';
+import {Grid, Typography} from '@mui/material'
 import {PortfolioSectionType, ThwServiceItemNoRefType} from "../BlockContentTypes";
 import WebDevSiteTheme, {elainSansExtraBold, raleway} from "../../theme/WebDevSiteTheme";
 import WebDevServiceItem from "./WebDevServiceItem";
 import {COLORS} from "../../theme/DigitalResumeTheme";
+
+
+
+declare module '@mui/styles/defaultTheme' {
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface
+  interface DefaultTheme extends Theme {}
+}
+
+
+
+declare module '@mui/styles/defaultTheme' {
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface
+  interface DefaultTheme extends Theme {}
+}
+
 
 export const useStyles = makeStyles((theme: Theme) => ({
     root: {
@@ -29,39 +45,42 @@ const WebDevServicesSection: FunctionComponent<IProps> = (props) => {
     const classes = useStyles()
 
     return (
-        <MuiThemeProvider theme={WebDevSiteTheme}>
-            <Grid container item className={classes.root} xs={12} justifyContent='center'>
-                <Grid container item spacing={2} xs={11}>
-                    <Grid container item>
-                        <Grid item container>
-                            <Typography variant='subtitle2'
-                                        color='secondary'
-                                        style={{color: COLORS.AQUA}}
-                            >{props.sectionData?.contentPreTitle}</Typography>
-                        </Grid>
-                        <Grid item container wrap='nowrap'>
-                            <Grid item>
-                                <Typography color='primary' variant='h2' align='center'
-                                            style={{...elainSansExtraBold}}
-                                            display='inline'>{props.sectionData?.contentTitle}</Typography>
+        <StyledEngineProvider injectFirst>
+            <ThemeProvider theme={WebDevSiteTheme}>
+                <Grid container item className={classes.root} xs={12} justifyContent='center'>
+                    <Grid container item spacing={2} xs={11}>
+                        <Grid container item>
+                            <Grid item container>
+                                <Typography variant='subtitle2'
+                                            color='secondary'
+                                            style={{color: COLORS.AQUA}}
+                                >{props.sectionData?.contentPreTitle}</Typography>
+                            </Grid>
+                            <Grid item container wrap='nowrap'>
+                                <Grid item>
+                                    <Typography color='primary' variant='h2' align='center'
+                                                style={{...elainSansExtraBold}}
+                                                display='inline'>{props.sectionData?.contentTitle}</Typography>
+                                </Grid>
                             </Grid>
                         </Grid>
-                    </Grid>
-                    <Grid item container>
-                        {props.sectionData?.contentTexts?.map((segment: string, index: number) => (
-                            <Grid item key={index}>
-                                <Typography variant='body1' color='primary' gutterBottom style={{...raleway}}>{segment}</Typography>
-                            </Grid>))}
-                    </Grid>
-                    <Grid item container>
-                        {props.sectionData?.servicesList?.map((service: ThwServiceItemNoRefType, index: number) => {
-                            return <WebDevServiceItem showAmenities key={index} index={index} service={service}/>
-                        })}
+                        <Grid item container>
+                            {props.sectionData?.contentTexts?.map((segment: string, index: number) => (
+                                <Grid item key={index}>
+                                    <Typography variant='body1' color='primary' gutterBottom
+                                                style={{...raleway}}>{segment}</Typography>
+                                </Grid>))}
+                        </Grid>
+                        <Grid item container>
+                            {props.sectionData?.servicesList?.map((service: ThwServiceItemNoRefType, index: number) => {
+                                return <WebDevServiceItem showAmenities key={index} index={index} service={service}/>
+                            })}
+                        </Grid>
                     </Grid>
                 </Grid>
-            </Grid>
-        </MuiThemeProvider>
-    )
+            </ThemeProvider>
+        </StyledEngineProvider>
+    );
 }
 
 export default WebDevServicesSection

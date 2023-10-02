@@ -4,8 +4,23 @@
 // it would also block other html elements causing that mark to line break
 import React, {PropsWithChildren} from 'react'
 import {useCommonStyles} from './CommonStyles'
-import {CssBaseline, MuiThemeProvider, Typography} from '@material-ui/core'
+import { CssBaseline, ThemeProvider, Theme, StyledEngineProvider, Typography } from '@mui/material';
 import DigitalResumeTheme from "../../theme/DigitalResumeTheme";
+
+
+
+declare module '@mui/styles/defaultTheme' {
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface
+  interface DefaultTheme extends Theme {}
+}
+
+
+
+declare module '@mui/styles/defaultTheme' {
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface
+  interface DefaultTheme extends Theme {}
+}
+
 
 export type TypographyVariantType =
   'inherit'
@@ -45,8 +60,12 @@ export const KeystrokeRender: React.FunctionComponent<PropsWithChildren> = (prop
 }
 
 export const TextColorRender: React.FunctionComponent<PropsWithChildren> = (props, color) => {
-  return <MuiThemeProvider theme={DigitalResumeTheme}><CssBaseline/><span
-    style={{color: color}}>{props.children}</span></MuiThemeProvider>
+  return (
+    <StyledEngineProvider injectFirst>
+      <ThemeProvider theme={DigitalResumeTheme}><CssBaseline/><span
+        style={{color: color}}>{props.children}</span></ThemeProvider>
+    </StyledEngineProvider>
+  );
 }
 
 export const UnderlineRender: React.FunctionComponent<PropsWithChildren> = (props, color) => {

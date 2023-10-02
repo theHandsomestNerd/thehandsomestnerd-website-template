@@ -1,6 +1,7 @@
 import React, {FunctionComponent, useContext} from 'react'
-import {makeStyles, Theme} from '@material-ui/core/styles'
-import {Grid, Typography} from '@material-ui/core'
+import { Theme } from '@mui/material/styles';
+import makeStyles from '@mui/styles/makeStyles';
+import {Grid, Typography} from '@mui/material'
 import {ThwServiceItemNoRefType, ThwServicesSectionType} from "../BlockContentTypes";
 import ThwServiceItem from "./ThwServiceItem";
 import PageContext from "../page-context/PageContext";
@@ -8,7 +9,7 @@ import PageContext from "../page-context/PageContext";
 export const useStyles = makeStyles((theme: Theme) => ({
     root: {
         padding: theme.spacing(6),
-        [theme.breakpoints.down('xs')]: {
+        [theme.breakpoints.down('md')]: {
             padding: theme.spacing(5, 2, 5)
         },
         minHeight: 'max-content',

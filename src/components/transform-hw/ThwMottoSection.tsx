@@ -1,6 +1,6 @@
 import React, {FunctionComponent, useContext} from 'react'
 import {makeStyles, Theme} from '@material-ui/core/styles'
-import {Grid, MuiThemeProvider, Typography} from '@material-ui/core'
+import {Grid, MuiThemeProvider, ThemeProvider, Typography} from '@material-ui/core'
 import {urlFor} from '../block-content-ui/static-pages/cmsStaticPagesClient'
 import {ThwMottoSectionType} from "../BlockContentTypes";
 import {Parallax} from 'react-parallax';
@@ -33,7 +33,7 @@ const ThwMottoSection: FunctionComponent<IProps> = (props) => {
     const mediaQueriesContext = useContext(MediaQueriesContext)
 
     return (
-        <MuiThemeProvider theme={TransformHWTheme}><Parallax blur={1}
+        <ThemeProvider theme={TransformHWTheme}><Parallax blur={1}
                                                              bgImage={urlFor(props.sectionData.parallaxImage).url() ?? undefined}
                                                              bgImageAlt="the cat"
                                                              strength={600}>
@@ -54,7 +54,7 @@ const ThwMottoSection: FunctionComponent<IProps> = (props) => {
                     </Typography>
                 </Grid>
             </Grid>
-        </Parallax></MuiThemeProvider>
+        </Parallax></ThemeProvider>
     )
 }
 

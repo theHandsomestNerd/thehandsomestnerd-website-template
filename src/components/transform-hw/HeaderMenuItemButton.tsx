@@ -1,8 +1,9 @@
 import React, {CSSProperties, FunctionComponent, useContext} from 'react'
-import {Button, Typography} from '@material-ui/core'
+import {Button, Typography} from '@mui/material'
 import DigitalResumeTheme, {COLORS} from "../../theme/DigitalResumeTheme";
 import {SanityMenuItem} from "../../common/sanityIo/Types";
-import {makeStyles, Theme} from "@material-ui/core/styles";
+import { Theme } from "@mui/material/styles";
+import makeStyles from '@mui/styles/makeStyles';
 import ModalContext from "../snackbar-context/ModalContext";
 
 const useStyles = makeStyles((theme: Theme) => ({

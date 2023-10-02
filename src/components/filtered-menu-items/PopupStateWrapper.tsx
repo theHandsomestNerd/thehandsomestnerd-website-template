@@ -1,11 +1,12 @@
 import React, {FunctionComponent} from 'react'
-import {Button, Grid, Popover, Typography} from '@material-ui/core'
+import {Button, Grid, Popover, Typography} from '@mui/material'
 import DigitalResumeTheme from "../../theme/DigitalResumeTheme";
 
 import PopupState, {bindPopover, bindTrigger} from "material-ui-popup-state";
-import {ArrowDropDown} from "@material-ui/icons";
+import {ArrowDropDown} from "@mui/icons-material";
 import {SanityMenuGroup} from "../../common/sanityIo/Types";
-import {makeStyles, Theme} from "@material-ui/core/styles";
+import { Theme } from "@mui/material/styles";
+import makeStyles from '@mui/styles/makeStyles';
 import SubMenu from "../mackenzies-mind/header/SubMenu";
 
 

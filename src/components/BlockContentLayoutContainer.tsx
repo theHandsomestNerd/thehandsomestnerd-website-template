@@ -1,6 +1,6 @@
 import React, {FunctionComponent} from 'react'
 import BlockContent from '@sanity/block-content-to-react'
-import {Card, Grid, Link} from '@material-ui/core'
+import {Card, Grid, Link} from '@mui/material'
 import sanityClient from '../sanityClient'
 import {blockSerializers} from '../common/sanityIo/BlockContentRenderer'
 import {

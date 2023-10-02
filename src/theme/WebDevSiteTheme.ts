@@ -1,4 +1,4 @@
-import {createTheme} from '@material-ui/core'
+import {adaptV4Theme, createTheme} from '@mui/material';
 import ElaineSans from './common/fonts/elaine-sans/elaineSans-extrabold.ttf'
 import Raleway from './common/fonts/Raleway/variable/TTF/Raleway-VF.ttf'
 import RalewayBold from './common/fonts/Raleway/static/TTF/Raleway-Bold.ttf'
@@ -59,7 +59,7 @@ export const rainbow: FontFace = {
 const fonts = [ 'Elaine Sans', 'Raleway'].join(',')
 
 
-const WebDevSiteTheme = createTheme({
+const WebDevSiteTheme = createTheme(adaptV4Theme({
     breakpoints: {
         values: {
             xs: 0,
@@ -361,6 +361,6 @@ const WebDevSiteTheme = createTheme({
             // }
         }
     },
-})
+}))
 
 export default WebDevSiteTheme

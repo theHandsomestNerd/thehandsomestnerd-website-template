@@ -1,10 +1,10 @@
 import React, {FunctionComponent, PropsWithChildren, useContext, useMemo, useRef,} from 'react';
-import {Grid, IconButton, List, ListItem, ListItemText, Modal, Typography, useTheme} from "@material-ui/core";
+import {Grid, IconButton, List, ListItem, ListItemText, Modal, Typography, useTheme} from "@mui/material";
 import ModalContext from './ModalContext';
 import {SanityModalType, TextElementType} from "../../common/sanityIo/Types";
 import ColoredPng from "../colored-png/ColoredPng";
 import {urlFor} from "../block-content-ui/static-pages/cmsStaticPagesClient";
-import {ArrowDropDown, Close} from "@material-ui/icons";
+import {ArrowDropDown, Close} from "@mui/icons-material";
 import MediaQueriesContext from "../media-queries-context/MediaQueriesContext";
 import LoadingButton from "../loading-button/LoadingButton";
 import {useIsVerticalOverflow} from "../../utils/useIsVerticalOverflow";
@@ -73,8 +73,11 @@ const ModalProvider: FunctionComponent<IProps & PropsWithChildren> = (
                             position: "relative"
                         }} justifyContent='center' alignContent={'flex-start'}>
                             <Grid container item justifyContent='flex-end' style={{position: "absolute"}}>
-                                <IconButton color='primary' onClick={() => setModalOpen(false)}
-                                            style={{zIndex: 3, margin: theme.spacing(2.5, 2.5, 0, 0)}}>
+                                <IconButton
+                                    color='primary'
+                                    onClick={() => setModalOpen(false)}
+                                    style={{zIndex: 3, margin: theme.spacing(2.5, 2.5, 0, 0)}}
+                                    size="large">
 
                                     <Close color={'secondary'} fontSize='large'/>
                                 </IconButton>

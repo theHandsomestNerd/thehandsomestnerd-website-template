@@ -1,18 +1,19 @@
 import React, {FunctionComponent, useContext, useState} from 'react'
-import {makeStyles, Theme} from "@material-ui/core/styles"
+import { Theme, ThemeProvider, StyledEngineProvider } from "@mui/material/styles";
+import makeStyles from '@mui/styles/makeStyles';
 import {
     Avatar,
     Button,
-    createStyles,
     Divider,
     Drawer,
     Grid,
     List,
     ListItem,
     Typography,
-    useTheme
-} from '@material-ui/core'
-import {Close, FileCopy} from "@material-ui/icons";
+    useTheme,
+} from '@mui/material';
+import createStyles from '@mui/styles/createStyles';
+import {Close, FileCopy} from "@mui/icons-material";
 import DigitalResumeTheme, {COLORS} from "../theme/DigitalResumeTheme";
 import ResumeSocialMedia from "./my-digital-resume/ResumeSocialMedia";
 import {urlFor} from "./block-content-ui/static-pages/cmsStaticPagesClient";
@@ -25,6 +26,23 @@ import SnackbarContext from "./modal-context/SnackbarContext";
 import BusinessCardSubmitEmail from "./transform-hw/pages/BusinessCardSubmitEmail";
 import firebaseAnalyticsClient from "../utils/firebase/FirebaseAnalyticsClient";
 import {useLocation} from "react-router";
+
+
+
+
+declare module '@mui/styles/defaultTheme' {
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface
+  interface DefaultTheme extends Theme {}
+}
+
+
+
+
+declare module '@mui/styles/defaultTheme' {
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface
+  interface DefaultTheme extends Theme {}
+}
+
 
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -314,50 +332,53 @@ const BusinessCard: FunctionComponent<MainMenuProps> = ({anchor,homePage}) => {
         </Grid>
     );
 
-    return (<Grid item container>
-            <Grid  item container justifyContent='flex-end' style={{padding: theme.spacing(2, 3)}}>
+    return (
+        <StyledEngineProvider injectFirst>
+            <ThemeProvider theme={DigitalResumeTheme}><Grid item container>
+                    <Grid  item container justifyContent='flex-end' style={{padding: theme.spacing(2, 3)}}>
 
-                <Button variant='contained' color='primary' onClick={toggleDrawer(anchor, true)}>
-                    <Grid container spacing={2} alignItems='center'>
-                        <Grid item>
-                            <Avatar style={{backgroundColor: "whitesmoke"}} src={urlFor(homePage.headerContent.content[0].headerMenuRef.logoImageSrc ?? "").url() ?? ""}/>
+                        <Button variant='contained' color='primary' onClick={toggleDrawer(anchor, true)}>
+                            <Grid container spacing={2} alignItems='center'>
+                                <Grid item>
+                                    <Avatar style={{backgroundColor: "whitesmoke"}} src={urlFor(homePage.headerContent.content[0].headerMenuRef.logoImageSrc ?? "").url() ?? ""}/>
 
-                        </Grid>
-                        <Grid item>
-                            <Typography color='secondary' variant='button'>Contact Info</Typography>
+                                </Grid>
+                                <Grid item>
+                                    <Typography color='secondary' variant='button'>Contact Info</Typography>
 
-                        </Grid>
+                                </Grid>
+                            </Grid>
+                        </Button>
                     </Grid>
-                </Button>
-            </Grid>
 
-            <Drawer
-                className={classes.drawer}
-                anchor={anchor} open={isDrawerOpen}
-                onClose={toggleDrawer(anchor, false)}
-            >
-                <Grid container alignItems='center' justifyContent='space-between'
-                      style={{
+                    <Drawer
+                        className={classes.drawer}
+                        anchor={anchor} open={isDrawerOpen}
+                        onClose={toggleDrawer(anchor, false)}
+                    >
+                        <Grid container alignItems='center' justifyContent='space-between'
+                              style={{
 
-                          position: "absolute",
-                          zIndex: 1000,
-                          paddingLeft: DigitalResumeTheme.spacing(4),
-                          paddingRight: DigitalResumeTheme.spacing(6),
-                      }}>
+                                  position: "absolute",
+                                  zIndex: 1000,
+                                  paddingLeft: DigitalResumeTheme.spacing(4),
+                                  paddingRight: DigitalResumeTheme.spacing(6),
+                              }}>
 
-                    {/*<Grid item xs={3}>*/}
-                    {/*    {menu.logoImageSrc && <Logo logoImageSrc={homePage.imgSrc}/>}*/}
-                    {/*</Grid>*/}
-                    <Grid item xs={1}><Button onClick={() => {
-                        setIsDrawerOpen(false)
-                    }}><Close color='primary' fontSize='large'/></Button></Grid>
-                </Grid>
-                <Grid container item justifyContent='center'>
-                    {list(anchor)}
-                </Grid>
-            </Drawer>
-        </Grid>
-    )
+                            {/*<Grid item xs={3}>*/}
+                            {/*    {menu.logoImageSrc && <Logo logoImageSrc={homePage.imgSrc}/>}*/}
+                            {/*</Grid>*/}
+                            <Grid item xs={1}><Button onClick={() => {
+                                setIsDrawerOpen(false)
+                            }}><Close color='primary' fontSize='large'/></Button></Grid>
+                        </Grid>
+                        <Grid container item justifyContent='center'>
+                            {list(anchor)}
+                        </Grid>
+                    </Drawer>
+                </Grid></ThemeProvider>
+        </StyledEngineProvider>
+    );
 }
 
 export default BusinessCard

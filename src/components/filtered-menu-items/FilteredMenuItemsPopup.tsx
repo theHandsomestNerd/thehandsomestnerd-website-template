@@ -1,5 +1,5 @@
 import React, {FunctionComponent} from 'react'
-import {Grid, Popover, PropTypes} from '@material-ui/core'
+import {Grid, Popover, PropTypes} from '@mui/material'
 
 import {v4 as uuidv4} from 'uuid'
 import {bindPopover} from "material-ui-popup-state";

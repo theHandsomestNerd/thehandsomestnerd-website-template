@@ -4,7 +4,7 @@ import {BrowserRouter, Navigate, Route, Routes} from "react-router-dom";
 import React from 'react';
 
 import {Preview} from '@storybook/react';
-import {CssBaseline, Grid, MuiThemeProvider} from "@material-ui/core";
+import { CssBaseline, Grid, ThemeProvider, Theme, StyledEngineProvider } from "@mui/material";
 import WebDevSiteTheme from "../src/theme/WebDevSiteTheme";
 import TransformHWTheme from "../src/theme/TransformHWTheme";
 import {withThemeFromJSXProvider} from "@storybook/addon-styling";
@@ -18,6 +18,14 @@ import AmenityProvider from "../src/components/amenity-context/AmenityProvider";
 import PageMux from "../src/components/mackenzies-mind/pages/PageMux";
 import FourOhFour from "../src/components/transform-hw/pages/error-page/FourOhFour";
 import {RoutesEnum} from "../src/App";
+
+
+declare module '@mui/styles/defaultTheme' {
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface
+  interface DefaultTheme extends Theme {}
+}
+
+
 //
 // export const parameters = {
 //     actions: {argTypesRegex: "^on[A-Z].*"},

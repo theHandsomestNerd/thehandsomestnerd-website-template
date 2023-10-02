@@ -1,6 +1,7 @@
 import React, {ChangeEvent, FunctionComponent, useState} from 'react'
-import {makeStyles, Theme} from "@material-ui/core/styles"
-import {Grid, TextField, Typography, useTheme} from '@material-ui/core'
+import { Theme } from "@mui/material/styles";
+import makeStyles from '@mui/styles/makeStyles';
+import {Grid, TextField, Typography, useTheme} from '@mui/material'
 import LoadingButton from "../../loading-button/LoadingButton";
 import {ButtonGroupMemberEnum} from "../../loading-button/ButtonGroupMemberEnum";
 import isEmail from "validator/lib/isEmail";

@@ -1,4 +1,4 @@
-import {Grid, Typography} from '@material-ui/core'
+import {Grid, Typography} from '@mui/material'
 import React, {FunctionComponent, useContext} from 'react'
 import DigitalResumeTheme from "../../../../theme/DigitalResumeTheme";
 import clsx from "clsx";

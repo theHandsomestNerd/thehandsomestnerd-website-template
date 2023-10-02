@@ -1,7 +1,7 @@
 import React, {FunctionComponent, useState} from 'react'
-import {Button, Typography} from '@material-ui/core'
+import {Button, Typography} from '@mui/material'
 import DigitalResumeTheme from "../../theme/DigitalResumeTheme";
-import {ArrowDropDown} from "@material-ui/icons";
+import {ArrowDropDown} from "@mui/icons-material";
 import {bindTrigger} from "material-ui-popup-state";
 import {SanityMenuGroup} from "../../common/sanityIo/Types";
 

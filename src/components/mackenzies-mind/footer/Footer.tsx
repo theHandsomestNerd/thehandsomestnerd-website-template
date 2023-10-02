@@ -1,6 +1,7 @@
 import React, {FunctionComponent} from 'react'
-import {makeStyles, Theme} from '@material-ui/core/styles'
-import {Grid} from '@material-ui/core'
+import { Theme } from '@mui/material/styles';
+import makeStyles from '@mui/styles/makeStyles';
+import {Grid} from '@mui/material'
 import FooterMenuContainer from './FooterMenuContainer'
 import {SanityMenuContainer, SanityTransformHwHomePage} from "../../../common/sanityIo/Types";
 import DigitalResumeTheme, {COLORS} from "../../../theme/DigitalResumeTheme";

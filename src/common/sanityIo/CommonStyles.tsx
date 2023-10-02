@@ -1,5 +1,7 @@
 // block renderers can return JSX Elements that are block or inline elements since they will be the top level element
-import {makeStyles, Theme} from '@material-ui/core/styles'
+import { Theme } from '@mui/material/styles';
+
+import makeStyles from '@mui/styles/makeStyles';
 
 export const useCommonStyles = makeStyles((theme: Theme) => ({
   layoutContainer: {

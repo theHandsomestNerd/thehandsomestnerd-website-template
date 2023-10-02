@@ -1,7 +1,9 @@
 import React, {FunctionComponent, useEffect, useState} from 'react'
-import {makeStyles, Theme} from '@material-ui/core/styles'
+import { Theme } from '@mui/material/styles';
 
-import {Grid, Link, Typography} from '@material-ui/core'
+import makeStyles from '@mui/styles/makeStyles';
+
+import {Grid, Link, Typography} from '@mui/material'
 import DigitalResumeTheme from "../../../theme/DigitalResumeTheme";
 import {SanityMenuGroup, SanityMenuItem} from "../../../common/sanityIo/Types";
 import {raleway} from "../../../theme/WebDevSiteTheme";

@@ -1,7 +1,7 @@
 import type {Meta, StoryObj} from '@storybook/react';
 import LoadingButton from "../../components/loading-button/LoadingButton";
 import {ButtonGroupMemberEnum} from "../../components/loading-button/ButtonGroupMemberEnum";
-import {Grid} from "@material-ui/core";
+import {Grid} from "@mui/material";
 import WebDevHeroContentSection from "../../components/web-dev-site/WebDevHeroContentSection";
 import WebDevHeroSectionData from "../data/WebDevHeroContentSectionData";
 import ThwHeroContentSection from "../../components/transform-hw/ThwHeroContentSection";

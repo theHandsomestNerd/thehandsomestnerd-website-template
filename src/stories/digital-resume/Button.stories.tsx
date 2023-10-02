@@ -1,7 +1,7 @@
 import type {Meta, StoryObj} from '@storybook/react';
 import LoadingButton, {LoadingButtonIProps} from "../../components/loading-button/LoadingButton";
 import {ButtonGroupMemberEnum} from "../../components/loading-button/ButtonGroupMemberEnum";
-import {Grid} from "@material-ui/core";
+import {Grid} from "@mui/material";
 import {PropsWithChildren} from "react";
 
 

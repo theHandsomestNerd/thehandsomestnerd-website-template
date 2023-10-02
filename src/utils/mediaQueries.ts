@@ -1,9 +1,9 @@
-import {useMediaQuery, useTheme} from "@material-ui/core";
+import {useMediaQuery, useTheme} from "@mui/material";
 
 
 const useSmDown = () => {
     const theme = useTheme()
-    const smDown = theme.breakpoints.down('sm')
+    const smDown = theme.breakpoints.down('lg')
 
     const smDownQuery = useMediaQuery(smDown)
     return smDownQuery
@@ -11,13 +11,13 @@ const useSmDown = () => {
 
 const useXsDown = () => {
     const theme = useTheme()
-    const xsDown = theme.breakpoints.down('xs')
+    const xsDown = theme.breakpoints.down('md')
     return useMediaQuery(xsDown)
 }
 
 const useMdDown = () => {
     const theme = useTheme()
-    const mdDown = theme.breakpoints.down('md')
+    const mdDown = theme.breakpoints.down('xl')
     return useMediaQuery(mdDown)
 }
 

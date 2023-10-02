@@ -1,6 +1,6 @@
 import React, {FunctionComponent, useContext} from 'react'
 import {makeStyles, Theme} from '@material-ui/core/styles'
-import {Button, Grid, MuiThemeProvider, Typography, useTheme} from '@material-ui/core'
+import {Button, Grid, MuiThemeProvider, ThemeProvider, Typography, useTheme} from '@material-ui/core'
 import {urlFor} from '../block-content-ui/static-pages/cmsStaticPagesClient'
 import {ThwHeroContentSectionType} from "../BlockContentTypes";
 import clsx from "clsx";
@@ -56,7 +56,7 @@ const theme = useTheme();
     const classes = useStyles(classParameters)
     const globalClasses = useCustomStyles({})
     return (
-        <MuiThemeProvider theme={TransformHWTheme}><Grid container item className={classes.marketingBackground}>
+        <ThemeProvider theme={TransformHWTheme}><Grid container item className={classes.marketingBackground}>
             <Grid container item
                   className={clsx(globalClasses.fullSection, globalClasses.fullSectionOverlay)}>
             </Grid>
@@ -92,7 +92,7 @@ const theme = useTheme();
 
                 </Grid>
             </Grid>
-        </Grid></MuiThemeProvider>
+        </Grid></ThemeProvider>
     )
 }
 

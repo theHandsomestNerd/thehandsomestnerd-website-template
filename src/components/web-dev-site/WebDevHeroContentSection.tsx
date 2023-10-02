@@ -1,5 +1,5 @@
 import React, {FunctionComponent, useContext} from 'react'
-import {makeStyles, Theme} from '@material-ui/core/styles'
+import {makeStyles, Theme, ThemeProvider} from '@material-ui/core/styles'
 import {Button, Grid, MuiThemeProvider, Typography, useTheme} from '@material-ui/core'
 import {urlFor} from '../block-content-ui/static-pages/cmsStaticPagesClient'
 import {ThwHeroContentSectionType, WebDevHeroContentSectionType} from "../BlockContentTypes";
@@ -48,7 +48,7 @@ const WebDevHeroContentSection: FunctionComponent<IProps> = (props) => {
     const classes = useStyles(classParameters)
     const globalClasses = useCustomStyles({})
     return (
-        <MuiThemeProvider theme={WebDevSiteTheme}>
+        <ThemeProvider theme={WebDevSiteTheme}>
         <Grid container item className={classes.marketingBackground} justifyContent='center'>
             <Grid container item
                   className={clsx(globalClasses.fullSection, globalClasses.fullSectionOverlay)}>
@@ -87,7 +87,7 @@ const WebDevHeroContentSection: FunctionComponent<IProps> = (props) => {
                 </Grid>
             </Grid>
         </Grid>
-        </MuiThemeProvider>
+        </ThemeProvider>
     )
 }
 

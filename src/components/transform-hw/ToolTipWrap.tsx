@@ -1,6 +1,7 @@
 import React, {FunctionComponent, PropsWithChildren, ReactElement, useContext} from 'react'
-import {makeStyles, Theme} from "@material-ui/core/styles"
-import {Grid, Tooltip, Typography} from '@material-ui/core'
+import { Theme } from "@mui/material/styles";
+import makeStyles from '@mui/styles/makeStyles';
+import {Grid, Tooltip, Typography} from '@mui/material'
 import {ServiceAmenityType} from "../BlockContentTypes";
 import MediaQueriesContext from "../media-queries-context/MediaQueriesContext";
 import AmenityContext from "../amenity-context/AmenityContext";

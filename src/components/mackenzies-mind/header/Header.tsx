@@ -1,6 +1,7 @@
 import React, {FunctionComponent, useContext} from 'react'
-import {makeStyles, Theme} from "@material-ui/core/styles"
-import {AppBar, Grid, Hidden, Typography} from '@material-ui/core'
+import { Theme } from "@mui/material/styles";
+import makeStyles from '@mui/styles/makeStyles';
+import {AppBar, Grid, Hidden, Typography} from '@mui/material'
 import DigitalResumeTheme, {COLORS, rainbow} from "../../../theme/DigitalResumeTheme";
 import MainMenu from "./MainMenu";
 import FilteredMenuItems from "../../filtered-menu-items/FilteredMenuItems";
@@ -41,7 +42,7 @@ const Header: FunctionComponent<HeaderProps> = (props) => {
                 </Grid>
                 <Grid item container xs={9} sm={10} md={11} justifyContent='space-between' alignItems='center' alignContent='center'>
                     {/*// @ts-ignore*/}
-                    <Hidden xsDown>
+                    <Hidden mdDown>
                         <Grid xs={4} md={10} lg={12} container item justifyContent='flex-end'
                               alignItems='center'
                               style={{
@@ -72,7 +73,7 @@ const Header: FunctionComponent<HeaderProps> = (props) => {
             </Grid>
             : <></>
         }</AppBar>
-    )
+    );
 }
 
 export default Header

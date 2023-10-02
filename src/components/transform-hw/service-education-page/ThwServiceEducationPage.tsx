@@ -1,6 +1,7 @@
 import React, {FunctionComponent, useContext} from 'react'
-import {makeStyles, Theme} from '@material-ui/core/styles'
-import {Box, Divider, Grid, Typography} from '@material-ui/core'
+import { Theme } from '@mui/material/styles';
+import makeStyles from '@mui/styles/makeStyles';
+import {Box, Divider, Grid, Typography} from '@mui/material'
 import {ServiceAmenityType, ThwServiceItemType} from "../../BlockContentTypes";
 import mediaQueries from "../../../utils/mediaQueries";
 import {urlFor} from "../../block-content-ui/static-pages/cmsStaticPagesClient";
@@ -15,7 +16,7 @@ import imagePlaceholderClient from "../../../utils/imagePlaceholderClient";
 
 export const useStyles = makeStyles((theme: Theme) => ({
     root: {
-        [theme.breakpoints.down('xs')]:{
+        [theme.breakpoints.down('md')]:{
         padding: theme.spacing(0, 2, 5)
         },
         padding: theme.spacing(0, 4, 6, 6),

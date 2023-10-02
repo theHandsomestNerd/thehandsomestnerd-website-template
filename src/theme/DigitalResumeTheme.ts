@@ -1,4 +1,4 @@
-import {createTheme} from '@material-ui/core';
+import { createTheme, adaptV4Theme } from '@mui/material';
 import BitterPro from './common/fonts/bitter_pro/fonts/ttf/BitterPro-Black.ttf';
 import Raleway from './common/fonts/Raleway/variable/TTF/Raleway-VF.ttf';
 import RalewayBold from './common/fonts/Raleway/static/TTF/Raleway-Bold.ttf';
@@ -88,7 +88,7 @@ export enum COLORS {
     AQUA="#12b3be"
 }
 
-const DigitalResumeTheme = createTheme({
+const DigitalResumeTheme = createTheme(adaptV4Theme({
     breakpoints: {
         values: {
             xs: 0,
@@ -372,6 +372,6 @@ const DigitalResumeTheme = createTheme({
             // }
         }
     }
-})
+}))
 
 export default DigitalResumeTheme

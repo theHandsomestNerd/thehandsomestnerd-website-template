@@ -1,7 +1,8 @@
 import React, {FunctionComponent, useContext} from 'react'
-import {makeStyles, Theme} from "@material-ui/core/styles"
-import {Grid, List} from '@material-ui/core'
-import {ArrowLeft, ArrowRight} from "@material-ui/icons";
+import { Theme } from "@mui/material/styles";
+import makeStyles from '@mui/styles/makeStyles';
+import {Grid, List} from '@mui/material'
+import {ArrowLeft, ArrowRight} from "@mui/icons-material";
 import DigitalResumeTheme from "../../theme/DigitalResumeTheme";
 import {ThwServiceItemNoRefType} from "../BlockContentTypes";
 import PageContext from "../page-context/PageContext";

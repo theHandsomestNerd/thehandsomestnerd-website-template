@@ -1,10 +1,11 @@
 import React, {FunctionComponent, useContext} from 'react'
-import {makeStyles, Theme} from "@material-ui/core/styles"
+import { Theme } from "@mui/material/styles";
+import makeStyles from '@mui/styles/makeStyles';
 import {SanityTransformHwHomePage} from "../../../common/sanityIo/Types";
 import PageContext from "../../page-context/PageContext";
 import {useParams} from 'react-router';
 import LoadingPage from "./loading-page/LoadingPage";
-import {Grid} from "@material-ui/core";
+import {Grid} from "@mui/material";
 import FourOhFour from "../../transform-hw/pages/error-page/FourOhFour";
 import UnderConstruction from "../../transform-hw/pages/under-construction-page/UnderConstruction";
 import PageLayout from "./PageLayout";

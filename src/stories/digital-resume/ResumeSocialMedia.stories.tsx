@@ -1,7 +1,7 @@
 import type {Meta, StoryObj} from '@storybook/react';
 import LoadingButton from "../../components/loading-button/LoadingButton";
 import {ButtonGroupMemberEnum} from "../../components/loading-button/ButtonGroupMemberEnum";
-import {Grid} from "@material-ui/core";
+import {Grid} from "@mui/material";
 import ResumeSocialMedia from "../../components/my-digital-resume/ResumeSocialMedia";
 import homePageResume from "../data/HomePageData";
 

@@ -1,6 +1,7 @@
 import React, {FunctionComponent, useContext} from 'react'
-import {makeStyles, Theme} from '@material-ui/core/styles'
-import {Chip, Grid, Typography} from '@material-ui/core'
+import { Theme } from '@mui/material/styles';
+import makeStyles from '@mui/styles/makeStyles';
+import {Chip, Grid, Typography} from '@mui/material'
 import {urlFor} from '../block-content-ui/static-pages/cmsStaticPagesClient'
 import {
     MfbtAboutProprietorSectionType,
@@ -11,7 +12,7 @@ import MixedFeelingsByTTheme from "../../theme/MixedFeelingsByTTheme";
 import ImageWIthButtonOverlay from "../image-with-button-overlay/ImageWithButtonOverlay";
 import LoadingButton from "../loading-button/LoadingButton";
 import ResponsiveBullet from "../ResponsiveBullet";
-import {FiberManualRecord} from "@material-ui/icons";
+import {FiberManualRecord} from "@mui/icons-material";
 import ColoredPng from "../colored-png/ColoredPng";
 import MediaQueriesContext from "../media-queries-context/MediaQueriesContext";
 import firebaseAnalyticsClient from "../../utils/firebase/FirebaseAnalyticsClient";

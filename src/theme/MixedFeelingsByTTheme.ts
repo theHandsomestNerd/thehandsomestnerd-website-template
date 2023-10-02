@@ -1,4 +1,4 @@
-import {createTheme} from '@material-ui/core'
+import { createTheme, adaptV4Theme } from '@mui/material';
 // import GrotescoLight from '../common/fonts/Grotesco/Grotesco-Web-Font/Grotesco-Light.ttf'
 // import Feixen from '../common/fonts/Studio Feixen Sans Writer/Web/StudioFeixenSansWriter-Regular.ttf'
 import Poppins from './common/fonts/Poppins/Poppins-Medium.ttf'
@@ -174,7 +174,7 @@ export enum COLORS {
     DARKGRAY = "#43424A",
 }
 
-const MixedFeelingsByTTheme = createTheme({
+const MixedFeelingsByTTheme = createTheme(adaptV4Theme({
     breakpoints: {
         values: {
             xs: 0,
@@ -435,6 +435,6 @@ const MixedFeelingsByTTheme = createTheme({
             // }
         }
     }
-})
+}))
 
 export default MixedFeelingsByTTheme

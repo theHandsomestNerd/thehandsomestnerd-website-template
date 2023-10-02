@@ -1,7 +1,8 @@
 import React, {FunctionComponent, useContext} from 'react'
-import {Divider, Grid, Typography, useTheme} from '@material-ui/core'
+import {Divider, Grid, Typography, useTheme} from '@mui/material'
 import FooterMenuGroup from './FooterMenuGroup'
-import {makeStyles, Theme} from '@material-ui/core/styles'
+import { Theme } from '@mui/material/styles';
+import makeStyles from '@mui/styles/makeStyles';
 import {SanityMenuContainer, SanityTransformHwHomePage} from "../../../common/sanityIo/Types";
 import DigitalResumeTheme, {COLORS, rainbow} from "../../../theme/DigitalResumeTheme";
 import PageContext from "../../page-context/PageContext";

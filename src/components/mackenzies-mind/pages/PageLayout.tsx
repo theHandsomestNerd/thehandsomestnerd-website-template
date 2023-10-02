@@ -1,5 +1,5 @@
 import React, {FunctionComponent, useContext} from 'react'
-import {Grid, Link, useTheme} from '@material-ui/core'
+import {Grid, Link, useTheme} from '@mui/material'
 import {SanityTransformHwHomePage} from "../../../common/sanityIo/Types";
 import BlockContentLayoutContainer from "../../BlockContentLayoutContainer";
 import firebaseAnalyticsClient from "../../../utils/firebase/FirebaseAnalyticsClient";

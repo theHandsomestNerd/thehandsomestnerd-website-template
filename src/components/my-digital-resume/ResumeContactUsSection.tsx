@@ -1,6 +1,6 @@
 import React, {FunctionComponent, useContext, useEffect, useState} from 'react'
 import {makeStyles, MuiThemeProvider, Theme} from "@material-ui/core/styles"
-import {Grid, TextField, Typography, useTheme, withStyles} from "@material-ui/core";
+import {Grid, TextField, ThemeProvider, Typography, useTheme, withStyles} from "@material-ui/core";
 import DigitalResumeTheme from "../../theme/DigitalResumeTheme";
 import {ResumeContactUsSectionType} from "../BlockContentTypes";
 import useCustomStyles from "../mackenzies-mind/pages/Styles";
@@ -187,7 +187,7 @@ const ResumeContactUsSection: FunctionComponent<ContactUsProps> = (props) => {
     const theme = useTheme()
 
     return (
-        <MuiThemeProvider theme={DigitalResumeTheme}>
+        <ThemeProvider theme={DigitalResumeTheme}>
         <Grid
             container
             item
@@ -299,6 +299,6 @@ const ResumeContactUsSection: FunctionComponent<ContactUsProps> = (props) => {
 
 
                 </Grid>
-            </Grid></Grid></MuiThemeProvider>)
+            </Grid></Grid></ThemeProvider>)
 }
 export default ResumeContactUsSection

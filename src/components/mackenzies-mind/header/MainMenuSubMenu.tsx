@@ -2,16 +2,17 @@ import React, {FunctionComponent, useContext} from 'react'
 import {
     Button,
     Collapse,
-    createStyles,
     Divider,
     List,
     ListItem,
     ListItemText,
     MenuItemTypeMap,
-    Typography
-} from '@material-ui/core'
-import {makeStyles, Theme} from "@material-ui/core/styles";
-import {ExpandLess, ExpandMore} from "@material-ui/icons";
+    Typography,
+} from '@mui/material';
+import createStyles from '@mui/styles/createStyles';
+import { Theme } from "@mui/material/styles";
+import makeStyles from '@mui/styles/makeStyles';
+import {ExpandLess, ExpandMore} from "@mui/icons-material";
 import DigitalResumeTheme from "../../../theme/DigitalResumeTheme";
 import {SanityMenuGroup} from "../../../common/sanityIo/Types";
 import ModalContext from "../../snackbar-context/ModalContext";

@@ -8,12 +8,31 @@ import {
   List,
   ListItem,
   ListItemIcon,
-  ListItemText, MuiThemeProvider, PropTypes,
-  Typography
-} from '@material-ui/core'
-import { FiberManualRecord } from '@material-ui/icons'
+  ListItemText,
+  ThemeProvider,
+  Theme,
+  StyledEngineProvider,
+  PropTypes,
+  Typography,
+} from '@mui/material';
+import { FiberManualRecord } from '@mui/icons-material'
 import { useCommonStyles } from './CommonStyles'
 import DigitalResumeTheme from "../../theme/DigitalResumeTheme";
+
+
+
+declare module '@mui/styles/defaultTheme' {
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface
+  interface DefaultTheme extends Theme {}
+}
+
+
+
+declare module '@mui/styles/defaultTheme' {
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface
+  interface DefaultTheme extends Theme {}
+}
+
 
 export const UtmLinkRender: React.FunctionComponent = (props: React.PropsWithChildren<{}> & BlockContentPropsType<LinkType>) => {
 

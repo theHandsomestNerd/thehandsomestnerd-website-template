@@ -1,5 +1,5 @@
 import React, {FunctionComponent} from 'react'
-import {Avatar, Grid, Link, Typography, useMediaQuery, useTheme} from '@material-ui/core'
+import {Avatar, Grid, Link, Typography, useMediaQuery, useTheme} from '@mui/material'
 import clsx from "clsx";
 import {COLORS} from "../../theme/DigitalResumeTheme";
 import CssFadeToColor from "../css-fade-to-color/CssFadeToColor";
@@ -17,8 +17,8 @@ interface IProps {
 const TheDrinkerySpecials: FunctionComponent<IProps> = (props) => {
     const classes = useCustomStyles({bgImage: bgImage})
     const theme = useTheme()
-    const smDown = useMediaQuery(theme.breakpoints.down('sm'))
-    const xsDown = useMediaQuery(theme.breakpoints.down('xs'))
+    const smDown = useMediaQuery(theme.breakpoints.down('lg'))
+    const xsDown = useMediaQuery(theme.breakpoints.down('md'))
 
     return (
         <Grid container className={clsx(xsDown ? classes.fullscreenPlus : classes.fullscreen, classes.fullScreenImage)}

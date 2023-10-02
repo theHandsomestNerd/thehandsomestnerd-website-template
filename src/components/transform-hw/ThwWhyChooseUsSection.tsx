@@ -1,12 +1,27 @@
 import React, {FunctionComponent, useContext} from 'react'
-import {makeStyles, Theme} from '@material-ui/core/styles'
-import {Divider, Grid, MuiThemeProvider, Typography} from '@material-ui/core'
+import { Theme, ThemeProvider, StyledEngineProvider } from '@mui/material/styles';
+import makeStyles from '@mui/styles/makeStyles';
+import {Divider, Grid, Typography} from '@mui/material'
 import {ThwWhyChooseUsSectionType} from "../BlockContentTypes";
 import DigitalResumeTheme from "../../theme/DigitalResumeTheme";
-import {urlFor} from "../block-content-ui/static-pages/cmsStaticPagesClient";
 import MediaQueriesContext from "../media-queries-context/MediaQueriesContext";
 import imagePlaceholderClient from "../../utils/imagePlaceholderClient";
 import TransformHWTheme from "../../theme/TransformHWTheme";
+
+
+
+declare module '@mui/styles/defaultTheme' {
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface
+  interface DefaultTheme extends Theme {}
+}
+
+
+
+declare module '@mui/styles/defaultTheme' {
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface
+  interface DefaultTheme extends Theme {}
+}
+
 
 export const useStyles = makeStyles((theme: Theme) => ({
     root: {
@@ -29,61 +44,63 @@ const ThwServicesSection: FunctionComponent<IProps> = (props) => {
     const mediaQueriesContext = useContext(MediaQueriesContext)
 
     return (
-        <MuiThemeProvider theme={TransformHWTheme}>
-            <Grid container item className={classes.root} xs={12}>
-                <Grid container item>
-                    {<Grid item container xs={12} md={5} style={{
-                        backgroundSize: "cover",
-                        backgroundPosition: "center",
-                        minHeight: "600px",
-                        backgroundImage: `url(${imagePlaceholderClient.placeholderOrImage(props.sectionData.imageSrc,600, 600)})`
-                    }}>
-                    </Grid>}
-                    <Grid item container alignItems='center' alignContent='center' justifyContent='center' xs={12}
-                          md={7}
-                          style={{padding: mediaQueriesContext.xsOnly ? TransformHWTheme.spacing(1.75, 1.5, 3) : TransformHWTheme.spacing(5, 4, 7)}}>
-                        <Grid item container style={{marginBottom: "24px"}}>
-                            <Typography display='inline' gutterBottom color='secondary' variant='h4'
-                                        align='center'>{props.sectionData.sectionTitle}</Typography>
-                            <Typography variant='h4'
-                                        color='secondary' display='inline'
-                                        style={{letterSpacing: "-.25em"}}>____</Typography>
-                        </Grid>
-                        <Grid item container spacing={2} xs={11}>
-                            {props.sectionData.prosList?.map((pro, index: number) => {
-                                return <Grid key={index} container item spacing={2}>
-                                    <Grid container item>
-                                        <Grid item container xs={3} style={{
-                                            backgroundSize: "contain",
-                                            minHeight: "145px",
-                                            backgroundPosition: 'center',
-                                            backgroundRepeat: 'no-repeat',
-                                            backgroundImage: `url(${imagePlaceholderClient.placeholderOrImage(pro.imageSrc,145,145)})`
-                                        }}>
+        <StyledEngineProvider injectFirst>
+            <ThemeProvider theme={TransformHWTheme}>
+                <Grid container item className={classes.root} xs={12}>
+                    <Grid container item>
+                        {<Grid item container xs={12} md={5} style={{
+                            backgroundSize: "cover",
+                            backgroundPosition: "center",
+                            minHeight: "600px",
+                            backgroundImage: `url(${imagePlaceholderClient.placeholderOrImage(props.sectionData.imageSrc, 600, 600)})`
+                        }}>
+                        </Grid>}
+                        <Grid item container alignItems='center' alignContent='center' justifyContent='center' xs={12}
+                              md={7}
+                              style={{padding: mediaQueriesContext.xsOnly ? TransformHWTheme.spacing(1.75, 1.5, 3) : TransformHWTheme.spacing(5, 4, 7)}}>
+                            <Grid item container style={{marginBottom: "24px"}}>
+                                <Typography display='inline' gutterBottom color='secondary' variant='h4'
+                                            align='center'>{props.sectionData.sectionTitle}</Typography>
+                                <Typography variant='h4'
+                                            color='secondary' display='inline'
+                                            style={{letterSpacing: "-.25em"}}>____</Typography>
+                            </Grid>
+                            <Grid item container spacing={2} xs={11}>
+                                {props.sectionData.prosList?.map((pro, index: number) => {
+                                    return <Grid key={index} container item spacing={2}>
+                                        <Grid container item>
+                                            <Grid item container xs={3} style={{
+                                                backgroundSize: "contain",
+                                                minHeight: "145px",
+                                                backgroundPosition: 'center',
+                                                backgroundRepeat: 'no-repeat',
+                                                backgroundImage: `url(${imagePlaceholderClient.placeholderOrImage(pro.imageSrc, 145, 145)})`
+                                            }}>
 
-                                        </Grid>
-                                        <Grid container item xs={9} justifyContent='center' alignContent='center'>
-                                            <Grid container item xs={11} direction='column'>
-                                                <Grid item container>
-                                                    <Typography gutterBottom variant='h6'
-                                                                color='textPrimary'>{pro.contentTitle}</Typography>
-                                                </Grid>
-                                                <Grid item container>
-                                                    <Typography variant='body1'
-                                                                color='secondary'>{pro.contentText}</Typography>
+                                            </Grid>
+                                            <Grid container item xs={9} justifyContent='center' alignContent='center'>
+                                                <Grid container item xs={11} direction='column'>
+                                                    <Grid item container>
+                                                        <Typography gutterBottom variant='h6'
+                                                                    color='textPrimary'>{pro.contentTitle}</Typography>
+                                                    </Grid>
+                                                    <Grid item container>
+                                                        <Typography variant='body1'
+                                                                    color='secondary'>{pro.contentText}</Typography>
+                                                    </Grid>
                                                 </Grid>
                                             </Grid>
                                         </Grid>
+                                        {index < (props.sectionData.prosList?.length ?? 0) - 1 &&
+                                            <Grid container item><Divider style={{width: "100%"}}></Divider></Grid>}
                                     </Grid>
-                                    {index < (props.sectionData.prosList?.length ?? 0) - 1 &&
-                                        <Grid container item><Divider style={{width: "100%"}}></Divider></Grid>}
-                                </Grid>
-                            })}
+                                })}
+                            </Grid>
                         </Grid>
                     </Grid>
-                </Grid>
-            </Grid></MuiThemeProvider>
-    )
+                </Grid></ThemeProvider>
+        </StyledEngineProvider>
+    );
 }
 
 export default ThwServicesSection

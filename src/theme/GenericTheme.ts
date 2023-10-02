@@ -122,7 +122,7 @@ export enum COLORS {
     TRANSPARENTWHITE = 'rgba(255,255,255,0.75)'
 }
 
-const TransformHWTheme = createTheme(adaptV4Theme({
+const GenericTheme = createTheme(adaptV4Theme({
     breakpoints: {
         values: {
             xs: 0,
@@ -271,11 +271,11 @@ const TransformHWTheme = createTheme(adaptV4Theme({
             }
         },
         MuiSnackbarContent:{
-          root:{
-              marginTop: "100px",
-              border: "3px solid white",
-              backgroundColor: 'rgba(16, 43, 136, .95) !important'
-          }
+            root:{
+                marginTop: "100px",
+                border: "3px solid white",
+                backgroundColor: 'rgba(16, 43, 136, .95) !important'
+            }
         },
         MuiFilledInput: {
             root: {
@@ -385,4 +385,4 @@ const TransformHWTheme = createTheme(adaptV4Theme({
     }
 }))
 
-export default TransformHWTheme
+export default GenericTheme

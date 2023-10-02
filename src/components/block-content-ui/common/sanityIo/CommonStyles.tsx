@@ -1,5 +1,6 @@
 // block renderers can return JSX Elements that are block or inline elements since they will be the top level element
-import {makeStyles, Theme} from '@material-ui/core/styles'
+import { Theme } from '@mui/material/styles';
+import makeStyles from '@mui/styles/makeStyles';
 import React from 'react'
 
 export const useCommonStyles = makeStyles((theme: Theme) => ({
@@ -64,7 +65,7 @@ export const useCommonStyles = makeStyles((theme: Theme) => ({
   },
   bulletIconContainer: {
     // PS: Need !important tag because webpack build loads CSS in different order on production vs local
-    marginTop: `${theme.spacing(1.5)}px !important`,
+    marginTop: `${theme.spacing(1.5)} !important`,
     minWidth: '20px !important',
   },
   orderedListIndex: {
@@ -88,7 +89,7 @@ export const useCommonStyles = makeStyles((theme: Theme) => ({
     whiteSpace: 'pre-wrap',
     letterSpacing: 0,
     lineHeight: '165%',
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('lg')]: {
       fontSize: '18px',
       lineHeight: '150%',
     },

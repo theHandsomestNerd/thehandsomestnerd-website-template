@@ -1,4 +1,5 @@
-import {Button, CircularProgress, Grid, makeStyles, PropTypes} from '@material-ui/core'
+import { Button, CircularProgress, Grid, PropTypes } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import React, {FunctionComponent, PropsWithChildren} from 'react'
 import DigitalResumeTheme from "../../theme/DigitalResumeTheme";
 import {ButtonGroupMemberEnum} from "./ButtonGroupMemberEnum";

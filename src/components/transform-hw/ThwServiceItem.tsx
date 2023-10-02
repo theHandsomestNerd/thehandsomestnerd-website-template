@@ -1,6 +1,7 @@
 import React, {FunctionComponent, useContext, useRef} from 'react'
-import {makeStyles, Theme} from "@material-ui/core/styles"
-import {Button, CircularProgress, Grid, Tooltip, Typography} from '@material-ui/core'
+import { Theme } from "@mui/material/styles";
+import makeStyles from '@mui/styles/makeStyles';
+import {Button, CircularProgress, Grid, Tooltip, Typography} from '@mui/material'
 import ImageWIthButtonOverlay from "../image-with-button-overlay/ImageWithButtonOverlay";
 import {ImageWithButtonOverlayAligmentEnum} from "../image-with-button-overlay/ImageWithButtonOverlayAligmentEnum";
 import LoadingButton from "../loading-button/LoadingButton";
