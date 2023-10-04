@@ -77,7 +77,7 @@ export const NormalRender: React.FunctionComponent<PropsWithChildren> = (props: 
   return <p className={classes.bodyText}>{props.children}</p>
 }
 
-export const TypographyRender: React.FunctionComponent<PropsWithChildren> = (props, variant: string) => {
+export const TypographyRender: React.FunctionComponent<PropsWithChildren> = (props, variant: any) => {
   const wrapWithHTag = (children: any) => {
     switch (variant) {
       case 'h1':
@@ -94,7 +94,7 @@ export const TypographyRender: React.FunctionComponent<PropsWithChildren> = (pro
         return <h5>{children}</h5>
       default:
         return <Typography display='inline' component='p' style={{textDecoration: 'none'}}
-                           variant={variant as TypographyVariantType}>{children}</Typography>
+                           variant={variant}>{children}</Typography>
     }
 
   }

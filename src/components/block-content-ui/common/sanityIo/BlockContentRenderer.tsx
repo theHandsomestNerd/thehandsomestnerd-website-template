@@ -50,7 +50,7 @@ export const HeaderRender = (props: any, variant: HeaderVariantType) => {
         return <h5>{children}</h5>
         break
       default:
-        return <Typography display='inline'  className={classes.headerRender} color="inherit" variant={variant as TypographyVariantType}
+        return <Typography display='inline'  className={classes.headerRender} color="inherit" variant={variant}
                            component="span">{children}</Typography>
     }
 
@@ -79,7 +79,7 @@ export const HrRender: React.FunctionComponent = (props) => {
 export const BlockContainerRender: React.FunctionComponent = (props: React.PropsWithChildren<{}>) => {
   const classes = useCommonStyles(DigitalResumeTheme)
   return <Typography className={classes.preFormattedText} component="span"
-                     style={{...DigitalResumeTheme.typography.body1}}>{props.children}</Typography>
+                     variant={'body1'}>{props.children}</Typography>
 }
 
 export const abBlockSerializers: any = {

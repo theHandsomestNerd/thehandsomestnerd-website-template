@@ -1,10 +1,11 @@
 import React, {FunctionComponent} from 'react'
-import { Theme } from '@mui/material/styles';
+import {Theme} from '@mui/material/styles';
 import makeStyles from '@mui/styles/makeStyles';
 import {Grid} from '@mui/material'
 import FooterMenuContainer from './FooterMenuContainer'
-import {SanityMenuContainer, SanityTransformHwHomePage} from "../../../common/sanityIo/Types";
-import DigitalResumeTheme, {COLORS} from "../../../theme/DigitalResumeTheme";
+import {SanityMenuContainer} from "../../../common/sanityIo/Types";
+import {COLORS} from "../../../theme/common/ColorPalette";
+import TheWebsiteTheme from "../../../theme/Theme";
 
 export const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -44,7 +45,7 @@ interface IProps {
 }
 
 const Footer: FunctionComponent<IProps> = (props:IProps) => {
-  const classes = useStyles(DigitalResumeTheme)
+  const classes = useStyles(TheWebsiteTheme)
 
   return (
     <Grid container className={classes.root}>

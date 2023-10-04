@@ -1,14 +1,15 @@
 import React, {FunctionComponent, useContext} from 'react'
 import {Divider, Grid, Typography, useTheme} from '@mui/material'
 import FooterMenuGroup from './FooterMenuGroup'
-import { Theme } from '@mui/material/styles';
+import {Theme} from '@mui/material/styles';
 import makeStyles from '@mui/styles/makeStyles';
-import {SanityMenuContainer, SanityTransformHwHomePage} from "../../../common/sanityIo/Types";
-import DigitalResumeTheme, {COLORS, rainbow} from "../../../theme/DigitalResumeTheme";
+import {SanityMenuContainer} from "../../../common/sanityIo/Types";
 import PageContext from "../../page-context/PageContext";
 import MediaQueriesContext from "../../media-queries-context/MediaQueriesContext";
 import MailTo from "../../mail-to/MailTo";
 import Logo from "../../transform-hw/logo/Logo";
+import TheWebsiteTheme from "../../../theme/Theme";
+import {COLORS} from "../../../theme/common/ColorPalette";
 
 
 export const useStyles = makeStyles((theme: Theme) => ({
@@ -24,7 +25,7 @@ interface IProps {
 }
 
 const FooterMenuContainer: FunctionComponent<IProps> = (props: IProps) => {
-    const classes = useStyles(DigitalResumeTheme)
+    const classes = useStyles(TheWebsiteTheme)
 
     const mediaQueriesContext = useContext(MediaQueriesContext)
     const theme = useTheme()
@@ -50,14 +51,26 @@ const FooterMenuContainer: FunctionComponent<IProps> = (props: IProps) => {
             <Grid item container xs={12} md={4} justifyContent='center'>
                 {props.pageFooterMenu?.logoImageSrc ?
                     <Logo isCenter logoImageSrc={props.pageFooterMenu.logoImageSrc} height={108}/> :
-                    <Grid container item justifyContent='center'>
-                         <Typography component='div' variant='h2'
+                    <Grid container item justifyContent='center' alignContent='center'>
+                        <Typography component='div'
+                                    align='center'
                                     color='primary'
-                                    style={{...rainbow, color: "#383838"}}> James <Typography display='inline'
-                                                                                             style={{...rainbow,}}
-                                                                                             variant='h2'
-                                                                                             color='primary'>Terrell</Typography> Singleton<Typography
-                            display='inline' style={{...rainbow,}} variant='h2'
+                                    style={{
+                                        fontFamily: "Oswald"
+                                        , fontWeight: "300", color: COLORS.DARKERGRAY
+                                    }} variant='h2'> James <Typography display='inline'
+                                                                       style={{
+                                                                           fontFamily: "Oswald"
+
+                                                                           , fontWeight: "300",
+                                                                       }}
+                                                                       variant='h2'
+                                                                       color='primary'>Terrell</Typography> Singleton<Typography
+                            display='inline' style={{
+                            fontFamily: "Oswald"
+
+                            , fontWeight: "300",
+                        }} variant='h2'
                             color='primary'>.</Typography></Typography>
                     </Grid>}
                 <Grid item container justifyContent='center' style={{
@@ -88,8 +101,10 @@ const FooterMenuContainer: FunctionComponent<IProps> = (props: IProps) => {
                     </Grid>
                     <Grid container item spacing={1} justifyContent='center'>
                         {<Grid item>
-                            <MailTo color={"#383838"} email={pageContext.page?.email ?? ""} subject={"Information Request"}
-                                    body={""}><Typography color='inherit'>{pageContext.page?.email}</Typography></MailTo>
+                            <MailTo color={"#383838"} email={pageContext.page?.email ?? ""}
+                                    subject={"Information Request"}
+                                    body={""}><Typography
+                                color='inherit'>{pageContext.page?.email}</Typography></MailTo>
                         </Grid>}
                     </Grid>
                 </Grid>

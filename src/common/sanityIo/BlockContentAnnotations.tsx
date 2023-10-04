@@ -36,7 +36,7 @@ declare module '@mui/styles/defaultTheme' {
 
 export const UtmLinkRender: React.FunctionComponent = (props: React.PropsWithChildren<{}> & BlockContentPropsType<LinkType>) => {
 
-  return <Link href={props?.mark?.href} color='secondary'>{props.children}</Link>
+  return <Link href={props?.mark?.href} color='secondary' underline="hover">{props.children}</Link>;
 }
 
 export const ButtonMarkRender = (props: React.PropsWithChildren<{}> & BlockContentPropsType<ButtonType>) => {
@@ -94,7 +94,7 @@ export const ButtonMarkRender = (props: React.PropsWithChildren<{}> & BlockConte
   return <Grid container item>
     <Button style={props?.mark?.color === 'mint' ? props?.mark?.variant === 'contained' ? {backgroundColor:"",borderRadius: "20px"}:{backgroundColor:'transparent', borderColor:"" ,borderRadius: "20px"}:{borderRadius: "20px"}}
             variant={props?.mark?.variant as 'text' | 'outlined' | 'contained'}
-            color={props?.mark?.color != 'mint' ? props?.mark?.color as PropTypes.Color : 'inherit'}
+            color={props?.mark?.color != 'mint' ? props?.mark?.color : 'inherit'}
             href={props?.mark?.buttonLink}>
       <Typography variant='button'
                   style={{color: textColor}}>{props?.children}</Typography>

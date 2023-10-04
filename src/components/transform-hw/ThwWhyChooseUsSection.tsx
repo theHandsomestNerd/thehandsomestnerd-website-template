@@ -9,27 +9,13 @@ import imagePlaceholderClient from "../../utils/imagePlaceholderClient";
 import TransformHWTheme from "../../theme/TransformHWTheme";
 
 
-
-declare module '@mui/styles/defaultTheme' {
-  // eslint-disable-next-line @typescript-eslint/no-empty-interface
-  interface DefaultTheme extends Theme {}
-}
-
-
-
-declare module '@mui/styles/defaultTheme' {
-  // eslint-disable-next-line @typescript-eslint/no-empty-interface
-  interface DefaultTheme extends Theme {}
-}
-
-
 export const useStyles = makeStyles((theme: Theme) => ({
     root: {
         height: 'max-content',
-        backgroundColor: theme.palette.primary.main
+        backgroundColor: TransformHWTheme.palette.primary.main
     },
     contentBottom: {
-        border: `1px solid ${theme.palette.secondary.main}`,
+        border: `1px solid ${TransformHWTheme.palette.secondary.main}`,
         padding: '20px'
     }
 }))
@@ -44,7 +30,6 @@ const ThwServicesSection: FunctionComponent<IProps> = (props) => {
     const mediaQueriesContext = useContext(MediaQueriesContext)
 
     return (
-        <StyledEngineProvider injectFirst>
             <ThemeProvider theme={TransformHWTheme}>
                 <Grid container item className={classes.root} xs={12}>
                     <Grid container item>
@@ -98,8 +83,8 @@ const ThwServicesSection: FunctionComponent<IProps> = (props) => {
                             </Grid>
                         </Grid>
                     </Grid>
-                </Grid></ThemeProvider>
-        </StyledEngineProvider>
+                </Grid>
+            </ThemeProvider>
     );
 }
 

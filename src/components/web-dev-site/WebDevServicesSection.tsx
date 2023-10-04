@@ -3,9 +3,9 @@ import { Theme, ThemeProvider, StyledEngineProvider } from '@mui/material/styles
 import makeStyles from '@mui/styles/makeStyles';
 import {Grid, Typography} from '@mui/material'
 import {PortfolioSectionType, ThwServiceItemNoRefType} from "../BlockContentTypes";
-import WebDevSiteTheme, {elainSansExtraBold, raleway} from "../../theme/WebDevSiteTheme";
+import WebDevSiteTheme from "../../theme/WebDevSiteTheme";
 import WebDevServiceItem from "./WebDevServiceItem";
-import {COLORS} from "../../theme/DigitalResumeTheme";
+import {COLORS} from "../../theme/common/ColorPalette";
 
 
 
@@ -59,7 +59,7 @@ const WebDevServicesSection: FunctionComponent<IProps> = (props) => {
                             <Grid item container wrap='nowrap'>
                                 <Grid item>
                                     <Typography color='primary' variant='h2' align='center'
-                                                style={{...elainSansExtraBold}}
+                                                style={{fontFamily:"Elaine Sans"}}
                                                 display='inline'>{props.sectionData?.contentTitle}</Typography>
                                 </Grid>
                             </Grid>
@@ -68,7 +68,7 @@ const WebDevServicesSection: FunctionComponent<IProps> = (props) => {
                             {props.sectionData?.contentTexts?.map((segment: string, index: number) => (
                                 <Grid item key={index}>
                                     <Typography variant='body1' color='primary' gutterBottom
-                                                style={{...raleway}}>{segment}</Typography>
+                                                style={{fontFamily: "Raleway"}}>{segment}</Typography>
                                 </Grid>))}
                         </Grid>
                         <Grid item container>

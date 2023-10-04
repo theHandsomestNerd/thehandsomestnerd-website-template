@@ -1,15 +1,14 @@
 import React, {FunctionComponent, useContext} from 'react'
 import {makeStyles, Theme, ThemeProvider} from '@material-ui/core/styles'
-import {Button, Grid, MuiThemeProvider, Typography, useTheme} from '@material-ui/core'
+import {Button, Grid, Typography} from '@material-ui/core'
 import {urlFor} from '../block-content-ui/static-pages/cmsStaticPagesClient'
-import {ThwHeroContentSectionType, WebDevHeroContentSectionType} from "../BlockContentTypes";
+import {WebDevHeroContentSectionType} from "../BlockContentTypes";
 import clsx from "clsx";
 import useCustomStyles from "../mackenzies-mind/pages/Styles";
-import DigitalResumeTheme, {rainbow, raleway} from "../../theme/DigitalResumeTheme";
 import firebaseAnalyticsClient from "../../utils/firebase/FirebaseAnalyticsClient";
 import PageContext from "../page-context/PageContext";
-import {Speaker} from "@material-ui/icons";
-import WebDevSiteTheme, {elainSansExtraBold} from "../../theme/WebDevSiteTheme";
+import WebDevSiteTheme from "../../theme/WebDevSiteTheme";
+// import FontFaces from "../../theme/common/FontFaces";
 
 interface IProps {
     sectionData: WebDevHeroContentSectionType
@@ -60,12 +59,12 @@ const WebDevHeroContentSection: FunctionComponent<IProps> = (props) => {
                             <Grid item xs={8} container>
                                 <Typography variant='h2'
                                             color={'textPrimary'}
-                                            style={{...elainSansExtraBold}}>{props.sectionData.contentTitle}</Typography>
+                                            style={{fontFamily:"Elaine Sans"}}>{props.sectionData.contentTitle}</Typography>
                             </Grid>
                             <Grid container item xs={8}>
                                 <Typography variant='body1'
                                             color='textPrimary'
-                                            style={{...raleway}}>{props.sectionData.contentText}</Typography>
+                                            style={{fontFamily: "Raleway"}}>{props.sectionData.contentText}</Typography>
                             </Grid>
                             <Grid item container>
                                 <Button color='primary' variant='outlined'

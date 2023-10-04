@@ -87,7 +87,7 @@ const FooterBlockContentLayoutContainer: FunctionComponent<FooterBlockContentLay
                                 <ThemeProvider theme={WebDevSiteTheme}><Grid key={'BOTTOM_OF_PAGE_DEV'} container item
                                                                                        xs={12}
                                                                                        >
-                                    <Link id={"BOTTOM_OF_PAGE"}><></>
+                                    <Link id={"BOTTOM_OF_PAGE"} underline="hover"><></>
                                     </Link>
                                     <WebDevFooter
                                         pageFooter={developmentFooter.footerMenuRef}
@@ -102,7 +102,7 @@ const FooterBlockContentLayoutContainer: FunctionComponent<FooterBlockContentLay
                             <StyledEngineProvider injectFirst>
                                 <ThemeProvider theme={DigitalResumeTheme}><Grid key={'BOTTOM_OF_PAGE'} container item xs={12}
                                                                                           >
-                                    <Link id={"BOTTOM_OF_PAGE"}><></>
+                                    <Link id={"BOTTOM_OF_PAGE"} underline="hover"><></>
                                     </Link>
                                     <Footer
                                         pageFooter={footer.footerMenuRef}

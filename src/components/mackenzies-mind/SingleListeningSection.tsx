@@ -1,15 +1,13 @@
-import React, {FunctionComponent, useContext} from 'react'
-import { Theme } from '@mui/material/styles';
+import React, {FunctionComponent} from 'react'
+import {Theme} from '@mui/material/styles';
 import makeStyles from '@mui/styles/makeStyles';
-import {Button, Grid, Typography} from '@mui/material'
+import {Grid, Typography} from '@mui/material'
 import {urlFor} from '../block-content-ui/static-pages/cmsStaticPagesClient'
 import {ThwHeroContentSectionType} from "../BlockContentTypes";
 import clsx from "clsx";
-import DigitalResumeTheme, {rainbow, raleway} from "../../theme/DigitalResumeTheme";
-import firebaseAnalyticsClient from "../../utils/firebase/FirebaseAnalyticsClient";
-import PageContext from "../page-context/PageContext";
 import useCustomStyles from "./pages/Styles";
 import ImageWIthButtonOverlay from "../image-with-button-overlay/ImageWithButtonOverlay";
+import TheWebsiteTheme from "../../theme/Theme";
 
 interface IProps {
     sectionData: ThwHeroContentSectionType
@@ -52,7 +50,6 @@ const SingleListeningSection: FunctionComponent<IProps> = (props) => {
         }
     }
 
-    const pageContext = useContext(PageContext)
 
     const classes = useStyles(classParameters)
     const globalClasses = useCustomStyles({})
@@ -64,7 +61,7 @@ const SingleListeningSection: FunctionComponent<IProps> = (props) => {
             <Grid container item>
                 <Grid item xs={6}>
                     <Grid container item>
-                        <ImageWIthButtonOverlay height={500} />
+                        <ImageWIthButtonOverlay height={500}/>
                     </Grid>
                     <Grid container item>
                         {/* player */}
@@ -73,24 +70,28 @@ const SingleListeningSection: FunctionComponent<IProps> = (props) => {
                 <Grid item xs={6} container direction='column'>
                     <Grid item>
                         <Typography variant='subtitle1'
-                                    style={{color: DigitalResumeTheme.palette.text.secondary}}>{props.sectionData.contentWelcomeMessage}</Typography>
+                                    style={{color: TheWebsiteTheme.palette.text.secondary}}>{props.sectionData.contentWelcomeMessage}</Typography>
                     </Grid>
                     <Grid item justifyContent='center'>
                         <Typography variant='h1'
                                     color={'textSecondary'}
-                                    style={{...rainbow}}>{props.sectionData.contentTitle}</Typography>
+                                    style={{fontFamily:"Oswald"
+
+,}}>{props.sectionData.contentTitle}</Typography>
                     </Grid>
                     <Grid container item className={classes.contentBullets} justifyContent='center'>
                         <Typography variant='body1'
                                     color='textSecondary'
-                                    style={{...raleway}}>{props.sectionData.contentText}</Typography>
+                                    style={{fontFamily:"Oswald"
+
+,}}>{props.sectionData.contentText}</Typography>
                     </Grid>
                     <Grid container item>
                         <Grid item xs={6}>
-                        {/*    apple store badge*/}
+                            {/*    apple store badge*/}
                         </Grid>
-                   <Grid item  xs={6}>
-                        {/*    spotify badge*/}
+                        <Grid item xs={6}>
+                            {/*    spotify badge*/}
 
                         </Grid>
                     </Grid>

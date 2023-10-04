@@ -1,7 +1,6 @@
 import React, {FunctionComponent, useEffect, useState} from 'react'
 import {Grid, Typography, useMediaQuery, useTheme} from '@mui/material'
 import useCustomStyles from "../../../mackenzies-mind/pages/Styles";
-import DigitalResumeTheme, {COLORS, raleway, ralewayBold} from "../../../../theme/DigitalResumeTheme";
 import CountdownToLaunch from "./CountdownToLaunch";
 import clsx from "clsx";
 import CssFadeToColor from "../../../css-fade-to-color/CssFadeToColor";
@@ -11,6 +10,8 @@ import SubmitEmail from "../SubmitEmail";
 import Logo from "../../logo/Logo";
 import {urlFor} from "../../../block-content-ui/static-pages/cmsStaticPagesClient";
 import MailTo from "../../../mail-to/MailTo";
+import {COLORS} from "../../../../theme/common/ColorPalette";
+import TheWebsiteTheme from "../../../../theme/Theme";
 
 interface IProps {
     email?: string
@@ -76,7 +77,7 @@ const UnderConstruction: FunctionComponent<IProps> = (props) => {
                     <Grid container item justifyContent='center' style={{marginTop: theme.spacing(2.5)}}>
                         <Grid item xs={11} sm={10}>
                             <Typography variant='body1'
-                                        align='center' style={{...raleway}}>{cmsPageData?.contentText}</Typography>
+                                        align='center' style={{fontFamily: "Raleway"}}>{cmsPageData?.contentText}</Typography>
 
                         </Grid>
                     </Grid>
@@ -95,7 +96,7 @@ const UnderConstruction: FunctionComponent<IProps> = (props) => {
                             <Grid item container justifyContent='center'>
                                 <Grid item>
 
-                                    <MailTo color={DigitalResumeTheme.palette.primary.main} email={props.email??""} subject={"Information Request"} body={""}>
+                                    <MailTo color={TheWebsiteTheme.palette.primary.main} email={props.email??""} subject={"Information Request"} body={""}>
                                         {props.email}
                                     </MailTo>
                                 </Grid>
@@ -105,7 +106,7 @@ const UnderConstruction: FunctionComponent<IProps> = (props) => {
                                 {
                                     cmsPageData?.footerTextLines?.map(
                                         (footerLine, index) => <Grid item key={index}><Typography align='center'
-                                                                                                  variant='subtitle1' style={{...ralewayBold}}>
+                                                                                                  variant='subtitle1' style={{fontFamily: "Raleway"}}>
                                             {footerLine}
                                         </Typography></Grid>)
                                 }

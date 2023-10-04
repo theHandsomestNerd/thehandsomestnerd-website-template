@@ -67,7 +67,7 @@ const SubmitEmail: FunctionComponent<IProps> = (props: IProps) => {
         <Grid item container xs={12}>
             <TextField fullWidth
                        label={props.emailFieldText}
-                       variant='filled'
+                       variant='outlined'
                        type='email'
                        value={email}
                        onChange={(event: ChangeEvent<HTMLInputElement>) => {

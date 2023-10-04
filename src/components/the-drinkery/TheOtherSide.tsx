@@ -1,7 +1,7 @@
 import React, {FunctionComponent} from 'react'
 import {Avatar, Grid, Typography, useMediaQuery, useTheme} from '@mui/material'
 import clsx from "clsx";
-import {COLORS} from "../../theme/DigitalResumeTheme";
+import {COLORS} from "../../theme/common/ColorPalette";
 import CssFadeToColor from "../css-fade-to-color/CssFadeToColor";
 import useCustomStyles from "../mackenzies-mind/pages/Styles";
 import bgImage from "./drinkery-background.jpg"

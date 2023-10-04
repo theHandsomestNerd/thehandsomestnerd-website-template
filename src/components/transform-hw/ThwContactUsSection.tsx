@@ -19,20 +19,6 @@ import TransformHWTheme from "../../theme/TransformHWTheme";
 import imagePlaceholderClient from "../../utils/imagePlaceholderClient";
 
 
-
-declare module '@mui/styles/defaultTheme' {
-  // eslint-disable-next-line @typescript-eslint/no-empty-interface
-  interface DefaultTheme extends Theme {}
-}
-
-
-
-declare module '@mui/styles/defaultTheme' {
-  // eslint-disable-next-line @typescript-eslint/no-empty-interface
-  interface DefaultTheme extends Theme {}
-}
-
-
 export const useStyles = makeStyles((theme: Theme) => ({
     root: {
         width: '100vw',
@@ -251,7 +237,8 @@ const ContactUs: FunctionComponent<ContactUsProps> = (props) => {
                                                 <IconButton size="large">
                                                     <Typography>
                                                         <Link
-                                                            href={"http://facebook.com/" + props.sectionData.facebook}><Facebook
+                                                            href={"http://facebook.com/" + props.sectionData.facebook}
+                                                            underline="hover"><Facebook
                                                             fontSize="large"/></Link>
                                                     </Typography>
                                                 </IconButton>
@@ -261,7 +248,8 @@ const ContactUs: FunctionComponent<ContactUsProps> = (props) => {
 
                                                     <Typography>
                                                         <Link
-                                                            href={"http://twitter.com/" + props.sectionData.twitter}><Twitter
+                                                            href={"http://twitter.com/" + props.sectionData.twitter}
+                                                            underline="hover"><Twitter
                                                             fontSize="large"/></Link>
                                                     </Typography>
                                                 </IconButton>
@@ -269,13 +257,16 @@ const ContactUs: FunctionComponent<ContactUsProps> = (props) => {
                                             {props.sectionData?.linkedIn && <Grid item>
                                                 <Typography>
                                                     <Link
-                                                        href={"http://linkedIn.com/" + props.sectionData.linkedIn}><LinkedIn
+                                                        href={"http://linkedIn.com/" + props.sectionData.linkedIn}
+                                                        underline="hover"><LinkedIn
                                                         fontSize="large"/></Link>
                                                 </Typography>
                                             </Grid>}
                                             {props.sectionData?.youtube && <Grid item>
                                                 <Typography>
-                                                    <Link href={"http://youtube.com/" + props.sectionData.youtube}><YouTube
+                                                    <Link
+                                                        href={"http://youtube.com/" + props.sectionData.youtube}
+                                                        underline="hover"><YouTube
                                                         fontSize="large"/></Link>
                                                 </Typography>
                                             </Grid>}
@@ -291,7 +282,7 @@ const ContactUs: FunctionComponent<ContactUsProps> = (props) => {
                                             fullWidth
                                             id="contact-name-input"
                                             value={leadName}
-                                            onChange={(e) => {
+                                            onChange={(e:any) => {
                                                 setleadName(e.target.value)
                                             }}
                                             label={<Typography variant='body2' style={{color: "white"}}>Name</Typography>}
@@ -312,7 +303,7 @@ const ContactUs: FunctionComponent<ContactUsProps> = (props) => {
                                         <StyledTextField
                                             fullWidth
                                             value={email}
-                                            onChange={(e) => {
+                                            onChange={(e:any) => {
                                                 setEmail(e.target.value)
                                             }}
                                             id="contact-email-input"
@@ -334,7 +325,7 @@ const ContactUs: FunctionComponent<ContactUsProps> = (props) => {
                                         <StyledTextField
                                             fullWidth
                                             value={leadPhone}
-                                            onChange={(e) => {
+                                            onChange={(e:any) => {
                                                 setLeadPhone(e.target.value)
                                             }}
                                             id="contact-phone-input"
@@ -356,7 +347,7 @@ const ContactUs: FunctionComponent<ContactUsProps> = (props) => {
                                             fullWidth
                                             id="contact-message-input"
                                             value={leadMessage}
-                                            onChange={(e) => {
+                                            onChange={(e:any) => {
                                                 setLeadMessage(e.target.value)
                                             }}
                                             label={<Typography variant='body2'

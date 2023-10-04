@@ -1,8 +1,7 @@
 import React, {FunctionComponent, useContext} from 'react'
-import { Theme } from '@mui/material/styles';
+import {Theme, ThemeProvider} from '@mui/material/styles';
 import makeStyles from '@mui/styles/makeStyles';
 import {Chip, Grid, Typography} from '@mui/material'
-import {urlFor} from '../block-content-ui/static-pages/cmsStaticPagesClient'
 import {ProprietorAtAGlanceType, ThwAboutProprietorSectionType} from "../BlockContentTypes";
 import TransformHWTheme from "../../theme/TransformHWTheme";
 import ImageWithButtonOverlay from "../image-with-button-overlay/ImageWithButtonOverlay";
@@ -18,12 +17,12 @@ import ImageWithPlaceholder from "../ImageWithPlaceholder";
 export const useStyles = makeStyles((theme: Theme) => ({
     root: {
         minHeight: '521px',
-        backgroundColor: theme.palette.background.paper,
-        // paddingLeft: -theme.spacing(-5),
+        backgroundColor: TransformHWTheme.palette.background.paper,
+        // paddingLeft: -TransformHWTheme.spacing(-5),
     },
     contentBullets: {
         // border: "1px solid black"
-        marginBottom: theme.spacing(5)
+        marginBottom: TransformHWTheme.spacing(5)
     }
 }))
 
@@ -111,7 +110,8 @@ const AboutTheProprietorSection: FunctionComponent<IProps> = (props) => {
     const mediaQueriesContext = useContext(MediaQueriesContext)
 
     return (
-        <Grid container item className={classes.root} xs={mediaQueriesContext.xsOnly?12:11} style={mediaQueriesContext.xsOnly ? {paddingBottom: 0, paddingTop: 0} : {
+        <ThemeProvider theme={TransformHWTheme}>
+            <Grid container item className={classes.root} xs={mediaQueriesContext.xsOnly?12:11} style={mediaQueriesContext.xsOnly ? {paddingBottom: 0, paddingTop: 0} : {
             paddingBottom: TransformHWTheme.spacing(10),
             paddingTop: TransformHWTheme.spacing(10),
         }}>
@@ -208,7 +208,7 @@ const AboutTheProprietorSection: FunctionComponent<IProps> = (props) => {
                     }}
                 ><ProprietorAtAGlance source={'about-the-proprietor'} sectionData={props.sectionData.proprietorServices}/></Grid>}
             </Grid>
-        </Grid>
+        </Grid></ThemeProvider>
     )
 }
 

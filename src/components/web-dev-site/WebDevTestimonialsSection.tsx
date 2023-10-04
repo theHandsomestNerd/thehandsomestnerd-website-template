@@ -5,8 +5,8 @@ import {WebDevTestimonialsSectionType, WebDevTestimonialsType} from "../BlockCon
 import useThwCommonStyles from "../../common/sanityIo/ThwCommonStyles";
 import {urlFor} from "../block-content-ui/static-pages/cmsStaticPagesClient";
 import MediaQueriesContext from "../media-queries-context/MediaQueriesContext";
-import {COLORS} from '../../theme/DigitalResumeTheme';
-import WebDevSiteTheme, {elainSansExtraBold, raleway} from "../../theme/WebDevSiteTheme";
+import WebDevSiteTheme from "../../theme/WebDevSiteTheme";
+import {COLORS} from "../../theme/common/ColorPalette";
 
 
 
@@ -63,14 +63,14 @@ const WebDevTestimonialsSection: FunctionComponent<IProps> = (props: IProps) => 
                             <Grid item container wrap='nowrap'>
                                 <Grid item>
                                     <Typography color='primary' variant='h2' align='center'
-                                                style={{...elainSansExtraBold}}
+                                                style={{fontFamily: "Elaine Sans"}}
                                                 display='inline'>{props.sectionData?.title}</Typography>
                                 </Grid>
                             </Grid>
                         </Grid>
                         <Grid item>
                             <Typography color='primary' variant='body1'
-                                        style={{...raleway}}>{props.sectionData.introduction}</Typography>
+                                        style={{fontFamily: "Raleway"}}>{props.sectionData.introduction}</Typography>
                         </Grid>
                     </Grid>
                     <Grid item container justifyContent='center'>
@@ -88,7 +88,7 @@ const WebDevTestimonialsSection: FunctionComponent<IProps> = (props: IProps) => 
                                         <Grid container item>
                                             <Typography
                                                 variant='h6' gutterBottom
-                                                style={{...elainSansExtraBold}}>{feedbackEntry.quoteSummary}</Typography>
+                                                style={{fontFamily: "Elaine Sans"}}>{feedbackEntry.quoteSummary}</Typography>
                                         </Grid>
                                         <Grid container item>
                                             <Typography
@@ -104,13 +104,13 @@ const WebDevTestimonialsSection: FunctionComponent<IProps> = (props: IProps) => 
                                         <Grid item container xs={9}>
                                             <Grid container item>
                                                 <Typography display='inline'
-                                                            style={{...elainSansExtraBold}}
+                                                            style={{fontFamily:"Elaine Sans"}}
                                                             variant='body2'>{feedbackEntry.customerName}</Typography>
                                             </Grid>
                                             <Grid item container style={{color: COLORS.AQUA}}>
                                                 <Typography display='inline'
                                                             color='inherit'
-                                                            style={{...elainSansExtraBold}}
+                                                            style={{fontFamily:"Elaine Sans"}}
                                                             variant='subtitle2'>{feedbackEntry.customerTitle}</Typography>
                                             </Grid>
                                             <Grid item container>

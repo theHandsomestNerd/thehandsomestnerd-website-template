@@ -3,7 +3,8 @@ import { Theme } from '@mui/material/styles';
 import makeStyles from '@mui/styles/makeStyles';
 import {Grid, Typography, useMediaQuery} from '@mui/material'
 import Countdown from "react-countdown";
-import DigitalResumeTheme, {COLORS} from "../../../../theme/DigitalResumeTheme";
+import TheWebsiteTheme from "../../../../theme/Theme";
+import {COLORS} from "../../../../theme/common/ColorPalette";
 
 export const useStyles = makeStyles((theme: Theme) => ({
     counterSection: {
@@ -21,10 +22,10 @@ interface IProps {
 }
 
 const CountdownToLaunch: FunctionComponent<IProps> = (props) => {
-    const classes = useStyles(DigitalResumeTheme)
+    const classes = useStyles(TheWebsiteTheme)
     const Completionist = () => <span>Congratulations! If your site is not already here please contact hello@thehandsomestnerd.com launched!</span>
 
-    const smDown = useMediaQuery(DigitalResumeTheme.breakpoints.down('lg'))
+    const smDown = useMediaQuery(TheWebsiteTheme.breakpoints.down('lg'))
 
     const pluralize = (subject: string) => {
         return subject + 's'

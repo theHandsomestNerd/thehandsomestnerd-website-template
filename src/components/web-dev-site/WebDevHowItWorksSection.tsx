@@ -3,8 +3,8 @@ import { Theme, ThemeProvider, StyledEngineProvider } from '@mui/material/styles
 import makeStyles from '@mui/styles/makeStyles';
 import {Grid, Typography} from '@mui/material'
 import {HowItWorksSectionType, HowItWorksStepNoRefType} from "../BlockContentTypes";
-import WebDevSiteTheme, {elainSansExtraBold} from "../../theme/WebDevSiteTheme";
-import {COLORS} from "../../theme/DigitalResumeTheme";
+import WebDevSiteTheme from "../../theme/WebDevSiteTheme";
+import {COLORS} from "../../theme/common/ColorPalette";
 import WebDevHowItWorksStep from "./WebDevHowItWorksStep";
 
 
@@ -57,7 +57,7 @@ const WebDevHowItWorksSection: FunctionComponent<IProps> = (props) => {
                             <Grid item container wrap='nowrap'>
                                 <Grid item>
                                     <Typography color='primary' variant='h2' align='center'
-                                                style={{...elainSansExtraBold}}
+                                                style={{fontFamily:"Elaine Sans"}}
                                                 display='inline'>{props.sectionData?.contentTitle}</Typography>
                                 </Grid>
                             </Grid>

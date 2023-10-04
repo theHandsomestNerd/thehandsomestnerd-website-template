@@ -1,8 +1,10 @@
-import { Button, CircularProgress, Grid, PropTypes } from '@mui/material';
+import {Button, CircularProgress, Color, Grid} from '@mui/material';
 import makeStyles from '@mui/styles/makeStyles';
 import React, {FunctionComponent, PropsWithChildren} from 'react'
 import DigitalResumeTheme from "../../theme/DigitalResumeTheme";
 import {ButtonGroupMemberEnum} from "./ButtonGroupMemberEnum";
+import {OverridableStringUnion} from "@mui/types";
+import {ButtonPropsColorOverrides} from "@mui/material/Button/Button";
 
 
 type CssProps = {
@@ -68,7 +70,10 @@ export interface LoadingButtonIProps {
     isRounded?: boolean
     clickHandler?: (e: any) => void
     isLoading?: boolean
-    color?: PropTypes.Color
+    color?: OverridableStringUnion<
+        'inherit' | 'primary' | 'secondary' | 'success' | 'error' | 'info' | 'warning',
+        ButtonPropsColorOverrides
+    >
     groupiness?: ButtonGroupMemberEnum
     width?: number
     href?: string
@@ -80,8 +85,10 @@ const LoadingButton: FunctionComponent<PropsWithChildren<LoadingButtonIProps>> =
     const classes = useStyles({buttonGroupiness: props.groupiness, width: props.width, isRounded: props.isRounded})
     const getProgressContrastColor = () => {
         switch (props.color) {
+        // @ts-ignore
             case 'primary':
                 return DigitalResumeTheme.palette.primary.main
+        // @ts-ignore
             case 'secondary':
                 return DigitalResumeTheme.palette.secondary.main
             default:

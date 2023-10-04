@@ -3,28 +3,14 @@ import { Theme, ThemeProvider, StyledEngineProvider } from "@mui/material/styles
 import makeStyles from '@mui/styles/makeStyles';
 import {Button, ButtonGroup, Chip, Grid, IconButton, Modal, Typography, useTheme} from '@mui/material'
 import {ResumePortfolioItem, ResumePortfolioSectionType} from "../BlockContentTypes";
-import {COLORS} from "../../theme/DigitalResumeTheme";
+import {COLORS} from "../../theme/common/ColorPalette";
 import useThwCommonStyles from "../../common/sanityIo/ThwCommonStyles";
 import MediaQueriesContext from "../media-queries-context/MediaQueriesContext";
 import {urlFor} from "../block-content-ui/static-pages/cmsStaticPagesClient";
 import {Close} from "@mui/icons-material";
-import WebDevSiteTheme, {elainSansExtraBold, raleway} from "../../theme/WebDevSiteTheme";
+import WebDevSiteTheme from "../../theme/WebDevSiteTheme";
 import firebaseAnalyticsClient from "../../utils/firebase/FirebaseAnalyticsClient";
 import PageContext from "../page-context/PageContext";
-
-
-
-declare module '@mui/styles/defaultTheme' {
-  // eslint-disable-next-line @typescript-eslint/no-empty-interface
-  interface DefaultTheme extends Theme {}
-}
-
-
-
-declare module '@mui/styles/defaultTheme' {
-  // eslint-disable-next-line @typescript-eslint/no-empty-interface
-  interface DefaultTheme extends Theme {}
-}
 
 
 export const useStyles = makeStyles((theme: Theme) => ({
@@ -89,20 +75,20 @@ const WebDevPortfolioSection: FunctionComponent<IProps> = (props: IProps) => {
                             <Grid item container>
                                 <Typography variant='subtitle2'
                                             color='secondary'
-                                            style={{color: COLORS.AQUA, ...elainSansExtraBold, lineHeight: 1}}
+                                            style={{color: COLORS.AQUA, fontFamily:"Elaine Sans", lineHeight: 1}}
                                 >{props.sectionData?.preTitle}</Typography>
                             </Grid>
                             <Grid item container>
                                 <Typography
                                     variant='h2'
                                     color='primary'
-                                    style={{...elainSansExtraBold}}
+                                    style={{fontFamily:"Elaine Sans"}}
                                 >{props.sectionData.title}
                                 </Typography>
                             </Grid>
                             <Grid item container xs={8}>
                                 <Typography color='primary' variant='body1'
-                                            style={{...raleway}}>{props.sectionData.introduction}</Typography></Grid>
+                                            style={{fontFamily:"Raleway"}}>{props.sectionData.introduction}</Typography></Grid>
                         </Grid>
                         <Grid item container justifyContent={xsOnly ? 'center' : 'flex-start'} xs={11}>
                             {
@@ -135,7 +121,7 @@ const WebDevPortfolioSection: FunctionComponent<IProps> = (props: IProps) => {
                                                                                 style={{
                                                                                     textTransform: "uppercase",
                                                                                     fontWeight: 900,
-                                                                                    ...elainSansExtraBold,
+                                                                                    fontFamily:"Elaine Sans",
                                                                                     letterSpacing: ".15em"
                                                                                 }}
                                                                     >{skill.title}</Typography>
@@ -156,12 +142,12 @@ const WebDevPortfolioSection: FunctionComponent<IProps> = (props: IProps) => {
                                                 <Grid container item>
                                                     <Grid item xs={6}><Typography
                                                         gutterBottom
-                                                        variant='h3' style={{...elainSansExtraBold}}
+                                                        variant='h3' style={{fontFamily:"Elaine Sans"}}
                                                         color={COLOR_ROTATION_FONT[(index2 + 1 ?? 1) % 2]}>{portfolioItem?.title}</Typography></Grid>
                                                     <Grid container item>
                                                         <Typography variant='body1'
                                                                     gutterBottom
-                                                                    style={{...raleway, marginBottom: "16px"}}
+                                                                    style={{fontFamily:"Raleway", marginBottom: "16px"}}
                                                                     color={COLOR_ROTATION_FONT[(index2 + 1 ?? 1) % 2]}
                                                         >{portfolioItem.detailDescription}</Typography>
                                                     </Grid>

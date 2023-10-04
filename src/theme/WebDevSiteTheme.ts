@@ -1,60 +1,60 @@
 import {adaptV4Theme, createTheme} from '@mui/material';
-import ElaineSans from './common/fonts/elaine-sans/elaineSans-extrabold.ttf'
-import Raleway from './common/fonts/Raleway/variable/TTF/Raleway-VF.ttf'
-import RalewayBold from './common/fonts/Raleway/static/TTF/Raleway-Bold.ttf'
-import Rainbow from './common/fonts/rainbow/Rainbow.ttf'
+// import ElaineSans from './common/fonts/elaine-sans/elaineSans-extrabold.ttf'
+// import Raleway from './common/fonts/Raleway/variable/TTF/Raleway-VF.ttf'
+// import RalewayBold from './common/fonts/Raleway/static/TTF/Raleway-Bold.ttf'
+// import Rainbow from './common/fonts/rainbow/Rainbow.ttf'
 
-type FontFace = {
-    fontDisplay?: any
-    fontFamily?: any
-    fontStyle?: any
-    fontWeight?: number
-    src?: string
-}
-
-export const elainSansExtraBold: FontFace = {
-    fontFamily: 'Elaine Sans',
-    fontStyle: 'normal',
-    fontDisplay: 'swap', // uses the fallback font to display the text until the custom font has fully downloaded. This is also known as a “flash of unstyled text” or FOUT.
-    fontWeight: 800,
-    src: `
-    local('Elaine Sans'),
-    url(${ElaineSans}) format('truetype')
-  `
-}
-
-export const raleway: FontFace = {
-    fontFamily: 'Raleway',
-    fontStyle: 'normal',
-    fontDisplay: 'swap', // uses the fallback font to display the text until the custom font has fully downloaded. This is also known as a “flash of unstyled text” or FOUT.
-    fontWeight: 500,
-    src: `
-    local('Raleway Regular'),
-    url(${Raleway}) format('truetype')
-  `
-}
-
-export const ralewayBold: FontFace = {
-    fontFamily: 'Raleway',
-    fontStyle: 'normal',
-    fontDisplay: 'swap', // uses the fallback font to display the text until the custom font has fully downloaded. This is also known as a “flash of unstyled text” or FOUT.
-    fontWeight: 1000,
-    src: `
-    local('Raleway Bold'),
-    url(${RalewayBold}) format('truetype')
-  `
-}
-
-export const rainbow: FontFace = {
-    fontFamily: 'Rainbow',
-    fontStyle: 'normal',
-    fontDisplay: 'swap', // uses the fallback font to display the text until the custom font has fully downloaded. This is also known as a “flash of unstyled text” or FOUT.
-    fontWeight: 400,
-    src: `
-    local('Rainbow Regular'),
-    url(${Rainbow}) format('truetype')
-  `
-}
+// type FontFace = {
+//     fontDisplay?: any
+//     fontFamily?: any
+//     fontStyle?: any
+//     fontWeight?: number
+//     src?: string
+// }
+//
+// export const elainSansExtraBold: FontFace = {
+//     fontFamily: 'Elaine Sans',
+//     fontStyle: 'normal',
+//     fontDisplay: 'swap', // uses the fallback font to display the text until the custom font has fully downloaded. This is also known as a “flash of unstyled text” or FOUT.
+//     fontWeight: 800,
+//     src: `
+//     local('Elaine Sans'),
+//     url(${ElaineSans}) format('truetype')
+//   `
+// }
+//
+// export const raleway: FontFace = {
+//     fontFamily: 'Raleway',
+//     fontStyle: 'normal',
+//     fontDisplay: 'swap', // uses the fallback font to display the text until the custom font has fully downloaded. This is also known as a “flash of unstyled text” or FOUT.
+//     fontWeight: 500,
+//     src: `
+//     local('Raleway Regular'),
+//     url(${Raleway}) format('truetype')
+//   `
+// }
+//
+// export const ralewayBold: FontFace = {
+//     fontFamily: 'Raleway',
+//     fontStyle: 'normal',
+//     fontDisplay: 'swap', // uses the fallback font to display the text until the custom font has fully downloaded. This is also known as a “flash of unstyled text” or FOUT.
+//     fontWeight: 1000,
+//     src: `
+//     local('Raleway Bold'),
+//     url(${RalewayBold}) format('truetype')
+//   `
+// }
+//
+// export const rainbow: FontFace = {
+//     fontFamily: 'Rainbow',
+//     fontStyle: 'normal',
+//     fontDisplay: 'swap', // uses the fallback font to display the text until the custom font has fully downloaded. This is also known as a “flash of unstyled text” or FOUT.
+//     fontWeight: 400,
+//     src: `
+//     local('Rainbow Regular'),
+//     url(${Rainbow}) format('truetype')
+//   `
+// }
 
 const fonts = [ 'Elaine Sans', 'Raleway'].join(',')
 
@@ -220,7 +220,7 @@ const WebDevSiteTheme = createTheme(adaptV4Theme({
         },
         MuiCssBaseline: {
             '@global': {
-                '@font-face': [raleway, ralewayBold, elainSansExtraBold, rainbow]
+                // '@font-face': [raleway, ralewayBold, elainSansExtraBold, rainbow]
             },
         },
         MuiInputBase: {
@@ -299,7 +299,7 @@ const WebDevSiteTheme = createTheme(adaptV4Theme({
                 //   backgroundColor: '#BD1A00',
                 //   color: '#FCE3CC'
                 // },
-                '&$disabled': {
+                '&.Mui-disabled': {
                     // backgroundColor: '#79582d',
                     color: '#969284'
                 },
@@ -316,7 +316,7 @@ const WebDevSiteTheme = createTheme(adaptV4Theme({
                 //   backgroundColor: '#2412AE',
                 //   color: '#FCE3CC'
                 // },
-                '&$disabled': {
+                '&.Mui-disabled': {
                     color: 'rgba(207, 207, 207, .5)',
                     // backgroundColor: 'rgba(16, 43, 136, .5)'
                 },

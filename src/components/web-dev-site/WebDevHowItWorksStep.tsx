@@ -3,7 +3,7 @@ import { Theme, ThemeProvider, StyledEngineProvider } from "@mui/material/styles
 import makeStyles from '@mui/styles/makeStyles';
 import {Button, Grid, Typography} from '@mui/material'
 import {v4 as uuidv4} from 'uuid'
-import WebDevSiteTheme, {elainSansExtraBold, raleway} from "../../theme/WebDevSiteTheme";
+import WebDevSiteTheme  from "../../theme/WebDevSiteTheme";
 import PageContext from "../page-context/PageContext";
 import {HowItWorksStepNoRefType} from "../BlockContentTypes";
 import firebaseAnalyticsClient from "../../utils/firebase/FirebaseAnalyticsClient";
@@ -66,18 +66,18 @@ const WebDevHowItWorksStep: FunctionComponent<IProps> = (props: IProps) => {
                         <Grid container item spacing={2}>
                             <Grid container item alignContent='center' justifyContent='space-between' alignItems='center'>
                                 <Grid item xs={6}><Typography
-                                    variant='h4' style={{...elainSansExtraBold}}
+                                    variant='h4' style={{fontFamily:"Elaine Sans"}}
                                     color='primary'>{props.step.title}</Typography></Grid>
                                 <Grid item>
                                     <Grid item xs={6}><Typography
-                                        variant='h1' style={{...elainSansExtraBold, color: "rgba(255,255,255,.3)"}}
+                                        variant='h1' style={{fontFamily:"Elaine Sans", color: "rgba(255,255,255,.3)"}}
                                         color='primary'>{(props.index ?? 0) + 1}</Typography></Grid>
                                 </Grid>
                             </Grid>
                             <Grid container item>
                                 <Typography variant='body1'
                                             color='primary'
-                                            style={{...raleway}}
+                                            style={{fontFamily:"Raleway"}}
                                 >{props.step.contentText}</Typography>
                             </Grid>
                             <Grid container item>

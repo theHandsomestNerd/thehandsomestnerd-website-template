@@ -68,18 +68,21 @@ const FooterMenuGroup: FunctionComponent<LandingPagesFooterMenuGroupProps> = ({m
                         menuGroup?.links && menuGroup.links.map( (menuLink:any, index: any) => {
                             return (
                                 <Grid key={index} item>
-                                    <Link href={menuLink.url} className={classes.footerLink}>
+                                    <Link href={menuLink.url} className={classes.footerLink} underline="hover">
                                         <Typography variant="body1" color='textSecondary' noWrap>
                                             {menuLink.displayText}
                                         </Typography>
                                     </Link>
                                 </Grid>
-                            )
+                            );
                         })
                     }
                     {
                         menuItemContents && <Grid item>
-                            <Link href={menuItemContents.url} className={classes.footerLink}>
+                            <Link
+                                href={menuItemContents.url}
+                                className={classes.footerLink}
+                                underline="hover">
                                 <Typography variant="body1" color='textSecondary' noWrap>
                                     {menuItemContents.displayText}
                                 </Typography>
@@ -91,8 +94,7 @@ const FooterMenuGroup: FunctionComponent<LandingPagesFooterMenuGroupProps> = ({m
 
             </Grid>
         </Grid>
-
-    )
+    );
 }
 
 export default FooterMenuGroup

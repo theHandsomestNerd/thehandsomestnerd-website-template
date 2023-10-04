@@ -1,8 +1,36 @@
+
+/*@font-face {*/
+/*  font-family: "Bitter Pro";*/
+/*  src: local('Bitter Pro'), url(/fonts/bitter_pro/fonts/ttf/BitterPro-Black.ttf) format('truetype');*/
+/*}*/
+
+/*@font-face {*/
+/*  font-family: "Raleway";*/
+/*  src: local('Raleway Regular'), url('./fonts/Raleway/static/TTF/Raleway-Regular.ttf') format('truetype');*/
+/*}*/
+
+/*@font-face {*/
+/*  font-family: "Orbitron"
+;*/
+/*  src: local('Rainbow'), url(./fonts/rainbow/Rainbow.ttf) format('truetype');*/
+/*}*/
+
+/*.rainbow-font {*/
+/*  font-family: Rainbow, sans-serif;*/
+/*  font-weight: 300;*/
+/*}*/
+
+/*@font-face {*/
+/*  font-family: "Elaine Sans";*/
+/*  src: local('Elaine Sans'), url(/fonts/elaine-sans/elaineSans-extrabold.ttf) format('truetype')*/
+/*}*/
+
 body {
   margin: 0;
   /*font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',*/
   /*  'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',*/
   /*  sans-serif;*/
+  font-family: "Raleway", "sans-serif" ;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-overflow-scrolling: touch;
@@ -13,3 +41,5 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+

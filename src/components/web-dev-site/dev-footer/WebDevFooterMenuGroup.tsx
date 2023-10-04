@@ -6,8 +6,6 @@ import makeStyles from '@mui/styles/makeStyles';
 import {Grid, Link, Typography} from '@mui/material'
 import DigitalResumeTheme from "../../../theme/DigitalResumeTheme";
 import {SanityMenuGroup, SanityMenuItem} from "../../../common/sanityIo/Types";
-import {raleway} from "../../../theme/WebDevSiteTheme";
-
 export const useStyles = makeStyles((theme: Theme) => ({
     root: {
         marginRight: theme.spacing(11),
@@ -69,19 +67,22 @@ const WebDevFooterMenuGroup: FunctionComponent<LandingPagesFooterMenuGroupProps>
                         menuGroup?.links && menuGroup.links.map( (menuLink:any, index: any) => {
                             return (
                                 <Grid key={index} item>
-                                    <Link href={menuLink.url} className={classes.footerLink}>
-                                        <Typography variant="body1" color='textPrimary' noWrap  style={{...raleway}}>
+                                    <Link href={menuLink.url} className={classes.footerLink} underline="hover">
+                                        <Typography variant="body1" color='textPrimary' noWrap  style={{fontFamily:"Raleway"}}>
                                             {menuLink.displayText}
                                         </Typography>
                                     </Link>
                                 </Grid>
-                            )
+                            );
                         })
                     }
                     {
                         menuItemContents && <Grid item>
-                            <Link href={menuItemContents.url} className={classes.footerLink}>
-                                <Typography variant="body1" color='textPrimary' noWrap style={{...raleway}}>
+                            <Link
+                                href={menuItemContents.url}
+                                className={classes.footerLink}
+                                underline="hover">
+                                <Typography variant="body1" color='textPrimary' noWrap style={{fontFamily:"Raleway"}}>
                                     {menuItemContents.displayText}
                                 </Typography>
                             </Link>
@@ -92,8 +93,7 @@ const WebDevFooterMenuGroup: FunctionComponent<LandingPagesFooterMenuGroupProps>
 
             </Grid>
         </Grid>
-
-    )
+    );
 }
 
 export default WebDevFooterMenuGroup

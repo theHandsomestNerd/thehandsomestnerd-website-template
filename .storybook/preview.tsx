@@ -1,42 +1,21 @@
-import DigitalResumeTheme from "../src/theme/DigitalResumeTheme";
 import {QueryClient, QueryClientProvider} from "react-query";
-import {BrowserRouter, Navigate, Route, Routes} from "react-router-dom";
+import {BrowserRouter} from "react-router-dom";
 import React from 'react';
 
 import {Preview} from '@storybook/react';
-import { CssBaseline, Grid, ThemeProvider, Theme, StyledEngineProvider } from "@mui/material";
-import WebDevSiteTheme from "../src/theme/WebDevSiteTheme";
-import TransformHWTheme from "../src/theme/TransformHWTheme";
 import {withThemeFromJSXProvider} from "@storybook/addon-styling";
 import PageProvider from "../src/components/page-context/PageProvider";
 import HomePageResumeData from "../src/stories/data/HomePageData";
 import ModalProvider from "../src/components/snackbar-context/ModalProvider";
-import SnackbarProvider
-    from "../src/components/modal-context/SnackbarProvider";
+import SnackbarProvider from "../src/components/modal-context/SnackbarProvider";
 import MediaQueriesProvider from "../src/components/media-queries-context/MediaQueriesProvider";
 import AmenityProvider from "../src/components/amenity-context/AmenityProvider";
-import PageMux from "../src/components/mackenzies-mind/pages/PageMux";
-import FourOhFour from "../src/components/transform-hw/pages/error-page/FourOhFour";
-import {RoutesEnum} from "../src/App";
+import {ThemeProvider} from "@mui/material/styles";
+import TheWebsiteTheme from "../src/theme/Theme";
+import DigitalResumeTheme from "../src/theme/DigitalResumeTheme";
+import {CssBaseline} from "@mui/material";
+import TransformHWTheme from "../src/theme/TransformHWTheme";
 
-
-declare module '@mui/styles/defaultTheme' {
-  // eslint-disable-next-line @typescript-eslint/no-empty-interface
-  interface DefaultTheme extends Theme {}
-}
-
-
-//
-// export const parameters = {
-//     actions: {argTypesRegex: "^on[A-Z].*"},
-//     controls: {
-//         matchers: {
-//             color: /(background|color)$/i,
-//             date: /Date$/,
-//         },
-//     },
-// }
-//
 const mockedQueryClient = new QueryClient({
     defaultOptions: {
         queries: {
@@ -44,22 +23,14 @@ const mockedQueryClient = new QueryClient({
         },
     },
 });
-//
-// export const decorators = [
-//     (Story) => (
-//         <QueryClientProvider client={mockedQueryClient}>
-//             <BrowserRouter>
-//             <Story/>
-//             </BrowserRouter>
-//         </QueryClientProvider>),
-//     muiTheme([MackenziesMindTheme]),
-// ];
 
 const preview: Preview = {
     decorators: [
         (Story) => (
             <BrowserRouter>
                 <QueryClientProvider client={mockedQueryClient}>
+                    <ThemeProvider theme={TheWebsiteTheme}>
+                        <CssBaseline />
                         <SnackbarProvider>
                             <MediaQueriesProvider>
                                 <ModalProvider>
@@ -71,19 +42,21 @@ const preview: Preview = {
                                 </ModalProvider>
                             </MediaQueriesProvider>
                         </SnackbarProvider>
+                    </ThemeProvider>
                 </QueryClientProvider>
             </BrowserRouter>
         ),
-        withThemeFromJSXProvider({
-            themes: {
-                webDev: WebDevSiteTheme,
-                resume: DigitalResumeTheme,
-                thw: TransformHWTheme
-            },
-            Provider: MuiThemeProvider,
-            GlobalStyles: CssBaseline,
-        })
-// muiTheme([DigitalResumeTheme, WebDevSiteTheme, TransformHWTheme])
+// @ts-ignore
+//         withThemeFromJSXProvider({
+//             Provider: ThemeProvider,
+//             themes: {
+//                 one: TheWebsiteTheme,
+//                 two: DigitalResumeTheme,
+//                 three: TransformHWTheme
+//             },
+//             defaultTheme: 'one',
+//             GlobalStyles: CssBaseline
+//         })
     ],
 };
 

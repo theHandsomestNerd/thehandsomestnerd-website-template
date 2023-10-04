@@ -1,7 +1,7 @@
 import React, {FunctionComponent} from 'react'
 import {Avatar, Grid, Link, Typography, useMediaQuery, useTheme} from '@mui/material'
 import clsx from "clsx";
-import {COLORS} from "../../theme/DigitalResumeTheme";
+import {COLORS} from "../../theme/common/ColorPalette";
 import CssFadeToColor from "../css-fade-to-color/CssFadeToColor";
 import useCustomStyles from "../mackenzies-mind/pages/Styles";
 import bgImage from "./drinkery-background.jpg"
@@ -111,7 +111,7 @@ const TheDrinkerySpecials: FunctionComponent<IProps> = (props) => {
                                     // backgroundRepeat: "no-repeat"
                                 }}>
 
-                                    <Link href={'/theOtherSide'}><Grid item style={{
+                                    <Link href={'/theOtherSide'} underline="hover"><Grid item style={{
                                         marginTop: theme.spacing(2),
                                         width: "200px",
                                         height: "200px",
@@ -133,7 +133,7 @@ const TheDrinkerySpecials: FunctionComponent<IProps> = (props) => {
                 </Grid>
             </Grid>
         </Grid>
-    )
+    );
 }
 
 export default TheDrinkerySpecials

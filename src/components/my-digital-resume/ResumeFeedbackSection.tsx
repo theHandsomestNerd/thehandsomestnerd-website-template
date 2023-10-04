@@ -1,12 +1,12 @@
 import React, {FunctionComponent, useContext} from 'react'
-import { ThemeProvider, Theme, StyledEngineProvider } from "@mui/material/styles";
+import {Theme, ThemeProvider} from "@mui/material/styles";
 import {Grid, Typography, useTheme} from '@mui/material'
 import {ResumeFeedback, ResumeFeedbackSectionType} from "../BlockContentTypes";
-import DigitalResumeTheme, {COLORS} from "../../theme/DigitalResumeTheme";
 import useThwCommonStyles from "../../common/sanityIo/ThwCommonStyles";
 import {urlFor} from "../block-content-ui/static-pages/cmsStaticPagesClient";
 import MediaQueriesContext from "../media-queries-context/MediaQueriesContext";
-
+import TheWebsiteTheme from "../../theme/Theme";
+import {COLORS} from "../../theme/common/ColorPalette";
 
 
 declare module '@mui/styles/defaultTheme' {
@@ -34,8 +34,7 @@ const ResumeFeedbackSection: FunctionComponent<IProps> = (props: IProps) => {
     const xsOnly = mediaQueryContext.xsOnly
 
     return (
-        <StyledEngineProvider injectFirst>
-            <ThemeProvider theme={DigitalResumeTheme}><Grid
+            <ThemeProvider theme={TheWebsiteTheme}><Grid
                 container
                 item
                 style={{
@@ -94,8 +93,9 @@ const ResumeFeedbackSection: FunctionComponent<IProps> = (props: IProps) => {
                         }
 
                     </Grid>
-                </Grid></Grid></ThemeProvider>
-        </StyledEngineProvider>
+                </Grid>
+            </Grid>
+            </ThemeProvider>
     );
 }
 

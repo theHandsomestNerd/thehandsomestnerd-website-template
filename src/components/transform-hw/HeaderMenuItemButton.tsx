@@ -1,6 +1,5 @@
 import React, {CSSProperties, FunctionComponent, useContext} from 'react'
-import {Button, Typography} from '@mui/material'
-import DigitalResumeTheme, {COLORS} from "../../theme/DigitalResumeTheme";
+import {Button, Typography, useTheme} from '@mui/material'
 import {SanityMenuItem} from "../../common/sanityIo/Types";
 import { Theme } from "@mui/material/styles";
 import makeStyles from '@mui/styles/makeStyles';
@@ -23,17 +22,18 @@ interface HeaderMenuItemButtonProps {
 }
 
 const HeaderMenuItemButton: FunctionComponent<HeaderMenuItemButtonProps> = ({menuItem, textStyle}) => {
-    const classes = useStyles(DigitalResumeTheme)
+    const theme = useTheme()
+    const classes = useStyles(theme)
 
     const modalContext = useContext(ModalContext)
     return (<Button href={menuItem.url ?? ""}
                     color={menuItem.isOutlinedButton || menuItem.isContainedButton ? 'secondary' : "primary"}
                     style={{
-                        borderRadius: (menuItem.isOutlinedButton || menuItem.isContainedButton) ? DigitalResumeTheme.shape.borderRadius : 0,
-                        paddingLeft: (menuItem.isOutlinedButton || menuItem.isContainedButton) ? DigitalResumeTheme.spacing(3.25) : DigitalResumeTheme.spacing(1),
-                        paddingRight: (menuItem.isOutlinedButton || menuItem.isContainedButton) ? DigitalResumeTheme.spacing(3.25) : DigitalResumeTheme.spacing(1),
-                        marginTop: (menuItem.isOutlinedButton || menuItem.isContainedButton) ? DigitalResumeTheme.spacing(3) : 0,
-                        marginBottom: (menuItem.isOutlinedButton || menuItem.isContainedButton) ? DigitalResumeTheme.spacing(2) : 0,
+                        borderRadius: (menuItem.isOutlinedButton || menuItem.isContainedButton) ? theme.shape.borderRadius : 0,
+                        paddingLeft: (menuItem.isOutlinedButton || menuItem.isContainedButton) ? theme.spacing(3.25) : theme.spacing(1),
+                        paddingRight: (menuItem.isOutlinedButton || menuItem.isContainedButton) ? theme.spacing(3.25) : theme.spacing(1),
+                        marginTop: (menuItem.isOutlinedButton || menuItem.isContainedButton) ? theme.spacing(3) : 0,
+                        marginBottom: (menuItem.isOutlinedButton || menuItem.isContainedButton) ? theme.spacing(2) : 0,
                         height: menuItem.isOutlinedButton || menuItem.isContainedButton ? "48px" : "100%",
                     }}
                     className={classes.hover}

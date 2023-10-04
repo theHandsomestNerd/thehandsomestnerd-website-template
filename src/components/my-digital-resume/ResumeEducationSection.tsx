@@ -3,9 +3,10 @@ import { Theme, ThemeProvider, StyledEngineProvider } from "@mui/material/styles
 import makeStyles from '@mui/styles/makeStyles';
 import {Grid, Typography, useTheme} from '@mui/material'
 import {ResumeEducation, ResumeEducationSectionType} from "../BlockContentTypes";
-import DigitalResumeTheme, {COLORS} from "../../theme/DigitalResumeTheme";
 import useThwCommonStyles from "../../common/sanityIo/ThwCommonStyles";
 import MediaQueriesContext from "../media-queries-context/MediaQueriesContext";
+import TheWebsiteTheme from "../../theme/Theme";
+import {COLORS} from "../../theme/common/ColorPalette";
 
 
 
@@ -40,7 +41,7 @@ const ResumeEducationSection: FunctionComponent<IProps> = (props: IProps) => {
 
     return (
         <StyledEngineProvider injectFirst>
-            <ThemeProvider theme={DigitalResumeTheme}>
+            <ThemeProvider theme={TheWebsiteTheme}>
                 <Grid container item style={{padding: theme.spacing(4)}} className={globalClasses.resumeSection}>
                     <Grid
                         container item spacing={3}>

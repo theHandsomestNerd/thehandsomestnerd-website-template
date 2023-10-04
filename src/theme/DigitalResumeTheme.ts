@@ -1,94 +1,10 @@
-import { createTheme, adaptV4Theme } from '@mui/material';
-import BitterPro from './common/fonts/bitter_pro/fonts/ttf/BitterPro-Black.ttf';
-import Raleway from './common/fonts/Raleway/variable/TTF/Raleway-VF.ttf';
-import RalewayBold from './common/fonts/Raleway/static/TTF/Raleway-Bold.ttf';
-import Rainbow from './common/fonts/rainbow/Rainbow.ttf';
-import ElaineSans from "./common/fonts/elaine-sans/elaineSans-extrabold.ttf";
+import {createTheme} from '@mui/material';
+// import FontFaces from "./common/FontFaces";
+import {COLORS} from "./common/ColorPalette";
 
-type FontFace = {
-    fontDisplay?: any
-    fontFamily?: any
-    fontStyle?: any
-    fontWeight?: number
-    src?: string
-};
+const fonts = ["Raleway", "Bitter Pro", "Elaine Sans"].join(',')
 
-export const bitterPro: FontFace = {
-    fontFamily: 'Bitter Pro',
-    fontStyle: 'normal',
-    fontDisplay: 'swap', // uses the fallback font to display the text until the custom font has fully downloaded. This is also known as a “flash of unstyled text” or FOUT.
-    fontWeight: 400,
-    src: `
-    local('Bitter Pro'),
-    url(${BitterPro}) format('truetype')
-  `
-};
-
-export const raleway: FontFace = {
-    fontFamily: 'Raleway',
-    fontStyle: 'normal',
-    fontDisplay: 'swap', // uses the fallback font to display the text until the custom font has fully downloaded. This is also known as a “flash of unstyled text” or FOUT.
-    fontWeight: 500,
-    src: `
-    local('Raleway Regular'),
-    url(${Raleway}) format('truetype')
-  `
-};
-
-export const ralewayBold: FontFace = {
-    fontFamily: 'Raleway',
-    fontStyle: 'normal',
-    fontDisplay: 'swap', // uses the fallback font to display the text until the custom font has fully downloaded. This is also known as a “flash of unstyled text” or FOUT.
-    fontWeight: 1000,
-    src: `
-    local('Raleway Bold'),
-    url(${RalewayBold}) format('truetype')
-  `
-};
-
-export const rainbow: FontFace = {
-    fontFamily: 'Rainbow',
-    fontStyle: 'normal',
-    fontDisplay: 'swap', // uses the fallback font to display the text until the custom font has fully downloaded. This is also known as a “flash of unstyled text” or FOUT.
-    fontWeight: 400,
-    src: `
-    local('Rainbow Regular'),
-    url(${Rainbow}) format('truetype')
-  `
-};
-
-const elainSansExtraBold: FontFace = {
-    fontFamily: 'Elaine Sans',
-    fontStyle: 'normal',
-    fontDisplay: 'swap', // uses the fallback font to display the text until the custom font has fully downloaded. This is also known as a “flash of unstyled text” or FOUT.
-    fontWeight: 800,
-    src: `
-    local('Elaine Sans'),
-    url(${ElaineSans}) format('truetype')
-  `
-};
-
-const fonts = ['Raleway', 'Bitter Pro', 'Elaine Sans'].join(',')
-
-export enum COLORS {
-    DARKBLUE = 'rgba(0,0,53,1)',
-    TRANSPARENT_DARKBLUE = 'rgba(0,0,53,.85)',
-    BLUE = 'rgba(16, 43, 136, 1)',
-    DARK_GRAY = '#A8A9AC',
-    GRAY = 'rgba(207, 207, 207, 1)',
-    LIGHT_GRAY = '#949495',
-    TRANSPARENTWHITE = 'rgba(255,255,255,0.75)',
-    LIGHTBLUE = '#2CC4D7',
-    ALMOSTPURPLE = "#331BAD",
-    LIGHTGRAY = "#F4F3F5",
-    TRANSPARENTLIGHTGRAY = "rgba(244,243,245,0.87)",
-    MEDIUMGRAY = "#BCB9B0",
-    DARKGRAY = "#43424A",
-    TRANSPARENTDARKGRAY = "rgba(67,66,74,0.78)",
-    AQUA="#12b3be"
-}
-
-const DigitalResumeTheme = createTheme(adaptV4Theme({
+const DigitalResumeTheme = createTheme({
     breakpoints: {
         values: {
             xs: 0,
@@ -98,7 +14,6 @@ const DigitalResumeTheme = createTheme(adaptV4Theme({
             xl: 1320,
         }
     },
-// @ts-ignore
     palette: {
         background: {
             default: "#f6f6f6",
@@ -132,9 +47,9 @@ const DigitalResumeTheme = createTheme(adaptV4Theme({
         }
     },
     mixins: {
-      toolbar: {
-          height: "55px"
-      }
+        toolbar: {
+            height: "55px"
+        }
     },
     typography: {
         fontFamily: fonts,
@@ -222,156 +137,92 @@ const DigitalResumeTheme = createTheme(adaptV4Theme({
             letterSpacing: '-0.03em'
         }
     },
-    overrides: {
+    components: {
         MuiCssBaseline: {
-            '@global': {
-                '@font-face': [bitterPro, raleway, ralewayBold, rainbow, elainSansExtraBold]
-            },
-        },
-        MuiInputBase: {
-            root: {
-                borderRadius: 0,
-                // color: "#FAFAFA",
-                "&:focus": {
-                    borderBottom: 0
-                }
-            },
-            input: {
-                // borderBottom: "4px solid " + COLORS.MAIN,
-                "& :before": {
-                    // borderBottom: "1px solid "+ COLORS.MAIN,
-                }
+            styleOverrides: {
+                    // '@font-face': [
+                    //     FontFaces.bitterProFontFace.family+" !important",
+                    //     FontFaces.ralewayFontFace.family+" !important",
+                    //     FontFaces.ralewayBoldFontFace.family+" !important",
+                    //     FontFaces.rainbowFontFace.family+" !important",
+                    // ]
             }
         },
-        MuiTooltip: {
-            tooltip: {
-                // backgroundColor: 'rgba(16, 43, 136, .9)'
+        MuiInputBase: {
+            styleOverrides: {
+                root: {
+                    borderRadius: 0,
+                    // color: "#FAFAFA",
+                    "& .Mui-focus": {
+                        borderBottom: 0
+                    }
+                },
             }
         },
         MuiSnackbarContent: {
-            root: {
-                marginTop: "100px",
-                border: "3px solid white",
-                backgroundColor: 'rgba(210,0,39,0.9) !important'
-            }
-        },
-        MuiOutlinedInput: {
-            root:{
-                // borderRadius: 0
-            }
-        },
-        MuiFormLabel:{
-          root:{
-              color: "#383838",
-              paddingTop: "4px",
-          }
-        },
-        MuiFilledInput: {
-            root: {
-                // backgroundColor: "rgba(0,0,0,.3)",
-                // borderBottom: "1px solid "+ COLORS.MAIN,
-                "& .Mui-focused": {
-                    borderBottomWidth: '0px solid black'
+            styleOverrides: {
+                root: {
+                    marginTop: "100px",
+                    border: "3px solid white",
+                    backgroundColor: 'rgba(210,0,39,0.9) !important'
                 }
-            },
-            // notchedOutline: {
-            //     "& :after":{
-            //             borderColor: "red"
-            //     }
-            //     // "& :after": {
-            //     //     borderBottom: "2px solid red",
-            //     //     borderColor:  COLORS.MAIN,
-            //     // }
-            // },
+            }
         },
-        MuiInputLabel: {
-            root: {
-                // color:"black",
+        MuiFormLabel: {
+            styleOverrides: {
+                root: {
+                    color: "#383838 !important",
+                    paddingTop: "4px !important",
+                }
             }
         },
         MuiButton: {
-            root: {
-                // color: '#FFFFFF',
-                // height: '35px',
-                // padding: '8px 16px 8px 16px',
-                borderRadius: '5px',
-                paddingTop: "16px",
-                paddingBottom: "16px"
-            },
-            contained: {
-                boxShadow: "none",
-            },
-            containedPrimary: {
-                border: '1px solid white',
-                // backgroundColor: "rgba(207, 207, 207, .8)",
-                // color: '#FCE3CC',
-                // backgroundColor: '#FF4122',
-                // '&:hover': {
-                //   backgroundColor: '#BD1A00',
-                //   color: '#FCE3CC'
-                // },
-                '&$disabled': {
-                    // backgroundColor: '#79582d',
-                    color: '#969284'
+            styleOverrides: {
+                root: {
+                    borderRadius: '5px',
+                    paddingTop: "16px",
+                    paddingBottom: "16px"
                 },
-                // '&:focus': {
-                //   color: '#FCE3CC',
-                //   backgroundColor: '#FF4122'
-                // }
-            },
-            containedSecondary: {
-                border: '1px solid whitesmoke',
-                // color: '#FEF1E6',
-                // backgroundColor: 'rgba(16, 43, 136, .7)',
-                // '&:hover': {
-                //   backgroundColor: '#2412AE',
-                //   color: '#FCE3CC'
-                // },
-                '&$disabled': {
-                    color: 'rgba(207, 207, 207, .5)',
-                    // backgroundColor: 'rgba(16, 43, 136, .5)'
+                contained: {
+                    boxShadow: "none",
                 },
-                // '&:focus': {
-                //   color: '#FCE3CC',
-                //   backgroundColor: '#4C2FCD'
-                // }
-            },
-            outlinedPrimary: {
-                borderWidth: '3px',
-                paddingTop: "16px",
-                paddingBottom: "16px",
-                paddingLeft: "64px",
-                paddingRight: "64px"
-                // color: '#FF4122',
-                // borderColor: '#FF4122',
-                // '&:hover': {
-                //   backgroundColor: '#FF4122',
-                //   color: '#FCE3CC'
-                // },
-                // '&:disabled': {
-                //   borderColor: '#FFA091',
-                //   color: '#FFA091'
-                // },
-                // '&:focus': {
-                //   backgroundColor: 'transparent',
-                //   borderColor: '#FF4122',
-                //   color: '#FF4122'
-                // }
-            },
-            outlinedSecondary: {
-                borderWidth: '3px',
-                paddingTop: "16px",
-                paddingBottom: "16px",
-                paddingLeft: "64px",
-                paddingRight: "64px",
+                containedPrimary: {
+                    border: '1px solid white',
+                    '&.Mui-disabled': {
+                        color: '#969284'
+                    },
+                },
+                containedSecondary: {
+                    border: '1px solid whitesmoke',
+                    '&.Mui-disabled': {
+                        color: 'rgba(207, 207, 207, .5)',
+                    },
+                },
+                outlinedPrimary: {
+                    borderWidth: '3px',
+                    paddingTop: "16px",
+                    paddingBottom: "16px",
+                    paddingLeft: "64px",
+                    paddingRight: "64px"
+                },
+                outlinedSecondary: {
+                    borderWidth: '3px',
+                    paddingTop: "16px",
+                    paddingBottom: "16px",
+                    paddingLeft: "64px",
+                    paddingRight: "64px",
+                }
             }
         },
-        MuiCircularProgress: {
-            // colorPrimary: {
-            //   color: '#A697E6'
-            // }
-        }
+        MuiOutlinedInput: {
+            styleOverrides:{
+                root:{
+                    border: "2px solid black",
+                    paddingRight: "16px"
+                }
+            }
+}
     }
-}))
+})
 
 export default DigitalResumeTheme

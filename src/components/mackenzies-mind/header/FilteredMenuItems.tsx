@@ -4,10 +4,11 @@ import { Theme } from "@mui/material/styles";
 import makeStyles from '@mui/styles/makeStyles';
 import {Button, Grid, Popover, Typography} from '@mui/material'
 import {ArrowDropDown} from "@mui/icons-material";
-import DigitalResumeTheme, {COLORS} from "../../../theme/DigitalResumeTheme";
 import SubMenu from "./SubMenu";
 import {SanityMenuGroup, SanityMenuItem} from "../../../common/sanityIo/Types";
 import MediaQueriesContext from "../../media-queries-context/MediaQueriesContext";
+import TheWebsiteTheme from "../../../theme/Theme";
+import {COLORS} from "../../../theme/common/ColorPalette";
 
 
 export const useStyles = makeStyles((theme: Theme) => ({}))
@@ -49,13 +50,13 @@ const FilteredMenuItems: FunctionComponent<FilteredMenuProps> = ({
                             <Button href={menuItem.url ?? ""}
                                     color={menuItem.isOutlinedButton || menuItem.isContainedButton ? 'secondary' : "primary"}
                                     style={{
-                                        borderRadius: (menuItem.isOutlinedButton || menuItem.isContainedButton) ? DigitalResumeTheme.shape.borderRadius : 0,
-                                        paddingLeft: (menuItem.isOutlinedButton || menuItem.isContainedButton) ? DigitalResumeTheme.spacing(4) : DigitalResumeTheme.spacing(2),
-                                        paddingRight: (menuItem.isOutlinedButton || menuItem.isContainedButton) ? DigitalResumeTheme.spacing(4) : DigitalResumeTheme.spacing(2),
-                                        marginTop: (menuItem.isOutlinedButton || menuItem.isContainedButton) ? DigitalResumeTheme.spacing(3) : 0,
-                                        marginBottom: (menuItem.isOutlinedButton || menuItem.isContainedButton) ? DigitalResumeTheme.spacing(2) : 0,
+                                        borderRadius: (menuItem.isOutlinedButton || menuItem.isContainedButton) ? TheWebsiteTheme.shape.borderRadius : 0,
+                                        paddingLeft: (menuItem.isOutlinedButton || menuItem.isContainedButton) ? TheWebsiteTheme.spacing(4) : TheWebsiteTheme.spacing(2),
+                                        paddingRight: (menuItem.isOutlinedButton || menuItem.isContainedButton) ? TheWebsiteTheme.spacing(4) : TheWebsiteTheme.spacing(2),
+                                        marginTop: (menuItem.isOutlinedButton || menuItem.isContainedButton) ? TheWebsiteTheme.spacing(3) : 0,
+                                        marginBottom: (menuItem.isOutlinedButton || menuItem.isContainedButton) ? TheWebsiteTheme.spacing(2) : 0,
                                         height: menuItem.isOutlinedButton || menuItem.isContainedButton ? "48px" : "100%",
-                                        color: menuItem.isOutlinedButton || menuItem.isContainedButton ? 'white' : DigitalResumeTheme.palette.secondary.main
+                                        color: menuItem.isOutlinedButton || menuItem.isContainedButton ? 'white' : TheWebsiteTheme.palette.secondary.main
                                     }}
                                     variant={menuItem.isContainedButton ? 'contained' : (menuItem.isOutlinedButton ? 'outlined' : 'text')}>
                                 <Typography noWrap
@@ -75,10 +76,10 @@ const FilteredMenuItems: FunctionComponent<FilteredMenuProps> = ({
                                 color={"secondary"}
                                 style={{
                                     borderRadius: 0,
-                                    paddingLeft: DigitalResumeTheme.spacing(2),
-                                    paddingRight: DigitalResumeTheme.spacing(3),
+                                    paddingLeft: TheWebsiteTheme.spacing(2),
+                                    paddingRight: TheWebsiteTheme.spacing(3),
                                     height: "100%",
-                                    color: DigitalResumeTheme.palette.secondary.main
+                                    color: TheWebsiteTheme.palette.secondary.main
                                 }}
                                 onClick={handleClick}
                                 endIcon={<ArrowDropDown ></ArrowDropDown>}

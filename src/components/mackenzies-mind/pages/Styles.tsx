@@ -1,5 +1,6 @@
 import makeStyles from '@mui/styles/makeStyles';
-import DigitalResumeTheme, {COLORS} from "../../../theme/DigitalResumeTheme";
+import {COLORS} from "../../../theme/common/ColorPalette";
+import TheWebsiteTheme from "../../../theme/Theme";
 
 const useCustomStyles = makeStyles({
     // transparentBacking: {
@@ -20,26 +21,26 @@ const useCustomStyles = makeStyles({
     },
     endAdornedInput: {
         "& .MuiFilledInput-adornedEnd": {
-            border: "1px solid white",
+            border: "1px solid black !important",
             paddingRight: 0,
-            borderTopRightRadius: DigitalResumeTheme.shape.borderRadius,
-            borderBottomRightRadius: DigitalResumeTheme.shape.borderRadius
+            borderTopRightRadius: TheWebsiteTheme.shape.borderRadius,
+            borderBottomRightRadius: TheWebsiteTheme.shape.borderRadius
         },
         "& .MuiOutlinedInput-adornedEnd": {
-            border: "1px solid white",
+            border: "1px solid black !important",
             paddingRight: 0,
-            borderTopRightRadius: DigitalResumeTheme.shape.borderRadius,
-            borderBottomRightRadius: DigitalResumeTheme.shape.borderRadius
+            borderTopRightRadius: TheWebsiteTheme.shape.borderRadius,
+            borderBottomRightRadius: TheWebsiteTheme.shape.borderRadius
         },
         "& .MuiInputBase-input": {
             borderRightWidth: 0,
-            "&:hover": {
-                borderBottomColor: "white"
+            "&.Mui-hover": {
+                borderBottomColor: "black !important"
             },
         },
         "& .MuiButton-containedSecondary": {
             border: 0,
-            borderLeft: '1px solid white'
+            borderLeft: '1px solid black !important'
         }
     },
     spacer: {
@@ -58,7 +59,7 @@ const useCustomStyles = makeStyles({
         backgroundImage: (props: any) => `url(${props.bgImage})`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
-        backgroundColor: DigitalResumeTheme.palette.background.default
+        backgroundColor: TheWebsiteTheme.palette.background.default
     },
     fullSection: {
         width: 'calc(100vw)',

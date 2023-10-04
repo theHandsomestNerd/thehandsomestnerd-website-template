@@ -1,33 +1,14 @@
 import React, {FunctionComponent, useContext} from 'react'
-import { Theme, ThemeProvider, StyledEngineProvider } from "@mui/material/styles";
-import makeStyles from '@mui/styles/makeStyles';
+import {StyledEngineProvider, ThemeProvider} from "@mui/material/styles";
 import {Button, ButtonGroup, Chip, Grid, IconButton, Modal, Typography, useTheme} from '@mui/material'
 import {ResumePortfolioItem, ResumePortfolioSectionType} from "../BlockContentTypes";
-import DigitalResumeTheme, {COLORS} from "../../theme/DigitalResumeTheme";
+import DigitalResumeTheme from "../../theme/DigitalResumeTheme";
 import useThwCommonStyles from "../../common/sanityIo/ThwCommonStyles";
 import MediaQueriesContext from "../media-queries-context/MediaQueriesContext";
 import {urlFor} from "../block-content-ui/static-pages/cmsStaticPagesClient";
 import {Close} from "@mui/icons-material";
 import dateUtils from "../../utils/dateUtils";
-
-
-
-declare module '@mui/styles/defaultTheme' {
-  // eslint-disable-next-line @typescript-eslint/no-empty-interface
-  interface DefaultTheme extends Theme {}
-}
-
-
-
-declare module '@mui/styles/defaultTheme' {
-  // eslint-disable-next-line @typescript-eslint/no-empty-interface
-  interface DefaultTheme extends Theme {}
-}
-
-
-export const useStyles = makeStyles((theme: Theme) => ({
-    root: {},
-}))
+import {COLORS} from "../../theme/common/ColorPalette";
 
 interface IProps {
     sectionData: ResumePortfolioSectionType

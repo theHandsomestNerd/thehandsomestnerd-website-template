@@ -3,8 +3,9 @@ import { Theme, ThemeProvider, StyledEngineProvider } from "@mui/material/styles
 import makeStyles from '@mui/styles/makeStyles';
 import {Grid, Typography, useTheme} from '@mui/material'
 import {ResumeSkillSectionType, ResumeSkillSet} from "../BlockContentTypes";
-import DigitalResumeTheme, {COLORS} from "../../theme/DigitalResumeTheme";
 import useThwCommonStyles from "../../common/sanityIo/ThwCommonStyles";
+import TheWebsiteTheme from "../../theme/Theme";
+import {COLORS} from "../../theme/common/ColorPalette";
 
 
 
@@ -30,15 +31,14 @@ interface IProps {
 }
 
 const ResumeSkillsSection: FunctionComponent<IProps> = (props: IProps) => {
-    const classes = useStyles()
+    // const classes = useStyles()
     const globalClasses = useThwCommonStyles()
     const theme = useTheme()
 
  
 
     return (
-        <StyledEngineProvider injectFirst>
-            <ThemeProvider theme={DigitalResumeTheme}>
+            <ThemeProvider theme={TheWebsiteTheme}>
                 <Grid
                     container
                     item
@@ -80,7 +80,6 @@ const ResumeSkillsSection: FunctionComponent<IProps> = (props: IProps) => {
                     </Grid>
                 </Grid>
             </ThemeProvider>
-        </StyledEngineProvider>
     );
 }
 

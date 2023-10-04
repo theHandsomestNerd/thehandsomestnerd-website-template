@@ -373,7 +373,7 @@ const MixedFeelingsByTTheme = createTheme(adaptV4Theme({
                 //   backgroundColor: '#BD1A00',
                 //   color: '#FCE3CC'
                 // },
-                '&$disabled': {
+                '&.Mui-disabled': {
                     // backgroundColor: '#79582d',
                     color: '#969284'
                 },
@@ -390,7 +390,7 @@ const MixedFeelingsByTTheme = createTheme(adaptV4Theme({
                 //   backgroundColor: '#2412AE',
                 //   color: '#FCE3CC'
                 // },
-                '&$disabled': {
+                '&.Mui-disabled': {
                     color: 'rgba(207, 207, 207, .5)',
                     // backgroundColor: 'rgba(16, 43, 136, .5)'
                 },

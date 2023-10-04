@@ -3,7 +3,7 @@ import { Theme } from "@mui/material/styles";
 import makeStyles from '@mui/styles/makeStyles';
 import { Button, Grid, ThemeProvider, StyledEngineProvider, Typography, useTheme } from '@mui/material';
 import {v4 as uuidv4} from 'uuid'
-import WebDevSiteTheme, {elainSansExtraBold, raleway} from "../../theme/WebDevSiteTheme";
+import WebDevSiteTheme from "../../theme/WebDevSiteTheme";
 import PageContext from "../page-context/PageContext";
 import {ServiceItemNoRefType} from "../BlockContentTypes";
 import firebaseAnalyticsClient from "../../utils/firebase/FirebaseAnalyticsClient";
@@ -72,7 +72,7 @@ const WebDevServiceItem: FunctionComponent<IProps> = (props: IProps) => {
                               alignItems='center'>
                             <Grid container item alignContent='center' justifyContent='space-between' alignItems='center'>
                                 <Grid item xs={6}><Typography
-                                    variant='h3' style={{...elainSansExtraBold}}
+                                    variant='h3' style={{fontFamily:"Elaine Sans"}}
                                     color='primary'>{props.service.contentTitle}</Typography></Grid>
 
                                 <Grid item>
@@ -92,7 +92,7 @@ const WebDevServiceItem: FunctionComponent<IProps> = (props: IProps) => {
                             </Grid>
                             <Grid container item>
                                 <Typography variant='body1'
-                                            style={{...raleway}}
+                                            style={{fontFamily:"raleway"}}
                                             color='primary'
                                 >{props.service.contentText}</Typography>
                             </Grid>

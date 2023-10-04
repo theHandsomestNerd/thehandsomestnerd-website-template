@@ -1,6 +1,6 @@
 import React, {FunctionComponent, useContext} from 'react'
 import {makeStyles, Theme} from '@material-ui/core/styles'
-import {Grid, MuiThemeProvider, ThemeProvider, Typography} from '@material-ui/core'
+import {Grid, ThemeProvider, Typography} from '@material-ui/core'
 import {urlFor} from '../block-content-ui/static-pages/cmsStaticPagesClient'
 import {ThwMottoSectionType} from "../BlockContentTypes";
 import {Parallax} from 'react-parallax';

@@ -1,10 +1,10 @@
 import React, {FunctionComponent} from 'react'
-import { Theme } from '@mui/material/styles';
+import {Theme} from '@mui/material/styles';
 import makeStyles from '@mui/styles/makeStyles';
 import {Grid} from '@mui/material'
 import WebDevFooterMenuContainer from './WebDevFooterMenuContainer'
-import {SanityMenuContainer, SanityTransformHwHomePage} from "../../../common/sanityIo/Types";
-import DigitalResumeTheme, {COLORS} from "../../../theme/DigitalResumeTheme";
+import {SanityMenuContainer} from "../../../common/sanityIo/Types";
+import DigitalResumeTheme from "../../../theme/DigitalResumeTheme";
 
 export const useStyles = makeStyles((theme: Theme) => ({
   root: {

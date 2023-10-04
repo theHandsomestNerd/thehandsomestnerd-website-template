@@ -22,29 +22,28 @@ const AmenitiesSection: FunctionComponent<IProps> = (props: IProps) => {
     const ref = React.useRef(null);
     const isOverflow = useIsHorizontalOverflow(ref, ()=>{})
 
-    const [showAmenity, setShowAmenity] = React.useState<boolean>()
-    const pageContext = useContext(PageContext)
+    // const [showAmenity, setShowAmenity] = React.useState<boolean>()
     const amenityContext = useContext(AmenityContext)
-    const [loading, setLoading] = React.useState<boolean>()
+    // const [loading, setLoading] = React.useState<boolean>()
     const [elements, setElements] = React.useState<JSX.Element>()
 
-    React.useEffect(() => {
-        if (amenityContext.serviceId !== props.service.slug.current) {
-            setShowAmenity(false)
-        } else {
-            setShowAmenity(true)
-            // setElements(amenityContext.getElements && amenityContext.getElements(props.service.slug.current))
-        }
-    }, [amenityContext.serviceId])
-
-    React.useEffect(() => {
-        if (amenityContext.serviceId !== props.service.slug.current) {
-            setLoading(false)
-        } else {
-            setLoading(true)
-            // setElements(amenityContext.getElements && amenityContext.getElements(props.service.slug.current))
-        }
-    }, [amenityContext.serviceId])
+    // React.useEffect(() => {
+    //     if (amenityContext.serviceId !== props.service.slug.current) {
+    //         setShowAmenity(false)
+    //     } else {
+    //         setShowAmenity(true)
+    //         // setElements(amenityContext.getElements && amenityContext.getElements(props.service.slug.current))
+    //     }
+    // }, [amenityContext.serviceId])
+    //
+    // React.useEffect(() => {
+    //     if (amenityContext.serviceId !== props.service.slug.current) {
+    //         setLoading(false)
+    //     } else {
+    //         setLoading(true)
+    //         // setElements(amenityContext.getElements && amenityContext.getElements(props.service.slug.current))
+    //     }
+    // }, [amenityContext.serviceId])
 
     React.useEffect(() => {
         const newElements = amenityContext.getElements && amenityContext.getElements(props.service.slug.current)

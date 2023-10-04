@@ -3,22 +3,8 @@ import { Theme, ThemeProvider, StyledEngineProvider } from '@mui/material/styles
 import makeStyles from '@mui/styles/makeStyles';
 import {Grid, Typography} from '@mui/material'
 import {WebDevStatsCounterSectionType} from "../BlockContentTypes";
-import {COLORS} from "../../theme/DigitalResumeTheme";
-import WebDevSiteTheme, {elainSansExtraBold} from "../../theme/WebDevSiteTheme";
-
-
-
-declare module '@mui/styles/defaultTheme' {
-  // eslint-disable-next-line @typescript-eslint/no-empty-interface
-  interface DefaultTheme extends Theme {}
-}
-
-
-
-declare module '@mui/styles/defaultTheme' {
-  // eslint-disable-next-line @typescript-eslint/no-empty-interface
-  interface DefaultTheme extends Theme {}
-}
+import {COLORS} from "../../theme/common/ColorPalette";
+import WebDevSiteTheme from "../../theme/WebDevSiteTheme";
 
 
 interface IProps {
@@ -55,10 +41,10 @@ const WebDevStatsCounterSection: FunctionComponent<IProps> = (props) => {
                                 <Grid item xs={4}><Typography variant='h4'
                                                               align='right'
                                                        color={'textPrimary'}
-                                                       style={{...elainSansExtraBold}}>{particularStat.statValue}</Typography></Grid>
+                                                       style={{fontFamily:"Elaine Sans"}}>{particularStat.statValue}</Typography></Grid>
                                 <Grid item xs={8}><Typography variant='body1'
                                                        color={'textPrimary'}
-                                                       style={{...elainSansExtraBold}}>{particularStat.statContent}</Typography></Grid>
+                                                       style={{fontFamily:"Elaine Sans"}}>{particularStat.statContent}</Typography></Grid>
                             </Grid>)
                         }
                     </Grid>

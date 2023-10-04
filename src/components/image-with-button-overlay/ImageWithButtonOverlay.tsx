@@ -9,6 +9,8 @@ import {CssFadeToColorDirectionEnum} from "../css-fade-to-color/CssFadeToColorDi
 import {ImageWithButtonOverlayAligmentEnum} from "./ImageWithButtonOverlayAligmentEnum";
 import firebaseAnalyticsClient from "../../utils/firebase/FirebaseAnalyticsClient";
 import PageContext from "../page-context/PageContext";
+import {OverridableStringUnion} from "@mui/types";
+import {ButtonPropsColorOverrides} from "@mui/material/Button/Button";
 
 export const useStyles = makeStyles((theme: Theme) => ({
     contentBullets: {
@@ -30,7 +32,10 @@ interface IProps {
     variant?: 'text' | 'contained' | 'outlined'
     height: number
     buttonAlignment?: ImageWithButtonOverlayAligmentEnum
-    buttonColor?: PropTypes.Color
+    buttonColor?: OverridableStringUnion<
+        'inherit' | 'primary' | 'secondary' | 'success' | 'error' | 'info' | 'warning',
+        ButtonPropsColorOverrides
+    >
     learnMoreLink?: string
     tooltip?: string
     source?: string

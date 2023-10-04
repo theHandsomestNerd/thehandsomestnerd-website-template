@@ -83,7 +83,7 @@ const HeaderBlockContentLayoutContainer: FunctionComponent<HeaderBlockContentLay
                         return (
                             <StyledEngineProvider injectFirst>
                                 <ThemeProvider theme={WebDevSiteTheme}><Grid key={'TOP_OF_PAGE_DEV'} container item xs={12} style={{height: WebDevSiteTheme.mixins.toolbar.height}} alignContent='center' alignItems='center'>
-                                    <Link id={"TOP_OF_PAGE"}><></>
+                                    <Link id={"TOP_OF_PAGE"} underline="hover"><></>
                                     </Link>
                                     <DevelopmentHeader
                                         pageHeader={developmentHeader.headerMenuRef}
@@ -97,7 +97,7 @@ const HeaderBlockContentLayoutContainer: FunctionComponent<HeaderBlockContentLay
                         return (
                             <StyledEngineProvider injectFirst>
                                 <ThemeProvider theme={DigitalResumeTheme}><Grid key={'TOP_OF_PAGE'} container item xs={12} style={{height: DigitalResumeTheme.mixins.toolbar.height}}>
-                                    <Link id={"TOP_OF_PAGE"}><></>
+                                    <Link id={"TOP_OF_PAGE"} underline="hover"><></>
                                     </Link>
                                     <Header
                                         pageHeader={header.headerMenuRef}

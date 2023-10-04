@@ -8,7 +8,7 @@ import {ArrowDropDown, Close} from "@mui/icons-material";
 import MediaQueriesContext from "../media-queries-context/MediaQueriesContext";
 import LoadingButton from "../loading-button/LoadingButton";
 import {useIsVerticalOverflow} from "../../utils/useIsVerticalOverflow";
-import {COLORS} from "../../theme/DigitalResumeTheme";
+import {COLORS} from "../../theme/common/ColorPalette";
 
 type IProps = {};
 

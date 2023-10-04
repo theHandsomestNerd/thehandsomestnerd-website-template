@@ -2,17 +2,17 @@ import React, {FunctionComponent, useContext} from 'react'
 import { Theme } from "@mui/material/styles";
 import makeStyles from '@mui/styles/makeStyles';
 import {AppBar, Grid, Hidden, useTheme} from '@mui/material'
-import DigitalResumeTheme, {COLORS} from "../../../theme/DigitalResumeTheme";
 import MainMenu from "./MainMenu";
 import FilteredMenuItems from "../../filtered-menu-items/FilteredMenuItems";
 import MediaQueriesContext from "../../media-queries-context/MediaQueriesContext";
 import {SanityMenuContainer} from "../../../common/sanityIo/Types";
-import {elainSansExtraBold} from "../../../theme/WebDevSiteTheme";
+// import {elainSansExtraBold} from "../../../theme/WebDevSiteTheme";
 import PageContext from "../../page-context/PageContext";
 import {urlFor} from "../../block-content-ui/static-pages/cmsStaticPagesClient";
 import FullWidthColoredPng from "../../fullwidth-colored-png/FullWidthColoredPng";
 import {useScrollPosition} from "../../../utils/useScrollPosition";
 import clsx from "clsx";
+import TheWebsiteTheme from "../../../theme/Theme";
 
 export const useStyles = makeStyles((theme: Theme) => ({
     root: {
@@ -75,11 +75,11 @@ const DevelopmentHeader: FunctionComponent<DevelopmentHeaderProps> = (props) => 
                                           alignItems='center'
                                           style={{
                                               height: "100%",
-                                              paddingRight: mediaQueriesContext.mdDown ? DigitalResumeTheme.spacing(0) : DigitalResumeTheme.spacing(4)
+                                              paddingRight: mediaQueriesContext.mdDown ? TheWebsiteTheme.spacing(0) : TheWebsiteTheme.spacing(4)
                                           }}>
                                         <FilteredMenuItems
                                             contentJustification={'flex-start'}
-                                            textStyle={{...elainSansExtraBold}}
+                                            // textStyle={{...elainSansExtraBold}}
                                             // bgColor={!mdDown ? TransformHWTheme.palette.primary.main : COLORS.TRANSPARENTWHITE}
                                             subMenus={props.pageHeader.subMenus ?? []}
                                             onlyButtons={mediaQueriesContext.mdDown}

@@ -3,8 +3,8 @@ import { Theme, ThemeProvider, StyledEngineProvider } from '@mui/material/styles
 import makeStyles from '@mui/styles/makeStyles';
 import {Button, Grid, Typography, useTheme} from '@mui/material'
 import {WebDevAboutUsSectionType} from "../BlockContentTypes";
-import WebDevSiteTheme, {elainSansExtraBold, raleway} from "../../theme/WebDevSiteTheme";
-import {COLORS} from "../../theme/DigitalResumeTheme";
+import WebDevSiteTheme from "../../theme/WebDevSiteTheme";
+import {COLORS} from "../../theme/common/ColorPalette";
 import {urlFor} from "../block-content-ui/static-pages/cmsStaticPagesClient";
 
 
@@ -86,7 +86,7 @@ const WebDevAboutUsSection: FunctionComponent<IProps> = (props) => {
                                     <Grid item>
                                         <Typography variant='h2'
                                                     color='primary'
-                                                    style={{...elainSansExtraBold}}
+                                                    style={{fontFamily:"Elaine Sans"}}
                                                     display='inline'>{props.sectionData.contentTitle}</Typography>
                                     </Grid>
                                 </Grid>
@@ -97,7 +97,7 @@ const WebDevAboutUsSection: FunctionComponent<IProps> = (props) => {
                                     props.sectionData?.contentText?.map((text, index: number) =>
                                         <Grid key={index} item container>
                                             <Typography variant='body1'
-                                                        style={{...raleway}}
+                                                        style={{fontFamily: "Raleway"}}
                                                         color='primary'>{text}</Typography>
                                         </Grid>
                                     )}

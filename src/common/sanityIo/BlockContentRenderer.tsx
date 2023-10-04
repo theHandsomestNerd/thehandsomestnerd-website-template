@@ -16,7 +16,7 @@ import {
 } from './BlockContentMarkRenderers'
 import BlockContent from '@sanity/block-content-to-react'
 import {ButtonMarkRender, ListItemRender, ListRender, UtmLinkRender} from './BlockContentAnnotations'
-import DigitalResumeTheme, {bitterPro} from "../../theme/DigitalResumeTheme";
+import TheWebsiteTheme from "../../theme/Theme";
 
 
 declare module '@mui/styles/defaultTheme' {
@@ -27,7 +27,7 @@ declare module '@mui/styles/defaultTheme' {
 
 export type HeaderVariantType = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
 export type LinkType = { href: string, isAddUtm: boolean }
-export type ButtonType = { buttonLink: string, variant: string, color: string }
+export type ButtonType = { buttonLink: string, variant: string, color: any }
 
 export type BlockPropsType = { _type: string, listItem?: string, level?: number }
 export type BlockContentPropsType<T> = { mark?: T }
@@ -36,23 +36,23 @@ export const HeaderRender = (props: any, variant: HeaderVariantType) => {
     const wrapWithHTag = (children: any) => {
         switch (variant) {
             case 'h1':
-                return <h1 style={{...bitterPro}}>{children}</h1>
+                return <h1 style={{fontFamily:"Bitter Pro"}}>{children}</h1>
             case 'h2':
-                return <h2 style={{...bitterPro}}>{children}</h2>
+                return <h2 style={{fontFamily:"Bitter Pro"}}>{children}</h2>
             case 'h3':
-                return <h3 style={{...bitterPro}}>{children}</h3>
+                return <h3 style={{fontFamily:"Bitter Pro"}}>{children}</h3>
             case 'h4':
-                return <h4 style={{...bitterPro}}>{children}</h4>
+                return <h4 style={{fontFamily:"Bitter Pro"}}>{children}</h4>
             case 'h5':
-                return <h5 style={{...bitterPro}}>{children}</h5>
+                return <h5 style={{fontFamily:"Bitter Pro"}}>{children}</h5>
             case 'h6':
-                return <h6 style={{...bitterPro}}>{children}</h6>
+                return <h6 style={{fontFamily:"Bitter Pro"}}>{children}</h6>
             default:
                 return <Typography display='inline' component='div'
                                    style={{
-                                       color: DigitalResumeTheme.palette.secondary.main,
+                                       color: TheWebsiteTheme.palette.secondary.main,
                                        fontWeight: variant === 'h3' ? 300 : 700,
-                                       marginBottom: DigitalResumeTheme.spacing(3)
+                                       marginBottom: TheWebsiteTheme.spacing(3)
                                    }}
                                    variant={variant}>{children}</Typography>
         }
@@ -61,7 +61,7 @@ export const HeaderRender = (props: any, variant: HeaderVariantType) => {
 
     return (
         <StyledEngineProvider injectFirst>
-            <ThemeProvider theme={DigitalResumeTheme}>
+            <ThemeProvider theme={TheWebsiteTheme}>
                 <CssBaseline/>{wrapWithHTag(
                 props.children
             )}
@@ -81,7 +81,7 @@ export const HeaderRender = (props: any, variant: HeaderVariantType) => {
 }
 
 export const CtaRender: React.FunctionComponent<PropsWithChildren> = (props) => {
-    const classes = useCommonStyles(DigitalResumeTheme)
+    const classes = useCommonStyles(TheWebsiteTheme)
     return <Grid container item xs={12} className={classes.callToAction}>{props.children}</Grid>
 }
 
@@ -114,7 +114,7 @@ export const CodeBlockRender = (props: any) => {
 }
 
 export const HrRender: React.FunctionComponent = (props) => {
-    const classes = useCommonStyles(DigitalResumeTheme)
+    const classes = useCommonStyles(TheWebsiteTheme)
 
     return <Grid container item>
         <hr className={classes.hr}/>
@@ -149,10 +149,10 @@ export const ButtonRender = (props: any) => {
         case 'outlined':
             switch (props.color) {
                 case 'secondary':
-                    textColor = DigitalResumeTheme.palette.secondary.main
+                    textColor = TheWebsiteTheme.palette.secondary.main
                     break
                 case 'primary':
-                    textColor = DigitalResumeTheme.palette.primary.main
+                    textColor = TheWebsiteTheme.palette.primary.main
                     break
                 case 'mint':
                     textColor = ""
@@ -170,33 +170,33 @@ export const ButtonRender = (props: any) => {
                     textColor = 'whitesmoke'
                     break
                 case 'mint':
-                    textColor = DigitalResumeTheme.palette.secondary.main
+                    textColor = TheWebsiteTheme.palette.secondary.main
                     break
                 default:
-                    textColor = DigitalResumeTheme.palette.background.paper
+                    textColor = TheWebsiteTheme.palette.background.paper
             }
             break
         case 'text':
         default:
             switch (props.color) {
                 case 'secondary':
-                    textColor = DigitalResumeTheme.palette.secondary.main
+                    textColor = TheWebsiteTheme.palette.secondary.main
                     break
                 case 'primary':
-                    textColor = DigitalResumeTheme.palette.primary.main
+                    textColor = TheWebsiteTheme.palette.primary.main
                     break
                 case 'mint':
                     textColor = ""
                     break
                 default:
-                    textColor = DigitalResumeTheme.palette.text.primary
+                    textColor = TheWebsiteTheme.palette.text.primary
             }
             break
     }
 
     return (
         <StyledEngineProvider injectFirst>
-            <ThemeProvider theme={DigitalResumeTheme}>
+            <ThemeProvider theme={TheWebsiteTheme}>
                 <CssBaseline/>
                 <Grid container item>
                     <Button style={props?.color === 'mint' ? props?.variant === 'contained' ? {
@@ -260,9 +260,9 @@ export const blockSerializers: any = {
     marks: {
         light: LightRender,
         dropCap: DropCapRender,
-        primaryTextColor: (props: any) => (TextColorRender(props, DigitalResumeTheme.palette.primary.main)),
-        secondaryTextColor: (props: any) => (TextColorRender(props, DigitalResumeTheme.palette.secondary.main)),
-        underlinePrimaryColor: (props: any) => (UnderlineRender(props, DigitalResumeTheme.palette.primary.main)),
+        primaryTextColor: (props: any) => (TextColorRender(props, TheWebsiteTheme.palette.primary.main)),
+        secondaryTextColor: (props: any) => (TextColorRender(props, TheWebsiteTheme.palette.secondary.main)),
+        underlinePrimaryColor: (props: any) => (UnderlineRender(props, TheWebsiteTheme.palette.primary.main)),
         utmLink: UtmLinkRender,
         bold: BoldRender,
         button: ButtonMarkRender,

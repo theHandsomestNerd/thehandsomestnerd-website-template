@@ -10,31 +10,16 @@ import ResponsiveBullet from "../ResponsiveBullet";
 import MediaQueriesContext from "../media-queries-context/MediaQueriesContext";
 import TransformHWTheme from "../../theme/TransformHWTheme";
 
-
-
-declare module '@mui/styles/defaultTheme' {
-  // eslint-disable-next-line @typescript-eslint/no-empty-interface
-  interface DefaultTheme extends Theme {}
-}
-
-
-
-declare module '@mui/styles/defaultTheme' {
-  // eslint-disable-next-line @typescript-eslint/no-empty-interface
-  interface DefaultTheme extends Theme {}
-}
-
-
 export const useStyles = makeStyles((theme: Theme) => ({
     root: {
         minHeight: '521px',
-        backgroundColor: theme.palette.background.paper,
-        paddingTop: theme.spacing(5),
-        paddingBottom: theme.spacing(5)
+        backgroundColor: TransformHWTheme.palette.background.paper,
+        paddingTop: TransformHWTheme.spacing(5),
+        paddingBottom: TransformHWTheme.spacing(5)
     },
     contentBullets: {
         // border: "1px solid black"
-        marginBottom: theme.spacing(5)
+        marginBottom: TransformHWTheme.spacing(5)
     }
 }))
 
@@ -50,7 +35,6 @@ const PositivePsychologySection: FunctionComponent<IProps> = (props) => {
 
 
     return (
-        <StyledEngineProvider injectFirst>
             <ThemeProvider theme={TransformHWTheme}><Grid container item className={classes.root} xs={11}>
                 <Grid container item justifyContent='space-between' spacing={4}>
                     <Grid item xs={12} md={7} lg={8} container direction='column' spacing={2}>
@@ -102,7 +86,6 @@ const PositivePsychologySection: FunctionComponent<IProps> = (props) => {
                     </Grid>
                 </Grid>
             </Grid></ThemeProvider>
-        </StyledEngineProvider>
     );
 }
 

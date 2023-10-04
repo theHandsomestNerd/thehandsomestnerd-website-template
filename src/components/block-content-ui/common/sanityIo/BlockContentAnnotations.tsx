@@ -25,7 +25,12 @@ export const UtmLinkRender: React.FunctionComponent = (props: React.PropsWithChi
     }
   } catch (e) {
   }
-  return <Link href={href} style={{color: props?.mark?.color ? props.mark.color.value:DigitalResumeTheme.palette.primary.main}}>{props.children}</Link>
+  return (
+    <Link
+      href={href}
+      style={{color: props?.mark?.color ? props.mark.color.value:DigitalResumeTheme.palette.primary.main}}
+      underline="hover">{props.children}</Link>
+  );
 }
 
 export const ListRender: React.FunctionComponent = (props: React.PropsWithChildren<{}>) => {
