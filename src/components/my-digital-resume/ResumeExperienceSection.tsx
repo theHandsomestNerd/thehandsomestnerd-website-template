@@ -4,7 +4,7 @@ import {ResumeExperience, ResumeExperienceSectionType} from "../BlockContentType
 import useThwCommonStyles from "../../common/sanityIo/ThwCommonStyles";
 import {COLORS} from "../../theme/common/ColorPalette";
 import {ThemeProvider} from "@mui/material/styles";
-import DigitalResumeTheme from "../../theme/DigitalResumeTheme";
+import TheWebsiteTheme from "../../theme/Theme";
 import widthUtils from "../../utils/widthUtils";
 
 interface IProps {
@@ -18,7 +18,8 @@ const ResumeExperienceSection: FunctionComponent<IProps> = (props: IProps) => {
     const xsOnly = widthUtils.useIsWidthDown('xs')
 
     return (
-        <ThemeProvider theme={DigitalResumeTheme}><Grid
+        <ThemeProvider theme={TheWebsiteTheme
+}><Grid
             container
             item
             style={{

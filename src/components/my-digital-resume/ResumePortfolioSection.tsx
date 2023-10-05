@@ -2,7 +2,7 @@ import React, {FunctionComponent, useContext} from 'react'
 import {StyledEngineProvider, ThemeProvider} from "@mui/material/styles";
 import {Button, ButtonGroup, Chip, Grid, IconButton, Modal, Typography, useTheme} from '@mui/material'
 import {ResumePortfolioItem, ResumePortfolioSectionType} from "../BlockContentTypes";
-import DigitalResumeTheme from "../../theme/DigitalResumeTheme";
+import TheWebsiteTheme from "../../theme/Theme";
 import useThwCommonStyles from "../../common/sanityIo/ThwCommonStyles";
 import {urlFor} from "../block-content-ui/static-pages/cmsStaticPagesClient";
 import {Close} from "@mui/icons-material";
@@ -33,7 +33,8 @@ const ResumePortfolioSection: FunctionComponent<IProps> = (props: IProps) => {
 
     return (
         <StyledEngineProvider injectFirst>
-            <ThemeProvider theme={DigitalResumeTheme}><Grid container item style={{padding: theme.spacing(4)}}
+            <ThemeProvider theme={TheWebsiteTheme
+}><Grid container item style={{padding: theme.spacing(4)}}
                                                                     className={globalClasses.resumeSection}>
                 <Grid
                     container item spacing={3}>

@@ -1,4 +1,4 @@
-import {SanityMuiTheme, SanityTransformHwHomePage} from "../../common/sanityIo/Types";
+import {SanityMuiTheme} from "../../common/sanityIo/Types";
 
 const DigitalResumeThemeData:SanityMuiTheme ={
     "title": "Digital Resume Theme",

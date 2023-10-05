@@ -1,7 +1,6 @@
 import {QueryClient, QueryClientProvider} from "react-query";
 import {BrowserRouter} from "react-router-dom";
 import React from 'react';
-
 import {Preview} from '@storybook/react';
 import PageProvider from "../src/components/page-context/PageProvider";
 import HomePageResumeData from "../src/stories/data/HomePageData";
@@ -40,17 +39,6 @@ const preview: Preview = {
                 </QueryClientProvider>
             </BrowserRouter>
         ),
-// @ts-ignore
-//         withThemeFromJSXProvider({
-//             Provider: ThemeProvider,
-//             themes: {
-//                 one: TheWebsiteTheme,
-//                 two: DigitalResumeTheme,
-//                 three: TransformHWTheme
-//             },
-//             defaultTheme: 'one',
-//             GlobalStyles: CssBaseline
-//         })
     ],
 };
 

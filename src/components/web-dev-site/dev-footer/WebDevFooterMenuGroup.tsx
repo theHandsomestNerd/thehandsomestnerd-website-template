@@ -4,11 +4,12 @@ import { Theme } from '@mui/material/styles';
 import makeStyles from '@mui/styles/makeStyles';
 
 import {Grid, Link, Typography} from '@mui/material'
-import DigitalResumeTheme from "../../../theme/DigitalResumeTheme";
 import {SanityMenuGroup, SanityMenuItem} from "../../../common/sanityIo/Types";
+import WebDevSiteTheme from "../../../theme/WebDevSiteTheme";
+import TheWebsiteTheme from "../../../theme/Theme";
 export const useStyles = makeStyles((theme: Theme) => ({
     root: {
-        marginRight: theme.spacing(11),
+        marginRight: WebDevSiteTheme.spacing(11),
     },
     footerLink: {
         marginBottom: '8px',
@@ -25,11 +26,11 @@ export const useStyles = makeStyles((theme: Theme) => ({
     },
     menuTitle: {
         // color: '#FDF3EB',
-        marginBottom: theme.spacing(1),
+        marginBottom: WebDevSiteTheme.spacing(1),
     },
     popover: {
         boxShadow: 'none',
-        borderLeft: `4px solid ${theme.palette.background.default}`,
+        borderLeft: `4px solid ${WebDevSiteTheme.palette.background.default}`,
         borderRadius: 0,
     },
     list: {
@@ -42,7 +43,7 @@ export type LandingPagesFooterMenuGroupProps = {
 }
 
 const WebDevFooterMenuGroup: FunctionComponent<LandingPagesFooterMenuGroupProps> = ({menuGroup}) => {
-    const classes = useStyles(DigitalResumeTheme)
+    const classes = useStyles(TheWebsiteTheme)
 
     const [menuGroupContents, setMenuGroupContents] = useState<SanityMenuGroup>()
     const [menuItemContents, setMenuItemContents] = useState<SanityMenuItem>()

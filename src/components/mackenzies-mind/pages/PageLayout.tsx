@@ -1,17 +1,14 @@
-import React, {FunctionComponent, useContext} from 'react'
+import React, {FunctionComponent} from 'react'
 import {Grid, Link, useTheme} from '@mui/material'
 import {SanityTransformHwHomePage} from "../../../common/sanityIo/Types";
 import BlockContentLayoutContainer from "../../BlockContentLayoutContainer";
 import firebaseAnalyticsClient from "../../../utils/firebase/FirebaseAnalyticsClient";
 import {useLocation} from "react-router";
-import Footer from "../footer/Footer";
-import Header from "../header/Header";
 import HeaderBlockContentLayoutContainer from "../../HeaderBlockContentLayoutContainer";
 import FooterBlockContentLayoutContainer from "../../FooterBlockContentLayoutContainer";
 import BusinessCard from "../../BusinessCard";
-import PageContext from "../../page-context/PageContext";
 import {ThemeProvider} from "@mui/material/styles";
-import DigitalResumeTheme from "../../../theme/DigitalResumeTheme";
+import TheWebsiteTheme from "../../../theme/Theme";
 
 interface IProps {
     homePage: SanityTransformHwHomePage
@@ -58,7 +55,8 @@ const PageLayout: FunctionComponent<IProps> = (props: IProps) => {
                         content={props.homePage.footerContent.content}/>
                 </Grid>}
             </Grid>
-            <ThemeProvider theme={DigitalResumeTheme}><Grid container item
+            <ThemeProvider theme={TheWebsiteTheme
+}><Grid container item
                   alignContent='center'
                   alignItems='center'
                   style={{

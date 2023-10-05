@@ -6,7 +6,7 @@ import {Grid, Link, List, ListItem, ListItemIcon, ListItemText, Typography} from
 import {FiberManualRecord} from '@mui/icons-material'
 import {useCommonStyles} from './CommonStyles'
 import {TypographyVariantType} from './BlockContentMarkRenderers'
-import DigitalResumeTheme from "../../../../theme/DigitalResumeTheme";
+import TheWebsiteTheme from "../../../../theme/Theme";
 
 export const UtmLinkRender: React.FunctionComponent = (props: React.PropsWithChildren<{}> & BlockContentPropsType<LinkType>) => {
   let href = props?.mark?.href
@@ -28,7 +28,7 @@ export const UtmLinkRender: React.FunctionComponent = (props: React.PropsWithChi
   return (
     <Link
       href={href}
-      style={{color: props?.mark?.color ? props.mark.color.value:DigitalResumeTheme.palette.primary.main}}
+      style={{color: props?.mark?.color ? props.mark.color.value:TheWebsiteTheme.palette.primary.main}}
       underline="hover">{props.children}</Link>
   );
 }

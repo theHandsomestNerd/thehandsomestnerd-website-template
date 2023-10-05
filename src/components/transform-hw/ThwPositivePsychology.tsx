@@ -4,7 +4,6 @@ import makeStyles from '@mui/styles/makeStyles';
 import {Button, Grid, Typography} from '@mui/material'
 import {urlFor} from '../block-content-ui/static-pages/cmsStaticPagesClient'
 import {ThwPositivePsychologySectionType} from "../BlockContentTypes";
-import DigitalResumeTheme from "../../theme/DigitalResumeTheme";
 import {v4 as uuidv4} from 'uuid'
 import ResponsiveBullet from "../ResponsiveBullet";
 import TransformHWTheme from "../../theme/TransformHWTheme";
@@ -70,7 +69,7 @@ const PositivePsychologySection: FunctionComponent<IProps> = (props) => {
                     </Grid>
                     {props.sectionData.ctaButtonLink && props.sectionData.ctaButtonText && <Grid container item>
                         <Button variant='contained' color='secondary'
-                                style={{backgroundColor: DigitalResumeTheme.palette.secondary.main}}
+                                style={{backgroundColor: TransformHWTheme.palette.secondary.main}}
                                 href={props.sectionData.ctaButtonLink ?? ''}>
                             {props.sectionData.ctaButtonText}
                         </Button>

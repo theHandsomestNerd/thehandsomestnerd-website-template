@@ -1,19 +1,10 @@
 import React, {FunctionComponent, useContext} from 'react'
-import {
-    Button,
-    Collapse,
-    Divider,
-    List,
-    ListItem,
-    ListItemText,
-    MenuItemTypeMap,
-    Typography,
-} from '@mui/material';
+import {Button, Collapse, Divider, List, ListItem, ListItemText, Typography,} from '@mui/material';
 import createStyles from '@mui/styles/createStyles';
-import { Theme } from "@mui/material/styles";
+import {Theme} from "@mui/material/styles";
 import makeStyles from '@mui/styles/makeStyles';
 import {ExpandLess, ExpandMore} from "@mui/icons-material";
-import DigitalResumeTheme from "../../../theme/DigitalResumeTheme";
+import TheWebsiteTheme from "../../../theme/Theme";
 import {SanityMenuGroup} from "../../../common/sanityIo/Types";
 import ModalContext from "../../snackbar-context/ModalContext";
 
@@ -60,8 +51,10 @@ const MainMenuSubMenu: FunctionComponent<MainMenuSubMenuProps> = ({menuGroup}) =
             className={classes.root}
         >
             <ListItem button style={{
-                paddingTop: DigitalResumeTheme.spacing(2.25),
-                paddingBottom: DigitalResumeTheme.spacing(2.25),
+                paddingTop: TheWebsiteTheme
+.spacing(2.25),
+                paddingBottom: TheWebsiteTheme
+.spacing(2.25),
             }} onClick={handleClick}>
                 <ListItemText primary={menuGroup.menuGroupTitle}/>
                 {open ? <ExpandLess/> : <ExpandMore/>}
@@ -81,9 +74,12 @@ const MainMenuSubMenu: FunctionComponent<MainMenuSubMenuProps> = ({menuGroup}) =
                                             }
                                         }:undefined}
                                         style={{
-                                paddingTop: DigitalResumeTheme.spacing(2.25),
-                                paddingLeft: DigitalResumeTheme.spacing(6),
-                                paddingBottom: DigitalResumeTheme.spacing(2.25),
+                                paddingTop: TheWebsiteTheme
+.spacing(2.25),
+                                paddingLeft: TheWebsiteTheme
+.spacing(6),
+                                paddingBottom: TheWebsiteTheme
+.spacing(2.25),
                                     height: "100%",
                                     margin:0,
                                 }} fullWidth>

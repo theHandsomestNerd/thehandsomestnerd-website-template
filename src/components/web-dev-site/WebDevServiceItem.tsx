@@ -11,18 +11,6 @@ import ColoredPng from "../colored-png/ColoredPng";
 
 
 
-declare module '@mui/styles/defaultTheme' {
-  // eslint-disable-next-line @typescript-eslint/no-empty-interface
-  interface DefaultTheme extends Theme {}
-}
-
-
-
-declare module '@mui/styles/defaultTheme' {
-  // eslint-disable-next-line @typescript-eslint/no-empty-interface
-  interface DefaultTheme extends Theme {}
-}
-
 
 export const useStyles = makeStyles((theme: Theme) => ({
     // root: {

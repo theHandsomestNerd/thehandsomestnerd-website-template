@@ -15,7 +15,7 @@ import BusinessCardSubmitEmail from "./transform-hw/pages/BusinessCardSubmitEmai
 import firebaseAnalyticsClient from "../utils/firebase/FirebaseAnalyticsClient";
 import {useLocation} from "react-router";
 import {COLORS} from "../theme/common/ColorPalette";
-import DigitalResumeTheme from "../theme/DigitalResumeTheme";
+import TheWebsiteTheme from "../theme/Theme";
 
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -59,7 +59,8 @@ const BusinessCard: FunctionComponent<MainMenuProps> = ({anchor, homePage}) => {
     };
 
     const snackbarContext = useContext(SnackbarContext)
-    const classes = useStyles(DigitalResumeTheme)
+    const classes = useStyles(TheWebsiteTheme
+)
 
     // const pageContext = useContext(PageContext)
 
@@ -94,7 +95,8 @@ const BusinessCard: FunctionComponent<MainMenuProps> = ({anchor, homePage}) => {
     // }, [qrCodeContext.qr_code_value])
 
     const list = (anchor: MainMenuAnchorType) => (
-        <ThemeProvider theme={DigitalResumeTheme}>
+        <ThemeProvider theme={TheWebsiteTheme
+}>
             <Grid xs={12} md={6} container item
                   role="presentation"
                 // onClick={toggleDrawer(anchor, false)}
@@ -103,7 +105,8 @@ const BusinessCard: FunctionComponent<MainMenuProps> = ({anchor, homePage}) => {
             >
                 <Grid container item alignContent='flex-end'>
                     <Grid item container style={{
-                        marginBottom: DigitalResumeTheme.spacing(4),
+                        marginBottom: TheWebsiteTheme
+.spacing(4),
                         backgroundRepeat: "none",
                         minHeight: 250,
                         backgroundSize: "cover",
@@ -115,7 +118,8 @@ const BusinessCard: FunctionComponent<MainMenuProps> = ({anchor, homePage}) => {
                             position: "relative",
                             bottom: -45,
                             height: "max-content",
-                            padding: DigitalResumeTheme.spacing(2, 3)
+                            padding: TheWebsiteTheme
+.spacing(2, 3)
                         }}>
                             <ResumeSocialMedia spacing={1} bgColor color='secondary' homePage={homePage}/>
                         </Grid>
@@ -154,7 +158,8 @@ const BusinessCard: FunctionComponent<MainMenuProps> = ({anchor, homePage}) => {
 
                             </Grid>
                             <Grid item xs={9} container justifyContent='flex-end'>
-                                <MailTo color={DigitalResumeTheme.palette.primary.main} email={homePage.email ?? ""}
+                                <MailTo color={TheWebsiteTheme
+.palette.primary.main} email={homePage.email ?? ""}
                                         subject={"Information Request"} body={""}>
                                     <Typography color='textPrimary' variant='button'
                                                 align='right'>{homePage.email}</Typography>
@@ -288,9 +293,12 @@ const BusinessCard: FunctionComponent<MainMenuProps> = ({anchor, homePage}) => {
                 {/*                                }*/}
                 {/*                            } : undefined}*/}
                 {/*                            style={{*/}
-                {/*                                paddingTop: DigitalResumeTheme.spacing(2.25),*/}
-                {/*                                paddingLeft: DigitalResumeTheme.spacing(2),*/}
-                {/*                                paddingBottom: DigitalResumeTheme.spacing(2.25),*/}
+                {/*                                paddingTop: TheWebsiteTheme
+.spacing(2.25),*/}
+                {/*                                paddingLeft: TheWebsiteTheme
+.spacing(2),*/}
+                {/*                                paddingBottom: TheWebsiteTheme
+.spacing(2.25),*/}
                 {/*                                height: "100%",*/}
                 {/*                                margin: 0*/}
                 {/*                            }} fullWidth>*/}
@@ -308,8 +316,10 @@ const BusinessCard: FunctionComponent<MainMenuProps> = ({anchor, homePage}) => {
     );
 
     return (
-            <ThemeProvider theme={DigitalResumeTheme}><Grid item container>
-                <Grid item container justifyContent='flex-end' style={{padding: DigitalResumeTheme.spacing(2, 3)}}>
+            <ThemeProvider theme={TheWebsiteTheme
+}><Grid item container>
+                <Grid item container justifyContent='flex-end' style={{padding: TheWebsiteTheme
+.spacing(2, 3)}}>
 
                     <Button variant='contained' color='primary' onClick={toggleDrawer(anchor, true)}>
                         <Grid container spacing={2} alignItems='center'>
@@ -336,8 +346,10 @@ const BusinessCard: FunctionComponent<MainMenuProps> = ({anchor, homePage}) => {
 
                               position: "absolute",
                               zIndex: 1000,
-                              paddingLeft: DigitalResumeTheme.spacing(4),
-                              paddingRight: DigitalResumeTheme.spacing(6),
+                              paddingLeft: TheWebsiteTheme
+.spacing(4),
+                              paddingRight: TheWebsiteTheme
+.spacing(6),
                           }}>
 
                         {/*<Grid item xs={3}>*/}

@@ -1,6 +1,7 @@
 import type {Meta, StoryObj} from '@storybook/react';
 import ResumeContactUsSection from "../../components/my-digital-resume/ResumeContactUsSection";
 import ResumeContactSectionData from "../data/ResumeContactSectionData";
+import {ResumeContactUsSectionType} from "../../components/BlockContentTypes";
 
 const meta: Meta<typeof ResumeContactUsSection> = {
     title:"Resume/Section/Resume Contact Us Section",
@@ -21,5 +22,5 @@ export const Primary: Story = {
     args:{
         sectionData: ResumeContactSectionData
     },
-    render: ({sectionData}) => <ResumeContactUsSection sectionData={sectionData}></ResumeContactUsSection>,
+    render: ({sectionData}:{sectionData: ResumeContactUsSectionType}) => <ResumeContactUsSection sectionData={sectionData}></ResumeContactUsSection>,
 };

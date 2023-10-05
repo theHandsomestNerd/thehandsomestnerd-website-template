@@ -5,8 +5,8 @@ import ThwHomePageData from "../data/ThwHomePageData";
 import ThwContactUsSection from "../../components/transform-hw/ThwContactUsSection";
 import thwContactUsData from "../data/ThwContactUsData";
 import CustomizedThemeProvider from "../../components/customized-theme-provider/CustomizedThemeProvider";
+import TheWebsiteTheme from "../../theme/Theme";
 import DigitalResumeThemeData from "../data/DigitalResumeThemeData";
-
 
 const meta: Meta<typeof ThwContactUsSection> = {
     title: "THW/Section/THW Contact Us Section",

@@ -7,17 +7,7 @@ import WebDevSiteTheme from "../../theme/WebDevSiteTheme";
 import {COLORS} from "../../theme/common/ColorPalette";
 
 
-declare module '@mui/styles/defaultTheme' {
-  // eslint-disable-next-line @typescript-eslint/no-empty-interface
-  interface DefaultTheme extends Theme {}
-}
 
-
-
-declare module '@mui/styles/defaultTheme' {
-  // eslint-disable-next-line @typescript-eslint/no-empty-interface
-  interface DefaultTheme extends Theme {}
-}
 
 
 interface IProps {

@@ -4,7 +4,7 @@ import { Card, Grid, Link, ThemeProvider, Theme, StyledEngineProvider } from '@m
 import sanityClient from '../sanityClient'
 import {blockSerializers} from '../common/sanityIo/BlockContentRenderer'
 import {DevelopmentHeaderSectionType, HeaderSectionType,} from "./BlockContentTypes";
-import DigitalResumeTheme from "../theme/DigitalResumeTheme";
+import TheWebsiteTheme from "../theme/Theme";
 import useThwCommonStyles from "../common/sanityIo/ThwCommonStyles";
 import DevelopmentHeader from "./mackenzies-mind/header/DevelopmentHeader";
 import Header from "./mackenzies-mind/header/Header";
@@ -94,7 +94,7 @@ const HeaderBlockContentLayoutContainer: FunctionComponent<HeaderBlockContentLay
                         const header: HeaderSectionType = columnLayoutContainer
 
                         return (
-                                <ThemeProvider theme={DigitalResumeTheme}><Grid key={'TOP_OF_PAGE'} container item xs={12} style={{height: DigitalResumeTheme.mixins.toolbar.height}}>
+                                <ThemeProvider theme={TheWebsiteTheme}><Grid key={'TOP_OF_PAGE'} container item xs={12} style={{height: TheWebsiteTheme.mixins.toolbar.height}}>
                                     <Link id={"TOP_OF_PAGE"} underline="hover"><></>
                                     </Link>
                                     <Header

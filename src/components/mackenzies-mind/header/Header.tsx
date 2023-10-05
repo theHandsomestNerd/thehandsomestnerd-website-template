@@ -7,14 +7,16 @@ import FilteredMenuItems from "../../filtered-menu-items/FilteredMenuItems";
 import clsx from "clsx";
 import {COLORS} from "../../../theme/common/ColorPalette";
 import widthUtils from "../../../utils/widthUtils";
-import DigitalResumeTheme from "../../../theme/DigitalResumeTheme";
+import TheWebsiteTheme from "../../../theme/Theme";
 
 export const useStyles = makeStyles((theme: Theme) => ({
     root: {
         backgroundColor: COLORS.TRANSPARENTWHITE,
         transition: 'background-color .5s ease 0s',
-        paddingLeft: DigitalResumeTheme.spacing(4),
-        height: DigitalResumeTheme.mixins.toolbar.height
+        paddingLeft: TheWebsiteTheme
+.spacing(4),
+        height: TheWebsiteTheme
+.mixins.toolbar.height
     },
     opaque: {
         backgroundColor: `${COLORS.LIGHTGRAY} !important`,

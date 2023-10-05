@@ -5,7 +5,7 @@
 import React, {PropsWithChildren} from 'react'
 import {useCommonStyles} from './CommonStyles'
 import {Grid, Typography} from '@mui/material'
-import DigitalResumeTheme from "../../../../theme/DigitalResumeTheme";
+import TheWebsiteTheme from "../../../../theme/Theme";
 
 export type TypographyVariantType =
   'button'
@@ -22,17 +22,20 @@ export type TypographyVariantType =
   | 'body1'
   | 'body2'
 export const LightRender: React.FunctionComponent<PropsWithChildren> = (props) => {
-  const classes = useCommonStyles(DigitalResumeTheme)
+  const classes = useCommonStyles(TheWebsiteTheme
+)
   return <span className={classes.lightWeightFont}>{props.children}</span>
 }
 
 export const BoldRender: React.FunctionComponent<PropsWithChildren> = (props) => {
-  const classes = useCommonStyles(DigitalResumeTheme)
+  const classes = useCommonStyles(TheWebsiteTheme
+)
   return <span className={classes.boldWeightFont}>{props.children}</span>
 }
 
 export const DropCapRender: React.FunctionComponent<PropsWithChildren> = (props) => {
-  const classes = useCommonStyles(DigitalResumeTheme)
+  const classes = useCommonStyles(TheWebsiteTheme
+)
   return <span className={classes.dropCapLetter}>{props.children}</span>
 }
 
@@ -49,18 +52,21 @@ export const UnderlineRender: React.FunctionComponent<PropsWithChildren> = (prop
 }
 
 export const NormalRender: React.FunctionComponent = (props: React.PropsWithChildren<{}> & { listItem?: string, level?: number }) => {
-  const classes = useCommonStyles(DigitalResumeTheme)
+  const classes = useCommonStyles(TheWebsiteTheme
+)
   return <Typography className={classes.bodyText} style={{margin: '.5rem 0'}}>{props.children}</Typography>
 }
 
 export const TypographyRender: React.FunctionComponent<PropsWithChildren> = (props, variant: string) => {
-  const classes = useCommonStyles(DigitalResumeTheme)
+  const classes = useCommonStyles(TheWebsiteTheme
+)
   return <Typography component="span" className={classes.typographyText}
                      variant={variant as TypographyVariantType}>{props.children}</Typography>
 }
 
 export const LargeBodyTextRender: React.FunctionComponent<PropsWithChildren> = (props) => {
-  const classes = useCommonStyles(DigitalResumeTheme)
+  const classes = useCommonStyles(TheWebsiteTheme
+)
   return <Typography component="span" className={classes.largeBodyText}>{props.children}</Typography>
 }
 

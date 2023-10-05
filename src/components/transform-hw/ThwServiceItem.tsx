@@ -7,12 +7,12 @@ import {ImageWithButtonOverlayAligmentEnum} from "../image-with-button-overlay/I
 import LoadingButton from "../loading-button/LoadingButton";
 import {v4 as uuidv4} from 'uuid'
 import amenitiesIcon from "./amenitiesIcon.png";
-import DigitalResumeTheme from "../../theme/DigitalResumeTheme";
 import AmenitiesSection from "./AmenitiesSection";
 import PageContext from "../page-context/PageContext";
 import {ThwServiceItemNoRefType} from "../BlockContentTypes";
 import firebaseAnalyticsClient from "../../utils/firebase/FirebaseAnalyticsClient";
 import widthUtils from "../../utils/widthUtils";
+import TransformHWTheme from "../../theme/TransformHWTheme";
 
 export const useStyles = makeStyles((theme: Theme) => ({
     root: {},
@@ -44,7 +44,7 @@ const ThwServiceItem: FunctionComponent<IProps> = (props: IProps) => {
     }
 
     return (
-        <Grid key={uuidv4()} container item xs={12} sm={12} md={6} style={{marginBottom: DigitalResumeTheme.spacing(4)}}>
+        <Grid key={uuidv4()} container item xs={12} sm={12} md={6} style={{marginBottom: TransformHWTheme.spacing(4)}}>
             <Grid container item direction='column' justifyContent='space-between' alignContent='center'
                   alignItems='center'>
                 <Grid container item direction={"column"}>

@@ -8,8 +8,8 @@ import PageContext from "../../page-context/PageContext";
 import MailTo from "../../mail-to/MailTo";
 import Logo from "../../transform-hw/logo/Logo";
 import {COLORS} from "../../../theme/common/ColorPalette";
-import DigitalResumeTheme from "../../../theme/DigitalResumeTheme";
-
+import TheWebsiteTheme from "../../../theme/Theme";
+import widthUtils from "../../../utils/widthUtils";
 
 export const useStyles = makeStyles((theme: Theme) => ({
     root: {
@@ -25,19 +25,19 @@ interface IProps {
 
 const FooterMenuContainer: FunctionComponent<IProps> = (props: IProps) => {
 
-    const classes = useStyles(DigitalResumeTheme)
+    const classes = useStyles(TheWebsiteTheme)
 
     const pageContext = useContext(PageContext)
-    // const width = useWidth()
 
+    const smDown = widthUtils.useIsWidthDown('sm')
     return (
-        <ThemeProvider theme={DigitalResumeTheme}><Grid container item className={classes.root} spacing={5}>
+        <ThemeProvider theme={TheWebsiteTheme}><Grid container item className={classes.root} spacing={5}>
             <Grid container item xs={12} md={4}
-                //       style={width in ['xs','sm',''] ? {
-                //     borderLeft: `4px solid ${TheWebsiteTheme.palette.primary.main}`,
-                //     backgroundColor: "rgba(117,117,117,.5)",
-                //     borderRight: `4px solid ${TheWebsiteTheme.palette.primary.main}`,
-                // } : {}}
+                      style={smDown ? {
+                    borderLeft: `4px solid ${TheWebsiteTheme.palette.primary.main}`,
+                    backgroundColor: "rgba(117,117,117,.5)",
+                    borderRight: `4px solid ${TheWebsiteTheme.palette.primary.main}`,
+                } : {}}
             >
                 {
                     props.pageFooterMenu?.subMenus?.map((menuGroup: any, index: number) => {

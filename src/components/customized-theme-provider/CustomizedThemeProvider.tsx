@@ -6,7 +6,7 @@ import {COLORS} from "../../theme/common/ColorPalette";
 import {grey} from "@mui/material/colors";
 import {SanityMuiTheme} from "../../common/sanityIo/Types";
 import PageContext from "../page-context/PageContext";
-import DigitalResumeTheme from "../../theme/DigitalResumeTheme";
+import TheWebsiteTheme from "../../theme/Theme";
 
 type IProps = {
     pageTheme?: SanityMuiTheme
@@ -321,7 +321,8 @@ const CustomizedThemeProvider: FunctionComponent<IProps & PropsWithChildren> = (
 
             setCustomizedTheme(theCustomizedTheme)
         } else {
-            setCustomizedTheme(DigitalResumeTheme)
+            setCustomizedTheme(TheWebsiteTheme
+)
         }
     }, [pageContext.page?.theme])
 

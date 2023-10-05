@@ -1,6 +1,5 @@
 import React, {FunctionComponent, useContext, useEffect, useState} from 'react'
 import {makeStyles} from "@mui/styles"
-import DigitalResumeTheme from "../../theme/DigitalResumeTheme";
 import {ResumeContactUsSectionType} from "../BlockContentTypes";
 import useCustomStyles from "../mackenzies-mind/pages/Styles";
 import isEmail from "validator/lib/isEmail";
@@ -13,6 +12,7 @@ import SnackbarContext from "../modal-context/SnackbarContext";
 import {Theme, ThemeProvider} from "@mui/material/styles";
 import withStyles from "@mui/styles/withStyles";
 import {Grid, TextField, Typography, useTheme} from "@mui/material";
+import TheWebsiteTheme from "../../theme/Theme";
 
 export const useStyles = makeStyles((theme: Theme) => ({
     root: {
@@ -91,13 +91,13 @@ const StyledTextField = withStyles({
         },
         "& .MuiOutlinedInput-root": {
             border: "1px solid black",
-            // borderColor: `${DigitalResumeTheme.palette.primary.main}`,
+            // borderColor: `${TheWebsiteTheme.palette.primary.main}`,
             borderRadius: 0,
             "&.Mui-focused": {
-                borderColor: `${DigitalResumeTheme.palette.primary.main} !important`,
+                borderColor: `${TheWebsiteTheme.palette.primary.main} !important`,
                 "&.Mui-hover": {
                     "& .MuiOutlinedInput-notchedOutline": {
-                        borderColor: `${DigitalResumeTheme.palette.primary.main} !important`
+                        borderColor: `${TheWebsiteTheme.palette.primary.main} !important`
                     },
 
                 },
@@ -116,7 +116,8 @@ export type ContactUsProps = {
     sectionData: ResumeContactUsSectionType
 }
 const ResumeContactUsSection: FunctionComponent<ContactUsProps> = (props) => {
-    const classes = useStyles(DigitalResumeTheme)
+    const classes = useStyles(TheWebsiteTheme
+    )
 
     const snackbarContext = useContext(SnackbarContext)
 
@@ -152,12 +153,18 @@ const ResumeContactUsSection: FunctionComponent<ContactUsProps> = (props) => {
 
     const getHelperText = () => {
         if (data) {
-            return <Typography style={{color: DigitalResumeTheme.palette.success.main}} variant='subtitle1'>Thank you
+            return <Typography style={{
+                color: TheWebsiteTheme
+                    .palette.success.main
+            }} variant='subtitle1'>Thank you
                 for
                 your submission!</Typography>
         }
         if (isError) {
-            return <Typography style={{color: DigitalResumeTheme.palette.error.main}} variant='subtitle1'>Please Try
+            return <Typography style={{
+                color: TheWebsiteTheme
+                    .palette.error.main
+            }} variant='subtitle1'>Please Try
                 your
                 submission again later or contact jgreene@transformHW.org.</Typography>
         }
@@ -174,7 +181,7 @@ const ResumeContactUsSection: FunctionComponent<ContactUsProps> = (props) => {
     const theme = useTheme()
 
     return (
-        <ThemeProvider theme={DigitalResumeTheme}>
+        <ThemeProvider theme={TheWebsiteTheme}>
             <Grid
                 container
                 item

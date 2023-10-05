@@ -5,7 +5,7 @@ import {Divider, Grid, Typography} from '@mui/material'
 import {ServiceAmenityType, ThwServiceItemType} from "../../BlockContentTypes";
 import {urlFor} from "../../block-content-ui/static-pages/cmsStaticPagesClient";
 import ResponsiveBullet from "../../ResponsiveBullet";
-import DigitalResumeTheme from "../../../theme/DigitalResumeTheme";
+import TheWebsiteTheme from "../../../theme/Theme";
 import LoadingButton from "../../loading-button/LoadingButton";
 import OtherServices from "./OtherServices";
 import {v4 as uuidv4} from 'uuid'
@@ -35,7 +35,8 @@ interface IProps {
 
 
 const ThwServiceEducationPage: FunctionComponent<IProps> = (props) => {
-    const classes = useStyles(DigitalResumeTheme)
+    const classes = useStyles(TheWebsiteTheme
+)
 
     // const {data} = thwClient.useFetchRefsQuery(props.serviceData.serviceAmenities)
 
@@ -46,7 +47,8 @@ const ThwServiceEducationPage: FunctionComponent<IProps> = (props) => {
 
         <Grid container item className={classes.root} xs={12} style={{position: "relative"}}>
             <Grid container item >
-                <Grid item container style={{marginTop: DigitalResumeTheme.spacing(76)}}>
+                <Grid item container style={{marginTop: TheWebsiteTheme
+.spacing(76)}}>
 
                 </Grid>
                 <Grid container style={{
@@ -78,12 +80,14 @@ const ThwServiceEducationPage: FunctionComponent<IProps> = (props) => {
                             width: "100%",
                             position: "absolute",
                             backgroundPosition: "center",
-                            top: DigitalResumeTheme.mixins.toolbar.height,
+                            top: TheWebsiteTheme
+.mixins.toolbar.height,
                             // left: TransformHWTheme.spacing(-6),
                             backgroundSize: 'cover',
                             // backgroundImage: `url(${urlFor(props.serviceData.educationPageSlimHeroImage).height(200).url()})`
                         }}>
-                            <Grid container alignItems='center' alignContent='center' style={{ padding: DigitalResumeTheme.spacing(4,4,0,4),
+                            <Grid container alignItems='center' alignContent='center' style={{ padding: TheWebsiteTheme
+.spacing(4,4,0,4),
                             }}>
                                 <Grid item container justifyContent={smDown ? 'center' : "flex-start"}>
                                     <Typography variant='body1'
@@ -136,12 +140,18 @@ const ThwServiceEducationPage: FunctionComponent<IProps> = (props) => {
                         {props.serviceData.serviceAmenities?.map((serviceAmenity: ServiceAmenityType) => {
                             return <Grid key={uuidv4()} container item xs={6} sm={5} md={4} lg={3} xl={3}
                                          style={{
-                                             padding: xsDown ? DigitalResumeTheme.spacing(4, 0, 4, 0) : DigitalResumeTheme.spacing(6, 0, 6, 0),
-                                             margin: xsDown ? DigitalResumeTheme.spacing(-.2, -.1, .05, -.1,) : DigitalResumeTheme.spacing(-.1, -.1, -.1, -.1,),
+                                             padding: xsDown ? TheWebsiteTheme
+.spacing(4, 0, 4, 0) : TheWebsiteTheme
+.spacing(6, 0, 6, 0),
+                                             margin: xsDown ? TheWebsiteTheme
+.spacing(-.2, -.1, .05, -.1,) : TheWebsiteTheme
+.spacing(-.1, -.1, -.1, -.1,),
                                              maxWidth: "300px",
                                              minWidth: "230px",
-                                             border: `1px solid ${DigitalResumeTheme.palette.secondary.main}`,
-                                             backgroundColor: DigitalResumeTheme.palette.background.paper
+                                             border: `1px solid ${TheWebsiteTheme
+.palette.secondary.main}`,
+                                             backgroundColor: TheWebsiteTheme
+.palette.background.paper
                                          }}>
                                 <Grid container item justifyContent='center' alignContent='flex-start' spacing={1}>
                                     <Grid item container xs={12} justifyContent='center'>
@@ -185,7 +195,8 @@ const ThwServiceEducationPage: FunctionComponent<IProps> = (props) => {
                     </Grid>
                 </Grid>
                 <Grid container item alignItems="center" justifyContent="center"
-                      style={{margin: DigitalResumeTheme.spacing(8, 0, 6)}}>
+                      style={{margin: TheWebsiteTheme
+.spacing(8, 0, 6)}}>
                     <LoadingButton
                         width={250}
                         href={props.serviceData.ctaButtonLink}
@@ -195,7 +206,8 @@ const ThwServiceEducationPage: FunctionComponent<IProps> = (props) => {
                     </LoadingButton>
                 </Grid>
                 <Grid container item>
-                    <Divider style={{width: "100%", margin: DigitalResumeTheme.spacing(4, 0, 2, 0)}}/>
+                    <Divider style={{width: "100%", margin: TheWebsiteTheme
+.spacing(4, 0, 2, 0)}}/>
                 </Grid>
                 <Grid container item>
                         <OtherServices thisServiceSlug={props.serviceData.slug?.current}/>

@@ -8,20 +8,6 @@ import WebDevServiceItem from "./WebDevServiceItem";
 import {COLORS} from "../../theme/common/ColorPalette";
 
 
-
-declare module '@mui/styles/defaultTheme' {
-  // eslint-disable-next-line @typescript-eslint/no-empty-interface
-  interface DefaultTheme extends Theme {}
-}
-
-
-
-declare module '@mui/styles/defaultTheme' {
-  // eslint-disable-next-line @typescript-eslint/no-empty-interface
-  interface DefaultTheme extends Theme {}
-}
-
-
 export const useStyles = makeStyles((theme: Theme) => ({
     root: {
         // padding: theme.spacing(8),

@@ -7,7 +7,7 @@ import {ButtonGroupMemberEnum} from "../../loading-button/ButtonGroupMemberEnum"
 import isEmail from "validator/lib/isEmail";
 import {useQuery} from "react-query";
 import leadClient from "./under-construction-page/leadClient";
-import DigitalResumeTheme from "../../../theme/DigitalResumeTheme";
+import TheWebsiteTheme from "../../../theme/Theme";
 import useCustomStyles from "../../mackenzies-mind/pages/Styles";
 
 export const useStyles = makeStyles((theme: Theme) => ({
@@ -15,14 +15,18 @@ export const useStyles = makeStyles((theme: Theme) => ({
         "& .MuiFilledInput-adornedEnd": {
             border: "1px solid red",
             // marginRight: '-12px',
-            borderTopRightRadius: DigitalResumeTheme.shape.borderRadius,
-            borderBottomRightRadius: DigitalResumeTheme.shape.borderRadius,
+            borderTopRightRadius: TheWebsiteTheme
+.shape.borderRadius,
+            borderBottomRightRadius: TheWebsiteTheme
+.shape.borderRadius,
         },
         "& .MuiOutlinedInput-adornedEnd": {
             border: "1px solid white",
             // paddingRight: 0,
-            borderTopRightRadius: DigitalResumeTheme.shape.borderRadius,
-            borderBottomRightRadius: DigitalResumeTheme.shape.borderRadius,
+            borderTopRightRadius: TheWebsiteTheme
+.shape.borderRadius,
+            borderBottomRightRadius: TheWebsiteTheme
+.shape.borderRadius,
         },
         "& .MuiInputBase-input": {
             borderRightWidth: 0,
@@ -45,8 +49,10 @@ export interface SubmitEmailIProps {
 
 const BusinessCardSubmitEmail: FunctionComponent<SubmitEmailIProps> = (props: SubmitEmailIProps) => {
     const theme = useTheme()
-    const classes = useCustomStyles(DigitalResumeTheme)
-    const myClasses = useStyles(DigitalResumeTheme)
+    const classes = useCustomStyles(TheWebsiteTheme
+)
+    const myClasses = useStyles(TheWebsiteTheme
+)
     const [email, setEmail] = useState("")
 
     const {isLoading, isError, data, refetch} = useQuery(

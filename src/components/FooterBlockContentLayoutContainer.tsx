@@ -4,26 +4,11 @@ import { Card, Grid, Link, ThemeProvider, Theme, StyledEngineProvider } from '@m
 import sanityClient from '../sanityClient'
 import {blockSerializers} from '../common/sanityIo/BlockContentRenderer'
 import {DevelopmentFooterSectionType, FooterSectionType,} from "./BlockContentTypes";
-import DigitalResumeTheme from "../theme/DigitalResumeTheme";
+import TheWebsiteTheme from "../theme/Theme";
 import useThwCommonStyles from "../common/sanityIo/ThwCommonStyles";
 import WebDevSiteTheme from "../theme/WebDevSiteTheme";
 import Footer from "./mackenzies-mind/footer/Footer";
 import WebDevFooter from "./web-dev-site/dev-footer/WebDevFooter";
-
-
-
-declare module '@mui/styles/defaultTheme' {
-  // eslint-disable-next-line @typescript-eslint/no-empty-interface
-  interface DefaultTheme extends Theme {}
-}
-
-
-
-declare module '@mui/styles/defaultTheme' {
-  // eslint-disable-next-line @typescript-eslint/no-empty-interface
-  interface DefaultTheme extends Theme {}
-}
-
 
 export type FooterBlockContentLayoutContainerProps = {
     content?: any,
@@ -100,7 +85,7 @@ const FooterBlockContentLayoutContainer: FunctionComponent<FooterBlockContentLay
 
                         return (
                             <StyledEngineProvider injectFirst>
-                                <ThemeProvider theme={DigitalResumeTheme}><Grid key={'BOTTOM_OF_PAGE'} container item xs={12}
+                                <ThemeProvider theme={TheWebsiteTheme}><Grid key={'BOTTOM_OF_PAGE'} container item xs={12}
                                                                                           >
                                     <Link id={"BOTTOM_OF_PAGE"} underline="hover"><></>
                                     </Link>

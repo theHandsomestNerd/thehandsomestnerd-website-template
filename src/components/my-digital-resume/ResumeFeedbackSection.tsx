@@ -5,7 +5,7 @@ import {ResumeFeedback, ResumeFeedbackSectionType} from "../BlockContentTypes";
 import useThwCommonStyles from "../../common/sanityIo/ThwCommonStyles";
 import {urlFor} from "../block-content-ui/static-pages/cmsStaticPagesClient";
 import {COLORS} from "../../theme/common/ColorPalette";
-import DigitalResumeTheme from "../../theme/DigitalResumeTheme";
+import TheWebsiteTheme from "../../theme/Theme";
 import widthUtils from "../../utils/widthUtils";
 
 
@@ -20,11 +20,13 @@ const ResumeFeedbackSection: FunctionComponent<IProps> = (props: IProps) => {
     const xsOnly = widthUtils.useIsWidthDown('xs')
 
     return (
-            <ThemeProvider theme={DigitalResumeTheme}><Grid
+            <ThemeProvider theme={TheWebsiteTheme
+}><Grid
                 container
                 item
                 style={{
-                    padding: DigitalResumeTheme.spacing(4)
+                    padding: TheWebsiteTheme
+.spacing(4)
                 }}
                 className={globalClasses.resumeSection}
             >

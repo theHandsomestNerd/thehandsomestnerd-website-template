@@ -1,21 +1,12 @@
 import React, {FunctionComponent} from 'react'
-import {
-    Button,
-    ButtonGroup,
-    Grid,
-    StyledEngineProvider,
-    Theme,
-    ThemeProvider,
-    Typography,
-    useTheme,
-} from '@mui/material';
+import {Button, ButtonGroup, Grid, ThemeProvider, Typography,} from '@mui/material';
 import {ResumeBioSectionType} from "../BlockContentTypes";
 import {urlFor} from "../block-content-ui/static-pages/cmsStaticPagesClient";
 import {SanityTransformHwHomePage} from "../../common/sanityIo/Types";
 import useThwCommonStyles from "../../common/sanityIo/ThwCommonStyles";
 import ResumeSocialMedia from "./ResumeSocialMedia";
 import BusinessCardSubmitEmail from "../transform-hw/pages/BusinessCardSubmitEmail";
-import DigitalResumeTheme from "../../theme/DigitalResumeTheme";
+import TheWebsiteTheme from "../../theme/Theme";
 import widthUtils from "../../utils/widthUtils";
 
 
@@ -26,13 +17,11 @@ interface IProps {
 
 const ResumeBio: FunctionComponent<IProps> = (props: IProps) => {
     const classes = useThwCommonStyles()
-    const theme = useTheme()
 
     const smDown = widthUtils.useIsWidthDown('sm')
 
     return (
-        <StyledEngineProvider injectFirst>
-            <ThemeProvider theme={DigitalResumeTheme}><Grid container item style={{padding: theme.spacing(4)}} justifyContent='center'
+            <ThemeProvider theme={TheWebsiteTheme}><Grid container item style={{padding: TheWebsiteTheme.spacing(4)}} justifyContent='center'
                           className={classes.resumeSection} spacing={3}>
                 <Grid item xs={12}>
                     <BusinessCardSubmitEmail emailFieldText={'Email Address'}
@@ -78,13 +67,14 @@ const ResumeBio: FunctionComponent<IProps> = (props: IProps) => {
                     minHeight: "350px"
                 }}>
                 </Grid>
-                <Grid container item xs={12} sm={10} spacing={1} style={{marginTop: theme.spacing(2)}}>
+                <Grid container item xs={12} sm={10} spacing={1} style={{marginTop: TheWebsiteTheme.spacing(2)}}>
                     <Grid item container>
                         <ButtonGroup fullWidth orientation={smDown ? 'vertical' : "horizontal"}>
-                            <Button variant='contained' fullWidth color='primary' href={props.homePage.bookAppointmentLink}><Typography variant="button" align='center'>Meet with Me</Typography></Button>
-                            <Button variant='contained' fullWidth color='primary' href={'#CONTACT_ME'}><Typography variant="button" align='center'>Contact
+                            <Button name={'appointment'} variant='contained' fullWidth color='primary' href={props.homePage.bookAppointmentLink}><Typography variant="button" align='center'>Meet with Me</Typography></Button>
+                            <Button name={'contact-me'}variant='contained' fullWidth color='primary' href={'#CONTACT_ME'}><Typography variant="button" align='center'>Contact
                                 Me</Typography></Button>
                             <Button
+                                name={'download-resume'}
                                 href={props.sectionData.resumeFile?.url + "?dl=James Terrell Singleton - Software Engineer - Resume.pdf"}
                                 variant='contained' fullWidth color='primary'><Typography variant="button" align='center' noWrap>
                                 Download Resume</Typography></Button>
@@ -97,7 +87,6 @@ const ResumeBio: FunctionComponent<IProps> = (props: IProps) => {
                     </Grid>
                 </Grid>
             </Grid></ThemeProvider>
-        </StyledEngineProvider>
     );
 }
 

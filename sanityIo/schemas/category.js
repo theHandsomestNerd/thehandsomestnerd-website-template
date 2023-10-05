@@ -1,4 +1,6 @@
-import DigitalResumeTheme from "../../src/theme/DigitalResumeTheme";
+import TheWebsiteTheme
+ from "../../src/theme/TheWebsiteTheme
+";
 
 export default {
   name: 'category',
@@ -21,7 +23,9 @@ export default {
       name: "color",
       type: "string",
       list: [
-          { title: DigitalResumeTheme.palette.primary.main, value: DigitalResumeTheme.palette.primary.main },
+          { title: TheWebsiteTheme
+.palette.primary.main, value: TheWebsiteTheme
+.palette.primary.main },
           { title: "#3D3D3D", value: "#3D3D3D" },
           { title: "rgba(75,75,229,1)", value: "rgba(75,75,229,1)" },
           { title: "rgba(75,135,75,1)", value: "rgba(75,135,75,1)" },

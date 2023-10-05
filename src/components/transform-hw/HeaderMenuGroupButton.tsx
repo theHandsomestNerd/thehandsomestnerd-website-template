@@ -1,6 +1,6 @@
-import React, {FunctionComponent, useState} from 'react'
+import React, {FunctionComponent} from 'react'
 import {Button, Typography} from '@mui/material'
-import DigitalResumeTheme from "../../theme/DigitalResumeTheme";
+import TheWebsiteTheme from "../../theme/Theme";
 import {ArrowDropDown} from "@mui/icons-material";
 import {bindTrigger} from "material-ui-popup-state";
 import {SanityMenuGroup} from "../../common/sanityIo/Types";
@@ -17,10 +17,13 @@ const HeaderMenuGroupButton: FunctionComponent<HeaderMenuItemButtonProps> = ({po
         color={"secondary"}
         style={{
             borderRadius: 0,
-            paddingLeft: DigitalResumeTheme.spacing(2),
-            paddingRight: DigitalResumeTheme.spacing(3),
+            paddingLeft: TheWebsiteTheme
+.spacing(2),
+            paddingRight: TheWebsiteTheme
+.spacing(3),
             height: "100%",
-            color: DigitalResumeTheme.palette.secondary.main
+            color: TheWebsiteTheme
+.palette.secondary.main
         }}
         onClick={popupState.handleClick}
         endIcon={<ArrowDropDown></ArrowDropDown>}

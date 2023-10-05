@@ -3,10 +3,10 @@ import {Theme, ThemeProvider} from '@mui/material/styles';
 import makeStyles from '@mui/styles/makeStyles';
 import {Divider, Grid, Typography} from '@mui/material'
 import {ThwWhyChooseUsSectionType} from "../BlockContentTypes";
-import DigitalResumeTheme from "../../theme/DigitalResumeTheme";
 import imagePlaceholderClient from "../../utils/imagePlaceholderClient";
 import TransformHWTheme from "../../theme/TransformHWTheme";
 import widthUtils from "../../utils/widthUtils";
+import TheWebsiteTheme from "../../theme/Theme";
 
 
 export const useStyles = makeStyles((theme: Theme) => ({
@@ -26,7 +26,7 @@ interface IProps {
 }
 
 const ThwServicesSection: FunctionComponent<IProps> = (props) => {
-    const classes = useStyles(DigitalResumeTheme)
+    const classes = useStyles(TheWebsiteTheme)
 
     const xsOnly = widthUtils.useIsWidthDown('xs')
     return (

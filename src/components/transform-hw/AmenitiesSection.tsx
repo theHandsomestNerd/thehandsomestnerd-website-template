@@ -1,11 +1,10 @@
 import React, {FunctionComponent, useContext} from 'react'
-import { Theme } from "@mui/material/styles";
+import {Theme} from "@mui/material/styles";
 import makeStyles from '@mui/styles/makeStyles';
 import {Grid, List} from '@mui/material'
 import {ArrowLeft, ArrowRight} from "@mui/icons-material";
-import DigitalResumeTheme from "../../theme/DigitalResumeTheme";
+import TheWebsiteTheme from "../../theme/Theme";
 import {ThwServiceItemNoRefType} from "../BlockContentTypes";
-import PageContext from "../page-context/PageContext";
 import AmenityContext from "../amenity-context/AmenityContext";
 import {useIsHorizontalOverflow} from "../../utils/useIsHorizontalOverflow";
 
@@ -105,7 +104,8 @@ const AmenitiesSection: FunctionComponent<IProps> = (props: IProps) => {
                 <List
 
                     style={{
-                        paddingTop: DigitalResumeTheme.spacing(2),
+                        paddingTop: TheWebsiteTheme
+.spacing(2),
 
                         // display: 'flex', flexDirection: 'row',
                         // overflowY: "hidden",
@@ -118,7 +118,9 @@ const AmenitiesSection: FunctionComponent<IProps> = (props: IProps) => {
                         // marginTop: TransformHWTheme.spacing(2),
                         //     margin: 0,
                         // display: 'flex', flexDirection: 'row', padding: 0,
-                        paddingLeft: isOverflow?DigitalResumeTheme.spacing(2):DigitalResumeTheme.spacing(0),
+                        paddingLeft: isOverflow?TheWebsiteTheme
+.spacing(2):TheWebsiteTheme
+.spacing(0),
                         overflowY: "hidden",
                         overflowX: "scroll",
                         height: "100%",

@@ -4,7 +4,7 @@ import { Theme } from '@mui/material/styles';
 import makeStyles from '@mui/styles/makeStyles';
 
 import {Grid, Link, Typography} from '@mui/material'
-import DigitalResumeTheme from "../../../theme/DigitalResumeTheme";
+import TheWebsiteTheme from "../../../theme/Theme";
 import {SanityMenuGroup, SanityMenuItem} from "../../../common/sanityIo/Types";
 
 export const useStyles = makeStyles((theme: Theme) => ({
@@ -43,7 +43,8 @@ export type LandingPagesFooterMenuGroupProps = {
 }
 
 const FooterMenuGroup: FunctionComponent<LandingPagesFooterMenuGroupProps> = ({menuGroup}) => {
-    const classes = useStyles(DigitalResumeTheme)
+    const classes = useStyles(TheWebsiteTheme
+)
 
     const [menuGroupContents, setMenuGroupContents] = useState<SanityMenuGroup>()
     const [menuItemContents, setMenuItemContents] = useState<SanityMenuItem>()

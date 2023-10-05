@@ -7,7 +7,7 @@ import {ButtonGroupMemberEnum} from "../../loading-button/ButtonGroupMemberEnum"
 import isEmail from "validator/lib/isEmail";
 import {useQuery} from "react-query";
 import leadClient from "./under-construction-page/leadClient";
-import DigitalResumeTheme from "../../../theme/DigitalResumeTheme";
+import TheWebsiteTheme from "../../../theme/Theme";
 import useCustomStyles from "../../mackenzies-mind/pages/Styles";
 
 export const useStyles = makeStyles((theme: Theme) => ({
@@ -22,7 +22,8 @@ interface IProps {
 
 const SubmitEmail: FunctionComponent<IProps> = (props: IProps) => {
     const theme = useTheme()
-    const classes = useCustomStyles(DigitalResumeTheme)
+    const classes = useCustomStyles(TheWebsiteTheme
+)
     const [email, setEmail] = useState("")
 
     const {isLoading, isError, data, refetch} = useQuery(

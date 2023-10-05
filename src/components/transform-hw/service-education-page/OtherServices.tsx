@@ -4,12 +4,8 @@ import makeStyles from '@mui/styles/makeStyles';
 import {Grid, Typography} from '@mui/material'
 import {v4 as uuidv4} from 'uuid'
 import ThwServiceItem from "../ThwServiceItem";
-import DigitalResumeTheme from "../../../theme/DigitalResumeTheme";
+import TheWebsiteTheme from "../../../theme/Theme";
 import PageContext from "../../page-context/PageContext";
-
-export const useStyles = makeStyles((theme: Theme) => ({
-    root: {},
-}))
 
 interface IProps {
     thisServiceSlug?: string
@@ -19,7 +15,7 @@ const OtherServices: FunctionComponent<IProps> = (props: IProps) => {
     const pageContext = useContext(PageContext)
 
     return (<Grid container item>
-        <Grid container item justifyContent='center' style={{marginBottom: DigitalResumeTheme.spacing(4)}}>
+        <Grid container item justifyContent='center' style={{marginBottom: TheWebsiteTheme.spacing(4)}}>
             <Typography variant='h4' color='secondary'>Other Services</Typography>
         </Grid>
         <Grid container item spacing={3} justifyContent='center'>
