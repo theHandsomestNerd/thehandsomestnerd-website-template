@@ -1,12 +1,11 @@
 import React, {FunctionComponent, useContext} from 'react'
 import {Theme} from "@mui/material/styles";
 import makeStyles from '@mui/styles/makeStyles';
-import {AppBar, Grid, Hidden, Typography} from '@mui/material'
+import {AppBar, Grid, Hidden, Typography, useTheme} from '@mui/material'
 import MainMenu from "./MainMenu";
 import FilteredMenuItems from "../../filtered-menu-items/FilteredMenuItems";
 import clsx from "clsx";
 import MediaQueriesContext from "../../media-queries-context/MediaQueriesContext";
-import TheWebsiteTheme from "../../../theme/Theme";
 // import FontFaces from "../../../theme/common/FontFaces";
 import {COLORS} from "../../../theme/common/ColorPalette";
 
@@ -31,6 +30,7 @@ const Header: FunctionComponent<HeaderProps> = (props) => {
     const classes = useStyles()
     const mediaQueriesContext = useContext(MediaQueriesContext)
 
+    const theme = useTheme()
     React.useEffect(() => {
         console.log("Page header in the header", props.pageHeader)
     }, [props.pageHeader])
@@ -52,7 +52,7 @@ const Header: FunctionComponent<HeaderProps> = (props) => {
                               alignItems='center'
                               style={{
                                   height: "100%",
-                                  paddingRight: mediaQueriesContext.mdDown ? TheWebsiteTheme.spacing(0) : TheWebsiteTheme.spacing(4)
+                                  paddingRight: mediaQueriesContext.mdDown ? theme.spacing(0) : theme.spacing(4)
                               }}>
                             <FilteredMenuItems
                                 // bgColor={!mdDown ? TransformHWTheme.palette.primary.main : COLORS.TRANSPARENTWHITE}

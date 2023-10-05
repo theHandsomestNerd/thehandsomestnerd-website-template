@@ -1,6 +1,4 @@
 import React, {FunctionComponent, useContext} from 'react'
-import {makeStyles, Theme} from '@material-ui/core/styles'
-import {Grid, ThemeProvider, Typography} from '@material-ui/core'
 import {urlFor} from '../block-content-ui/static-pages/cmsStaticPagesClient'
 import {ThwMottoSectionType} from "../BlockContentTypes";
 import {Parallax} from 'react-parallax';
@@ -9,6 +7,9 @@ import DigitalResumeTheme from "../../theme/DigitalResumeTheme";
 import MediaQueriesContext from "../media-queries-context/MediaQueriesContext";
 import useCustomStyles from "../mackenzies-mind/pages/Styles";
 import TransformHWTheme from "../../theme/TransformHWTheme";
+import {Theme, ThemeProvider} from "@mui/material/styles";
+import makeStyles from "@mui/styles/makeStyles";
+import {Grid, Typography} from "@mui/material";
 
 export const useStyles = makeStyles((theme: Theme) => ({
     root: {

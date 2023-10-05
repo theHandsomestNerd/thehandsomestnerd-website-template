@@ -5,21 +5,8 @@ import {ResumeFeedback, ResumeFeedbackSectionType} from "../BlockContentTypes";
 import useThwCommonStyles from "../../common/sanityIo/ThwCommonStyles";
 import {urlFor} from "../block-content-ui/static-pages/cmsStaticPagesClient";
 import MediaQueriesContext from "../media-queries-context/MediaQueriesContext";
-import TheWebsiteTheme from "../../theme/Theme";
 import {COLORS} from "../../theme/common/ColorPalette";
-
-
-declare module '@mui/styles/defaultTheme' {
-  // eslint-disable-next-line @typescript-eslint/no-empty-interface
-  interface DefaultTheme extends Theme {}
-}
-
-
-
-declare module '@mui/styles/defaultTheme' {
-  // eslint-disable-next-line @typescript-eslint/no-empty-interface
-  interface DefaultTheme extends Theme {}
-}
+import DigitalResumeTheme from "../../theme/DigitalResumeTheme";
 
 
 interface IProps {
@@ -28,17 +15,19 @@ interface IProps {
 
 const ResumeFeedbackSection: FunctionComponent<IProps> = (props: IProps) => {
     const globalClasses = useThwCommonStyles()
-    const theme = useTheme()
+    // const theme = useTheme()
 
     const mediaQueryContext = useContext(MediaQueriesContext)
     const xsOnly = mediaQueryContext.xsOnly
 
+
+
     return (
-            <ThemeProvider theme={TheWebsiteTheme}><Grid
+            <ThemeProvider theme={DigitalResumeTheme}><Grid
                 container
                 item
                 style={{
-                    padding: theme.spacing(4)
+                    padding: DigitalResumeTheme.spacing(4)
                 }}
                 className={globalClasses.resumeSection}
             >

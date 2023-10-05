@@ -1,6 +1,4 @@
 import React, {FunctionComponent, useContext} from 'react'
-import {makeStyles, Theme} from '@material-ui/core/styles'
-import {Button, Grid, ThemeProvider, Typography, useTheme} from '@material-ui/core'
 import {urlFor} from '../block-content-ui/static-pages/cmsStaticPagesClient'
 import {ThwHeroContentSectionType} from "../BlockContentTypes";
 import clsx from "clsx";
@@ -8,7 +6,9 @@ import PageContext from "../page-context/PageContext";
 import useCustomStyles from "../mackenzies-mind/pages/Styles";
 import firebaseAnalyticsClient from "../../utils/firebase/FirebaseAnalyticsClient";
 import TransformHWTheme from "../../theme/TransformHWTheme";
-import {CssBaseline} from "@mui/material";
+import {Theme, ThemeProvider} from "@mui/material/styles";
+import {Button, Grid, Typography} from "@mui/material";
+import makeStyles from "@mui/styles/makeStyles";
 
 interface IProps {
     sectionData: ThwHeroContentSectionType

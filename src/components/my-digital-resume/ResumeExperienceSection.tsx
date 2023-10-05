@@ -1,31 +1,11 @@
 import React, {FunctionComponent, useContext} from 'react'
-import { Theme, ThemeProvider, StyledEngineProvider } from "@mui/material/styles";
-import makeStyles from '@mui/styles/makeStyles';
 import {Chip, Grid, Typography, useTheme} from '@mui/material'
 import {ResumeExperience, ResumeExperienceSectionType} from "../BlockContentTypes";
 import useThwCommonStyles from "../../common/sanityIo/ThwCommonStyles";
 import MediaQueriesContext from "../media-queries-context/MediaQueriesContext";
-import TheWebsiteTheme from "../../theme/Theme";
 import {COLORS} from "../../theme/common/ColorPalette";
-
-
-
-declare module '@mui/styles/defaultTheme' {
-  // eslint-disable-next-line @typescript-eslint/no-empty-interface
-  interface DefaultTheme extends Theme {}
-}
-
-
-
-declare module '@mui/styles/defaultTheme' {
-  // eslint-disable-next-line @typescript-eslint/no-empty-interface
-  interface DefaultTheme extends Theme {}
-}
-
-
-export const useStyles = makeStyles((theme: Theme) => ({
-    root: {},
-}))
+import {ThemeProvider} from "@mui/material/styles";
+import DigitalResumeTheme from "../../theme/DigitalResumeTheme";
 
 interface IProps {
     sectionData: ResumeExperienceSectionType
@@ -39,8 +19,7 @@ const ResumeExperienceSection: FunctionComponent<IProps> = (props: IProps) => {
     const xsOnly = mediaQueryContext.xsOnly
 
     return (
-        <StyledEngineProvider injectFirst>
-            <ThemeProvider theme={TheWebsiteTheme}><Grid
+            <ThemeProvider theme={DigitalResumeTheme}><Grid
                 container
                 item
                 style={{
@@ -107,7 +86,7 @@ const ResumeExperienceSection: FunctionComponent<IProps> = (props: IProps) => {
                                           style={{overflowX: "scroll", paddingBottom: theme.spacing(1)}} wrap='nowrap'>
                                         {
                                             experience.skillsUsed?.map((skill, index) => {
-                                                return <Grid item><Chip size='small' color='primary'
+                                                return <Grid item key={index}><Chip size='small' color='primary'
                                                                         label={skill.title}/></Grid>
                                             })
                                         }
@@ -117,7 +96,6 @@ const ResumeExperienceSection: FunctionComponent<IProps> = (props: IProps) => {
                         }
                     </Grid>
                 </Grid></Grid></ThemeProvider>
-        </StyledEngineProvider>
     );
 }
 

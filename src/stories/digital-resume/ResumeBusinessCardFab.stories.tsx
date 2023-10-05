@@ -3,7 +3,7 @@ import LoadingButton from "../../components/loading-button/LoadingButton";
 import {ButtonGroupMemberEnum} from "../../components/loading-button/ButtonGroupMemberEnum";
 import {Grid} from "@mui/material";
 import ResumeSocialMedia from "../../components/my-digital-resume/ResumeSocialMedia";
-import homePageResume from "../data/HomePageData";
+import homePageResumeData from "../data/HomePageData";
 import BusinessCard from "../../components/BusinessCard";
 import React from "react";
 
@@ -27,7 +27,7 @@ const buttonText = "Button Text"
 // console.log(homePageResume.headerContent.content[0])
 export const Primary: Story = {
     args:{
-        homePage: homePageResume,
+        homePage: homePageResumeData,
         anchor:'bottom'
     },
     render: ({homePage, anchor}) => <BusinessCard homePage={homePage} anchor={anchor}/>,

@@ -7,9 +7,7 @@ import {grey} from '@mui/material/colors';
 // import FontFaces from "./common/FontFaces";
 
 
-const fonts = `"Raleway", "Oswald"
-
-`
+const fonts = `"Raleway", "Oswald"`
 
 
 const TheWebsiteTheme = createTheme({

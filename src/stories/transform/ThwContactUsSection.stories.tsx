@@ -1,14 +1,11 @@
 import type {Meta, StoryObj} from '@storybook/react';
-import ThwServicesSection from "../../components/transform-hw/ThwServicesSection";
-import thwServicesSectionData from "../data/ThwServicesSectionData";
-import HomePageResumeData from "../data/HomePageData";
 import PageProvider from "../../components/page-context/PageProvider";
 import AmenityProvider from "../../components/amenity-context/AmenityProvider";
 import ThwHomePageData from "../data/ThwHomePageData";
-import ThwWhyChooseUsSection from "../../components/transform-hw/ThwWhyChooseUsSection";
-import thwWhyChooseUsData from "../data/ThwWhyChooseUsData";
 import ThwContactUsSection from "../../components/transform-hw/ThwContactUsSection";
 import thwContactUsData from "../data/ThwContactUsData";
+import CustomizedThemeProvider from "../../components/customized-theme-provider/CustomizedThemeProvider";
+import DigitalResumeThemeData from "../data/DigitalResumeThemeData";
 
 
 const meta: Meta<typeof ThwContactUsSection> = {
@@ -31,9 +28,11 @@ export const Primary: Story = {
         sectionData: thwContactUsData
     },
     render: ({sectionData}) => <PageProvider page={ThwHomePageData}>
+        <CustomizedThemeProvider pageTheme={DigitalResumeThemeData}>
         <AmenityProvider>
             <ThwContactUsSection
                 sectionData={sectionData}></ThwContactUsSection>
         </AmenityProvider>
+        </CustomizedThemeProvider>
     </PageProvider>,
 };

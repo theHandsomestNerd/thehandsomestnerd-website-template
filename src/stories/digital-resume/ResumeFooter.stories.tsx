@@ -1,5 +1,5 @@
 import type {Meta, StoryObj} from '@storybook/react';
-import homePageResume from "../data/HomePageData";
+import homePageResumeData from "../data/HomePageData";
 import Header from "../../components/mackenzies-mind/header/Header";
 import Footer from "../../components/mackenzies-mind/footer/Footer";
 
@@ -21,7 +21,7 @@ type Story = StoryObj<typeof Footer>;
 
 export const Primary: Story = {
     args: {
-        pageFooter: homePageResume.footerContent.content[0].footerMenuRef
+        pageFooter: homePageResumeData.footerContent.content[0].footerMenuRef
     },
     render: ({pageFooter}) => <Footer pageFooter={pageFooter}></Footer>,
 };

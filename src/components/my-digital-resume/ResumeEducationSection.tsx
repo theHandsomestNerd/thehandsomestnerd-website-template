@@ -5,27 +5,9 @@ import {Grid, Typography, useTheme} from '@mui/material'
 import {ResumeEducation, ResumeEducationSectionType} from "../BlockContentTypes";
 import useThwCommonStyles from "../../common/sanityIo/ThwCommonStyles";
 import MediaQueriesContext from "../media-queries-context/MediaQueriesContext";
-import TheWebsiteTheme from "../../theme/Theme";
 import {COLORS} from "../../theme/common/ColorPalette";
+import DigitalResumeTheme from "../../theme/DigitalResumeTheme";
 
-
-
-declare module '@mui/styles/defaultTheme' {
-  // eslint-disable-next-line @typescript-eslint/no-empty-interface
-  interface DefaultTheme extends Theme {}
-}
-
-
-
-declare module '@mui/styles/defaultTheme' {
-  // eslint-disable-next-line @typescript-eslint/no-empty-interface
-  interface DefaultTheme extends Theme {}
-}
-
-
-export const useStyles = makeStyles((theme: Theme) => ({
-    root: {},
-}))
 
 interface IProps {
     sectionData: ResumeEducationSectionType
@@ -40,8 +22,7 @@ const ResumeEducationSection: FunctionComponent<IProps> = (props: IProps) => {
 
 
     return (
-        <StyledEngineProvider injectFirst>
-            <ThemeProvider theme={TheWebsiteTheme}>
+            <ThemeProvider theme={DigitalResumeTheme}>
                 <Grid container item style={{padding: theme.spacing(4)}} className={globalClasses.resumeSection}>
                     <Grid
                         container item spacing={3}>
@@ -107,7 +88,6 @@ const ResumeEducationSection: FunctionComponent<IProps> = (props: IProps) => {
                     </Grid>
                 </Grid>
             </ThemeProvider>
-        </StyledEngineProvider>
     );
 }
 

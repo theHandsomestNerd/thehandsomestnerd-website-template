@@ -2,12 +2,11 @@ import React, {FunctionComponent, useContext} from 'react'
 import {v4 as uuidv4} from 'uuid'
 import { Theme } from "@mui/material/styles";
 import makeStyles from '@mui/styles/makeStyles';
-import {Button, Grid, Popover, Typography} from '@mui/material'
+import {Button, Grid, Popover, Typography, useTheme} from '@mui/material'
 import {ArrowDropDown} from "@mui/icons-material";
 import SubMenu from "./SubMenu";
 import {SanityMenuGroup, SanityMenuItem} from "../../../common/sanityIo/Types";
 import MediaQueriesContext from "../../media-queries-context/MediaQueriesContext";
-import TheWebsiteTheme from "../../../theme/Theme";
 import {COLORS} from "../../../theme/common/ColorPalette";
 
 
@@ -38,7 +37,7 @@ const FilteredMenuItems: FunctionComponent<FilteredMenuProps> = ({
     };
 
     const mediaQueriesContext = useContext(MediaQueriesContext)
-
+const theme = useTheme()
 
     return (<Grid item container justifyContent={mediaQueriesContext.mdDown?'flex-start':'flex-end'}>{
             subMenus?.map(
@@ -50,13 +49,13 @@ const FilteredMenuItems: FunctionComponent<FilteredMenuProps> = ({
                             <Button href={menuItem.url ?? ""}
                                     color={menuItem.isOutlinedButton || menuItem.isContainedButton ? 'secondary' : "primary"}
                                     style={{
-                                        borderRadius: (menuItem.isOutlinedButton || menuItem.isContainedButton) ? TheWebsiteTheme.shape.borderRadius : 0,
-                                        paddingLeft: (menuItem.isOutlinedButton || menuItem.isContainedButton) ? TheWebsiteTheme.spacing(4) : TheWebsiteTheme.spacing(2),
-                                        paddingRight: (menuItem.isOutlinedButton || menuItem.isContainedButton) ? TheWebsiteTheme.spacing(4) : TheWebsiteTheme.spacing(2),
-                                        marginTop: (menuItem.isOutlinedButton || menuItem.isContainedButton) ? TheWebsiteTheme.spacing(3) : 0,
-                                        marginBottom: (menuItem.isOutlinedButton || menuItem.isContainedButton) ? TheWebsiteTheme.spacing(2) : 0,
+                                        borderRadius: (menuItem.isOutlinedButton || menuItem.isContainedButton) ? theme.shape.borderRadius : 0,
+                                        paddingLeft: (menuItem.isOutlinedButton || menuItem.isContainedButton) ? theme.spacing(4) : theme.spacing(2),
+                                        paddingRight: (menuItem.isOutlinedButton || menuItem.isContainedButton) ? theme.spacing(4) : theme.spacing(2),
+                                        marginTop: (menuItem.isOutlinedButton || menuItem.isContainedButton) ? theme.spacing(3) : 0,
+                                        marginBottom: (menuItem.isOutlinedButton || menuItem.isContainedButton) ? theme.spacing(2) : 0,
                                         height: menuItem.isOutlinedButton || menuItem.isContainedButton ? "48px" : "100%",
-                                        color: menuItem.isOutlinedButton || menuItem.isContainedButton ? 'white' : TheWebsiteTheme.palette.secondary.main
+                                        color: menuItem.isOutlinedButton || menuItem.isContainedButton ? 'white' : theme.palette.secondary.main
                                     }}
                                     variant={menuItem.isContainedButton ? 'contained' : (menuItem.isOutlinedButton ? 'outlined' : 'text')}>
                                 <Typography noWrap
@@ -76,10 +75,10 @@ const FilteredMenuItems: FunctionComponent<FilteredMenuProps> = ({
                                 color={"secondary"}
                                 style={{
                                     borderRadius: 0,
-                                    paddingLeft: TheWebsiteTheme.spacing(2),
-                                    paddingRight: TheWebsiteTheme.spacing(3),
+                                    paddingLeft: theme.spacing(2),
+                                    paddingRight: theme.spacing(3),
                                     height: "100%",
-                                    color: TheWebsiteTheme.palette.secondary.main
+                                    color: theme.palette.secondary.main
                                 }}
                                 onClick={handleClick}
                                 endIcon={<ArrowDropDown ></ArrowDropDown>}

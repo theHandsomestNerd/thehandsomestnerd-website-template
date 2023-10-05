@@ -1,5 +1,7 @@
 import {useTheme} from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
+import {useContext} from "react";
+import CustomizedThemeContext from "../components/customized-theme-provider/CustomizedThemeContext";
 
 /**
  * Be careful using this hook. It only works because the number of
@@ -7,12 +9,12 @@ import useMediaQuery from '@mui/material/useMediaQuery';
  * breakpoints. See https://reactjs.org/docs/hooks-rules.html#only-call-hooks-at-the-top-level
  */
 const useWidth = () => {
-    const theme = useTheme();
-    const keys = [...theme.breakpoints.keys].reverse();
+    const customizedThemeContext = useContext(CustomizedThemeContext)
+    const keys = [...customizedThemeContext.customizedTheme.breakpoints.keys].reverse();
     return (
         keys.reduce((output:any, key) => {
             // eslint-disable-next-line react-hooks/rules-of-hooks
-            const matches = useMediaQuery(theme.breakpoints.up(key));
+            const matches = useMediaQuery(customizedThemeContext.customizedTheme.breakpoints.up(key));
             return !output && matches ? key : output;
         }, null) || 'xs'
     );

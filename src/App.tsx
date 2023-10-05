@@ -1,5 +1,5 @@
 import './App.css'
-import {CssBaseline, Grid, StyledEngineProvider, Theme, ThemeProvider, useTheme} from '@mui/material';
+import {Grid, useTheme} from '@mui/material';
 import {BrowserRouter, Navigate, Route, Routes} from 'react-router-dom'
 import React from 'react'
 import {QueryClient, QueryClientProvider} from 'react-query';
@@ -10,7 +10,7 @@ import AmenityProvider from "./components/amenity-context/AmenityProvider";
 import ModalProvider from "./components/snackbar-context/ModalProvider";
 import SnackbarProvider from "./components/modal-context/SnackbarProvider";
 import PageMux from "./components/mackenzies-mind/pages/PageMux";
-import TheWebsiteTheme from "./theme/Theme";
+import CustomizedThemeProvider from "./components/customized-theme-provider/CustomizedThemeProvider";
 
 export enum RoutesEnum {
     MAINROUTE = "/resume/:pageSlug",
@@ -31,17 +31,16 @@ function App() {
     });
 
     const theme = useTheme()
+
+
     return (
         <BrowserRouter>
             <QueryClientProvider client={queryClient}>
-                <StyledEngineProvider injectFirst>
-                    <StyledEngineProvider injectFirst>
-                        <ThemeProvider theme={TheWebsiteTheme}>
-                            <CssBaseline/>
-                            <SnackbarProvider>
-                                <MediaQueriesProvider>
-                                    <ModalProvider>
-                                        <PageProvider>
+                        <PageProvider>
+                            <CustomizedThemeProvider>
+                                <SnackbarProvider>
+                                    <MediaQueriesProvider>
+                                        <ModalProvider>
                                             <AmenityProvider>
                                                 <Grid container item alignItems="center"
                                                       style={{
@@ -61,13 +60,11 @@ function App() {
                                                     </Grid>
                                                 </Grid>
                                             </AmenityProvider>
-                                        </PageProvider>
-                                    </ModalProvider>
-                                </MediaQueriesProvider>
-                            </SnackbarProvider>
-                        </ThemeProvider>
-                    </StyledEngineProvider>
-                </StyledEngineProvider>
+                                        </ModalProvider>
+                                    </MediaQueriesProvider>
+                                </SnackbarProvider>
+                            </CustomizedThemeProvider>
+                        </PageProvider>
             </QueryClientProvider>
         </BrowserRouter>
     );

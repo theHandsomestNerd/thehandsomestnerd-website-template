@@ -14,7 +14,7 @@ import {ButtonPropsColorOverrides} from "@mui/material/Button/Button";
 
 export const useStyles = makeStyles((theme: Theme) => ({
     contentBullets: {
-        marginBottom: theme.spacing(5)
+        marginBottom: "40px"
     }
 }))
 
@@ -71,6 +71,7 @@ const ImageWIthButtonOverlay: FunctionComponent<IProps> = (props) => {
     }, [])
 
     const pageContext = useContext(PageContext)
+
     return (
         <Button fullWidth
                 onClick={(e) => {

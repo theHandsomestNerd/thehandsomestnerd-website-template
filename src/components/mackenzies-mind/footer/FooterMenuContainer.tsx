@@ -1,15 +1,17 @@
 import React, {FunctionComponent, useContext} from 'react'
 import {Divider, Grid, Typography, useTheme} from '@mui/material'
 import FooterMenuGroup from './FooterMenuGroup'
-import {Theme} from '@mui/material/styles';
+import {Theme, ThemeProvider} from '@mui/material/styles';
 import makeStyles from '@mui/styles/makeStyles';
 import {SanityMenuContainer} from "../../../common/sanityIo/Types";
 import PageContext from "../../page-context/PageContext";
 import MediaQueriesContext from "../../media-queries-context/MediaQueriesContext";
 import MailTo from "../../mail-to/MailTo";
 import Logo from "../../transform-hw/logo/Logo";
-import TheWebsiteTheme from "../../../theme/Theme";
 import {COLORS} from "../../../theme/common/ColorPalette";
+import DigitalResumeTheme from "../../../theme/DigitalResumeTheme";
+import TheWebsiteTheme from "../../../theme/Theme";
+import useWidth from "../../../utils/useWidth";
 
 
 export const useStyles = makeStyles((theme: Theme) => ({
@@ -25,19 +27,22 @@ interface IProps {
 }
 
 const FooterMenuContainer: FunctionComponent<IProps> = (props: IProps) => {
-    const classes = useStyles(TheWebsiteTheme)
+
+    const classes = useStyles(DigitalResumeTheme)
 
     const mediaQueriesContext = useContext(MediaQueriesContext)
-    const theme = useTheme()
     const pageContext = useContext(PageContext)
+    // const width = useWidth()
 
     return (
-        <Grid container item className={classes.root} spacing={5}>
-            <Grid container item xs={12} md={4} style={mediaQueriesContext.smDown ? {
-                borderLeft: `4px solid ${theme.palette.primary.main}`,
-                backgroundColor: "rgba(117,117,117,.5)",
-                borderRight: `4px solid ${theme.palette.primary.main}`,
-            } : {}}>
+        <ThemeProvider theme={DigitalResumeTheme}><Grid container item className={classes.root} spacing={5}>
+            <Grid container item xs={12} md={4}
+            //       style={width in ['xs','sm',''] ? {
+            //     borderLeft: `4px solid ${TheWebsiteTheme.palette.primary.main}`,
+            //     backgroundColor: "rgba(117,117,117,.5)",
+            //     borderRight: `4px solid ${TheWebsiteTheme.palette.primary.main}`,
+            // } : {}}
+            >
                 {
                     props.pageFooterMenu?.subMenus?.map((menuGroup: any, index: number) => {
                         return (
@@ -112,7 +117,7 @@ const FooterMenuContainer: FunctionComponent<IProps> = (props: IProps) => {
             <Grid item container xs={12} md={4} alignContent='flex-start' spacing={2}>
 
             </Grid>
-        </Grid>
+        </Grid></ThemeProvider>
     )
 }
 

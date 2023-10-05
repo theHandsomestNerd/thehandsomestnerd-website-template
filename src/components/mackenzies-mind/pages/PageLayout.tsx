@@ -10,6 +10,8 @@ import HeaderBlockContentLayoutContainer from "../../HeaderBlockContentLayoutCon
 import FooterBlockContentLayoutContainer from "../../FooterBlockContentLayoutContainer";
 import BusinessCard from "../../BusinessCard";
 import PageContext from "../../page-context/PageContext";
+import {ThemeProvider} from "@mui/material/styles";
+import DigitalResumeTheme from "../../../theme/DigitalResumeTheme";
 
 interface IProps {
     homePage: SanityTransformHwHomePage
@@ -56,7 +58,7 @@ const PageLayout: FunctionComponent<IProps> = (props: IProps) => {
                         content={props.homePage.footerContent.content}/>
                 </Grid>}
             </Grid>
-            <Grid container item
+            <ThemeProvider theme={DigitalResumeTheme}><Grid container item
                   alignContent='center'
                   alignItems='center'
                   style={{
@@ -76,7 +78,7 @@ const PageLayout: FunctionComponent<IProps> = (props: IProps) => {
                     © Copyright 2022
                     TheHandsomestNerd, LLC. All Rights Reserved.
                 </Link>
-            </Grid>
+            </Grid></ThemeProvider>
         </Grid>
     );
 }

@@ -1,11 +1,11 @@
 import React, {FunctionComponent} from 'react'
-import {Theme} from '@mui/material/styles';
+import {Theme, ThemeProvider} from '@mui/material/styles';
 import makeStyles from '@mui/styles/makeStyles';
-import {Grid} from '@mui/material'
+import {Grid, useTheme} from '@mui/material'
 import FooterMenuContainer from './FooterMenuContainer'
 import {SanityMenuContainer} from "../../../common/sanityIo/Types";
 import {COLORS} from "../../../theme/common/ColorPalette";
-import TheWebsiteTheme from "../../../theme/Theme";
+import DigitalResumeTheme from "../../../theme/DigitalResumeTheme";
 
 export const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -45,9 +45,11 @@ interface IProps {
 }
 
 const Footer: FunctionComponent<IProps> = (props:IProps) => {
-  const classes = useStyles(TheWebsiteTheme)
+  const theme = useTheme()
+  const classes = useStyles(theme)
 
   return (
+      <ThemeProvider theme={DigitalResumeTheme}>
     <Grid container className={classes.root}>
       <Grid container justifyContent="flex-start">
         <Grid item xs={12}>
@@ -56,7 +58,7 @@ const Footer: FunctionComponent<IProps> = (props:IProps) => {
         </Grid>
       </Grid>
     </Grid>
-
+      </ThemeProvider>
   )
 }
 

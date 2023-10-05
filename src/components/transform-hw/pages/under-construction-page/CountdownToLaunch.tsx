@@ -1,10 +1,10 @@
-import React, {FunctionComponent} from 'react'
+import React, {FunctionComponent, useContext} from 'react'
 import { Theme } from '@mui/material/styles';
 import makeStyles from '@mui/styles/makeStyles';
 import {Grid, Typography, useMediaQuery} from '@mui/material'
 import Countdown from "react-countdown";
-import TheWebsiteTheme from "../../../../theme/Theme";
 import {COLORS} from "../../../../theme/common/ColorPalette";
+import CustomizedThemeContext from "../../../customized-theme-provider/CustomizedThemeContext";
 
 export const useStyles = makeStyles((theme: Theme) => ({
     counterSection: {
@@ -22,10 +22,12 @@ interface IProps {
 }
 
 const CountdownToLaunch: FunctionComponent<IProps> = (props) => {
-    const classes = useStyles(TheWebsiteTheme)
+    const customizedThemeContext = useContext(CustomizedThemeContext);
+
+    const classes = useStyles(customizedThemeContext.customizedTheme)
     const Completionist = () => <span>Congratulations! If your site is not already here please contact hello@thehandsomestnerd.com launched!</span>
 
-    const smDown = useMediaQuery(TheWebsiteTheme.breakpoints.down('lg'))
+    const smDown = useMediaQuery(customizedThemeContext.customizedTheme.breakpoints.down('lg'))
 
     const pluralize = (subject: string) => {
         return subject + 's'

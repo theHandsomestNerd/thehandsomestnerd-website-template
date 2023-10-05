@@ -3,7 +3,6 @@ import makeStyles from '@mui/styles/makeStyles';
 import React, {FunctionComponent} from 'react'
 import useCustomStyles from "../Styles";
 import Logo from "../../../transform-hw/logo/Logo";
-import TheWebsiteTheme from "../../../../theme/Theme";
 
 
 export const useStyles = makeStyles((theme: Theme) => ({
@@ -14,7 +13,10 @@ export const useStyles = makeStyles((theme: Theme) => ({
 }))
 
 const LoadingPage: FunctionComponent = (props) => {
-    const globalClasses = useCustomStyles(TheWebsiteTheme)
+
+    const theme = useTheme()
+
+    const globalClasses = useCustomStyles(theme)
 
     return (
         <Grid container item justifyContent='center' alignItems='center'

@@ -1,6 +1,5 @@
 import React, {FunctionComponent, useContext, useEffect, useState} from 'react'
-import {makeStyles, Theme} from "@material-ui/core/styles"
-import {Grid, TextField, ThemeProvider, Typography, useTheme, withStyles} from "@material-ui/core";
+import {makeStyles} from "@mui/styles"
 import DigitalResumeTheme from "../../theme/DigitalResumeTheme";
 import {ResumeContactUsSectionType} from "../BlockContentTypes";
 import useCustomStyles from "../mackenzies-mind/pages/Styles";
@@ -12,6 +11,9 @@ import firebaseAnalyticsClient from "../../utils/firebase/FirebaseAnalyticsClien
 import PageContext from "../page-context/PageContext";
 import leadClient from "../transform-hw/pages/under-construction-page/leadClient";
 import SnackbarContext from "../modal-context/SnackbarContext";
+import {Theme, ThemeProvider} from "@mui/material/styles";
+import withStyles from "@mui/styles/withStyles";
+import {Grid, TextField, Typography, useTheme} from "@mui/material";
 
 export const useStyles = makeStyles((theme: Theme) => ({
     root: {
@@ -29,7 +31,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
     },
     headerAccent: {
         display: 'inline-block',
-        marginLeft: theme.spacing(1)
+        marginLeft: "8px"
     },
     formContainer: {
         // margin: 'auto',
@@ -39,7 +41,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
         zIndex: 2
     },
     inputAdornmentContainer: {
-        marginTop: theme.spacing(1),
+        marginTop: "8px",
         zIndex: 3
     },
     inputAdornmentTextBlockContainer: {
@@ -48,10 +50,10 @@ export const useStyles = makeStyles((theme: Theme) => ({
         zIndex: 3
     },
     formTitle: {
-        marginBottom: theme.spacing(1)
+        marginBottom: "8px"
     },
     socialMediaContainer: {
-        marginTop: theme.spacing(1)
+        marginTop: "8px"
     },
     lhsContainer: {
         // width: "500px",

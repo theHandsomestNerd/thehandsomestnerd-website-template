@@ -1,4 +1,4 @@
-import {adaptV4Theme, createTheme} from '@mui/material';
+import {createTheme} from '@mui/material';
 // import ElaineSans from './common/fonts/elaine-sans/elaineSans-extrabold.ttf'
 // import Raleway from './common/fonts/Raleway/variable/TTF/Raleway-VF.ttf'
 // import RalewayBold from './common/fonts/Raleway/static/TTF/Raleway-Bold.ttf'
@@ -56,10 +56,10 @@ import {adaptV4Theme, createTheme} from '@mui/material';
 //   `
 // }
 
-const fonts = [ 'Elaine Sans', 'Raleway'].join(',')
+const fonts = ['Elaine Sans', 'Raleway'].join(',')
 
 
-const WebDevSiteTheme = createTheme(adaptV4Theme({
+const WebDevSiteTheme = createTheme({
     breakpoints: {
         values: {
             xs: 0,
@@ -69,7 +69,7 @@ const WebDevSiteTheme = createTheme(adaptV4Theme({
             xl: 1320,
         }
     },
-    shape:{
+    shape: {
         borderRadius: 32
     },
     mixins: {
@@ -198,33 +198,41 @@ const WebDevSiteTheme = createTheme(adaptV4Theme({
             letterSpacing: '0.20em'
         }
     },
-    overrides: {
-        MuiListItemText:{
-            secondary:{
-                color: "inherit",
-                "& :hover": {
-                    background: "white",
-                    color: "#383838"
-                }
-            },
+    components: {
+        MuiListItemText: {
+            styleOverrides: {
+
+
+                secondary: {
+                    color: "inherit",
+                    "& :hover": {
+                        background: "white",
+                        color: "#383838"
+                    }
+                },
+            }
         },
-        MuiListItem:{
-            root:{
-                textAlign:'center',
-                color: "#FAFAFA",
-                "& :hover": {
-                    background: "white",
-                    color: "#383838"
+        MuiListItem: {
+            styleOverrides: {
+                root: {
+                    textAlign: 'center',
+                    color: "#FAFAFA",
+                    "& :hover": {
+                        background: "white",
+                        color: "#383838"
+                    }
                 }
             }
         },
-        MuiCssBaseline: {
-            '@global': {
-                // '@font-face': [raleway, ralewayBold, elainSansExtraBold, rainbow]
-            },
-        },
+        // MuiCssBaseline: {
+        //     '@global': {
+        //         // '@font-face': [raleway, ralewayBold, elainSansExtraBold, rainbow]
+        //     },
+        // },
         MuiInputBase: {
-            root: {
+            styleOverrides:{
+
+                root: {
                 borderRadius: 0,
                 // color: "#FAFAFA",
                 "&:focus": {
@@ -236,33 +244,25 @@ const WebDevSiteTheme = createTheme(adaptV4Theme({
                 "& :before": {
                     // borderBottom: "1px solid "+ COLORS.MAIN,
                 }
-            }
-        },
-        MuiTooltip: {
-            tooltip: {
-                // backgroundColor: 'rgba(16, 43, 136, .9)'
-            }
+            }}
         },
         MuiSnackbarContent: {
-            root: {
+            styleOverrides:{
+                root: {
                 marginTop: "100px",
                 border: "3px solid white",
                 backgroundColor: 'rgba(210,0,39,0.9) !important'
-            }
-        },
-        MuiOutlinedInput: {
-            root:{
-                // borderRadius: 0
-            }
+            }}
         },
         MuiFilledInput: {
-            root: {
+            styleOverrides:{
+                root: {
                 // backgroundColor: "rgba(0,0,0,.3)",
                 // borderBottom: "1px solid "+ COLORS.MAIN,
                 "& .Mui-focused": {
                     borderBottomWidth: '0px solid black'
                 }
-            },
+            },}
             // notchedOutline: {
             //     "& :after":{
             //             borderColor: "red"
@@ -273,13 +273,10 @@ const WebDevSiteTheme = createTheme(adaptV4Theme({
             //     // }
             // },
         },
-        MuiInputLabel: {
-            root: {
-                // color:"black",
-            }
-        },
         MuiButton: {
-            root: {
+            styleOverrides:{
+
+                root: {
                 // color: '#FFFFFF',
                 // height: '35px',
                 // padding: '8px 16px 8px 16px',
@@ -353,14 +350,9 @@ const WebDevSiteTheme = createTheme(adaptV4Theme({
                 paddingBottom: "16px",
                 paddingLeft: "64px",
                 paddingRight: "64px",
-            }
+            }}
         },
-        MuiCircularProgress: {
-            // colorPrimary: {
-            //   color: '#A697E6'
-            // }
-        }
     },
-}))
+})
 
 export default WebDevSiteTheme

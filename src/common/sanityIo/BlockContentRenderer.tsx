@@ -1,4 +1,13 @@
-import {Button, CssBaseline, Grid, StyledEngineProvider, Theme, ThemeProvider, Typography,} from '@mui/material';
+import {
+    Button,
+    CssBaseline,
+    Grid,
+    StyledEngineProvider,
+    Theme,
+    ThemeProvider,
+    Typography,
+    useTheme,
+} from '@mui/material';
 import React, {PropsWithChildren} from 'react'
 import {useCommonStyles} from './CommonStyles'
 import {Prism as SyntaxHighlighter} from 'react-syntax-highlighter'
@@ -16,14 +25,7 @@ import {
 } from './BlockContentMarkRenderers'
 import BlockContent from '@sanity/block-content-to-react'
 import {ButtonMarkRender, ListItemRender, ListRender, UtmLinkRender} from './BlockContentAnnotations'
-import TheWebsiteTheme from "../../theme/Theme";
-
-
-declare module '@mui/styles/defaultTheme' {
-  // eslint-disable-next-line @typescript-eslint/no-empty-interface
-  interface DefaultTheme extends Theme {}
-}
-
+// import TheWebsiteTheme from '../../theme/Theme';
 
 export type HeaderVariantType = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
 export type LinkType = { href: string, isAddUtm: boolean }
@@ -33,6 +35,7 @@ export type BlockPropsType = { _type: string, listItem?: string, level?: number 
 export type BlockContentPropsType<T> = { mark?: T }
 
 export const HeaderRender = (props: any, variant: HeaderVariantType) => {
+    const theme = useTheme()
     const wrapWithHTag = (children: any) => {
         switch (variant) {
             case 'h1':
@@ -50,9 +53,9 @@ export const HeaderRender = (props: any, variant: HeaderVariantType) => {
             default:
                 return <Typography display='inline' component='div'
                                    style={{
-                                       color: TheWebsiteTheme.palette.secondary.main,
+                                       color: theme.palette.secondary.main,
                                        fontWeight: variant === 'h3' ? 300 : 700,
-                                       marginBottom: TheWebsiteTheme.spacing(3)
+                                       marginBottom: theme.spacing(3)
                                    }}
                                    variant={variant}>{children}</Typography>
         }
@@ -60,13 +63,11 @@ export const HeaderRender = (props: any, variant: HeaderVariantType) => {
     }
 
     return (
-        <StyledEngineProvider injectFirst>
-            <ThemeProvider theme={TheWebsiteTheme}>
+            <ThemeProvider theme={theme}>
                 <CssBaseline/>{wrapWithHTag(
                 props.children
             )}
             </ThemeProvider>
-        </StyledEngineProvider>
     );
 
 
@@ -81,7 +82,8 @@ export const HeaderRender = (props: any, variant: HeaderVariantType) => {
 }
 
 export const CtaRender: React.FunctionComponent<PropsWithChildren> = (props) => {
-    const classes = useCommonStyles(TheWebsiteTheme)
+    const theme = useTheme()
+    const classes = useCommonStyles(theme)
     return <Grid container item xs={12} className={classes.callToAction}>{props.children}</Grid>
 }
 
@@ -114,7 +116,8 @@ export const CodeBlockRender = (props: any) => {
 }
 
 export const HrRender: React.FunctionComponent = (props) => {
-    const classes = useCommonStyles(TheWebsiteTheme)
+    const theme = useTheme()
+    const classes = useCommonStyles(theme)
 
     return <Grid container item>
         <hr className={classes.hr}/>
@@ -128,7 +131,7 @@ type SanityButtonBlockContentType = {
 export const ButtonRender = (props: any) => {
     // const sanityButton:{buttonText?:string, buttonLink?:string, color?:string, variant?:string} = props.node as SanityButtonBlockContentType
     console.log('Props from button', props)
-
+    const theme = useTheme()
     let textColor = ''
 
     // switch(props.color) {
@@ -149,10 +152,10 @@ export const ButtonRender = (props: any) => {
         case 'outlined':
             switch (props.color) {
                 case 'secondary':
-                    textColor = TheWebsiteTheme.palette.secondary.main
+                    textColor = theme.palette.secondary.main
                     break
                 case 'primary':
-                    textColor = TheWebsiteTheme.palette.primary.main
+                    textColor = theme.palette.primary.main
                     break
                 case 'mint':
                     textColor = ""
@@ -170,33 +173,31 @@ export const ButtonRender = (props: any) => {
                     textColor = 'whitesmoke'
                     break
                 case 'mint':
-                    textColor = TheWebsiteTheme.palette.secondary.main
+                    textColor = theme.palette.secondary.main
                     break
                 default:
-                    textColor = TheWebsiteTheme.palette.background.paper
+                    textColor = theme.palette.background.paper
             }
             break
         case 'text':
         default:
             switch (props.color) {
                 case 'secondary':
-                    textColor = TheWebsiteTheme.palette.secondary.main
+                    textColor = theme.palette.secondary.main
                     break
                 case 'primary':
-                    textColor = TheWebsiteTheme.palette.primary.main
+                    textColor = theme.palette.primary.main
                     break
                 case 'mint':
                     textColor = ""
                     break
                 default:
-                    textColor = TheWebsiteTheme.palette.text.primary
+                    textColor = theme.palette.text.primary
             }
             break
     }
-
     return (
-        <StyledEngineProvider injectFirst>
-            <ThemeProvider theme={TheWebsiteTheme}>
+            <ThemeProvider theme={theme}>
                 <CssBaseline/>
                 <Grid container item>
                     <Button style={props?.color === 'mint' ? props?.variant === 'contained' ? {
@@ -209,7 +210,6 @@ export const ButtonRender = (props: any) => {
                                                                 style={{color: textColor}}>{props.children}</Typography></Button>
                 </Grid>
             </ThemeProvider>
-        </StyledEngineProvider>
     );
 }
 
@@ -260,9 +260,9 @@ export const blockSerializers: any = {
     marks: {
         light: LightRender,
         dropCap: DropCapRender,
-        primaryTextColor: (props: any) => (TextColorRender(props, TheWebsiteTheme.palette.primary.main)),
-        secondaryTextColor: (props: any) => (TextColorRender(props, TheWebsiteTheme.palette.secondary.main)),
-        underlinePrimaryColor: (props: any) => (UnderlineRender(props, TheWebsiteTheme.palette.primary.main)),
+        primaryTextColor: (props: any) => (TextColorRender(props, "")),
+        secondaryTextColor: (props: any) => (TextColorRender(props, "")),
+        underlinePrimaryColor: (props: any) => (UnderlineRender(props, "")),
         utmLink: UtmLinkRender,
         bold: BoldRender,
         button: ButtonMarkRender,

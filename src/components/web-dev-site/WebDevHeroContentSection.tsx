@@ -1,6 +1,4 @@
 import React, {FunctionComponent, useContext} from 'react'
-import {makeStyles, Theme, ThemeProvider} from '@material-ui/core/styles'
-import {Button, Grid, Typography} from '@material-ui/core'
 import {urlFor} from '../block-content-ui/static-pages/cmsStaticPagesClient'
 import {WebDevHeroContentSectionType} from "../BlockContentTypes";
 import clsx from "clsx";
@@ -8,6 +6,9 @@ import useCustomStyles from "../mackenzies-mind/pages/Styles";
 import firebaseAnalyticsClient from "../../utils/firebase/FirebaseAnalyticsClient";
 import PageContext from "../page-context/PageContext";
 import WebDevSiteTheme from "../../theme/WebDevSiteTheme";
+import makeStyles from "@mui/styles/makeStyles";
+import {Theme, ThemeProvider} from "@mui/material/styles";
+import {Button, Grid, Typography} from "@mui/material";
 // import FontFaces from "../../theme/common/FontFaces";
 
 interface IProps {

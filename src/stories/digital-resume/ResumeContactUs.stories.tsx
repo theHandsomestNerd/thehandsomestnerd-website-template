@@ -1,6 +1,4 @@
 import type {Meta, StoryObj} from '@storybook/react';
-import ResumePortfolioSectionData from "../data/ResumePortfolioSectionData";
-import ResumePortfolioSection from '../../components/my-digital-resume/ResumePortfolioSection';
 import ResumeContactUsSection from "../../components/my-digital-resume/ResumeContactUsSection";
 import ResumeContactSectionData from "../data/ResumeContactSectionData";
 

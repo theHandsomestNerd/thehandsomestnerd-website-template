@@ -12,7 +12,6 @@ import {urlFor} from "../../block-content-ui/static-pages/cmsStaticPagesClient";
 import FullWidthColoredPng from "../../fullwidth-colored-png/FullWidthColoredPng";
 import {useScrollPosition} from "../../../utils/useScrollPosition";
 import clsx from "clsx";
-import TheWebsiteTheme from "../../../theme/Theme";
 
 export const useStyles = makeStyles((theme: Theme) => ({
     root: {
@@ -55,6 +54,7 @@ const DevelopmentHeader: FunctionComponent<DevelopmentHeaderProps> = (props) => 
         if (isShow !== opaqueOnScroll) setOpaqueOnScroll(isShow)
     }, [opaqueOnScroll])
 
+
     return (
         <Grid container item alignItems='center' alignContent='center' >
                 <Grid item  container>
@@ -75,7 +75,7 @@ const DevelopmentHeader: FunctionComponent<DevelopmentHeaderProps> = (props) => 
                                           alignItems='center'
                                           style={{
                                               height: "100%",
-                                              paddingRight: mediaQueriesContext.mdDown ? TheWebsiteTheme.spacing(0) : TheWebsiteTheme.spacing(4)
+                                              paddingRight: mediaQueriesContext.mdDown ? theme.spacing(0) : theme.spacing(4)
                                           }}>
                                         <FilteredMenuItems
                                             contentJustification={'flex-start'}

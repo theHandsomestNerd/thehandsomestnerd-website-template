@@ -14,24 +14,8 @@ import SnackbarContext from "./modal-context/SnackbarContext";
 import BusinessCardSubmitEmail from "./transform-hw/pages/BusinessCardSubmitEmail";
 import firebaseAnalyticsClient from "../utils/firebase/FirebaseAnalyticsClient";
 import {useLocation} from "react-router";
-import TheWebsiteTheme from "../theme/Theme";
 import {COLORS} from "../theme/common/ColorPalette";
-import TransformHWTheme from "../theme/TransformHWTheme";
 import DigitalResumeTheme from "../theme/DigitalResumeTheme";
-
-
-declare module '@mui/styles/defaultTheme' {
-    // eslint-disable-next-line @typescript-eslint/no-empty-interface
-    interface DefaultTheme extends Theme {
-    }
-}
-
-
-declare module '@mui/styles/defaultTheme' {
-    // eslint-disable-next-line @typescript-eslint/no-empty-interface
-    interface DefaultTheme extends Theme {
-    }
-}
 
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -75,8 +59,7 @@ const BusinessCard: FunctionComponent<MainMenuProps> = ({anchor, homePage}) => {
     };
 
     const snackbarContext = useContext(SnackbarContext)
-    const classes = useStyles(TheWebsiteTheme)
-    const theme = useTheme()
+    const classes = useStyles(DigitalResumeTheme)
 
     // const pageContext = useContext(PageContext)
 
@@ -120,7 +103,7 @@ const BusinessCard: FunctionComponent<MainMenuProps> = ({anchor, homePage}) => {
             >
                 <Grid container item alignContent='flex-end'>
                     <Grid item container style={{
-                        marginBottom: theme.spacing(4),
+                        marginBottom: DigitalResumeTheme.spacing(4),
                         backgroundRepeat: "none",
                         minHeight: 250,
                         backgroundSize: "cover",
@@ -132,7 +115,7 @@ const BusinessCard: FunctionComponent<MainMenuProps> = ({anchor, homePage}) => {
                             position: "relative",
                             bottom: -45,
                             height: "max-content",
-                            padding: theme.spacing(2, 3)
+                            padding: DigitalResumeTheme.spacing(2, 3)
                         }}>
                             <ResumeSocialMedia spacing={1} bgColor color='secondary' homePage={homePage}/>
                         </Grid>
@@ -171,7 +154,7 @@ const BusinessCard: FunctionComponent<MainMenuProps> = ({anchor, homePage}) => {
 
                             </Grid>
                             <Grid item xs={9} container justifyContent='flex-end'>
-                                <MailTo color={theme.palette.primary.main} email={homePage.email ?? ""}
+                                <MailTo color={DigitalResumeTheme.palette.primary.main} email={homePage.email ?? ""}
                                         subject={"Information Request"} body={""}>
                                     <Typography color='textPrimary' variant='button'
                                                 align='right'>{homePage.email}</Typography>
@@ -325,9 +308,8 @@ const BusinessCard: FunctionComponent<MainMenuProps> = ({anchor, homePage}) => {
     );
 
     return (
-        <ThemeProvider theme={DigitalResumeTheme}>
-            <Grid item container>
-                <Grid item container justifyContent='flex-end' style={{padding: theme.spacing(2, 3)}}>
+            <ThemeProvider theme={DigitalResumeTheme}><Grid item container>
+                <Grid item container justifyContent='flex-end' style={{padding: DigitalResumeTheme.spacing(2, 3)}}>
 
                     <Button variant='contained' color='primary' onClick={toggleDrawer(anchor, true)}>
                         <Grid container spacing={2} alignItems='center'>
@@ -354,8 +336,8 @@ const BusinessCard: FunctionComponent<MainMenuProps> = ({anchor, homePage}) => {
 
                               position: "absolute",
                               zIndex: 1000,
-                              paddingLeft: TheWebsiteTheme.spacing(4),
-                              paddingRight: TheWebsiteTheme.spacing(6),
+                              paddingLeft: DigitalResumeTheme.spacing(4),
+                              paddingRight: DigitalResumeTheme.spacing(6),
                           }}>
 
                         {/*<Grid item xs={3}>*/}
@@ -369,8 +351,7 @@ const BusinessCard: FunctionComponent<MainMenuProps> = ({anchor, homePage}) => {
                         {list(anchor)}
                     </Grid>
                 </Drawer>
-            </Grid>
-        </ThemeProvider>
+            </Grid></ThemeProvider>
     );
 }
 

@@ -1,5 +1,5 @@
 import React, {FunctionComponent, useContext, useEffect, useState} from 'react'
-import { Theme, ThemeProvider, StyledEngineProvider } from "@mui/material/styles";
+import {ThemeProvider, StyledEngineProvider, Theme} from "@mui/material/styles";
 import makeStyles from '@mui/styles/makeStyles';
 import { Grid, IconButton, InputAdornment, Link, TextField, Typography } from "@mui/material";
 import withStyles from '@mui/styles/withStyles';
@@ -35,7 +35,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
     },
     headerAccent: {
         display: 'inline-block',
-        marginLeft: theme.spacing(1)
+        marginLeft: "8px"
     },
     formContainer: {
         // margin: 'auto',
@@ -45,7 +45,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
         zIndex: 2
     },
     inputAdornmentContainer: {
-        marginTop: theme.spacing(1),
+        marginTop: "8px",
         zIndex: 3
     },
     inputAdornmentTextBlockContainer: {
@@ -54,10 +54,10 @@ export const useStyles = makeStyles((theme: Theme) => ({
         zIndex: 3
     },
     formTitle: {
-        marginBottom: theme.spacing(1)
+        marginBottom: "8px"
     },
     socialMediaContainer: {
-        marginTop: theme.spacing(1)
+        marginTop: "8px"
     },
     lhsContainer: {
         // width: "500px",

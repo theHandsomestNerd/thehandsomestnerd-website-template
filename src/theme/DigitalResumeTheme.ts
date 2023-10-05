@@ -1,10 +1,11 @@
 import {createTheme} from '@mui/material';
 // import FontFaces from "./common/FontFaces";
 import {COLORS} from "./common/ColorPalette";
+import {Theme} from "@mui/material/styles";
 
 const fonts = ["Raleway", "Bitter Pro", "Elaine Sans"].join(',')
 
-const DigitalResumeTheme = createTheme({
+const DigitalResumeTheme:Theme = createTheme({
     breakpoints: {
         values: {
             xs: 0,

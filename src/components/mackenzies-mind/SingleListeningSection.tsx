@@ -1,13 +1,12 @@
 import React, {FunctionComponent} from 'react'
 import {Theme} from '@mui/material/styles';
 import makeStyles from '@mui/styles/makeStyles';
-import {Grid, Typography} from '@mui/material'
+import {Grid, Typography, useTheme} from '@mui/material'
 import {urlFor} from '../block-content-ui/static-pages/cmsStaticPagesClient'
 import {ThwHeroContentSectionType} from "../BlockContentTypes";
 import clsx from "clsx";
 import useCustomStyles from "./pages/Styles";
 import ImageWIthButtonOverlay from "../image-with-button-overlay/ImageWithButtonOverlay";
-import TheWebsiteTheme from "../../theme/Theme";
 
 interface IProps {
     sectionData: ThwHeroContentSectionType
@@ -50,6 +49,7 @@ const SingleListeningSection: FunctionComponent<IProps> = (props) => {
         }
     }
 
+    const theme = useTheme()
 
     const classes = useStyles(classParameters)
     const globalClasses = useCustomStyles({})
@@ -70,7 +70,7 @@ const SingleListeningSection: FunctionComponent<IProps> = (props) => {
                 <Grid item xs={6} container direction='column'>
                     <Grid item>
                         <Typography variant='subtitle1'
-                                    style={{color: TheWebsiteTheme.palette.text.secondary}}>{props.sectionData.contentWelcomeMessage}</Typography>
+                                    style={{color: theme.palette.text.secondary}}>{props.sectionData.contentWelcomeMessage}</Typography>
                     </Grid>
                     <Grid item justifyContent='center'>
                         <Typography variant='h1'

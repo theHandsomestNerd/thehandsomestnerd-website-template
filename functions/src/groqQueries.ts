@@ -74,6 +74,7 @@ const HOMEPAGE = `_type,
           website,
           websiteQrCode,
           metaImage,
+          theme->,
           headerContent {
             "content": content[]->{
                 ...,

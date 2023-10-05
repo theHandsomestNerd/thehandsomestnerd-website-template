@@ -1,4 +1,4 @@
-import React, {FunctionComponent, useEffect, useState} from 'react'
+import React, {FunctionComponent, useContext, useEffect, useState} from 'react'
 import {Grid, Typography, useMediaQuery, useTheme} from '@mui/material'
 import useCustomStyles from "../../../mackenzies-mind/pages/Styles";
 import CountdownToLaunch from "./CountdownToLaunch";
@@ -11,7 +11,7 @@ import Logo from "../../logo/Logo";
 import {urlFor} from "../../../block-content-ui/static-pages/cmsStaticPagesClient";
 import MailTo from "../../../mail-to/MailTo";
 import {COLORS} from "../../../../theme/common/ColorPalette";
-import TheWebsiteTheme from "../../../../theme/Theme";
+import CustomizedThemeContext from "../../../customized-theme-provider/CustomizedThemeContext";
 
 interface IProps {
     email?: string
@@ -21,9 +21,10 @@ interface IProps {
 const UnderConstruction: FunctionComponent<IProps> = (props) => {
     const [cmsPageData, setCmsPageData] = useState<SanityUnderConstructionPageType>()
     const classes = useCustomStyles({bgImage: urlFor(cmsPageData?.bgImage ?? "").url()})
-    const theme = useTheme()
-    const smDown = useMediaQuery(theme.breakpoints.down('lg'))
-    const xsDown = useMediaQuery(theme.breakpoints.down('md'))
+    const customizedThemeContext = useContext(CustomizedThemeContext);
+    const smDown = useMediaQuery(customizedThemeContext.customizedTheme.breakpoints.down('lg'))
+    const xsDown = useMediaQuery(customizedThemeContext.customizedTheme.breakpoints.down('md'))
+
 
     const [releaseDate, setReleaseDate] = useState<Date>()
 
@@ -60,21 +61,21 @@ const UnderConstruction: FunctionComponent<IProps> = (props) => {
             <Grid item container className={clsx(classes.fullscreen)}
                   style={{
                       position: 'absolute',
-                      paddingBottom: smDown ? 0 : theme.spacing(10)
+                      paddingBottom: smDown ? 0 : customizedThemeContext.customizedTheme.spacing(10)
                   }}
                   justifyContent='center' alignItems='center'>
                 {cmsPageData?.contentTitle && cmsPageData?.contentTitle.length > 0 && <Grid container item xs={11} className={classes.spacer} justifyContent='center'>
                     <Typography variant={smDown ? 'h2' : 'h1'} align='center'
                                 color='textSecondary'>{cmsPageData?.contentTitle}</Typography>
                 </Grid>}
-                {<Grid container item xs={11} className={classes.spacer} justifyContent='center' style={{marginBottom: smDown? theme.spacing(15):0}}>
+                {<Grid container item xs={11} className={classes.spacer} justifyContent='center' style={{marginBottom: smDown? customizedThemeContext.customizedTheme.spacing(15):0}}>
                     <Logo isCenter={smDown} height={250}/>
                 </Grid>}
                 <Grid xs={10} container item justifyContent='center' className={classes.spacer}>
                     <CountdownToLaunch launchDate={releaseDate ?? new Date(Date.now() + 2000000000)}/>
                 </Grid>
-                <Grid container item sm={10}  style={{paddingBottom: theme.spacing(5), marginBottom: xsDown? 0: theme.spacing(1)}}>
-                    <Grid container item justifyContent='center' style={{marginTop: theme.spacing(2.5)}}>
+                <Grid container item sm={10}  style={{paddingBottom: customizedThemeContext.customizedTheme.spacing(5), marginBottom: xsDown? 0: customizedThemeContext.customizedTheme.spacing(1)}}>
+                    <Grid container item justifyContent='center' style={{marginTop: customizedThemeContext.customizedTheme.spacing(2.5)}}>
                         <Grid item xs={11} sm={10}>
                             <Typography variant='body1'
                                         align='center' style={{fontFamily: "Raleway"}}>{cmsPageData?.contentText}</Typography>
@@ -82,13 +83,13 @@ const UnderConstruction: FunctionComponent<IProps> = (props) => {
                         </Grid>
                     </Grid>
                     <Grid container item justifyContent='center'>
-                        <Grid container item justifyContent='center' style={{marginTop: theme.spacing(5.75)}}>
+                        <Grid container item justifyContent='center' style={{marginTop: customizedThemeContext.customizedTheme.spacing(5.75)}}>
                             <SubmitEmail emailFieldText={cmsPageData?.emailFieldText ?? ""}
                                          emailButtonText={cmsPageData?.emailButtonText ?? ""}
                                          subscribeText={cmsPageData?.subscribeText ?? ""}/>
                         </Grid>
                         <Grid item container style={{
-                            // backgroundColor: xsDown ? theme.palette.background.default : "transparent",
+                            // backgroundColor: xsDown ? customizedThemeContext.customizedTheme.palette.background.default : "transparent",
                             // position: 'static',
                             bottom: 0,
                             // height: "84px"
@@ -96,7 +97,7 @@ const UnderConstruction: FunctionComponent<IProps> = (props) => {
                             <Grid item container justifyContent='center'>
                                 <Grid item>
 
-                                    <MailTo color={TheWebsiteTheme.palette.primary.main} email={props.email??""} subject={"Information Request"} body={""}>
+                                    <MailTo color={customizedThemeContext.customizedTheme.palette.primary.main} email={props.email??""} subject={"Information Request"} body={""}>
                                         {props.email}
                                     </MailTo>
                                 </Grid>

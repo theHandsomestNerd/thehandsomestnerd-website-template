@@ -9,6 +9,7 @@ import useThwCommonStyles from "../common/sanityIo/ThwCommonStyles";
 import DevelopmentHeader from "./mackenzies-mind/header/DevelopmentHeader";
 import Header from "./mackenzies-mind/header/Header";
 import WebDevSiteTheme from "../theme/WebDevSiteTheme";
+import TransformHWTheme from "../theme/TransformHWTheme";
 
 
 
@@ -81,7 +82,6 @@ const HeaderBlockContentLayoutContainer: FunctionComponent<HeaderBlockContentLay
                         const developmentHeader: DevelopmentHeaderSectionType = columnLayoutContainer
 
                         return (
-                            <StyledEngineProvider injectFirst>
                                 <ThemeProvider theme={WebDevSiteTheme}><Grid key={'TOP_OF_PAGE_DEV'} container item xs={12} style={{height: WebDevSiteTheme.mixins.toolbar.height}} alignContent='center' alignItems='center'>
                                     <Link id={"TOP_OF_PAGE"} underline="hover"><></>
                                     </Link>
@@ -89,13 +89,11 @@ const HeaderBlockContentLayoutContainer: FunctionComponent<HeaderBlockContentLay
                                         pageHeader={developmentHeader.headerMenuRef}
                                     />
                                 </Grid></ThemeProvider>
-                            </StyledEngineProvider>
                         );
                     case 'HeaderSection':
                         const header: HeaderSectionType = columnLayoutContainer
 
                         return (
-                            <StyledEngineProvider injectFirst>
                                 <ThemeProvider theme={DigitalResumeTheme}><Grid key={'TOP_OF_PAGE'} container item xs={12} style={{height: DigitalResumeTheme.mixins.toolbar.height}}>
                                     <Link id={"TOP_OF_PAGE"} underline="hover"><></>
                                     </Link>
@@ -103,7 +101,6 @@ const HeaderBlockContentLayoutContainer: FunctionComponent<HeaderBlockContentLay
                                         pageHeader={header.headerMenuRef}
                                     />
                                 </Grid></ThemeProvider>
-                            </StyledEngineProvider>
                         );
                     default:
                         return <span key={index}>Undefined section {columnLayoutContainer._type}</span>

@@ -29,7 +29,7 @@ const PageMux: FunctionComponent<IProps> = (props: IProps) => {
     },[])
 
     const PageContents = () => {
-        if (!pageContext.page || pageContext.isPageLoading)
+        if (!pageContext.page || pageContext.isPageLoading || !pageContext.page.theme)
             return <LoadingPage/>
 
         if (pageContext.page && !pageContext.page.isUnderConstruction) {

@@ -11,7 +11,7 @@ const config: StorybookConfig = {
     "@storybook/addon-links",
     "@storybook/addon-essentials",
     "@storybook/preset-create-react-app",
-    'storybook-addon-material-ui',
+    // 'storybook-addon-material-ui',
     "@storybook/addon-mdx-gfm",
     '@storybook/addon-styling'
   ],

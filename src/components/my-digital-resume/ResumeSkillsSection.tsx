@@ -1,25 +1,12 @@
-import React, {FunctionComponent} from 'react'
-import { Theme, ThemeProvider, StyledEngineProvider } from "@mui/material/styles";
+import React, {FunctionComponent, useContext} from 'react'
+import {Theme, ThemeProvider} from "@mui/material/styles";
 import makeStyles from '@mui/styles/makeStyles';
 import {Grid, Typography, useTheme} from '@mui/material'
 import {ResumeSkillSectionType, ResumeSkillSet} from "../BlockContentTypes";
 import useThwCommonStyles from "../../common/sanityIo/ThwCommonStyles";
-import TheWebsiteTheme from "../../theme/Theme";
 import {COLORS} from "../../theme/common/ColorPalette";
-
-
-
-declare module '@mui/styles/defaultTheme' {
-  // eslint-disable-next-line @typescript-eslint/no-empty-interface
-  interface DefaultTheme extends Theme {}
-}
-
-
-
-declare module '@mui/styles/defaultTheme' {
-  // eslint-disable-next-line @typescript-eslint/no-empty-interface
-  interface DefaultTheme extends Theme {}
-}
+import CustomizedThemeContext from "../customized-theme-provider/CustomizedThemeContext";
+import DigitalResumeTheme from "../../theme/DigitalResumeTheme";
 
 
 export const useStyles = makeStyles((theme: Theme) => ({
@@ -33,17 +20,16 @@ interface IProps {
 const ResumeSkillsSection: FunctionComponent<IProps> = (props: IProps) => {
     // const classes = useStyles()
     const globalClasses = useThwCommonStyles()
-    const theme = useTheme()
-
+    const themeContext = useContext(CustomizedThemeContext)
  
 
     return (
-            <ThemeProvider theme={TheWebsiteTheme}>
+        <ThemeProvider theme={DigitalResumeTheme}>
                 <Grid
                     container
                     item
                     style={{
-                        padding: theme.spacing(4)
+                        padding: DigitalResumeTheme.spacing(4)
                     }}
                     className={globalClasses.resumeSection}
                 >
@@ -79,7 +65,7 @@ const ResumeSkillsSection: FunctionComponent<IProps> = (props: IProps) => {
                         </Grid>
                     </Grid>
                 </Grid>
-            </ThemeProvider>
+        </ThemeProvider>
     );
 }
 

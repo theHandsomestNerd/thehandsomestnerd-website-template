@@ -3,18 +3,15 @@ import {BrowserRouter} from "react-router-dom";
 import React from 'react';
 
 import {Preview} from '@storybook/react';
-import {withThemeFromJSXProvider} from "@storybook/addon-styling";
 import PageProvider from "../src/components/page-context/PageProvider";
 import HomePageResumeData from "../src/stories/data/HomePageData";
 import ModalProvider from "../src/components/snackbar-context/ModalProvider";
 import SnackbarProvider from "../src/components/modal-context/SnackbarProvider";
 import MediaQueriesProvider from "../src/components/media-queries-context/MediaQueriesProvider";
 import AmenityProvider from "../src/components/amenity-context/AmenityProvider";
-import {ThemeProvider} from "@mui/material/styles";
-import TheWebsiteTheme from "../src/theme/Theme";
-import DigitalResumeTheme from "../src/theme/DigitalResumeTheme";
 import {CssBaseline} from "@mui/material";
-import TransformHWTheme from "../src/theme/TransformHWTheme";
+import CustomizedThemeProvider from "../src/components/customized-theme-provider/CustomizedThemeProvider";
+import DigitalResumeThemeData from "../src/stories/data/DigitalResumeThemeData";
 
 const mockedQueryClient = new QueryClient({
     defaultOptions: {
@@ -29,20 +26,20 @@ const preview: Preview = {
         (Story) => (
             <BrowserRouter>
                 <QueryClientProvider client={mockedQueryClient}>
-                    <ThemeProvider theme={TheWebsiteTheme}>
-                        <CssBaseline />
-                        <SnackbarProvider>
-                            <MediaQueriesProvider>
-                                <ModalProvider>
-                                    <PageProvider page={HomePageResumeData}>
+                    <PageProvider page={HomePageResumeData}>
+                        <CustomizedThemeProvider pageTheme={DigitalResumeThemeData}>
+                            <CssBaseline/>
+                            <SnackbarProvider>
+                                <MediaQueriesProvider>
+                                    <ModalProvider>
                                         <AmenityProvider>
-                                            <Story />
+                                            <Story/>
                                         </AmenityProvider>
-                                    </PageProvider>
-                                </ModalProvider>
-                            </MediaQueriesProvider>
-                        </SnackbarProvider>
-                    </ThemeProvider>
+                                    </ModalProvider>
+                                </MediaQueriesProvider>
+                            </SnackbarProvider>
+                        </CustomizedThemeProvider>
+                    </PageProvider>
                 </QueryClientProvider>
             </BrowserRouter>
         ),
