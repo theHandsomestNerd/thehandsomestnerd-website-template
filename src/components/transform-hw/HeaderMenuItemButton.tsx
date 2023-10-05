@@ -46,7 +46,7 @@ const HeaderMenuItemButton: FunctionComponent<HeaderMenuItemButtonProps> = ({men
         <Typography noWrap
                     color={menuItem.isOutlinedButton || menuItem.isContainedButton ? 'textPrimary' : 'textPrimary'}
                     variant={menuItem.isOutlinedButton || menuItem.isContainedButton ? "button" : 'body2'}
-                    style={{fontSize: "18px", ...textStyle}}>{menuItem.displayText}</Typography>
+                    style={{fontSize: "18px", ...textStyle, fontWeight: "bold"}}>{menuItem.displayText}</Typography>
     </Button>)
 }
 

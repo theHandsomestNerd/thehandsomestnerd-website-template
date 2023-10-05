@@ -1,7 +1,7 @@
 import type {Meta, StoryObj} from '@storybook/react';
 import LoadingButton, {LoadingButtonIProps} from "../../components/loading-button/LoadingButton";
 import {ButtonGroupMemberEnum} from "../../components/loading-button/ButtonGroupMemberEnum";
-import {Grid} from "@mui/material";
+import {Grid, Typography} from "@mui/material";
 import {PropsWithChildren} from "react";
 
 
@@ -20,29 +20,34 @@ type Story = StoryObj<typeof LoadingButton>;
  * to learn how to use render functions.
  */
 
-const buttonText = "Button Text"
+const buttonText = <Typography variant='button' style={{fontFamily: "Raleway"}}>Button Text</Typography>
 export const Primary: Story = {
     args: {
       color: "primary",
       isLoading: false,
-      children:buttonText
+      children:buttonText,
+        width: 250,
+
     },
-    render: ({color, isLoading, children}:PropsWithChildren<LoadingButtonIProps>) => <LoadingButton color={color} isLoading={isLoading}>{children}</LoadingButton>,
+    render: ({color, isLoading, children, width}:PropsWithChildren<LoadingButtonIProps>) => <LoadingButton width={width} color={color} isLoading={isLoading}>{children}</LoadingButton>,
 };
 export const PrimaryDisabled: Story = {
     args: {
         color: "primary",
-        disabled: false,
-        children: buttonText
+        disabled: true,
+        children: buttonText,
+        width: 250,
+
     },
-    render: ({color, isLoading, children, disabled}:PropsWithChildren<LoadingButtonIProps>) => <LoadingButton color={color} isLoading={isLoading} disabled={disabled}>{children}</LoadingButton>,
+    render: ({color, isLoading, children, disabled, width}:PropsWithChildren<LoadingButtonIProps>) => <LoadingButton width={width} color={color} isLoading={isLoading} disabled={disabled}>{children}</LoadingButton>,
 };
 export const Secondary: Story = {
     args: {
         color: "secondary",
-        children: buttonText
+        children: buttonText,
+        width: 250,
     },
-    render: ({color, children}:PropsWithChildren<LoadingButtonIProps>) => <LoadingButton color={color}>{children}</LoadingButton>,
+    render: ({color, children,width}:PropsWithChildren<LoadingButtonIProps>) => <LoadingButton color={color} width={width}>{children}</LoadingButton>,
 };
 
 
@@ -70,20 +75,20 @@ export const SecondaryLoading: Story = {
 export const Grouped: Story = {
     render: () => <Grid container>
         <Grid item>
-            <LoadingButton width={250} color={"primary"} groupiness={ButtonGroupMemberEnum.LEFT} >One</LoadingButton>
+            <LoadingButton width={250} color={"primary"} groupiness={ButtonGroupMemberEnum.LEFT} ><Typography variant='button' style={{fontFamily: "Raleway"}}>One</Typography></LoadingButton>
 
         </Grid>
         <Grid item>
             <LoadingButton width={250} groupiness={ButtonGroupMemberEnum.CENTER}
-                           color={"primary"} >Two</LoadingButton>
+                           color={"primary"} ><Typography variant='button' style={{fontFamily: "Raleway"}}>Two</Typography></LoadingButton>
         </Grid>
         <Grid item>
             <LoadingButton width={250} groupiness={ButtonGroupMemberEnum.CENTER}
-                           color={"primary"} >Three</LoadingButton>
+                           color={"primary"} ><Typography variant='button' style={{fontFamily: "Raleway"}}>Three</Typography></LoadingButton>
         </Grid>
         <Grid item>
             <LoadingButton width={250} groupiness={ButtonGroupMemberEnum.RIGHT} color={"primary"}
-            >Four</LoadingButton></Grid>
+            ><Typography variant='button' style={{fontFamily: "Raleway"}}>Four</Typography></LoadingButton></Grid>
         </Grid>,
 
 };

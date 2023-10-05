@@ -11,9 +11,9 @@ import {COLORS} from "../../../theme/common/ColorPalette";
 import TheWebsiteTheme from "../../../theme/Theme";
 import widthUtils from "../../../utils/widthUtils";
 
-export const useStyles = makeStyles((theme: Theme) => ({
+export const useStyles = makeStyles( ({
     root: {
-        color: theme.palette.text.secondary,
+        color: TheWebsiteTheme.palette.text.secondary,
     }
 }))
 
@@ -30,10 +30,15 @@ const FooterMenuContainer: FunctionComponent<IProps> = (props: IProps) => {
     const pageContext = useContext(PageContext)
 
     const smDown = widthUtils.useIsWidthDown('sm')
+
     return (
-        <ThemeProvider theme={TheWebsiteTheme}><Grid container item className={classes.root} spacing={5}>
+        <ThemeProvider theme={TheWebsiteTheme}>
+            <Grid container item className={classes.root}>
             <Grid container item xs={12} md={4}
                       style={smDown ? {
+                          paddingLeft:"16px",
+                          paddingTop:"16px",
+                          paddingBottom:"16px",
                     borderLeft: `4px solid ${TheWebsiteTheme.palette.primary.main}`,
                     backgroundColor: "rgba(117,117,117,.5)",
                     borderRight: `4px solid ${TheWebsiteTheme.palette.primary.main}`,

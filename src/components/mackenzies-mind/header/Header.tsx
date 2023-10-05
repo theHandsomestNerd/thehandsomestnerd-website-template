@@ -37,6 +37,8 @@ const Header: FunctionComponent<HeaderProps> = (props) => {
         console.log("Page header in the header", props.pageHeader)
     }, [props.pageHeader])
 
+    const lgUp = widthUtils.useIsWidthUp('md')
+
     return (
         <AppBar className={clsx({[classes.opaque]: true}, classes.root)}>{props.pageHeader?.title ?
             <Grid item xs={12} container justifyContent="space-between" alignItems='stretch' alignContent='center'
@@ -53,36 +55,32 @@ const Header: FunctionComponent<HeaderProps> = (props) => {
                     , fontWeight: "300"
                 }}>.</Typography>
                 </Grid>
-                <Grid item container xs={9} sm={10} md={11} justifyContent='space-between' alignItems='center'
+                <Grid item container xs={9} sm={10} md={11} justifyContent='flex-end' alignItems='center'
                       alignContent='center'>
-                    {/*// @ts-ignore*/}
-                    <Hidden mdDown>
-                        <Grid xs={4} md={10} lg={12} container item justifyContent='flex-end'
+                    {lgUp && <Grid xs={4} md={10} lg={12} container item justifyContent='flex-end'
+                           alignItems='center'
+                           style={{
+                               height: "100%",
+                               paddingRight: mdDown ? theme.spacing(0) : theme.spacing(4)
+                           }}>
+                        <FilteredMenuItems
+                            // bgColor={!mdDown ? TransformHWTheme.palette.primary.main : COLORS.TRANSPARENTWHITE}
+                            subMenus={props.pageHeader.subMenus ?? []} onlyButtons={mdDown}
+                            includeMenuItems={!mdDown}
+                            includeMenuGroups={!mdDown}/>
+                    </Grid>}
+
+                    {mdDown && <Grid item xs={12} sm={2} container justifyContent='flex-end' >
+                        <Grid container item
+
+                              justifyContent='flex-end'
                               alignItems='center'
-                              style={{
-                                  height: "100%",
-                                  paddingRight: mdDown ? theme.spacing(0) : theme.spacing(4)
-                              }}>
-                            <FilteredMenuItems
-                                // bgColor={!mdDown ? TransformHWTheme.palette.primary.main : COLORS.TRANSPARENTWHITE}
-                                subMenus={props.pageHeader.subMenus ?? []} onlyButtons={mdDown}
-                                includeMenuItems={!mdDown}
-                                includeMenuGroups={!mdDown}/>
-                        </Grid>
-                    </Hidden>
-                    {/*// @ts-ignore*/}
-                    <Hidden lgUp>
-                        <Grid item xs={12} sm={2} container justifyContent='flex-end'>
-                            <Grid container item
-                                  justifyContent='flex-end'
-                                  alignItems='center'
-                            >
-                                <Grid item>
-                                    <MainMenu menu={props.pageHeader} anchor='top'/>
-                                </Grid>
+                        >
+                            <Grid item>
+                                <MainMenu menu={props.pageHeader} anchor='top'/>
                             </Grid>
                         </Grid>
-                    </Hidden>
+                    </Grid>}
                 </Grid>
             </Grid>
             : <></>

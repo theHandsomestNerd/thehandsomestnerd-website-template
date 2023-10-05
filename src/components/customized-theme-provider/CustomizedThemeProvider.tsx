@@ -312,7 +312,8 @@ const CustomizedThemeProvider: FunctionComponent<IProps & PropsWithChildren> = (
                     MuiOutlinedInput: {
                         styleOverrides: {
                             root: {
-                                border: "2px solid black"
+                                paddingRight: "16px",
+                                border: "2px solid black",
                             }
                         }
                     }

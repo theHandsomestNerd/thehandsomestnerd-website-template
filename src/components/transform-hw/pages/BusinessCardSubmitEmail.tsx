@@ -15,18 +15,14 @@ export const useStyles = makeStyles((theme: Theme) => ({
         "& .MuiFilledInput-adornedEnd": {
             border: "1px solid red",
             // marginRight: '-12px',
-            borderTopRightRadius: TheWebsiteTheme
-.shape.borderRadius,
-            borderBottomRightRadius: TheWebsiteTheme
-.shape.borderRadius,
+            borderTopRightRadius: TheWebsiteTheme.shape.borderRadius,
+            borderBottomRightRadius: TheWebsiteTheme.shape.borderRadius,
         },
         "& .MuiOutlinedInput-adornedEnd": {
             border: "1px solid white",
             // paddingRight: 0,
-            borderTopRightRadius: TheWebsiteTheme
-.shape.borderRadius,
-            borderBottomRightRadius: TheWebsiteTheme
-.shape.borderRadius,
+            borderTopRightRadius: TheWebsiteTheme.shape.borderRadius,
+            borderBottomRightRadius: TheWebsiteTheme.shape.borderRadius,
         },
         "& .MuiInputBase-input": {
             borderRightWidth: 0,
@@ -49,10 +45,8 @@ export interface SubmitEmailIProps {
 
 const BusinessCardSubmitEmail: FunctionComponent<SubmitEmailIProps> = (props: SubmitEmailIProps) => {
     const theme = useTheme()
-    const classes = useCustomStyles(TheWebsiteTheme
-)
-    const myClasses = useStyles(TheWebsiteTheme
-)
+    const classes = useCustomStyles(TheWebsiteTheme)
+    const myClasses = useStyles(TheWebsiteTheme)
     const [email, setEmail] = useState("")
 
     const {isLoading, isError, data, refetch} = useQuery(
@@ -92,11 +86,11 @@ const BusinessCardSubmitEmail: FunctionComponent<SubmitEmailIProps> = (props: Su
         <Grid item container justifyContent='center'>
             <Typography color='primary' gutterBottom variant='body2'
                         align='center'
-                        style={{marginBottom: theme.spacing(2)}}>{props.subscribeText}</Typography>
+                        style={{fontFamily: "Raleway", marginBottom: theme.spacing(2)}}>{props.subscribeText}</Typography>
         </Grid>
         <Grid item container xs={11} md={10}>
             <TextField fullWidth
-                       label={props.emailFieldText}
+                       label={<Typography style={{fontFamily: "Raleway"}}>{props.emailFieldText}</Typography>}
                        variant='outlined'
                        style={{paddingRight: "0"}}
                        type='email'
@@ -114,7 +108,7 @@ const BusinessCardSubmitEmail: FunctionComponent<SubmitEmailIProps> = (props: Su
                                    disabled={!!(data || isError || (email && (email.length > 0) && !isEmail(email)))}
                                    clickHandler={createLead}
                                    color='primary'
-                                   variant='contained'>{props.emailButtonText}</LoadingButton>
+                                   variant='contained'><Typography variant='button' style={{fontFamily: "Raleway"}}>{props.emailButtonText}</Typography></LoadingButton>
                            ,
                        }}/>
         </Grid>

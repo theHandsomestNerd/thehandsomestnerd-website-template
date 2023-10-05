@@ -225,6 +225,7 @@ const TheWebsiteTheme = createTheme({
         MuiOutlinedInput: {
             styleOverrides: {
                 root: {
+                    paddingRight: "16px",
                     border: "2px solid black"
                 }
             }
