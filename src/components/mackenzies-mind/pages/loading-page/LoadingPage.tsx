@@ -20,7 +20,7 @@ const LoadingPage: FunctionComponent = (props) => {
 
     return (
         <Grid container item justifyContent='center' alignItems='center'
-              alignContent='center'  className={globalClasses.fullscreen}>
+              alignContent='center' className={globalClasses.fullscreen}>
             <Logo isCenter height={200}/>
             <Grid item container justifyContent='center' spacing={3}>
                 <Grid item container justifyContent='center'>

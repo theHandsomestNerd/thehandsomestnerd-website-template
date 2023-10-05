@@ -45,7 +45,7 @@ function App() {
                                                           backgroundColor: theme.palette.background.default,
                                                           overflow: "hidden",
                                                           width: "100vw"
-                                                      }}>
+                                                      }} justifyContent='center'>
 
                                                     <Grid item>
                                                         <Routes>
