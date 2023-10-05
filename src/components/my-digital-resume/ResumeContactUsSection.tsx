@@ -6,7 +6,6 @@ import useCustomStyles from "../mackenzies-mind/pages/Styles";
 import isEmail from "validator/lib/isEmail";
 import LoadingButton from "../loading-button/LoadingButton";
 import {useQuery} from "react-query";
-import MediaQueriesContext from "../media-queries-context/MediaQueriesContext";
 import firebaseAnalyticsClient from "../../utils/firebase/FirebaseAnalyticsClient";
 import PageContext from "../page-context/PageContext";
 import leadClient from "../transform-hw/pages/under-construction-page/leadClient";
@@ -122,23 +121,11 @@ const ResumeContactUsSection: FunctionComponent<ContactUsProps> = (props) => {
     const snackbarContext = useContext(SnackbarContext)
 
     const globalClasses = useCustomStyles({})
-    const mediaQueriesContext = useContext(MediaQueriesContext)
 
     const [leadName, setleadName] = useState<string>()
     const [email, setEmail] = useState<string>()
     const [leadPhone, setLeadPhone] = useState<string>()
     const [leadMessage, setLeadMessage] = useState<string>()
-    const [alignment, setAlignment] = useState<any>('right')
-    const [justifyContent, setJustifyContent] = useState<any>('flex-end')
-    useEffect(() => {
-        if (mediaQueriesContext.smDown) {
-            setAlignment('center')
-            setJustifyContent('center')
-        } else {
-            setAlignment('right')
-            setJustifyContent('flex-end')
-        }
-    }, [mediaQueriesContext.smDown])
 
     const {isLoading, isError, data, refetch, isRefetching} = useQuery(
         ['submitContactUsForm'],

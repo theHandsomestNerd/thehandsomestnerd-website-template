@@ -5,6 +5,7 @@ import DigitalResumeTheme from "../../theme/DigitalResumeTheme";
 import {ButtonGroupMemberEnum} from "./ButtonGroupMemberEnum";
 import {OverridableStringUnion} from "@mui/types";
 import {ButtonPropsColorOverrides} from "@mui/material/Button/Button";
+import TransformHWTheme from "../../theme/TransformHWTheme";
 
 
 type CssProps = {
@@ -15,7 +16,7 @@ export const useStyles = makeStyles((theme) => ({
     root: {
         height: "100%",
         width: (props: any) => props.width ? `${props.width}px` : 'unset',
-        borderRadius: `0 ${theme.shape.borderRadius}px ${theme.shape.borderRadius}px 0`,
+        borderRadius: `0 ${DigitalResumeTheme.shape.borderRadius}px ${DigitalResumeTheme.shape.borderRadius}px 0`,
         borderTopLeftRadius: (props: CssProps) => {
             switch (props.buttonGroupiness) {
                 case ButtonGroupMemberEnum.CENTER:
@@ -24,7 +25,7 @@ export const useStyles = makeStyles((theme) => ({
                     return 0
                 case ButtonGroupMemberEnum.LEFT:
                 default:
-                    return theme.shape.borderRadius
+                    return DigitalResumeTheme.shape.borderRadius
             }
         },
         borderTopRightRadius: (props: CssProps) => {
@@ -35,7 +36,7 @@ export const useStyles = makeStyles((theme) => ({
                     return 0
                 case ButtonGroupMemberEnum.RIGHT:
                 default:
-                    return theme.shape.borderRadius
+                    return DigitalResumeTheme.shape.borderRadius
             }
         },
         borderBottomRightRadius: (props: CssProps) => {
@@ -46,7 +47,7 @@ export const useStyles = makeStyles((theme) => ({
                     return 0
                 case ButtonGroupMemberEnum.RIGHT:
                 default:
-                    return theme.shape.borderRadius
+                    return DigitalResumeTheme.shape.borderRadius
 
             }
         },
@@ -58,7 +59,7 @@ export const useStyles = makeStyles((theme) => ({
                     return 0
                 case ButtonGroupMemberEnum.LEFT:
                 default:
-                    return theme.shape.borderRadius
+                    return DigitalResumeTheme.shape.borderRadius
             }
         },
     }

@@ -1,7 +1,7 @@
-import React, {FunctionComponent, useContext, useRef} from 'react'
-import { Theme } from "@mui/material/styles";
+import React, {FunctionComponent, useContext} from 'react'
+import {Theme} from "@mui/material/styles";
 import makeStyles from '@mui/styles/makeStyles';
-import {Button, CircularProgress, Grid, Tooltip, Typography} from '@mui/material'
+import {Button, Grid, Tooltip, Typography} from '@mui/material'
 import ImageWIthButtonOverlay from "../image-with-button-overlay/ImageWithButtonOverlay";
 import {ImageWithButtonOverlayAligmentEnum} from "../image-with-button-overlay/ImageWithButtonOverlayAligmentEnum";
 import LoadingButton from "../loading-button/LoadingButton";
@@ -10,9 +10,9 @@ import amenitiesIcon from "./amenitiesIcon.png";
 import DigitalResumeTheme from "../../theme/DigitalResumeTheme";
 import AmenitiesSection from "./AmenitiesSection";
 import PageContext from "../page-context/PageContext";
-import MediaQueriesContext from "../media-queries-context/MediaQueriesContext";
 import {ThwServiceItemNoRefType} from "../BlockContentTypes";
 import firebaseAnalyticsClient from "../../utils/firebase/FirebaseAnalyticsClient";
+import widthUtils from "../../utils/widthUtils";
 
 export const useStyles = makeStyles((theme: Theme) => ({
     root: {},
@@ -28,7 +28,7 @@ interface IProps {
 
 const ThwServiceItem: FunctionComponent<IProps> = (props: IProps) => {
     const pageContext = useContext(PageContext)
-    const mediaQueriesContext = useContext(MediaQueriesContext)
+    const mdDown = widthUtils.useIsWidthDown('md')
 
     const LearnMoreButton = () => {
         return <Grid item container justifyContent='center'>
@@ -54,7 +54,7 @@ const ThwServiceItem: FunctionComponent<IProps> = (props: IProps) => {
                             // hideCtaButton={prop.hideCtaButton}
                             tooltip={'Click to Learn More'}
                             learnMoreLink={props.service.learnMoreLink}
-                            buttonAlignment={mediaQueriesContext.mdDown ? ImageWithButtonOverlayAligmentEnum.CENTER : ImageWithButtonOverlayAligmentEnum.RIGHT}
+                            buttonAlignment={mdDown ? ImageWithButtonOverlayAligmentEnum.CENTER : ImageWithButtonOverlayAligmentEnum.RIGHT}
                             imageAltText={props.service.imageSrcAltText}
                             variant='contained'
                             imageSrc={props.service.imageSrc} height={352}

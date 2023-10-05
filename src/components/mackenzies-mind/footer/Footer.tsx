@@ -13,7 +13,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
     // color: '#FDF3EB',
     // marginLeft: -1 * theme.spacing(1),
     // zIndex: 1000,
-    padding: theme.spacing(4),
+    padding: DigitalResumeTheme.spacing(4),
     '& .MuiFormLabel-root': {
       color: 'white',
     },

@@ -9,10 +9,10 @@ import LoadingButton from "../loading-button/LoadingButton";
 import ResponsiveBullet from "../ResponsiveBullet";
 import {FiberManualRecord} from "@mui/icons-material";
 import ColoredPng from "../colored-png/ColoredPng";
-import MediaQueriesContext from "../media-queries-context/MediaQueriesContext";
 import firebaseAnalyticsClient from "../../utils/firebase/FirebaseAnalyticsClient";
 import PageContext from "../page-context/PageContext";
 import ImageWithPlaceholder from "../ImageWithPlaceholder";
+import widthUtils from "../../utils/widthUtils";
 
 export const useStyles = makeStyles((theme: Theme) => ({
     root: {
@@ -32,16 +32,19 @@ interface IProps {
 }
 
 const ProprietorAtAGlance = (props: {sectionData: ProprietorAtAGlanceType, source: string}) => {
-    const mediaQueriesContext = useContext(MediaQueriesContext)
     const pageContext = useContext(PageContext)
+
+    const smDown = widthUtils.useIsWidthDown('sm')
+    const xsOnly = widthUtils.useIsWidthDown('xs')
+
     return (
         <Grid item container
                      justifyContent='center'
                      style={{
                          backgroundColor: TransformHWTheme.palette.secondary.dark,
-                         border: mediaQueriesContext.smDown?"0px solid transparent":"1px solid white",
-                         margin: mediaQueriesContext.smDown?TransformHWTheme.spacing(0, 0, 0, 0):TransformHWTheme.spacing(2, 0, 0, 0),
-                         padding: TransformHWTheme.spacing(2, 0, mediaQueriesContext.smDown?6:2, 0)
+                         border: smDown?"0px solid transparent":"1px solid white",
+                         margin: smDown?TransformHWTheme.spacing(0, 0, 0, 0):TransformHWTheme.spacing(2, 0, 0, 0),
+                         padding: TransformHWTheme.spacing(2, 0, smDown?6:2, 0)
                      }}
                      spacing={6}
                      xs={12}
@@ -107,11 +110,13 @@ const ProprietorAtAGlance = (props: {sectionData: ProprietorAtAGlanceType, sourc
 
 const AboutTheProprietorSection: FunctionComponent<IProps> = (props) => {
     const classes = useStyles(TransformHWTheme)
-    const mediaQueriesContext = useContext(MediaQueriesContext)
+
+    const smDown = widthUtils.useIsWidthDown('sm')
+    const xsOnly = widthUtils.useIsWidthDown('xs')
 
     return (
         <ThemeProvider theme={TransformHWTheme}>
-            <Grid container item className={classes.root} xs={mediaQueriesContext.xsOnly?12:11} style={mediaQueriesContext.xsOnly ? {paddingBottom: 0, paddingTop: 0} : {
+            <Grid container item className={classes.root} xs={xsOnly?12:11} style={xsOnly ? {paddingBottom: 0, paddingTop: 0} : {
             paddingBottom: TransformHWTheme.spacing(10),
             paddingTop: TransformHWTheme.spacing(10),
         }}>
@@ -147,7 +152,7 @@ const AboutTheProprietorSection: FunctionComponent<IProps> = (props) => {
                                                 placeholderWidth={376}
                         />
                     </Grid>
-                    {!mediaQueriesContext.smDown && <Grid container item><ProprietorAtAGlance source={'about-the-proprietor'} sectionData={props.sectionData.proprietorServices}/></Grid>}
+                    {!smDown && <Grid container item><ProprietorAtAGlance source={'about-the-proprietor'} sectionData={props.sectionData.proprietorServices}/></Grid>}
                 </Grid>
                 <Grid item xs={12} md={6} lg={7} container direction='column' alignContent='space-between' spacing={2}>
                     <Grid container item style={{minHeight: "549px"}} direction='column' spacing={4}>
@@ -192,7 +197,7 @@ const AboutTheProprietorSection: FunctionComponent<IProps> = (props) => {
                         </Grid>
                     </Grid>
                 </Grid>
-                {mediaQueriesContext.smDown && <Grid
+                {smDown && <Grid
                     item
                     xs={12}
                     sm={12}

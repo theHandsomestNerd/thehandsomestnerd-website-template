@@ -1,6 +1,5 @@
 import type {Meta, StoryObj} from '@storybook/react';
 import homePageResumeData from "../data/HomePageData";
-import Header from "../../components/mackenzies-mind/header/Header";
 import Footer from "../../components/mackenzies-mind/footer/Footer";
 
 

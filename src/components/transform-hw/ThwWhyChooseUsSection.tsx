@@ -1,12 +1,12 @@
-import React, {FunctionComponent, useContext} from 'react'
-import { Theme, ThemeProvider, StyledEngineProvider } from '@mui/material/styles';
+import React, {FunctionComponent} from 'react'
+import {Theme, ThemeProvider} from '@mui/material/styles';
 import makeStyles from '@mui/styles/makeStyles';
 import {Divider, Grid, Typography} from '@mui/material'
 import {ThwWhyChooseUsSectionType} from "../BlockContentTypes";
 import DigitalResumeTheme from "../../theme/DigitalResumeTheme";
-import MediaQueriesContext from "../media-queries-context/MediaQueriesContext";
 import imagePlaceholderClient from "../../utils/imagePlaceholderClient";
 import TransformHWTheme from "../../theme/TransformHWTheme";
+import widthUtils from "../../utils/widthUtils";
 
 
 export const useStyles = makeStyles((theme: Theme) => ({
@@ -27,8 +27,8 @@ interface IProps {
 
 const ThwServicesSection: FunctionComponent<IProps> = (props) => {
     const classes = useStyles(DigitalResumeTheme)
-    const mediaQueriesContext = useContext(MediaQueriesContext)
 
+    const xsOnly = widthUtils.useIsWidthDown('xs')
     return (
             <ThemeProvider theme={TransformHWTheme}>
                 <Grid container item className={classes.root} xs={12}>
@@ -42,7 +42,7 @@ const ThwServicesSection: FunctionComponent<IProps> = (props) => {
                         </Grid>}
                         <Grid item container alignItems='center' alignContent='center' justifyContent='center' xs={12}
                               md={7}
-                              style={{padding: mediaQueriesContext.xsOnly ? TransformHWTheme.spacing(1.75, 1.5, 3) : TransformHWTheme.spacing(5, 4, 7)}}>
+                              style={{padding: xsOnly ? TransformHWTheme.spacing(1.75, 1.5, 3) : TransformHWTheme.spacing(5, 4, 7)}}>
                             <Grid item container style={{marginBottom: "24px"}}>
                                 <Typography display='inline' gutterBottom color='secondary' variant='h4'
                                             align='center'>{props.sectionData.sectionTitle}</Typography>

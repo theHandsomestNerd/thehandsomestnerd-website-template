@@ -1,16 +1,15 @@
 import React, {FunctionComponent, useContext} from 'react'
-import { Theme, ThemeProvider, StyledEngineProvider } from "@mui/material/styles";
+import {StyledEngineProvider, Theme, ThemeProvider} from "@mui/material/styles";
 import makeStyles from '@mui/styles/makeStyles';
 import {Button, ButtonGroup, Chip, Grid, IconButton, Modal, Typography, useTheme} from '@mui/material'
 import {ResumePortfolioItem, ResumePortfolioSectionType} from "../BlockContentTypes";
 import {COLORS} from "../../theme/common/ColorPalette";
-import useThwCommonStyles from "../../common/sanityIo/ThwCommonStyles";
-import MediaQueriesContext from "../media-queries-context/MediaQueriesContext";
 import {urlFor} from "../block-content-ui/static-pages/cmsStaticPagesClient";
 import {Close} from "@mui/icons-material";
 import WebDevSiteTheme from "../../theme/WebDevSiteTheme";
 import firebaseAnalyticsClient from "../../utils/firebase/FirebaseAnalyticsClient";
 import PageContext from "../page-context/PageContext";
+import widthUtils from "../../utils/widthUtils";
 
 
 export const useStyles = makeStyles((theme: Theme) => ({
@@ -30,12 +29,10 @@ const COLOR_ROTATION = ["#d9dde9", "#333784"]
 const COLOR_ROTATION_FONT: any[] = ["textSecondary", "textPrimary",]
 
 const WebDevPortfolioSection: FunctionComponent<IProps> = (props: IProps) => {
-    const globalClasses = useThwCommonStyles()
     const theme = useTheme()
     const classes = useStyles()
 
-    const mediaQueryContext = useContext(MediaQueriesContext)
-    const xsOnly = mediaQueryContext.xsOnly
+    const xsOnly = widthUtils.useIsWidthDown('xs')
 
     const [isOpen, setIsOpen] = React.useState<boolean>(false)
     const [currentItem, setCurrentItem] = React.useState<ResumePortfolioItem>()
@@ -62,8 +59,7 @@ const WebDevPortfolioSection: FunctionComponent<IProps> = (props: IProps) => {
         </Grid>
     }
 
-    const mediaContext = useContext(MediaQueriesContext)
-    const mdDown = mediaContext.mdDown
+    const mdDown = widthUtils.useIsWidthDown('md');
     return (
         <StyledEngineProvider injectFirst>
             <ThemeProvider theme={WebDevSiteTheme}>
@@ -75,20 +71,20 @@ const WebDevPortfolioSection: FunctionComponent<IProps> = (props: IProps) => {
                             <Grid item container>
                                 <Typography variant='subtitle2'
                                             color='secondary'
-                                            style={{color: COLORS.AQUA, fontFamily:"Elaine Sans", lineHeight: 1}}
+                                            style={{color: COLORS.AQUA, fontFamily: "Elaine Sans", lineHeight: 1}}
                                 >{props.sectionData?.preTitle}</Typography>
                             </Grid>
                             <Grid item container>
                                 <Typography
                                     variant='h2'
                                     color='primary'
-                                    style={{fontFamily:"Elaine Sans"}}
+                                    style={{fontFamily: "Elaine Sans"}}
                                 >{props.sectionData.title}
                                 </Typography>
                             </Grid>
                             <Grid item container xs={8}>
                                 <Typography color='primary' variant='body1'
-                                            style={{fontFamily:"Raleway"}}>{props.sectionData.introduction}</Typography></Grid>
+                                            style={{fontFamily: "Raleway"}}>{props.sectionData.introduction}</Typography></Grid>
                         </Grid>
                         <Grid item container justifyContent={xsOnly ? 'center' : 'flex-start'} xs={11}>
                             {
@@ -108,12 +104,13 @@ const WebDevPortfolioSection: FunctionComponent<IProps> = (props: IProps) => {
                                                   }}>
                                                 <Grid item container>
                                                     {portfolioItem.skillsHighlighted?.map((skill, skillIndex: number) => {
-                                                            return <Grid container key={skillIndex} item wrap='nowrap' style={{
-                                                                width: "max-content",
-                                                                // padding: "0 !important",
-                                                                // backgroundColor: "red",
-                                                                color: (index2) % 2 === 1 ? COLORS.AQUA : theme.palette.secondary.main,
-                                                            }}>
+                                                            return <Grid container key={skillIndex} item wrap='nowrap'
+                                                                         style={{
+                                                                             width: "max-content",
+                                                                             // padding: "0 !important",
+                                                                             // backgroundColor: "red",
+                                                                             color: (index2) % 2 === 1 ? COLORS.AQUA : theme.palette.secondary.main,
+                                                                         }}>
                                                                 <Grid item container>
                                                                     <Typography variant='subtitle2'
                                                                                 color='inherit'
@@ -121,7 +118,7 @@ const WebDevPortfolioSection: FunctionComponent<IProps> = (props: IProps) => {
                                                                                 style={{
                                                                                     textTransform: "uppercase",
                                                                                     fontWeight: 900,
-                                                                                    fontFamily:"Elaine Sans",
+                                                                                    fontFamily: "Elaine Sans",
                                                                                     letterSpacing: ".15em"
                                                                                 }}
                                                                     >{skill.title}</Typography>
@@ -142,18 +139,19 @@ const WebDevPortfolioSection: FunctionComponent<IProps> = (props: IProps) => {
                                                 <Grid container item>
                                                     <Grid item xs={6}><Typography
                                                         gutterBottom
-                                                        variant='h3' style={{fontFamily:"Elaine Sans"}}
+                                                        variant='h3' style={{fontFamily: "Elaine Sans"}}
                                                         color={COLOR_ROTATION_FONT[(index2 + 1 ?? 1) % 2]}>{portfolioItem?.title}</Typography></Grid>
                                                     <Grid container item>
                                                         <Typography variant='body1'
                                                                     gutterBottom
-                                                                    style={{fontFamily:"Raleway", marginBottom: "16px"}}
+                                                                    style={{fontFamily: "Raleway", marginBottom: "16px"}}
                                                                     color={COLOR_ROTATION_FONT[(index2 + 1 ?? 1) % 2]}
                                                         >{portfolioItem.detailDescription}</Typography>
                                                     </Grid>
                                                     <Grid container item>
                                                         {<LearnMoreButton learnMoreText={"Learn More"}
-                                                                          portfolioItem={portfolioItem} index={index2}/>}
+                                                                          portfolioItem={portfolioItem}
+                                                                          index={index2}/>}
                                                     </Grid>
 
 
@@ -208,7 +206,8 @@ const WebDevPortfolioSection: FunctionComponent<IProps> = (props: IProps) => {
                                 overflowY: "scroll",
                                 maxWidth: "100%"
                             }} spacing={2}>
-                                <Grid item container><Typography variant='h3'>{currentItem?.detailTitle}</Typography> </Grid>
+                                <Grid item container><Typography variant='h3'>{currentItem?.detailTitle}</Typography>
+                                </Grid>
                                 <Grid item container><Typography
                                     variant='body1'>{currentItem?.detailDescription}</Typography></Grid>
                                 <Grid item container spacing={1}>

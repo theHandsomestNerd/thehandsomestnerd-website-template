@@ -1,12 +1,12 @@
 import React, {FunctionComponent, useContext} from 'react'
-import {Theme, ThemeProvider} from "@mui/material/styles";
-import {Grid, Typography, useTheme} from '@mui/material'
+import {ThemeProvider} from "@mui/material/styles";
+import {Grid, Typography} from '@mui/material'
 import {ResumeFeedback, ResumeFeedbackSectionType} from "../BlockContentTypes";
 import useThwCommonStyles from "../../common/sanityIo/ThwCommonStyles";
 import {urlFor} from "../block-content-ui/static-pages/cmsStaticPagesClient";
-import MediaQueriesContext from "../media-queries-context/MediaQueriesContext";
 import {COLORS} from "../../theme/common/ColorPalette";
 import DigitalResumeTheme from "../../theme/DigitalResumeTheme";
+import widthUtils from "../../utils/widthUtils";
 
 
 interface IProps {
@@ -17,10 +17,7 @@ const ResumeFeedbackSection: FunctionComponent<IProps> = (props: IProps) => {
     const globalClasses = useThwCommonStyles()
     // const theme = useTheme()
 
-    const mediaQueryContext = useContext(MediaQueriesContext)
-    const xsOnly = mediaQueryContext.xsOnly
-
-
+    const xsOnly = widthUtils.useIsWidthDown('xs')
 
     return (
             <ThemeProvider theme={DigitalResumeTheme}><Grid

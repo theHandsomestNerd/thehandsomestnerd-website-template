@@ -1,18 +1,16 @@
-import React, {FunctionComponent, useContext} from 'react'
-import { Theme } from '@mui/material/styles';
+import React, {FunctionComponent} from 'react'
+import {Theme} from '@mui/material/styles';
 import makeStyles from '@mui/styles/makeStyles';
-import {Box, Divider, Grid, Typography} from '@mui/material'
+import {Divider, Grid, Typography} from '@mui/material'
 import {ServiceAmenityType, ThwServiceItemType} from "../../BlockContentTypes";
-import mediaQueries from "../../../utils/mediaQueries";
 import {urlFor} from "../../block-content-ui/static-pages/cmsStaticPagesClient";
 import ResponsiveBullet from "../../ResponsiveBullet";
 import DigitalResumeTheme from "../../../theme/DigitalResumeTheme";
 import LoadingButton from "../../loading-button/LoadingButton";
 import OtherServices from "./OtherServices";
 import {v4 as uuidv4} from 'uuid'
-import PageContext from "../../page-context/PageContext";
-import MediaQueriesContext from "../../media-queries-context/MediaQueriesContext";
 import imagePlaceholderClient from "../../../utils/imagePlaceholderClient";
+import widthUtils from "../../../utils/widthUtils";
 
 export const useStyles = makeStyles((theme: Theme) => ({
     root: {
@@ -35,12 +33,14 @@ interface IProps {
     serviceData: ThwServiceItemType
 }
 
+
 const ThwServiceEducationPage: FunctionComponent<IProps> = (props) => {
     const classes = useStyles(DigitalResumeTheme)
 
     // const {data} = thwClient.useFetchRefsQuery(props.serviceData.serviceAmenities)
-    const mediaQueriesContext = useContext(MediaQueriesContext)
 
+    const smDown = widthUtils.useIsWidthDown('sm');
+    const xsDown = widthUtils.useIsWidthDown('xs');
 
     return (
 
@@ -85,12 +85,12 @@ const ThwServiceEducationPage: FunctionComponent<IProps> = (props) => {
                         }}>
                             <Grid container alignItems='center' alignContent='center' style={{ padding: DigitalResumeTheme.spacing(4,4,0,4),
                             }}>
-                                <Grid item container justifyContent={mediaQueriesContext.smDown ? 'center' : "flex-start"}>
+                                <Grid item container justifyContent={smDown ? 'center' : "flex-start"}>
                                     <Typography variant='body1'
                                                 style={{fontStyle: "italic"}}>Healing & Wellness</Typography>
                                 </Grid>
-                                <Grid container item justifyContent={mediaQueriesContext.smDown ? 'center' : "flex-start"}>
-                                    <Typography align={mediaQueriesContext.xsOnly ? 'center' : "left"} color='secondary' variant={mediaQueriesContext.xsDown ? 'h3' : "h2"}>{props.serviceData.educationPageTitle}</Typography>
+                                <Grid container item justifyContent={smDown ? 'center' : "flex-start"}>
+                                    <Typography align={xsDown? 'center' : "left"} color='secondary' variant={xsDown ? 'h3' : "h2"}>{props.serviceData.educationPageTitle}</Typography>
 
                                 </Grid>
                             </Grid>
@@ -136,8 +136,8 @@ const ThwServiceEducationPage: FunctionComponent<IProps> = (props) => {
                         {props.serviceData.serviceAmenities?.map((serviceAmenity: ServiceAmenityType) => {
                             return <Grid key={uuidv4()} container item xs={6} sm={5} md={4} lg={3} xl={3}
                                          style={{
-                                             padding: mediaQueriesContext.xsDown ? DigitalResumeTheme.spacing(4, 0, 4, 0) : DigitalResumeTheme.spacing(6, 0, 6, 0),
-                                             margin: mediaQueriesContext.xsDown ? DigitalResumeTheme.spacing(-.2, -.1, .05, -.1,) : DigitalResumeTheme.spacing(-.1, -.1, -.1, -.1,),
+                                             padding: xsDown ? DigitalResumeTheme.spacing(4, 0, 4, 0) : DigitalResumeTheme.spacing(6, 0, 6, 0),
+                                             margin: xsDown ? DigitalResumeTheme.spacing(-.2, -.1, .05, -.1,) : DigitalResumeTheme.spacing(-.1, -.1, -.1, -.1,),
                                              maxWidth: "300px",
                                              minWidth: "230px",
                                              border: `1px solid ${DigitalResumeTheme.palette.secondary.main}`,

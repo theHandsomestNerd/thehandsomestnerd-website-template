@@ -1,13 +1,10 @@
-import React, {FunctionComponent, useContext} from 'react'
-import { ThemeProvider, Theme, StyledEngineProvider } from "@mui/material/styles";
+import React, {FunctionComponent} from 'react'
+import {StyledEngineProvider, Theme, ThemeProvider} from "@mui/material/styles";
 import {Grid, Typography, useTheme} from '@mui/material'
 import {WebDevTestimonialsSectionType, WebDevTestimonialsType} from "../BlockContentTypes";
-import useThwCommonStyles from "../../common/sanityIo/ThwCommonStyles";
 import {urlFor} from "../block-content-ui/static-pages/cmsStaticPagesClient";
-import MediaQueriesContext from "../media-queries-context/MediaQueriesContext";
 import WebDevSiteTheme from "../../theme/WebDevSiteTheme";
 import {COLORS} from "../../theme/common/ColorPalette";
-
 
 
 declare module '@mui/styles/defaultTheme' {
@@ -28,13 +25,7 @@ interface IProps {
 }
 
 const WebDevTestimonialsSection: FunctionComponent<IProps> = (props: IProps) => {
-    const globalClasses = useThwCommonStyles()
     const theme = useTheme()
-
-    const mediaQueryContext = useContext(MediaQueriesContext)
-    const xsOnly = mediaQueryContext.xsOnly
-
- 
 
     return (
         <StyledEngineProvider injectFirst>

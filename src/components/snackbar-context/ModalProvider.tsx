@@ -1,14 +1,13 @@
-import React, {FunctionComponent, PropsWithChildren, useContext, useMemo, useRef,} from 'react';
+import React, {FunctionComponent, PropsWithChildren, useMemo, useRef,} from 'react';
 import {Grid, IconButton, List, ListItem, ListItemText, Modal, Typography, useTheme} from "@mui/material";
 import ModalContext from './ModalContext';
 import {SanityModalType, TextElementType} from "../../common/sanityIo/Types";
 import ColoredPng from "../colored-png/ColoredPng";
 import {urlFor} from "../block-content-ui/static-pages/cmsStaticPagesClient";
-import {ArrowDropDown, Close} from "@mui/icons-material";
-import MediaQueriesContext from "../media-queries-context/MediaQueriesContext";
+import {Close} from "@mui/icons-material";
 import LoadingButton from "../loading-button/LoadingButton";
 import {useIsVerticalOverflow} from "../../utils/useIsVerticalOverflow";
-import {COLORS} from "../../theme/common/ColorPalette";
+import widthUtils from "../../utils/widthUtils";
 
 type IProps = {};
 
@@ -18,13 +17,14 @@ const ModalProvider: FunctionComponent<IProps & PropsWithChildren> = (
     const [modalOpen, setModalOpen] = React.useState<boolean>(false)
     const theme = useTheme()
     const ref: any = useRef(null)
+    const xsDown = widthUtils.useIsWidthDown('xs')
+
     const isOverflow = useIsVerticalOverflow(ref, () => {
     })
     const [modalContent, setModalContent] = React.useState<SanityModalType | undefined>(
         undefined,
     );
 
-    const mediaQueriesContext = useContext(MediaQueriesContext)
     const handleModalClose = (event: React.SyntheticEvent | Event) => {
         setModalOpen(false)
     }
@@ -65,11 +65,11 @@ const ModalProvider: FunctionComponent<IProps & PropsWithChildren> = (
                             backgroundColor: 'rgb(250,250,250,.96)',
                             color: theme.palette.getContrastText(theme.palette.background.paper),
                             padding: theme.spacing(0, 0, 4, 0),
-                            margin: theme.spacing(!mediaQueriesContext.xsDown ? 4 : 0, 0),
+                            margin: theme.spacing(!xsDown ? 4 : 0, 0),
                             maxHeight: "100%",
                             // minHeight: '550px',
                             overflowY:"scroll",
-                            height: mediaQueriesContext.xsDown ? "100%" : "unset",
+                            height: xsDown ? "100%" : "unset",
                             position: "relative"
                         }} justifyContent='center' alignContent={'flex-start'}>
                             <Grid container item justifyContent='flex-end' style={{position: "absolute"}}>
@@ -91,7 +91,7 @@ const ModalProvider: FunctionComponent<IProps & PropsWithChildren> = (
                             </Grid>
                             <Grid container item justifyContent='center' alignItems='center' alignContent='center'
                                   xs={12}
-                                  // spacing={mediaQueriesContext.smDown ? 2 : 4}
+                                  // spacing={smDown ? 2 : 4}
                                   style={{
                                       padding: theme.spacing(10, 1, 0, 1),
                                       zIndex: 2
@@ -105,7 +105,7 @@ const ModalProvider: FunctionComponent<IProps & PropsWithChildren> = (
                                     <Grid container item xs={12} sm={11}
                                           ref={ref}
 
-                                          style={{maxHeight: mediaQueriesContext.xsDown?"":"600px", overflowY: "scroll", overflowX: "hidden"}}>
+                                          style={{maxHeight: xsDown?"":"600px", overflowY: "scroll", overflowX: "hidden"}}>
                                         <List style={{marginBottom:"36px"}}>
                                             {
                                                 modalContent?.contentText.map((faq: TextElementType) => {

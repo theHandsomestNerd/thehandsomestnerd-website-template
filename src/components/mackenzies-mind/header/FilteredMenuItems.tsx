@@ -1,13 +1,13 @@
-import React, {FunctionComponent, useContext} from 'react'
+import React, {FunctionComponent} from 'react'
 import {v4 as uuidv4} from 'uuid'
-import { Theme } from "@mui/material/styles";
+import {Theme} from "@mui/material/styles";
 import makeStyles from '@mui/styles/makeStyles';
 import {Button, Grid, Popover, Typography, useTheme} from '@mui/material'
 import {ArrowDropDown} from "@mui/icons-material";
 import SubMenu from "./SubMenu";
 import {SanityMenuGroup, SanityMenuItem} from "../../../common/sanityIo/Types";
-import MediaQueriesContext from "../../media-queries-context/MediaQueriesContext";
 import {COLORS} from "../../../theme/common/ColorPalette";
+import widthUtils from "../../../utils/widthUtils";
 
 
 export const useStyles = makeStyles((theme: Theme) => ({}))
@@ -20,11 +20,11 @@ interface FilteredMenuProps {
 }
 
 const FilteredMenuItems: FunctionComponent<FilteredMenuProps> = ({
-                                                                 subMenus,
-                                                                 onlyButtons,
-                                                                 includeMenuItems,
-                                                                 includeMenuGroups
-                                                             }) => {
+                                                                     subMenus,
+                                                                     onlyButtons,
+                                                                     includeMenuItems,
+                                                                     includeMenuGroups
+                                                                 }) => {
     const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>();
     const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
         setAnchorEl(event.currentTarget);
@@ -36,10 +36,11 @@ const FilteredMenuItems: FunctionComponent<FilteredMenuProps> = ({
         setAnchorEl(null);
     };
 
-    const mediaQueriesContext = useContext(MediaQueriesContext)
-const theme = useTheme()
+    const theme = useTheme()
 
-    return (<Grid item container justifyContent={mediaQueriesContext.mdDown?'flex-start':'flex-end'}>{
+    const mdDown = widthUtils.useIsWidthDown('md')
+
+    return (<Grid item container justifyContent={mdDown ? 'flex-start' : 'flex-end'}>{
             subMenus?.map(
                 (menuLink: any, index) => {
                     console.log(menuLink._type)
@@ -81,27 +82,27 @@ const theme = useTheme()
                                     color: theme.palette.secondary.main
                                 }}
                                 onClick={handleClick}
-                                endIcon={<ArrowDropDown ></ArrowDropDown>}
+                                endIcon={<ArrowDropDown></ArrowDropDown>}
                             >
                                 <Typography variant='body2'
                                             style={{fontSize: "18px"}}>{menuGroup.menuGroupTitle}</Typography>
-                            <Popover
-                                // id={menuLink._type + "-" + menu + "-" + index}
-                                id={uuidv4()}
-                                open={open}
-                                elevation={1}
-                                anchorEl={anchorEl}
-                                onClose={handleClose}
-                                PaperProps={{style: {borderTopLeftRadius: 0, borderTopRightRadius: 0}}}
-                                anchorOrigin={{
-                                    vertical: anchorEl?.offsetHeight??0,
-                                    horizontal: anchorEl?.offsetLeft??0,
-                                }}
-                            >
-                                <Grid container item style={{backgroundColor: COLORS.GRAY}}>
-                                    <SubMenu subMenu={menuGroup}/>
-                                </Grid>
-                            </Popover>
+                                <Popover
+                                    // id={menuLink._type + "-" + menu + "-" + index}
+                                    id={uuidv4()}
+                                    open={open}
+                                    elevation={1}
+                                    anchorEl={anchorEl}
+                                    onClose={handleClose}
+                                    PaperProps={{style: {borderTopLeftRadius: 0, borderTopRightRadius: 0}}}
+                                    anchorOrigin={{
+                                        vertical: anchorEl?.offsetHeight ?? 0,
+                                        horizontal: anchorEl?.offsetLeft ?? 0,
+                                    }}
+                                >
+                                    <Grid container item style={{backgroundColor: COLORS.GRAY}}>
+                                        <SubMenu subMenu={menuGroup}/>
+                                    </Grid>
+                                </Popover>
                             </Button>
                         </Grid>
                     }

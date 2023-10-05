@@ -1,11 +1,11 @@
-import React, {FunctionComponent, useContext} from 'react'
-import { Theme } from '@mui/material/styles';
+import React, {FunctionComponent} from 'react'
+import {Theme} from '@mui/material/styles';
 import makeStyles from '@mui/styles/makeStyles';
 import {Grid, Typography} from '@mui/material'
 import MixedFeelingsByTTheme from "../../theme/MixedFeelingsByTTheme";
 import ImageWIthButtonOverlay from "../image-with-button-overlay/ImageWithButtonOverlay";
-import MediaQueriesContext from "../media-queries-context/MediaQueriesContext";
 import {MfbtPaymentMethodSectionType} from "../BlockContentTypes";
+import widthUtils from "../../utils/widthUtils";
 
 export const useStyles = makeStyles((theme: Theme) => ({
     root: {
@@ -26,15 +26,14 @@ interface IProps {
 
 const MFBTAboutTheProprietor: FunctionComponent<IProps> = (props) => {
     const classes = useStyles(MixedFeelingsByTTheme)
-    const mediaQueriesContext = useContext(MediaQueriesContext)
-
+const xsOnly = widthUtils.useIsWidthDown('xs')
     return (
-        <Grid container item className={classes.root} xs={mediaQueriesContext.xsOnly ? 12 : 11}
-              style={mediaQueriesContext.xsOnly ? {paddingBottom: 0, paddingTop: 0} : {
+        <Grid container item className={classes.root} xs={xsOnly ? 12 : 11}
+              style={xsOnly ? {paddingBottom: 0, paddingTop: 0} : {
                   paddingBottom: MixedFeelingsByTTheme.spacing(10),
                   paddingTop: MixedFeelingsByTTheme.spacing(10),
               }}>
-            <Grid container item alignContent='center' justifyContent='center' style={{paddingBottom: mediaQueriesContext.xsOnly ? MixedFeelingsByTTheme.spacing(3):MixedFeelingsByTTheme.spacing(0)}}>
+            <Grid container item alignContent='center' justifyContent='center' style={{paddingBottom: xsOnly ? MixedFeelingsByTTheme.spacing(3):MixedFeelingsByTTheme.spacing(0)}}>
                 <Typography variant={"h3"}>{props.sectionData.title}</Typography>
             </Grid>
             <Grid container item justifyContent='space-around'

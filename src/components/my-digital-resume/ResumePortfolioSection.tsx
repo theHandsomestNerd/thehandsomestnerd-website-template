@@ -4,11 +4,11 @@ import {Button, ButtonGroup, Chip, Grid, IconButton, Modal, Typography, useTheme
 import {ResumePortfolioItem, ResumePortfolioSectionType} from "../BlockContentTypes";
 import DigitalResumeTheme from "../../theme/DigitalResumeTheme";
 import useThwCommonStyles from "../../common/sanityIo/ThwCommonStyles";
-import MediaQueriesContext from "../media-queries-context/MediaQueriesContext";
 import {urlFor} from "../block-content-ui/static-pages/cmsStaticPagesClient";
 import {Close} from "@mui/icons-material";
 import dateUtils from "../../utils/dateUtils";
 import {COLORS} from "../../theme/common/ColorPalette";
+import widthUtils from "../../utils/widthUtils";
 
 interface IProps {
     sectionData: ResumePortfolioSectionType
@@ -19,8 +19,7 @@ const ResumePortfolioSection: FunctionComponent<IProps> = (props: IProps) => {
     const theme = useTheme()
 
 
-    const mediaQueryContext = useContext(MediaQueriesContext)
-    const xsOnly = mediaQueryContext.xsOnly
+    const xsOnly = widthUtils.useIsWidthDown('xs')
 
     const [isOpen, setIsOpen] = React.useState<boolean>(false)
     const [currentItem, setCurrentItem] = React.useState<ResumePortfolioItem>()

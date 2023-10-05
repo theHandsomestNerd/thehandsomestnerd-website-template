@@ -4,7 +4,7 @@ import makeStyles from '@mui/styles/makeStyles';
 import {Grid} from '@mui/material'
 import useCustomStyles from "../mackenzies-mind/pages/Styles";
 import {CssFadeToColorDirectionEnum} from "./CssFadeToColorDirectionEnum";
-import MediaQueriesContext from "../media-queries-context/MediaQueriesContext";
+import widthUtils from "../../utils/widthUtils";
 
 export const useStyles = makeStyles((theme: Theme) => ({
     root: {
@@ -28,8 +28,8 @@ interface IProps {
 
 const CssFadeToColor: FunctionComponent<IProps> = (props) => {
     const globalClasses = useCustomStyles({})
-    const mediaQueriesContext = useContext(MediaQueriesContext)
 
+    const smDown = widthUtils.useIsWidthDown('sm')
     const getStyle = () => {
         const getRotationAngle = () =>{
             switch (props.direction) {
@@ -46,7 +46,7 @@ const CssFadeToColor: FunctionComponent<IProps> = (props) => {
         }
 
         const getColor = () => {
-            if (props.isResponsive && mediaQueriesContext.smDown)
+            if (props.isResponsive && smDown)
                 return 'transparent'
 
             let fromColor = props.fromColor ? props.fromColor : 'transparent'

@@ -1,12 +1,11 @@
-import React, {FunctionComponent, useContext} from 'react'
-import { Theme, ThemeProvider, StyledEngineProvider } from "@mui/material/styles";
-import makeStyles from '@mui/styles/makeStyles';
+import React, {FunctionComponent} from 'react'
+import {ThemeProvider} from "@mui/material/styles";
 import {Grid, Typography, useTheme} from '@mui/material'
 import {ResumeEducation, ResumeEducationSectionType} from "../BlockContentTypes";
 import useThwCommonStyles from "../../common/sanityIo/ThwCommonStyles";
-import MediaQueriesContext from "../media-queries-context/MediaQueriesContext";
 import {COLORS} from "../../theme/common/ColorPalette";
 import DigitalResumeTheme from "../../theme/DigitalResumeTheme";
+import widthUtils from "../../utils/widthUtils";
 
 
 interface IProps {
@@ -17,8 +16,7 @@ const ResumeEducationSection: FunctionComponent<IProps> = (props: IProps) => {
     const globalClasses = useThwCommonStyles()
     const theme = useTheme()
 
-    const mediaQueryContext = useContext(MediaQueriesContext)
-    const xsOnly = mediaQueryContext.xsOnly
+    const xsOnly = widthUtils.useIsWidthDown('xs')
 
 
     return (

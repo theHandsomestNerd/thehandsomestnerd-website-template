@@ -5,8 +5,8 @@ import makeStyles from '@mui/styles/makeStyles';
 import {Grid} from '@mui/material'
 import HeaderMenuItemButton from "../transform-hw/HeaderMenuItemButton";
 import PopupStateWrapper from "./PopupStateWrapper";
-import {SanityMenuContainer, SanityMenuGroup, SanityMenuItem} from "../../common/sanityIo/Types";
-import MediaQueriesContext from "../media-queries-context/MediaQueriesContext";
+import {SanityMenuContainer} from "../../common/sanityIo/Types";
+import widthUtils from "../../utils/widthUtils";
 
 
 export const useStyles = makeStyles((theme: Theme) => ({}))
@@ -35,8 +35,8 @@ const FilteredMenuItems: FunctionComponent<FilteredMenuItemsProps> = ({
                                                                  includeMenuGroups,
     textStyle,contentJustification
                                                              }) => {
-    const mediaQueriesContext = useContext(MediaQueriesContext)
-    return (<Grid item container justifyContent={contentJustification ? contentJustification: (mediaQueriesContext.mdDown ? 'flex-start' : 'flex-end')} alignItems='stretch' style={{height: "100%"}}>
+    const mdDown = widthUtils.useIsWidthDown('md')
+    return (<Grid item container justifyContent={contentJustification ? contentJustification: (mdDown ? 'flex-start' : 'flex-end')} alignItems='stretch' style={{height: "100%"}}>
             {
                 subMenus?.reduce(
                     (accumulated: JSX.Element[], menuButton:any, index) => {

@@ -7,7 +7,6 @@ import PageProvider from "../src/components/page-context/PageProvider";
 import HomePageResumeData from "../src/stories/data/HomePageData";
 import ModalProvider from "../src/components/snackbar-context/ModalProvider";
 import SnackbarProvider from "../src/components/modal-context/SnackbarProvider";
-import MediaQueriesProvider from "../src/components/media-queries-context/MediaQueriesProvider";
 import AmenityProvider from "../src/components/amenity-context/AmenityProvider";
 import {CssBaseline} from "@mui/material";
 import CustomizedThemeProvider from "../src/components/customized-theme-provider/CustomizedThemeProvider";
@@ -30,13 +29,11 @@ const preview: Preview = {
                         <CustomizedThemeProvider pageTheme={DigitalResumeThemeData}>
                             <CssBaseline/>
                             <SnackbarProvider>
-                                <MediaQueriesProvider>
                                     <ModalProvider>
                                         <AmenityProvider>
                                             <Story/>
                                         </AmenityProvider>
                                     </ModalProvider>
-                                </MediaQueriesProvider>
                             </SnackbarProvider>
                         </CustomizedThemeProvider>
                     </PageProvider>

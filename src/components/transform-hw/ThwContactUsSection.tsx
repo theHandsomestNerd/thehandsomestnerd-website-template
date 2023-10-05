@@ -12,11 +12,11 @@ import LoadingButton from "../loading-button/LoadingButton";
 import {useQuery} from "react-query";
 import leadClient from "./pages/under-construction-page/leadClient";
 import {Parallax} from "react-parallax";
-import MediaQueriesContext from "../media-queries-context/MediaQueriesContext";
 import firebaseAnalyticsClient from "../../utils/firebase/FirebaseAnalyticsClient";
 import PageContext from "../page-context/PageContext";
 import TransformHWTheme from "../../theme/TransformHWTheme";
 import imagePlaceholderClient from "../../utils/imagePlaceholderClient";
+import widthUtils from "../../utils/widthUtils";
 
 
 export const useStyles = makeStyles((theme: Theme) => ({
@@ -122,7 +122,6 @@ const ContactUs: FunctionComponent<ContactUsProps> = (props) => {
     const classes = useStyles(TransformHWTheme)
 
     const globalClasses = useCustomStyles({})
-    const mediaQueriesContext = useContext(MediaQueriesContext)
 
     const [leadName, setleadName] = useState<string>()
     const [email, setEmail] = useState<string>()
@@ -130,16 +129,17 @@ const ContactUs: FunctionComponent<ContactUsProps> = (props) => {
     const [leadMessage, setLeadMessage] = useState<string>()
     const [alignment, setAlignment] = useState<any>('right')
     const [justifyContent, setJustifyContent] = useState<any>('flex-end')
+    const smDown = widthUtils.useIsWidthDown('sm')
 
     useEffect(() => {
-        if (mediaQueriesContext.smDown) {
+        if (smDown) {
             setAlignment('center')
             setJustifyContent('center')
         } else {
             setAlignment('right')
             setJustifyContent('flex-end')
         }
-    }, [mediaQueriesContext.smDown])
+    }, [smDown])
 
     const {isLoading, isError, data, refetch, isRefetching} = useQuery(
         ['submitContactUsForm'],
@@ -184,6 +184,7 @@ const ContactUs: FunctionComponent<ContactUsProps> = (props) => {
         return refetch()
     }
 
+
     return (
         <StyledEngineProvider injectFirst>
             <ThemeProvider theme={TransformHWTheme}>
@@ -200,8 +201,8 @@ const ContactUs: FunctionComponent<ContactUsProps> = (props) => {
                     }}>
                         <Grid container item
                               className={clsx(globalClasses.fullSectionOverlay)}/>
-                        <Grid spacing={mediaQueriesContext.smDown ? 0 : 4} container item style={{
-                            padding: TransformHWTheme.spacing(0, mediaQueriesContext.smDown ? 2 : 8, 6)
+                        <Grid spacing={smDown ? 0 : 4} container item style={{
+                            padding: TransformHWTheme.spacing(0, smDown ? 2 : 8, 6)
                         }} justifyContent={"center"}>
                             <Grid container item md={6}>
                                 <Grid container direction="column" item className={classes.lhsContainer}

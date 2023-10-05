@@ -1,11 +1,11 @@
-import React, {FunctionComponent, useContext} from 'react'
+import React, {FunctionComponent} from 'react'
 import {
     Button,
     ButtonGroup,
     Grid,
-    ThemeProvider,
-    Theme,
     StyledEngineProvider,
+    Theme,
+    ThemeProvider,
     Typography,
     useTheme,
 } from '@mui/material';
@@ -13,24 +13,10 @@ import {ResumeBioSectionType} from "../BlockContentTypes";
 import {urlFor} from "../block-content-ui/static-pages/cmsStaticPagesClient";
 import {SanityTransformHwHomePage} from "../../common/sanityIo/Types";
 import useThwCommonStyles from "../../common/sanityIo/ThwCommonStyles";
-import MediaQueriesContext from "../media-queries-context/MediaQueriesContext";
 import ResumeSocialMedia from "./ResumeSocialMedia";
 import BusinessCardSubmitEmail from "../transform-hw/pages/BusinessCardSubmitEmail";
 import DigitalResumeTheme from "../../theme/DigitalResumeTheme";
-
-
-
-declare module '@mui/styles/defaultTheme' {
-  // eslint-disable-next-line @typescript-eslint/no-empty-interface
-  interface DefaultTheme extends Theme {}
-}
-
-
-
-declare module '@mui/styles/defaultTheme' {
-  // eslint-disable-next-line @typescript-eslint/no-empty-interface
-  interface DefaultTheme extends Theme {}
-}
+import widthUtils from "../../utils/widthUtils";
 
 
 interface IProps {
@@ -42,9 +28,7 @@ const ResumeBio: FunctionComponent<IProps> = (props: IProps) => {
     const classes = useThwCommonStyles()
     const theme = useTheme()
 
-    const mediaQueriesContext = useContext(MediaQueriesContext)
-
-    const smDown = mediaQueriesContext.smDown
+    const smDown = widthUtils.useIsWidthDown('sm')
 
     return (
         <StyledEngineProvider injectFirst>

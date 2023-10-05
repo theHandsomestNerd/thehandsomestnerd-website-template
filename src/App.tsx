@@ -5,7 +5,6 @@ import React from 'react'
 import {QueryClient, QueryClientProvider} from 'react-query';
 import FourOhFour from "./components/transform-hw/pages/error-page/FourOhFour";
 import PageProvider from "./components/page-context/PageProvider";
-import MediaQueriesProvider from "./components/media-queries-context/MediaQueriesProvider";
 import AmenityProvider from "./components/amenity-context/AmenityProvider";
 import ModalProvider from "./components/snackbar-context/ModalProvider";
 import SnackbarProvider from "./components/modal-context/SnackbarProvider";
@@ -39,7 +38,6 @@ function App() {
                         <PageProvider>
                             <CustomizedThemeProvider>
                                 <SnackbarProvider>
-                                    <MediaQueriesProvider>
                                         <ModalProvider>
                                             <AmenityProvider>
                                                 <Grid container item alignItems="center"
@@ -61,7 +59,6 @@ function App() {
                                                 </Grid>
                                             </AmenityProvider>
                                         </ModalProvider>
-                                    </MediaQueriesProvider>
                                 </SnackbarProvider>
                             </CustomizedThemeProvider>
                         </PageProvider>
