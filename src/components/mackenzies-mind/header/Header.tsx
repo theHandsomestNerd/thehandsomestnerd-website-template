@@ -1,7 +1,7 @@
 import React, {FunctionComponent} from 'react'
 import {Theme} from "@mui/material/styles";
 import makeStyles from '@mui/styles/makeStyles';
-import {AppBar, Grid, Hidden, Typography, useTheme} from '@mui/material'
+import {AppBar, Grid, Typography, useTheme} from '@mui/material'
 import MainMenu from "./MainMenu";
 import FilteredMenuItems from "../../filtered-menu-items/FilteredMenuItems";
 import clsx from "clsx";
@@ -14,9 +14,9 @@ export const useStyles = makeStyles((theme: Theme) => ({
         backgroundColor: COLORS.TRANSPARENTWHITE,
         transition: 'background-color .5s ease 0s',
         paddingLeft: TheWebsiteTheme
-.spacing(4),
+            .spacing(4),
         height: TheWebsiteTheme
-.mixins.toolbar.height
+            .mixins.toolbar.height
     },
     opaque: {
         backgroundColor: `${COLORS.LIGHTGRAY} !important`,
@@ -51,18 +51,17 @@ const Header: FunctionComponent<HeaderProps> = (props) => {
                     }} variant='h3' color='textPrimary'>Terrell</Typography><Typography variant='h4' color='primary'
                                                                                         display='inline' style={{
                     fontFamily: "Oswald"
-
                     , fontWeight: "300"
                 }}>.</Typography>
                 </Grid>
                 <Grid item container xs={9} sm={10} md={11} justifyContent='flex-end' alignItems='center'
                       alignContent='center'>
                     {lgUp && <Grid xs={4} md={10} lg={12} container item justifyContent='flex-end'
-                           alignItems='center'
-                           style={{
-                               height: "100%",
-                               paddingRight: mdDown ? theme.spacing(0) : theme.spacing(4)
-                           }}>
+                                   alignItems='center'
+                                   style={{
+                                       height: "100%",
+                                       paddingRight: mdDown ? theme.spacing(0) : theme.spacing(4)
+                                   }}>
                         <FilteredMenuItems
                             // bgColor={!mdDown ? TransformHWTheme.palette.primary.main : COLORS.TRANSPARENTWHITE}
                             subMenus={props.pageHeader.subMenus ?? []} onlyButtons={mdDown}
@@ -70,7 +69,7 @@ const Header: FunctionComponent<HeaderProps> = (props) => {
                             includeMenuGroups={!mdDown}/>
                     </Grid>}
 
-                    {mdDown && <Grid item xs={12} sm={2} container justifyContent='flex-end' >
+                    {mdDown && <Grid item xs={12} sm={2} container justifyContent='flex-end'>
                         <Grid container item
 
                               justifyContent='flex-end'
