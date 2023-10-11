@@ -1,7 +1,9 @@
 import {SanityTransformHwHomePage} from "../../common/sanityIo/Types";
+import DigitalResumeThemeData from "./DigitalResumeThemeData";
 
 const thwHomePageData:SanityTransformHwHomePage = {
     "description": " To provide innovative and alternative services in an effort to help those seeking change to live a meaningful and fulfilling life. To raise the awareness and the importance of Mental Health and Wellness.",
+    "theme": DigitalResumeThemeData,
     "servicesAvailable": [
         {
             "educationPageTitle": "The Splatter Room",

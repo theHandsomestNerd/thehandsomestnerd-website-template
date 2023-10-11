@@ -36,7 +36,9 @@ const MENUGROUPCONTAINER = `
             ${MENUGROUP}
           },
           logoImageSrc,
-          logoImageAltText
+          logoImageAltText,
+          logoText,
+          logoAccentText
 `;
 
 const SERVICE =
@@ -74,6 +76,7 @@ const HOMEPAGE = `_type,
           website,
           websiteQrCode,
           metaImage,
+          theme->,
           headerContent {
             "content": content[]->{
                 ...,

@@ -1,22 +1,14 @@
 import React, {FunctionComponent, useContext} from 'react'
-import {makeStyles, Theme} from '@material-ui/core/styles'
-import {Chip, Grid, Typography} from '@material-ui/core'
-import {urlFor} from '../block-content-ui/static-pages/cmsStaticPagesClient'
-import {
-    MfbtAboutProprietorSectionType,
-    ProprietorAtAGlanceType,
-    ThwAboutProprietorSectionType
-} from "../BlockContentTypes";
+import {Theme} from '@mui/material/styles';
+import makeStyles from '@mui/styles/makeStyles';
+import {Grid, Typography} from '@mui/material'
+import {MfbtAboutProprietorSectionType, ProprietorAtAGlanceType} from "../BlockContentTypes";
 import MixedFeelingsByTTheme from "../../theme/MixedFeelingsByTTheme";
 import ImageWIthButtonOverlay from "../image-with-button-overlay/ImageWithButtonOverlay";
 import LoadingButton from "../loading-button/LoadingButton";
-import ResponsiveBullet from "../ResponsiveBullet";
-import {FiberManualRecord} from "@material-ui/icons";
-import ColoredPng from "../colored-png/ColoredPng";
-import MediaQueriesContext from "../media-queries-context/MediaQueriesContext";
 import firebaseAnalyticsClient from "../../utils/firebase/FirebaseAnalyticsClient";
 import PageContext from "../page-context/PageContext";
-import {theme} from "@sanity/types/parts/part.@sanity/components/build-snapshot";
+import widthUtils from "../../utils/widthUtils";
 
 export const useStyles = makeStyles((theme: Theme) => ({
     root: {
@@ -36,15 +28,16 @@ interface IProps {
 }
 
 const ProprietorAtAGlance = (props: { sectionData: ProprietorAtAGlanceType, source: string }) => {
-    const mediaQueriesContext = useContext(MediaQueriesContext)
+    const smDown = widthUtils.useIsWidthDown('sm')
+
     const pageContext = useContext(PageContext)
     return <Grid item container
                  justifyContent='center'
                  style={{
                      backgroundColor: MixedFeelingsByTTheme.palette.secondary.dark,
-                     border: mediaQueriesContext.smDown ? "0px solid transparent" : "1px solid white",
-                     margin: mediaQueriesContext.smDown ? MixedFeelingsByTTheme.spacing(0, 0, 0, 0) : MixedFeelingsByTTheme.spacing(2, 0, 0, 0),
-                     padding: MixedFeelingsByTTheme.spacing(2, 0, mediaQueriesContext.smDown ? 6 : 2, 0)
+                     border: smDown ? "0px solid transparent" : "1px solid white",
+                     margin: smDown ? MixedFeelingsByTTheme.spacing(0, 0, 0, 0) : MixedFeelingsByTTheme.spacing(2, 0, 0, 0),
+                     padding: MixedFeelingsByTTheme.spacing(2, 0, smDown ? 6 : 2, 0)
                  }}
                  spacing={6}
                  xs={12}
@@ -107,11 +100,11 @@ const ProprietorAtAGlance = (props: { sectionData: ProprietorAtAGlanceType, sour
 
 const MFBTAboutTheProprietor: FunctionComponent<IProps> = (props) => {
     const classes = useStyles(MixedFeelingsByTTheme)
-    const mediaQueriesContext = useContext(MediaQueriesContext)
+    const xsOnly = widthUtils.useIsWidthDown('xs')
 
     return (<Grid container item>
-            <Grid container item className={classes.root} xs={mediaQueriesContext.xsOnly ? 12 : 11}
-                  style={mediaQueriesContext.xsOnly ? {paddingBottom: 0, paddingTop: 0} : {
+            <Grid container item className={classes.root} xs={xsOnly ? 12 : 11}
+                  style={xsOnly ? {paddingBottom: 0, paddingTop: 0} : {
                       paddingBottom: MixedFeelingsByTTheme.spacing(10),
                       paddingTop: MixedFeelingsByTTheme.spacing(10),
                   }}>
@@ -146,7 +139,7 @@ const MFBTAboutTheProprietor: FunctionComponent<IProps> = (props) => {
                                                     isResponsive
                             />
                         </Grid>
-                        {/*{!mediaQueriesContext.smDown && <Grid container item><ProprietorAtAGlance source={'about-the-proprietor'} sectionData={props.sectionData.proprietorServices}/></Grid>}*/}
+                        {/*{!smDown && <Grid container item><ProprietorAtAGlance source={'about-the-proprietor'} sectionData={props.sectionData.proprietorServices}/></Grid>}*/}
                     </Grid>
                     <Grid item xs={12} md={6} lg={7} container direction='column' alignContent='space-between'
                           spacing={2}>
@@ -185,7 +178,7 @@ const MFBTAboutTheProprietor: FunctionComponent<IProps> = (props) => {
                             </Grid>
                         </Grid>
                     </Grid>
-                    {/*{mediaQueriesContext.smDown && <Grid*/}
+                    {/*{smDown && <Grid*/}
                     {/*    item*/}
                     {/*    xs={12}*/}
                     {/*    sm={12}*/}

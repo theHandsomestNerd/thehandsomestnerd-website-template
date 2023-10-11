@@ -1,4 +1,3 @@
-import DigitalResumeTheme from "../../src/theme/DigitalResumeTheme";
 
 export default {
   name: 'category',
@@ -19,10 +18,11 @@ export default {
       title: "Color",
       description: "Pick a color",
       name: "color",
-      type: "colorlist", // required
-      options: {
-        list: [
-          { title: DigitalResumeTheme.palette.primary.main, value: DigitalResumeTheme.palette.primary.main },
+      type: "string",
+      list: [
+//           { title: "PRIMARY COLOR RETRIECED FROM THEME GOES HERE"
+// .palette.primary.main, value: "PRIMARY COLOR RETRIECED FROM THEME GOES HERE"
+// .palette.primary.main },
           { title: "#3D3D3D", value: "#3D3D3D" },
           { title: "rgba(75,75,229,1)", value: "rgba(75,75,229,1)" },
           { title: "rgba(75,135,75,1)", value: "rgba(75,135,75,1)" },
@@ -30,7 +30,6 @@ export default {
           { title: "rgba(135,135,75,1)", value: "rgba(135,135,75,1)" },
           { title: "rgba(135,75,135,1)", value: "rgba(135,75,135,1)" }
         ]
-      }
     },
   ],
 }

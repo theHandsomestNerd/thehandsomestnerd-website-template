@@ -65,6 +65,21 @@ import HeaderSection from "./sections/HeaderSection";
 import FooterSection from "./sections/web-dev/FooterSection";
 import DevelopmentHeaderSection from "./sections/DevelopmentHeaderSection";
 import DevelopmentFooterSection from "./sections/web-dev/DevelopmentFooterSection";
+import MuiBreakpoints from "./mui/MuiBreakpoints";
+import MuiTheme from "./mui/MuiTheme";
+import MuiTypography from "./mui/MuiTypography";
+import MuiColorPalatte from "./mui/MuiColorPalatte";
+import WebDevHowItWorksSection from "./web-dev/WebDevHowItWorksSection";
+import WebDevHowItWorksStep from "./web-dev/WebDevHowItWorksStep";
+import TestimonialsSection from "./testimonials/TestimonialsSection";
+import PortfolioSection from "./portfolio/PortfolioSection";
+import Testimonials from "./testimonials/Testimonials";
+import PortfolioItem from "./sections/portfolioItem";
+import portfolioItem from "./sections/portfolioItem";
+import category from "./category";
+import ServicesSection from "./services/ServicesSection";
+import ServiceItem from "./services/ServiceItem";
+import ServiceAmenity from "./services/serviceAmenity";
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default [
@@ -129,12 +144,25 @@ export default [
     WebDevHeroContentSection,
     WebDevStatistic,
     WebDevStatsCounterSection,
+    WebDevHowItWorksSection,
+    WebDevHowItWorksStep,
     WebDevAboutUs,
+    ServicesSection,
+    ServiceItem,
+    ServiceAmenity,
+    TestimonialsSection,
+    Testimonials,
+    PortfolioSection,
+    portfolioItem,
     headerContentContainer,
     footerContentContainer,
     HeaderSection,
     DevelopmentHeaderSection,
     DevelopmentFooterSection,
     FooterSection,
-
+    MuiBreakpoints,
+    MuiTheme,
+    category,
+    MuiTypography,
+    MuiColorPalatte,
 ]

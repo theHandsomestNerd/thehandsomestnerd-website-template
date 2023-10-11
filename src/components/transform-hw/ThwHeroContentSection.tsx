@@ -1,14 +1,14 @@
 import React, {FunctionComponent, useContext} from 'react'
-import {makeStyles, Theme} from '@material-ui/core/styles'
-import {Button, Grid, MuiThemeProvider, Typography, useTheme} from '@material-ui/core'
 import {urlFor} from '../block-content-ui/static-pages/cmsStaticPagesClient'
 import {ThwHeroContentSectionType} from "../BlockContentTypes";
 import clsx from "clsx";
 import PageContext from "../page-context/PageContext";
 import useCustomStyles from "../mackenzies-mind/pages/Styles";
-import DigitalResumeTheme, {rainbow, raleway} from "../../theme/DigitalResumeTheme";
 import firebaseAnalyticsClient from "../../utils/firebase/FirebaseAnalyticsClient";
 import TransformHWTheme from "../../theme/TransformHWTheme";
+import {Theme, ThemeProvider} from "@mui/material/styles";
+import {Button, Grid, Typography} from "@mui/material";
+import makeStyles from "@mui/styles/makeStyles";
 
 interface IProps {
     sectionData: ThwHeroContentSectionType
@@ -52,47 +52,49 @@ const ThwHeroContentSection: FunctionComponent<IProps> = (props) => {
     }
 
     const pageContext = useContext(PageContext)
-const theme = useTheme();
     const classes = useStyles(classParameters)
     const globalClasses = useCustomStyles({})
     return (
-        <MuiThemeProvider theme={TransformHWTheme}><Grid container item className={classes.marketingBackground}>
-            <Grid container item
-                  className={clsx(globalClasses.fullSection, globalClasses.fullSectionOverlay)}>
-            </Grid>
-            <Grid container direction='column' style={{zIndex: 2}}>
-                <Grid item>
-                    <Grid container className={classes.contentSection} item xs={11} sm={9} md={6}>
-                        <Grid container direction='column' style={{paddingLeft: "40px", paddingTop: "80px"}}>
-                            <Grid item>
-                                <Typography variant='subtitle1'
-                                            style={{color: theme.palette.text.secondary}}>{props.sectionData.contentWelcomeMessage}</Typography>
-                            </Grid>
-                            <Grid item style={{marginBottom: "30px"}}>
-                                <Typography variant='h3'
-                                            color={'primary'}>{props.sectionData.contentTitle}</Typography>
-                            </Grid>
-                            <Grid container item className={classes.contentBullets}
-                                  style={{marginBottom: "60px"}}>
-                                <Typography variant='body1'
-                                            color='textSecondary'>{props.sectionData.contentText}</Typography>
-                            </Grid>
-                            <Grid container item>
-                                <Button color='primary' variant='contained'
-                                        onClick={() => {
-                                            firebaseAnalyticsClient.ctaClick("hero-section", props.sectionData.ctaButtonTitle, pageContext.analyticsId,)
-                                        }}
-                                        href={props.sectionData.ctaButtonLink ?? ""}>
-                                    <Typography variant='button'
-                                                color='secondary'>{props.sectionData.ctaButtonTitle}</Typography>
-                                </Button>
+        <ThemeProvider theme={TransformHWTheme}>
+            <Grid container item className={classes.marketingBackground}>
+                <Grid container item
+                      className={clsx(globalClasses.fullSection, globalClasses.fullSectionOverlay)}>
+                </Grid>
+                <Grid container direction='column' style={{zIndex: 2}}>
+                    <Grid item>
+                        <Grid container className={classes.contentSection} item xs={11} sm={9} md={6}>
+                            <Grid container direction='column' style={{paddingLeft: "40px", paddingTop: "80px"}}>
+                                <Grid item>
+                                    <Typography variant='subtitle1'
+                                                style={{color: TransformHWTheme.palette.text.secondary}}>{props.sectionData.contentWelcomeMessage}</Typography>
+                                </Grid>
+                                <Grid item style={{marginBottom: "30px"}}>
+                                    <Typography variant='h3'
+                                                color={'primary'}>{props.sectionData.contentTitle}</Typography>
+                                </Grid>
+                                <Grid container item className={classes.contentBullets}
+                                      style={{marginBottom: "60px"}}>
+                                    <Typography variant='body1'
+                                                color='textSecondary'>{props.sectionData.contentText}</Typography>
+                                </Grid>
+                                <Grid container item>
+                                    <Button color='primary' variant='contained'
+                                            style={{paddingTop: "16px", paddingBottom : "16px"}}
+                                            onClick={() => {
+                                                firebaseAnalyticsClient.ctaClick("hero-section", props.sectionData.ctaButtonTitle, pageContext.analyticsId,)
+                                            }}
+                                            href={props.sectionData.ctaButtonLink ?? ""}>
+                                        <Typography variant='button'
+                                                    color='secondary'>{props.sectionData.ctaButtonTitle}</Typography>
+                                    </Button>
+                                </Grid>
                             </Grid>
                         </Grid>
-                    </Grid>
 
+                    </Grid>
                 </Grid>
             </Grid>
-        </Grid></MuiThemeProvider>
+        </ThemeProvider>
     )
 }
 

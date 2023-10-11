@@ -1,5 +1,6 @@
 import React, {FunctionComponent} from 'react'
-import {makeStyles, Theme} from '@material-ui/core/styles'
+import { Theme } from '@mui/material/styles';
+import makeStyles from '@mui/styles/makeStyles';
 import MetaTags from 'react-meta-tags'
 import {urlFor} from '../block-content-ui/static-pages/cmsStaticPagesClient'
 import {SanityImageSource} from "@sanity/asset-utils";

@@ -1,9 +1,9 @@
 import type {Meta, StoryObj} from '@storybook/react';
 import LoadingButton from "../../components/loading-button/LoadingButton";
 import {ButtonGroupMemberEnum} from "../../components/loading-button/ButtonGroupMemberEnum";
-import {Grid} from "@material-ui/core";
+import {Grid} from "@mui/material";
 import ResumeSocialMedia from "../../components/my-digital-resume/ResumeSocialMedia";
-import homePageResume from "../data/HomePageData";
+import homePageResumeData from "../data/HomePageData";
 
 
 const meta: Meta<typeof ResumeSocialMedia> = {
@@ -24,7 +24,7 @@ type Story = StoryObj<typeof ResumeSocialMedia>;
 const buttonText = "Button Text"
 export const Primary: Story = {
     args:{
-        homePage:homePageResume
+        homePage:homePageResumeData
     },
     render: ({homePage}) => <ResumeSocialMedia homePage={homePage}></ResumeSocialMedia>,
 };

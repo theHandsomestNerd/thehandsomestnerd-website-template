@@ -1,7 +1,7 @@
 import React, {FunctionComponent, PropsWithChildren, useContext, useMemo, useReducer,} from 'react';
 import {ServiceAmenityType} from "../BlockContentTypes";
 import AmenityContext from './AmenityContext';
-import {Grid, ListItem, ListItemIcon, ListItemText, Typography} from "@material-ui/core";
+import {Grid, ListItem, ListItemIcon, ListItemText, Typography} from "@mui/material";
 import {v4 as uuidv4} from "uuid";
 import ToolTipWrap from "../transform-hw/ToolTipWrap";
 import {urlFor} from "../block-content-ui/static-pages/cmsStaticPagesClient";

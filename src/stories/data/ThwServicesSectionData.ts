@@ -1,11 +1,7 @@
-import {
-    ThwMottoSectionType,
-    ThwPositivePsychologySectionType,
-    ThwServicesSectionType
-} from "../../components/BlockContentTypes";
+import {ThwServicesSectionType} from "../../components/BlockContentTypes";
 
 // @ts-ignore
-const thwServicesSectionData:ThwServicesSectionType = {
+const thwServicesSectionData: ThwServicesSectionType = {
     // "_id": "fc4d9967-f5ba-48e5-aa58-82f779f335fd",
     // "serviceAmenities": null,
     "name": "Alternative Services - draft",

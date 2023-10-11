@@ -1,18 +1,20 @@
 import React, {FunctionComponent, useContext} from 'react'
-import {Divider, Grid, Typography, useTheme} from '@material-ui/core'
+import {Divider, Grid, Typography} from '@mui/material'
 import FooterMenuGroup from './FooterMenuGroup'
-import {makeStyles, Theme} from '@material-ui/core/styles'
-import {SanityMenuContainer, SanityTransformHwHomePage} from "../../../common/sanityIo/Types";
-import DigitalResumeTheme, {COLORS, rainbow} from "../../../theme/DigitalResumeTheme";
+import {Theme, ThemeProvider} from '@mui/material/styles';
+import makeStyles from '@mui/styles/makeStyles';
+import {SanityMenuContainer} from "../../../common/sanityIo/Types";
 import PageContext from "../../page-context/PageContext";
-import MediaQueriesContext from "../../media-queries-context/MediaQueriesContext";
 import MailTo from "../../mail-to/MailTo";
-import Logo from "../../transform-hw/logo/Logo";
+import Logo from "../../logo/Logo";
+import {COLORS} from "../../../theme/common/ColorPalette";
+import TheWebsiteTheme from "../../../theme/Theme";
+import widthUtils from "../../../utils/widthUtils";
+import AlternatingText from "../../logo/AlternatingText";
 
-
-export const useStyles = makeStyles((theme: Theme) => ({
+export const useStyles = makeStyles( ({
     root: {
-        color: theme.palette.text.secondary,
+        color: TheWebsiteTheme.palette.text.secondary,
     }
 }))
 
@@ -23,19 +25,26 @@ interface IProps {
 }
 
 const FooterMenuContainer: FunctionComponent<IProps> = (props: IProps) => {
-    const classes = useStyles(DigitalResumeTheme)
 
-    const mediaQueriesContext = useContext(MediaQueriesContext)
-    const theme = useTheme()
+    const classes = useStyles(TheWebsiteTheme)
+
     const pageContext = useContext(PageContext)
 
+    const smDown = widthUtils.useIsWidthDown('sm')
+
     return (
-        <Grid container item className={classes.root} spacing={5}>
-            <Grid container item xs={12} md={4} style={mediaQueriesContext.smDown ? {
-                borderLeft: `4px solid ${theme.palette.primary.main}`,
-                backgroundColor: "rgba(117,117,117,.5)",
-                borderRight: `4px solid ${theme.palette.primary.main}`,
-            } : {}}>
+        <ThemeProvider theme={TheWebsiteTheme}>
+            <Grid container item className={classes.root}>
+            <Grid container item xs={12} md={4}
+                      style={smDown ? {
+                          paddingLeft:"16px",
+                          paddingTop:"16px",
+                          paddingBottom:"16px",
+                    borderLeft: `4px solid ${TheWebsiteTheme.palette.primary.main}`,
+                    backgroundColor: "rgba(117,117,117,.5)",
+                    borderRight: `4px solid ${TheWebsiteTheme.palette.primary.main}`,
+                } : {}}
+            >
                 {
                     props.pageFooterMenu?.subMenus?.map((menuGroup: any, index: number) => {
                         return (
@@ -49,15 +58,8 @@ const FooterMenuContainer: FunctionComponent<IProps> = (props: IProps) => {
             <Grid item container xs={12} md={4} justifyContent='center'>
                 {props.pageFooterMenu?.logoImageSrc ?
                     <Logo isCenter logoImageSrc={props.pageFooterMenu.logoImageSrc} height={108}/> :
-                    <Grid container item justifyContent='center'>
-                         <Typography component='div' variant='h2'
-                                    color='primary'
-                                    style={{...rainbow, color: "#383838"}}> James <Typography display='inline'
-                                                                                             style={{...rainbow,}}
-                                                                                             variant='h2'
-                                                                                             color='primary'>Terrell</Typography> Singleton<Typography
-                            display='inline' style={{...rainbow,}} variant='h2'
-                            color='primary'>.</Typography></Typography>
+                    <Grid container item justifyContent='center' alignContent='center'>
+                        <AlternatingText  isLarge={true} logoText={props.pageFooterMenu?.logoText} logoAccentText={props.pageFooterMenu?.logoAccentText} />
                     </Grid>}
                 <Grid item container justifyContent='center' style={{
                     paddingBottom: "16px",
@@ -87,8 +89,10 @@ const FooterMenuContainer: FunctionComponent<IProps> = (props: IProps) => {
                     </Grid>
                     <Grid container item spacing={1} justifyContent='center'>
                         {<Grid item>
-                            <MailTo color={"#383838"} email={pageContext.page?.email ?? ""} subject={"Information Request"}
-                                    body={""}><Typography color='inherit'>{pageContext.page?.email}</Typography></MailTo>
+                            <MailTo color={"#383838"} email={pageContext.page?.email ?? ""}
+                                    subject={"Information Request"}
+                                    body={""}><Typography
+                                color='inherit'>{pageContext.page?.email}</Typography></MailTo>
                         </Grid>}
                     </Grid>
                 </Grid>
@@ -96,7 +100,7 @@ const FooterMenuContainer: FunctionComponent<IProps> = (props: IProps) => {
             <Grid item container xs={12} md={4} alignContent='flex-start' spacing={2}>
 
             </Grid>
-        </Grid>
+        </Grid></ThemeProvider>
     )
 }
 

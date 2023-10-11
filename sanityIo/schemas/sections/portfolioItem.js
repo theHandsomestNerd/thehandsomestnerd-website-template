@@ -1,5 +1,3 @@
-import category from '../category'
-
 export default {
     name: 'portfolioItem',
     title: 'Portfolio Item',
@@ -73,15 +71,13 @@ export default {
             title: "Icon Background",
             description: "Pick a color",
             name: "iconBackground",
-            type: "colorlist",
-            options: {
+            type: "string",
                 list: [
                     { title: "red (theme)", value: "#e54b4b" },
                     { title: "white", value: "#FFFFFF" },
                     { title: "Pink", value: "#FDF3EB" },
                     { title: "whitesmoke", value: "#FAFAFA" }
                 ]
-            }
         },
     ]
 }

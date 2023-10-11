@@ -1,16 +1,15 @@
-import {createTheme} from '@material-ui/core'
+import { createTheme, adaptV4Theme } from '@mui/material';
 // import GrotescoLight from '../common/fonts/Grotesco/Grotesco-Web-Font/Grotesco-Light.ttf'
 // import Feixen from '../common/fonts/Studio Feixen Sans Writer/Web/StudioFeixenSansWriter-Regular.ttf'
-import Poppins from './common/fonts/Poppins/Poppins-Medium.ttf'
-import MontserratBold from './common/fonts/Montserrat/Montserrat-Bold.ttf'
-import MontserratBold2 from './common/fonts/Montserrat/Montserrat-Bold.otf'
-import Rainbow from './common/fonts/rainbow/Rainbow.ttf'
-// import PoppinsBold from '../common/fonts/Poppins/Poppins-Bold.ttf'
-import PoppinsXBold from './common/fonts/Poppins/Poppins-ExtraBold.ttf'
+import Poppins from '../fonts/Poppins/Poppins-Medium.ttf'
+import MontserratBold from '../fonts/Montserrat/Montserrat-Bold.ttf'
+import MontserratBold2 from '../fonts/Montserrat/Montserrat-Bold.otf'
+// import PoppinsBold from '.../fonts/Poppins/Poppins-Bold.ttf'
+import PoppinsXBold from '../fonts/Poppins/Poppins-ExtraBold.ttf'
 // import PlexSans from '../common/fonts/IBM Plex/OpenType/IBM-Plex-Sans/IBMPlexSans-Regular.otf'
-import Raleway from './common/fonts/Raleway/variable/TTF/Raleway-VF.ttf'
-import RalewayBold from './common/fonts/Raleway/static/TTF/Raleway-Bold.ttf'
-import BitterPro from './common/fonts/bitter_pro/fonts/ttf/BitterPro-Black.ttf'
+// import Raleway from './common/fonts/Raleway/variable/TTF/Raleway-VF.ttf'
+// import RalewayBold from './common/fonts/Raleway/static/TTF/Raleway-Bold.ttf'
+import BitterPro from '../fonts/bitter_pro/fonts/ttf/BitterPro-Black.ttf'
 
 type FontFace = {
     fontDisplay?: any
@@ -75,28 +74,28 @@ const poppins: FontFace = {
   `
 }
 
-
-export const raleway: FontFace = {
-    fontFamily: 'Raleway',
-    fontStyle: 'normal',
-    fontDisplay: 'swap', // uses the fallback font to display the text until the custom font has fully downloaded. This is also known as a “flash of unstyled text” or FOUT.
-    fontWeight: 500,
-    src: `
-local('Raleway Regular'),
-    url(${Raleway}) format('truetype')
-`
-}
-
-export const ralewayBold: FontFace = {
-    fontFamily: 'Raleway',
-    fontStyle: 'normal',
-    fontDisplay: 'swap', // uses the fallback font to display the text until the custom font has fully downloaded. This is also known as a “flash of unstyled text” or FOUT.
-    fontWeight: 1000,
-    src: `
-    local('Raleway Bold'),
-    url(${RalewayBold}) format('truetype')
-  `
-}
+//
+// export const raleway: FontFace = {
+//     fontFamily: 'Raleway',
+//     fontStyle: 'normal',
+//     fontDisplay: 'swap', // uses the fallback font to display the text until the custom font has fully downloaded. This is also known as a “flash of unstyled text” or FOUT.
+//     fontWeight: 500,
+//     src: `
+// local('Raleway Regular'),
+//     url(${Raleway}) format('truetype')
+// `
+// }
+//
+// export const ralewayBold: FontFace = {
+//     fontFamily: 'Raleway',
+//     fontStyle: 'normal',
+//     fontDisplay: 'swap', // uses the fallback font to display the text until the custom font has fully downloaded. This is also known as a “flash of unstyled text” or FOUT.
+//     fontWeight: 1000,
+//     src: `
+//     local('Raleway Bold'),
+//     url(${RalewayBold}) format('truetype')
+//   `
+// }
 
 export const montserratBold: FontFace = {
     fontFamily: 'Montserrat',
@@ -121,16 +120,16 @@ export const montserratBold: FontFace = {
 //     url(${PoppinsBold}) format('opentype')
 //   `
 // }
-export const rainbow: FontFace = {
-    fontFamily: 'Rainbow',
-    fontStyle: 'normal',
-    fontDisplay: 'swap', // uses the fallback font to display the text until the custom font has fully downloaded. This is also known as a “flash of unstyled text” or FOUT.
-    fontWeight: 400,
-    src: `
-    local('Rainbow Regular'),
-    url(${Rainbow}) format('truetype')
-  `
-}
+// export const rainbow: FontFace = {
+//     fontFamily: 'Rainbow',
+//     fontStyle: 'normal',
+//     fontDisplay: 'swap', // uses the fallback font to display the text until the custom font has fully downloaded. This is also known as a “flash of unstyled text” or FOUT.
+//     fontWeight: 400,
+//     src: `
+//     local('Rainbow Regular'),
+//     url(${Rainbow}) format('truetype')
+//   `
+// }
 
 
 export const poppinsXBold: FontFace = {
@@ -174,7 +173,7 @@ export enum COLORS {
     DARKGRAY = "#43424A",
 }
 
-const MixedFeelingsByTTheme = createTheme({
+const MixedFeelingsByTTheme = createTheme(adaptV4Theme({
     breakpoints: {
         values: {
             xs: 0,
@@ -373,7 +372,7 @@ const MixedFeelingsByTTheme = createTheme({
                 //   backgroundColor: '#BD1A00',
                 //   color: '#FCE3CC'
                 // },
-                '&$disabled': {
+                '&.Mui-disabled': {
                     // backgroundColor: '#79582d',
                     color: '#969284'
                 },
@@ -390,7 +389,7 @@ const MixedFeelingsByTTheme = createTheme({
                 //   backgroundColor: '#2412AE',
                 //   color: '#FCE3CC'
                 // },
-                '&$disabled': {
+                '&.Mui-disabled': {
                     color: 'rgba(207, 207, 207, .5)',
                     // backgroundColor: 'rgba(16, 43, 136, .5)'
                 },
@@ -435,6 +434,6 @@ const MixedFeelingsByTTheme = createTheme({
             // }
         }
     }
-})
+}))
 
 export default MixedFeelingsByTTheme

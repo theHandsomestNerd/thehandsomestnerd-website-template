@@ -2,7 +2,7 @@ import type {Meta, StoryObj} from '@storybook/react';
 import ResumeSkillsSection from "../../components/my-digital-resume/ResumeSkillsSection";
 import ResumeSkillSectionData from "../data/ResumeSkillSectionData";
 import ResumeBioSectionData from "../data/ResumeBioSectionData";
-import homePageResume from "../data/HomePageData";
+import homePageResumeData from "../data/HomePageData";
 
 const meta: Meta<typeof ResumeSkillsSection> = {
     title:"Resume/Section/Resume Skills Section",

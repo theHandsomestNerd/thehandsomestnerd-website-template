@@ -2,11 +2,11 @@ import React from 'react'
 import queryString from 'querystring'
 import {useLocation} from 'react-router-dom'
 import {BlockContentPropsType, LinkType} from './BlockContentRenderer'
-import {Grid, Link, List, ListItem, ListItemIcon, ListItemText, Typography} from '@material-ui/core'
-import {FiberManualRecord} from '@material-ui/icons'
+import {Grid, Link, List, ListItem, ListItemIcon, ListItemText, Typography} from '@mui/material'
+import {FiberManualRecord} from '@mui/icons-material'
 import {useCommonStyles} from './CommonStyles'
 import {TypographyVariantType} from './BlockContentMarkRenderers'
-import DigitalResumeTheme from "../../../../theme/DigitalResumeTheme";
+import TheWebsiteTheme from "../../../../theme/Theme";
 
 export const UtmLinkRender: React.FunctionComponent = (props: React.PropsWithChildren<{}> & BlockContentPropsType<LinkType>) => {
   let href = props?.mark?.href
@@ -25,7 +25,12 @@ export const UtmLinkRender: React.FunctionComponent = (props: React.PropsWithChi
     }
   } catch (e) {
   }
-  return <Link href={href} style={{color: props?.mark?.color ? props.mark.color.value:DigitalResumeTheme.palette.primary.main}}>{props.children}</Link>
+  return (
+    <Link
+      href={href}
+      style={{color: props?.mark?.color ? props.mark.color.value:TheWebsiteTheme.palette.primary.main}}
+      underline="hover">{props.children}</Link>
+  );
 }
 
 export const ListRender: React.FunctionComponent = (props: React.PropsWithChildren<{}>) => {

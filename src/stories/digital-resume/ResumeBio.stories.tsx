@@ -1,6 +1,6 @@
 import type {Meta, StoryObj} from '@storybook/react';
 import ResumeBio from "../../components/my-digital-resume/ResumeBio";
-import homePageResume from "../data/HomePageData";
+import homePageResumeData from "../data/HomePageData";
 import ResumeBioSectionData from "../data/ResumeBioSectionData";
 
 const meta: Meta<typeof ResumeBio> = {
@@ -22,7 +22,7 @@ const buttonText = "Button Text"
 export const Primary: Story = {
     args :{
       sectionData: ResumeBioSectionData,
-        homePage: homePageResume
+        homePage: homePageResumeData
     },
     render: ({sectionData, homePage}) => <ResumeBio sectionData={sectionData} homePage={homePage}></ResumeBio>,
 };

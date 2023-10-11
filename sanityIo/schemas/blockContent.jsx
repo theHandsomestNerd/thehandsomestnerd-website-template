@@ -1,6 +1,6 @@
 import React from 'react'
-import {Grid, Link, Typography} from '@material-ui/core'
-import {InsertLink, Public} from '@material-ui/icons'
+import {Grid, Link, Typography} from '@mui/material'
+import {InsertLink, Public} from '@mui/icons-material'
 // import dropCapImg from '../static/drop-cap-icon.png'
 import {
     BoldRender,

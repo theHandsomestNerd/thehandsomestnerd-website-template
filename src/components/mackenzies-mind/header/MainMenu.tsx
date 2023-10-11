@@ -1,12 +1,14 @@
 import React, {FunctionComponent, useContext, useState} from 'react'
-import {makeStyles, Theme} from "@material-ui/core/styles"
-import {Button, createStyles, Divider, Drawer, Grid, List, ListItem, ListItemText} from '@material-ui/core'
-import {Close, Menu} from "@material-ui/icons";
-import DigitalResumeTheme from "../../../theme/DigitalResumeTheme";
+import { Theme } from "@mui/material/styles";
+import makeStyles from '@mui/styles/makeStyles';
+import { Button, Divider, Drawer, Grid, List, ListItem, ListItemText } from '@mui/material';
+import createStyles from '@mui/styles/createStyles';
+import {Close, Menu} from "@mui/icons-material";
+import TheWebsiteTheme from "../../../theme/Theme";
 import MainMenuSubMenu from "./MainMenuSubMenu";
 import {MainMenuAnchorType, SanityMenuContainer, SanityMenuGroup, SanityMenuItem} from "../../../common/sanityIo/Types";
 import ModalContext from "../../snackbar-context/ModalContext";
-import Logo from "../../transform-hw/logo/Logo";
+import Logo from "../../logo/Logo";
 
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -38,7 +40,8 @@ const MainMenu: FunctionComponent<MainMenuProps> = ({menu, anchor}) => {
     };
 
     const modalContext = useContext(ModalContext)
-    const classes = useStyles(DigitalResumeTheme)
+    const classes = useStyles(TheWebsiteTheme
+)
     const list = (anchor: MainMenuAnchorType) => (
         <Grid item
               role="presentation"
@@ -64,9 +67,12 @@ const MainMenu: FunctionComponent<MainMenuProps> = ({menu, anchor}) => {
                                             }
                                         }:undefined}
                                         style={{
-                                    paddingTop: DigitalResumeTheme.spacing(2.25),
-                                    paddingLeft: DigitalResumeTheme.spacing(2),
-                                    paddingBottom: DigitalResumeTheme.spacing(2.25),
+                                    paddingTop: TheWebsiteTheme
+.spacing(2.25),
+                                    paddingLeft: TheWebsiteTheme
+.spacing(2),
+                                    paddingBottom: TheWebsiteTheme
+.spacing(2.25),
                                     height: "100%",
                                     margin: 0
                                 }} fullWidth>
@@ -92,8 +98,10 @@ const MainMenu: FunctionComponent<MainMenuProps> = ({menu, anchor}) => {
             >
                 <Grid container alignItems='center' justifyContent='space-between'
                       style={{
-                          paddingLeft: DigitalResumeTheme.spacing(4),
-                          paddingRight: DigitalResumeTheme.spacing(6),
+                          paddingLeft: TheWebsiteTheme
+.spacing(4),
+                          paddingRight: TheWebsiteTheme
+.spacing(6),
                       }}>
 
                     <Grid item xs={3}>

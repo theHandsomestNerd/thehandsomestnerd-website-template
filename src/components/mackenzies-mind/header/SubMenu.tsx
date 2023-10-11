@@ -1,8 +1,8 @@
 import React, {FunctionComponent, useContext, useState} from 'react'
-import {Button, Grid, List, ListItem, Typography} from '@material-ui/core'
+import {Button, Grid, List, ListItem, Typography} from '@mui/material'
 import {v4 as uuidv4} from 'uuid'
 import {SanityMenuGroup, SanityMenuItem} from "../../../common/sanityIo/Types";
-import DigitalResumeTheme from "../../../theme/DigitalResumeTheme";
+import TheWebsiteTheme from "../../../theme/Theme";
 import ModalContext from "../../snackbar-context/ModalContext";
 
 
@@ -27,7 +27,8 @@ const SubMenu: FunctionComponent<SubMenuProps> = (props) => {
                                         modalContext.openModal && modalContext.openModal(theLink.modalRef)
                                     }
                                 }:undefined}
-                                style={{margin: 0, height: "100%", width: "100%", borderRadius:0, padding: DigitalResumeTheme.spacing(0,3,0)}}>
+                                style={{margin: 0, height: "100%", width: "100%", borderRadius:0, padding: TheWebsiteTheme
+.spacing(0,3,0)}}>
                             <Grid container>
 
                                 <Typography variant='body1' style={{

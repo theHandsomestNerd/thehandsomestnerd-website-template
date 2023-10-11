@@ -1,12 +1,13 @@
 import React, {ChangeEvent, FunctionComponent, useState} from 'react'
-import {makeStyles, Theme} from "@material-ui/core/styles"
-import {Grid, TextField, Typography, useTheme} from '@material-ui/core'
+import { Theme } from "@mui/material/styles";
+import makeStyles from '@mui/styles/makeStyles';
+import {Grid, TextField, Typography, useTheme} from '@mui/material'
 import LoadingButton from "../../loading-button/LoadingButton";
 import {ButtonGroupMemberEnum} from "../../loading-button/ButtonGroupMemberEnum";
 import isEmail from "validator/lib/isEmail";
 import {useQuery} from "react-query";
 import leadClient from "./under-construction-page/leadClient";
-import DigitalResumeTheme from "../../../theme/DigitalResumeTheme";
+import TheWebsiteTheme from "../../../theme/Theme";
 import useCustomStyles from "../../mackenzies-mind/pages/Styles";
 
 export const useStyles = makeStyles((theme: Theme) => ({
@@ -21,7 +22,8 @@ interface IProps {
 
 const SubmitEmail: FunctionComponent<IProps> = (props: IProps) => {
     const theme = useTheme()
-    const classes = useCustomStyles(DigitalResumeTheme)
+    const classes = useCustomStyles(TheWebsiteTheme
+)
     const [email, setEmail] = useState("")
 
     const {isLoading, isError, data, refetch} = useQuery(
@@ -66,7 +68,7 @@ const SubmitEmail: FunctionComponent<IProps> = (props: IProps) => {
         <Grid item container xs={12}>
             <TextField fullWidth
                        label={props.emailFieldText}
-                       variant='filled'
+                       variant='outlined'
                        type='email'
                        value={email}
                        onChange={(event: ChangeEvent<HTMLInputElement>) => {

@@ -1,17 +1,18 @@
 import React, {FunctionComponent, useContext, useEffect, useState} from 'react'
-import {makeStyles, MuiThemeProvider, Theme} from "@material-ui/core/styles"
-import {Grid, TextField, Typography, useTheme, withStyles} from "@material-ui/core";
-import DigitalResumeTheme from "../../theme/DigitalResumeTheme";
+import {makeStyles} from "@mui/styles"
 import {ResumeContactUsSectionType} from "../BlockContentTypes";
 import useCustomStyles from "../mackenzies-mind/pages/Styles";
 import isEmail from "validator/lib/isEmail";
 import LoadingButton from "../loading-button/LoadingButton";
 import {useQuery} from "react-query";
-import MediaQueriesContext from "../media-queries-context/MediaQueriesContext";
 import firebaseAnalyticsClient from "../../utils/firebase/FirebaseAnalyticsClient";
 import PageContext from "../page-context/PageContext";
 import leadClient from "../transform-hw/pages/under-construction-page/leadClient";
 import SnackbarContext from "../modal-context/SnackbarContext";
+import {Theme, ThemeProvider} from "@mui/material/styles";
+import withStyles from "@mui/styles/withStyles";
+import {Grid, TextField, Typography, useTheme} from "@mui/material";
+import TheWebsiteTheme from "../../theme/Theme";
 
 export const useStyles = makeStyles((theme: Theme) => ({
     root: {
@@ -29,7 +30,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
     },
     headerAccent: {
         display: 'inline-block',
-        marginLeft: theme.spacing(1)
+        marginLeft: "8px"
     },
     formContainer: {
         // margin: 'auto',
@@ -39,7 +40,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
         zIndex: 2
     },
     inputAdornmentContainer: {
-        marginTop: theme.spacing(1),
+        marginTop: "8px",
         zIndex: 3
     },
     inputAdornmentTextBlockContainer: {
@@ -48,10 +49,10 @@ export const useStyles = makeStyles((theme: Theme) => ({
         zIndex: 3
     },
     formTitle: {
-        marginBottom: theme.spacing(1)
+        marginBottom: "8px"
     },
     socialMediaContainer: {
-        marginTop: theme.spacing(1)
+        marginTop: "8px"
     },
     lhsContainer: {
         // width: "500px",
@@ -88,23 +89,21 @@ const StyledTextField = withStyles({
         "& textarea": {
             zIndex: 2
         },
-        "& fieldset": {
-            // backgroundColor: "#292929",
-        },
         "& .MuiOutlinedInput-root": {
-            borderColor: `${DigitalResumeTheme.palette.primary.main} !important`,
+            border: "1px solid black",
+            // borderColor: `${TheWebsiteTheme.palette.primary.main}`,
             borderRadius: 0,
             "&.Mui-focused": {
-                borderColor: `${DigitalResumeTheme.palette.primary.main} !important`,
-                "&:hover": {
+                borderColor: `${TheWebsiteTheme.palette.primary.main} !important`,
+                "&.Mui-hover": {
                     "& .MuiOutlinedInput-notchedOutline": {
-                        borderColor: `${DigitalResumeTheme.palette.primary.main} !important`
+                        borderColor: `${TheWebsiteTheme.palette.primary.main} !important`
                     },
 
                 },
 
             },
-            "&:hover": {
+            "&.Mui-hover": {
                 "& .MuiOutlinedInput-notchedOutline": {
                     borderColor: `#212121 !important`
                 }
@@ -117,28 +116,17 @@ export type ContactUsProps = {
     sectionData: ResumeContactUsSectionType
 }
 const ResumeContactUsSection: FunctionComponent<ContactUsProps> = (props) => {
-    const classes = useStyles(DigitalResumeTheme)
+    const classes = useStyles(TheWebsiteTheme
+    )
 
     const snackbarContext = useContext(SnackbarContext)
 
     const globalClasses = useCustomStyles({})
-    const mediaQueriesContext = useContext(MediaQueriesContext)
 
     const [leadName, setleadName] = useState<string>()
     const [email, setEmail] = useState<string>()
     const [leadPhone, setLeadPhone] = useState<string>()
     const [leadMessage, setLeadMessage] = useState<string>()
-    const [alignment, setAlignment] = useState<any>('right')
-    const [justifyContent, setJustifyContent] = useState<any>('flex-end')
-    useEffect(() => {
-        if (mediaQueriesContext.smDown) {
-            setAlignment('center')
-            setJustifyContent('center')
-        } else {
-            setAlignment('right')
-            setJustifyContent('flex-end')
-        }
-    }, [mediaQueriesContext.smDown])
 
     const {isLoading, isError, data, refetch, isRefetching} = useQuery(
         ['submitContactUsForm'],
@@ -165,12 +153,18 @@ const ResumeContactUsSection: FunctionComponent<ContactUsProps> = (props) => {
 
     const getHelperText = () => {
         if (data) {
-            return <Typography style={{color: DigitalResumeTheme.palette.success.main}} variant='subtitle1'>Thank you
+            return <Typography style={{
+                color: TheWebsiteTheme
+                    .palette.success.main
+            }} variant='subtitle1'>Thank you
                 for
                 your submission!</Typography>
         }
         if (isError) {
-            return <Typography style={{color: DigitalResumeTheme.palette.error.main}} variant='subtitle1'>Please Try
+            return <Typography style={{
+                color: TheWebsiteTheme
+                    .palette.error.main
+            }} variant='subtitle1'>Please Try
                 your
                 submission again later or contact jgreene@transformHW.org.</Typography>
         }
@@ -187,118 +181,118 @@ const ResumeContactUsSection: FunctionComponent<ContactUsProps> = (props) => {
     const theme = useTheme()
 
     return (
-        <MuiThemeProvider theme={DigitalResumeTheme}>
-        <Grid
-            container
-            item
-            style={{
-                padding: theme.spacing(4)
-            }}
-            className={globalClasses.resumeSection}
-        >
-            <Grid container item spacing={3}>
-                <Grid item container sm={4} alignContent='flex-start' spacing={1}>
-                    <Grid item>
-                        <Typography
-                            variant='h6'
-                        >{props.sectionData.title}
+        <ThemeProvider theme={TheWebsiteTheme}>
+            <Grid
+                container
+                item
+                style={{
+                    padding: theme.spacing(4)
+                }}
+                className={globalClasses.resumeSection}
+            >
+                <Grid container item spacing={3}>
+                    <Grid item container sm={4} alignContent='flex-start' spacing={1}>
+                        <Grid item>
                             <Typography
                                 variant='h6'
-                                color='primary'
-                                display='inline'
-                            >.</Typography>
-                        </Typography>
+                            >{props.sectionData.title}
+                                <Typography
+                                    variant='h6'
+                                    color='primary'
+                                    display='inline'
+                                >.</Typography>
+                            </Typography>
+                        </Grid>
+                        <Grid item>
+                            <Typography variant='body1'>{props.sectionData.introduction}</Typography></Grid>
                     </Grid>
-                    <Grid item>
-                        <Typography variant='body1'>{props.sectionData.introduction}</Typography></Grid>
-                </Grid>
-                <Grid item container sm={8} spacing={2} justifyContent='space-between'>
-                    <Grid container item md={6} alignContent='flex-start'>
-                        <Grid container item>
-                            <StyledTextField
-                                fullWidth
-                                id="contact-name-input"
-                                value={leadName}
-                                onChange={(e) => {
-                                    setleadName(e.target.value)
-                                }}
-                                label={<Typography color='textPrimary'>Name</Typography>}
-                                variant="outlined"
-                                InputProps={{
-                                    // startAdornment: (
-                                    //     <InputAdornment position="start">
-                                    //         <Typography className={classes.inputAdornmentContainer}>
-                                    //             <AccountCircle/>
-                                    //         </Typography>
-                                    //     </InputAdornment>
-                                    // ),
-                                    className: classes.formInput
-                                }}
-                            />
+                    <Grid item container sm={8} spacing={2} justifyContent='space-between'>
+                        <Grid container item md={6} alignContent='flex-start'>
+                            <Grid container item>
+                                <StyledTextField
+                                    fullWidth
+                                    id="contact-name-input"
+                                    value={leadName}
+                                    onChange={(e: any) => {
+                                        setleadName(e.target.value)
+                                    }}
+                                    label={<Typography color='textPrimary'>Name</Typography>}
+                                    variant="outlined"
+                                    InputProps={{
+                                        // startAdornment: (
+                                        //     <InputAdornment position="start">
+                                        //         <Typography className={classes.inputAdornmentContainer}>
+                                        //             <AccountCircle/>
+                                        //         </Typography>
+                                        //     </InputAdornment>
+                                        // ),
+                                        className: classes.formInput
+                                    }}
+                                />
+                            </Grid>
+                            <Grid container item>
+                                <StyledTextField
+                                    fullWidth
+                                    value={email}
+                                    onChange={(e: any) => {
+                                        setEmail(e.target.value)
+                                    }}
+                                    id="contact-email-input"
+                                    label={<Typography color='textPrimary'>Email</Typography>}
+                                    variant="outlined"
+                                    InputProps={{
+                                        // startAdornment: (
+                                        //     <InputAdornment position="start">
+                                        //         <Typography className={classes.inputAdornmentContainer}>
+                                        //             <Email/>
+                                        //         </Typography>
+                                        //     </InputAdornment>
+                                        // ),
+                                        className: classes.formInput
+                                    }}
+                                />
+                            </Grid>
                         </Grid>
-                        <Grid container item>
-                            <StyledTextField
-                                fullWidth
-                                value={email}
-                                onChange={(e) => {
-                                    setEmail(e.target.value)
-                                }}
-                                id="contact-email-input"
-                                label={<Typography color='textPrimary'>Email</Typography>}
-                                variant="outlined"
-                                InputProps={{
-                                    // startAdornment: (
-                                    //     <InputAdornment position="start">
-                                    //         <Typography className={classes.inputAdornmentContainer}>
-                                    //             <Email/>
-                                    //         </Typography>
-                                    //     </InputAdornment>
-                                    // ),
-                                    className: classes.formInput
-                                }}
-                            />
+                        <Grid container item md={6}>
+                            <Grid container item>
+                                <StyledTextField
+                                    fullWidth
+                                    id="contact-message-input"
+                                    value={leadMessage}
+                                    onChange={(e: any) => {
+                                        setLeadMessage(e.target.value)
+                                    }}
+                                    label={<Typography color='textPrimary'>Message</Typography>}
+                                    variant="outlined"
+                                    multiline
+                                    minRows="6"
+                                    InputProps={{
+                                        // startAdornment: (
+                                        //     <InputAdornment position="start">
+                                        //         <Typography
+                                        //
+                                        //             className={classes.inputAdornmentTextBlockContainer}>
+                                        //             <Message/>
+                                        //         </Typography>
+                                        //     </InputAdornment>
+                                        // ),
+                                        className: classes.formInput
+                                    }}
+                                />
+                            </Grid>
+                            <Grid container item justifyContent='flex-end' style={{marginTop: theme.spacing(1)}}>
+                                <LoadingButton
+                                    width={200}
+                                    isLoading={isLoading || isRefetching}
+                                    disabled={!!(data || isError || (email && (email.length > 0) && !isEmail(email)))}
+                                    clickHandler={createLead}
+                                    color="primary" variant="contained"><Typography>Send
+                                    Message</Typography></LoadingButton>
+                            </Grid>
                         </Grid>
-                    </Grid>
-                    <Grid container item md={6}>
-                        <Grid container item>
-                            <StyledTextField
-                                fullWidth
-                                id="contact-message-input"
-                                value={leadMessage}
-                                onChange={(e) => {
-                                    setLeadMessage(e.target.value)
-                                }}
-                                label={<Typography color='textPrimary'>Message</Typography>}
-                                variant="outlined"
-                                multiline
-                                minRows="6"
-                                InputProps={{
-                                    // startAdornment: (
-                                    //     <InputAdornment position="start">
-                                    //         <Typography
-                                    //
-                                    //             className={classes.inputAdornmentTextBlockContainer}>
-                                    //             <Message/>
-                                    //         </Typography>
-                                    //     </InputAdornment>
-                                    // ),
-                                    className: classes.formInput
-                                }}
-                            />
-                        </Grid>
-                        <Grid container item justifyContent='flex-end' style={{marginTop: theme.spacing(1)}}>
-                            <LoadingButton
-                                width={200}
-                                isLoading={isLoading || isRefetching}
-                                disabled={!!(data || isError || (email && (email.length > 0) && !isEmail(email)))}
-                                clickHandler={createLead}
-                                color="primary" variant="contained"><Typography>Send
-                                Message</Typography></LoadingButton>
-                        </Grid>
-                    </Grid>
 
 
-                </Grid>
-            </Grid></Grid></MuiThemeProvider>)
+                    </Grid>
+                </Grid></Grid></ThemeProvider>)
 }
 export default ResumeContactUsSection

@@ -1,16 +1,18 @@
 // block renderers can return JSX Elements that are block or inline elements since they will be the top level element
-import {makeStyles, Theme} from '@material-ui/core/styles'
-import {COLORS} from "../../theme/DigitalResumeTheme";
+import { Theme } from '@mui/material/styles';
+import makeStyles from '@mui/styles/makeStyles';
+import {COLORS} from "../../theme/common/ColorPalette";
+import TransformHWTheme from "../../theme/TransformHWTheme";
 
 export const useThwCommonStyles = makeStyles((theme: Theme) => ({
     layoutContainer: {
         marginBottom: '32px',
     },
     primaryTextColor: {
-        color: theme.palette.primary.main,
+        color: TransformHWTheme.palette.primary.main,
     },
     secondaryTextColor: {
-        color: theme.palette.secondary.main,
+        color: TransformHWTheme.palette.secondary.main,
     },
     bold: {
         fontWeight: 700,
@@ -22,13 +24,13 @@ export const useThwCommonStyles = makeStyles((theme: Theme) => ({
         lineHeight: '28px',
         letterSpacing: '0.5px',
         color: '#333333',
-        padding: theme.spacing(1, 0),
+        padding: TransformHWTheme.spacing(1, 0),
     },
     callToAction: {
         borderTop: '1px solid rgba(0,0,0,.12)',
         borderBottom: '1px solid rgba(0,0,0,.12)',
         width: '100%',
-        padding: theme.spacing(3, 0),
+        padding: TransformHWTheme.spacing(3, 0),
     },
     root: {
         width: '1050px',
@@ -47,7 +49,7 @@ export const useThwCommonStyles = makeStyles((theme: Theme) => ({
     },
     dropCapLetter: {
         float: 'left',
-        padding: theme.spacing(1),
+        padding: TransformHWTheme.spacing(1),
         fontSize: '59px',
         fontWeight: 400,
         lineHeight: '30px',
@@ -65,7 +67,7 @@ export const useThwCommonStyles = makeStyles((theme: Theme) => ({
         // display: "inline-block",
         width: '50px !important',
         height: '50px !important',
-        ...theme.typography.h4,
+        ...TransformHWTheme.typography.h4,
     },
     hr: {
         borderTop: '1px solid rgba(0, 0, 0, 0.12)',
@@ -79,11 +81,11 @@ export const useThwCommonStyles = makeStyles((theme: Theme) => ({
         fontSize: '10px',
     },
     bulletIconContainer: {
-        marginTop: theme.spacing(1.5),
+        marginTop: TransformHWTheme.spacing(1.5),
         minWidth: '20px',
     },
     orderedListIndex: {
-        marginTop: theme.spacing(-1.25),
+        marginTop: TransformHWTheme.spacing(-1.25),
         // fontFamily: 'DTL Documenta ST Regular',
         fontWeight: 400,
         fontStyle: 'normal',

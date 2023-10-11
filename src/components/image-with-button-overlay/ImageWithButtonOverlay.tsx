@@ -1,6 +1,7 @@
 import React, {FunctionComponent, useContext} from 'react'
-import {makeStyles, Theme} from '@material-ui/core/styles'
-import {Button, Grid, PropTypes, Tooltip, Typography} from '@material-ui/core'
+import { Theme } from '@mui/material/styles';
+import makeStyles from '@mui/styles/makeStyles';
+import {Button, Grid, PropTypes, Tooltip, Typography} from '@mui/material'
 import CssFadeToColor from "../css-fade-to-color/CssFadeToColor";
 import {urlFor} from "../block-content-ui/static-pages/cmsStaticPagesClient";
 import {SanityImageSource} from "@sanity/asset-utils";
@@ -8,10 +9,12 @@ import {CssFadeToColorDirectionEnum} from "../css-fade-to-color/CssFadeToColorDi
 import {ImageWithButtonOverlayAligmentEnum} from "./ImageWithButtonOverlayAligmentEnum";
 import firebaseAnalyticsClient from "../../utils/firebase/FirebaseAnalyticsClient";
 import PageContext from "../page-context/PageContext";
+import {OverridableStringUnion} from "@mui/types";
+import {ButtonPropsColorOverrides} from "@mui/material/Button/Button";
 
 export const useStyles = makeStyles((theme: Theme) => ({
     contentBullets: {
-        marginBottom: theme.spacing(5)
+        marginBottom: "40px"
     }
 }))
 
@@ -29,7 +32,10 @@ interface IProps {
     variant?: 'text' | 'contained' | 'outlined'
     height: number
     buttonAlignment?: ImageWithButtonOverlayAligmentEnum
-    buttonColor?: PropTypes.Color
+    buttonColor?: OverridableStringUnion<
+        'inherit' | 'primary' | 'secondary' | 'success' | 'error' | 'info' | 'warning',
+        ButtonPropsColorOverrides
+    >
     learnMoreLink?: string
     tooltip?: string
     source?: string
@@ -65,6 +71,7 @@ const ImageWIthButtonOverlay: FunctionComponent<IProps> = (props) => {
     }, [])
 
     const pageContext = useContext(PageContext)
+
     return (
         <Button fullWidth
                 onClick={(e) => {

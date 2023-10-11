@@ -1,6 +1,7 @@
 import React, {FunctionComponent, useContext} from 'react'
-import {makeStyles, Theme} from '@material-ui/core/styles'
-import {Button, Grid, Typography} from '@material-ui/core'
+import { Theme } from '@mui/material/styles';
+import makeStyles from '@mui/styles/makeStyles';
+import {Button, Grid, Typography} from '@mui/material'
 import {urlFor} from '../block-content-ui/static-pages/cmsStaticPagesClient'
 import {MfbtHeroContentSectionType, ThwHeroContentSectionType} from "../BlockContentTypes";
 import clsx from "clsx";

@@ -1,14 +1,15 @@
 import React, {FunctionComponent, useEffect, useState} from 'react'
-import {makeStyles, Theme} from '@material-ui/core/styles'
+import { Theme } from '@mui/material/styles';
 
-import {Grid, Link, Typography} from '@material-ui/core'
-import DigitalResumeTheme from "../../../theme/DigitalResumeTheme";
+import makeStyles from '@mui/styles/makeStyles';
+
+import {Grid, Link, Typography} from '@mui/material'
 import {SanityMenuGroup, SanityMenuItem} from "../../../common/sanityIo/Types";
-import {raleway} from "../../../theme/WebDevSiteTheme";
-
+import WebDevSiteTheme from "../../../theme/WebDevSiteTheme";
+import TheWebsiteTheme from "../../../theme/Theme";
 export const useStyles = makeStyles((theme: Theme) => ({
     root: {
-        marginRight: theme.spacing(11),
+        marginRight: WebDevSiteTheme.spacing(11),
     },
     footerLink: {
         marginBottom: '8px',
@@ -25,11 +26,11 @@ export const useStyles = makeStyles((theme: Theme) => ({
     },
     menuTitle: {
         // color: '#FDF3EB',
-        marginBottom: theme.spacing(1),
+        marginBottom: WebDevSiteTheme.spacing(1),
     },
     popover: {
         boxShadow: 'none',
-        borderLeft: `4px solid ${theme.palette.background.default}`,
+        borderLeft: `4px solid ${WebDevSiteTheme.palette.background.default}`,
         borderRadius: 0,
     },
     list: {
@@ -42,7 +43,7 @@ export type LandingPagesFooterMenuGroupProps = {
 }
 
 const WebDevFooterMenuGroup: FunctionComponent<LandingPagesFooterMenuGroupProps> = ({menuGroup}) => {
-    const classes = useStyles(DigitalResumeTheme)
+    const classes = useStyles(TheWebsiteTheme)
 
     const [menuGroupContents, setMenuGroupContents] = useState<SanityMenuGroup>()
     const [menuItemContents, setMenuItemContents] = useState<SanityMenuItem>()
@@ -67,19 +68,22 @@ const WebDevFooterMenuGroup: FunctionComponent<LandingPagesFooterMenuGroupProps>
                         menuGroup?.links && menuGroup.links.map( (menuLink:any, index: any) => {
                             return (
                                 <Grid key={index} item>
-                                    <Link href={menuLink.url} className={classes.footerLink}>
-                                        <Typography variant="body1" color='textPrimary' noWrap  style={{...raleway}}>
+                                    <Link href={menuLink.url} className={classes.footerLink} underline="hover">
+                                        <Typography variant="body1" color='textPrimary' noWrap  style={{fontFamily:"Raleway"}}>
                                             {menuLink.displayText}
                                         </Typography>
                                     </Link>
                                 </Grid>
-                            )
+                            );
                         })
                     }
                     {
                         menuItemContents && <Grid item>
-                            <Link href={menuItemContents.url} className={classes.footerLink}>
-                                <Typography variant="body1" color='textPrimary' noWrap style={{...raleway}}>
+                            <Link
+                                href={menuItemContents.url}
+                                className={classes.footerLink}
+                                underline="hover">
+                                <Typography variant="body1" color='textPrimary' noWrap style={{fontFamily:"Raleway"}}>
                                     {menuItemContents.displayText}
                                 </Typography>
                             </Link>
@@ -90,8 +94,7 @@ const WebDevFooterMenuGroup: FunctionComponent<LandingPagesFooterMenuGroupProps>
 
             </Grid>
         </Grid>
-
-    )
+    );
 }
 
 export default WebDevFooterMenuGroup

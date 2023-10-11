@@ -195,5 +195,11 @@ export default {
             type: 'reference',
             to:[{type: 'transformUnderConstructionPage'}]
         },
+        {
+            name: 'theme',
+            title: 'Theme',
+            type: 'reference',
+            to:[{type: 'MuiTheme'}]
+        },
     ]
 }

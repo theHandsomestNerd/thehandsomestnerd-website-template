@@ -1,8 +1,10 @@
 import React, {FunctionComponent, useEffect, useState} from 'react'
-import {makeStyles, Theme} from '@material-ui/core/styles'
+import { Theme } from '@mui/material/styles';
 
-import {Grid, Link, Typography} from '@material-ui/core'
-import DigitalResumeTheme from "../../../theme/DigitalResumeTheme";
+import makeStyles from '@mui/styles/makeStyles';
+
+import {Grid, Link, Typography} from '@mui/material'
+import TheWebsiteTheme from "../../../theme/Theme";
 import {SanityMenuGroup, SanityMenuItem} from "../../../common/sanityIo/Types";
 
 export const useStyles = makeStyles((theme: Theme) => ({
@@ -41,7 +43,8 @@ export type LandingPagesFooterMenuGroupProps = {
 }
 
 const FooterMenuGroup: FunctionComponent<LandingPagesFooterMenuGroupProps> = ({menuGroup}) => {
-    const classes = useStyles(DigitalResumeTheme)
+    const classes = useStyles(TheWebsiteTheme
+)
 
     const [menuGroupContents, setMenuGroupContents] = useState<SanityMenuGroup>()
     const [menuItemContents, setMenuItemContents] = useState<SanityMenuItem>()
@@ -66,18 +69,21 @@ const FooterMenuGroup: FunctionComponent<LandingPagesFooterMenuGroupProps> = ({m
                         menuGroup?.links && menuGroup.links.map( (menuLink:any, index: any) => {
                             return (
                                 <Grid key={index} item>
-                                    <Link href={menuLink.url} className={classes.footerLink}>
+                                    <Link href={menuLink.url} className={classes.footerLink} underline="hover">
                                         <Typography variant="body1" color='textSecondary' noWrap>
                                             {menuLink.displayText}
                                         </Typography>
                                     </Link>
                                 </Grid>
-                            )
+                            );
                         })
                     }
                     {
                         menuItemContents && <Grid item>
-                            <Link href={menuItemContents.url} className={classes.footerLink}>
+                            <Link
+                                href={menuItemContents.url}
+                                className={classes.footerLink}
+                                underline="hover">
                                 <Typography variant="body1" color='textSecondary' noWrap>
                                     {menuItemContents.displayText}
                                 </Typography>
@@ -89,8 +95,7 @@ const FooterMenuGroup: FunctionComponent<LandingPagesFooterMenuGroupProps> = ({m
 
             </Grid>
         </Grid>
-
-    )
+    );
 }
 
 export default FooterMenuGroup

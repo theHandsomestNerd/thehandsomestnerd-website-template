@@ -1,62 +1,62 @@
-import {createTheme} from '@material-ui/core'
-import ElaineSans from './common/fonts/elaine-sans/elaineSans-extrabold.ttf'
-import Raleway from './common/fonts/Raleway/variable/TTF/Raleway-VF.ttf'
-import RalewayBold from './common/fonts/Raleway/static/TTF/Raleway-Bold.ttf'
-import Rainbow from './common/fonts/rainbow/Rainbow.ttf'
+import {createTheme} from '@mui/material';
+// import ElaineSans from './common/fonts/elaine-sans/elaineSans-extrabold.ttf'
+// import Raleway from './common/fonts/Raleway/variable/TTF/Raleway-VF.ttf'
+// import RalewayBold from './common/fonts/Raleway/static/TTF/Raleway-Bold.ttf'
+// import Rainbow from './common/fonts/rainbow/Rainbow.ttf'
 
-type FontFace = {
-    fontDisplay?: any
-    fontFamily?: any
-    fontStyle?: any
-    fontWeight?: number
-    src?: string
-}
+// type FontFace = {
+//     fontDisplay?: any
+//     fontFamily?: any
+//     fontStyle?: any
+//     fontWeight?: number
+//     src?: string
+// }
+//
+// export const elainSansExtraBold: FontFace = {
+//     fontFamily: 'Elaine Sans',
+//     fontStyle: 'normal',
+//     fontDisplay: 'swap', // uses the fallback font to display the text until the custom font has fully downloaded. This is also known as a “flash of unstyled text” or FOUT.
+//     fontWeight: 800,
+//     src: `
+//     local('Elaine Sans'),
+//     url(${ElaineSans}) format('truetype')
+//   `
+// }
+//
+// export const raleway: FontFace = {
+//     fontFamily: 'Raleway',
+//     fontStyle: 'normal',
+//     fontDisplay: 'swap', // uses the fallback font to display the text until the custom font has fully downloaded. This is also known as a “flash of unstyled text” or FOUT.
+//     fontWeight: 500,
+//     src: `
+//     local('Raleway Regular'),
+//     url(${Raleway}) format('truetype')
+//   `
+// }
+//
+// export const ralewayBold: FontFace = {
+//     fontFamily: 'Raleway',
+//     fontStyle: 'normal',
+//     fontDisplay: 'swap', // uses the fallback font to display the text until the custom font has fully downloaded. This is also known as a “flash of unstyled text” or FOUT.
+//     fontWeight: 1000,
+//     src: `
+//     local('Raleway Bold'),
+//     url(${RalewayBold}) format('truetype')
+//   `
+// }
+//
+// export const rainbow: FontFace = {
+//     fontFamily: 'Rainbow',
+//     fontStyle: 'normal',
+//     fontDisplay: 'swap', // uses the fallback font to display the text until the custom font has fully downloaded. This is also known as a “flash of unstyled text” or FOUT.
+//     fontWeight: 400,
+//     src: `
+//     local('Rainbow Regular'),
+//     url(${Rainbow}) format('truetype')
+//   `
+// }
 
-export const elainSansExtraBold: FontFace = {
-    fontFamily: 'Elaine Sans',
-    fontStyle: 'normal',
-    fontDisplay: 'swap', // uses the fallback font to display the text until the custom font has fully downloaded. This is also known as a “flash of unstyled text” or FOUT.
-    fontWeight: 800,
-    src: `
-    local('Elaine Sans'),
-    url(${ElaineSans}) format('truetype')
-  `
-}
-
-export const raleway: FontFace = {
-    fontFamily: 'Raleway',
-    fontStyle: 'normal',
-    fontDisplay: 'swap', // uses the fallback font to display the text until the custom font has fully downloaded. This is also known as a “flash of unstyled text” or FOUT.
-    fontWeight: 500,
-    src: `
-    local('Raleway Regular'),
-    url(${Raleway}) format('truetype')
-  `
-}
-
-export const ralewayBold: FontFace = {
-    fontFamily: 'Raleway',
-    fontStyle: 'normal',
-    fontDisplay: 'swap', // uses the fallback font to display the text until the custom font has fully downloaded. This is also known as a “flash of unstyled text” or FOUT.
-    fontWeight: 1000,
-    src: `
-    local('Raleway Bold'),
-    url(${RalewayBold}) format('truetype')
-  `
-}
-
-export const rainbow: FontFace = {
-    fontFamily: 'Rainbow',
-    fontStyle: 'normal',
-    fontDisplay: 'swap', // uses the fallback font to display the text until the custom font has fully downloaded. This is also known as a “flash of unstyled text” or FOUT.
-    fontWeight: 400,
-    src: `
-    local('Rainbow Regular'),
-    url(${Rainbow}) format('truetype')
-  `
-}
-
-const fonts = [ 'Elaine Sans', 'Raleway'].join(',')
+const fonts = ['Elaine Sans', 'Raleway'].join(',')
 
 
 const WebDevSiteTheme = createTheme({
@@ -69,7 +69,7 @@ const WebDevSiteTheme = createTheme({
             xl: 1320,
         }
     },
-    shape:{
+    shape: {
         borderRadius: 32
     },
     mixins: {
@@ -198,33 +198,41 @@ const WebDevSiteTheme = createTheme({
             letterSpacing: '0.20em'
         }
     },
-    overrides: {
-        MuiListItemText:{
-            secondary:{
-                color: "inherit",
-                "& :hover": {
-                    background: "white",
-                    color: "#383838"
-                }
-            },
+    components: {
+        MuiListItemText: {
+            styleOverrides: {
+
+
+                secondary: {
+                    color: "inherit",
+                    "& :hover": {
+                        background: "white",
+                        color: "#383838"
+                    }
+                },
+            }
         },
-        MuiListItem:{
-            root:{
-                textAlign:'center',
-                color: "#FAFAFA",
-                "& :hover": {
-                    background: "white",
-                    color: "#383838"
+        MuiListItem: {
+            styleOverrides: {
+                root: {
+                    textAlign: 'center',
+                    color: "#FAFAFA",
+                    "& :hover": {
+                        background: "white",
+                        color: "#383838"
+                    }
                 }
             }
         },
-        MuiCssBaseline: {
-            '@global': {
-                '@font-face': [raleway, ralewayBold, elainSansExtraBold, rainbow]
-            },
-        },
+        // MuiCssBaseline: {
+        //     '@global': {
+        //         // '@font-face': [raleway, ralewayBold, elainSansExtraBold, rainbow]
+        //     },
+        // },
         MuiInputBase: {
-            root: {
+            styleOverrides:{
+
+                root: {
                 borderRadius: 0,
                 // color: "#FAFAFA",
                 "&:focus": {
@@ -236,33 +244,25 @@ const WebDevSiteTheme = createTheme({
                 "& :before": {
                     // borderBottom: "1px solid "+ COLORS.MAIN,
                 }
-            }
-        },
-        MuiTooltip: {
-            tooltip: {
-                // backgroundColor: 'rgba(16, 43, 136, .9)'
-            }
+            }}
         },
         MuiSnackbarContent: {
-            root: {
+            styleOverrides:{
+                root: {
                 marginTop: "100px",
                 border: "3px solid white",
                 backgroundColor: 'rgba(210,0,39,0.9) !important'
-            }
-        },
-        MuiOutlinedInput: {
-            root:{
-                // borderRadius: 0
-            }
+            }}
         },
         MuiFilledInput: {
-            root: {
+            styleOverrides:{
+                root: {
                 // backgroundColor: "rgba(0,0,0,.3)",
                 // borderBottom: "1px solid "+ COLORS.MAIN,
                 "& .Mui-focused": {
                     borderBottomWidth: '0px solid black'
                 }
-            },
+            },}
             // notchedOutline: {
             //     "& :after":{
             //             borderColor: "red"
@@ -273,13 +273,10 @@ const WebDevSiteTheme = createTheme({
             //     // }
             // },
         },
-        MuiInputLabel: {
-            root: {
-                // color:"black",
-            }
-        },
         MuiButton: {
-            root: {
+            styleOverrides:{
+
+                root: {
                 // color: '#FFFFFF',
                 // height: '35px',
                 // padding: '8px 16px 8px 16px',
@@ -299,7 +296,7 @@ const WebDevSiteTheme = createTheme({
                 //   backgroundColor: '#BD1A00',
                 //   color: '#FCE3CC'
                 // },
-                '&$disabled': {
+                '&.Mui-disabled': {
                     // backgroundColor: '#79582d',
                     color: '#969284'
                 },
@@ -316,7 +313,7 @@ const WebDevSiteTheme = createTheme({
                 //   backgroundColor: '#2412AE',
                 //   color: '#FCE3CC'
                 // },
-                '&$disabled': {
+                '&.Mui-disabled': {
                     color: 'rgba(207, 207, 207, .5)',
                     // backgroundColor: 'rgba(16, 43, 136, .5)'
                 },
@@ -353,13 +350,8 @@ const WebDevSiteTheme = createTheme({
                 paddingBottom: "16px",
                 paddingLeft: "64px",
                 paddingRight: "64px",
-            }
+            }}
         },
-        MuiCircularProgress: {
-            // colorPrimary: {
-            //   color: '#A697E6'
-            // }
-        }
     },
 })
 

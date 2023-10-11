@@ -1,7 +1,8 @@
-import {makeStyles} from "@material-ui/core";
-import DigitalResumeTheme, {COLORS} from "../../../theme/DigitalResumeTheme";
+import {COLORS} from "../../../theme/common/ColorPalette";
+import {Theme} from "@mui/material/styles";
+import makeStyles from "@mui/styles/makeStyles";
 
-const useCustomStyles = makeStyles({
+const useCustomStyles = makeStyles((theme:Theme)=>({
     // transparentBacking: {
     //     borderLeft: `4px solid ${MixedFeelingsByTTheme.palette.primary.main}`,
     //     borderRight: `4px solid ${MixedFeelingsByTTheme.palette.primary.main}`,
@@ -20,26 +21,26 @@ const useCustomStyles = makeStyles({
     },
     endAdornedInput: {
         "& .MuiFilledInput-adornedEnd": {
-            border: "1px solid white",
+            border: "1px solid black !important",
             paddingRight: 0,
-            borderTopRightRadius: DigitalResumeTheme.shape.borderRadius,
-            borderBottomRightRadius: DigitalResumeTheme.shape.borderRadius
+            borderTopRightRadius: "4px",
+            borderBottomRightRadius: "4px"
         },
         "& .MuiOutlinedInput-adornedEnd": {
-            border: "1px solid white",
+            border: "1px solid black !important",
             paddingRight: 0,
-            borderTopRightRadius: DigitalResumeTheme.shape.borderRadius,
-            borderBottomRightRadius: DigitalResumeTheme.shape.borderRadius
+            borderTopRightRadius: "4px",
+            borderBottomRightRadius: "4px"
         },
         "& .MuiInputBase-input": {
             borderRightWidth: 0,
-            "&:hover": {
-                borderBottomColor: "white"
+            "&.Mui-hover": {
+                borderBottomColor: "black !important"
             },
         },
         "& .MuiButton-containedSecondary": {
             border: 0,
-            borderLeft: '1px solid white'
+            borderLeft: '1px solid black !important'
         }
     },
     spacer: {
@@ -58,7 +59,7 @@ const useCustomStyles = makeStyles({
         backgroundImage: (props: any) => `url(${props.bgImage})`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
-        backgroundColor: DigitalResumeTheme.palette.background.default
+        backgroundColor: theme?.palette?.background?.default
     },
     fullSection: {
         width: 'calc(100vw)',
@@ -81,6 +82,6 @@ const useCustomStyles = makeStyles({
     resumeSection: {
         borderBottom: `1px solid ${COLORS.LIGHTGRAY}`
     },
-})
+}))
 
 export default useCustomStyles

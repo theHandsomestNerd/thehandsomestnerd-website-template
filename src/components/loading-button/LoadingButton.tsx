@@ -1,18 +1,25 @@
-import {Button, CircularProgress, Grid, makeStyles, PropTypes} from '@material-ui/core'
-import React, {FunctionComponent, PropsWithChildren} from 'react'
-import DigitalResumeTheme from "../../theme/DigitalResumeTheme";
+import {Button, CircularProgress, Grid} from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
+import React, {FunctionComponent, PropsWithChildren} from 'react';
+
+import TheWebsiteTheme from "../../theme/Theme";
 import {ButtonGroupMemberEnum} from "./ButtonGroupMemberEnum";
+
+import {OverridableStringUnion} from "@mui/types";
+import {ButtonPropsColorOverrides} from "@mui/material/Button/Button";
 
 
 type CssProps = {
-    buttonGroupiness?: ButtonGroupMemberEnum, width?: number, isRounded?: boolean
+    buttonGroupiness?: ButtonGroupMemberEnum,
+    width?: number,
+    isRounded?: boolean
 }
 
 export const useStyles = makeStyles((theme) => ({
     root: {
         height: "100%",
         width: (props: any) => props.width ? `${props.width}px` : 'unset',
-        borderRadius: `0 ${theme.shape.borderRadius}px ${theme.shape.borderRadius}px 0`,
+        borderRadius: `0 ${TheWebsiteTheme.shape.borderRadius}px ${TheWebsiteTheme.shape.borderRadius}px 0`,
         borderTopLeftRadius: (props: CssProps) => {
             switch (props.buttonGroupiness) {
                 case ButtonGroupMemberEnum.CENTER:
@@ -21,7 +28,7 @@ export const useStyles = makeStyles((theme) => ({
                     return 0
                 case ButtonGroupMemberEnum.LEFT:
                 default:
-                    return theme.shape.borderRadius
+                    return TheWebsiteTheme.shape.borderRadius
             }
         },
         borderTopRightRadius: (props: CssProps) => {
@@ -32,7 +39,7 @@ export const useStyles = makeStyles((theme) => ({
                     return 0
                 case ButtonGroupMemberEnum.RIGHT:
                 default:
-                    return theme.shape.borderRadius
+                    return TheWebsiteTheme.shape.borderRadius
             }
         },
         borderBottomRightRadius: (props: CssProps) => {
@@ -43,7 +50,7 @@ export const useStyles = makeStyles((theme) => ({
                     return 0
                 case ButtonGroupMemberEnum.RIGHT:
                 default:
-                    return theme.shape.borderRadius
+                    return TheWebsiteTheme.shape.borderRadius
 
             }
         },
@@ -55,7 +62,7 @@ export const useStyles = makeStyles((theme) => ({
                     return 0
                 case ButtonGroupMemberEnum.LEFT:
                 default:
-                    return theme.shape.borderRadius
+                    return TheWebsiteTheme.shape.borderRadius
             }
         },
     }
@@ -67,7 +74,10 @@ export interface LoadingButtonIProps {
     isRounded?: boolean
     clickHandler?: (e: any) => void
     isLoading?: boolean
-    color?: PropTypes.Color
+    color?: OverridableStringUnion<
+        'inherit' | 'primary' | 'secondary' | 'success' | 'error' | 'info' | 'warning',
+        ButtonPropsColorOverrides
+    >
     groupiness?: ButtonGroupMemberEnum
     width?: number
     href?: string
@@ -80,34 +90,34 @@ const LoadingButton: FunctionComponent<PropsWithChildren<LoadingButtonIProps>> =
     const getProgressContrastColor = () => {
         switch (props.color) {
             case 'primary':
-                return DigitalResumeTheme.palette.primary.main
+                return TheWebsiteTheme.palette.primary.main
             case 'secondary':
-                return DigitalResumeTheme.palette.secondary.main
+                return TheWebsiteTheme.palette.secondary.main
             default:
                 return '#FFFFFF'
         }
     }
 
     return (
-        <Grid item style={{minHeight: "60px", height:"100%", marginRight:"-16px"}}>
+        <Grid item style={{minHeight: "60px", height: "100%", marginRight: "-16px"}}>
             <Button
-                    style={{boxShadow: 'none'}}
-                    href={props.href}
-                    disabled={props.disabled}
-                    onClick={props.clickHandler}
-                    className={classes.root}
-                    fullWidth={!props.width}
-                    color={props.color ?? 'primary'}
-                    variant={props.variant ?? 'contained'}>
-                    {
-                        props.isLoading ?
-                            <CircularProgress style={{
-                                color: DigitalResumeTheme.palette.getContrastText(getProgressContrastColor()),
-                                width: "22px",
-                                height: "22px"
-                            }}/>
-                            : props.children
-                    }</Button>
+                style={{boxShadow: 'none'}}
+                href={props.href}
+                disabled={props.disabled}
+                onClick={props.clickHandler}
+                className={classes.root}
+                fullWidth={!props.width}
+                color={props.color ?? 'primary'}
+                variant={props.variant ?? 'contained'}>
+                {
+                    props.isLoading ?
+                        <CircularProgress style={{
+                            color: TheWebsiteTheme.palette.getContrastText(getProgressContrastColor()),
+                            width: "22px",
+                            height: "22px"
+                        }}/>
+                        : props.children
+                }</Button>
         </Grid>
 
     )

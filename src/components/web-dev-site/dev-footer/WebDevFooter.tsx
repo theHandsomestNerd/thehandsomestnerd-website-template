@@ -1,17 +1,19 @@
 import React, {FunctionComponent} from 'react'
-import {makeStyles, Theme} from '@material-ui/core/styles'
-import {Grid} from '@material-ui/core'
+import {Theme} from '@mui/material/styles';
+import makeStyles from '@mui/styles/makeStyles';
+import {Grid} from '@mui/material'
 import WebDevFooterMenuContainer from './WebDevFooterMenuContainer'
-import {SanityMenuContainer, SanityTransformHwHomePage} from "../../../common/sanityIo/Types";
-import DigitalResumeTheme, {COLORS} from "../../../theme/DigitalResumeTheme";
+import {SanityMenuContainer} from "../../../common/sanityIo/Types";
+import WebDevSiteTheme from "../../../theme/WebDevSiteTheme";
+import TheWebsiteTheme from "../../../theme/Theme";
 
 export const useStyles = makeStyles((theme: Theme) => ({
   root: {
-    backgroundColor: theme.palette.secondary.main,
+    backgroundColor: WebDevSiteTheme.palette.secondary.main,
     // color: '#FDF3EB',
     // marginLeft: -1 * theme.spacing(1),
     // zIndex: 1000,
-    padding: theme.spacing(4),
+    padding: WebDevSiteTheme.spacing(4),
     '& .MuiFormLabel-root': {
       color: 'white',
     },
@@ -43,7 +45,7 @@ interface IProps {
 }
 
 const WebDevFooter: FunctionComponent<IProps> = (props:IProps) => {
-  const classes = useStyles(DigitalResumeTheme)
+  const classes = useStyles(TheWebsiteTheme)
 
   return (
     <Grid container className={classes.root}>

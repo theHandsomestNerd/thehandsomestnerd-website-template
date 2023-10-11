@@ -1,12 +1,13 @@
-import React, {FunctionComponent, useContext} from 'react'
+import React, {FunctionComponent} from 'react'
 import {v4 as uuidv4} from 'uuid'
-import {makeStyles, Theme} from "@material-ui/core/styles"
-import {Button, Grid, Popover, Typography} from '@material-ui/core'
-import {ArrowDropDown} from "@material-ui/icons";
-import DigitalResumeTheme, {COLORS} from "../../../theme/DigitalResumeTheme";
+import {Theme} from "@mui/material/styles";
+import makeStyles from '@mui/styles/makeStyles';
+import {Button, Grid, Popover, Typography, useTheme} from '@mui/material'
+import {ArrowDropDown} from "@mui/icons-material";
 import SubMenu from "./SubMenu";
 import {SanityMenuGroup, SanityMenuItem} from "../../../common/sanityIo/Types";
-import MediaQueriesContext from "../../media-queries-context/MediaQueriesContext";
+import {COLORS} from "../../../theme/common/ColorPalette";
+import widthUtils from "../../../utils/widthUtils";
 
 
 export const useStyles = makeStyles((theme: Theme) => ({}))
@@ -19,11 +20,11 @@ interface FilteredMenuProps {
 }
 
 const FilteredMenuItems: FunctionComponent<FilteredMenuProps> = ({
-                                                                 subMenus,
-                                                                 onlyButtons,
-                                                                 includeMenuItems,
-                                                                 includeMenuGroups
-                                                             }) => {
+                                                                     subMenus,
+                                                                     onlyButtons,
+                                                                     includeMenuItems,
+                                                                     includeMenuGroups
+                                                                 }) => {
     const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>();
     const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
         setAnchorEl(event.currentTarget);
@@ -35,10 +36,11 @@ const FilteredMenuItems: FunctionComponent<FilteredMenuProps> = ({
         setAnchorEl(null);
     };
 
-    const mediaQueriesContext = useContext(MediaQueriesContext)
+    const theme = useTheme()
 
+    const mdDown = widthUtils.useIsWidthDown('md')
 
-    return (<Grid item container justifyContent={mediaQueriesContext.mdDown?'flex-start':'flex-end'}>{
+    return (<Grid item container justifyContent={mdDown ? 'flex-start' : 'flex-end'}>{
             subMenus?.map(
                 (menuLink: any, index) => {
                     console.log(menuLink._type)
@@ -48,13 +50,13 @@ const FilteredMenuItems: FunctionComponent<FilteredMenuProps> = ({
                             <Button href={menuItem.url ?? ""}
                                     color={menuItem.isOutlinedButton || menuItem.isContainedButton ? 'secondary' : "primary"}
                                     style={{
-                                        borderRadius: (menuItem.isOutlinedButton || menuItem.isContainedButton) ? DigitalResumeTheme.shape.borderRadius : 0,
-                                        paddingLeft: (menuItem.isOutlinedButton || menuItem.isContainedButton) ? DigitalResumeTheme.spacing(4) : DigitalResumeTheme.spacing(2),
-                                        paddingRight: (menuItem.isOutlinedButton || menuItem.isContainedButton) ? DigitalResumeTheme.spacing(4) : DigitalResumeTheme.spacing(2),
-                                        marginTop: (menuItem.isOutlinedButton || menuItem.isContainedButton) ? DigitalResumeTheme.spacing(3) : 0,
-                                        marginBottom: (menuItem.isOutlinedButton || menuItem.isContainedButton) ? DigitalResumeTheme.spacing(2) : 0,
+                                        borderRadius: (menuItem.isOutlinedButton || menuItem.isContainedButton) ? theme.shape.borderRadius : 0,
+                                        paddingLeft: (menuItem.isOutlinedButton || menuItem.isContainedButton) ? theme.spacing(4) : theme.spacing(2),
+                                        paddingRight: (menuItem.isOutlinedButton || menuItem.isContainedButton) ? theme.spacing(4) : theme.spacing(2),
+                                        marginTop: (menuItem.isOutlinedButton || menuItem.isContainedButton) ? theme.spacing(3) : 0,
+                                        marginBottom: (menuItem.isOutlinedButton || menuItem.isContainedButton) ? theme.spacing(2) : 0,
                                         height: menuItem.isOutlinedButton || menuItem.isContainedButton ? "48px" : "100%",
-                                        color: menuItem.isOutlinedButton || menuItem.isContainedButton ? 'white' : DigitalResumeTheme.palette.secondary.main
+                                        color: menuItem.isOutlinedButton || menuItem.isContainedButton ? 'white' : theme.palette.secondary.main
                                     }}
                                     variant={menuItem.isContainedButton ? 'contained' : (menuItem.isOutlinedButton ? 'outlined' : 'text')}>
                                 <Typography noWrap
@@ -74,33 +76,33 @@ const FilteredMenuItems: FunctionComponent<FilteredMenuProps> = ({
                                 color={"secondary"}
                                 style={{
                                     borderRadius: 0,
-                                    paddingLeft: DigitalResumeTheme.spacing(2),
-                                    paddingRight: DigitalResumeTheme.spacing(3),
+                                    paddingLeft: theme.spacing(2),
+                                    paddingRight: theme.spacing(3),
                                     height: "100%",
-                                    color: DigitalResumeTheme.palette.secondary.main
+                                    color: theme.palette.secondary.main
                                 }}
                                 onClick={handleClick}
-                                endIcon={<ArrowDropDown ></ArrowDropDown>}
+                                endIcon={<ArrowDropDown></ArrowDropDown>}
                             >
                                 <Typography variant='body2'
                                             style={{fontSize: "18px"}}>{menuGroup.menuGroupTitle}</Typography>
-                            <Popover
-                                // id={menuLink._type + "-" + menu + "-" + index}
-                                id={uuidv4()}
-                                open={open}
-                                elevation={1}
-                                anchorEl={anchorEl}
-                                onClose={handleClose}
-                                PaperProps={{style: {borderTopLeftRadius: 0, borderTopRightRadius: 0}}}
-                                anchorOrigin={{
-                                    vertical: anchorEl?.offsetHeight??0,
-                                    horizontal: anchorEl?.offsetLeft??0,
-                                }}
-                            >
-                                <Grid container item style={{backgroundColor: COLORS.GRAY}}>
-                                    <SubMenu subMenu={menuGroup}/>
-                                </Grid>
-                            </Popover>
+                                <Popover
+                                    // id={menuLink._type + "-" + menu + "-" + index}
+                                    id={uuidv4()}
+                                    open={open}
+                                    elevation={1}
+                                    anchorEl={anchorEl}
+                                    onClose={handleClose}
+                                    PaperProps={{style: {borderTopLeftRadius: 0, borderTopRightRadius: 0}}}
+                                    anchorOrigin={{
+                                        vertical: anchorEl?.offsetHeight ?? 0,
+                                        horizontal: anchorEl?.offsetLeft ?? 0,
+                                    }}
+                                >
+                                    <Grid container item style={{backgroundColor: COLORS.GRAY}}>
+                                        <SubMenu subMenu={menuGroup}/>
+                                    </Grid>
+                                </Popover>
                             </Button>
                         </Grid>
                     }

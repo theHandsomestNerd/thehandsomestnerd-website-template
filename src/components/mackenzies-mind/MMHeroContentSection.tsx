@@ -1,13 +1,13 @@
 import React, {FunctionComponent, useContext} from 'react'
-import {makeStyles, Theme} from '@material-ui/core/styles'
-import {Button, Grid, Typography} from '@material-ui/core'
+import { Theme } from '@mui/material/styles';
+import makeStyles from '@mui/styles/makeStyles';
+import {Button, Grid, Typography} from '@mui/material'
 import {urlFor} from '../block-content-ui/static-pages/cmsStaticPagesClient'
 import {ThwHeroContentSectionType} from "../BlockContentTypes";
-import clsx from "clsx";
-import DigitalResumeTheme, {COLORS, rainbow} from "../../theme/DigitalResumeTheme";
 import firebaseAnalyticsClient from "../../utils/firebase/FirebaseAnalyticsClient";
 import PageContext from "../page-context/PageContext";
 import useCustomStyles from "./pages/Styles";
+import {COLORS} from "../../theme/common/ColorPalette";
 
 interface IProps {
     sectionData: ThwHeroContentSectionType
@@ -65,7 +65,9 @@ const MMHeroContentSection: FunctionComponent<IProps> = (props) => {
                         <Grid container direction='column' style={{paddingLeft: "40px", paddingTop: "80px"}}>
                             <Grid item style={{marginBottom: "30px"}}>
                                 <Typography variant='h1'
-                                            color={'primary'} style={{...rainbow}}>{props.sectionData.contentTitle}</Typography>
+                                            color={'primary'} style={{fontFamily:"Oswald"
+
+,}}>{props.sectionData.contentTitle}</Typography>
                             </Grid>
                             <Grid container item>
                                 <Button color='primary' variant='text'

@@ -1,10 +1,8 @@
 import React, {FunctionComponent, useContext} from 'react'
-import {makeStyles, Theme} from "@material-ui/core/styles"
 import {SanityTransformHwHomePage} from "../../../common/sanityIo/Types";
 import PageContext from "../../page-context/PageContext";
 import {useParams} from 'react-router';
 import LoadingPage from "./loading-page/LoadingPage";
-import {Grid} from "@material-ui/core";
 import FourOhFour from "../../transform-hw/pages/error-page/FourOhFour";
 import UnderConstruction from "../../transform-hw/pages/under-construction-page/UnderConstruction";
 import PageLayout from "./PageLayout";
@@ -25,10 +23,10 @@ const PageMux: FunctionComponent<IProps> = (props: IProps) => {
             console.log("found a slug in the mux", urlParams)
             pageContext.fetchPage && pageContext.fetchPage(urlParams.pageSlug)
         }
-    },[])
+    }, [])
 
     const PageContents = () => {
-        if (!pageContext.page || pageContext.isPageLoading)
+        if (!pageContext.page || pageContext.isPageLoading || !pageContext.page.theme)
             return <LoadingPage/>
 
         if (pageContext.page && !pageContext.page.isUnderConstruction) {
@@ -46,7 +44,7 @@ const PageMux: FunctionComponent<IProps> = (props: IProps) => {
     }
 
 
-    return <PageContents />
+    return <PageContents/>
 }
 
 export default PageMux
