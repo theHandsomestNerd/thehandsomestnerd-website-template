@@ -31,6 +31,16 @@ export default {
             type: 'string',
         },
         {
+            name: 'logoText',
+            title: 'Logo Text',
+            type: 'string',
+        },
+        {
+            name: 'logoAccentText',
+            title: 'Logo Accent Text',
+            type: 'string',
+        },
+        {
             name: 'subMenus',
             title: 'Sub Menu',
             type: 'array',

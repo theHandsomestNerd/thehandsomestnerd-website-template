@@ -1,5 +1,5 @@
 import React from 'react';
-import {SanityMuiTheme} from "../../common/sanityIo/Types";
+import {Theme} from "@mui/material/styles";
 
 export type CustomizedThemeContextType = {
     customizedTheme?: any

@@ -1,4 +1,4 @@
-import React, {FunctionComponent} from 'react'
+import React, {FunctionComponent, useContext} from 'react'
 import {Theme} from "@mui/material/styles";
 import makeStyles from '@mui/styles/makeStyles';
 import {AppBar, Grid, Typography, useTheme} from '@mui/material'
@@ -8,31 +8,38 @@ import clsx from "clsx";
 import {COLORS} from "../../../theme/common/ColorPalette";
 import widthUtils from "../../../utils/widthUtils";
 import TheWebsiteTheme from "../../../theme/Theme";
+import Logo from "../../transform-hw/logo/Logo";
+import CustomizedThemeContext from "../../customized-theme-provider/CustomizedThemeContext";
+import {SanityMenuContainer} from "../../../common/sanityIo/Types";
 
 export const useStyles = makeStyles((theme: Theme) => ({
-    root: {
+    root:(props:any) => ({
         backgroundColor: COLORS.TRANSPARENTWHITE,
         transition: 'background-color .5s ease 0s',
-        paddingLeft: TheWebsiteTheme
-            .spacing(4),
-        height: TheWebsiteTheme
-            .mixins.toolbar.height
-    },
+        paddingLeft: props.paddingLeft,
+        height: props.appBarHeight
+    }),
     opaque: {
         backgroundColor: `${COLORS.LIGHTGRAY} !important`,
     }
 }))
 
 export type HeaderProps = {
-    pageHeader?: any
+    pageHeader?: SanityMenuContainer
     updateIsLoading?: (value: boolean) => void
 }
 
 const Header: FunctionComponent<HeaderProps> = (props) => {
-    const classes = useStyles()
+    const customizedTheme = useContext(CustomizedThemeContext)
+
+    const classes = useStyles({
+        paddingLeft: customizedTheme.customizedTheme.spacing(4),
+        appBarHeight: customizedTheme.customizedTheme.mixins.toolbar.height
+    })
+
     const mdDown = widthUtils.useIsWidthDown('md')
 
-    const theme = useTheme()
+    // const theme = useTheme()
     React.useEffect(() => {
         console.log("Page header in the header", props.pageHeader)
     }, [props.pageHeader])
@@ -41,18 +48,9 @@ const Header: FunctionComponent<HeaderProps> = (props) => {
 
     return (
         <AppBar className={clsx({[classes.opaque]: true}, classes.root)}>{props.pageHeader?.title ?
-            <Grid item xs={12} container justifyContent="space-between" alignItems='stretch' alignContent='center'
-                  spacing={mdDown ? 3 : 0}>
+            <Grid style={{height: "100%"}} item xs={12} container justifyContent="space-between" alignContent='center'>
                 <Grid item container xs={3} sm={2} md={1} alignItems='center' alignContent='center' wrap={'nowrap'}>
-                    <Typography style={{
-                        fontFamily: "Oswald"
-
-                        , fontWeight: "300"
-                    }} variant='h3' color='textPrimary'>Terrell</Typography><Typography variant='h4' color='primary'
-                                                                                        display='inline' style={{
-                    fontFamily: "Oswald"
-                    , fontWeight: "300"
-                }}>.</Typography>
+                    <Logo logoText={props.pageHeader.logoText} logoAccentText={props.pageHeader.logoAccentText}/>
                 </Grid>
                 <Grid item container xs={9} sm={10} md={11} justifyContent='flex-end' alignItems='center'
                       alignContent='center'>
@@ -60,7 +58,7 @@ const Header: FunctionComponent<HeaderProps> = (props) => {
                                    alignItems='center'
                                    style={{
                                        height: "100%",
-                                       paddingRight: mdDown ? theme.spacing(0) : theme.spacing(4)
+                                       paddingRight: mdDown ? customizedTheme.customizedTheme?.spacing(0) : customizedTheme.customizedTheme?.spacing(4)
                                    }}>
                         <FilteredMenuItems
                             // bgColor={!mdDown ? TransformHWTheme.palette.primary.main : COLORS.TRANSPARENTWHITE}

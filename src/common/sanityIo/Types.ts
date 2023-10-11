@@ -76,6 +76,7 @@ export type SanityUnderConstructionPageType = {
 export type SanityMuiTheme = {
     title?: string
     slug?: SanitySlug
+    appBarHeight?: number
     breakpoints?: SanityMuiBreakpoints
     colorPalette?: SanityMuiColorPalette
     typography?: SanityMuiTypography
@@ -202,6 +203,8 @@ export type SanityMenuContainer = {
     displayText?: string,
     subMenus?: SanityMenuGroup & SanityMenuItem[]
     logoImageAltText?: string
+    logoText?: string
+    logoAccentText?: string
     logoImageSrc?: SanityImageAsset
 }
 

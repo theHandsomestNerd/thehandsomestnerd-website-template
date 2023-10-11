@@ -36,7 +36,9 @@ const MENUGROUPCONTAINER = `
             ${MENUGROUP}
           },
           logoImageSrc,
-          logoImageAltText
+          logoImageAltText,
+          logoAccentText,
+          logoText
 `
 
 const SERVICE =

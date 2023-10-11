@@ -9,7 +9,6 @@ import {SanityMenuContainer} from "../../common/sanityIo/Types";
 import widthUtils from "../../utils/widthUtils";
 
 
-export const useStyles = makeStyles((theme: Theme) => ({}))
 
 interface FilteredMenuItemsProps {
     subMenus: SanityMenuContainer[]
@@ -36,7 +35,7 @@ const FilteredMenuItems: FunctionComponent<FilteredMenuItemsProps> = ({
     textStyle,contentJustification
                                                              }) => {
     const mdDown = widthUtils.useIsWidthDown('md')
-    return (<Grid item container justifyContent={contentJustification ? contentJustification: (mdDown ? 'flex-start' : 'flex-end')} alignItems='stretch' style={{height: "100%"}}>
+    return (<Grid item container justifyContent={contentJustification ? contentJustification: (mdDown ? 'flex-start' : 'flex-end')} alignItems='stretch' style={{height: "100%"}} alignContent='center'>
             {
                 subMenus?.reduce(
                     (accumulated: JSX.Element[], menuButton:any, index) => {

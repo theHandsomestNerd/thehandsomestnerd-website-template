@@ -141,7 +141,8 @@ const CustomizedThemeProvider: FunctionComponent<IProps & PropsWithChildren> = (
                 },
                 mixins: {
                     toolbar: {
-                        height: "55px"
+                        // height: "55px"
+                        height: pageContext.page?.theme.appBarHeight + "px"
                     }
                 },
                 typography: {

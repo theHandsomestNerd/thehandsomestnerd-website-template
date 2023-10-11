@@ -18,6 +18,11 @@ export default {
             },
         },
         {
+            name: 'appBarHeight',
+            title: 'App Bar Height',
+            type: 'number',
+        },
+        {
             name: 'breakpoints',
             title: 'BreakPoints',
             type: 'MuiBreakpoints',
