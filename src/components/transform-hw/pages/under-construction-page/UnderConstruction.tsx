@@ -7,7 +7,7 @@ import CssFadeToColor from "../../../css-fade-to-color/CssFadeToColor";
 import {SanityRef, SanityUnderConstructionPageType} from "../../../../common/sanityIo/Types";
 import cmsClient from "../../../block-content-ui/cmsClient";
 import SubmitEmail from "../SubmitEmail";
-import Logo from "../../logo/Logo";
+import Logo from "../../../logo/Logo";
 import {urlFor} from "../../../block-content-ui/static-pages/cmsStaticPagesClient";
 import MailTo from "../../../mail-to/MailTo";
 import {COLORS} from "../../../../theme/common/ColorPalette";

@@ -2,7 +2,7 @@ import {CircularProgress, Grid, Theme, Typography, useTheme} from '@mui/material
 import makeStyles from '@mui/styles/makeStyles';
 import React, {FunctionComponent} from 'react'
 import useCustomStyles from "../Styles";
-import Logo from "../../../transform-hw/logo/Logo";
+import Logo from "../../../logo/Logo";
 
 
 export const useStyles = makeStyles((theme: Theme) => ({

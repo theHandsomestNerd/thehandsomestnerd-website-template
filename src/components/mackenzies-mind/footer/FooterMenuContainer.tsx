@@ -6,10 +6,11 @@ import makeStyles from '@mui/styles/makeStyles';
 import {SanityMenuContainer} from "../../../common/sanityIo/Types";
 import PageContext from "../../page-context/PageContext";
 import MailTo from "../../mail-to/MailTo";
-import Logo from "../../transform-hw/logo/Logo";
+import Logo from "../../logo/Logo";
 import {COLORS} from "../../../theme/common/ColorPalette";
 import TheWebsiteTheme from "../../../theme/Theme";
 import widthUtils from "../../../utils/widthUtils";
+import AlternatingText from "../../logo/AlternatingText";
 
 export const useStyles = makeStyles( ({
     root: {
@@ -58,26 +59,7 @@ const FooterMenuContainer: FunctionComponent<IProps> = (props: IProps) => {
                 {props.pageFooterMenu?.logoImageSrc ?
                     <Logo isCenter logoImageSrc={props.pageFooterMenu.logoImageSrc} height={108}/> :
                     <Grid container item justifyContent='center' alignContent='center'>
-                        <Typography component='div'
-                                    align='center'
-                                    color='primary'
-                                    style={{
-                                        fontFamily: "Oswald"
-                                        , fontWeight: "300", color: COLORS.DARKERGRAY
-                                    }} variant='h2'> James <Typography display='inline'
-                                                                       style={{
-                                                                           fontFamily: "Oswald"
-
-                                                                           , fontWeight: "300",
-                                                                       }}
-                                                                       variant='h2'
-                                                                       color='primary'>Terrell</Typography> Singleton<Typography
-                            display='inline' style={{
-                            fontFamily: "Oswald"
-
-                            , fontWeight: "300",
-                        }} variant='h2'
-                            color='primary'>.</Typography></Typography>
+                        <AlternatingText  isLarge={true} logoText={props.pageFooterMenu?.logoText} logoAccentText={props.pageFooterMenu?.logoAccentText} />
                     </Grid>}
                 <Grid item container justifyContent='center' style={{
                     paddingBottom: "16px",

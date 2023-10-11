@@ -1,10 +1,11 @@
 import React, {FunctionComponent} from 'react'
 import {Theme} from "@mui/material/styles";
 import makeStyles from '@mui/styles/makeStyles';
-import {Grid, Typography} from '@mui/material'
-import {urlFor} from "../../block-content-ui/static-pages/cmsStaticPagesClient";
+import {Grid} from '@mui/material'
+import {urlFor} from "../block-content-ui/static-pages/cmsStaticPagesClient";
 import {SanityImageSource} from "@sanity/asset-utils";
 import logoImg from './thehandsomestNerdlogo-small.png'
+import AlternatingText from './AlternatingText';
 
 interface CssProps {
     logoImageSrc?: SanityImageSource
@@ -46,21 +47,7 @@ const Logo: FunctionComponent<LogoProps> = (props) => {
         : <Grid container item className={classes.root}
                 style={{paddingTop: '12px'}}
                 justifyContent={props.isCenter ? 'center' : 'flex-start'}>
-            <Typography
-                style={{
-                    fontFamily: "Oswald",
-                    fontWeight: "300"
-                }}
-                variant='h3'
-                color='textPrimary'>{props.logoText}</Typography>
-            <Typography
-                variant='h3'
-                color='primary'
-                display='inline'
-                style={{
-                    fontFamily: "Oswald",
-                    fontWeight: "300"
-                }}>{props.logoAccentText ? props.logoAccentText : ""}</Typography>
+            <AlternatingText logoText={props.logoText} logoAccentText={props.logoAccentText}/>
         </Grid>
 
 }

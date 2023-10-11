@@ -8,7 +8,7 @@ import TheWebsiteTheme from "../../../theme/Theme";
 import MainMenuSubMenu from "./MainMenuSubMenu";
 import {MainMenuAnchorType, SanityMenuContainer, SanityMenuGroup, SanityMenuItem} from "../../../common/sanityIo/Types";
 import ModalContext from "../../snackbar-context/ModalContext";
-import Logo from "../../transform-hw/logo/Logo";
+import Logo from "../../logo/Logo";
 
 
 const useStyles = makeStyles((theme: Theme) =>

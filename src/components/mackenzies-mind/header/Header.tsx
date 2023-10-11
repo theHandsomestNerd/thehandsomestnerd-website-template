@@ -8,7 +8,7 @@ import clsx from "clsx";
 import {COLORS} from "../../../theme/common/ColorPalette";
 import widthUtils from "../../../utils/widthUtils";
 import TheWebsiteTheme from "../../../theme/Theme";
-import Logo from "../../transform-hw/logo/Logo";
+import Logo from "../../logo/Logo";
 import CustomizedThemeContext from "../../customized-theme-provider/CustomizedThemeContext";
 import {SanityMenuContainer} from "../../../common/sanityIo/Types";
 
