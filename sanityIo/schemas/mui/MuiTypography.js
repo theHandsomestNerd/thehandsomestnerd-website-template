@@ -14,7 +14,7 @@ export default {
             type: "array",
             of:[{type: "string", options: {
                     list: [
-                        {value: "RAINBOW", title: "Rainbow"},
+                        {value: "OSWALD", title: "Oswald"},
                         {value: "RALEWAY", title: "Raleway"}
                     ]
                 }}],
