@@ -192,7 +192,7 @@ const ResumeContactUsSection: FunctionComponent<ContactUsProps> = (props) => {
             >
                 <Grid container item spacing={3}>
                     <Grid item container sm={4} alignContent='flex-start' spacing={1}>
-                        <Grid item>
+                        <Grid item container>
                             <Typography
                                 variant='h6'
                             >{props.sectionData.title}</Typography>
