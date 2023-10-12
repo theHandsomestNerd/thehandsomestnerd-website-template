@@ -37,9 +37,9 @@ const ResumeSkillsSection: FunctionComponent<IProps> = (props: IProps) => {
             >
                 <Grid container item spacing={3}>
                     <Grid item container md={4} alignContent='flex-start' spacing={1}>
-                        <Grid item><Typography variant='h6'>{props.sectionData.title}<Typography variant='h6'
+                        <Grid item container><Typography component='div' variant='h6'>{props.sectionData.title}</Typography><Typography variant='h6'
                                                                                                  color='primary'
-                                                                                                 display='inline'>.</Typography></Typography></Grid>
+                                                                                                 display='inline'>.</Typography></Grid>
                         <Grid item><Typography variant='body1'>{props.sectionData.introduction}</Typography></Grid>
                     </Grid>
                     <Grid item container md={8} spacing={2} justifyContent='space-between'>

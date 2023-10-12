@@ -88,17 +88,10 @@ const PageProvider: FunctionComponent<IProps & PropsWithChildren> = (
     const loadedPageQuery = cmsClient.useFetchPageBySlugQuery(state.pageSlug)
 
     React.useEffect(() => {
-        if (state.analyticsId) {
-            console.log("states analytics changd", state.analyticsId)
-
-        }
-    }, [state.analyticsId])
-
-    React.useEffect(() => {
         if (!props.page && (state.pageSlug && state.pageSlug.length > 0)) {
-            console.log("states pageslug changd", state.pageSlug)
+            // console.log("states pageslug changd", state.pageSlug)
             loadedPageQuery.refetch().then((resp) => {
-                console.log("reftecth?", resp)
+                // console.log("reftecth?", resp)
             })
         }
     }, [state.pageSlug])

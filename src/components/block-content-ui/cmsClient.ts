@@ -3,7 +3,7 @@ import {
     SanityBlog,
     SanityBlogCategory,
     SanityBlogGroup, SanityBlogPreview,
-    SanityLandingPage, SanityMenuContainer,
+    SanityLandingPage, SanityMenuContainer, SanityMuiTheme,
     SanityRef, SanityTransformHwHomePage
 } from '../../common/sanityIo/Types'
 
@@ -63,6 +63,16 @@ const fetchBlogPost = (slug: string): Promise<SanityBlog> => {
        }`,
             {slug}
         ).then((data: SanityBlog[]) => {
+            return data[0]
+        })
+}
+
+const fetchMuiTheme = (slug: string): Promise<SanityMuiTheme> => {
+    return sanityClient
+        .fetch(
+            `*[_type=="MuiTheme" && slug.current == $slug]`,
+            {slug}
+        ).then((data: SanityMuiTheme[]) => {
             return data[0]
         })
 }
@@ -294,13 +304,12 @@ const fetchRefs = async (sanityRefs: SanityRef[]): Promise<any> => {
 }
 
 const useFetchPageBySlugQuery = (slug: string) => {
-    console.log("slug", slug)
+    // console.log("slug", slug)
     return useQuery(
         ['fetchPageBySlug', slug],
         async ({queryKey}) => {
             const [_, pageSlug] = queryKey
 
-            console.log(" Lookin for page with slug", pageSlug, queryKey)
             if (pageSlug && pageSlug.length > 0) {
                 return sanityClient
                     .fetch(
@@ -475,5 +484,6 @@ export default {
     useFetchMenuBySlugQuery,
     useFetchServicesQuery,
     useFetchRefsQuery,
-    useFetchMenuByRefQuery
+    useFetchMenuByRefQuery,
+    fetchMuiTheme
 }

@@ -82,7 +82,7 @@ const HeaderBlockContentLayoutContainer: FunctionComponent<HeaderBlockContentLay
                         const developmentHeader: DevelopmentHeaderSectionType = columnLayoutContainer
 
                         return (
-                                <ThemeProvider theme={WebDevSiteTheme}><Grid key={'TOP_OF_PAGE_DEV'} container item xs={12} style={{height: WebDevSiteTheme.mixins.toolbar.height}} alignContent='center' alignItems='center'>
+                                <ThemeProvider theme={WebDevSiteTheme} key={'TOP_OF_PAGE_DEV'}><Grid  container item xs={12} style={{height: WebDevSiteTheme.mixins.toolbar.height}} alignContent='center' alignItems='center'>
                                     <Link id={"TOP_OF_PAGE"} underline="hover"><></>
                                     </Link>
                                     <DevelopmentHeader
@@ -94,7 +94,7 @@ const HeaderBlockContentLayoutContainer: FunctionComponent<HeaderBlockContentLay
                         const header: HeaderSectionType = columnLayoutContainer
 
                         return (
-                                <ThemeProvider theme={TheWebsiteTheme}><Grid key={'TOP_OF_PAGE'} container item xs={12} style={{height: TheWebsiteTheme.mixins.toolbar.height}}>
+                                <ThemeProvider theme={TheWebsiteTheme}  key={'TOP_OF_PAGE'}><Grid container item xs={12} style={{height: TheWebsiteTheme.mixins.toolbar.height}}>
                                     <Link id={"TOP_OF_PAGE"} underline="hover"><></>
                                     </Link>
                                     <Header

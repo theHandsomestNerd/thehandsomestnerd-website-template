@@ -20,7 +20,7 @@ const PageMux: FunctionComponent<IProps> = (props: IProps) => {
 
     React.useEffect(() => {
         if (urlParams.pageSlug) {
-            console.log("found a slug in the mux", urlParams)
+            // console.log("found a slug in the mux", urlParams)
             pageContext.fetchPage && pageContext.fetchPage(urlParams.pageSlug)
         }
     }, [])

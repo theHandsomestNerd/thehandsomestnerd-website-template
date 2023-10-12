@@ -20,4 +20,7 @@ export enum COLORS {
     DARKERGRAY = "#383838",
     DARK_GRAY = '#A8A9AC',
     LIGHTER_GRAY = '#E3E3E3',
+    PINK = '#FFA9E7',
+    DARKORANGE = 'rgb(70,38,0)',
+    LIGHT_GRAY2 = '#E3E3E3',
 }

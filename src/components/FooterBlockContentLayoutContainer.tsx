@@ -68,8 +68,7 @@ const FooterBlockContentLayoutContainer: FunctionComponent<FooterBlockContentLay
                         const developmentFooter: DevelopmentFooterSectionType = columnLayoutContainer
 
                         return (
-                            <StyledEngineProvider injectFirst>
-                                <ThemeProvider theme={WebDevSiteTheme}><Grid key={'BOTTOM_OF_PAGE_DEV'} container item
+                                <ThemeProvider key={'BOTTOM_OF_PAGE_DEV'}  theme={WebDevSiteTheme}><Grid container item
                                                                                        xs={12}
                                                                                        >
                                     <Link id={"BOTTOM_OF_PAGE"} underline="hover"><></>
@@ -78,14 +77,12 @@ const FooterBlockContentLayoutContainer: FunctionComponent<FooterBlockContentLay
                                         pageFooter={developmentFooter.footerMenuRef}
                                     />
                                 </Grid></ThemeProvider>
-                            </StyledEngineProvider>
                         );
                     case 'FooterSection':
                         const footer: FooterSectionType = columnLayoutContainer
 
                         return (
-                            <StyledEngineProvider injectFirst>
-                                <ThemeProvider theme={TheWebsiteTheme}><Grid key={'BOTTOM_OF_PAGE'} container item xs={12}
+                                <ThemeProvider key={'BOTTOM_OF_PAGE'}  theme={TheWebsiteTheme}><Grid container item xs={12}
                                                                                           >
                                     <Link id={"BOTTOM_OF_PAGE"} underline="hover"><></>
                                     </Link>
@@ -93,7 +90,6 @@ const FooterBlockContentLayoutContainer: FunctionComponent<FooterBlockContentLay
                                         pageFooter={footer.footerMenuRef}
                                     />
                                 </Grid></ThemeProvider>
-                            </StyledEngineProvider>
                         );
                     default:
                         return <span key={index}>Undefined section {columnLayoutContainer._type}</span>

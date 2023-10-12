@@ -42,12 +42,12 @@ const ResumePortfolioSection: FunctionComponent<IProps> = (props: IProps) => {
                         <Grid item container>
                             <Typography
                                 variant='h6'
-                            >{props.sectionData.title}
+                            >{props.sectionData.title}</Typography>
                                 <Typography
                                     variant='h6'
                                     color='primary'
                                     display='inline'
-                                >.</Typography>
+                                >.
                             </Typography>
                         </Grid>
                         <Grid item container>
@@ -56,7 +56,7 @@ const ResumePortfolioSection: FunctionComponent<IProps> = (props: IProps) => {
                     <Grid item container justifyContent={xsOnly ? 'center' : 'flex-start'}>
                         {
                             props.sectionData.portfolioEntries?.map((portfolioItem: ResumePortfolioItem, index2: number) => {
-                                return <Grid container item xs={12} sm={4} lg={3} xl={2} alignContent='flex-start'>
+                                return <Grid key={index2} container item xs={12} sm={4} lg={3} xl={2} alignContent='flex-start'>
                                     <Button onClick={(e) => sendToModal(portfolioItem)}>
                                         <Grid
                                             item container

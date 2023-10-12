@@ -75,7 +75,6 @@ const BusinessCard: FunctionComponent<MainMenuProps> = ({anchor, homePage}) => {
             return false
         })
 
-        console.log("Found bio", bioSection[0])
         setUserBio(bioSection[0])
 
 

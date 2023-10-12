@@ -40,9 +40,9 @@ const DevelopmentHeader: FunctionComponent<DevelopmentHeaderProps> = (props) => 
     const classes = useStyles()
     const mdDown = widthUtils.useIsWidthDown('md')
     const theme = useTheme()
-    React.useEffect(() => {
-        console.log("Page header in the header", props.pageHeader)
-    }, [props.pageHeader])
+    // React.useEffect(() => {
+    //     console.log("Page header in the header", props.pageHeader)
+    // }, [props.pageHeader])
 
     const pageContext = useContext(PageContext)
 

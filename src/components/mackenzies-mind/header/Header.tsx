@@ -40,9 +40,9 @@ const Header: FunctionComponent<HeaderProps> = (props) => {
     const mdDown = widthUtils.useIsWidthDown('md')
 
     // const theme = useTheme()
-    React.useEffect(() => {
-        console.log("Page header in the header", props.pageHeader)
-    }, [props.pageHeader])
+    // React.useEffect(() => {
+    //     console.log("Page header in the header", props.pageHeader)
+    // }, [props.pageHeader])
 
     const lgUp = widthUtils.useIsWidthUp('md')
 

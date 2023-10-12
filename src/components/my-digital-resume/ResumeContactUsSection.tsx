@@ -147,9 +147,9 @@ const ResumeContactUsSection: FunctionComponent<ContactUsProps> = (props) => {
         }
     );
 
-    useEffect(() => {
-        console.log("data", data)
-    }, [data])
+    // useEffect(() => {
+    //     console.log("data", data)
+    // }, [data])
 
     const getHelperText = () => {
         if (data) {
@@ -195,12 +195,12 @@ const ResumeContactUsSection: FunctionComponent<ContactUsProps> = (props) => {
                         <Grid item>
                             <Typography
                                 variant='h6'
-                            >{props.sectionData.title}
+                            >{props.sectionData.title}</Typography>
                                 <Typography
                                     variant='h6'
                                     color='primary'
                                     display='inline'
-                                >.</Typography>
+                                >.
                             </Typography>
                         </Grid>
                         <Grid item>

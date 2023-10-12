@@ -29,15 +29,15 @@ const ResumeExperienceSection: FunctionComponent<IProps> = (props: IProps) => {
         >
             <Grid container item spacing={3}>
                 <Grid item container md={4} alignContent='flex-start' spacing={1}>
-                    <Grid item><Typography variant='h6'>{props.sectionData.title}<Typography variant='h6'
+                    <Grid item container><Typography variant='h6'>{props.sectionData.title}</Typography><Typography variant='h6'
                                                                                              color='primary'
-                                                                                             display='inline'>.</Typography></Typography></Grid>
+                                                                                             display='inline'>.</Typography></Grid>
                     <Grid item><Typography variant='body1'>{props.sectionData.introduction}</Typography></Grid>
                 </Grid>
                 <Grid item container md={8} spacing={2} justifyContent={xsOnly ? 'center' : 'flex-start'}>
                     {
                         props.sectionData.experiences?.map((experience: ResumeExperience, index2: number) => {
-                            return <Grid item container alignContent='flex-start'
+                            return <Grid key={index2} item container alignContent='flex-start'
                                          style={{
                                              borderBottom: `1px solid ${index2 >= (props.sectionData.experiences?.length ?? 0) - 1 ? "transparent" : COLORS.LIGHTGRAY}`,
                                              // padding: theme.spacing(1.75, 0)

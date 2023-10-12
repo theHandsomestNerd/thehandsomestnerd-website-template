@@ -69,16 +69,15 @@ const AmenityProvider: FunctionComponent<IProps & PropsWithChildren> = (
     const pageContext = useContext(PageContext)
 
     React.useEffect(() => {
-        console.log("Generating amenities", pageContext.page?.servicesAvailable)
         pageContext.page?.servicesAvailable?.map((service) => {
             const serviceElements = generateAmenitiesElement(service.serviceAmenities, service.slug.current, service.contentTitle)
-            console.log("Generated amenties", serviceElements, service.slug.current)
+            // console.log("Generated amenties", serviceElements, service.slug.current)
             dispatch({type: "ADD_ELEMENTS", payload: {serviceId: service.slug.current, elements: serviceElements}})
         })
     }, [pageContext.page?.servicesAvailable])
 
     const generateAmenitiesElement = (amenities: any[], serviceSlug: string, serviceTitle: string) => {
-        console.log(" generate", serviceSlug, state.serviceId)
+        // console.log(" generate", serviceSlug, state.serviceId)
         // if(serviceSlug === state.serviceId)
         const newElements = amenities?.map((serviceAmenity: ServiceAmenityType) => {
             return <ListItem

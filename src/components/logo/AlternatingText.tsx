@@ -20,6 +20,7 @@ const AlternatingText: FunctionComponent<IProps> = (props: IProps) => {
 
     return <Typography display='inline' component='div' align='center'>{textArray.map((textArrayItem, index) => {
         return <Typography
+            key={index}
             display='inline'
             align='center'
             color='primary'

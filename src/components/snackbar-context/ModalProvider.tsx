@@ -19,8 +19,8 @@ const ModalProvider: FunctionComponent<IProps & PropsWithChildren> = (
     const ref: any = useRef(null)
     const xsDown = widthUtils.useIsWidthDown('xs')
 
-    const isOverflow = useIsVerticalOverflow(ref, () => {
-    })
+    // const isOverflow = useIsVerticalOverflow(ref, () => {
+    // })
     const [modalContent, setModalContent] = React.useState<SanityModalType | undefined>(
         undefined,
     );
@@ -29,12 +29,12 @@ const ModalProvider: FunctionComponent<IProps & PropsWithChildren> = (
         setModalOpen(false)
     }
 
-    React.useEffect(() => {
-        console.log("height", ref?.current?.scrollHeight, ref?.current?.clientHeight)
-    }, [ref.current])
+    // React.useEffect(() => {
+    //     console.log("height", ref?.current?.scrollHeight, ref?.current?.clientHeight)
+    // }, [ref.current])
 
     const openModal = (contents?: SanityModalType) => {
-        console.log("Opening modal", contents)
+        // console.log("Opening modal", contents)
         if (!contents) {
             return;
         }
