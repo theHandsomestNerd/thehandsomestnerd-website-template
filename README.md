@@ -45,12 +45,13 @@ Application that serves as the website builder from React Components
 * ```cd functions```
 * update sanity client with project ID
 * .env file
-  * SANITY_PROJECTID=
-  * SANITY_DB=development
-  * SANITY_API_TOKEN=
-  * SENDGRID_API_KEY=
-  * SENDGRID_FROM_EMAIL=
-
+  ```
+  SANITY_PROJECTID=
+  SANITY_DB=development
+  SANITY_API_TOKEN=
+  SENDGRID_API_KEY=
+  SENDGRID_FROM_EMAIL=
+  ```
 ### Installing
 #### UI
 * ```npm install```
@@ -72,8 +73,8 @@ Application that serves as the website builder from React Components
 * ```npm run dev```
 * navigate in browser to http://localhost:3333/
 #### Storybook
-* ```npm runs storybook```
-* navigate in browser to http://localhost:6006/
+ * ```npm run storybook```
+ * navigate in browser to http://localhost:6006/
 
 ### Deployment
 #### First Build UI
