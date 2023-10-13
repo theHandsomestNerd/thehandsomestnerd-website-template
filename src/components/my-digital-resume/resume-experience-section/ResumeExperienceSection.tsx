@@ -1,11 +1,11 @@
 import React, {FunctionComponent} from 'react'
 import {Chip, Grid, Typography, useTheme} from '@mui/material'
-import {ResumeExperience, ResumeExperienceSectionType} from "../BlockContentTypes";
-import useThwCommonStyles from "../../common/sanityIo/ThwCommonStyles";
-import {COLORS} from "../../theme/common/ColorPalette";
+import {ResumeExperience, ResumeExperienceSectionType} from "../../BlockContentTypes";
+import useThwCommonStyles from "../../../common/sanityIo/ThwCommonStyles";
+import {COLORS} from "../../../theme/common/ColorPalette";
 import {ThemeProvider} from "@mui/material/styles";
-import TheWebsiteTheme from "../../theme/Theme";
-import widthUtils from "../../utils/widthUtils";
+import TheWebsiteTheme from "../../../theme/Theme";
+import widthUtils from "../../../utils/widthUtils";
 
 interface IProps {
     sectionData: ResumeExperienceSectionType
@@ -38,11 +38,12 @@ const ResumeExperienceSection: FunctionComponent<IProps> = (props: IProps) => {
                     {
                         props.sectionData.experiences?.map((experience: ResumeExperience, index2: number) => {
                             return <Grid key={index2} item container alignContent='flex-start'
+                                         role={'experiencedivider'}
                                          style={{
                                              borderBottom: `1px solid ${index2 >= (props.sectionData.experiences?.length ?? 0) - 1 ? "transparent" : COLORS.LIGHTGRAY}`,
                                              // padding: theme.spacing(1.75, 0)
                                          }} xs={12}>
-                                <Grid container item>
+                                <Grid container item role={'experienceheader'}>
                                     <Grid item xs={12} md={4}>
                                         <Typography display='inline'
                                                     variant='body2'>{experience.companyName}</Typography>
@@ -86,7 +87,7 @@ const ResumeExperienceSection: FunctionComponent<IProps> = (props: IProps) => {
                                       style={{overflowX: "scroll", paddingBottom: theme.spacing(1)}} wrap='nowrap'>
                                     {
                                         experience.skillsUsed?.map((skill, index) => {
-                                            return <Grid item key={index}><Chip size='small' color='primary'
+                                            return <Grid item key={index}><Chip role={'experienceskill'} size='small' color='primary'
                                                                                 label={skill.title}/></Grid>
                                         })
                                     }

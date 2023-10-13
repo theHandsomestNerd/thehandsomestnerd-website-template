@@ -4,7 +4,7 @@ import makeStyles from '@mui/styles/makeStyles';
 import {Avatar, Button, Divider, Drawer, Grid, List, ListItem, Typography, useTheme,} from '@mui/material';
 import createStyles from '@mui/styles/createStyles';
 import {Close, FileCopy} from "@mui/icons-material";
-import ResumeSocialMedia from "./my-digital-resume/ResumeSocialMedia";
+import SocialMediaBlock from "./my-digital-resume/social-media-block/SocialMediaBlock";
 import {urlFor} from "./block-content-ui/static-pages/cmsStaticPagesClient";
 import {MainMenuAnchorType, SanityTransformHwHomePage} from "../common/sanityIo/Types";
 import {ResumeBioSectionType} from "./BlockContentTypes";
@@ -120,7 +120,7 @@ const BusinessCard: FunctionComponent<MainMenuProps> = ({anchor, homePage}) => {
                             padding: TheWebsiteTheme
 .spacing(2, 3)
                         }}>
-                            <ResumeSocialMedia spacing={1} bgColor color='secondary' {...homePage}/>
+                            <SocialMediaBlock spacing={1} bgColor color='secondary' {...homePage}/>
                         </Grid>
                     </Grid>
                 </Grid>

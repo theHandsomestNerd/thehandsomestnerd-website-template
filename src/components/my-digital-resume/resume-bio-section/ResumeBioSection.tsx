@@ -1,13 +1,13 @@
 import React, {FunctionComponent} from 'react'
 import {Button, ButtonGroup, Grid, ThemeProvider, Typography,} from '@mui/material';
-import {ResumeBioSectionType} from "../BlockContentTypes";
-import {urlFor} from "../block-content-ui/static-pages/cmsStaticPagesClient";
-import {SanityTransformHwHomePage} from "../../common/sanityIo/Types";
-import useThwCommonStyles from "../../common/sanityIo/ThwCommonStyles";
-import ResumeSocialMedia from "./ResumeSocialMedia";
-import BusinessCardSubmitEmail from "../transform-hw/pages/BusinessCardSubmitEmail";
-import TheWebsiteTheme from "../../theme/Theme";
-import widthUtils from "../../utils/widthUtils";
+import {ResumeBioSectionType} from "../../BlockContentTypes";
+import {urlFor} from "../../block-content-ui/static-pages/cmsStaticPagesClient";
+import {SanityTransformHwHomePage} from "../../../common/sanityIo/Types";
+import useThwCommonStyles from "../../../common/sanityIo/ThwCommonStyles";
+import SocialMediaBlock from "../social-media-block/SocialMediaBlock";
+import BusinessCardSubmitEmail from "../../transform-hw/pages/BusinessCardSubmitEmail";
+import TheWebsiteTheme from "../../../theme/Theme";
+import widthUtils from "../../../utils/widthUtils";
 
 
 interface IProps {
@@ -58,7 +58,7 @@ const ResumeBioSection: FunctionComponent<IProps> = (props: IProps) => {
                         <Grid item xs={9}><Typography noWrap gutterBottom variant='body1'>{props.homePage.address}</Typography></Grid>
                     </Grid>
                     <Grid container item xs={11} sm={12}>
-                        <ResumeSocialMedia
+                        <SocialMediaBlock
                             facebook={props.homePage.facebook}
                             twitter={props.homePage.twitter}
                             instagram={props.homePage.instagram}

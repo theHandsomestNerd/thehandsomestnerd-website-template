@@ -2,17 +2,17 @@ import type {Meta, StoryObj} from '@storybook/react';
 import LoadingButton from "../../components/loading-button/LoadingButton";
 import {ButtonGroupMemberEnum} from "../../components/loading-button/ButtonGroupMemberEnum";
 import {Grid} from "@mui/material";
-import ResumeSocialMedia from "../../components/my-digital-resume/ResumeSocialMedia";
+import SocialMediaBlock from "../../components/my-digital-resume/social-media-block/SocialMediaBlock";
 import homePageResumeData from "../data/HomePageData";
 
 
-const meta: Meta<typeof ResumeSocialMedia> = {
+const meta: Meta<typeof SocialMediaBlock> = {
     title:"Resume/Components/Resume Social Media",
-    component: ResumeSocialMedia,
+    component: SocialMediaBlock,
 };
 
 export default meta;
-type Story = StoryObj<typeof ResumeSocialMedia>;
+type Story = StoryObj<typeof SocialMediaBlock>;
 
 
 /*
@@ -29,14 +29,14 @@ export const SocialMediaBlockFromHomepage: Story = {
         github:homePageResumeData.github,
         instagram: "thehandsomestNerd"
     },
-    render: ({facebook,twitter, linkedIn, instagram, github}) => <ResumeSocialMedia facebook={facebook} twitter={twitter} linkedIn={linkedIn} github={github} instagram={instagram}></ResumeSocialMedia>,
+    render: ({facebook,twitter, linkedIn, instagram, github}) => <SocialMediaBlock facebook={facebook} twitter={twitter} linkedIn={linkedIn} github={github} instagram={instagram}></SocialMediaBlock>,
 };
 
 export const SocialMediaBlockOnlyFacebook: Story = {
     args:{
         facebook:homePageResumeData.facebook,
     },
-    render: ({facebook}) => <ResumeSocialMedia facebook={facebook}></ResumeSocialMedia>,
+    render: ({facebook}) => <SocialMediaBlock facebook={facebook}></SocialMediaBlock>,
 };
 
 export const SocialMediaBlockOnly3: Story = {
@@ -45,5 +45,5 @@ export const SocialMediaBlockOnly3: Story = {
         twitter:homePageResumeData.twitter,
         instagram: "thehandsomestNerd"
     },
-    render: ({facebook, twitter, instagram}) => <ResumeSocialMedia facebook={facebook} instagram={instagram} twitter={twitter}></ResumeSocialMedia>,
+    render: ({facebook, twitter, instagram}) => <SocialMediaBlock facebook={facebook} instagram={instagram} twitter={twitter}></SocialMediaBlock>,
 };

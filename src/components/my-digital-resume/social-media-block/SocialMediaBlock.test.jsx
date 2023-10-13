@@ -1,10 +1,10 @@
 import {render, screen} from '@testing-library/react';
-import {Grouped, Loading, Primary, PrimaryDisabled} from "../../stories/digital-resume/Button.stories";
+import {Grouped, Loading, Primary, PrimaryDisabled} from "../../../stories/digital-resume/Button.stories";
 import expect from "expect";
 import {
     SocialMediaBlockFromHomepage, SocialMediaBlockOnly3,
     SocialMediaBlockOnlyFacebook
-} from "../../stories/digital-resume/ResumeSocialMedia.stories";
+} from "../../../stories/digital-resume/SocialMediaBlock.stories";
 
 describe('Social Media Block', () => {
     test('renders buttons for each one', async () => {

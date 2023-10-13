@@ -1,6 +1,6 @@
 import {act, fireEvent, render, screen} from '@testing-library/react';
 import expect from "expect";
-import {BusinessCardSubmitEmailStory} from "../../../stories/digital-resume/SubmitEmail.stories";
+import {SubmitEmailStory} from "../../../stories/digital-resume/SubmitEmail.stories";
 import leadClient from "./under-construction-page/leadClient";
 // export function useCustomHook() {
 //     return useQuery({ queryKey: ['sendBusinessCard Email'], queryFn: () => ({isLoading:false,data:{huh:"yu"}}) });
@@ -14,7 +14,7 @@ import leadClient from "./under-construction-page/leadClient";
 // );
 describe('Business Card Submit Email', () => {
     test('renders all parts of component', async () => {
-        render(<BusinessCardSubmitEmailStory.render {...BusinessCardSubmitEmailStory.args}/>)
+        render(<SubmitEmailStory.render {...SubmitEmailStory.args}/>)
 
         expect(screen.getByRole('button')).toBeInTheDocument()
         expect(screen.getByText('Want a copy of my resume emailed to you?')).toBeInTheDocument()
@@ -23,7 +23,7 @@ describe('Business Card Submit Email', () => {
     });
 
     test('Can enter an email address', async () => {
-        render(<BusinessCardSubmitEmailStory.render {...BusinessCardSubmitEmailStory.args}/>)
+        render(<SubmitEmailStory.render {...SubmitEmailStory.args}/>)
 
 
         jest
@@ -61,7 +61,7 @@ describe('Business Card Submit Email', () => {
         expect(screen.getByText('Thank you for your submission!')).toBeInTheDocument()
     });
     test('Incorrect email address shows error', async () => {
-        render(<BusinessCardSubmitEmailStory.render {...BusinessCardSubmitEmailStory.args}/>)
+        render(<SubmitEmailStory.render {...SubmitEmailStory.args}/>)
 
         // jest
         //     .spyOn(leadClient, 'sendBusinessCardEmail')
@@ -98,7 +98,7 @@ describe('Business Card Submit Email', () => {
     });
 
     test('server error message', async () => {
-        render(<BusinessCardSubmitEmailStory.render {...BusinessCardSubmitEmailStory.args}/>)
+        render(<SubmitEmailStory.render {...SubmitEmailStory.args}/>)
 
         jest
             .spyOn(leadClient, 'sendBusinessCardEmail')

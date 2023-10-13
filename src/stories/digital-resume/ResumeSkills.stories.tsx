@@ -1,5 +1,5 @@
 import type {Meta, StoryObj} from '@storybook/react';
-import ResumeSkillsSection from "../../components/my-digital-resume/ResumeSkillsSection";
+import ResumeSkillsSection from "../../components/my-digital-resume/resume-skills-section/ResumeSkillsSection";
 import ResumeSkillSectionData from "../data/ResumeSkillSectionData";
 import ResumeBioSectionData from "../data/ResumeBioSectionData";
 import homePageResumeData from "../data/HomePageData";
@@ -19,7 +19,7 @@ type Story = StoryObj<typeof ResumeSkillsSection>;
  * to learn how to use render functions.
  */
 
-export const Primary: Story = {
+export const ResumeSkillsSectionCompleteStory: Story = {
     args :{
         sectionData: ResumeSkillSectionData,
     },

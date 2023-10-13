@@ -2,11 +2,11 @@ import React, {FunctionComponent, useContext} from 'react'
 import {Theme, ThemeProvider} from "@mui/material/styles";
 import makeStyles from '@mui/styles/makeStyles';
 import {Grid, Typography} from '@mui/material'
-import {ResumeSkillSectionType, ResumeSkillSet} from "../BlockContentTypes";
-import useThwCommonStyles from "../../common/sanityIo/ThwCommonStyles";
-import {COLORS} from "../../theme/common/ColorPalette";
-import CustomizedThemeContext from "../customized-theme-provider/CustomizedThemeContext";
-import TheWebsiteTheme from "../../theme/Theme";
+import {ResumeSkillSectionType, ResumeSkillSet} from "../../BlockContentTypes";
+import useThwCommonStyles from "../../../common/sanityIo/ThwCommonStyles";
+import {COLORS} from "../../../theme/common/ColorPalette";
+import CustomizedThemeContext from "../../customized-theme-provider/CustomizedThemeContext";
+import TheWebsiteTheme from "../../../theme/Theme";
 
 
 export const useStyles = makeStyles((theme: Theme) => ({
@@ -46,17 +46,19 @@ const ResumeSkillsSection: FunctionComponent<IProps> = (props: IProps) => {
                         {
                             props.sectionData.skillsets?.map((skillset: ResumeSkillSet, index2: number) => {
                                 return <Grid key={index2} item container xs={11} sm={6} md={6} alignContent='flex-start'
+                                             role='skilldivider'
                                              style={{
                                                  borderBottom: `1px solid ${index2 >= (props.sectionData.skillsets?.length ?? 0) - 2 ? 'transparent' : COLORS.LIGHTGRAY}`
                                              }}>
                                     <Grid container item>
                                         <Typography display='inline'
+                                                    role='skillheader'
                                                     variant='body2'>{skillset.title}</Typography>
                                     </Grid>
                                     <Grid container item>
                                         {
                                             skillset.skills?.map((skill, index) => {
-                                                return <Typography key={index} display='inline'
+                                                return <Typography role='subskill' key={index} display='inline'
                                                                    variant='body1'>{skill.title}{index !== (skillset.skills?.length ?? 0) - 1 ? ',' : ''}&nbsp;</Typography>
                                             })
                                         }

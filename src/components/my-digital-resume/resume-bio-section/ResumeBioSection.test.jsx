@@ -1,6 +1,6 @@
 import {render, screen} from '@testing-library/react';
 import expect from "expect";
-import {ResumeBioSectionComplete} from "../../stories/digital-resume/ResumeBio.stories";
+import {ResumeBioSectionComplete} from "../../../stories/digital-resume/ResumeBio.stories";
 
 describe('Resume Bio Section', () => {
     test('renders all components of bio', async () => {

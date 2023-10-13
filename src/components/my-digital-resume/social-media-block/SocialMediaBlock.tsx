@@ -1,11 +1,11 @@
 import React, {FunctionComponent} from 'react'
 import makeStyles from '@mui/styles/makeStyles';
 import {Grid, IconButton, PropTypes, ThemeProvider} from '@mui/material';
-import {SanityTransformHwHomePage} from "../../common/sanityIo/Types";
+import {SanityTransformHwHomePage} from "../../../common/sanityIo/Types";
 import {Facebook, GitHub, Instagram, LinkedIn, Twitter} from "@mui/icons-material";
 import clsx from "clsx";
 import {GridSpacing} from "@mui/material/Grid/Grid";
-import TheWebsiteTheme from "../../theme/Theme";
+import TheWebsiteTheme from "../../../theme/Theme";
 
 
 export const useStyles = makeStyles(({
@@ -28,7 +28,7 @@ interface IProps {
     spacing?: GridSpacing
 }
 
-const ResumeSocialMedia: FunctionComponent<IProps> = (props: IProps) => {
+const SocialMediaBlock: FunctionComponent<IProps> = (props: IProps) => {
     const classes = useStyles()
     return (
             <ThemeProvider theme={TheWebsiteTheme} >
@@ -78,4 +78,4 @@ const ResumeSocialMedia: FunctionComponent<IProps> = (props: IProps) => {
     );
 }
 
-export default ResumeSocialMedia
+export default SocialMediaBlock

@@ -1,15 +1,15 @@
 import type {Meta, StoryObj} from '@storybook/react';
 import React, {PropsWithChildren} from "react";
-import BusinessCardSubmitEmail, {SubmitEmailIProps} from "../../components/transform-hw/pages/BusinessCardSubmitEmail";
+import SubmitEmail, {SubmitEmailIProps} from "../../components/transform-hw/pages/BusinessCardSubmitEmail";
 
 
-const meta: Meta<typeof BusinessCardSubmitEmail> = {
+const meta: Meta<typeof SubmitEmail> = {
     title: "Resume/Page Components/Submit Email",
-    component: BusinessCardSubmitEmail,
+    component: SubmitEmail,
 };
 
 export default meta;
-type Story = StoryObj<typeof BusinessCardSubmitEmail>;
+type Story = StoryObj<typeof SubmitEmail>;
 
 
 /*
@@ -18,14 +18,14 @@ type Story = StoryObj<typeof BusinessCardSubmitEmail>;
  * to learn how to use render functions.
  */
 
-export const BusinessCardSubmitEmailStory: Story = {
+export const SubmitEmailStory: Story = {
     args: {
         emailButtonText: 'Submit',
         emailFieldText: "Your Email Address.",
         subscribeText: "Want a copy of my resume emailed to you?"
     },
     render: ({emailFieldText, emailButtonText, subscribeText}: PropsWithChildren<SubmitEmailIProps>) =>
-        <BusinessCardSubmitEmail source={'storybook'} emailFieldText={emailFieldText}
+        <SubmitEmail source={'storybook'} emailFieldText={emailFieldText}
                                  emailButtonText={emailButtonText}
                                  subscribeText={subscribeText}/>,
 };
