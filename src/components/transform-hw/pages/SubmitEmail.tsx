@@ -5,7 +5,7 @@ import {Grid, TextField, Typography, useTheme} from '@mui/material'
 import LoadingButton from "../../loading-button/LoadingButton";
 import {ButtonGroupMemberEnum} from "../../loading-button/ButtonGroupMemberEnum";
 import isEmail from "validator/lib/isEmail";
-import {useQuery} from "react-query";
+import {useQuery} from "@tanstack/react-query";
 import leadClient from "./under-construction-page/leadClient";
 import TheWebsiteTheme from "../../../theme/Theme";
 import useCustomStyles from "../../mackenzies-mind/pages/Styles";

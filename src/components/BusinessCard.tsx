@@ -120,7 +120,7 @@ const BusinessCard: FunctionComponent<MainMenuProps> = ({anchor, homePage}) => {
                             padding: TheWebsiteTheme
 .spacing(2, 3)
                         }}>
-                            <ResumeSocialMedia spacing={1} bgColor color='secondary' homePage={homePage}/>
+                            <ResumeSocialMedia spacing={1} bgColor color='secondary' {...homePage}/>
                         </Grid>
                     </Grid>
                 </Grid>

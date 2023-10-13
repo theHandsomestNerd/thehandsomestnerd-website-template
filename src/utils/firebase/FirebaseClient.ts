@@ -1,5 +1,6 @@
 import { initializeApp } from 'firebase/app';
-import { getAnalytics } from "firebase/analytics";
+import { getAnalytics, isSupported } from "firebase/analytics";
+import firebase from "firebase/compat";
 // @ts-ignore
 // import { gtag, install } from 'ga-gtag';
 
@@ -18,6 +19,20 @@ export const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 // install(process.env.REACT_APP_FIREBASE_ANALYTICS_TRACKING_ID);
-const analytics = getAnalytics(app);
+
+const analyticsMock = {
+  logEvent: () => {},
+  setCurrentScreen: () => {},
+  setUserId: () => {},
+}
+
+let analytics
+
+isSupported().then((result)=>{
+  if(result){
+    analytics = getAnalytics(app)
+  }
+  analytics = analyticsMock
+})
 
 export default {app, analytics}

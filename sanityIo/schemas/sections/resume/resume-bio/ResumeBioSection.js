@@ -65,6 +65,12 @@ export default {
             type: 'ResumeFile',
         },
         {
+            name: 'theme',
+            title: 'Theme',
+            type: 'reference',
+            to:[{type: 'MuiTheme'}]
+        },
+        {
             name: 'mainImage',
             title: 'Main image',
             type: 'image',

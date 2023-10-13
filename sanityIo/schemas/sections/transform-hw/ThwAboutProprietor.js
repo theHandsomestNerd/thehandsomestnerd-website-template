@@ -11,6 +11,12 @@ export default {
       type: 'string',
     },
     {
+      name: 'theme',
+      title: 'Theme',
+      type: 'reference',
+      to:[{type: 'MuiTheme'}]
+    },
+    {
       name: 'proprietorImage',
       title: 'Proprietor Image',
       type: 'image',

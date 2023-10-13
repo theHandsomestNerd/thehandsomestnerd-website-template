@@ -29,5 +29,11 @@ export default {
                 }
             ]
         },
+        {
+            name: 'theme',
+            title: 'Theme',
+            type: 'reference',
+            to:[{type: 'MuiTheme'}]
+        },
     ]
 }

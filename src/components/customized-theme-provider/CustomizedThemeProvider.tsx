@@ -314,7 +314,7 @@ const CustomizedThemeProvider: FunctionComponent<IProps & PropsWithChildren> = (
                     styleOverrides: {
                         root: {
                             paddingRight: "16px",
-                            border: "2px solid black",
+                            // border: "2px solid black",
                         }
                     }
                 }

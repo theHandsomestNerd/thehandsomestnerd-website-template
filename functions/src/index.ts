@@ -177,7 +177,7 @@ app.post("/send-email-resume",
       } catch (e) {
         logClient.log("collect-email-address", "ERROR",
             "Could not create Lead", {email: reqBody.email});
-        functionRes.send({status: "400", e});
+        functionRes.error({status: "400", e});
       }
     });
 

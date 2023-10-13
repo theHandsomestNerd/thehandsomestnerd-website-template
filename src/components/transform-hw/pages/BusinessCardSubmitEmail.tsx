@@ -1,16 +1,16 @@
-import React, {ChangeEvent, FunctionComponent, useState} from 'react'
-import { Theme } from "@mui/material/styles";
+import React, {ChangeEvent, FunctionComponent, useContext, useState} from 'react'
+import {Theme} from "@mui/material/styles";
 import makeStyles from '@mui/styles/makeStyles';
 import {Grid, TextField, Typography, useTheme} from '@mui/material'
 import LoadingButton from "../../loading-button/LoadingButton";
 import {ButtonGroupMemberEnum} from "../../loading-button/ButtonGroupMemberEnum";
 import isEmail from "validator/lib/isEmail";
-import {useQuery} from "react-query";
 import leadClient from "./under-construction-page/leadClient";
 import TheWebsiteTheme from "../../../theme/Theme";
 import useCustomStyles from "../../mackenzies-mind/pages/Styles";
+import CustomizedThemeContext from "../../customized-theme-provider/CustomizedThemeContext";
 
-export const useStyles = makeStyles((theme: Theme) => ({
+const useStyles = makeStyles((theme: Theme) => ({
     endAdornedInput: {
         "& .MuiFilledInput-adornedEnd": {
             border: "1px solid red",
@@ -47,34 +47,51 @@ const BusinessCardSubmitEmail: FunctionComponent<SubmitEmailIProps> = (props: Su
     const theme = useTheme()
     const classes = useCustomStyles(TheWebsiteTheme)
     const myClasses = useStyles(TheWebsiteTheme)
-    const [email, setEmail] = useState("")
 
-    const {isLoading, isError, data, refetch} = useQuery(
-        ['sendBusinessCard Email'],
-        () => {
-            if ((!data && !isError) && email && email.length > 0) {
-                return leadClient.sendBusinessCardEmail({email, source: "Business Card"});
-            }
-            return undefined
-        }
-    );
+    const [email, setEmail] = useState("")
+    const [isLoading, setIsLoading] = React.useState<boolean>(false)
+    const [isError, setIsError] = React.useState<boolean>(false)
+    const [data, setData] = React.useState<any>()
 
     const createLead = async (e: any): Promise<any> => {
-        return refetch()
+        setIsLoading(true)
+        setIsError(false)
+
+        const response = await leadClient.sendBusinessCardEmail({email, source: "Business Card"});
+        console.log(response)
+
+        if (response.status === "400") {
+            console.log("there was error")
+            setIsError(true)
+            setData(null)
+            setIsLoading(false)
+        } else {
+
+            setData(response)
+            setIsLoading(false)
+        }
     }
+
+    React.useEffect(() => {
+        if (!isEmail(email) && email.length > 0) {
+            setIsError(true)
+        } else if(isEmail(email)){
+            setIsError(false)
+        }
+    }, [email])
 
     const getHelperText = () => {
         if ((data || isError) && !isEmail(email)) {
-            return <Typography style={{color: theme.palette.error.main}} variant='subtitle1'>This is not a
+            return <Typography style={{color: theme.palette.error.main, fontFamily:"Raleway"}} variant='subtitle1'>This is not a
                 valid email address.</Typography>
         }
 
         if (data) {
-            return <Typography style={{color: theme.palette.success.main}} variant='subtitle1'>Thank you for
+            return <Typography style={{color: theme.palette.success.main, fontFamily:"Raleway"}} variant='subtitle1'>Thank you for
                 your submission!</Typography>
         }
         if (isError) {
-            return <Typography style={{color: theme.palette.error.main}} variant='subtitle1'>Please Try your
+            return <Typography style={{color: theme.palette.error.main, fontFamily:"Raleway"}} variant='subtitle1'>Please Try your
                 submission again later or contact hello@thehandsomestnerd.com.</Typography>
         }
 
@@ -86,13 +103,13 @@ const BusinessCardSubmitEmail: FunctionComponent<SubmitEmailIProps> = (props: Su
         <Grid item container justifyContent='center'>
             <Typography color='primary' gutterBottom variant='body2'
                         align='center'
-                        style={{fontFamily: "Raleway", marginBottom: theme.spacing(2)}}>{props.subscribeText}</Typography>
+                        style={{fontFamily: "Raleway", marginBottom: theme?.spacing(2)}}>{props.subscribeText}</Typography>
         </Grid>
         <Grid item container xs={11} md={10}>
             <TextField fullWidth
                        label={<Typography style={{fontFamily: "Raleway"}}>{props.emailFieldText}</Typography>}
                        variant='outlined'
-                       style={{paddingRight: "0"}}
+                       style={{paddingRight: "0", fontFamily: "Raleway"}}
                        type='email'
                        value={email}
                        onChange={(event: ChangeEvent<HTMLInputElement>) => {
@@ -100,15 +117,17 @@ const BusinessCardSubmitEmail: FunctionComponent<SubmitEmailIProps> = (props: Su
                        }}
                        className={myClasses.endAdornedInput}
                        InputProps={{
+                           // notched: true,
                            endAdornment:
                                <LoadingButton
                                    width={100}
                                    isLoading={isLoading}
                                    groupiness={ButtonGroupMemberEnum.RIGHT}
-                                   disabled={!!(data || isError || (email && (email.length > 0) && !isEmail(email)))}
+                                   disabled={!!(email.length === 0 || data || isError || (email && (email.length > 0) && !isEmail(email)))}
                                    clickHandler={createLead}
                                    color='primary'
-                                   variant='contained'><Typography variant='button' style={{fontFamily: "Raleway"}}>{props.emailButtonText}</Typography></LoadingButton>
+                                   variant='contained'><Typography variant='button'
+                                                                   style={{fontFamily: "Raleway"}}>{props.emailButtonText}</Typography></LoadingButton>
                            ,
                        }}/>
         </Grid>

@@ -23,9 +23,9 @@ export const useStyles = makeStyles((theme) => ({
         borderTopLeftRadius: (props: CssProps) => {
             switch (props.buttonGroupiness) {
                 case ButtonGroupMemberEnum.CENTER:
-                    return 0
+                    return "0 !important"
                 case ButtonGroupMemberEnum.RIGHT:
-                    return 0
+                    return "0 !important"
                 case ButtonGroupMemberEnum.LEFT:
                 default:
                     return TheWebsiteTheme.shape.borderRadius
@@ -34,9 +34,9 @@ export const useStyles = makeStyles((theme) => ({
         borderTopRightRadius: (props: CssProps) => {
             switch (props.buttonGroupiness) {
                 case ButtonGroupMemberEnum.CENTER:
-                    return 0
+                    return "0 !important"
                 case ButtonGroupMemberEnum.LEFT:
-                    return 0
+                    return "0 !important"
                 case ButtonGroupMemberEnum.RIGHT:
                 default:
                     return TheWebsiteTheme.shape.borderRadius
@@ -45,9 +45,9 @@ export const useStyles = makeStyles((theme) => ({
         borderBottomRightRadius: (props: CssProps) => {
             switch (props.buttonGroupiness) {
                 case ButtonGroupMemberEnum.CENTER:
-                    return 0
+                    return "0 !important"
                 case ButtonGroupMemberEnum.LEFT:
-                    return 0
+                    return "0 !important"
                 case ButtonGroupMemberEnum.RIGHT:
                 default:
                     return TheWebsiteTheme.shape.borderRadius
@@ -57,9 +57,9 @@ export const useStyles = makeStyles((theme) => ({
         borderBottomLeftRadius: (props: CssProps) => {
             switch (props.buttonGroupiness) {
                 case ButtonGroupMemberEnum.CENTER:
-                    return 0
+                    return "0 !important"
                 case ButtonGroupMemberEnum.RIGHT:
-                    return 0
+                    return "0 !important"
                 case ButtonGroupMemberEnum.LEFT:
                 default:
                     return TheWebsiteTheme.shape.borderRadius

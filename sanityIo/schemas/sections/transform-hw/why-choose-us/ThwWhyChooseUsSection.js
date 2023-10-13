@@ -16,6 +16,12 @@ export default {
       type: 'string',
     },
     {
+      name: 'theme',
+      title: 'Theme',
+      type: 'reference',
+      to:[{type: 'MuiTheme'}]
+    },
+    {
       name: 'imageSrc',
       title: 'Image',
       type: 'image',

@@ -1,19 +1,15 @@
 import type {Meta, StoryObj} from '@storybook/react';
-import LoadingButton, {LoadingButtonIProps} from "../../components/loading-button/LoadingButton";
-import {ButtonGroupMemberEnum} from "../../components/loading-button/ButtonGroupMemberEnum";
-import {Grid} from "@mui/material";
 import React, {PropsWithChildren} from "react";
 import BusinessCardSubmitEmail, {SubmitEmailIProps} from "../../components/transform-hw/pages/BusinessCardSubmitEmail";
-import SubmitEmail from "../../components/transform-hw/pages/SubmitEmail";
 
 
-const meta: Meta<typeof BusinessCardSubmitEmail > = {
-    title:"Resume/Page Components/Submit Email",
-    component: BusinessCardSubmitEmail ,
+const meta: Meta<typeof BusinessCardSubmitEmail> = {
+    title: "Resume/Page Components/Submit Email",
+    component: BusinessCardSubmitEmail,
 };
 
 export default meta;
-type Story = StoryObj<typeof BusinessCardSubmitEmail >;
+type Story = StoryObj<typeof BusinessCardSubmitEmail>;
 
 
 /*
@@ -22,13 +18,14 @@ type Story = StoryObj<typeof BusinessCardSubmitEmail >;
  * to learn how to use render functions.
  */
 
-export const Primary: Story = {
+export const BusinessCardSubmitEmailStory: Story = {
     args: {
-        emailButtonText:'Submit',
-        emailFieldText:"Your Email Address.",
-        subscribeText:"Want a copy of my resume emailed to you?"
+        emailButtonText: 'Submit',
+        emailFieldText: "Your Email Address.",
+        subscribeText: "Want a copy of my resume emailed to you?"
     },
-    render: ({emailFieldText, emailButtonText, subscribeText}:PropsWithChildren<SubmitEmailIProps>) => <BusinessCardSubmitEmail emailFieldText={emailFieldText}
-                                                                                                            emailButtonText={emailButtonText}
-                                                                                                            subscribeText={subscribeText}/>,
+    render: ({emailFieldText, emailButtonText, subscribeText}: PropsWithChildren<SubmitEmailIProps>) =>
+        <BusinessCardSubmitEmail emailFieldText={emailFieldText}
+                                 emailButtonText={emailButtonText}
+                                 subscribeText={subscribeText}/>,
 };

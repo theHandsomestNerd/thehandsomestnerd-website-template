@@ -1,4 +1,4 @@
-import {QueryClient, QueryClientProvider} from "react-query";
+import {QueryClient, QueryClientProvider} from "@tanstack/react-query";
 import {BrowserRouter} from "react-router-dom";
 import React from 'react';
 import {Preview} from '@storybook/react';
@@ -11,7 +11,7 @@ import {CssBaseline} from "@mui/material";
 import CustomizedThemeProvider from "../src/components/customized-theme-provider/CustomizedThemeProvider";
 import DigitalResumeThemeData from "../src/stories/data/DigitalResumeThemeData";
 
-const mockedQueryClient = new QueryClient({
+export const mockedQueryClient = new QueryClient({
     defaultOptions: {
         queries: {
             retry: false,
@@ -26,7 +26,6 @@ const preview: Preview = {
                 <QueryClientProvider client={mockedQueryClient}>
                     <PageProvider page={HomePageResumeData}>
                         <CustomizedThemeProvider pageTheme={DigitalResumeThemeData}>
-                            <CssBaseline/>
                             <SnackbarProvider>
                                     <ModalProvider>
                                         <AmenityProvider>

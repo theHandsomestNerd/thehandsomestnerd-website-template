@@ -1,17 +1,7 @@
-import {
-    Button,
-    CssBaseline,
-    Grid,
-    StyledEngineProvider,
-    Theme,
-    ThemeProvider,
-    Typography,
-    useTheme,
-} from '@mui/material';
+import {Button, CssBaseline, Grid, ThemeProvider, Typography, useTheme,} from '@mui/material';
 import React, {PropsWithChildren} from 'react'
 import {useCommonStyles} from './CommonStyles'
-import {Prism as SyntaxHighlighter} from 'react-syntax-highlighter'
-import {dark} from 'react-syntax-highlighter/dist/esm/styles/prism'
+// import {dark} from 'react-syntax-highlighter/dist/esm/styles/prism'
 import {
     BoldRender,
     DropCapRender,
@@ -87,33 +77,33 @@ export const CtaRender: React.FunctionComponent<PropsWithChildren> = (props) => 
     return <Grid container item xs={12} className={classes.callToAction}>{props.children}</Grid>
 }
 
-export const CodeBlockRender = (props: any) => {
-    const sanityCodeBlock: {
-        language?: string,
-        code?: string,
-        highlightedLines?: number[]
-    } = props.node as SanityCodeBlockType
-    console.log('Props from codeblock', props)
-
-    const syntaxLanguage = (language?: string) => {
-        if (!language) return 'javascript'
-        switch (language) {
-            case 'js':
-                return 'javascript'
-            case 'json':
-                return 'json'
-            case 'sh':
-                return 'shell'
-        }
-    }
-
-
-    return <Grid container item>
-        {sanityCodeBlock?.code ? <SyntaxHighlighter language={syntaxLanguage(sanityCodeBlock?.language)} style={dark}>
-            {sanityCodeBlock?.code}
-        </SyntaxHighlighter> : <></>}
-    </Grid>
-}
+// export const CodeBlockRender = (props: any) => {
+//     const sanityCodeBlock: {
+//         language?: string,
+//         code?: string,
+//         highlightedLines?: number[]
+//     } = props.node as SanityCodeBlockType
+//     console.log('Props from codeblock', props)
+//
+//     const syntaxLanguage = (language?: string) => {
+//         if (!language) return 'javascript'
+//         switch (language) {
+//             case 'js':
+//                 return 'javascript'
+//             case 'json':
+//                 return 'json'
+//             case 'sh':
+//                 return 'shell'
+//         }
+//     }
+//
+//
+//     return <Grid container item>
+//         {sanityCodeBlock?.code ? <SyntaxHighlighter language={syntaxLanguage(sanityCodeBlock?.language)} style={dark}>
+//             {sanityCodeBlock?.code}
+//         </SyntaxHighlighter> : <></>}
+//     </Grid>
+// }
 
 export const HrRender: React.FunctionComponent = (props) => {
     const theme = useTheme()
@@ -228,7 +218,7 @@ export const blockSerializers: any = {
     list: ListRender,
     listItem: ListItemRender,
     types: {
-        code: CodeBlockRender,
+        // code: CodeBlockRender,
         utmLink: UtmLinkRender,
         button: ButtonRender,
         block: (props: any) => {

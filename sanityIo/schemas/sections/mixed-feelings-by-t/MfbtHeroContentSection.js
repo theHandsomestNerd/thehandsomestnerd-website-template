@@ -9,6 +9,12 @@ export default {
       type: 'string',
     },
     {
+      name: 'theme',
+      title: 'Theme',
+      type: 'reference',
+      to:[{type: 'MuiTheme'}]
+    },
+    {
       name: 'title',
       title: 'Title',
       type: 'string',

@@ -9,7 +9,7 @@ import clsx from "clsx";
 import useCustomStyles from "../mackenzies-mind/pages/Styles";
 import isEmail from "validator/lib/isEmail";
 import LoadingButton from "../loading-button/LoadingButton";
-import {useQuery} from "react-query";
+import {useQuery} from "@tanstack/react-query";
 import leadClient from "./pages/under-construction-page/leadClient";
 import {Parallax} from "react-parallax";
 import firebaseAnalyticsClient from "../../utils/firebase/FirebaseAnalyticsClient";

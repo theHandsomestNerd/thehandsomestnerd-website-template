@@ -17,7 +17,12 @@ export const useStyles = makeStyles(({
 }))
 
 interface IProps {
-    homePage?: SanityTransformHwHomePage
+    // homePage?: SanityTransformHwHomePage
+    facebook?: string
+    twitter?: string
+    instagram?: string
+    linkedIn?: string
+    github?: string
     color?: PropTypes.Color
     bgColor?: boolean
     spacing?: GridSpacing
@@ -29,46 +34,46 @@ const ResumeSocialMedia: FunctionComponent<IProps> = (props: IProps) => {
             <ThemeProvider theme={TheWebsiteTheme}>
                 <Grid item xs={12} container alignItems='center' justifyContent='center'
                     spacing={props.spacing ? props.spacing : 0}>
-                <Grid item>
-                    <Grid item className={clsx({[classes.buttonBackground]: props.bgColor})}>
-                        <IconButton
-                            color={props.color ?? 'primary'}
-                            href={`https://facebook.com/${props.homePage?.facebook}`}
-                            size="large"><Facebook/></IconButton>
-                    </Grid>
-                </Grid>
-                <Grid item>
-                    <Grid item className={clsx({[classes.buttonBackground]: props.bgColor})}>
-                        <IconButton
-                            color={props.color ?? 'primary'}
-                            href={`https://twitter.com/${props.homePage?.twitter}`}
-                            size="large"><Twitter/></IconButton>
-                    </Grid>
-                </Grid>
-                <Grid item>
-                    <Grid item className={clsx({[classes.buttonBackground]: props.bgColor})}>
-                        <IconButton
-                            color={props.color ?? 'primary'}
-                            href={`https://instagram.com/${props.homePage?.instagram}`}
-                            size="large"><Instagram/></IconButton>
-                    </Grid>
-                </Grid>
-                <Grid item>
-                    <Grid item className={clsx({[classes.buttonBackground]: props.bgColor})}>
-                        <IconButton
-                            color={props.color ?? 'primary'}
-                            href={`https://linkedIn.com/in/${props.homePage?.linkedIn}`}
-                            size="large"><LinkedIn/></IconButton>
-                    </Grid>
-                </Grid>
-                <Grid item>
-                    <Grid item className={clsx({[classes.buttonBackground]: props.bgColor})}>
-                        <IconButton
-                            color={props.color ?? 'primary'}
-                            href={`https://github.com/${props.homePage?.github}`}
-                            size="large"><GitHub/></IconButton>
-                    </Grid>
-                </Grid>
+                    {props.facebook && <Grid item>
+                        <Grid item className={clsx({[classes.buttonBackground]: props.bgColor})}>
+                            <IconButton
+                                color={props.color ?? 'primary'}
+                                href={`https://facebook.com/${props.facebook}`}
+                                size="large"><Facebook/></IconButton>
+                        </Grid>
+                    </Grid>}
+                    {props.twitter && <Grid item>
+                        <Grid item className={clsx({[classes.buttonBackground]: props.bgColor})}>
+                            <IconButton
+                                color={props.color ?? 'primary'}
+                                href={`https://twitter.com/${props.twitter}`}
+                                size="large"><Twitter/></IconButton>
+                        </Grid>
+                    </Grid>}
+                    {props.instagram && <Grid item>
+                        <Grid item className={clsx({[classes.buttonBackground]: props.bgColor})}>
+                            <IconButton
+                                color={props.color ?? 'primary'}
+                                href={`https://instagram.com/${props.instagram}`}
+                                size="large"><Instagram/></IconButton>
+                        </Grid>
+                    </Grid>}
+                    {props.linkedIn && <Grid item>
+                        <Grid item className={clsx({[classes.buttonBackground]: props.bgColor})}>
+                            <IconButton
+                                color={props.color ?? 'primary'}
+                                href={`https://linkedIn.com/in/${props.linkedIn}`}
+                                size="large"><LinkedIn/></IconButton>
+                        </Grid>
+                    </Grid>}
+                    {props.github && <Grid item>
+                        <Grid item className={clsx({[classes.buttonBackground]: props.bgColor})}>
+                            <IconButton
+                                color={props.color ?? 'primary'}
+                                href={`https://github.com/${props.github}`}
+                                size="large"><GitHub/></IconButton>
+                        </Grid>
+                    </Grid>}
             </Grid></ThemeProvider>
     );
 }

@@ -21,10 +21,29 @@ type Story = StoryObj<typeof ResumeSocialMedia>;
  * to learn how to use render functions.
  */
 
-const buttonText = "Button Text"
-export const Primary: Story = {
+export const SocialMediaBlockFromHomepage: Story = {
     args:{
-        homePage:homePageResumeData
+        facebook:homePageResumeData.facebook,
+        twitter:homePageResumeData.twitter,
+        linkedIn:homePageResumeData.linkedIn,
+        github:homePageResumeData.github,
+        instagram: "thehandsomestNerd"
     },
-    render: ({homePage}) => <ResumeSocialMedia homePage={homePage}></ResumeSocialMedia>,
+    render: ({facebook,twitter, linkedIn, instagram, github}) => <ResumeSocialMedia facebook={facebook} twitter={twitter} linkedIn={linkedIn} github={github} instagram={instagram}></ResumeSocialMedia>,
+};
+
+export const SocialMediaBlockOnlyFacebook: Story = {
+    args:{
+        facebook:homePageResumeData.facebook,
+    },
+    render: ({facebook}) => <ResumeSocialMedia facebook={facebook}></ResumeSocialMedia>,
+};
+
+export const SocialMediaBlockOnly3: Story = {
+    args:{
+        facebook:homePageResumeData.facebook,
+        twitter:homePageResumeData.twitter,
+        instagram: "thehandsomestNerd"
+    },
+    render: ({facebook, twitter, instagram}) => <ResumeSocialMedia facebook={facebook} instagram={instagram} twitter={twitter}></ResumeSocialMedia>,
 };

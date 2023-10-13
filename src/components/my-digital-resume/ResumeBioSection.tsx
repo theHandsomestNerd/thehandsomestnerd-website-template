@@ -15,7 +15,7 @@ interface IProps {
     homePage: SanityTransformHwHomePage
 }
 
-const ResumeBio: FunctionComponent<IProps> = (props: IProps) => {
+const ResumeBioSection: FunctionComponent<IProps> = (props: IProps) => {
     const classes = useThwCommonStyles()
 
     const smDown = widthUtils.useIsWidthDown('sm')
@@ -56,7 +56,13 @@ const ResumeBio: FunctionComponent<IProps> = (props: IProps) => {
                         <Grid item xs={9}><Typography noWrap gutterBottom variant='body1'>{props.homePage.address}</Typography></Grid>
                     </Grid>
                     <Grid container item xs={11} sm={12}>
-                        <ResumeSocialMedia homePage={props.homePage} />
+                        <ResumeSocialMedia
+                            facebook={props.homePage.facebook}
+                            twitter={props.homePage.twitter}
+                            instagram={props.homePage.instagram}
+                            linkedIn={props.homePage.linkedIn}
+                            github={props.homePage.github}
+                        />
                     </Grid>
                 </Grid>
                 <Grid container item md={6} style={{
@@ -90,4 +96,4 @@ const ResumeBio: FunctionComponent<IProps> = (props: IProps) => {
     );
 }
 
-export default ResumeBio
+export default ResumeBioSection

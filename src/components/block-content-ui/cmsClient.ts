@@ -11,7 +11,7 @@ import {ThwServiceItemType, WhySwitchSectionType} from "../BlockContentTypes";
 import GroqQueries from "../../utils/groqQueries";
 import groqQueries from "../../utils/groqQueries";
 import {SanityHomePage} from "./static-pages/cmsStaticPagesClient";
-import {useQuery} from "react-query";
+import {QueryKey, useQuery} from "@tanstack/react-query";
 
 const fetchLandingPage = (slug: string): Promise<SanityLandingPage> => {
     return sanityClient
@@ -337,7 +337,7 @@ const useFetchPageBySlugQuery = (slug: string) => {
 const useFetchMenuBySlugQuery = (menuSlug: string) => {
     console.log("fetching menu with slug", menuSlug)
     return useQuery(
-        menuSlug,
+        [menuSlug],
         () => {
             return sanityClient
                 .fetch(
@@ -360,10 +360,10 @@ const useFetchMenuBySlugQuery = (menuSlug: string) => {
 const useFetchMenuByRefQuery = (headerMenuRef?: SanityRef) => {
     console.log("fetching menu with ref", headerMenuRef)
 
-    const menuId = headerMenuRef?._ref ?? "no-id"
+    const menuId = headerMenuRef?._ref ?? ['no-id']
 
     return useQuery(
-        menuId,
+        [...menuId],
         () => {
             return sanityClient
                 .fetch(
@@ -431,7 +431,7 @@ const useFetchRefsQuery = (refs: SanityRef[]) => {
 
 const useFetchServicesQuery = (pageSlug?: string) => {
     return useQuery(
-        'fetchServices',
+        ['fetchServices'] ,
         async () => {
             console.log("fetchings services", pageSlug)
             const serviceSlug = pageSlug

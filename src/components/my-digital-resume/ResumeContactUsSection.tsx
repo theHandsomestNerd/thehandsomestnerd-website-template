@@ -4,7 +4,7 @@ import {ResumeContactUsSectionType} from "../BlockContentTypes";
 import useCustomStyles from "../mackenzies-mind/pages/Styles";
 import isEmail from "validator/lib/isEmail";
 import LoadingButton from "../loading-button/LoadingButton";
-import {useQuery} from "react-query";
+import {useQuery} from "@tanstack/react-query";
 import firebaseAnalyticsClient from "../../utils/firebase/FirebaseAnalyticsClient";
 import PageContext from "../page-context/PageContext";
 import leadClient from "../transform-hw/pages/under-construction-page/leadClient";

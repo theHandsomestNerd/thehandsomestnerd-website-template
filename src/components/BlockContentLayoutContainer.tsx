@@ -35,7 +35,7 @@ import ThwWhyChooseUsSection from "./transform-hw/ThwWhyChooseUsSection";
 import ThwContactUsSection from "./transform-hw/ThwContactUsSection";
 import {SanityHomePage} from "./block-content-ui/static-pages/cmsStaticPagesClient";
 import ThwServicesEducationPage from "./transform-hw/service-education-page/ThwServiceEducationPage";
-import ResumeBio from "./my-digital-resume/ResumeBio";
+import ResumeBioSection from "./my-digital-resume/ResumeBioSection";
 import MMHeroContentSection from "./mackenzies-mind/MMHeroContentSection";
 import ResumeSkillsSection from "./my-digital-resume/ResumeSkillsSection";
 import ResumeExperienceSection from "./my-digital-resume/ResumeExperienceSection";
@@ -217,7 +217,7 @@ const BlockContentLayoutContainer: FunctionComponent<BlockContentLayoutContainer
                                     underline="hover"><></></Link>
                                 <Link id={"BIO"} style={{position: "relative", top: -80}} underline="hover"><></></Link>
 
-                                <ResumeBio
+                                <ResumeBioSection
                                     homePage={props.homePage}
                                     sectionData={resumeBioSection}
                                 />

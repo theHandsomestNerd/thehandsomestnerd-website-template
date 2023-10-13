@@ -20,6 +20,12 @@ export default {
       type: 'text',
     },
     {
+      name: 'theme',
+      title: 'Theme',
+      type: 'reference',
+      to:[{type: 'MuiTheme'}]
+    },
+    {
       name: 'formSubmitButtonText',
       title: 'Form Submit Button Text',
       type: 'string'

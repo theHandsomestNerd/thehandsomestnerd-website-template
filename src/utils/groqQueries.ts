@@ -157,15 +157,6 @@ const HOMEPAGE = `_type,
              }
           }
 `
-// const MENUGROUP = `
-//           title,
-//           slug,
-//           logoImage,
-//           menuGroupTitle,
-//           "links": links[]->{title, displayText, url, isOutlinedButton, isContainedButton}
-// `
-
-
 
 enum SANITY_TYPES_ENUM {
     SERVICE="transformServiceItem"

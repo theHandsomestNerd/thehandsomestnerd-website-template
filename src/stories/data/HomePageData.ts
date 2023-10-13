@@ -42,11 +42,11 @@ const homePageResumeData:SanityTransformHwHomePage = {
         },
         "typography": {
             "fontFamily": [
-                "RAINBOW",
-                "RALEWAY"
+                "RALEWAY",
+                "OSWALD",
             ],
             // "_type": "MuiTypography",
-            "title": "Rainbow and Raleway"
+            "title": "Oswald and Raleway"
         },
         // "_rev": "46Ky6Oj1Dro85iJlEnmWLK",
         // "_type": "MuiTheme"
