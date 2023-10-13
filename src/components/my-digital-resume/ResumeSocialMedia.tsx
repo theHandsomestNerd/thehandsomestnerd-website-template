@@ -31,8 +31,8 @@ interface IProps {
 const ResumeSocialMedia: FunctionComponent<IProps> = (props: IProps) => {
     const classes = useStyles()
     return (
-            <ThemeProvider theme={TheWebsiteTheme}>
-                <Grid item xs={12} container alignItems='center' justifyContent='center'
+            <ThemeProvider theme={TheWebsiteTheme} >
+                <Grid data-testid='social-media-block'  item xs={12} container alignItems='center' justifyContent='center'
                     spacing={props.spacing ? props.spacing : 0}>
                     {props.facebook && <Grid item>
                         <Grid item className={clsx({[classes.buttonBackground]: props.bgColor})}>

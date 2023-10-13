@@ -6,12 +6,12 @@ import clsx from "clsx";
 import CssFadeToColor from "../../../css-fade-to-color/CssFadeToColor";
 import {SanityRef, SanityUnderConstructionPageType} from "../../../../common/sanityIo/Types";
 import cmsClient from "../../../block-content-ui/cmsClient";
-import SubmitEmail from "../SubmitEmail";
 import Logo from "../../../logo/Logo";
 import {urlFor} from "../../../block-content-ui/static-pages/cmsStaticPagesClient";
 import MailTo from "../../../mail-to/MailTo";
 import {COLORS} from "../../../../theme/common/ColorPalette";
 import CustomizedThemeContext from "../../../customized-theme-provider/CustomizedThemeContext";
+import BusinessCardSubmitEmail from "../BusinessCardSubmitEmail";
 
 interface IProps {
     email?: string
@@ -84,7 +84,7 @@ const UnderConstruction: FunctionComponent<IProps> = (props) => {
                     </Grid>
                     <Grid container item justifyContent='center'>
                         <Grid container item justifyContent='center' style={{marginTop: customizedThemeContext.customizedTheme.spacing(5.75)}}>
-                            <SubmitEmail emailFieldText={cmsPageData?.emailFieldText ?? ""}
+                            <BusinessCardSubmitEmail source="Under Construction Page" emailFieldText={cmsPageData?.emailFieldText ?? ""}
                                          emailButtonText={cmsPageData?.emailButtonText ?? ""}
                                          subscribeText={cmsPageData?.subscribeText ?? ""}/>
                         </Grid>

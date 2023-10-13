@@ -41,6 +41,7 @@ export interface SubmitEmailIProps {
     emailFieldText: string
     emailButtonText: string
     subscribeText: string
+    source: string
 }
 
 const BusinessCardSubmitEmail: FunctionComponent<SubmitEmailIProps> = (props: SubmitEmailIProps) => {
@@ -57,7 +58,7 @@ const BusinessCardSubmitEmail: FunctionComponent<SubmitEmailIProps> = (props: Su
         setIsLoading(true)
         setIsError(false)
 
-        const response = await leadClient.sendBusinessCardEmail({email, source: "Business Card"});
+        const response = await leadClient.sendBusinessCardEmail({email, source: props.source});
         console.log(response)
 
         if (response.status === "400") {
@@ -99,7 +100,7 @@ const BusinessCardSubmitEmail: FunctionComponent<SubmitEmailIProps> = (props: Su
     }
 
 
-    return (<Grid container item justifyContent='center'>
+    return (<Grid container item justifyContent='center' data-testid='submit-email-block'>
         <Grid item container justifyContent='center'>
             <Typography color='primary' gutterBottom variant='body2'
                         align='center'

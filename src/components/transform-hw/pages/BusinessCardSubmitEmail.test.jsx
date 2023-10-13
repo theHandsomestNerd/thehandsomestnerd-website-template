@@ -56,7 +56,7 @@ describe('Business Card Submit Email', () => {
         expect(leadClient.sendBusinessCardEmail).toHaveBeenCalledTimes(1)
         expect(leadClient.sendBusinessCardEmail).toHaveBeenCalledWith({
             "email": 'terrell@gmail.com',
-            source: "Business Card"
+            source: "storybook"
         })
         expect(screen.getByText('Thank you for your submission!')).toBeInTheDocument()
     });
@@ -126,7 +126,7 @@ describe('Business Card Submit Email', () => {
         expect(leadClient.sendBusinessCardEmail).toHaveBeenCalledTimes(1)
         expect(leadClient.sendBusinessCardEmail).toHaveBeenCalledWith({
             "email": 'terrell@gmail.com',
-            source: "Business Card"
+            source: "storybook"
         })
         expect(screen.queryByText('Thank you for your submission!')).not.toBeInTheDocument()
         expect(screen.getByText('Please Try your submission again later or contact hello@thehandsomestnerd.com.')).toBeInTheDocument()

@@ -266,7 +266,7 @@ const BusinessCard: FunctionComponent<MainMenuProps> = ({anchor, homePage}) => {
                         <Divider/>
                         <ListItem>
                             <Grid item xs={12}>
-                                <BusinessCardSubmitEmail emailFieldText={'Email Address'}
+                                <BusinessCardSubmitEmail source={'Business Card'} emailFieldText={'Email Address'}
                                                          emailButtonText={'Submit'}
                                                          subscribeText={'Get an email with my contact information below'}/>
                             </Grid>

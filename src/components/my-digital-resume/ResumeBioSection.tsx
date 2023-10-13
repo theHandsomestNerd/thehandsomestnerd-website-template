@@ -24,7 +24,9 @@ const ResumeBioSection: FunctionComponent<IProps> = (props: IProps) => {
             <ThemeProvider theme={TheWebsiteTheme}><Grid container item style={{padding: TheWebsiteTheme.spacing(4)}} justifyContent='center'
                           className={classes.resumeSection} spacing={3}>
                 <Grid item xs={12}>
-                    <BusinessCardSubmitEmail emailFieldText={'Email Address'}
+                    <BusinessCardSubmitEmail
+                        source={"Bio Section"}
+                        emailFieldText={'Email Address'}
                                              emailButtonText={'Submit'}
                                              subscribeText={'Want a copy of my resume emailed to you?'}/>
                 </Grid>
@@ -65,7 +67,7 @@ const ResumeBioSection: FunctionComponent<IProps> = (props: IProps) => {
                         />
                     </Grid>
                 </Grid>
-                <Grid container item md={6} style={{
+                <Grid data-testid='bio-image' container item md={6} style={{
                     backgroundImage: `url(${urlFor(props.sectionData.mainImage ?? "").url()})`,
                     backgroundSize: "cover",
                     backgroundPosition: "top right",

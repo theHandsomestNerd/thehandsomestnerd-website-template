@@ -25,7 +25,7 @@ export const BusinessCardSubmitEmailStory: Story = {
         subscribeText: "Want a copy of my resume emailed to you?"
     },
     render: ({emailFieldText, emailButtonText, subscribeText}: PropsWithChildren<SubmitEmailIProps>) =>
-        <BusinessCardSubmitEmail emailFieldText={emailFieldText}
+        <BusinessCardSubmitEmail source={'storybook'} emailFieldText={emailFieldText}
                                  emailButtonText={emailButtonText}
                                  subscribeText={subscribeText}/>,
 };
