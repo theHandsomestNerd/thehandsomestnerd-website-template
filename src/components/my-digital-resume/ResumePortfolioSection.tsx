@@ -7,7 +7,6 @@ import useThwCommonStyles from "../../common/sanityIo/ThwCommonStyles";
 import {urlFor} from "../block-content-ui/static-pages/cmsStaticPagesClient";
 import {Close} from "@mui/icons-material";
 import dateUtils from "../../utils/dateUtils";
-import {COLORS} from "../../theme/common/ColorPalette";
 import widthUtils from "../../utils/widthUtils";
 
 interface IProps {
@@ -30,42 +29,37 @@ const ResumePortfolioSection: FunctionComponent<IProps> = (props: IProps) => {
         setIsOpen(true)
     }
 
-
     return (
         <StyledEngineProvider injectFirst>
             <ThemeProvider theme={TheWebsiteTheme
-}><Grid container item style={{padding: theme.spacing(4)}}
-                                                                    className={globalClasses.resumeSection}>
+            }><Grid container item style={{padding: theme.spacing(4)}}
+                    className={globalClasses.resumeSection} justifyContent={'center'}>
                 <Grid
-                    container item spacing={3}>
+                    container item spacing={3} justifyContent='center'>
                     <Grid item container alignContent='flex-start' spacing={1}>
                         <Grid item container>
                             <Typography
                                 variant='h6'
                             >{props.sectionData.title}</Typography>
-                                <Typography
-                                    variant='h6'
-                                    color='primary'
-                                    display='inline'
-                                >.
+                            <Typography
+                                variant='h6'
+                                color='primary'
+                                display='inline'
+                            >.
                             </Typography>
                         </Grid>
                         <Grid item container>
                             <Typography variant='body1'>{props.sectionData.introduction}</Typography></Grid>
                     </Grid>
-                    <Grid item container justifyContent={xsOnly ? 'center' : 'flex-start'}>
+                    <Grid item container justifyContent={'center'} xs={10} justifySelf={'center'}>
                         {
                             props.sectionData.portfolioEntries?.map((portfolioItem: ResumePortfolioItem, index2: number) => {
-                                return <Grid key={index2} style={{backgroundColor: index2%2===1?"whitesmoke":"white"}} container item xs={6} sm={4} lg={3} xl={3} alignContent='flex-start' justifyContent='center' >
-                                    <Button onClick={(e) => sendToModal(portfolioItem)}>
-                                        <Grid
-                                            item container
-                                            // xs={12}
-                                            // sm={6}
-                                            // md={6}
-                                            style={{
-                                                // borderBottom: `1px solid ${index2dex2 >= (props.sectionData.portfolioEntries?.length ?? 0) - 2 ? "transparent" : COLORS.LIGHTGRAY}`,
-                                            }}>
+                                return <Grid key={index2}
+                                             style={{backgroundColor: index2 % 2 === 1 ? "whitesmoke" : "white"}}
+                                             container item xs={6} sm={4} lg={4} xl={4} alignContent='flex-start'
+                                             justifyContent='center'>
+                                    <Button fullWidth onClick={(e) => sendToModal(portfolioItem)}>
+                                        <Grid item container>
                                             <Grid container item spacing={2} justifyContent='center'>
                                                 <Grid item xs={11} sm={11} container justifyContent='center'
                                                       style={{
@@ -73,22 +67,21 @@ const ResumePortfolioSection: FunctionComponent<IProps> = (props: IProps) => {
                                                           backgroundSize: "cover",
                                                           backgroundPosition: "top center",
                                                           backgroundRepeat: "no-repeat",
-                                                          width:"100%",
-                                                          minHeight: "200px"}}
+                                                          width: "100%",
+                                                          minHeight: "200px"
+                                                      }}
                                                 >
-                                                    {/*<img src={urlFor(portfolioItem?.coverImage ?? "").url() ?? ""}*/}
-                                                    {/*     style={{minHeight: 120, minWidth: 120, maxHeight: 300, maxWidth: 300}}*/}
-                                                    {/*     height={"100%"}/>*/}
                                                 </Grid>
                                             </Grid>
-                                            <Grid container item justifyContent='center'  style={{marginTop: theme.spacing(2)}}>
+                                            <Grid container item justifyContent='center'
+                                                  style={{marginTop: theme.spacing(2)}}>
                                                 <Typography display='inline'
                                                             variant='body1'
                                                 >{dateUtils.MonthYear(portfolioItem?.inceptionDate)}</Typography>
                                             </Grid>
                                             <Grid container item justifyContent='center' alignContent={'center'}>
-                                                <Typography style={{minHeight:"60px"}}
-                                                    variant='body2'>{portfolioItem?.title}</Typography>
+                                                <Typography style={{minHeight: "60px"}}
+                                                            variant='body2'>{portfolioItem?.title}</Typography>
                                             </Grid>
                                         </Grid>
                                     </Button>
@@ -112,7 +105,8 @@ const ResumePortfolioSection: FunctionComponent<IProps> = (props: IProps) => {
                             overflowY: "scroll",
                             maxWidth: "100%"
                         }} spacing={2}>
-                            <Grid item container><Typography variant='h3'>{currentItem?.detailTitle}</Typography> </Grid>
+                            <Grid item container><Typography variant='h3'>{currentItem?.detailTitle}</Typography>
+                            </Grid>
                             <Grid item container><Typography
                                 variant='body1'>{currentItem?.detailDescription}</Typography></Grid>
                             <Grid item container spacing={1}>
