@@ -39,7 +39,7 @@ import ResumeBioSection from "./my-digital-resume/resume-bio-section/ResumeBioSe
 import MMHeroContentSection from "./mackenzies-mind/MMHeroContentSection";
 import ResumeSkillsSection from "./my-digital-resume/resume-skills-section/ResumeSkillsSection";
 import ResumeExperienceSection from "./my-digital-resume/resume-experience-section/ResumeExperienceSection";
-import ResumeEducationSection from "./my-digital-resume/ResumeEducationSection";
+import ResumeEducationSection from "./my-digital-resume/resume-education-section/ResumeEducationSection";
 import ResumeFeedbackSection from "./my-digital-resume/ResumeFeedbackSection";
 import ResumeContactUsSection from "./my-digital-resume/ResumeContactUsSection";
 import ResumePortfolioSection from "./my-digital-resume/ResumePortfolioSection";

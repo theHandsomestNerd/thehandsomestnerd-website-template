@@ -1,11 +1,11 @@
 import React, {FunctionComponent} from 'react'
 import {ThemeProvider} from "@mui/material/styles";
 import {Grid, Typography, useTheme} from '@mui/material'
-import {ResumeEducation, ResumeEducationSectionType} from "../BlockContentTypes";
-import useThwCommonStyles from "../../common/sanityIo/ThwCommonStyles";
-import {COLORS} from "../../theme/common/ColorPalette";
-import TheWebsiteTheme from "../../theme/Theme";
-import widthUtils from "../../utils/widthUtils";
+import {ResumeEducation, ResumeEducationSectionType} from "../../BlockContentTypes";
+import useThwCommonStyles from "../../../common/sanityIo/ThwCommonStyles";
+import {COLORS} from "../../../theme/common/ColorPalette";
+import TheWebsiteTheme from "../../../theme/Theme";
+import widthUtils from "../../../utils/widthUtils";
 
 
 interface IProps {
@@ -50,7 +50,7 @@ const ResumeEducationSection: FunctionComponent<IProps> = (props: IProps) => {
                                                  }} xs={12}>
                                         <Grid container item spacing={2}>
                                             <Grid item>
-                                                <Typography display='inline'
+                                                <Typography role={'educationheader'}  display='inline'
                                                             variant='body2'>{experience.institutionName}</Typography>
                                             </Grid>
                                         </Grid>

@@ -3,7 +3,7 @@ import ResumeSkillsSection from "../../components/my-digital-resume/resume-skill
 import ResumeSkillSectionData from "../data/ResumeSkillSectionData";
 import ResumeExperienceSection from "../../components/my-digital-resume/resume-experience-section/ResumeExperienceSection";
 import ResumeExperienceSectionData from "../data/ResumeExperienceSectionData";
-import ResumeEducationSection from "../../components/my-digital-resume/ResumeEducationSection";
+import ResumeEducationSection from "../../components/my-digital-resume/resume-education-section/ResumeEducationSection";
 import ResumeEducationSectionData from "../data/ResumeEducationSectionData";
 
 const meta: Meta<typeof ResumeEducationSection> = {
@@ -21,7 +21,7 @@ type Story = StoryObj<typeof ResumeEducationSection>;
  * to learn how to use render functions.
  */
 
-export const Primary: Story = {
+export const ResumeEducationSectionStory: Story = {
     args:{
         sectionData: ResumeEducationSectionData
     },

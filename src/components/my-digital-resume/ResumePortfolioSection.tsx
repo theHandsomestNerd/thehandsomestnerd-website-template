@@ -7,7 +7,6 @@ import useThwCommonStyles from "../../common/sanityIo/ThwCommonStyles";
 import {urlFor} from "../block-content-ui/static-pages/cmsStaticPagesClient";
 import {Close} from "@mui/icons-material";
 import dateUtils from "../../utils/dateUtils";
-import widthUtils from "../../utils/widthUtils";
 
 interface IProps {
     sectionData: ResumePortfolioSectionType
@@ -16,9 +15,6 @@ interface IProps {
 const ResumePortfolioSection: FunctionComponent<IProps> = (props: IProps) => {
     const globalClasses = useThwCommonStyles()
     const theme = useTheme()
-
-
-    const xsOnly = widthUtils.useIsWidthDown('xs')
 
     const [isOpen, setIsOpen] = React.useState<boolean>(false)
     const [currentItem, setCurrentItem] = React.useState<ResumePortfolioItem>()
@@ -120,7 +116,7 @@ const ResumePortfolioSection: FunctionComponent<IProps> = (props: IProps) => {
                                     {currentItem?.imageGallery?.map((image) => (
                                         <Grid item container xs={11} justifyContent='center'>
                                             <Grid item>
-                                                <img src={urlFor(image ?? "").url() ?? ""} width={"100%"}/>
+                                                <img alt={'imageGalleryEntry'} src={urlFor(image ?? "").url() ?? ""} width={"100%"}/>
                                             </Grid>
                                         </Grid>))}
                                 </Grid>
