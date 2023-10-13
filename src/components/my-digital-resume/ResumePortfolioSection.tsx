@@ -1,4 +1,4 @@
-import React, {FunctionComponent, useContext} from 'react'
+import React, {FunctionComponent} from 'react'
 import {StyledEngineProvider, ThemeProvider} from "@mui/material/styles";
 import {Button, ButtonGroup, Chip, Grid, IconButton, Modal, Typography, useTheme} from '@mui/material'
 import {ResumePortfolioItem, ResumePortfolioSectionType} from "../BlockContentTypes";
@@ -56,28 +56,39 @@ const ResumePortfolioSection: FunctionComponent<IProps> = (props: IProps) => {
                     <Grid item container justifyContent={xsOnly ? 'center' : 'flex-start'}>
                         {
                             props.sectionData.portfolioEntries?.map((portfolioItem: ResumePortfolioItem, index2: number) => {
-                                return <Grid key={index2} container item xs={12} sm={4} lg={3} xl={2} alignContent='flex-start'>
+                                return <Grid key={index2} style={{backgroundColor: index2%2===1?"whitesmoke":"white"}} container item xs={6} sm={4} lg={3} xl={3} alignContent='flex-start' justifyContent='center' >
                                     <Button onClick={(e) => sendToModal(portfolioItem)}>
                                         <Grid
                                             item container
+                                            // xs={12}
+                                            // sm={6}
+                                            // md={6}
                                             style={{
-                                                borderBottom: `1px solid ${index2 >= (props.sectionData.portfolioEntries?.length ?? 0) - 2 ? "transparent" : COLORS.LIGHTGRAY}`,
-                                            }} xs={12}>
+                                                // borderBottom: `1px solid ${index2dex2 >= (props.sectionData.portfolioEntries?.length ?? 0) - 2 ? "transparent" : COLORS.LIGHTGRAY}`,
+                                            }}>
                                             <Grid container item spacing={2} justifyContent='center'>
-                                                <Grid item xs={11} sm={12} container justifyContent='center'>
-                                                    <img src={urlFor(portfolioItem?.coverImage ?? "").url() ?? ""}
-                                                         style={{minHeight: 120, minWidth: 120, maxHeight: 300, maxWidth: 300}}
-                                                         height={"100%"}/>
+                                                <Grid item xs={11} sm={11} container justifyContent='center'
+                                                      style={{
+                                                          backgroundImage: `url(${urlFor(portfolioItem?.coverImage ?? "").url() ?? ""})`,
+                                                          backgroundSize: "cover",
+                                                          backgroundPosition: "top center",
+                                                          backgroundRepeat: "no-repeat",
+                                                          width:"100%",
+                                                          minHeight: "200px"}}
+                                                >
+                                                    {/*<img src={urlFor(portfolioItem?.coverImage ?? "").url() ?? ""}*/}
+                                                    {/*     style={{minHeight: 120, minWidth: 120, maxHeight: 300, maxWidth: 300}}*/}
+                                                    {/*     height={"100%"}/>*/}
                                                 </Grid>
                                             </Grid>
-                                            <Grid container item justifyContent='center' style={{marginTop: theme.spacing(2)}}>
-                                                <Typography
-                                                    variant='body2'>{portfolioItem?.title}</Typography>
-                                            </Grid>
-                                            <Grid container item justifyContent='center'>
+                                            <Grid container item justifyContent='center'  style={{marginTop: theme.spacing(2)}}>
                                                 <Typography display='inline'
                                                             variant='body1'
                                                 >{dateUtils.MonthYear(portfolioItem?.inceptionDate)}</Typography>
+                                            </Grid>
+                                            <Grid container item justifyContent='center' alignContent={'center'}>
+                                                <Typography style={{minHeight:"60px"}}
+                                                    variant='body2'>{portfolioItem?.title}</Typography>
                                             </Grid>
                                         </Grid>
                                     </Button>
