@@ -1,12 +1,12 @@
 import React, {FunctionComponent} from 'react'
 import {StyledEngineProvider, ThemeProvider} from "@mui/material/styles";
 import {Button, ButtonGroup, Chip, Grid, IconButton, Modal, Typography, useTheme} from '@mui/material'
-import {ResumePortfolioItem, ResumePortfolioSectionType} from "../BlockContentTypes";
-import TheWebsiteTheme from "../../theme/Theme";
-import useThwCommonStyles from "../../common/sanityIo/ThwCommonStyles";
-import {urlFor} from "../block-content-ui/static-pages/cmsStaticPagesClient";
+import {ResumePortfolioItem, ResumePortfolioSectionType} from "../../BlockContentTypes";
+import TheWebsiteTheme from "../../../theme/Theme";
+import useThwCommonStyles from "../../../common/sanityIo/ThwCommonStyles";
+import {urlFor} from "../../block-content-ui/static-pages/cmsStaticPagesClient";
 import {Close} from "@mui/icons-material";
-import dateUtils from "../../utils/dateUtils";
+import dateUtils from "../../../utils/dateUtils";
 
 interface IProps {
     sectionData: ResumePortfolioSectionType
@@ -51,6 +51,7 @@ const ResumePortfolioSection: FunctionComponent<IProps> = (props: IProps) => {
                         {
                             props.sectionData.portfolioEntries?.map((portfolioItem: ResumePortfolioItem, index2: number) => {
                                 return <Grid key={index2}
+                                             role='portfoliobutton'
                                              style={{backgroundColor: index2 % 2 === 1 ? "whitesmoke" : "white"}}
                                              container item xs={6} sm={4} lg={4} xl={4} alignContent='flex-start'
                                              justifyContent='center'>

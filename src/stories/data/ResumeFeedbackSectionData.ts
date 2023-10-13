@@ -18,8 +18,8 @@ const ResumeFeedbackSectionData:ResumeFeedbackSectionType = {
             // "_updatedAt": "2022-12-01T21:24:38Z",
             "quote": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable Engl",
             // "_createdAt": "2022-12-01T20:55:41Z",
-            "companyName": "JamWorks 24/7",
-            "name": "JamWorks 24/7",
+            "companyName": "JamWorks",
+            "name": "JamWorks",
             "imageSrc": {
                 "asset": {
                     "_ref": "image-ba4a7c9c01e632950293be433ab1f95560800ce5-728x290-png",
@@ -27,7 +27,7 @@ const ResumeFeedbackSectionData:ResumeFeedbackSectionType = {
                 },
                 "_type": "image"
             },
-            "customerName": "JamWorks 24/7",
+            "customerName": "JamWorks",
             "customerTitle": "CEO",
             // "_rev": "QoSfkmWVFCw5OU4CBmXCaz",
             "_type": "ResumeFeedback"

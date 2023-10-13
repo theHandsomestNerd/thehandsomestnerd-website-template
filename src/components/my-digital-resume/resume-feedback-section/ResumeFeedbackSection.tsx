@@ -1,12 +1,12 @@
 import React, {FunctionComponent} from 'react'
 import {ThemeProvider} from "@mui/material/styles";
 import {Grid, Typography} from '@mui/material'
-import {ResumeFeedback, ResumeFeedbackSectionType} from "../BlockContentTypes";
-import useThwCommonStyles from "../../common/sanityIo/ThwCommonStyles";
-import {urlFor} from "../block-content-ui/static-pages/cmsStaticPagesClient";
-import {COLORS} from "../../theme/common/ColorPalette";
-import TheWebsiteTheme from "../../theme/Theme";
-import widthUtils from "../../utils/widthUtils";
+import {ResumeFeedback, ResumeFeedbackSectionType} from "../../BlockContentTypes";
+import useThwCommonStyles from "../../../common/sanityIo/ThwCommonStyles";
+import {urlFor} from "../../block-content-ui/static-pages/cmsStaticPagesClient";
+import {COLORS} from "../../../theme/common/ColorPalette";
+import TheWebsiteTheme from "../../../theme/Theme";
+import widthUtils from "../../../utils/widthUtils";
 
 
 interface IProps {

@@ -1,13 +1,9 @@
 import type {Meta, StoryObj} from '@storybook/react';
-import ResumeSkillsSection from "../../components/my-digital-resume/resume-skills-section/ResumeSkillsSection";
-import ResumeSkillSectionData from "../data/ResumeSkillSectionData";
-import ResumeExperienceSection from "../../components/my-digital-resume/resume-experience-section/ResumeExperienceSection";
-import ResumeExperienceSectionData from "../data/ResumeExperienceSectionData";
-import ResumeFeedbackSection from "../../components/my-digital-resume/ResumeFeedbackSection";
+import ResumeFeedbackSection from "../../components/my-digital-resume/resume-feedback-section/ResumeFeedbackSection";
 import ResumeFeedbackSectionData from "../data/ResumeFeedbackSectionData";
 
 const meta: Meta<typeof ResumeFeedbackSection> = {
-    title:"Resume/Section/Resume Feedback Section",
+    title: "Resume/Section/Resume Feedback Section",
     component: ResumeFeedbackSection,
 };
 
@@ -21,8 +17,8 @@ type Story = StoryObj<typeof ResumeFeedbackSection>;
  * to learn how to use render functions.
  */
 
-export const Primary: Story = {
-    args:{
+export const ResumeFeedbackSectionStory: Story = {
+    args: {
         sectionData: ResumeFeedbackSectionData
     },
     render: ({sectionData}) => <ResumeFeedbackSection sectionData={sectionData}></ResumeFeedbackSection>,
