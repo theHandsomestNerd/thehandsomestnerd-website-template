@@ -80,6 +80,9 @@ import category from "./category";
 import ServicesSection from "./services/ServicesSection";
 import ServiceItem from "./services/ServiceItem";
 import ServiceAmenity from "./services/serviceAmenity";
+import BusinessContact from "./businessContact";
+import scheduleGroup from "./scheduleGroup";
+import scheduleEntry from "./scheduleEntry";
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default [
@@ -165,4 +168,7 @@ export default [
     category,
     MuiTypography,
     MuiColorPalatte,
+    BusinessContact,
+    scheduleGroup,
+    scheduleEntry
 ]

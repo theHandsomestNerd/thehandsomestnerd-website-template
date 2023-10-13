@@ -66,9 +66,6 @@ const HOMEPAGE = `_type,
           isUnderConstruction,
           releaseDate,
           slug,
-          address,
-          email,
-          phone,
           description,
           businessCardImageSrc,
           bookAppointmentLink,
@@ -77,6 +74,38 @@ const HOMEPAGE = `_type,
           websiteQrCode,
           metaImage,
           theme->,
+          "businessContact": businessContactRef->{
+              ...
+              address,
+              email,
+              phone,
+              facebook,
+              facebookIconSrc{
+                asset->{
+                  _id,
+                  url,
+                  altText
+                 }
+              },
+              twitter,
+              twitterIconSrc{
+                asset->{
+                  _id,
+                  url,
+                  altText
+                 }
+              },
+              instagram,
+              linkedIn,
+              github,
+              instagramIconSrc{
+                asset->{
+                  _id,
+                  url,
+                  altText
+                 }
+              }
+          },
           headerContent {
             "content": content[]->{
                 ...,
@@ -129,33 +158,7 @@ const HOMEPAGE = `_type,
             ${SERVICE}
           },
           underConstructionPageRef,
-          structuredData,
-          facebook,
-          facebookIconSrc{
-            asset->{
-              _id,
-              url,
-              altText
-             }
-          },
-          twitter,
-          twitterIconSrc{
-            asset->{
-              _id,
-              url,
-              altText
-             }
-          },
-          instagram,
-          linkedIn,
-          github,
-          instagramIconSrc{
-            asset->{
-              _id,
-              url,
-              altText
-             }
-          }
+          structuredData
 `;
 // const MENUGROUP = `
 //           title,

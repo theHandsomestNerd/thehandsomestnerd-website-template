@@ -94,8 +94,7 @@ const BusinessCard: FunctionComponent<MainMenuProps> = ({anchor, homePage}) => {
     // }, [qrCodeContext.qr_code_value])
 
     const list = (anchor: MainMenuAnchorType) => (
-        <ThemeProvider theme={TheWebsiteTheme
-}>
+        <ThemeProvider theme={TheWebsiteTheme}>
             <Grid xs={12} md={6} container item
                   role="presentation"
                 // onClick={toggleDrawer(anchor, false)}
@@ -104,8 +103,7 @@ const BusinessCard: FunctionComponent<MainMenuProps> = ({anchor, homePage}) => {
             >
                 <Grid container item alignContent='flex-end'>
                     <Grid item container style={{
-                        marginBottom: TheWebsiteTheme
-.spacing(4),
+                        marginBottom: TheWebsiteTheme.spacing(4),
                         backgroundRepeat: "none",
                         minHeight: 250,
                         backgroundSize: "cover",
@@ -117,10 +115,9 @@ const BusinessCard: FunctionComponent<MainMenuProps> = ({anchor, homePage}) => {
                             position: "relative",
                             bottom: -45,
                             height: "max-content",
-                            padding: TheWebsiteTheme
-.spacing(2, 3)
+                            padding: TheWebsiteTheme.spacing(2, 3)
                         }}>
-                            <SocialMediaBlock spacing={1} bgColor color='secondary' {...homePage}/>
+                            <SocialMediaBlock spacing={1} bgColor color='secondary' {...homePage.businessContact}/>
                         </Grid>
                     </Grid>
                 </Grid>
@@ -144,7 +141,7 @@ const BusinessCard: FunctionComponent<MainMenuProps> = ({anchor, homePage}) => {
 
                                 </Grid>
                                 <Grid item xs={9} container justifyContent='flex-end'>
-                                    <Typography variant='body2'>{homePage.phone}</Typography>
+                                    <Typography variant='body2'>{homePage.businessContact?.phone}</Typography>
 
                                 </Grid>
                             </Grid>
@@ -157,11 +154,10 @@ const BusinessCard: FunctionComponent<MainMenuProps> = ({anchor, homePage}) => {
 
                             </Grid>
                             <Grid item xs={9} container justifyContent='flex-end'>
-                                <MailTo color={TheWebsiteTheme
-.palette.primary.main} email={homePage.email ?? ""}
+                                <MailTo color={TheWebsiteTheme.palette.primary.main} email={homePage.businessContact?.email ?? ""}
                                         subject={"Information Request"} body={""}>
                                     <Typography color='textPrimary' variant='button'
-                                                align='right'>{homePage.email}</Typography>
+                                                align='right'>{homePage.businessContact?.email}</Typography>
                                 </MailTo>
                                 {/*<Typography variant='body2'>{homePage.email}</Typography>*/}
                             </Grid>

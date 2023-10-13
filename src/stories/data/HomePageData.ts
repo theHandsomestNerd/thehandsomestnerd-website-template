@@ -1,11 +1,27 @@
 import {SanityTransformHwHomePage} from "../../common/sanityIo/Types";
 
 const homePageResumeData:SanityTransformHwHomePage = {
-    "linkedIn": "terrell-singleton",
+    businessContact: {
+        // "github": null,
+        // "instagram": null,
+        "facebook": "kamikazenupe1911",
+        // "facebookIconSrc": null,
+        // "twitter": null,
+        // "twitterIconSrc": null,
+        "linkedIn": "Terrell-singleton",
+        // "instagramIconSrc": null,
+        "email": "terrell.singleton@gmail.com",
+        "twitter": "KamikazetheZ",
+        "address": "7300 Roselynn Lane, Clinton, MD 20735",
+        "instagram": "thehandsomestnerd",
+        "instagramIconSrc": undefined,
+        "phone": "443.992.2191",
+        "facebookIconSrc": undefined,
+        "twitterIconSrc": undefined,
+        "github": "tmanundercover",
+    },
     "isUnderConstruction": undefined,
     "structuredData": null,
-    "twitter": "KamikazetheZ",
-    "address": "7300 Roselynn Lane, Clinton, MD 20735",
     "bookAppointmentQrCode": {
         "_type": "image",
         "asset": {
@@ -56,7 +72,6 @@ const homePageResumeData:SanityTransformHwHomePage = {
     // "releaseDate": undefined,
     "description": "My name is James Terrell Singleton and I am a Web developer. This is my professional resume and portfolio. React.js software Developer. Javascript seems to dominate the projects I end up working on. Node.js and Typescript win for backend. Efficient at developing one page applications & websites. Prototypes for mobile apps and digital Resumes. \n\nhello@thehandsomestnerd.com\nhttps://terrellsingleton.com",
     "title": "James Terrell Singleton - Software Engineer & Web Developer",
-    "email": "terrell.singleton@gmail.com",
     "footerContent": {
         "content": [
             {
@@ -293,7 +308,6 @@ const homePageResumeData:SanityTransformHwHomePage = {
             }
         ]
     },
-    "facebook": "Kamikaze1911",
     "pageContent": {
         "content": [
             {
@@ -2349,9 +2363,7 @@ const homePageResumeData:SanityTransformHwHomePage = {
             }
         ]
     },
-    "instagram": "thehandsomestnerd",
-    "instagramIconSrc": undefined,
-    "phone": "443.992.2191",
+
     "bookAppointmentLink": "https://the-handsomest-nerd.square.site",
     "metaImage": {
         "_type": "image",
@@ -2361,9 +2373,6 @@ const homePageResumeData:SanityTransformHwHomePage = {
     },
     "servicesAvailable": undefined,
     "underConstructionPageRef": undefined,
-    "facebookIconSrc": undefined,
-    "twitterIconSrc": undefined,
-    "github": "tmanundercover",
     "slug": {
         "current": "home",
         "_type": "slug"

@@ -18,27 +18,21 @@ export declare type SanityColdLead = {
     leadMessage?: string,
     source?: string
 }
+export type SanityGroupScheduleEntry = {
+    name:string,
+    dayName:string,
+    isClosed:boolean,
+    startTime:string,
+    endTime:string
+}
+export type SanityGroupSchedule = {
+    name:string,
+    hoursOfOperation: SanityGroupScheduleEntry[]
+}
 
-export type SanityTransformHwHomePage = {
-    _type?: string
-    title?: string
-    description?: string
-    bookAppointmentLink?: string
-    bookAppointmentQrCode?: SanityImageSource
-    imgSrc?: SanityImageSource
-    metaImage?: SanityImageSource
-    businessCardImageSrc?: SanityImageSource
-    slug?: any
-    theme?: SanityMuiTheme
-    headerContent?: any
-    footerContent?: any
-    pageContent?: any
-    servicesAvailable?: ThwServiceItemNoRefType[]
-    structuredData?: any
-    address?: string
-    website?: string
-    websiteQrCode?: SanityImageSource
+export type SanityBusinessContact = {
     email?: string
+    address?: string
     phone?: string
     facebook?: string
     facebookIconSrc?: SanityImageSource
@@ -50,6 +44,28 @@ export type SanityTransformHwHomePage = {
     instagramIconSrc?: SanityImageSource
     github?: string
     githubIconSrc?: SanityImageSource
+    hoursOfOperation?: SanityGroupSchedule[]
+}
+
+export type SanityTransformHwHomePage = {
+    _type?: string
+    title?: string
+    description?: string
+    bookAppointmentLink?: string
+    bookAppointmentQrCode?: SanityImageSource
+    imgSrc?: SanityImageSource
+    metaImage?: SanityImageSource
+    businessCardImageSrc?: SanityImageSource
+    slug?: any
+    businessContact: SanityBusinessContact
+    theme?: SanityMuiTheme
+    headerContent?: any
+    footerContent?: any
+    pageContent?: any
+    servicesAvailable?: ThwServiceItemNoRefType[]
+    structuredData?: any
+    website?: string
+    websiteQrCode?: SanityImageSource
     androidPlayStoreLink?: string
     androidPlayStoreIconSrc?: string
     appStoreLink?: string

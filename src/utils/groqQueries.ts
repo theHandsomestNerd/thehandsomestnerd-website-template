@@ -66,11 +66,40 @@ const HOMEPAGE = `_type,
           isUnderConstruction,
           releaseDate,
           slug,
-          address,
-          email,
-          phone,
           description,
           businessCardImageSrc,
+          "businessContact": businessContactRef->{
+              ...,
+              address,
+              email,
+              phone,
+              facebook,
+              facebookIconSrc{
+                asset->{
+                  _id,
+                  url,
+                  altText
+                 }
+              },
+              twitter,
+              twitterIconSrc{
+                asset->{
+                  _id,
+                  url,
+                  altText
+                 }
+              },
+              instagram,
+              linkedIn,
+              github,
+              instagramIconSrc{
+                asset->{
+                  _id,
+                  url,
+                  altText
+                 }
+              }
+          },
           bookAppointmentLink,
           bookAppointmentQrCode,
           website,
@@ -130,32 +159,6 @@ const HOMEPAGE = `_type,
           isFabActivated,
           underConstructionPageRef,
           structuredData,
-          facebook,
-          facebookIconSrc{
-            asset->{
-              _id,
-              url,
-              altText
-             }
-          },
-          twitter,
-          twitterIconSrc{
-            asset->{
-              _id,
-              url,
-              altText
-             }
-          },
-          instagram,
-          linkedIn,
-          github,
-          instagramIconSrc{
-            asset->{
-              _id,
-              url,
-              altText
-             }
-          }
 `
 
 enum SANITY_TYPES_ENUM {
