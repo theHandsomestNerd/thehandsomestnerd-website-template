@@ -59,10 +59,10 @@ const WebDevFooterMenuContainer: FunctionComponent<IProps> = (props: IProps) => 
                     </Grid>}
                 <Grid container item justifyContent={smDown ? 'center' : 'flex-start'}>
                     {<Grid item>
-                        <MailTo color={"white"} email={pageContext.page?.email ?? ""}
+                        <MailTo color={"white"} email={pageContext.page?.businessContact?.email ?? ""}
                                 subject={"Information Request"}
                                 body={""}><Typography
-                            color='inherit'>{pageContext.page?.email}</Typography></MailTo>
+                            color='inherit'>{pageContext.page?.businessContact?.email}</Typography></MailTo>
                     </Grid>}
                 </Grid>
                 <Grid item container style={{paddingLeft: theme.spacing(1)}}>
@@ -72,7 +72,7 @@ const WebDevFooterMenuContainer: FunctionComponent<IProps> = (props: IProps) => 
                             <Typography color='inherit' variant='subtitle1'
                                         align={smDown ? 'center' : 'left'}
                                         style={{fontWeight: "400", fontFamily: "Raleway", maxWidth: "150px"}}
-                                        gutterBottom>{pageContext.page?.address}</Typography>
+                                        gutterBottom>{pageContext.page?.businessContact?.address}</Typography>
                         </Grid>
                     </Grid>
                     <Grid container item spacing={1}
@@ -80,7 +80,7 @@ const WebDevFooterMenuContainer: FunctionComponent<IProps> = (props: IProps) => 
                           justifyContent={smDown ? 'center' : 'flex-start'}>
                         <Grid item>
                             <Typography color='inherit' align='center'
-                                        variant='subtitle1'>{pageContext.page?.phone}</Typography>
+                                        variant='subtitle1'>{pageContext.page?.businessContact?.phone}</Typography>
                         </Grid>
                     </Grid>
                 </Grid>

@@ -23,10 +23,10 @@ type Story = StoryObj<typeof SocialMediaBlock>;
 
 export const SocialMediaBlockFromHomepage: Story = {
     args:{
-        facebook:homePageResumeData.businessContact.facebook,
-        twitter:homePageResumeData.businessContact.twitter,
-        linkedIn:homePageResumeData.businessContact.linkedIn,
-        github:homePageResumeData.businessContact.github,
+        facebook:homePageResumeData.businessContact?.facebook,
+        twitter:homePageResumeData.businessContact?.twitter,
+        linkedIn:homePageResumeData.businessContact?.linkedIn,
+        github:homePageResumeData.businessContact?.github,
         instagram: "thehandsomestNerd"
     },
     render: ({facebook,twitter, linkedIn, instagram, github}) => <SocialMediaBlock facebook={facebook} twitter={twitter} linkedIn={linkedIn} github={github} instagram={instagram}></SocialMediaBlock>,
@@ -34,15 +34,15 @@ export const SocialMediaBlockFromHomepage: Story = {
 
 export const SocialMediaBlockOnlyFacebook: Story = {
     args:{
-        facebook:homePageResumeData.businessContact.facebook,
+        facebook:homePageResumeData.businessContact?.facebook,
     },
     render: ({facebook}) => <SocialMediaBlock facebook={facebook}></SocialMediaBlock>,
 };
 
 export const SocialMediaBlockOnly3: Story = {
     args:{
-        facebook:homePageResumeData.businessContact.facebook,
-        twitter:homePageResumeData.businessContact.twitter,
+        facebook:homePageResumeData.businessContact?.facebook,
+        twitter:homePageResumeData.businessContact?.twitter,
         instagram: "thehandsomestNerd"
     },
     render: ({facebook, twitter, instagram}) => <SocialMediaBlock facebook={facebook} instagram={instagram} twitter={twitter}></SocialMediaBlock>,

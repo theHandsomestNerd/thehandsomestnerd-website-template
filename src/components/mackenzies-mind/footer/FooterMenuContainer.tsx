@@ -78,21 +78,21 @@ const FooterMenuContainer: FunctionComponent<IProps> = (props: IProps) => {
                         <Grid container item spacing={1} justifyContent='center'>
                             <Grid item>
                                 <Typography color='inherit' style={{width: "180px"}} align='center' variant='subtitle1'
-                                            gutterBottom>{pageContext.page?.businessContact.address}</Typography>
+                                            gutterBottom>{pageContext.page?.businessContact?.address}</Typography>
                             </Grid>
                         </Grid>
                         <Grid container item spacing={1} justifyContent='center'>
                             <Grid item>
                                 <Typography color='inherit' align='center'
-                                            variant='subtitle1'>{pageContext.page?.businessContact.phone}</Typography>
+                                            variant='subtitle1'>{pageContext.page?.businessContact?.phone}</Typography>
                             </Grid>
                         </Grid>
                         <Grid container item spacing={1} justifyContent='center'>
                             {<Grid item>
-                                <MailTo color={"#383838"} email={pageContext.page?.businessContact.email ?? ""}
+                                <MailTo color={"#383838"} email={pageContext.page?.businessContact?.email ?? ""}
                                         subject={"Information Request"}
                                         body={""}><Typography
-                                    color='inherit'>{pageContext.page?.businessContact.email}</Typography></MailTo>
+                                    color='inherit'>{pageContext.page?.businessContact?.email}</Typography></MailTo>
                             </Grid>}
                         </Grid>
                     </Grid>

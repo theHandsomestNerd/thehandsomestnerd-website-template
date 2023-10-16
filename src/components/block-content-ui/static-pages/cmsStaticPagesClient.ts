@@ -1,13 +1,14 @@
 import imageUrlBuilder from '@sanity/image-url'
 import sanityClient from '../../../sanityClient'
 import {SanityImageAsset, SanityImageSource} from "@sanity/asset-utils";
-import {SanityMenuGroup, SanitySlug} from "../../../common/sanityIo/Types";
+import {SanityBusinessContact, SanityMenuGroup, SanitySlug} from "../../../common/sanityIo/Types";
 
 const builder = imageUrlBuilder(sanityClient)
 
 export type SanityHomePage = {
   slug?: SanitySlug,
   heroImage?: SanityHeroImageWithText,
+  businessContact?: SanityBusinessContact,
   introduction?: string
   specializationsMenuGroup?: SanityMenuGroup,
   weWorkWithSection?: SanityWeWorkWith,

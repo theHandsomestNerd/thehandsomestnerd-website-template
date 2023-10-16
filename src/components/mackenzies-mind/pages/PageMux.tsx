@@ -33,7 +33,7 @@ const PageMux: FunctionComponent<IProps> = (props: IProps) => {
             return <PageLayout homePage={pageContext.page}></PageLayout>
         } else if (pageContext.page && pageContext.page.underConstructionPageRef) {
             return <UnderConstruction underConstructionPageRef={pageContext.page.underConstructionPageRef}
-                                      email={pageContext.page?.email}/>
+                                      email={pageContext.page?.businessContact?.email}/>
         }
 
         if (pageContext.isPageError) {

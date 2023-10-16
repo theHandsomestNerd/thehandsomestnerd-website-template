@@ -1,6 +1,7 @@
 import {SanityImageSource} from "@sanity/asset-utils";
 import {SanityImageAsset, ThwServiceItemNoRefType} from "../../components/BlockContentTypes";
 import {Slug} from "@sanity/types";
+import BusinessContact from "../../../sanityIo/schemas/businessContact";
 
 export type SanitySlug = Slug
 
@@ -57,7 +58,7 @@ export type SanityTransformHwHomePage = {
     metaImage?: SanityImageSource
     businessCardImageSrc?: SanityImageSource
     slug?: any
-    businessContact: SanityBusinessContact
+    businessContact?: SanityBusinessContact
     theme?: SanityMuiTheme
     headerContent?: any
     footerContent?: any

@@ -2,6 +2,25 @@ import {SanityTransformHwHomePage} from "../../common/sanityIo/Types";
 import DigitalResumeThemeData from "./DigitalResumeThemeData";
 
 const thwHomePageData:SanityTransformHwHomePage = {
+    businessContact: {
+        // "github": null,
+        // "instagram": null,
+        "facebook": "kamikazenupe1911",
+        // "facebookIconSrc": null,
+        // "twitter": null,
+        // "twitterIconSrc": null,
+        "linkedIn": "Terrell-singleton",
+        // "instagramIconSrc": null,
+        "email": "terrell.singleton@gmail.com",
+        "twitter": "KamikazetheZ",
+        "address": "7300 Roselynn Lane, Clinton, MD 20735",
+        "instagram": "thehandsomestnerd",
+        "instagramIconSrc": undefined,
+        "phone": "443.992.2191",
+        "facebookIconSrc": undefined,
+        "twitterIconSrc": undefined,
+        "github": "tmanundercover",
+    },
     "description": " To provide innovative and alternative services in an effort to help those seeking change to live a meaningful and fulfilling life. To raise the awareness and the importance of Mental Health and Wellness.",
     "theme": DigitalResumeThemeData,
     "servicesAvailable": [
@@ -431,7 +450,7 @@ const thwHomePageData:SanityTransformHwHomePage = {
             ]
         },
     ],
-    "facebook": "Transformative Healing and Wellness",
+    // "facebook": "Transformative Healing and Wellness",
     "isUnderConstruction": false,
     // "releaseDate": null,
     // "headerMenuRef": {
@@ -2069,15 +2088,15 @@ const thwHomePageData:SanityTransformHwHomePage = {
     },
     "structuredData": null,
     // "facebookIconSrc": null,
-    "twitter": "transform_hw",
+    // "twitter": "transform_hw",
     "slug": {
         "current": "home",
         "_type": "slug"
     },
-    "phone": "443.940.5550",
+    // "phone": "443.940.5550",
     "_type": "homePage",
     // "instagramIconSrc": null,
-    "email": "jgreene@transformhw.org",
+    // "email": "jgreene@transformhw.org",
     "metaImage": {
         "_type": "image",
         "asset": {
@@ -2088,9 +2107,9 @@ const thwHomePageData:SanityTransformHwHomePage = {
     // "googleReviewLink": "https://www.google.com/maps/place/Transformative+Healing+%26+Wellness/@39.4030221,-76.7579788,17z/data=!3m1!5s0x89c81741c512004f:0x9b9d4f470b87d68!4m7!3m6!1s0x89c817f2385e32a9:0xb54a2748f7057204!8m2!3d39.4030221!4d-76.7557901!9m1!1b1",
     // "underConstructionPageRef": null,
     // "twitterIconSrc": null,
-    "instagram": "TransformativeHW",
+    // "instagram": "TransformativeHW",
     "title": "Home Page - Transformative Healing & Wellness",
-    "address": "9505 Reisterstown RD Ste 3NW, Owings Mills, MD 21117"
+    // "address": "9505 Reisterstown RD Ste 3NW, Owings Mills, MD 21117"
 }
 
 export default thwHomePageData;
