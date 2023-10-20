@@ -73,7 +73,7 @@ const PageLayout: FunctionComponent<IProps> = (props: IProps) => {
                     color='textPrimary'
                     variant='subtitle2'
                     underline="hover">
-                    © Copyright 2022
+                    © Copyright 2023
                     TheHandsomestNerd, LLC. All Rights Reserved.
                 </Link>
             </Grid></ThemeProvider>
