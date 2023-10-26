@@ -15,6 +15,8 @@ export default {
             of:[{type: "string", options: {
                     list: [
                         {value: "OSWALD", title: "Oswald"},
+                        {value: "INTER", title: "Inter"},
+                        {value: "PROMPT", title: "Prompt"},
                         {value: "RALEWAY", title: "Raleway"},
                         {value: "POPPINS", title: "Poppins"},
                         {value: "MONTESERRAT", title: "Monteserrat"}
