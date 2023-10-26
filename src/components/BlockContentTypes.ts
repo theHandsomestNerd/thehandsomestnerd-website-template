@@ -23,6 +23,7 @@ export type HeroAnimatedContentSectionType = {
 
 export type SanityHeroContentSlide = {
     heroImage: SanityImageAsset
+    heroBullet: SanityImageAsset
     heroImageAltText: string
     heroImageBackground: SanityImageAsset
     contentTitle: string

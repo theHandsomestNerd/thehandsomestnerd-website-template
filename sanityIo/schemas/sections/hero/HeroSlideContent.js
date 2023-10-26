@@ -25,6 +25,11 @@ export default {
       },
     },
     {
+      name: 'heroBullet',
+      title: 'Hero Bullet',
+      type: 'image',
+    },
+    {
       name: 'contentWelcomeMessage',
       title: 'Content Welcome Message',
       type: 'string',
