@@ -53,22 +53,22 @@ const CustomizedThemeProvider: FunctionComponent<IProps & PropsWithChildren> = (
                     defaultBg = COLORS.BLUE
                     break;
                 case 'GRAY':
-                    defaultBg = COLORS.DARKBLUE
+                    defaultBg = COLORS.GRAY
                     break;
                 case 'LIGHT_GRAY':
-                    defaultBg = COLORS.DARKBLUE
+                    defaultBg = COLORS.LIGHT_GRAY
                     break;
                 case 'TRANSPARENTWHITE':
-                    defaultBg = COLORS.DARKBLUE
+                    defaultBg = COLORS.TRANSPARENTWHITE
                     break;
                 case 'LIGHTBLUE':
-                    defaultBg = COLORS.DARKBLUE
+                    defaultBg = COLORS.LIGHTBLUE
                     break;
                 case 'ALMOSTPURPLE':
-                    defaultBg = COLORS.DARKBLUE
+                    defaultBg = COLORS.ALMOSTPURPLE
                     break;
                 case 'LIGHTGRAY':
-                    defaultBg = COLORS.DARKBLUE
+                    defaultBg = COLORS.LIGHTGRAY
                     break;
                 case 'TRANPARENTLIGHTGRAY':
                     defaultBg = COLORS.TRANSPARENTLIGHTGRAY
@@ -94,14 +94,14 @@ const CustomizedThemeProvider: FunctionComponent<IProps & PropsWithChildren> = (
                 case 'DARKERGRAY':
                     defaultBg = COLORS.DARKERGRAY
                     break;
-                case 'DARKERGRAY':
-                    defaultBg = COLORS.DARKERGRAY
-                    break;
+                // case 'DARKERGRAY':
+                //     defaultBg = COLORS.DARKERGRAY
+                //     break;
                 case 'LIGHTER_GRAY':
-                    defaultBg = COLORS.DARKBLUE
+                    defaultBg = COLORS.LIGHTER_GRAY
                     break;
                 case 'DARK_GRAY':
-                    defaultBg = COLORS.DARKBLUE
+                    defaultBg = COLORS.DARK_GRAY
                     break;
                 default:
                     defaultBg = COLORS.WHITESMOKE

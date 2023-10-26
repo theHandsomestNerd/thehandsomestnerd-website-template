@@ -83,6 +83,9 @@ import ServiceAmenity from "./services/serviceAmenity";
 import BusinessContact from "./businessContact";
 import scheduleGroup from "./scheduleGroup";
 import scheduleEntry from "./scheduleEntry";
+import HeroAnimatedContentSection from "../../src/components/HeroAnimatedContentSection";
+import AnimatedHeroContentSection from "./sections/hero/AnimatedHeroContentSection";
+import HeroSlideContent from "./sections/hero/HeroSlideContent";
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default [
@@ -170,5 +173,7 @@ export default [
     MuiColorPalatte,
     BusinessContact,
     scheduleGroup,
-    scheduleEntry
+    scheduleEntry,
+    AnimatedHeroContentSection,
+    HeroSlideContent
 ]

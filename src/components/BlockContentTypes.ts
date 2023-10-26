@@ -1,5 +1,5 @@
 import {SanityImageSource} from "@sanity/asset-utils";
-import {SanityMenuContainer, SanityRef, SanitySlug} from "../common/sanityIo/Types";
+import {SanityMenuContainer, SanityMuiTheme, SanityRef, SanitySlug} from "../common/sanityIo/Types";
 import {FileAsset, ImageAsset} from "@sanity/types";
 
 export type HeroContentSectionType = {
@@ -10,6 +10,24 @@ export type HeroContentSectionType = {
     heroImageBackground: SanityImageAsset
     contentTitle: string
     contentBullets: string[]
+    ctaButtonTitle: string
+    ctaButtonLink: string
+}
+
+export type HeroAnimatedContentSectionType = {
+    name: string
+    title: string
+    theme: SanityMuiTheme
+    contentSlides: SanityHeroContentSlide[]
+}
+
+export type SanityHeroContentSlide = {
+    heroImage: SanityImageAsset
+    heroImageAltText: string
+    heroImageBackground: SanityImageAsset
+    contentTitle: string
+    contentWelcomeMessage: string
+    contentText: string
     ctaButtonTitle: string
     ctaButtonLink: string
 }

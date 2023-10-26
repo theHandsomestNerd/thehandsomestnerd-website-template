@@ -24,6 +24,7 @@ export default {
         {name: 'column2BlockContent', title: 'Custom 2 Column Section',type: 'reference', to: [{type: 'column2BlockContent'}]},
         {name: 'header', title: 'Header Menu',type: 'reference', to: [{type: 'menuContainer',}]},
         {name: 'footer', title: 'Footer Menu',type: 'reference', to: [{type: 'menuContainer',}]},
+        {name: 'HeroAnimatedContentSection', title: 'Animated Hero Content',type: 'reference', to: [{type: 'HeroAnimatedContentSection'}]},
         {name: 'Resume Bio Section', title: 'Resume Bio Section',type: 'reference', to: [{type: 'ResumeBioSection'}]},
         {name: 'Resume Skill Section', title: 'Resume Skill Section',type: 'reference', to: [{type: 'ResumeSkillSection'}]},
         {name: 'Resume Experience Section', title: 'Resume Experience Section',type: 'reference', to: [{type: 'ResumeExperienceSection'}]},

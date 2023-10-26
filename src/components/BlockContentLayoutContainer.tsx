@@ -4,6 +4,7 @@ import {Card, Grid, Link} from '@mui/material'
 import sanityClient from '../sanityClient'
 import {blockSerializers} from '../common/sanityIo/BlockContentRenderer'
 import {
+    HeroAnimatedContentSectionType,
     HowItWorksSectionType,
     PortfolioSectionType,
     ResumeBioSectionType,
@@ -51,6 +52,7 @@ import WebDevPortfolioSection from "./web-dev-site/WebDevPortfolioSection";
 import WebDevTestimonialsSection from "./web-dev-site/WebDevTestimonialsSection";
 import WebDevHowItWorksSection from "./web-dev-site/WebDevHowItWorksSection";
 import TheWebsiteTheme from "../theme/Theme";
+import HeroAnimatedContentSection from "./HeroAnimatedContentSection";
 
 export type BlockContentLayoutContainerProps = {
     content?: any,
@@ -381,6 +383,16 @@ const BlockContentLayoutContainer: FunctionComponent<BlockContentLayoutContainer
                                 <Link id={"HOW_IT_WORKS"} underline="hover"><></></Link>
                                 <WebDevHowItWorksSection
                                     sectionData={webDevHowItWorksSection}
+                                />
+                            </Grid>
+                        );
+                    case 'HeroAnimatedContentSection':
+                        const heroAnimatedContentSection: HeroAnimatedContentSectionType = columnLayoutContainer
+                        return (
+                            <Grid key={'animated-hero'} container item xs={12}>
+                                <Link id={"ANIMATED_HERO"} underline="hover"><></></Link>
+                                <HeroAnimatedContentSection
+                                    sectionData={heroAnimatedContentSection}
                                 />
                             </Grid>
                         );
