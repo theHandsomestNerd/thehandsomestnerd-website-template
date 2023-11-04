@@ -42,23 +42,10 @@ const MENUGROUPCONTAINER = `
 `
 
 const SERVICE =
-    `name,
-        imageSrc,
-        imageSrcAltText,
-        contentTitle,
-        contentText,
-        ctaButtonText,
-        ctaButtonLink,
-        learnMoreLink,
-        learnMoreText,
-        educationPageTitle,
-        educationPageSlimHeroImage,
-        extendedDescriptions,
-        benefitsOfServiceTitle,
-        benefitsOfServiceContents,
-        benefitsOfServiceBullets,
+    `   
+        ...,
         "serviceAmenities": serviceAmenities[]->,
-        slug,`
+      `
 
 
 const HOMEPAGE = `_type,
@@ -125,6 +112,7 @@ const HOMEPAGE = `_type,
           pageContent {
             "content": content[]->{
                 ...,
+                "highlightedAmenities": highlightedAmenities[],
                 "servicesList": servicesList[]->{
                     ${SERVICE}
                 },

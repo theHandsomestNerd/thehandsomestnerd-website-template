@@ -42,7 +42,9 @@ const MENUGROUPCONTAINER = `
 `;
 
 const SERVICE =
-    `name,
+    `
+        ...,
+        name,
         imageSrc,
         imageSrcAltText,
         contentTitle,
@@ -125,6 +127,7 @@ const HOMEPAGE = `_type,
           pageContent {
             "content": content[]->{
                 ...,
+                "highlightedAmenities": highlightedAmenities[],
                 "servicesList": servicesList[]->{
                     ${SERVICE}
                 },

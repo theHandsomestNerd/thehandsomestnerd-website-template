@@ -4,6 +4,7 @@ import {Card, Grid, Link} from '@mui/material'
 import sanityClient from '../sanityClient'
 import {blockSerializers} from '../common/sanityIo/BlockContentRenderer'
 import {
+    AnimatedServicesSectionType,
     HeroAnimatedContentSectionType,
     HowItWorksSectionType,
     PortfolioSectionType,
@@ -53,6 +54,7 @@ import WebDevTestimonialsSection from "./web-dev-site/WebDevTestimonialsSection"
 import WebDevHowItWorksSection from "./web-dev-site/WebDevHowItWorksSection";
 import TheWebsiteTheme from "../theme/Theme";
 import HeroAnimatedContentSection from "./HeroAnimatedContentSection";
+import AnimatedServicesSection from "./AnimatedServicesSection";
 
 export type BlockContentLayoutContainerProps = {
     content?: any,
@@ -137,8 +139,9 @@ const BlockContentLayoutContainer: FunctionComponent<BlockContentLayoutContainer
                         const thwPositivePsychologySection: ThwPositivePsychologySectionType = columnLayoutContainer
 
                         return (
-                            <Grid key={'transformPositivePsychologySection'} container item xs={12} justifyContent='center'
-                                         style={{backgroundColor: TheWebsiteTheme.palette.background.paper}}>
+                            <Grid key={'transformPositivePsychologySection'} container item xs={12}
+                                  justifyContent='center'
+                                  style={{backgroundColor: TheWebsiteTheme.palette.background.paper}}>
                                 <Link
                                     id={"ABOUT_US"}
                                     style={{position: "relative", top: -80}}
@@ -163,7 +166,7 @@ const BlockContentLayoutContainer: FunctionComponent<BlockContentLayoutContainer
 
                         return (
                             <Grid key={'transformAboutProprietorSection'} container item xs={12} justifyContent='center'
-                                         style={{backgroundColor: TheWebsiteTheme.palette.background.paper}}>
+                                  style={{backgroundColor: TheWebsiteTheme.palette.background.paper}}>
                                 <Link
                                     id={"ABOUT_PROPRIETOR"}
                                     style={{position: "relative", top: -80}}
@@ -179,7 +182,7 @@ const BlockContentLayoutContainer: FunctionComponent<BlockContentLayoutContainer
 
                         return (
                             <Grid key={'transformServicesSection'} container item xs={12} justifyContent='center'
-                                         style={{backgroundColor: TheWebsiteTheme.palette.background.paper}}>
+                                  style={{backgroundColor: TheWebsiteTheme.palette.background.paper}}>
                                 <Link
                                     id={"SERVICES"}
                                     style={{position: "relative", top: -80}}
@@ -212,12 +215,14 @@ const BlockContentLayoutContainer: FunctionComponent<BlockContentLayoutContainer
                         const resumeBioSection: ResumeBioSectionType = columnLayoutContainer
 
                         return (
-                            <Grid key={'ResumeBioSection'} container item xs={12} justifyContent='center' >
+                            <Grid key={'ResumeBioSection'} container item xs={12} justifyContent='center'>
                                 <Link
                                     id={"TOP_OF_PAGE"}
                                     style={{position: "relative", top: -80}}
-                                    underline="hover"><></></Link>
-                                <Link id={"BIO"} style={{position: "relative", top: -80}} underline="hover"><></></Link>
+                                    underline="hover"><></>
+                                </Link>
+                                <Link id={"BIO"} style={{position: "relative", top: -80}} underline="hover"><></>
+                                </Link>
 
                                 <ResumeBioSection
                                     homePage={props.homePage}
@@ -230,7 +235,8 @@ const BlockContentLayoutContainer: FunctionComponent<BlockContentLayoutContainer
 
                         return (
                             <Grid key={'ResumeSkillSection'} container item xs={12} justifyContent='center'>
-                                <Link id={"SKILLS"} style={{position: "relative", top: -80}} underline="hover"><></></Link>
+                                <Link id={"SKILLS"} style={{position: "relative", top: -80}} underline="hover"><></>
+                                </Link>
 
                                 <ResumeSkillsSection
                                     sectionData={resumeSkillSection}
@@ -245,7 +251,8 @@ const BlockContentLayoutContainer: FunctionComponent<BlockContentLayoutContainer
                                 <Link
                                     id={"EXPERIENCE"}
                                     style={{position: "relative", top: -80}}
-                                    underline="hover"><></></Link>
+                                    underline="hover"><></>
+                                </Link>
 
                                 <ResumeExperienceSection
                                     sectionData={resumeExperienceSection}
@@ -260,7 +267,8 @@ const BlockContentLayoutContainer: FunctionComponent<BlockContentLayoutContainer
                                 <Link
                                     id={"EDUCATION"}
                                     style={{position: "relative", top: -80}}
-                                    underline="hover"><></></Link>
+                                    underline="hover"><></>
+                                </Link>
 
                                 <ResumeEducationSection
                                     sectionData={resumeEducationSection}
@@ -275,7 +283,8 @@ const BlockContentLayoutContainer: FunctionComponent<BlockContentLayoutContainer
                                 <Link
                                     id={"FEEDBACK"}
                                     style={{position: "relative", top: -80}}
-                                    underline="hover"><></></Link>
+                                    underline="hover"><></>
+                                </Link>
 
                                 <ResumeFeedbackSection
                                     sectionData={resumeFeedbackSection}
@@ -290,9 +299,10 @@ const BlockContentLayoutContainer: FunctionComponent<BlockContentLayoutContainer
                                 <Link
                                     id={"PORTFOLIO"}
                                     style={{position: "relative", top: -80}}
-                                    underline="hover"><></></Link>
+                                    underline="hover"><></>
+                                </Link>
 
-                                    <ResumePortfolioSection
+                                <ResumePortfolioSection
                                     sectionData={resumePortfolioSection}
                                 />
                             </Grid>
@@ -302,9 +312,10 @@ const BlockContentLayoutContainer: FunctionComponent<BlockContentLayoutContainer
 
                         return (
                             <Grid key={'ResumeContactUsSection'} container item xs={12} justifyContent='center'>
-                                <Link id={"CONTACT"} style={{position: "relative", top: -80}} underline="hover"><></></Link>
+                                <Link id={"CONTACT"} style={{position: "relative", top: -80}} underline="hover"><></>
+                                </Link>
 
-                                    <ResumeContactUsSection
+                                <ResumeContactUsSection
                                     sectionData={resumeContactUsSection}
                                 />
                             </Grid>
@@ -314,7 +325,8 @@ const BlockContentLayoutContainer: FunctionComponent<BlockContentLayoutContainer
 
                         return (
                             <Grid key={'webDevHeroContentSection'} container item xs={12}>
-                                <Link id={"TOP_OF_PAGE"} underline="hover"><></></Link>
+                                <Link id={"TOP_OF_PAGE"} underline="hover"><></>
+                                </Link>
                                 <WebDevHeroContentSection
                                     sectionData={webDevHeroSection}
                                 />
@@ -333,7 +345,8 @@ const BlockContentLayoutContainer: FunctionComponent<BlockContentLayoutContainer
 
                         return (
                             <Grid key={'webDevAboutUsSection'} container item xs={12}>
-                                <Link id={"ABOUT_US"} underline="hover"><></></Link>
+                                <Link id={"ABOUT_US"} underline="hover"><></>
+                                </Link>
                                 <WebDevAboutUsSection
                                     sectionData={webDevAboutUsSection}
                                 />
@@ -344,7 +357,8 @@ const BlockContentLayoutContainer: FunctionComponent<BlockContentLayoutContainer
 
                         return (
                             <Grid key={'webDevServicesSection'} container item xs={12}>
-                                <Link id={"SERVICES"} underline="hover"><></></Link>
+                                <Link id={"SERVICES"} underline="hover"><></>
+                                </Link>
 
                                 <WebDevServicesSection
                                     sectionData={webDevServicesSection}
@@ -356,7 +370,8 @@ const BlockContentLayoutContainer: FunctionComponent<BlockContentLayoutContainer
 
                         return (
                             <Grid key={'webDevPortfolioSection'} container item xs={12}>
-                                <Link id={"PORTFOLIO"} underline="hover"><></></Link>
+                                <Link id={"PORTFOLIO"} underline="hover"><></>
+                                </Link>
 
                                 <WebDevPortfolioSection
                                     sectionData={webDevPortfolioSection}
@@ -368,7 +383,8 @@ const BlockContentLayoutContainer: FunctionComponent<BlockContentLayoutContainer
 
                         return (
                             <Grid key={'webDevTestimonialsSection'} container item xs={12}>
-                                <Link id={"TESTIMONIALS"} underline="hover"><></></Link>
+                                <Link id={"TESTIMONIALS"} underline="hover"><></>
+                                </Link>
 
                                 <WebDevTestimonialsSection
                                     sectionData={webDevTestimonialsSection}
@@ -380,7 +396,8 @@ const BlockContentLayoutContainer: FunctionComponent<BlockContentLayoutContainer
 
                         return (
                             <Grid key={'webDevHowItWorksSection'} container item xs={12}>
-                                <Link id={"HOW_IT_WORKS"} underline="hover"><></></Link>
+                                <Link id={"HOW_IT_WORKS"} underline="hover"><></>
+                                </Link>
                                 <WebDevHowItWorksSection
                                     sectionData={webDevHowItWorksSection}
                                 />
@@ -390,15 +407,27 @@ const BlockContentLayoutContainer: FunctionComponent<BlockContentLayoutContainer
                         const heroAnimatedContentSection: HeroAnimatedContentSectionType = columnLayoutContainer
                         return (
                             <Grid key={'animated-hero'} container item xs={12}>
-                                <Link id={"ANIMATED_HERO"} underline="hover"><></></Link>
+                                <Link id={"ANIMATED_HERO"} underline="hover"><></>
+                                </Link>
                                 <HeroAnimatedContentSection
                                     sectionData={heroAnimatedContentSection}
                                 />
                             </Grid>
                         );
+                    case 'AnimatedServicesSection':
+                        const animatedServicesSection: AnimatedServicesSectionType = columnLayoutContainer
+                        return (
+                            <Grid key={'animated-services'} container item xs={12}>
+                                <Link id={"ANIMATED_SERVICES"} underline="hover"><></>
+                                </Link>
+                                <AnimatedServicesSection
+                                    sectionData={animatedServicesSection}
+                                />
+                            </Grid>
+                        );
                     default:
                         return <Grid container item></Grid>
-                        // return <span key={index}>Undefined section {columnLayoutContainer._type}</span>
+                    // return <span key={index}>Undefined section {columnLayoutContainer._type}</span>
                 }
             }) ?? <></>
             }

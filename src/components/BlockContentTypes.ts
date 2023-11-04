@@ -190,6 +190,43 @@ export type ThwServiceItemNoRefType = {
     slug: SanitySlug
 } & SanityDocumentFields
 
+export type AnimatedServiceItemNoRefType = {
+    name: string
+    imageSrc?: SanityImageAsset
+    iconImageSrc?: SanityImageAsset
+    backgroundImageSrc?: SanityImageAsset
+    imageSrcAltText: string
+    contentTitle: string
+    contentText: string
+    ctaButtonText: string
+    ctaButtonLink: string
+    learnMoreLink: string
+    learnMoreText: string
+    educationPageTitle: string
+    educationPageSlimHeroImage: SanityImageAsset
+    extendedDescriptions: string[]
+    benefitsOfServiceTitle: string
+    benefitsOfServiceContents: string[]
+    benefitsOfServiceBullets: string[]
+    serviceAmenities: ServiceAmenityType[]
+    slug: SanitySlug
+} & SanityDocumentFields
+
+export type AnimatedServicesSectionType = {
+    name: string
+    heroBullet?:SanityImageAsset
+    contentTitle: string
+    contentPreTitle: string
+    contentText: string
+    contentTexts: string[]
+    servicesList: AnimatedServiceItemNoRefType[]
+    highlightedAmenities?: ServiceAmenityType[]
+    highlightedAmenitiesTitle?: string
+    highlightedAmenitiesTexts?: string[]
+    highlightedAmenitiesBullets?: string[]
+    servicesImageSrcArr: SanityImageAsset[]
+    servicesMasonryAccentImageSrc: SanityImageAsset
+}
 
 export type ThwServicesSectionType = {
     name: string

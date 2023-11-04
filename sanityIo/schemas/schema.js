@@ -74,7 +74,6 @@ import WebDevHowItWorksStep from "./web-dev/WebDevHowItWorksStep";
 import TestimonialsSection from "./testimonials/TestimonialsSection";
 import PortfolioSection from "./portfolio/PortfolioSection";
 import Testimonials from "./testimonials/Testimonials";
-import PortfolioItem from "./sections/portfolioItem";
 import portfolioItem from "./sections/portfolioItem";
 import category from "./category";
 import ServicesSection from "./services/ServicesSection";
@@ -83,9 +82,9 @@ import ServiceAmenity from "./services/serviceAmenity";
 import BusinessContact from "./businessContact";
 import scheduleGroup from "./scheduleGroup";
 import scheduleEntry from "./scheduleEntry";
-import HeroAnimatedContentSection from "../../src/components/HeroAnimatedContentSection";
 import AnimatedHeroContentSection from "./sections/hero/AnimatedHeroContentSection";
 import HeroSlideContent from "./sections/hero/HeroSlideContent";
+import AnimatedServicesSection from "./services/AnimatedServicesSection";
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default [
@@ -175,5 +174,6 @@ export default [
     scheduleGroup,
     scheduleEntry,
     AnimatedHeroContentSection,
+    AnimatedServicesSection,
     HeroSlideContent
 ]
