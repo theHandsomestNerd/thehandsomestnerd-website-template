@@ -8,8 +8,8 @@ import {
 } from '../../common/sanityIo/Types'
 
 import {ThwServiceItemType, WhySwitchSectionType} from "../BlockContentTypes";
-import GroqQueries from "../../utils/groqQueries";
-import groqQueries from "../../utils/groqQueries";
+import GroqQueries from "../../common/sanityIo/groqQueries";
+import groqQueries from "../../common/sanityIo/groqQueries";
 import {SanityHomePage} from "./static-pages/cmsStaticPagesClient";
 import {QueryKey, useQuery} from "@tanstack/react-query";
 

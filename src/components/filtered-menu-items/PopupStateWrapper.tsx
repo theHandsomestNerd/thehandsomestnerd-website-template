@@ -7,7 +7,7 @@ import {ArrowDropDown} from "@mui/icons-material";
 import {SanityMenuGroup} from "../../common/sanityIo/Types";
 import { Theme } from "@mui/material/styles";
 import makeStyles from '@mui/styles/makeStyles';
-import SubMenu from "../mackenzies-mind/header/SubMenu";
+import SubMenu from "../templates/mackenzies-mind/header/SubMenu";
 
 
 const useStyles = makeStyles((theme: Theme) => ({

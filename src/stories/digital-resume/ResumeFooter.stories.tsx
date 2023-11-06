@@ -1,6 +1,6 @@
 import type {Meta, StoryObj} from '@storybook/react';
 import homePageResumeData from "../data/HomePageData";
-import Footer from "../../components/mackenzies-mind/footer/Footer";
+import Footer from "../../components/templates/mackenzies-mind/footer/Footer";
 
 
 const meta: Meta<typeof Footer> = {

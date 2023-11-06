@@ -3,7 +3,7 @@ import {v4 as uuidv4} from 'uuid'
 import {Theme} from "@mui/material/styles";
 import makeStyles from '@mui/styles/makeStyles';
 import {Grid} from '@mui/material'
-import HeaderMenuItemButton from "../transform-hw/HeaderMenuItemButton";
+import HeaderMenuItemButton from "../templates/transform-hw/HeaderMenuItemButton";
 import PopupStateWrapper from "./PopupStateWrapper";
 import {SanityMenuContainer} from "../../common/sanityIo/Types";
 import widthUtils from "../../utils/widthUtils";

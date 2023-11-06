@@ -1,8 +1,8 @@
 import type {Meta, StoryObj} from '@storybook/react';
 import thwMottoData from "../data/ThwMottoData";
-import ThwPositivePsychology from "../../components/transform-hw/ThwPositivePsychology";
+import ThwPositivePsychology from "../../components/templates/transform-hw/ThwPositivePsychology";
 import thwPositivePsychologyData from "../data/ThwPositivePsychologyData";
-import AboutTheProprietorSection from "../../components/transform-hw/AboutTheProprietorSection";
+import AboutTheProprietorSection from "../../components/templates/transform-hw/AboutTheProprietorSection";
 import thwAboutProprietorData from "../data/ThwAboutTheProprietorData";
 
 

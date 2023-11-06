@@ -6,8 +6,8 @@ import {blockSerializers} from '../common/sanityIo/BlockContentRenderer'
 import {DevelopmentHeaderSectionType, HeaderSectionType,} from "./BlockContentTypes";
 import TheWebsiteTheme from "../theme/Theme";
 import useThwCommonStyles from "../common/sanityIo/ThwCommonStyles";
-import DevelopmentHeader from "./mackenzies-mind/header/DevelopmentHeader";
-import Header from "./mackenzies-mind/header/Header";
+import DevelopmentHeader from "./templates/mackenzies-mind/header/DevelopmentHeader";
+import Header from "./templates/mackenzies-mind/header/Header";
 import WebDevSiteTheme from "../theme/WebDevSiteTheme";
 import TransformHWTheme from "../theme/TransformHWTheme";
 

@@ -29,32 +29,32 @@ import {
     WebDevTestimonialsSectionType,
 } from "./BlockContentTypes";
 import useThwCommonStyles from "../common/sanityIo/ThwCommonStyles";
-import ThwPositivePsychology from "./transform-hw/ThwPositivePsychology";
-import ThwMottoSection from "./transform-hw/ThwMottoSection";
-import AboutTheProprietorSection from "./transform-hw/AboutTheProprietorSection";
-import ThwServicesSection from "./transform-hw/ThwServicesSection";
-import ThwWhyChooseUsSection from "./transform-hw/ThwWhyChooseUsSection";
-import ThwContactUsSection from "./transform-hw/ThwContactUsSection";
+import ThwPositivePsychology from "./templates/transform-hw/ThwPositivePsychology";
+import ThwMottoSection from "./templates/transform-hw/ThwMottoSection";
+import AboutTheProprietorSection from "./templates/transform-hw/AboutTheProprietorSection";
+import ThwServicesSection from "./templates/transform-hw/ThwServicesSection";
+import ThwWhyChooseUsSection from "./templates/transform-hw/ThwWhyChooseUsSection";
+import ThwContactUsSection from "./templates/transform-hw/ThwContactUsSection";
 import {SanityHomePage} from "./block-content-ui/static-pages/cmsStaticPagesClient";
-import ThwServicesEducationPage from "./transform-hw/service-education-page/ThwServiceEducationPage";
-import ResumeBioSection from "./my-digital-resume/resume-bio-section/ResumeBioSection";
-import MMHeroContentSection from "./mackenzies-mind/MMHeroContentSection";
-import ResumeSkillsSection from "./my-digital-resume/resume-skills-section/ResumeSkillsSection";
-import ResumeExperienceSection from "./my-digital-resume/resume-experience-section/ResumeExperienceSection";
-import ResumeEducationSection from "./my-digital-resume/resume-education-section/ResumeEducationSection";
-import ResumeFeedbackSection from "./my-digital-resume/resume-feedback-section/ResumeFeedbackSection";
-import ResumeContactUsSection from "./my-digital-resume/ResumeContactUsSection";
-import ResumePortfolioSection from "./my-digital-resume/resume-portfolio-section/ResumePortfolioSection";
-import WebDevHeroContentSection from "./web-dev-site/WebDevHeroContentSection";
-import WebDevStatsCounterSection from "./web-dev-site/WebDevStatsCounterSection";
-import WebDevAboutUsSection from "./web-dev-site/WebDevAboutUsSection";
-import WebDevServicesSection from "./web-dev-site/WebDevServicesSection";
-import WebDevPortfolioSection from "./web-dev-site/WebDevPortfolioSection";
-import WebDevTestimonialsSection from "./web-dev-site/WebDevTestimonialsSection";
-import WebDevHowItWorksSection from "./web-dev-site/WebDevHowItWorksSection";
+import ThwServicesEducationPage from "./templates/transform-hw/service-education-page/ThwServiceEducationPage";
+import ResumeBioSection from "./templates/my-digital-resume/resume-bio-section/ResumeBioSection";
+import MMHeroContentSection from "./templates/mackenzies-mind/MMHeroContentSection";
+import ResumeSkillsSection from "./templates/my-digital-resume/resume-skills-section/ResumeSkillsSection";
+import ResumeExperienceSection from "./templates/my-digital-resume/resume-experience-section/ResumeExperienceSection";
+import ResumeEducationSection from "./templates/my-digital-resume/resume-education-section/ResumeEducationSection";
+import ResumeFeedbackSection from "./templates/my-digital-resume/resume-feedback-section/ResumeFeedbackSection";
+import ResumeContactUsSection from "./templates/my-digital-resume/ResumeContactUsSection";
+import ResumePortfolioSection from "./templates/my-digital-resume/resume-portfolio-section/ResumePortfolioSection";
+import WebDevHeroContentSection from "./templates/web-dev-site/WebDevHeroContentSection";
+import WebDevStatsCounterSection from "./templates/web-dev-site/WebDevStatsCounterSection";
+import WebDevAboutUsSection from "./templates/web-dev-site/WebDevAboutUsSection";
+import WebDevServicesSection from "./templates/web-dev-site/WebDevServicesSection";
+import WebDevPortfolioSection from "./templates/web-dev-site/WebDevPortfolioSection";
+import WebDevTestimonialsSection from "./templates/web-dev-site/WebDevTestimonialsSection";
+import WebDevHowItWorksSection from "./templates/web-dev-site/WebDevHowItWorksSection";
 import TheWebsiteTheme from "../theme/Theme";
-import HeroAnimatedContentSection from "./HeroAnimatedContentSection";
-import AnimatedServicesSection from "./AnimatedServicesSection";
+import HeroAnimatedContentSection from "./animated/HeroAnimatedContentSection";
+import AnimatedAboutUsSection from "./animated/AnimatedAboutUsSection";
 
 export type BlockContentLayoutContainerProps = {
     content?: any,
@@ -417,10 +417,10 @@ const BlockContentLayoutContainer: FunctionComponent<BlockContentLayoutContainer
                     case 'AnimatedServicesSection':
                         const animatedServicesSection: AnimatedServicesSectionType = columnLayoutContainer
                         return (
-                            <Grid key={'animated-services'} container item xs={12}>
-                                <Link id={"ANIMATED_SERVICES"} underline="hover"><></>
+                            <Grid key={'animated-about-us'} container item xs={12}>
+                                <Link id={"ANIMATED_ABOUT_US"} underline="hover"><></>
                                 </Link>
-                                <AnimatedServicesSection
+                                <AnimatedAboutUsSection
                                     sectionData={animatedServicesSection}
                                 />
                             </Grid>

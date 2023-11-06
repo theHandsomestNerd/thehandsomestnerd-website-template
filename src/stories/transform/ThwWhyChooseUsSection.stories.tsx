@@ -1,11 +1,11 @@
 import type {Meta, StoryObj} from '@storybook/react';
-import ThwServicesSection from "../../components/transform-hw/ThwServicesSection";
+import ThwServicesSection from "../../components/templates/transform-hw/ThwServicesSection";
 import thwServicesSectionData from "../data/ThwServicesSectionData";
 import HomePageResumeData from "../data/HomePageData";
 import PageProvider from "../../components/page-context/PageProvider";
 import AmenityProvider from "../../components/amenity-context/AmenityProvider";
 import ThwHomePageData from "../data/ThwHomePageData";
-import ThwWhyChooseUsSection from "../../components/transform-hw/ThwWhyChooseUsSection";
+import ThwWhyChooseUsSection from "../../components/templates/transform-hw/ThwWhyChooseUsSection";
 import thwWhyChooseUsData from "../data/ThwWhyChooseUsData";
 
 

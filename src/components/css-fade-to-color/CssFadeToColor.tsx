@@ -2,7 +2,7 @@ import React, {FunctionComponent, useContext} from 'react'
 import { Theme } from '@mui/material/styles';
 import makeStyles from '@mui/styles/makeStyles';
 import {Grid} from '@mui/material'
-import useCustomStyles from "../mackenzies-mind/pages/Styles";
+import useCustomStyles from "../templates/mackenzies-mind/pages/Styles";
 import {CssFadeToColorDirectionEnum} from "./CssFadeToColorDirectionEnum";
 import widthUtils from "../../utils/widthUtils";
 

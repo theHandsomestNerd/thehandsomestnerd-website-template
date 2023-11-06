@@ -1,5 +1,5 @@
 import type {Meta, StoryObj} from '@storybook/react';
-import ThwHeroContentSection from "../../components/transform-hw/ThwHeroContentSection";
+import ThwHeroContentSection from "../../components/templates/transform-hw/ThwHeroContentSection";
 import ThwHeroContentSectionData from "../data/ThwHeroContentSectionData";
 
 

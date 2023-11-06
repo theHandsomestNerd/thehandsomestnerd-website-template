@@ -1,6 +1,6 @@
 import type {Meta, StoryObj} from '@storybook/react';
 import ResumePortfolioSectionData from "../data/ResumePortfolioSectionData";
-import ResumePortfolioSection from '../../components/my-digital-resume/resume-portfolio-section/ResumePortfolioSection';
+import ResumePortfolioSection from '../../components/templates/my-digital-resume/resume-portfolio-section/ResumePortfolioSection';
 
 const meta: Meta<typeof ResumePortfolioSection> = {
     title:"Resume/Section/Resume Portfolio Section",

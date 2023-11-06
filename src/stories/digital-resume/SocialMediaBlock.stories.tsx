@@ -2,7 +2,7 @@ import type {Meta, StoryObj} from '@storybook/react';
 import LoadingButton from "../../components/loading-button/LoadingButton";
 import {ButtonGroupMemberEnum} from "../../components/loading-button/ButtonGroupMemberEnum";
 import {Grid} from "@mui/material";
-import SocialMediaBlock from "../../components/my-digital-resume/social-media-block/SocialMediaBlock";
+import SocialMediaBlock from "../../components/templates/my-digital-resume/social-media-block/SocialMediaBlock";
 import homePageResumeData from "../data/HomePageData";
 
 
