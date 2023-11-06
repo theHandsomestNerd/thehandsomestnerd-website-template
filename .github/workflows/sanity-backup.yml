@@ -18,7 +18,7 @@ jobs:
       - name: Install dependencies
         run: | 
             cd sanityIo
-            npm install
+            npm --force install
             set -e
             # Put your environment variables here. Don't forget
             # to create secrets for them on GitHub:
