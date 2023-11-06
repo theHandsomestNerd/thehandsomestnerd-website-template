@@ -95,13 +95,7 @@ const AnimatedServicesSection: FunctionComponent<IProps> = (props) => {
                             {props.sectionData.highlightedAmenities?.map((amenity: ServiceAmenityType, index: number) => {
                                 return <Grid key={index} item container xs={12} sm={6} maxWidth={350} spacing={1}>
                                     <Grid item maxWidth={64} style={{position: "relative"}}>
-                                        <motion.div whileHover={{rotateY: 180}}
-                                                    transition={{
-                                                        duration: .5,
-                                                    }}
-                                        >
-                                            <img width={56} src={urlFor(amenity.imageSrc ?? "").url() ?? ""}/>
-                                        </motion.div>
+
                                         <Card style={{
                                             position: "absolute",
                                             bottom: 12,
@@ -111,6 +105,13 @@ const AnimatedServicesSection: FunctionComponent<IProps> = (props) => {
                                             backgroundColor: customizedThemeContext.customizedTheme.palette.primary.main,
                                             borderRadius: "50%"
                                         }}></Card>
+                                        <motion.div whileHover={{rotateY: 180}}
+                                                    transition={{
+                                                        duration: .5,
+                                                    }}
+                                        >
+                                            <img width={56} src={urlFor(amenity.imageSrc ?? "").url() ?? ""}/>
+                                        </motion.div>
                                     </Grid>
                                     <Grid item maxWidth={250}>
                                         <Grid item>
@@ -144,9 +145,9 @@ const AnimatedServicesSection: FunctionComponent<IProps> = (props) => {
                                 <Grid
                                     container
                                     item
-                                    justifyContent='center'
-                                    alignContent='center'
-                                    alignItems='center'
+                                    // justifyContent='center'
+                                    // alignContent='center'
+                                    // alignItems='center'
                                     style={{
                                         left: "200px",
                                         top: "50%",
@@ -160,7 +161,10 @@ const AnimatedServicesSection: FunctionComponent<IProps> = (props) => {
                                 >
                                     <Grid item>
                                         <motion.div style={{
-                                            originY: .433,
+                                            width: 64,
+                                            height: 64,
+                                            marginLeft: "12px",
+                                            marginTop: "6px"
                                         }}
                                                     animate={{rotate: 360}}
                                                     transition={{ease: "linear", duration: 10, repeat: Infinity}}
