@@ -15,6 +15,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 16
+
       - name: Install dependencies
         run: | 
             cd sanityIo
@@ -26,9 +27,15 @@ jobs:
             cat << EOF > .env.production
             EOF
             # Make sure to add a secret for SANITY_AUTH_TOKEN
-            SANITY_AUTH_TOKEN="${{ secrets.SANITY_AUTH_TOKEN }}" npx @sanity/cli dataset export production backups/backup.tar.gz
+            SANITY_AUTH_TOKEN="${{ secrets.SANITY_AUTH_TOKEN }}"
+      - name: Export dataset
+        uses: sanity-io/github-action-sanity@v0.1-alpha
+        env:
+          SANITY_AUTH_TOKEN: ${{ secrets.SANITY_AUTH_TOKEN }}
+        with:
+          args: dataset export production backups/backup.tar.gz
       - name: Upload backup.tar.gz
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v2
         with:
           name: backup-tarball
           path: sanityIo/backups/backup.tar.gz
