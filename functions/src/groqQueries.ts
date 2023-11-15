@@ -29,16 +29,10 @@ const MENUGROUP = `
 `;
 
 const MENUGROUPCONTAINER = `
-          title,
-          slug,
-          displayText,
           "subMenus":subMenus[]->{
             ${MENUGROUP}
           },
-          logoImageSrc,
-          logoImageAltText,
-          logoText,
-          logoAccentText
+          ...
 `;
 
 const SERVICE =

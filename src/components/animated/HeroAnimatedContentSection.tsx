@@ -24,7 +24,7 @@ interface CSSProps {
 export const useStyles = makeStyles((theme: Theme) => ({
     contentSection: {
         height: '700px',
-        marginTop: '16px',
+        // marginTop: '16px',
         backgroundColor: 'transparent',
 // minWidth:"350px"
     },
@@ -57,7 +57,7 @@ const HeroAnimatedContentSection: FunctionComponent<IProps> = (props) => {
 
     return (
         <ThemeProvider theme={themeContext.customizedTheme}>
-            <Grid container item style={{overflow: "hidden"}}>
+            <Grid container item style={{overflow: "hidden", paddingTop: "148px"}}>
                 <motion.div
                     animate={{scale: 1}}
                     initial={{scale: 1.1}}
@@ -129,7 +129,8 @@ const HeroAnimatedContentSection: FunctionComponent<IProps> = (props) => {
 
                                                 >
                                                     <Grid container item justifyContent='center'>
-                                                        <Grid item container justifyContent='center' spacing={1} wrap='nowrap'>
+                                                        <Grid item container justifyContent='center' spacing={1}
+                                                              wrap='nowrap'>
                                                             <Grid item>
                                                                 {contentSlide?.heroBullet && <img width={12}
                                                                                                   src={urlFor(contentSlide?.heroBullet).url() ?? ""}/>}
@@ -230,7 +231,8 @@ const HeroAnimatedContentSection: FunctionComponent<IProps> = (props) => {
                                 </Grid>
                             </Grid>
                         </Grid>
-                    </Grid></motion.div>
+                    </Grid>
+                </motion.div>
             </Grid>
         </ThemeProvider>
     )

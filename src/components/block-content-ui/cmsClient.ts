@@ -466,6 +466,29 @@ const useFetchServicesQuery = (pageSlug?: string) => {
         });
 }
 
+const fullTextSearch = (textToSearch: string): Promise<any> => {
+
+    return sanityClient
+        .fetch(
+            `*[
+            [
+                title, 
+                name, 
+                contentText, 
+                contentTitle, 
+                contentPreTitle, 
+                highlightedAmenitiesTitle, 
+                highlightedAmenitiesText, 
+                contentTexts, 
+                contentWelcomeMessage
+            ] match '*${textToSearch}*']`,
+            // {searchText: textToSearch}
+        ).then((data: any) => {
+            console.log("data from fulltext search", data)
+            return data
+        })
+}
+
 export default {
     fetchRef,
     fetchRefs,
@@ -485,5 +508,6 @@ export default {
     useFetchServicesQuery,
     useFetchRefsQuery,
     useFetchMenuByRefQuery,
-    fetchMuiTheme
+    fetchMuiTheme,
+    fullTextSearch
 }

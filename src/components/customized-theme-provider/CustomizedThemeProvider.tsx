@@ -8,7 +8,6 @@ import {SanityMuiTheme} from "../../common/sanityIo/Types";
 import PageContext from "../page-context/PageContext";
 import TheWebsiteTheme from "../../theme/Theme";
 import cmsClient from "../block-content-ui/cmsClient";
-import sanityClient from "../../sanityClient";
 
 type IProps = {
     pageTheme?: SanityMuiTheme
@@ -24,22 +23,21 @@ const CustomizedThemeProvider: FunctionComponent<IProps & PropsWithChildren> = (
 
     const pageContext = useContext(PageContext);
     React.useEffect(() => {
-        console.log('Theme ',pageContext.page?.theme)
-        if(pageContext.page?.theme)
-        {
+        console.log('Theme ', pageContext.page?.theme)
+        if (pageContext.page?.theme) {
             const theCustomizedTheme = getThemeFromSanity(pageContext.page?.theme)
 
             setCustomizedTheme(theCustomizedTheme)
         } else {
             setCustomizedTheme(TheWebsiteTheme
-)
+            )
         }
     }, [pageContext.page?.theme])
 
-    const getThemeFromSanity =  (theme: SanityMuiTheme) => {
-        const convertToHexCode  = (value?:string)=>{
+    const getThemeFromSanity = (theme: SanityMuiTheme) => {
+        const convertToHexCode = (value?: string) => {
             let defaultBg = COLORS.WHITESMOKE;
-            switch(value){
+            switch (value) {
                 case 'WHITESMOKE':
                     defaultBg = COLORS.WHITESMOKE
                     break;
@@ -122,14 +120,14 @@ const CustomizedThemeProvider: FunctionComponent<IProps & PropsWithChildren> = (
             },
             palette: {
                 background: {
-                    default: theme.colorPalette?.defaultBackground ? convertToHexCode(theme.colorPalette?.defaultBackground):COLORS.WHITESMOKE,
-                    paper: theme.colorPalette?.defaultPaperBackgroundColor ? convertToHexCode(theme.colorPalette?.defaultPaperBackgroundColor):COLORS.DARKGRAY
+                    default: theme.colorPalette?.defaultBackground ? convertToHexCode(theme.colorPalette?.defaultBackground) : COLORS.WHITESMOKE,
+                    paper: theme.colorPalette?.defaultPaperBackgroundColor ? convertToHexCode(theme.colorPalette?.defaultPaperBackgroundColor) : COLORS.DARKGRAY
                 },
                 primary: {
-                    main: theme.colorPalette?.primaryColor ? convertToHexCode(theme.colorPalette?.primaryColor):COLORS.RED,
+                    main: theme.colorPalette?.primaryColor ? convertToHexCode(theme.colorPalette?.primaryColor) : COLORS.RED,
                 },
                 secondary: {
-                    main: theme.colorPalette?.secondaryColor ? convertToHexCode(theme.colorPalette?.secondaryColor):COLORS.ALMOSTWHITE,
+                    main: theme.colorPalette?.secondaryColor ? convertToHexCode(theme.colorPalette?.secondaryColor) : COLORS.ALMOSTWHITE,
                 },
                 error: {
                     main: '#840E0E',
@@ -147,19 +145,19 @@ const CustomizedThemeProvider: FunctionComponent<IProps & PropsWithChildren> = (
                     dark: '#CF800A'
                 },
                 text: {
-                    primary: theme.colorPalette?.primaryTextColor ? convertToHexCode(theme.colorPalette?.primaryTextColor):COLORS.DARKGRAY,
-                    secondary: theme.colorPalette?.secondaryTextColor ? convertToHexCode(theme.colorPalette?.secondaryTextColor):grey[100],
-                    disabled: theme.colorPalette?.disabledTextColor ? convertToHexCode(theme.colorPalette?.disabledTextColor):COLORS.LIGHT_GRAY
+                    primary: theme.colorPalette?.primaryTextColor ? convertToHexCode(theme.colorPalette?.primaryTextColor) : COLORS.DARKGRAY,
+                    secondary: theme.colorPalette?.secondaryTextColor ? convertToHexCode(theme.colorPalette?.secondaryTextColor) : grey[100],
+                    disabled: theme.colorPalette?.disabledTextColor ? convertToHexCode(theme.colorPalette?.disabledTextColor) : COLORS.LIGHT_GRAY
                 }
             },
             mixins: {
                 toolbar: {
                     // height: "55px"
-                    height: (theme.appBarHeight??55) + "px"
+                    height: (theme.appBarHeight ?? 55) + "px"
                 }
             },
             typography: {
-                fontFamily: theme.typography?.fontFamily?theme.typography?.fontFamily.join(','):fonts,
+                fontFamily: theme.typography?.fontFamily ? theme.typography?.fontFamily.join(',') : fonts,
                 h1: {
                     // Title1
                     fontSize: '70px',
@@ -275,21 +273,22 @@ const CustomizedThemeProvider: FunctionComponent<IProps & PropsWithChildren> = (
                 MuiButton: {
                     styleOverrides: {
                         root: {
-                            borderRadius: '5px',
+                            borderRadius: '-64px',
                             paddingTop: "16px",
-                            paddingBottom: "16px"
+                            paddingBottom: "16px",
+
                         },
                         contained: {
                             boxShadow: "none",
                         },
                         containedPrimary: {
-                            border: '1px solid white',
+                            border: '1px solid transparent',
                             '&.Mui-disabled': {
                                 color: '#969284'
                             },
                         },
                         containedSecondary: {
-                            border: '1px solid whitesmoke',
+                            border: '1px solid transparent',
                             '&.Mui-disabled': {
                                 color: 'rgba(207, 207, 207, .5)',
                             },
@@ -314,7 +313,8 @@ const CustomizedThemeProvider: FunctionComponent<IProps & PropsWithChildren> = (
                     styleOverrides: {
                         root: {
                             paddingRight: "16px",
-                            // border: "2px solid black",
+                            borderColor: 'black',
+                            border: "1px solid transparent"
                         }
                     }
                 }

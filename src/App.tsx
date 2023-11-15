@@ -12,8 +12,8 @@ import PageMux from "./components/templates/mackenzies-mind/pages/PageMux";
 import CustomizedThemeProvider from "./components/customized-theme-provider/CustomizedThemeProvider";
 
 export enum RoutesEnum {
-    MAINROUTE = "/resume/:pageSlug",
-    HOMEROUTE = "/resume/home",
+    MAINROUTE = "/chow-works/:pageSlug",
+    HOMEROUTE = "/chow-works/home",
 
     ERROR = '/error'
 }

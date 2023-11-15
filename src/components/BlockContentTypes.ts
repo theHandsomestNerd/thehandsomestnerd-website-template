@@ -215,6 +215,7 @@ export type AnimatedServiceItemNoRefType = {
 export type AnimatedServicesSectionType = {
     name: string
     heroBullet?:SanityImageAsset
+    title:string
     contentTitle: string
     contentPreTitle: string
     contentText: string
@@ -560,6 +561,11 @@ export type DevelopmentHeaderSectionType = {
 }
 export type HeaderSectionType = {
     name: string
+    isSearch: boolean
+    isEnhanced: boolean
+    ctaButtonText: string
+    ctaButtonLink: string
+    highlightedDetails: ServiceAmenityType[]
     headerMenuRef: SanityMenuContainer
 }
 export type DevelopmentFooterSectionType = {

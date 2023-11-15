@@ -24,13 +24,9 @@ interface IProps {
 
 const AnimatedAboutUsSection: FunctionComponent<IProps> = (props) => {
     const classes = useStyles()
-    const mdDown = widthUtils.useIsWidthDown('md')
+    // const mdDown = widthUtils.useIsWidthDown('md')
     const customizedThemeContext = useContext(CustomizedThemeContext)
 
-
-    React.useEffect(() => {
-        console.log("MD down", mdDown)
-    }, [mdDown])
 
     return (
         <ThemeProvider theme={customizedThemeContext.customizedTheme}>
