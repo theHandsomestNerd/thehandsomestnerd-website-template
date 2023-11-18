@@ -4,7 +4,7 @@ import {Card, Grid, Link} from '@mui/material'
 import sanityClient from '../sanityClient'
 import {blockSerializers} from '../common/sanityIo/BlockContentRenderer'
 import {
-    AnimatedServicesSectionType,
+    AnimatedAboutUsSectionType, AnimatedServicesSectionType,
     HeroAnimatedContentSectionType,
     HowItWorksSectionType,
     PortfolioSectionType,
@@ -55,6 +55,7 @@ import WebDevHowItWorksSection from "./templates/web-dev-site/WebDevHowItWorksSe
 import TheWebsiteTheme from "../theme/Theme";
 import HeroAnimatedContentSection from "./animated/HeroAnimatedContentSection";
 import AnimatedAboutUsSection from "./animated/AnimatedAboutUsSection";
+import AnimatedServicesSection from './animated/AnimatedServicesSection'
 
 export type BlockContentLayoutContainerProps = {
     content?: any,
@@ -414,13 +415,24 @@ const BlockContentLayoutContainer: FunctionComponent<BlockContentLayoutContainer
                                 />
                             </Grid>
                         );
-                    case 'AnimatedServicesSection':
-                        const animatedServicesSection: AnimatedServicesSectionType = columnLayoutContainer
+                    case 'AnimatedAboutUsSection':
+                        const animatedAboutusSection: AnimatedAboutUsSectionType = columnLayoutContainer
                         return (
                             <Grid key={'animated-about-us'} container item xs={12}>
                                 <Link id={"ANIMATED_ABOUT_US"} underline="hover"><></>
                                 </Link>
                                 <AnimatedAboutUsSection
+                                    sectionData={animatedAboutusSection}
+                                />
+                            </Grid>
+                        );
+                    case 'AnimatedServicesSection':
+                        const animatedServicesSection: AnimatedServicesSectionType = columnLayoutContainer
+                        return (
+                            <Grid key={'animated-services'} container item xs={12}>
+                                <Link id={"ANIMATED_SERVICES"} underline="hover"><></>
+                                </Link>
+                                <AnimatedServicesSection
                                     sectionData={animatedServicesSection}
                                 />
                             </Grid>

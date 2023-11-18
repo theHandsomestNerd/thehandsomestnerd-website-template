@@ -10,7 +10,7 @@ import {Theme} from "@mui/material/styles";
 import TheWebsiteTheme from "../../../../theme/Theme";
 import ServiceItem from "../../../../../sanityIo/schemas/services/ServiceItem";
 import {
-    AnimatedServicesSectionType,
+    AnimatedAboutUsSectionType,
     HeroAnimatedContentSectionType, SanityHeroContentSlide,
     ServiceItemNoRefType
 } from "../../../BlockContentTypes";
@@ -140,7 +140,7 @@ const FullTextSearch: FunctionComponent<IProps> = (props: IProps) => {
                                     </Grid>
                                 </Grid>
                             case "AnimatedServicesSection":
-                                const convertedAnimatedServicesSection: AnimatedServicesSectionType = theResult;
+                                const convertedAnimatedServicesSection: AnimatedAboutUsSectionType = theResult;
 
                                 console.log(convertedAnimatedServicesSection)
                                 return <Grid container sx={{marginBottom: "16px"}}>

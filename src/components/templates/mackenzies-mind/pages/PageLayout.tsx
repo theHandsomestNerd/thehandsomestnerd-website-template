@@ -63,6 +63,7 @@ const PageLayout: FunctionComponent<IProps> = (props: IProps) => {
                       backgroundColor: "white",
                       position: "static",
                       bottom: 0,
+                      zIndex: 10,
                       padding: theme.spacing(1, 3, .5)
                   }}
                 // xs={11}

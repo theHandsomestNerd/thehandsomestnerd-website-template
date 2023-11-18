@@ -4,11 +4,12 @@ import makeStyles from '@mui/styles/makeStyles';
 import {Card, Grid, Typography} from '@mui/material'
 import AnimatedAboutUsItem from "./AnimatedAboutUsItem";
 import CustomizedThemeContext from "../customized-theme-provider/CustomizedThemeContext";
-import {AnimatedServiceItemNoRefType, AnimatedServicesSectionType, ServiceAmenityType} from "../BlockContentTypes";
+import {AnimatedAboutUsSectionType, AnimatedServiceItemNoRefType, ServiceAmenityType} from "../BlockContentTypes";
 import {urlFor} from "../block-content-ui/static-pages/cmsStaticPagesClient";
 import {Circle} from "@mui/icons-material";
-import {motion} from "framer-motion"
-import widthUtils from "../../utils/widthUtils";
+import {motion, useAnimationControls} from "framer-motion"
+import BulletedHeader from "./BulletedHeader";
+import HorizontalAmenity from "./HorizontalAmenity";
 
 export const useStyles = makeStyles((theme: Theme) => ({
     root: {
@@ -19,7 +20,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
 
 
 interface IProps {
-    sectionData: AnimatedServicesSectionType
+    sectionData: AnimatedAboutUsSectionType
 }
 
 const AnimatedAboutUsSection: FunctionComponent<IProps> = (props) => {
@@ -40,31 +41,7 @@ const AnimatedAboutUsSection: FunctionComponent<IProps> = (props) => {
                       spacing={2} justifyContent='center'>
                     <Grid item xs={12} sm={6}>
                         <Grid item container>
-                            <Grid item container alignItems='center' spacing={1} style={{position: "relative"}}>
-                                <Grid item
-                                      style={{
-                                          borderTop: `1px solid ${customizedThemeContext.customizedTheme.palette.primary.main}`,
-                                          borderLeft: `1px solid ${customizedThemeContext.customizedTheme.palette.primary.main}`,
-                                          left: 12,
-                                          top: 8,
-                                          position: "absolute",
-                                          width: "205px"
-                                      }}></Grid>
-                                <Grid item
-                                      style={{zIndex: 10}}>{props.sectionData?.heroBullet &&
-                                    <img width={10} height={10}
-                                         src={urlFor(props.sectionData?.heroBullet).url() ?? ""}/>}
-                                </Grid>
-                                <Grid item>
-                                    <Typography variant='body1'
-                                                style={{
-                                                    textTransform: "uppercase",
-                                                    // color: customizedThemeContext.customizedTheme.palette.text.secondary,
-                                                    fontWeight: "700",
-                                                    letterSpacing: 1.6
-                                                }}>{props.sectionData.contentPreTitle}</Typography>
-                                </Grid>
-                            </Grid>
+                            <BulletedHeader textContent={props.sectionData?.contentPreTitle} heroBullet={props.sectionData?.heroBullet} />
                         </Grid>
                         <Grid container item>
                             <Grid item container wrap='nowrap' maxWidth={'600px'}>
@@ -89,35 +66,7 @@ const AnimatedAboutUsSection: FunctionComponent<IProps> = (props) => {
                         </Grid>
                         <Grid item container style={{paddingBottom: "32px"}}>
                             {props.sectionData.highlightedAmenities?.map((amenity: ServiceAmenityType, index: number) => {
-                                return <Grid key={index} item container xs={12} sm={6} maxWidth={350} spacing={1}>
-                                    <Grid item maxWidth={64} style={{position: "relative"}}>
-
-                                        <Card style={{
-                                            position: "absolute",
-                                            bottom: 12,
-                                            opacity: .5,
-                                            width: "36px",
-                                            height: "36px",
-                                            backgroundColor: customizedThemeContext.customizedTheme.palette.primary.main,
-                                            borderRadius: "50%"
-                                        }}></Card>
-                                        <motion.div whileHover={{rotateY: 180}}
-                                                    transition={{
-                                                        duration: .5,
-                                                    }}
-                                        >
-                                            <img width={56} src={urlFor(amenity.imageSrc ?? "").url() ?? ""}/>
-                                        </motion.div>
-                                    </Grid>
-                                    <Grid item maxWidth={250}>
-                                        <Grid item>
-                                            <Typography variant='body2' gutterBottom>{amenity.name}</Typography>
-                                        </Grid>
-                                        <Grid item>
-                                            <Typography variant='body1'>{amenity.description}</Typography>
-                                        </Grid>
-                                    </Grid>
-                                </Grid>
+                                return <Grid item key={index}><HorizontalAmenity amenity={amenity} /></Grid>
                             })}
                         </Grid>
                         <Grid item container>

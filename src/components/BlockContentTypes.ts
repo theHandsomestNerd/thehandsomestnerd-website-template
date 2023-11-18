@@ -212,7 +212,7 @@ export type AnimatedServiceItemNoRefType = {
     slug: SanitySlug
 } & SanityDocumentFields
 
-export type AnimatedServicesSectionType = {
+export type AnimatedAboutUsSectionType = {
     name: string
     heroBullet?:SanityImageAsset
     title:string
@@ -227,6 +227,19 @@ export type AnimatedServicesSectionType = {
     highlightedAmenitiesBullets?: string[]
     servicesImageSrcArr: SanityImageAsset[]
     servicesMasonryAccentImageSrc: SanityImageAsset
+}
+
+export type AnimatedServicesSectionType = {
+    name: string
+    heroBullet?:SanityImageAsset
+    contentTitle: string
+    contentPreTitle: string
+    contentTexts: string[]
+    servicesList: AnimatedServiceItemNoRefType[]
+    contentSummaryTitle: string
+    contentSummaryTexts: string[]
+    ctaButtonText: string
+    ctaButtonLink: string
 }
 
 export type ThwServicesSectionType = {

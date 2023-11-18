@@ -84,6 +84,7 @@ import scheduleGroup from "./scheduleGroup";
 import scheduleEntry from "./scheduleEntry";
 import AnimatedHeroContentSection from "./sections/hero/AnimatedHeroContentSection";
 import HeroSlideContent from "./sections/hero/HeroSlideContent";
+import AnimatedAboutUsSection from "./services/AnimatedAboutUsSection";
 import AnimatedServicesSection from "./services/AnimatedServicesSection";
 
 // Then we give our schema to the builder and provide the result to Sanity
@@ -174,6 +175,7 @@ export default [
     scheduleGroup,
     scheduleEntry,
     AnimatedHeroContentSection,
+    AnimatedAboutUsSection,
     AnimatedServicesSection,
     HeroSlideContent
 ]

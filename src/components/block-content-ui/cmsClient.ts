@@ -475,12 +475,14 @@ const fullTextSearch = (textToSearch: string): Promise<any> => {
                 title, 
                 name, 
                 contentText, 
+                contentTexts, 
                 contentTitle, 
                 contentPreTitle, 
                 highlightedAmenitiesTitle, 
                 highlightedAmenitiesText, 
-                contentTexts, 
-                contentWelcomeMessage
+                contentWelcomeMessage,
+                contentSummaryTitle,
+                contentSummaryTexts
             ] match '*${textToSearch}*']`,
             // {searchText: textToSearch}
         ).then((data: any) => {
