@@ -1,7 +1,7 @@
 import React, {FunctionComponent, useContext} from 'react'
 import {Theme} from "@mui/material/styles";
 import makeStyles from '@mui/styles/makeStyles';
-import {AppBar, Grid, Hidden, useTheme} from '@mui/material'
+import {AppBar, Grid, Hidden, useMediaQuery, useTheme} from '@mui/material'
 import MainMenu from "./MainMenu";
 import FilteredMenuItems from "../../../filtered-menu-items/FilteredMenuItems";
 import {SanityMenuContainer} from "../../../../common/sanityIo/Types";
@@ -11,7 +11,7 @@ import {urlFor} from "../../../block-content-ui/static-pages/cmsStaticPagesClien
 import FullWidthColoredPng from "../../../fullwidth-colored-png/FullWidthColoredPng";
 import {useScrollPosition} from "../../../../utils/useScrollPosition";
 import clsx from "clsx";
-import widthUtils from "../../../../utils/widthUtils";
+import CustomizedThemeContext from "../../../customized-theme-provider/CustomizedThemeContext";
 
 export const useStyles = makeStyles((theme: Theme) => ({
     root: {
@@ -38,7 +38,10 @@ export type DevelopmentHeaderProps = {
 
 const DevelopmentHeader: FunctionComponent<DevelopmentHeaderProps> = (props) => {
     const classes = useStyles()
-    const mdDown = widthUtils.useIsWidthDown('md')
+
+    const customizedThemeContext = useContext(CustomizedThemeContext)
+
+    const mdDown = useMediaQuery(customizedThemeContext.customizedTheme.breakpoints.down('md'))
     const theme = useTheme()
     // React.useEffect(() => {
     //     console.log("Page header in the header", props.pageHeader)

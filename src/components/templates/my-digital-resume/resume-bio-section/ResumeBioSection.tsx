@@ -1,5 +1,5 @@
-import React, {FunctionComponent} from 'react'
-import {Button, ButtonGroup, Grid, ThemeProvider, Typography,} from '@mui/material';
+import React, {FunctionComponent, useContext} from 'react'
+import {Button, ButtonGroup, Grid, ThemeProvider, Typography, useMediaQuery,} from '@mui/material';
 import {ResumeBioSectionType} from "../../../BlockContentTypes";
 import {urlFor} from "../../../block-content-ui/static-pages/cmsStaticPagesClient";
 import {SanityTransformHwHomePage} from "../../../../common/sanityIo/Types";
@@ -7,7 +7,7 @@ import useThwCommonStyles from "../../../../common/sanityIo/ThwCommonStyles";
 import SocialMediaBlock from "../social-media-block/SocialMediaBlock";
 import BusinessCardSubmitEmail from "../../transform-hw/pages/BusinessCardSubmitEmail";
 import TheWebsiteTheme from "../../../../theme/Theme";
-import widthUtils from "../../../../utils/widthUtils";
+import CustomizedThemeContext from "../../../customized-theme-provider/CustomizedThemeContext";
 
 
 interface IProps {
@@ -18,7 +18,9 @@ interface IProps {
 const ResumeBioSection: FunctionComponent<IProps> = (props: IProps) => {
     const classes = useThwCommonStyles()
 
-    const smDown = widthUtils.useIsWidthDown('sm')
+    const customizedThemeContext = useContext(CustomizedThemeContext)
+
+    const smDown = useMediaQuery(customizedThemeContext.customizedTheme.breakpoints.down('sm'))
 
     return (
             <ThemeProvider theme={TheWebsiteTheme}><Grid container item style={{padding: TheWebsiteTheme.spacing(4)}} justifyContent='center'

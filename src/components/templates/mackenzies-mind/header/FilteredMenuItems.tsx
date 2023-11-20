@@ -1,13 +1,13 @@
-import React, {FunctionComponent} from 'react'
+import React, {FunctionComponent, useContext} from 'react'
 import {v4 as uuidv4} from 'uuid'
 import {Theme} from "@mui/material/styles";
 import makeStyles from '@mui/styles/makeStyles';
-import {Button, Grid, Popover, Typography, useTheme} from '@mui/material'
+import {Button, Grid, Popover, Typography, useMediaQuery, useTheme} from '@mui/material'
 import {ArrowDropDown} from "@mui/icons-material";
 import SubMenu from "./SubMenu";
 import {SanityMenuGroup, SanityMenuItem} from "../../../../common/sanityIo/Types";
 import {COLORS} from "../../../../theme/common/ColorPalette";
-import widthUtils from "../../../../utils/widthUtils";
+import CustomizedThemeContext from "../../../customized-theme-provider/CustomizedThemeContext";
 
 
 export const useStyles = makeStyles((theme: Theme) => ({}))
@@ -37,8 +37,9 @@ const FilteredMenuItems: FunctionComponent<FilteredMenuProps> = ({
     };
 
     const theme = useTheme()
+    const customizedThemeContext = useContext(CustomizedThemeContext)
 
-    const mdDown = widthUtils.useIsWidthDown('md')
+    const mdDown = useMediaQuery(customizedThemeContext.customizedTheme.breakpoints.down('md'))
 
     return (<Grid item container justifyContent={mdDown ? 'flex-start' : 'flex-end'}>{
             subMenus?.map(

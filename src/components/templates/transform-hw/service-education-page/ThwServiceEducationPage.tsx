@@ -1,7 +1,7 @@
-import React, {FunctionComponent} from 'react'
+import React, {FunctionComponent, useContext} from 'react'
 import {Theme} from '@mui/material/styles';
 import makeStyles from '@mui/styles/makeStyles';
-import {Divider, Grid, Typography} from '@mui/material'
+import {Divider, Grid, Typography, useMediaQuery} from '@mui/material'
 import {ServiceAmenityType, ThwServiceItemType} from "../../../BlockContentTypes";
 import {urlFor} from "../../../block-content-ui/static-pages/cmsStaticPagesClient";
 import ResponsiveBullet from "../../../ResponsiveBullet";
@@ -10,7 +10,7 @@ import LoadingButton from "../../../loading-button/LoadingButton";
 import OtherServices from "./OtherServices";
 import {v4 as uuidv4} from 'uuid'
 import imagePlaceholderClient from "../../../../utils/imagePlaceholderClient";
-import widthUtils from "../../../../utils/widthUtils";
+import CustomizedThemeContext from "../../../customized-theme-provider/CustomizedThemeContext";
 
 export const useStyles = makeStyles((theme: Theme) => ({
     root: {
@@ -40,15 +40,15 @@ const ThwServiceEducationPage: FunctionComponent<IProps> = (props) => {
 
     // const {data} = thwClient.useFetchRefsQuery(props.serviceData.serviceAmenities)
 
-    const smDown = widthUtils.useIsWidthDown('sm');
-    const xsDown = widthUtils.useIsWidthDown('xs');
+    const customizedThemeContext = useContext(CustomizedThemeContext)
 
+    const smDown = useMediaQuery(customizedThemeContext.customizedTheme.breakpoints.down('sm'))
+    const xsDown = useMediaQuery(customizedThemeContext.customizedTheme.breakpoints.down('xs'))
     return (
 
         <Grid container item className={classes.root} xs={12} style={{position: "relative"}}>
             <Grid container item >
-                <Grid item container style={{marginTop: TheWebsiteTheme
-.spacing(76)}}>
+                <Grid item container style={{marginTop: TheWebsiteTheme.spacing(76)}}>
 
                 </Grid>
                 <Grid container style={{
@@ -57,8 +57,6 @@ const ThwServiceEducationPage: FunctionComponent<IProps> = (props) => {
                     width: "100vw",
                     height: "600px",
                     position: "absolute",
-                    // margin: TransformHWTheme.spacing(0,0,2,0),
-                    // margin: TransformHWTheme.spacing(0,0,2,0),
                     left: 0,
                     top: 0,
                     backgroundRepeat: "no-repeat",

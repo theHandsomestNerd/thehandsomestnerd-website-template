@@ -1,7 +1,7 @@
 import React, {FunctionComponent, useContext, useEffect, useState} from 'react'
 import {ThemeProvider, StyledEngineProvider, Theme} from "@mui/material/styles";
 import makeStyles from '@mui/styles/makeStyles';
-import { Grid, IconButton, InputAdornment, Link, TextField, Typography } from "@mui/material";
+import {Grid, IconButton, InputAdornment, Link, TextField, Typography, useMediaQuery} from "@mui/material";
 import withStyles from '@mui/styles/withStyles';
 import {AccountCircle, Email, Facebook, LinkedIn, Message, Phone, Twitter, YouTube} from "@mui/icons-material";
 import {ThwContactUsSectionType} from "../../BlockContentTypes";
@@ -16,7 +16,7 @@ import firebaseAnalyticsClient from "../../../common/firebase/FirebaseAnalyticsC
 import PageContext from "../../page-context/PageContext";
 import TransformHWTheme from "../../../theme/TransformHWTheme";
 import imagePlaceholderClient from "../../../utils/imagePlaceholderClient";
-import widthUtils from "../../../utils/widthUtils";
+import CustomizedThemeContext from "../../customized-theme-provider/CustomizedThemeContext";
 
 
 export const useStyles = makeStyles((theme: Theme) => ({
@@ -129,8 +129,9 @@ const ContactUs: FunctionComponent<ContactUsProps> = (props) => {
     const [leadMessage, setLeadMessage] = useState<string>()
     const [alignment, setAlignment] = useState<any>('right')
     const [justifyContent, setJustifyContent] = useState<any>('flex-end')
-    const smDown = widthUtils.useIsWidthDown('sm')
+    const customizedThemeContext = useContext(CustomizedThemeContext)
 
+    const smDown = useMediaQuery(customizedThemeContext.customizedTheme.breakpoints.down('sm'))
     useEffect(() => {
         if (smDown) {
             setAlignment('center')

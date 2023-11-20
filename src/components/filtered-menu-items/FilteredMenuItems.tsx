@@ -1,13 +1,10 @@
 import React, {CSSProperties, FunctionComponent, useContext} from 'react'
 import {v4 as uuidv4} from 'uuid'
-import {Theme} from "@mui/material/styles";
-import makeStyles from '@mui/styles/makeStyles';
-import {Grid} from '@mui/material'
+import {Grid, useMediaQuery} from '@mui/material'
 import HeaderMenuItemButton from "../templates/transform-hw/HeaderMenuItemButton";
 import PopupStateWrapper from "./PopupStateWrapper";
 import {SanityMenuContainer} from "../../common/sanityIo/Types";
-import widthUtils from "../../utils/widthUtils";
-
+import CustomizedThemeContext from "../customized-theme-provider/CustomizedThemeContext";
 
 
 interface FilteredMenuItemsProps {
@@ -28,24 +25,29 @@ interface FilteredMenuItemsProps {
 //     button: any
 // }
 const FilteredMenuItems: FunctionComponent<FilteredMenuItemsProps> = ({
-                                                                 subMenus,
-                                                                 onlyButtons,
-                                                                 includeMenuItems,
-                                                                 includeMenuGroups,
-    textStyle,contentJustification
-                                                             }) => {
-    const mdDown = widthUtils.useIsWidthDown('md')
-    return (<Grid item container justifyContent={contentJustification ? contentJustification: (mdDown ? 'flex-start' : 'flex-end')} alignItems='stretch' style={{height: "100%"}} alignContent='center'>
+                                                                          subMenus,
+                                                                          onlyButtons,
+                                                                          includeMenuItems,
+                                                                          includeMenuGroups,
+                                                                          textStyle, contentJustification
+                                                                      }) => {
+    const customizedThemeContext = useContext(CustomizedThemeContext)
+
+    const mdDown = useMediaQuery(customizedThemeContext.customizedTheme.breakpoints.down('md'))
+
+    return (<Grid item container
+                  justifyContent={contentJustification ? contentJustification : (mdDown ? 'flex-start' : 'flex-end')}
+                  alignItems='stretch' style={{height: "100%"}} alignContent='center'>
             {
                 subMenus?.reduce(
-                    (accumulated: JSX.Element[], menuButton:any, index) => {
+                    (accumulated: JSX.Element[], menuButton: any, index) => {
                         if (menuButton?._type === "menuItem" && (includeMenuItems || (onlyButtons && (menuButton.isOutlinedButton || menuButton.isContainedButton || menuButton.isModalButton)))) {
                             return accumulated.concat([<Grid item key={uuidv4()}>
                                 <HeaderMenuItemButton textStyle={textStyle} menuItem={menuButton}/>
                             </Grid>])
                         } else if (menuButton?._type === "menuGroup" && includeMenuGroups) {
                             return accumulated.concat([<Grid item key={uuidv4()}>
-                                <PopupStateWrapper menuGroup={menuButton} />
+                                <PopupStateWrapper menuGroup={menuButton}/>
                             </Grid>])
                         }
                         return accumulated

@@ -1,14 +1,14 @@
 import React, {FunctionComponent, useContext} from 'react'
 import {Theme} from '@mui/material/styles';
 import makeStyles from '@mui/styles/makeStyles';
-import {Grid, Typography} from '@mui/material'
+import {Grid, Typography, useMediaQuery} from '@mui/material'
 import {MfbtAboutProprietorSectionType, ProprietorAtAGlanceType} from "../../BlockContentTypes";
 import MixedFeelingsByTTheme from "../../../theme/MixedFeelingsByTTheme";
 import ImageWIthButtonOverlay from "../../image-with-button-overlay/ImageWithButtonOverlay";
 import LoadingButton from "../../loading-button/LoadingButton";
 import firebaseAnalyticsClient from "../../../common/firebase/FirebaseAnalyticsClient";
 import PageContext from "../../page-context/PageContext";
-import widthUtils from "../../../utils/widthUtils";
+import CustomizedThemeContext from "../../customized-theme-provider/CustomizedThemeContext";
 
 export const useStyles = makeStyles((theme: Theme) => ({
     root: {
@@ -28,8 +28,9 @@ interface IProps {
 }
 
 const ProprietorAtAGlance = (props: { sectionData: ProprietorAtAGlanceType, source: string }) => {
-    const smDown = widthUtils.useIsWidthDown('sm')
+    const customizedThemeContext = useContext(CustomizedThemeContext)
 
+    const smDown = useMediaQuery(customizedThemeContext.customizedTheme.breakpoints.down('sm'))
     const pageContext = useContext(PageContext)
     return <Grid item container
                  justifyContent='center'
@@ -100,8 +101,9 @@ const ProprietorAtAGlance = (props: { sectionData: ProprietorAtAGlanceType, sour
 
 const MFBTAboutTheProprietor: FunctionComponent<IProps> = (props) => {
     const classes = useStyles(MixedFeelingsByTTheme)
-    const xsOnly = widthUtils.useIsWidthDown('xs')
+    const customizedThemeContext = useContext(CustomizedThemeContext)
 
+    const xsOnly = useMediaQuery(customizedThemeContext.customizedTheme.breakpoints.only('xs'))
     return (<Grid container item>
             <Grid container item className={classes.root} xs={xsOnly ? 12 : 11}
                   style={xsOnly ? {paddingBottom: 0, paddingTop: 0} : {
@@ -195,15 +197,16 @@ const MFBTAboutTheProprietor: FunctionComponent<IProps> = (props) => {
                     {/*><ProprietorAtAGlance source={'about-the-proprietor'} sectionData={props.sectionData.proprietorServices}/></Grid>}*/}
                 </Grid>
             </Grid>
-            <Grid container item style={{backgroundColor: "black", padding: MixedFeelingsByTTheme.spacing(2, 4)}} justifyContent={'center'}>
+            <Grid container item style={{backgroundColor: "black", padding: MixedFeelingsByTTheme.spacing(2, 4)}}
+                  justifyContent={'center'}>
                 <Grid container item xs={12} md={4} justifyContent='center' alignContent='center'
-                      style={{ minHeight: 200}} direction='column'>
-                        <ImageWIthButtonOverlay variant='contained'
-                            // toColor={"rgb(19,35,35)"}
-                                                imageSrc={props.sectionData.favDrinkImage2} height={170}
-                            // direction={CssFadeToColorDirectionEnum.RIGHT}
-                                                isResponsive
-                        />
+                      style={{minHeight: 200}} direction='column'>
+                    <ImageWIthButtonOverlay variant='contained'
+                        // toColor={"rgb(19,35,35)"}
+                                            imageSrc={props.sectionData.favDrinkImage2} height={170}
+                        // direction={CssFadeToColorDirectionEnum.RIGHT}
+                                            isResponsive
+                    />
                 </Grid>
                 <Grid container item xs={12} md={8}>
                     <Grid item>

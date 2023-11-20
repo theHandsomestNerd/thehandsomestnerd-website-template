@@ -1,12 +1,12 @@
-import React, {FunctionComponent} from 'react'
+import React, {FunctionComponent, useContext} from 'react'
 import {Theme, ThemeProvider} from '@mui/material/styles';
 import makeStyles from '@mui/styles/makeStyles';
-import {Divider, Grid, Typography} from '@mui/material'
+import {Divider, Grid, Typography, useMediaQuery} from '@mui/material'
 import {ThwWhyChooseUsSectionType} from "../../BlockContentTypes";
 import imagePlaceholderClient from "../../../utils/imagePlaceholderClient";
 import TransformHWTheme from "../../../theme/TransformHWTheme";
-import widthUtils from "../../../utils/widthUtils";
 import TheWebsiteTheme from "../../../theme/Theme";
+import CustomizedThemeContext from "../../customized-theme-provider/CustomizedThemeContext";
 
 
 export const useStyles = makeStyles((theme: Theme) => ({
@@ -28,7 +28,10 @@ interface IProps {
 const ThwServicesSection: FunctionComponent<IProps> = (props) => {
     const classes = useStyles(TheWebsiteTheme)
 
-    const xsOnly = widthUtils.useIsWidthDown('xs')
+    const customizedThemeContext = useContext(CustomizedThemeContext)
+
+    const xsOnly = useMediaQuery(customizedThemeContext.customizedTheme.breakpoints.only('xs'))
+
     return (
             <ThemeProvider theme={TransformHWTheme}>
                 <Grid container item className={classes.root} xs={12}>

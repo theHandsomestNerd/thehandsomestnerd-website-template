@@ -1,13 +1,13 @@
-import React, {FunctionComponent} from 'react'
+import React, {FunctionComponent, useContext} from 'react'
 import {Theme, ThemeProvider} from '@mui/material/styles';
 import makeStyles from '@mui/styles/makeStyles';
-import {Button, Grid, Typography} from '@mui/material'
+import {Button, Grid, Typography, useMediaQuery} from '@mui/material'
 import {urlFor} from '../../block-content-ui/static-pages/cmsStaticPagesClient'
 import {ThwPositivePsychologySectionType} from "../../BlockContentTypes";
 import {v4 as uuidv4} from 'uuid'
 import ResponsiveBullet from "../../ResponsiveBullet";
 import TransformHWTheme from "../../../theme/TransformHWTheme";
-import widthUtils from "../../../utils/widthUtils";
+import CustomizedThemeContext from "../../customized-theme-provider/CustomizedThemeContext";
 
 export const useStyles = makeStyles((theme: Theme) => ({
     root: {
@@ -30,8 +30,9 @@ interface IProps {
 const PositivePsychologySection: FunctionComponent<IProps> = (props) => {
     const classes = useStyles(TransformHWTheme)
 
-    const mdUp = widthUtils.useIsWidthUp('md')
+    const customizedThemeContext = useContext(CustomizedThemeContext)
 
+    const mdUp = useMediaQuery(customizedThemeContext.customizedTheme.breakpoints.up('md'))
     return (
         <ThemeProvider theme={TransformHWTheme}><Grid container item className={classes.root} xs={11}>
             <Grid container item justifyContent='space-between' spacing={4}>

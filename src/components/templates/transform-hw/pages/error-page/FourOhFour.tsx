@@ -1,12 +1,12 @@
-import {Grid, Typography} from '@mui/material'
-import React, {FunctionComponent} from 'react'
+import {Grid, Typography, useMediaQuery} from '@mui/material'
+import React, {FunctionComponent, useContext} from 'react'
 import TheWebsiteTheme from "../../../../../theme/Theme";
 import clsx from "clsx";
 import speakingWithTherapist from "./assets/speakingWithTherapist.jpg";
 import LoadingButton from "../../../../loading-button/LoadingButton";
 import useCustomStyles from "../../../mackenzies-mind/pages/Styles";
 import {useNavigate} from "react-router-dom";
-import widthUtils from "../../../../../utils/widthUtils";
+import CustomizedThemeContext from "../../../../customized-theme-provider/CustomizedThemeContext";
 
 
 export type AppLayoutProps = {}
@@ -15,8 +15,10 @@ const FourOhFour: FunctionComponent<AppLayoutProps> = (props) => {
     const classes = useCustomStyles({bgImage: speakingWithTherapist})
     const history = useNavigate()
 
-    const xsDown = widthUtils.useIsWidthDown('xs')
-    const smDown = widthUtils.useIsWidthDown('sm')
+    const customizedThemeContext = useContext(CustomizedThemeContext)
+
+    const xsDown = useMediaQuery(customizedThemeContext.customizedTheme.breakpoints.down('xs'))
+    const smDown = useMediaQuery(customizedThemeContext.customizedTheme.breakpoints.down('sm'))
 
     return (
         <Grid container className={clsx(xsDown ? classes.fullscreenPlus : classes.fullscreen, classes.fullScreenImage)}

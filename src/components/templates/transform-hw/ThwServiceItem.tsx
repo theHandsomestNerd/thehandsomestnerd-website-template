@@ -1,7 +1,7 @@
 import React, {FunctionComponent, useContext} from 'react'
 import {Theme} from "@mui/material/styles";
 import makeStyles from '@mui/styles/makeStyles';
-import {Button, Grid, Tooltip, Typography} from '@mui/material'
+import {Button, Grid, Tooltip, Typography, useMediaQuery} from '@mui/material'
 import ImageWIthButtonOverlay from "../../image-with-button-overlay/ImageWithButtonOverlay";
 import {ImageWithButtonOverlayAligmentEnum} from "../../image-with-button-overlay/ImageWithButtonOverlayAligmentEnum";
 import LoadingButton from "../../loading-button/LoadingButton";
@@ -11,8 +11,8 @@ import AmenitiesSection from "./AmenitiesSection";
 import PageContext from "../../page-context/PageContext";
 import {ThwServiceItemNoRefType} from "../../BlockContentTypes";
 import firebaseAnalyticsClient from "../../../common/firebase/FirebaseAnalyticsClient";
-import widthUtils from "../../../utils/widthUtils";
 import TransformHWTheme from "../../../theme/TransformHWTheme";
+import CustomizedThemeContext from "../../customized-theme-provider/CustomizedThemeContext";
 
 export const useStyles = makeStyles((theme: Theme) => ({
     root: {},
@@ -28,8 +28,9 @@ interface IProps {
 
 const ThwServiceItem: FunctionComponent<IProps> = (props: IProps) => {
     const pageContext = useContext(PageContext)
-    const mdDown = widthUtils.useIsWidthDown('md')
+    const customizedThemeContext = useContext(CustomizedThemeContext)
 
+    const mdDown = useMediaQuery(customizedThemeContext.customizedTheme.breakpoints.down('md'))
     const LearnMoreButton = () => {
         return <Grid item container justifyContent='center'>
             {props.service.learnMoreText && props.service?.learnMoreText.length > 0 &&

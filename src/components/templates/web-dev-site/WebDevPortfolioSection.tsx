@@ -1,7 +1,7 @@
 import React, {FunctionComponent, useContext} from 'react'
 import {StyledEngineProvider, Theme, ThemeProvider} from "@mui/material/styles";
 import makeStyles from '@mui/styles/makeStyles';
-import {Button, ButtonGroup, Chip, Grid, IconButton, Modal, Typography, useTheme} from '@mui/material'
+import {Button, ButtonGroup, Chip, Grid, IconButton, Modal, Typography, useMediaQuery, useTheme} from '@mui/material'
 import {ResumePortfolioItem, ResumePortfolioSectionType} from "../../BlockContentTypes";
 import {COLORS} from "../../../theme/common/ColorPalette";
 import {urlFor} from "../../block-content-ui/static-pages/cmsStaticPagesClient";
@@ -9,8 +9,7 @@ import {Close} from "@mui/icons-material";
 import WebDevSiteTheme from "../../../theme/WebDevSiteTheme";
 import firebaseAnalyticsClient from "../../../common/firebase/FirebaseAnalyticsClient";
 import PageContext from "../../page-context/PageContext";
-import widthUtils from "../../../utils/widthUtils";
-
+import CustomizedThemeContext from "../../customized-theme-provider/CustomizedThemeContext";
 
 export const useStyles = makeStyles((theme: Theme) => ({
     root: {
@@ -32,8 +31,9 @@ const WebDevPortfolioSection: FunctionComponent<IProps> = (props: IProps) => {
     const theme = useTheme()
     const classes = useStyles()
 
-    const xsOnly = widthUtils.useIsWidthDown('xs')
+    const customizedThemeContext = useContext(CustomizedThemeContext)
 
+    const xsOnly = useMediaQuery(customizedThemeContext.customizedTheme.breakpoints.only('xs'))
     const [isOpen, setIsOpen] = React.useState<boolean>(false)
     const [currentItem, setCurrentItem] = React.useState<ResumePortfolioItem>()
 
@@ -59,7 +59,7 @@ const WebDevPortfolioSection: FunctionComponent<IProps> = (props: IProps) => {
         </Grid>
     }
 
-    const mdDown = widthUtils.useIsWidthDown('md');
+    const mdDown = useMediaQuery(customizedThemeContext.customizedTheme.breakpoints.down('md'))
     return (
         <StyledEngineProvider injectFirst>
             <ThemeProvider theme={WebDevSiteTheme}>

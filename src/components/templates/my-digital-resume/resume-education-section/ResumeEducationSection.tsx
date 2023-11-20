@@ -1,11 +1,11 @@
-import React, {FunctionComponent} from 'react'
+import React, {FunctionComponent, useContext} from 'react'
 import {ThemeProvider} from "@mui/material/styles";
-import {Grid, Typography, useTheme} from '@mui/material'
+import {Grid, Typography, useMediaQuery, useTheme} from '@mui/material'
 import {ResumeEducation, ResumeEducationSectionType} from "../../../BlockContentTypes";
 import useThwCommonStyles from "../../../../common/sanityIo/ThwCommonStyles";
 import {COLORS} from "../../../../theme/common/ColorPalette";
 import TheWebsiteTheme from "../../../../theme/Theme";
-import widthUtils from "../../../../utils/widthUtils";
+import CustomizedThemeContext from "../../../customized-theme-provider/CustomizedThemeContext";
 
 
 interface IProps {
@@ -16,8 +16,9 @@ const ResumeEducationSection: FunctionComponent<IProps> = (props: IProps) => {
     const globalClasses = useThwCommonStyles()
     const theme = useTheme()
 
-    const xsOnly = widthUtils.useIsWidthDown('xs')
+    const customizedThemeContext = useContext(CustomizedThemeContext)
 
+    const xsOnly = useMediaQuery(customizedThemeContext.customizedTheme.breakpoints.only('xs'))
 
     return (
             <ThemeProvider theme={TheWebsiteTheme

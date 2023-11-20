@@ -1,10 +1,10 @@
 import React, {FunctionComponent, PropsWithChildren, ReactElement, useContext} from 'react'
 import {Theme} from "@mui/material/styles";
 import makeStyles from '@mui/styles/makeStyles';
-import {Grid, Tooltip, Typography} from '@mui/material'
+import {Grid, Tooltip, Typography, useMediaQuery} from '@mui/material'
 import {ServiceAmenityType} from "../../BlockContentTypes";
 import AmenityContext from "../../amenity-context/AmenityContext";
-import widthUtils from "../../../utils/widthUtils";
+import CustomizedThemeContext from "../../customized-theme-provider/CustomizedThemeContext";
 
 export const useStyles = makeStyles((theme: Theme) => ({
     root: {},
@@ -18,8 +18,9 @@ interface IProps {
 const ToolTipWrap: FunctionComponent<PropsWithChildren & IProps> = (props: PropsWithChildren & IProps) => {
     const amenityContext = useContext(AmenityContext)
 
-    const smDown = widthUtils.useIsWidthDown('sm')
+    const customizedThemeContext = useContext(CustomizedThemeContext)
 
+    const smDown = useMediaQuery(customizedThemeContext.customizedTheme.breakpoints.down('sm'))
     return <Grid container xs={6} item
                                                onClick={() => {
                                                    amenityContext.openSnackbar && amenityContext.openSnackbar(props.serviceTitle,props.amenity)

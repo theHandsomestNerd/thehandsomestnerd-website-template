@@ -1,4 +1,4 @@
-import React, {FunctionComponent} from 'react'
+import React, {FunctionComponent, useContext} from 'react'
 import {urlFor} from '../../block-content-ui/static-pages/cmsStaticPagesClient'
 import {ThwMottoSectionType} from "../../BlockContentTypes";
 import {Parallax} from 'react-parallax';
@@ -7,9 +7,9 @@ import useCustomStyles from "../mackenzies-mind/pages/Styles";
 import TransformHWTheme from "../../../theme/TransformHWTheme";
 import {Theme, ThemeProvider} from "@mui/material/styles";
 import makeStyles from "@mui/styles/makeStyles";
-import {Grid, Typography} from "@mui/material";
-import widthUtils from "../../../utils/widthUtils";
+import {Grid, Typography, useMediaQuery} from "@mui/material";
 import TheWebsiteTheme from "../../../theme/Theme";
+import CustomizedThemeContext from "../../customized-theme-provider/CustomizedThemeContext";
 
 export const useStyles = makeStyles((theme: Theme) => ({
     root: {
@@ -31,8 +31,9 @@ interface IProps {
 const ThwMottoSection: FunctionComponent<IProps> = (props) => {
     const globalClasses = useCustomStyles(TheWebsiteTheme)
     const classes = useStyles()
-    const smDown = widthUtils.useIsWidthDown('sm')
+    const customizedThemeContext = useContext(CustomizedThemeContext)
 
+    const smDown = useMediaQuery(customizedThemeContext.customizedTheme.breakpoints.down('sm'))
     return (
         <ThemeProvider theme={TransformHWTheme}><Parallax blur={1}
                                                           bgImage={urlFor(props.sectionData.parallaxImage).url() ?? undefined}

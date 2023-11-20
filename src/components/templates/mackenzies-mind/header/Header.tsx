@@ -1,10 +1,9 @@
 import React, {FunctionComponent, useContext} from 'react'
 import {Theme} from "@mui/material/styles";
 import makeStyles from '@mui/styles/makeStyles';
-import {Grid, IconButton, Modal} from '@mui/material'
+import {Grid, IconButton, Modal, useMediaQuery} from '@mui/material'
 import MainMenu from "./MainMenu";
 import FilteredMenuItems from "../../../filtered-menu-items/FilteredMenuItems";
-import widthUtils from "../../../../utils/widthUtils";
 import Logo from "../../../logo/Logo";
 import CustomizedThemeContext from "../../../customized-theme-provider/CustomizedThemeContext";
 import {SanityMenuContainer} from "../../../../common/sanityIo/Types";
@@ -25,15 +24,12 @@ export type HeaderProps = {
 const Header: FunctionComponent<HeaderProps> = (props) => {
     const customizedTheme = useContext(CustomizedThemeContext)
 
-    const classes = useStyles({
-        paddingLeft: customizedTheme.customizedTheme.spacing(4),
-        appBarHeight: customizedTheme.customizedTheme.mixins.toolbar.height
-    })
+    const customizedThemeContext = useContext(CustomizedThemeContext)
 
-    const mdDown = widthUtils.useIsWidthDown('md')
+    const mdDown = useMediaQuery(customizedThemeContext.customizedTheme.breakpoints.down('md'))
     const [isSearchOpen, setIsSearchOpen] = React.useState<boolean>(false)
 
-    const lgUp = widthUtils.useIsWidthUp('lg')
+    const lgUp = useMediaQuery(customizedThemeContext.customizedTheme.breakpoints.up('lg'))
 
     return (<AppBarWrapper isAppBar={props.isAppBar}>
             {props.pageHeader?.title ?
@@ -91,7 +87,10 @@ const Header: FunctionComponent<HeaderProps> = (props) => {
             <Modal open={isSearchOpen}>
                 <Grid container style={{height: "100%"}}>
                     <Grid container item justifyContent='flex-end'>
-                        <Close sx={{marginX:"16px", marginY:"16px"}} fontSize={"large"} color={'secondary'} onClick={()=>{setIsSearchOpen(false)}}/>
+                        <Close sx={{marginX: "16px", marginY: "16px"}} fontSize={"large"} color={'secondary'}
+                               onClick={() => {
+                                   setIsSearchOpen(false)
+                               }}/>
                     </Grid>
                     <Grid container justifyContent='center' alignContent='center' alignItems='center' paddingX={'32px'}
                           style={{height: "100%"}}>

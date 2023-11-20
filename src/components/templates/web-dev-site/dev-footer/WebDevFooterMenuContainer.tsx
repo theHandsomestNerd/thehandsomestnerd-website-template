@@ -1,5 +1,5 @@
 import React, {FunctionComponent, useContext} from 'react'
-import {Grid, Typography, useTheme} from '@mui/material'
+import {Grid, Typography, useMediaQuery, useTheme} from '@mui/material'
 import WebDevFooterMenuGroup from './WebDevFooterMenuGroup'
 import {Theme} from '@mui/material/styles';
 import makeStyles from '@mui/styles/makeStyles';
@@ -9,7 +9,7 @@ import MailTo from "../../../mail-to/MailTo";
 import FullWidthColoredPng from "../../../fullwidth-colored-png/FullWidthColoredPng";
 import {urlFor} from "../../../block-content-ui/static-pages/cmsStaticPagesClient";
 import WebDevSiteTheme from "../../../../theme/WebDevSiteTheme";
-import widthUtils from "../../../../utils/widthUtils";
+import CustomizedThemeContext from "../../../customized-theme-provider/CustomizedThemeContext";
 
 
 export const useStyles = makeStyles((theme: Theme) => ({
@@ -30,9 +30,10 @@ const WebDevFooterMenuContainer: FunctionComponent<IProps> = (props: IProps) => 
     const theme = useTheme()
     const pageContext = useContext(PageContext)
 
-    const smDown = widthUtils.useIsWidthDown('sm')
-    const mdDown = widthUtils.useIsWidthDown('md')
+    const customizedThemeContext = useContext(CustomizedThemeContext)
 
+    const smDown = useMediaQuery(customizedThemeContext.customizedTheme.breakpoints.down('sm'))
+    const mdDown = useMediaQuery(customizedThemeContext.customizedTheme.breakpoints.down('md'))
     return (
         <Grid container item className={classes.root} spacing={5}>
             <Grid item container xs={12} md={6}>

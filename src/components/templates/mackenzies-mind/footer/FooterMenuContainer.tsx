@@ -1,5 +1,5 @@
 import React, {FunctionComponent, useContext} from 'react'
-import {Divider, Grid, Typography} from '@mui/material'
+import {Divider, Grid, Typography, useMediaQuery} from '@mui/material'
 import FooterMenuGroup from './FooterMenuGroup'
 import {ThemeProvider} from '@mui/material/styles';
 import makeStyles from '@mui/styles/makeStyles';
@@ -8,8 +8,8 @@ import PageContext from "../../../page-context/PageContext";
 import MailTo from "../../../mail-to/MailTo";
 import Logo from "../../../logo/Logo";
 import TheWebsiteTheme from "../../../../theme/Theme";
-import widthUtils from "../../../../utils/widthUtils";
 import AlternatingText from "../../../logo/AlternatingText";
+import CustomizedThemeContext from "../../../customized-theme-provider/CustomizedThemeContext";
 
 export const useStyles = makeStyles(({
     root: {
@@ -29,8 +29,9 @@ const FooterMenuContainer: FunctionComponent<IProps> = (props: IProps) => {
 
     const pageContext = useContext(PageContext)
 
-    const smDown = widthUtils.useIsWidthDown('sm')
+    const customizedThemeContext = useContext(CustomizedThemeContext)
 
+    const smDown = useMediaQuery(customizedThemeContext.customizedTheme.breakpoints.down('sm'))
     return (
         <ThemeProvider theme={TheWebsiteTheme}>
             <Grid container item className={classes.root}>
