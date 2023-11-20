@@ -240,6 +240,10 @@ export type AnimatedServicesSectionType = {
     contentSummaryTexts: string[]
     ctaButtonText: string
     ctaButtonLink: string
+    videoPreviewImageSrc:SanityImageAsset
+    videoPreviewSectionBackgroundImageSrc: SanityImageAsset
+    videoUrl:string
+    videoPreviewText:string
 }
 
 export type ThwServicesSectionType = {

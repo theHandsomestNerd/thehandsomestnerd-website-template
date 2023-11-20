@@ -482,7 +482,8 @@ const fullTextSearch = (textToSearch: string): Promise<any> => {
                 highlightedAmenitiesText, 
                 contentWelcomeMessage,
                 contentSummaryTitle,
-                contentSummaryTexts
+                contentSummaryTexts,
+                videoUrl
             ] match '*${textToSearch}*']`,
             // {searchText: textToSearch}
         ).then((data: any) => {

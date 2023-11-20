@@ -1,24 +1,17 @@
 import React, {FunctionComponent, useContext} from 'react'
 import {Theme, ThemeProvider} from '@mui/material/styles';
 import makeStyles from '@mui/styles/makeStyles';
-import {Button, Grid, Typography} from '@mui/material'
+import {Box, Button, Card, Grid, IconButton, Typography, useMediaQuery} from '@mui/material'
 import CustomizedThemeContext from "../customized-theme-provider/CustomizedThemeContext";
 import {AnimatedServiceItemNoRefType, AnimatedServicesSectionType} from "../BlockContentTypes";
 import firebaseAnalyticsClient from "../../common/firebase/FirebaseAnalyticsClient";
 import PageContext from "../page-context/PageContext";
 import AnimatedServiceItem from "./AnimatedServiceItem";
 import BulletedHeader from "./BulletedHeader";
-import shape2 from "./abstract-shapes-background/services-v1-shape2-dark-blue.png"
-import shape3 from "./abstract-shapes-background/services-v1-shape3-dark-blue.png"
-import shape4 from "./abstract-shapes-background/services-v1-shape4-cyan.png"
-import shape5 from "./abstract-shapes-background/services-v1-shape5-dark-blue.png"
-import shape6 from "./abstract-shapes-background/services-v1-shape6-dark-blue.png"
-import shape7 from "./abstract-shapes-background/services-v1-shape7-dark-blue.png"
-import shape8 from "./abstract-shapes-background/services-v1-shape8-cyan.png"
-import shape9 from "./abstract-shapes-background/services-v1-shape9-dark-blue.png"
-import shape10 from "./abstract-shapes-background/services-v1-shape10-dark-blue.png"
-import shape11 from "./abstract-shapes-background/services-v1-shape11-dark-blue.png"
 import AbstractShapesBackground from "./abstract-shapes-background/AbstractShapesBackground";
+import {urlFor} from "../block-content-ui/static-pages/cmsStaticPagesClient";
+import {PlayArrow} from "@mui/icons-material";
+import { motion } from 'framer-motion';
 
 export const useStyles = makeStyles((theme: Theme) => ({
     root: {
@@ -35,10 +28,11 @@ interface IProps {
 
 const AnimatedServicesSection: FunctionComponent<IProps> = (props) => {
     const classes = useStyles()
+    const customizedThemeContext = useContext(CustomizedThemeContext)
+    const smDown = useMediaQuery(customizedThemeContext.customizedTheme?.breakpoints.down('sm'))
 
     const pageContext = useContext(PageContext)
     // const mdDown = widthUtils.useIsWidthDown('md')
-    const customizedThemeContext = useContext(CustomizedThemeContext)
 
     return (
         <ThemeProvider theme={customizedThemeContext.customizedTheme}>
@@ -46,7 +40,7 @@ const AnimatedServicesSection: FunctionComponent<IProps> = (props) => {
                 position: "relative",
                 // backgroundColor:customizedThemeContext.customizedTheme.palette.primary.dark
             }}>
-                <Grid item container style={{padding: customizedThemeContext.customizedTheme.spacing(8, 6), zIndex: 10}}
+                <Grid item container style={{padding: customizedThemeContext.customizedTheme?.spacing(8, 6), zIndex: 10}}
                       spacing={2} justifyContent='center'>
                     <Grid item xs={12}>
                         <Grid item container>
@@ -118,7 +112,109 @@ const AnimatedServicesSection: FunctionComponent<IProps> = (props) => {
                         </Grid>
                     </Grid>
                 </Grid>
-                <AbstractShapesBackground />
+                <AbstractShapesBackground/>
+            </Grid>
+            <Grid container item style={{position: "relative", backgroundRepeat:"repeat-x", backgroundSize:"256px", backgroundImage: `url(${urlFor(props.sectionData?.videoPreviewSectionBackgroundImageSrc ?? "").url() ?? ""})`}} justifyContent='center' alignContent='center'>
+                <Grid item container xs={12} justifyContent='center' style={{top: -64, position:"relative"}}>
+                    <Grid item xs={12} sm={10} sx={{height:"100%", position:"relative"}}
+                          >
+                        <img height="100%" width="100%" src={urlFor(props.sectionData?.videoPreviewImageSrc ?? "").url() ?? ""}/>
+
+                    </Grid>
+                </Grid>
+                <Grid item container xs={12} sm={8} sx={{position: "absolute",height: "100%",  }} justifyContent='center' alignContent='center' alignItems='center'>
+                    <Grid item container sx={{}} justifyContent='center' alignContent='center' alignItems='center'>
+                        <Grid item container style={{position: "relative"}} justifyContent='center' alignContent='center'>
+                            <IconButton size='large' sx={{
+                                width: 96,
+                                height: 96,
+                                position: "relative",
+                                zIndex:10,
+                                backgroundColor: customizedThemeContext.customizedTheme?.palette?.primary.main
+                            }}>
+                                <Grid
+                                    item
+                                    container
+                                    justifyContent='center'
+                                    style={{height: "100%",}}
+                                    alignContent='center'>
+                                    <Grid item>
+                                        <PlayArrow style={{fontSize:"96px"}} color='secondary'/>
+                                    </Grid>
+                                </Grid>
+                            </IconButton>
+                            <Grid item style={{position: "absolute",width:"100%",height:"100%", zIndex:1,
+                            }} container justifyContent='center' alignContent='center'>
+                                <Grid item>
+                                    <motion.div
+                                        key={`play-circle-1`}
+                                        initial={{scale: 1}}
+                                        animate={{scale:5, opacity: 0}}
+                                        transition={{
+                                            repeat:Infinity,
+                                            duration: 5
+                                    }}>
+                                    <Box sx={{
+                                    borderRadius: "50%",
+                                    width: 24,
+                                    height: 24,
+                                    backgroundColor: "transparent",
+                                    border: `1px solid ${"white"}`
+                                }}>
+
+                                </Box>
+                                </motion.div></Grid>
+                            </Grid>
+                            <Grid  justifyContent='center' alignContent='center' item style={{position: "absolute",width:"100%",height:"100%", }} container>
+                                <Grid item>
+                                    <motion.div
+                                        key={`play-circle-2`}
+                                        initial={{scale: 1}}
+                                        animate={{scale:5, opacity: 0}}
+                                        transition={{
+                                            repeat:Infinity,
+                                            duration: 5
+                                        }}>
+                                        <Box sx={{
+                                            borderRadius: "50%",
+                                            width: 32,
+                                            height: 32,
+                                            backgroundColor: "transparent",
+                                            border: `1px solid ${"white"}`
+                                        }}>
+
+                                        </Box>
+                                    </motion.div></Grid>
+                            </Grid>
+                            <Grid item  justifyContent='center' alignContent='center' style={{position: "absolute",width:"100%",height:"100%", }} container>
+                                <Grid item>
+                                    <motion.div
+                                        key={`play-circle-3`}
+                                        initial={{scale: 1}}
+                                        animate={{scale:5, opacity: 0}}
+                                        transition={{
+                                            repeat:Infinity,
+                                            duration: 5
+                                        }}>
+                                        <Box sx={{
+                                            borderRadius: "50%",
+                                            width: 42,
+                                            height: 42,
+                                            backgroundColor: "transparent",
+                                            border: `1px solid ${"white"}`
+                                        }}>
+
+                                        </Box>
+                                    </motion.div></Grid>
+                            </Grid>
+                        </Grid>
+                        <Grid container item justifyContent='center' style={{marginTop: smDown?"12px":"24px"}}>
+                            <Grid item>
+                                <Typography color='secondary' variant={smDown?'h5':'h3'} gutterBottom>{props.sectionData?.videoPreviewText}</Typography>
+                            </Grid>
+                        </Grid>
+                    </Grid>
+                </Grid>
             </Grid>
         </ThemeProvider>
     )

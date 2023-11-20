@@ -41,7 +41,7 @@ const AnimatedAboutUsItem: FunctionComponent<IProps> = (props: IProps) => {
             }} onHoverEnd={async () => {
                 animateServiceNoHover()
             }}>
-                <Card>
+                <Card elevation={0} style={{border:"1px solid #e6e6e6"}}>
                     <Grid item style={{position: "relative"}}>
                         <Grid item>
                             <Grid item style={{position: "relative", overflow: "hidden"}}>

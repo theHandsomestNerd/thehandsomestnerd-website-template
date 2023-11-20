@@ -26,8 +26,8 @@ const AbstractShapesBackground: FunctionComponent<IProps> = (props: IProps) => {
     const customizedThemeContext = useContext(CustomizedThemeContext)
 
     const shape2Variants = {
-        onScreen: {top: 0, transition: {duration: .45}},
-        offScreen: {top: -440, transition: {duration: .45}}
+        onScreen: {top: 0, transition: {duration: .65}},
+        offScreen: {top: -440, transition: {duration: .65}}
     };
 
     const shape3Variants = {
@@ -41,13 +41,13 @@ const AbstractShapesBackground: FunctionComponent<IProps> = (props: IProps) => {
     };
 
     const shape5Variants = {
-        onScreen: {top: 0, transition: {duration: .45}},
-        offScreen: {top: -900, transition: {duration: .45}}
+        onScreen: {top: 0, transition: {duration: .65}},
+        offScreen: {top: -900, transition: {duration: .65}}
     };
 
     const shape6Variants = {
-        onScreen: {right: 0, top: 0, transition: {duration: .45}},
-        offScreen: {right: 0, top: -720, transition: {duration: .45}}
+        onScreen: {right: 0, top: 0, transition: {duration: .75}},
+        offScreen: {right: 0, top: -720, transition: {duration: .75}}
     };
 
     const shape7Variants = {
@@ -56,18 +56,18 @@ const AbstractShapesBackground: FunctionComponent<IProps> = (props: IProps) => {
     };
 
     const shape8Variants = {
-        onScreen: {right: 0, top: 0, transition: {duration: .45}},
-        offScreen: {right: 0, top: -250, transition: {duration: .45}}
+        onScreen: {right: 0, top: 0, transition: {duration: .65}},
+        offScreen: {right: 0, top: -250, transition: {duration: .65}}
     };
 
     const shape9Variants = {
-        onScreen: {bottom: 0, transition: {duration: .65}},
-        offScreen: {bottom: -900, transition: {duration: .65}}
+        onScreen: {bottom: 0, transition: {duration: .85}},
+        offScreen: {bottom: -900, transition: {duration: .85}}
     };
 
     const shape10Variants = {
-        onScreen: {top: 0, right: 0, bottom: 0, transition: {duration: .45}},
-        offScreen: {top: -980, right: 0, bottom: 0, transition: {duration: .45}}
+        onScreen: {top: 0, right: 0, bottom: 0, transition: {duration: .65}},
+        offScreen: {top: -980, right: 0, bottom: 0, transition: {duration: .65}}
     };
 
     const shape11Variants = {

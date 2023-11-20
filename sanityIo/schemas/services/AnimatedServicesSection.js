@@ -92,6 +92,26 @@ export default {
             title: 'CTA Button Link',
             type: 'string'
         },
+        {
+            name: 'videoPreviewImageSrc',
+            title: 'Video Image Preview',
+            type: 'image',
+        },
+        {
+            name: 'videoPreviewText',
+            title: 'Video Image Preview Text',
+            type: 'string',
+        },
+        {
+            name: 'videoPreviewSectionBackgroundImageSrc',
+            title: 'Video Image Preview Section Background',
+            type: 'image',
+        },
+        {
+            name: 'videoUrl',
+            title: 'Video URL',
+            type: 'string',
+        },
     ]
 }
 
