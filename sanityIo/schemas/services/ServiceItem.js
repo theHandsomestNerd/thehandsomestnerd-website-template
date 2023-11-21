@@ -18,6 +18,16 @@ export default {
       },
     },
     {
+      name: 'iconImageSrc',
+      title: 'Icon Image',
+      type: 'image',
+    },
+    {
+      name: 'backgroundImageSrc',
+      title: 'Background Image',
+      type: 'image',
+    },
+    {
       name: 'imageSrcAltText',
       title: 'Image Alt Text',
       type: 'string',

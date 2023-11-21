@@ -1,5 +1,5 @@
 import type {Meta, StoryObj} from '@storybook/react';
-import ResumeContactUsSection from "../../components/my-digital-resume/ResumeContactUsSection";
+import ResumeContactUsSection from "../../components/templates/my-digital-resume/ResumeContactUsSection";
 import ResumeContactSectionData from "../data/ResumeContactSectionData";
 import {ResumeContactUsSectionType} from "../../components/BlockContentTypes";
 

@@ -2,7 +2,7 @@ import type {Meta, StoryObj} from '@storybook/react';
 import PageProvider from "../../components/page-context/PageProvider";
 import AmenityProvider from "../../components/amenity-context/AmenityProvider";
 import ThwHomePageData from "../data/ThwHomePageData";
-import ThwContactUsSection from "../../components/transform-hw/ThwContactUsSection";
+import ThwContactUsSection from "../../components/templates/transform-hw/ThwContactUsSection";
 import thwContactUsData from "../data/ThwContactUsData";
 import CustomizedThemeProvider from "../../components/customized-theme-provider/CustomizedThemeProvider";
 import TheWebsiteTheme from "../../theme/Theme";

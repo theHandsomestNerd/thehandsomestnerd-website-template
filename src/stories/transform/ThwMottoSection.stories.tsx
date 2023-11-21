@@ -1,5 +1,5 @@
 import type {Meta, StoryObj} from '@storybook/react';
-import ThwMottoSection from "../../components/transform-hw/ThwMottoSection";
+import ThwMottoSection from "../../components/templates/transform-hw/ThwMottoSection";
 import homePageResumeData from "../data/HomePageData";
 import thwMottoData from "../data/ThwMottoData";
 

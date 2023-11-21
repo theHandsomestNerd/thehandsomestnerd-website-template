@@ -7,7 +7,7 @@ import {urlFor} from "../block-content-ui/static-pages/cmsStaticPagesClient";
 import {SanityImageSource} from "@sanity/asset-utils";
 import {CssFadeToColorDirectionEnum} from "../css-fade-to-color/CssFadeToColorDirectionEnum";
 import {ImageWithButtonOverlayAligmentEnum} from "./ImageWithButtonOverlayAligmentEnum";
-import firebaseAnalyticsClient from "../../utils/firebase/FirebaseAnalyticsClient";
+import firebaseAnalyticsClient from "../../common/firebase/FirebaseAnalyticsClient";
 import PageContext from "../page-context/PageContext";
 import {OverridableStringUnion} from "@mui/types";
 import {ButtonPropsColorOverrides} from "@mui/material/Button/Button";

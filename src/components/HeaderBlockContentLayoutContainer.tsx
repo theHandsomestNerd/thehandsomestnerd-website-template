@@ -1,28 +1,28 @@
-import React, {FunctionComponent} from 'react'
+import React, {FunctionComponent, useContext} from 'react'
 import BlockContent from '@sanity/block-content-to-react'
-import { Card, Grid, Link, ThemeProvider, Theme, StyledEngineProvider } from '@mui/material';
+import {Card, Grid, Link, Theme, ThemeProvider} from '@mui/material';
 import sanityClient from '../sanityClient'
 import {blockSerializers} from '../common/sanityIo/BlockContentRenderer'
 import {DevelopmentHeaderSectionType, HeaderSectionType,} from "./BlockContentTypes";
-import TheWebsiteTheme from "../theme/Theme";
 import useThwCommonStyles from "../common/sanityIo/ThwCommonStyles";
-import DevelopmentHeader from "./mackenzies-mind/header/DevelopmentHeader";
-import Header from "./mackenzies-mind/header/Header";
+import DevelopmentHeader from "./templates/mackenzies-mind/header/DevelopmentHeader";
+import Header from "./templates/mackenzies-mind/header/Header";
 import WebDevSiteTheme from "../theme/WebDevSiteTheme";
-import TransformHWTheme from "../theme/TransformHWTheme";
-
+import EnhancedHeader from "./templates/mackenzies-mind/header/EnhancedHeader";
+import CustomizedThemeContext from "./customized-theme-provider/CustomizedThemeContext";
 
 
 declare module '@mui/styles/defaultTheme' {
-  // eslint-disable-next-line @typescript-eslint/no-empty-interface
-  interface DefaultTheme extends Theme {}
+    // eslint-disable-next-line @typescript-eslint/no-empty-interface
+    interface DefaultTheme extends Theme {
+    }
 }
 
 
-
 declare module '@mui/styles/defaultTheme' {
-  // eslint-disable-next-line @typescript-eslint/no-empty-interface
-  interface DefaultTheme extends Theme {}
+    // eslint-disable-next-line @typescript-eslint/no-empty-interface
+    interface DefaultTheme extends Theme {
+    }
 }
 
 
@@ -32,13 +32,37 @@ export type HeaderBlockContentLayoutContainerProps = {
 
 const HeaderBlockContentLayoutContainer: FunctionComponent<HeaderBlockContentLayoutContainerProps> = (props) => {
     const classes = useThwCommonStyles()
+    // const mdDown = widthUtils.useIsWidthDown('md')
+    const customizedTheme = useContext(CustomizedThemeContext)
+
+    const [showBasicHeader, setShowBasicHeader] = React.useState<boolean>(false)
+
+    React.useEffect(() => {
+        const handResize = () => {
+            if (window.innerWidth < customizedTheme.customizedTheme.breakpoints.values['md']) {
+                setShowBasicHeader(true)
+            } else {
+                setShowBasicHeader(false)
+            }
+        }
+        window.addEventListener('resize', handResize)
+        handResize()
+
+        return () => {
+            window.removeEventListener('resize', handResize)
+        }
+
+
+    },[])
+
 
     return (
         <Grid container item>
             {props?.content?.map((columnLayoutContainer: any, index: number) => {
                 switch (columnLayoutContainer._type) {
                     case 'column1BlockContent':
-                        return <Grid key={'column1BlockContent_header'} container justifyContent='center' alignItems='stretch'>
+                        return <Grid key={'column1BlockContent_header'} container justifyContent='center'
+                                     alignItems='stretch'>
                             <Grid item>
                                 <Card className={classes.root} style={{paddingTop: '80px'}}>
                                     <Grid container item xs={12} className={classes.layoutContainer}>
@@ -55,7 +79,8 @@ const HeaderBlockContentLayoutContainer: FunctionComponent<HeaderBlockContentLay
                             </Grid>
                         </Grid>
                     case 'column2BlockContent':
-                        return <Grid key={'column2BlockContent_header'} container justifyContent='center' alignItems='stretch'>
+                        return <Grid key={'column2BlockContent_header'} container justifyContent='center'
+                                     alignItems='stretch'>
                             <Grid item>
                                 <Card className={classes.root} style={{paddingTop: '80px'}}>
                                     <Grid container item xs={12} className={classes.layoutContainer}>
@@ -82,25 +107,35 @@ const HeaderBlockContentLayoutContainer: FunctionComponent<HeaderBlockContentLay
                         const developmentHeader: DevelopmentHeaderSectionType = columnLayoutContainer
 
                         return (
-                                <ThemeProvider theme={WebDevSiteTheme} key={'TOP_OF_PAGE_DEV'}><Grid  container item xs={12} style={{height: WebDevSiteTheme.mixins.toolbar.height}} alignContent='center' alignItems='center'>
+                            <ThemeProvider theme={WebDevSiteTheme} key={'TOP_OF_PAGE_DEV'}>
+                                <Grid container item xs={12}
+                                      style={{height: WebDevSiteTheme.mixins.toolbar.height}}
+                                      alignContent='center'
+                                      alignItems='center'>
                                     <Link id={"TOP_OF_PAGE"} underline="hover"><></>
                                     </Link>
                                     <DevelopmentHeader
                                         pageHeader={developmentHeader.headerMenuRef}
                                     />
-                                </Grid></ThemeProvider>
+                                </Grid>
+                            </ThemeProvider>
                         );
                     case 'HeaderSection':
                         const header: HeaderSectionType = columnLayoutContainer
 
                         return (
-                                <ThemeProvider theme={TheWebsiteTheme}  key={'TOP_OF_PAGE'}><Grid container item xs={12} style={{height: TheWebsiteTheme.mixins.toolbar.height}}>
+                            <ThemeProvider theme={customizedTheme} key={'TOP_OF_PAGE'}>
+                                <Grid container item xs={12}>
                                     <Link id={"TOP_OF_PAGE"} underline="hover"><></>
                                     </Link>
-                                    <Header
-                                        pageHeader={header.headerMenuRef}
-                                    />
-                                </Grid></ThemeProvider>
+                                    {
+                                        showBasicHeader || !header.isEnhanced ?
+                                            <Header isSearch={header.isSearch} isAppBar={true}
+                                                    pageHeader={header.headerMenuRef}/>
+                                            : <EnhancedHeader pageHeader={header}/>
+                                    }
+                                </Grid>
+                            </ThemeProvider>
                         );
                     default:
                         return <span key={index}>Undefined section {columnLayoutContainer._type}</span>

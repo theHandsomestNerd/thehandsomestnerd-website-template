@@ -1,5 +1,5 @@
 import {SanityImageSource} from "@sanity/asset-utils";
-import {SanityMenuContainer, SanityRef, SanitySlug} from "../common/sanityIo/Types";
+import {SanityMenuContainer, SanityMuiTheme, SanityRef, SanitySlug} from "../common/sanityIo/Types";
 import {FileAsset, ImageAsset} from "@sanity/types";
 
 export type HeroContentSectionType = {
@@ -10,6 +10,25 @@ export type HeroContentSectionType = {
     heroImageBackground: SanityImageAsset
     contentTitle: string
     contentBullets: string[]
+    ctaButtonTitle: string
+    ctaButtonLink: string
+}
+
+export type HeroAnimatedContentSectionType = {
+    name: string
+    title: string
+    theme: SanityMuiTheme
+    contentSlides: SanityHeroContentSlide[]
+}
+
+export type SanityHeroContentSlide = {
+    heroImage: SanityImageAsset
+    heroBullet: SanityImageAsset
+    heroImageAltText: string
+    heroImageBackground: SanityImageAsset
+    contentTitle: string
+    contentWelcomeMessage: string
+    contentText: string
     ctaButtonTitle: string
     ctaButtonLink: string
 }
@@ -171,6 +190,61 @@ export type ThwServiceItemNoRefType = {
     slug: SanitySlug
 } & SanityDocumentFields
 
+export type AnimatedServiceItemNoRefType = {
+    name: string
+    imageSrc?: SanityImageAsset
+    iconImageSrc?: SanityImageAsset
+    backgroundImageSrc?: SanityImageAsset
+    imageSrcAltText: string
+    contentTitle: string
+    contentText: string
+    ctaButtonText: string
+    ctaButtonLink: string
+    learnMoreLink: string
+    learnMoreText: string
+    educationPageTitle: string
+    educationPageSlimHeroImage: SanityImageAsset
+    extendedDescriptions: string[]
+    benefitsOfServiceTitle: string
+    benefitsOfServiceContents: string[]
+    benefitsOfServiceBullets: string[]
+    serviceAmenities: ServiceAmenityType[]
+    slug: SanitySlug
+} & SanityDocumentFields
+
+export type AnimatedAboutUsSectionType = {
+    name: string
+    heroBullet?:SanityImageAsset
+    title:string
+    contentTitle: string
+    contentPreTitle: string
+    contentText: string
+    contentTexts: string[]
+    servicesList: AnimatedServiceItemNoRefType[]
+    highlightedAmenities?: ServiceAmenityType[]
+    highlightedAmenitiesTitle?: string
+    highlightedAmenitiesTexts?: string[]
+    highlightedAmenitiesBullets?: string[]
+    servicesImageSrcArr: SanityImageAsset[]
+    servicesMasonryAccentImageSrc: SanityImageAsset
+}
+
+export type AnimatedServicesSectionType = {
+    name: string
+    heroBullet?:SanityImageAsset
+    contentTitle: string
+    contentPreTitle: string
+    contentTexts: string[]
+    servicesList: AnimatedServiceItemNoRefType[]
+    contentSummaryTitle: string
+    contentSummaryTexts: string[]
+    ctaButtonText: string
+    ctaButtonLink: string
+    videoPreviewImageSrc:SanityImageAsset
+    videoPreviewSectionBackgroundImageSrc: SanityImageAsset
+    videoUrl:string
+    videoPreviewText:string
+}
 
 export type ThwServicesSectionType = {
     name: string
@@ -504,6 +578,11 @@ export type DevelopmentHeaderSectionType = {
 }
 export type HeaderSectionType = {
     name: string
+    isSearch: boolean
+    isEnhanced: boolean
+    ctaButtonText: string
+    ctaButtonLink: string
+    highlightedDetails: ServiceAmenityType[]
     headerMenuRef: SanityMenuContainer
 }
 export type DevelopmentFooterSectionType = {

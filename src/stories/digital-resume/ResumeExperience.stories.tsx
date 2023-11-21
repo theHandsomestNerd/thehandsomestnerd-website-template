@@ -1,6 +1,6 @@
 import type {Meta, StoryObj} from '@storybook/react';
 import ResumeExperienceSection
-    from "../../components/my-digital-resume/resume-experience-section/ResumeExperienceSection";
+    from "../../components/templates/my-digital-resume/resume-experience-section/ResumeExperienceSection";
 import ResumeExperienceSectionData from "../data/ResumeExperienceSectionData";
 
 const meta: Meta<typeof ResumeExperienceSection> = {

@@ -3,12 +3,12 @@ import {ServiceAmenityType} from "../BlockContentTypes";
 import AmenityContext from './AmenityContext';
 import {Grid, ListItem, ListItemIcon, ListItemText, Typography} from "@mui/material";
 import {v4 as uuidv4} from "uuid";
-import ToolTipWrap from "../transform-hw/ToolTipWrap";
+import ToolTipWrap from "../templates/transform-hw/ToolTipWrap";
 import {urlFor} from "../block-content-ui/static-pages/cmsStaticPagesClient";
 import PageContext from "../page-context/PageContext";
 import ColoredPng from "../colored-png/ColoredPng";
 import SnackbarContext from "../modal-context/SnackbarContext";
-import firebaseAnalyticsClient from "../../utils/firebase/FirebaseAnalyticsClient";
+import firebaseAnalyticsClient from "../../common/firebase/FirebaseAnalyticsClient";
 
 type IProps = {};
 

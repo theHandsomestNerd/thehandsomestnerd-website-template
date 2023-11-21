@@ -1,6 +1,6 @@
 import type {Meta, StoryObj} from '@storybook/react';
 import homePageResumeData from "../data/HomePageData";
-import Header from "../../components/mackenzies-mind/header/Header";
+import Header from "../../components/templates/mackenzies-mind/header/Header";
 
 
 const meta: Meta<typeof Header> = {

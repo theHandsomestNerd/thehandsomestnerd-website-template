@@ -7,8 +7,8 @@ import {DevelopmentFooterSectionType, FooterSectionType,} from "./BlockContentTy
 import TheWebsiteTheme from "../theme/Theme";
 import useThwCommonStyles from "../common/sanityIo/ThwCommonStyles";
 import WebDevSiteTheme from "../theme/WebDevSiteTheme";
-import Footer from "./mackenzies-mind/footer/Footer";
-import WebDevFooter from "./web-dev-site/dev-footer/WebDevFooter";
+import Footer from "./templates/mackenzies-mind/footer/Footer";
+import WebDevFooter from "./templates/web-dev-site/dev-footer/WebDevFooter";
 
 export type FooterBlockContentLayoutContainerProps = {
     content?: any,

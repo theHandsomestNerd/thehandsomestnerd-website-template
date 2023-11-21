@@ -8,8 +8,8 @@ import {
 } from '../../common/sanityIo/Types'
 
 import {ThwServiceItemType, WhySwitchSectionType} from "../BlockContentTypes";
-import GroqQueries from "../../utils/groqQueries";
-import groqQueries from "../../utils/groqQueries";
+import GroqQueries from "../../common/sanityIo/groqQueries";
+import groqQueries from "../../common/sanityIo/groqQueries";
 import {SanityHomePage} from "./static-pages/cmsStaticPagesClient";
 import {QueryKey, useQuery} from "@tanstack/react-query";
 
@@ -466,6 +466,32 @@ const useFetchServicesQuery = (pageSlug?: string) => {
         });
 }
 
+const fullTextSearch = (textToSearch: string): Promise<any> => {
+
+    return sanityClient
+        .fetch(
+            `*[
+            [
+                title, 
+                name, 
+                contentText, 
+                contentTexts, 
+                contentTitle, 
+                contentPreTitle, 
+                highlightedAmenitiesTitle, 
+                highlightedAmenitiesText, 
+                contentWelcomeMessage,
+                contentSummaryTitle,
+                contentSummaryTexts,
+                videoUrl
+            ] match '*${textToSearch}*']`,
+            // {searchText: textToSearch}
+        ).then((data: any) => {
+            console.log("data from fulltext search", data)
+            return data
+        })
+}
+
 export default {
     fetchRef,
     fetchRefs,
@@ -485,5 +511,6 @@ export default {
     useFetchServicesQuery,
     useFetchRefsQuery,
     useFetchMenuByRefQuery,
-    fetchMuiTheme
+    fetchMuiTheme,
+    fullTextSearch
 }

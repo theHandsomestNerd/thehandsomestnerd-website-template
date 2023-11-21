@@ -1,6 +1,6 @@
 import type {Meta, StoryObj} from '@storybook/react';
 import React, {PropsWithChildren} from "react";
-import SubmitEmail, {SubmitEmailIProps} from "../../components/transform-hw/pages/BusinessCardSubmitEmail";
+import SubmitEmail, {SubmitEmailIProps} from "../../components/templates/transform-hw/pages/BusinessCardSubmitEmail";
 
 
 const meta: Meta<typeof SubmitEmail> = {

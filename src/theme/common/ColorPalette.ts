@@ -16,7 +16,7 @@ export enum COLORS {
     AQUA = "#12b3be",
     WHITESMOKE = '#f6f6f6',
     RED = "#d20027",
-    ALMOSTWHITE="#e6e6e6",
+    ALMOSTWHITE="#dfd8d9",
     DARKERGRAY = "#383838",
     DARK_GRAY = '#A8A9AC',
     LIGHTER_GRAY = '#E3E3E3',

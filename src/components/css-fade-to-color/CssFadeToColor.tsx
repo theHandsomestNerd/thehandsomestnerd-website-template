@@ -1,10 +1,10 @@
 import React, {FunctionComponent, useContext} from 'react'
-import { Theme } from '@mui/material/styles';
+import {Theme} from '@mui/material/styles';
 import makeStyles from '@mui/styles/makeStyles';
-import {Grid} from '@mui/material'
-import useCustomStyles from "../mackenzies-mind/pages/Styles";
+import {Grid, useMediaQuery} from '@mui/material'
+import useCustomStyles from "../templates/mackenzies-mind/pages/Styles";
 import {CssFadeToColorDirectionEnum} from "./CssFadeToColorDirectionEnum";
-import widthUtils from "../../utils/widthUtils";
+import CustomizedThemeContext from "../customized-theme-provider/CustomizedThemeContext";
 
 export const useStyles = makeStyles((theme: Theme) => ({
     root: {
@@ -28,10 +28,11 @@ interface IProps {
 
 const CssFadeToColor: FunctionComponent<IProps> = (props) => {
     const globalClasses = useCustomStyles({})
+    const customizedThemeContext = useContext(CustomizedThemeContext)
 
-    const smDown = widthUtils.useIsWidthDown('sm')
+    const smDown = useMediaQuery(customizedThemeContext.customizedTheme.breakpoints.down('sm'))
     const getStyle = () => {
-        const getRotationAngle = () =>{
+        const getRotationAngle = () => {
             switch (props.direction) {
                 case CssFadeToColorDirectionEnum.TOP:
                     return -180
@@ -52,7 +53,7 @@ const CssFadeToColor: FunctionComponent<IProps> = (props) => {
             let fromColor = props.fromColor ? props.fromColor : 'transparent'
             let toColor = props.toColor
 
-            if(props.direction === CssFadeToColorDirectionEnum.TOP) {
+            if (props.direction === CssFadeToColorDirectionEnum.TOP) {
                 let temp = fromColor
                 fromColor = toColor
                 toColor = temp

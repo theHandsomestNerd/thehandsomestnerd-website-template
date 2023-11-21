@@ -1,5 +1,5 @@
 import type {Meta, StoryObj} from '@storybook/react';
-import ResumeFeedbackSection from "../../components/my-digital-resume/resume-feedback-section/ResumeFeedbackSection";
+import ResumeFeedbackSection from "../../components/templates/my-digital-resume/resume-feedback-section/ResumeFeedbackSection";
 import ResumeFeedbackSectionData from "../data/ResumeFeedbackSectionData";
 
 const meta: Meta<typeof ResumeFeedbackSection> = {

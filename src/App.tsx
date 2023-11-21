@@ -3,17 +3,17 @@ import {Grid, useTheme} from '@mui/material';
 import {BrowserRouter, Navigate, Route, Routes} from 'react-router-dom'
 import React from 'react'
 import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
-import FourOhFour from "./components/transform-hw/pages/error-page/FourOhFour";
+import FourOhFour from "./components/templates/transform-hw/pages/error-page/FourOhFour";
 import PageProvider from "./components/page-context/PageProvider";
 import AmenityProvider from "./components/amenity-context/AmenityProvider";
 import ModalProvider from "./components/snackbar-context/ModalProvider";
 import SnackbarProvider from "./components/modal-context/SnackbarProvider";
-import PageMux from "./components/mackenzies-mind/pages/PageMux";
+import PageMux from "./components/templates/mackenzies-mind/pages/PageMux";
 import CustomizedThemeProvider from "./components/customized-theme-provider/CustomizedThemeProvider";
 
 export enum RoutesEnum {
-    MAINROUTE = "/resume/:pageSlug",
-    HOMEROUTE = "/resume/home",
+    MAINROUTE = "/chow-works/:pageSlug",
+    HOMEROUTE = "/chow-works/home",
 
     ERROR = '/error'
 }

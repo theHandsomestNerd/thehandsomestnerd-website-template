@@ -29,20 +29,16 @@ const MENUGROUP = `
 `;
 
 const MENUGROUPCONTAINER = `
-          title,
-          slug,
-          displayText,
           "subMenus":subMenus[]->{
             ${MENUGROUP}
           },
-          logoImageSrc,
-          logoImageAltText,
-          logoText,
-          logoAccentText
+          ...
 `;
 
 const SERVICE =
-    `name,
+    `
+        ...,
+        name,
         imageSrc,
         imageSrcAltText,
         contentTitle,
@@ -125,6 +121,7 @@ const HOMEPAGE = `_type,
           pageContent {
             "content": content[]->{
                 ...,
+                "highlightedAmenities": highlightedAmenities[],
                 "servicesList": servicesList[]->{
                     ${SERVICE}
                 },
