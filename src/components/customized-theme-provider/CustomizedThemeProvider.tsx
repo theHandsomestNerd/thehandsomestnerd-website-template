@@ -24,7 +24,7 @@ const CustomizedThemeProvider: FunctionComponent<IProps & PropsWithChildren> = (
     const pageContext = useContext(PageContext);
     React.useEffect(() => {
         console.log('Theme ', pageContext.page?.theme)
-        if (pageContext.page?.theme) {
+        if (pageContext.page?.theme && customizedTheme) {
             const theCustomizedTheme = getThemeFromSanity(pageContext.page?.theme)
 
             setCustomizedTheme(theCustomizedTheme)
@@ -160,7 +160,10 @@ const CustomizedThemeProvider: FunctionComponent<IProps & PropsWithChildren> = (
                 fontFamily: theme.typography?.fontFamily ? theme.typography?.fontFamily.join(',') : fonts,
                 h1: {
                     // Title1
-                    fontSize: '70px',
+                    fontSize: '4.25rem',
+                    '@media (max-width:640px)': {
+                        fontSize: '2.8rem',
+                    },
                     fontStyle: 'normal',
                     fontWeight: "bold",
                     lineHeight: 1.3,
@@ -168,7 +171,7 @@ const CustomizedThemeProvider: FunctionComponent<IProps & PropsWithChildren> = (
                 },
                 h2: {
                     // Title2
-                    fontSize: '53px',
+                    fontSize: '3.78rem',
                     fontStyle: 'normal',
                     fontWeight: 700,
                     lineHeight: 1.25,
@@ -176,7 +179,10 @@ const CustomizedThemeProvider: FunctionComponent<IProps & PropsWithChildren> = (
                 },
                 h3: {
                     // Title3
-                    fontSize: '32px',
+                    '@media (max-width:640px)': {
+                        fontSize: '1.4rem',
+                    },
+                    fontSize: '3rem',
                     fontStyle: 'normal',
                     fontWeight: 600,
                     lineHeight: 1.4,
@@ -185,24 +191,24 @@ const CustomizedThemeProvider: FunctionComponent<IProps & PropsWithChildren> = (
                 h4: {
                     fontWeight: 'bold',
                     fontStyle: 'normal',
-                    fontSize: '30px',
+                    fontSize: '2.5rem',
                     lineHeight: 1
                 },
                 h5: {
                     fontWeight: 'bold',
                     fontStyle: 'normal',
-                    fontSize: '28px',
+                    fontSize: '2rem',
                     lineHeight: 1
                 },
                 h6: {
                     fontWeight: 'bold',
                     fontStyle: 'normal',
-                    fontSize: '24px',
+                    fontSize: '1.7rem',
                     lineHeight: 1
                 },
                 body1: {
                     // Body
-                    fontSize: '14.5px',
+                    fontSize: '1rem',
                     fontStyle: 'normal',
                     fontWeight: 400,
                     lineHeight: 1.5,
@@ -210,7 +216,7 @@ const CustomizedThemeProvider: FunctionComponent<IProps & PropsWithChildren> = (
                 },
                 body2: {
                     // Large
-                    fontSize: '18px',
+                    fontSize: "1.285rem",
                     fontStyle: 'normal',
                     fontWeight: 550,
                     lineHeight: 1.5,

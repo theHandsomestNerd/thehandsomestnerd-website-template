@@ -1,7 +1,7 @@
 import React, {FunctionComponent, useContext} from 'react'
 import {Theme, ThemeProvider} from '@mui/material/styles';
 import makeStyles from '@mui/styles/makeStyles';
-import {Box, Button, Grid, IconButton, Typography, useMediaQuery} from '@mui/material'
+import {Box, Button, Grid, IconButton, Typography, useMediaQuery, useTheme} from '@mui/material'
 import CustomizedThemeContext from "../customized-theme-provider/CustomizedThemeContext";
 import {AnimatedServiceItemNoRefType, AnimatedServicesSectionType} from "../BlockContentTypes";
 import firebaseAnalyticsClient from "../../common/firebase/FirebaseAnalyticsClient";
@@ -17,7 +17,8 @@ export const useStyles = makeStyles((theme: Theme) => ({
     root: {
         paddingTop: '56px',
         paddingBottom: '64px',
-        overflow: "hidden"
+        overflow: "hidden",
+        minWidth:"350px"
     },
 }))
 
@@ -29,10 +30,11 @@ interface IProps {
 const AnimatedServicesSection: FunctionComponent<IProps> = (props) => {
     const classes = useStyles()
     const customizedThemeContext = useContext(CustomizedThemeContext)
-
-    const smDown = useMediaQuery(customizedThemeContext.customizedTheme?.breakpoints.down('sm'))
+    const theme= useTheme()
 
     const pageContext = useContext(PageContext)
+    const smDown = useMediaQuery(customizedThemeContext.customizedTheme.breakpoints.down('sm'))
+
 
     return (
         <ThemeProvider theme={customizedThemeContext.customizedTheme}>
@@ -131,26 +133,17 @@ const AnimatedServicesSection: FunctionComponent<IProps> = (props) => {
                 </Grid>
                 <Grid item container xs={12} sm={8} sx={{position: "absolute", height: "100%",}} justifyContent='center'
                       alignContent='center' alignItems='center'>
-                    <Grid item container sx={{}} justifyContent='center' alignContent='center' alignItems='center'>
-                        <Grid item container style={{position: "relative"}} justifyContent='center'
-                              alignContent='center'>
-                            <IconButton size='large' sx={{
-                                width: 96,
-                                height: 96,
+                    <Grid item container justifyContent='center' alignContent='center' alignItems='center'>
+                        <Grid item container sx={{position: "relative"}} justifyContent='center'
+                              alignContent='center' alignItems='center'>
+                            <IconButton sx={{
+                                width: 56,
+                                height: 56,
                                 position: "relative",
                                 zIndex: 10,
                                 backgroundColor: customizedThemeContext.customizedTheme?.palette?.primary.main
                             }}>
-                                <Grid
-                                    item
-                                    container
-                                    justifyContent='center'
-                                    style={{height: "100%",}}
-                                    alignContent='center'>
-                                    <Grid item>
-                                        <PlayArrow style={{fontSize: "96px"}} color='secondary'/>
-                                    </Grid>
-                                </Grid>
+                                        <PlayArrow style={{fontSize: "2.8rem"}} color='secondary'/>
                             </IconButton>
                             <Grid item style={{
                                 position: "absolute", width: "100%", height: "100%", zIndex: 1,
@@ -224,10 +217,8 @@ const AnimatedServicesSection: FunctionComponent<IProps> = (props) => {
                             </Grid>
                         </Grid>
                         <Grid container item justifyContent='center' style={{marginTop: smDown ? "12px" : "24px"}}>
-                            <Grid item>
-                                <Typography color='secondary' variant={smDown ? 'h5' : 'h3'}
-                                            gutterBottom>{props.sectionData?.videoPreviewText}</Typography>
-                            </Grid>
+                                <Typography color='secondary' variant={ 'h3'}
+                                            gutterBottom align='center'>{props.sectionData?.videoPreviewText}</Typography>
                         </Grid>
                     </Grid>
                 </Grid>

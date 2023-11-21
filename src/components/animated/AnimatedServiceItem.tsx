@@ -42,11 +42,12 @@ const AnimatedServiceItem: FunctionComponent<IProps> = (props: IProps) => {
                           padding={customizedTheme.customizedTheme.spacing(3, 2)}
                           style={{backgroundColor: "#000000", position: "relative"}}
                           justifyContent='center'>
-                        <Card style={{
+                        <Card  sx={{
+                            display: {sm:'none', md:'block'},
                             position: "absolute",
-                            bottom: -90,
-                            width: "30%",
-                            height: "50%",
+                            bottom: -180,
+                            width: "200px",
+                            height: "200px",
                             backgroundColor: "#294856",
                             borderRadius: "50%"
                         }}></Card>

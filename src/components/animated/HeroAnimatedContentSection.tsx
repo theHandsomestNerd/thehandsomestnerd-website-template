@@ -1,6 +1,6 @@
 import React, {FunctionComponent, useContext} from 'react'
 import {Theme, ThemeProvider} from "@mui/material/styles";
-import {Button, Grid, Typography} from "@mui/material";
+import {Button, Grid, IconButton, Typography} from "@mui/material";
 import makeStyles from "@mui/styles/makeStyles";
 import {HeroAnimatedContentSectionType, SanityHeroContentSlide} from "../BlockContentTypes";
 import {urlFor} from "../block-content-ui/static-pages/cmsStaticPagesClient";
@@ -9,7 +9,7 @@ import useCustomStyles from "../templates/mackenzies-mind/pages/Styles";
 import clsx from "clsx";
 import firebaseAnalyticsClient from "../../common/firebase/FirebaseAnalyticsClient";
 import CustomizedThemeContext from "../customized-theme-provider/CustomizedThemeContext";
-import {ArrowBack, ArrowForward} from "@mui/icons-material";
+import {ArrowBack, ArrowForward, ChevronLeft, ChevronRight} from "@mui/icons-material";
 import {motion} from "framer-motion"
 
 interface IProps {
@@ -84,13 +84,8 @@ const HeroAnimatedContentSection: FunctionComponent<IProps> = (props) => {
                               alignItems={'center'}>
                             <Grid item>
 
-                                <Button variant='contained'
+                                <IconButton
                                         color='secondary'
-                                        style={{
-                                            // backgroundColor: themeContext.customizedTheme.palette.primary.main,
-                                            padding: themeContext.customizedTheme.spacing(.75, 1.5),
-                                            marginLeft: "8px", border: 0, borderRadius: "2px"
-                                        }}
                                         onClick={() => {
                                             if (pageNumber === 0) {
                                                 setPageNumber(props.sectionData.contentSlides.length - 1)
@@ -101,8 +96,8 @@ const HeroAnimatedContentSection: FunctionComponent<IProps> = (props) => {
                                             firebaseAnalyticsClient.ctaClick("hero-section-slider", "back slide", pageContext.analyticsId,)
                                         }}
                                 >
-                                    <ArrowBack/>
-                                </Button>
+                                    <ChevronLeft fontSize={'large'}/>
+                                </IconButton>
                             </Grid>
                             <Grid item xs={10}>
                                 <Grid item>
@@ -153,7 +148,7 @@ const HeroAnimatedContentSection: FunctionComponent<IProps> = (props) => {
                                                                             // marginBottom: "32px",
                                                                             fontWeight: "700",
                                                                             lineHeight: ".98em",
-                                                                            maxWidth: "700px",
+                                                                            maxWidth: "350px",
                                                                             fontFamily: themeContext.customizedTheme.typography.fontFamily.split(',')[1]
                                                                         }}
                                                                         color={'textSecondary'}>{contentSlide?.contentTitle}</Typography>
@@ -208,13 +203,8 @@ const HeroAnimatedContentSection: FunctionComponent<IProps> = (props) => {
                                 </Grid>
                             </Grid>
                             <Grid item>
-                                <Grid item style={{}}>
-                                    <Button color='secondary' variant='contained'
-                                            style={{
-                                                // backgroundColor: themeContext.customizedTheme.palette.primary.main,
-                                                padding: themeContext.customizedTheme.spacing(.75, 1.5),
-                                                marginRight: "8px", border: 0, borderRadius: "2px"
-                                            }}
+                                <Grid item >
+                                    <IconButton color='secondary'
                                             onClick={() => {
                                                 if (pageNumber === props.sectionData.contentSlides.length - 1) {
                                                     setPageNumber(0)
@@ -225,8 +215,8 @@ const HeroAnimatedContentSection: FunctionComponent<IProps> = (props) => {
                                                 firebaseAnalyticsClient.ctaClick("hero-section-slider", "next slide", pageContext.analyticsId,)
                                             }}
                                     >
-                                        <ArrowForward/>
-                                    </Button>
+                                        <ChevronRight fontSize='large'/>
+                                    </IconButton>
 
                                 </Grid>
                             </Grid>
