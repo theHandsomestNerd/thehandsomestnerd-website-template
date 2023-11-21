@@ -34,7 +34,7 @@ const AnimatedAboutUsSection: FunctionComponent<IProps> = (props) => {
             <Grid container item className={classes.root} xs={12} alignItems='center'>
                 <Grid item container justifyContent='center' spacing={2}>
                     {props.sectionData.servicesList?.map((service: AnimatedServiceItemNoRefType, index: number) => {
-                        return <Grid item xs={12} sm={3}><AnimatedAboutUsItem service={service}/></Grid>
+                        return <Grid item xs={12} sm={3} key={index}><AnimatedAboutUsItem service={service}/></Grid>
                     })}
                 </Grid>
                 <Grid item container style={{padding: customizedThemeContext.customizedTheme.spacing(8, 6)}}
@@ -90,9 +90,6 @@ const AnimatedAboutUsSection: FunctionComponent<IProps> = (props) => {
                                 <Grid
                                     container
                                     item
-                                    // justifyContent='center'
-                                    // alignContent='center'
-                                    // alignItems='center'
                                     style={{
                                         left: "200px",
                                         top: "50%",
