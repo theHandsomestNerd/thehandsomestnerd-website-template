@@ -1,12 +1,16 @@
 import React, {FunctionComponent, useContext, useState} from 'react'
-import { Theme } from "@mui/material/styles";
+import {Theme} from "@mui/material/styles";
 import makeStyles from '@mui/styles/makeStyles';
-import { Button, Divider, Drawer, Grid, List, ListItem, ListItemText } from '@mui/material';
+import {Button, Divider, Drawer, Grid, List, ListItem, ListItemText, useTheme} from '@mui/material';
 import createStyles from '@mui/styles/createStyles';
 import {Close, Menu} from "@mui/icons-material";
-import TheWebsiteTheme from "../../../../theme/Theme";
 import MainMenuSubMenu from "./MainMenuSubMenu";
-import {MainMenuAnchorType, SanityMenuContainer, SanityMenuGroup, SanityMenuItem} from "../../../../common/sanityIo/Types";
+import {
+    MainMenuAnchorType,
+    SanityMenuContainer,
+    SanityMenuGroup,
+    SanityMenuItem
+} from "../../../../common/sanityIo/Types";
 import ModalContext from "../../../snackbar-context/ModalContext";
 import Logo from "../../../logo/Logo";
 
@@ -40,8 +44,7 @@ const MainMenu: FunctionComponent<MainMenuProps> = ({menu, anchor}) => {
     };
 
     const modalContext = useContext(ModalContext)
-    const classes = useStyles(TheWebsiteTheme
-)
+    const classes = useStyles()
     const list = (anchor: MainMenuAnchorType) => (
         <Grid item
               role="presentation"
@@ -59,23 +62,20 @@ const MainMenu: FunctionComponent<MainMenuProps> = ({menu, anchor}) => {
                         const menuItem: SanityMenuItem = subMenu
                         return <List style={{padding: 0}} key={menuItem.displayText}>
                             <ListItem href={menuItem.url ?? ""} className={classes.listItem} button>
-                                <Button variant='text' href={menuItem.isModalButton?undefined:menuItem.url}
-                                        onClick={menuItem.isModalButton?()=>{
-                                            console.log()
-                                            if(menuItem.isModalButton) {
+                                <Button variant='text' href={menuItem.isModalButton ? undefined : menuItem.url}
+                                        onClick={menuItem.isModalButton ? () => {
+                                            // console.log()
+                                            if (menuItem.isModalButton) {
                                                 modalContext.openModal && modalContext.openModal(menuItem.modalRef)
                                             }
-                                        }:undefined}
+                                        } : undefined}
                                         style={{
-                                    paddingTop: TheWebsiteTheme
-.spacing(2.25),
-                                    paddingLeft: TheWebsiteTheme
-.spacing(2),
-                                    paddingBottom: TheWebsiteTheme
-.spacing(2.25),
-                                    height: "100%",
-                                    margin: 0
-                                }} fullWidth>
+                                            paddingTop: theme.spacing(2.25),
+                                            paddingLeft: theme.spacing(2),
+                                            paddingBottom: theme.spacing(2.25),
+                                            height: "100%",
+                                            margin: 0
+                                        }} fullWidth>
                                     <ListItemText secondary={menuItem.displayText}/>
                                 </Button>
 
@@ -88,6 +88,8 @@ const MainMenu: FunctionComponent<MainMenuProps> = ({menu, anchor}) => {
         </Grid>
     );
 
+    const theme = useTheme()
+
     return (<Grid item>
             <Button onClick={toggleDrawer(anchor, true)}>
                 <Menu color='inherit'
@@ -98,10 +100,8 @@ const MainMenu: FunctionComponent<MainMenuProps> = ({menu, anchor}) => {
             >
                 <Grid container alignItems='center' justifyContent='space-between'
                       style={{
-                          paddingLeft: TheWebsiteTheme
-.spacing(4),
-                          paddingRight: TheWebsiteTheme
-.spacing(6),
+                          paddingLeft: theme.spacing(4),
+                          paddingRight: theme.spacing(6),
                       }}>
 
                     <Grid item xs={3}>

@@ -1,12 +1,12 @@
 import {Button, CircularProgress, Grid} from '@mui/material';
 import makeStyles from '@mui/styles/makeStyles';
-import React, {FunctionComponent, PropsWithChildren} from 'react';
+import React, {FunctionComponent, PropsWithChildren, useContext} from 'react';
 
-import TheWebsiteTheme from "../../theme/Theme";
 import {ButtonGroupMemberEnum} from "./ButtonGroupMemberEnum";
 
 import {OverridableStringUnion} from "@mui/types";
 import {ButtonPropsColorOverrides} from "@mui/material/Button/Button";
+import CustomizedThemeContext from "../customized-theme-provider/CustomizedThemeContext";
 
 
 type CssProps = {
@@ -14,59 +14,6 @@ type CssProps = {
     width?: number,
     isRounded?: boolean
 }
-
-export const useStyles = makeStyles((theme) => ({
-    root: {
-        height: "100%",
-        width: (props: any) => props.width ? `${props.width}px` : 'unset',
-        borderRadius: `0 ${TheWebsiteTheme.shape.borderRadius}px ${TheWebsiteTheme.shape.borderRadius}px 0`,
-        borderTopLeftRadius: (props: CssProps) => {
-            switch (props.buttonGroupiness) {
-                case ButtonGroupMemberEnum.CENTER:
-                    return "0 !important"
-                case ButtonGroupMemberEnum.RIGHT:
-                    return "0 !important"
-                case ButtonGroupMemberEnum.LEFT:
-                default:
-                    return TheWebsiteTheme.shape.borderRadius
-            }
-        },
-        borderTopRightRadius: (props: CssProps) => {
-            switch (props.buttonGroupiness) {
-                case ButtonGroupMemberEnum.CENTER:
-                    return "0 !important"
-                case ButtonGroupMemberEnum.LEFT:
-                    return "0 !important"
-                case ButtonGroupMemberEnum.RIGHT:
-                default:
-                    return TheWebsiteTheme.shape.borderRadius
-            }
-        },
-        borderBottomRightRadius: (props: CssProps) => {
-            switch (props.buttonGroupiness) {
-                case ButtonGroupMemberEnum.CENTER:
-                    return "0 !important"
-                case ButtonGroupMemberEnum.LEFT:
-                    return "0 !important"
-                case ButtonGroupMemberEnum.RIGHT:
-                default:
-                    return TheWebsiteTheme.shape.borderRadius
-
-            }
-        },
-        borderBottomLeftRadius: (props: CssProps) => {
-            switch (props.buttonGroupiness) {
-                case ButtonGroupMemberEnum.CENTER:
-                    return "0 !important"
-                case ButtonGroupMemberEnum.RIGHT:
-                    return "0 !important"
-                case ButtonGroupMemberEnum.LEFT:
-                default:
-                    return TheWebsiteTheme.shape.borderRadius
-            }
-        },
-    }
-}))
 
 
 export interface LoadingButtonIProps {
@@ -86,13 +33,68 @@ export interface LoadingButtonIProps {
 }
 
 const LoadingButton: FunctionComponent<PropsWithChildren<LoadingButtonIProps>> = (props) => {
+    const themeContext = useContext(CustomizedThemeContext)
+
+    const useStyles = makeStyles((theme) => ({
+        root: {
+            height: "100%",
+            width: (props: any) => props.width ? `${props.width}px` : 'unset',
+            borderRadius: `0 ${themeContext.customizedTheme?.shape.borderRadius}px ${themeContext.customizedTheme?.shape.borderRadius}px 0`,
+            borderTopLeftRadius: (props: CssProps) => {
+                switch (props.buttonGroupiness) {
+                    case ButtonGroupMemberEnum.CENTER:
+                        return "0 !important"
+                    case ButtonGroupMemberEnum.RIGHT:
+                        return "0 !important"
+                    case ButtonGroupMemberEnum.LEFT:
+                    default:
+                        return themeContext.customizedTheme.shape.borderRadius
+                }
+            },
+            borderTopRightRadius: (props: CssProps) => {
+                switch (props.buttonGroupiness) {
+                    case ButtonGroupMemberEnum.CENTER:
+                        return "0 !important"
+                    case ButtonGroupMemberEnum.LEFT:
+                        return "0 !important"
+                    case ButtonGroupMemberEnum.RIGHT:
+                    default:
+                        return themeContext.customizedTheme.shape.borderRadius
+                }
+            },
+            borderBottomRightRadius: (props: CssProps) => {
+                switch (props.buttonGroupiness) {
+                    case ButtonGroupMemberEnum.CENTER:
+                        return "0 !important"
+                    case ButtonGroupMemberEnum.LEFT:
+                        return "0 !important"
+                    case ButtonGroupMemberEnum.RIGHT:
+                    default:
+                        return themeContext.customizedTheme.shape.borderRadius
+
+                }
+            },
+            borderBottomLeftRadius: (props: CssProps) => {
+                switch (props.buttonGroupiness) {
+                    case ButtonGroupMemberEnum.CENTER:
+                        return "0 !important"
+                    case ButtonGroupMemberEnum.RIGHT:
+                        return "0 !important"
+                    case ButtonGroupMemberEnum.LEFT:
+                    default:
+                        return themeContext.customizedTheme.shape.borderRadius
+                }
+            },
+        }
+    }))
+
     const classes = useStyles({buttonGroupiness: props.groupiness, width: props.width, isRounded: props.isRounded})
     const getProgressContrastColor = () => {
         switch (props.color) {
             case 'primary':
-                return TheWebsiteTheme.palette.primary.main
+                return themeContext.customizedTheme.palette.primary.main
             case 'secondary':
-                return TheWebsiteTheme.palette.secondary.main
+                return themeContext.customizedTheme.palette.secondary.main
             default:
                 return '#FFFFFF'
         }
@@ -112,7 +114,7 @@ const LoadingButton: FunctionComponent<PropsWithChildren<LoadingButtonIProps>> =
                 {
                     props.isLoading ?
                         <CircularProgress style={{
-                            color: TheWebsiteTheme.palette.getContrastText(getProgressContrastColor()),
+                            color: themeContext.customizedTheme.palette.getContrastText(getProgressContrastColor()),
                             width: "22px",
                             height: "22px"
                         }}/>

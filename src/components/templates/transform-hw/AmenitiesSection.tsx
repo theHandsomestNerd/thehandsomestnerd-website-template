@@ -1,9 +1,8 @@
 import React, {FunctionComponent, useContext} from 'react'
 import {Theme} from "@mui/material/styles";
 import makeStyles from '@mui/styles/makeStyles';
-import {Grid, List} from '@mui/material'
+import {Grid, List, useTheme} from '@mui/material'
 import {ArrowLeft, ArrowRight} from "@mui/icons-material";
-import TheWebsiteTheme from "../../../theme/Theme";
 import {ThwServiceItemNoRefType} from "../../BlockContentTypes";
 import AmenityContext from "../../amenity-context/AmenityContext";
 import {useIsHorizontalOverflow} from "../../../utils/useIsHorizontalOverflow";
@@ -19,7 +18,8 @@ interface IProps {
 
 const AmenitiesSection: FunctionComponent<IProps> = (props: IProps) => {
     const ref = React.useRef(null);
-    const isOverflow = useIsHorizontalOverflow(ref, ()=>{})
+    const isOverflow = useIsHorizontalOverflow(ref, () => {
+    })
 
     // const [showAmenity, setShowAmenity] = React.useState<boolean>()
     const amenityContext = useContext(AmenityContext)
@@ -47,7 +47,7 @@ const AmenitiesSection: FunctionComponent<IProps> = (props: IProps) => {
     React.useEffect(() => {
         const newElements = amenityContext.getElements && amenityContext.getElements(props.service.slug.current)
         if (newElements) {
-            console.log("setting the new elements in the component", props.service.slug.current)
+            // console.log("setting the new elements in the component", props.service.slug.current)
             setElements(newElements)
         }
     }, [amenityContext.getElements && amenityContext.getElements(props.service.slug.current)])
@@ -69,6 +69,7 @@ const AmenitiesSection: FunctionComponent<IProps> = (props: IProps) => {
     //     }
     // }, [amenityContext.elements])
 
+    const theme = useTheme()
 
     return (<Grid container item justifyContent='center'
                   style={{
@@ -104,8 +105,8 @@ const AmenitiesSection: FunctionComponent<IProps> = (props: IProps) => {
                 <List
 
                     style={{
-                        paddingTop: TheWebsiteTheme
-.spacing(2),
+                        paddingTop: theme
+                            .spacing(2),
 
                         // display: 'flex', flexDirection: 'row',
                         // overflowY: "hidden",
@@ -118,9 +119,9 @@ const AmenitiesSection: FunctionComponent<IProps> = (props: IProps) => {
                         // marginTop: TransformHWTheme.spacing(2),
                         //     margin: 0,
                         // display: 'flex', flexDirection: 'row', padding: 0,
-                        paddingLeft: isOverflow?TheWebsiteTheme
-.spacing(2):TheWebsiteTheme
-.spacing(0),
+                        paddingLeft: isOverflow ? theme
+                            .spacing(2) : theme
+                            .spacing(0),
                         overflowY: "hidden",
                         overflowX: "scroll",
                         height: "100%",

@@ -1,12 +1,11 @@
 import React, {FunctionComponent, useContext} from 'react'
-import {Theme, ThemeProvider} from "@mui/material/styles";
+import {Theme, ThemeProvider, useTheme} from "@mui/material/styles";
 import makeStyles from '@mui/styles/makeStyles';
 import {Grid, Typography} from '@mui/material'
 import {ResumeSkillSectionType, ResumeSkillSet} from "../../../BlockContentTypes";
 import useThwCommonStyles from "../../../../common/sanityIo/ThwCommonStyles";
 import {COLORS} from "../../../../theme/common/ColorPalette";
 import CustomizedThemeContext from "../../../customized-theme-provider/CustomizedThemeContext";
-import TheWebsiteTheme from "../../../../theme/Theme";
 
 
 export const useStyles = makeStyles((theme: Theme) => ({
@@ -20,18 +19,15 @@ interface IProps {
 const ResumeSkillsSection: FunctionComponent<IProps> = (props: IProps) => {
     // const classes = useStyles()
     const globalClasses = useThwCommonStyles()
-    const themeContext = useContext(CustomizedThemeContext)
 
 
+    const theme = useTheme()
     return (
-        <ThemeProvider theme={TheWebsiteTheme
-        }>
             <Grid
                 container
                 item
                 style={{
-                    padding: TheWebsiteTheme
-                        .spacing(4)
+                    padding: theme.spacing(4)
                 }}
                 className={globalClasses.resumeSection}
             >
@@ -69,7 +65,6 @@ const ResumeSkillsSection: FunctionComponent<IProps> = (props: IProps) => {
                     </Grid>
                 </Grid>
             </Grid>
-        </ThemeProvider>
     );
 }
 

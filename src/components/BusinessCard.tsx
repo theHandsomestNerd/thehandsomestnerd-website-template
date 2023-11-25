@@ -15,7 +15,6 @@ import BusinessCardSubmitEmail from "./templates/transform-hw/pages/BusinessCard
 import firebaseAnalyticsClient from "../common/firebase/FirebaseAnalyticsClient";
 import {useLocation} from "react-router";
 import {COLORS} from "../theme/common/ColorPalette";
-import TheWebsiteTheme from "../theme/Theme";
 
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -59,8 +58,9 @@ const BusinessCard: FunctionComponent<MainMenuProps> = ({anchor, homePage}) => {
     };
 
     const snackbarContext = useContext(SnackbarContext)
-    const classes = useStyles(TheWebsiteTheme
-)
+    const classes = useStyles()
+
+    const theme = useTheme()
 
     // const pageContext = useContext(PageContext)
 
@@ -94,7 +94,7 @@ const BusinessCard: FunctionComponent<MainMenuProps> = ({anchor, homePage}) => {
     // }, [qrCodeContext.qr_code_value])
 
     const list = (anchor: MainMenuAnchorType) => (
-        <ThemeProvider theme={TheWebsiteTheme}>
+        <ThemeProvider theme={theme}>
             <Grid xs={12} md={6} container item
                   role="presentation"
                 // onClick={toggleDrawer(anchor, false)}
@@ -103,7 +103,7 @@ const BusinessCard: FunctionComponent<MainMenuProps> = ({anchor, homePage}) => {
             >
                 <Grid container item alignContent='flex-end'>
                     <Grid item container style={{
-                        marginBottom: TheWebsiteTheme.spacing(4),
+                        marginBottom: theme.spacing(4),
                         backgroundRepeat: "none",
                         minHeight: 250,
                         backgroundSize: "cover",
@@ -115,7 +115,7 @@ const BusinessCard: FunctionComponent<MainMenuProps> = ({anchor, homePage}) => {
                             position: "relative",
                             bottom: -45,
                             height: "max-content",
-                            padding: TheWebsiteTheme.spacing(2, 3)
+                            padding: theme.spacing(2, 3)
                         }}>
                             <SocialMediaBlock spacing={1} bgColor color='secondary' {...homePage.businessContact}/>
                         </Grid>
@@ -154,7 +154,7 @@ const BusinessCard: FunctionComponent<MainMenuProps> = ({anchor, homePage}) => {
 
                             </Grid>
                             <Grid item xs={9} container justifyContent='flex-end'>
-                                <MailTo color={TheWebsiteTheme.palette.primary.main} email={homePage.businessContact?.email ?? ""}
+                                <MailTo color={theme.palette.primary.main} email={homePage.businessContact?.email ?? ""}
                                         subject={"Information Request"} body={""}>
                                     <Typography color='textPrimary' variant='button'
                                                 align='right'>{homePage.businessContact?.email}</Typography>
@@ -288,11 +288,11 @@ const BusinessCard: FunctionComponent<MainMenuProps> = ({anchor, homePage}) => {
                 {/*                                }*/}
                 {/*                            } : undefined}*/}
                 {/*                            style={{*/}
-                {/*                                paddingTop: TheWebsiteTheme
+                {/*                                paddingTop: theme
 .spacing(2.25),*/}
-                {/*                                paddingLeft: TheWebsiteTheme
+                {/*                                paddingLeft: theme
 .spacing(2),*/}
-                {/*                                paddingBottom: TheWebsiteTheme
+                {/*                                paddingBottom: theme
 .spacing(2.25),*/}
                 {/*                                height: "100%",*/}
                 {/*                                margin: 0*/}
@@ -311,9 +311,9 @@ const BusinessCard: FunctionComponent<MainMenuProps> = ({anchor, homePage}) => {
     );
 
     return (
-            <ThemeProvider theme={TheWebsiteTheme
+            <ThemeProvider theme={theme
 }><Grid item container>
-                <Grid item container justifyContent='flex-end' style={{padding: TheWebsiteTheme
+                <Grid item container justifyContent='flex-end' style={{padding: theme
 .spacing(2, 3)}}>
 
                     <Button variant='contained' color='primary' onClick={toggleDrawer(anchor, true)}>
@@ -341,9 +341,9 @@ const BusinessCard: FunctionComponent<MainMenuProps> = ({anchor, homePage}) => {
 
                               position: "absolute",
                               zIndex: 1000,
-                              paddingLeft: TheWebsiteTheme
+                              paddingLeft: theme
 .spacing(4),
-                              paddingRight: TheWebsiteTheme
+                              paddingRight: theme
 .spacing(6),
                           }}>
 

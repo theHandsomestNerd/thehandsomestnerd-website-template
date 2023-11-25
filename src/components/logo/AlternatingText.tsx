@@ -28,12 +28,12 @@ const AlternatingText: FunctionComponent<IProps> = (props: IProps) => {
                 fontFamily: "Oswald",
                 fontWeight: "300",
                 color: index % 2 !== 1 ? COLORS.DARKERGRAY : 'textPrimary'
-            }} variant={props.isLarge ? 'h2' : 'h3'}> {textArrayItem}</Typography>
+            }} variant={props.isLarge ? 'h4' : 'h5'}> {textArrayItem}</Typography>
     })}<Typography
         display='inline' style={{
         fontFamily: "Oswald"
         , fontWeight: "300",
-    }} variant={props.isLarge ? 'h2' : 'h3'}
+    }} variant={props.isLarge ? 'h4' : 'h5'}
         color='primary'>{props.logoAccentText}</Typography></Typography>
 }
 

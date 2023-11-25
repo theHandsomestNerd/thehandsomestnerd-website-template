@@ -58,7 +58,7 @@ const TheWebsiteTheme = createTheme({
         }
     },
     typography: {
-        fontFamily: fonts,
+        // fontFamily: fonts,
         h1: {
             // Title1
             fontSize: '70px',
@@ -143,94 +143,94 @@ const TheWebsiteTheme = createTheme({
             letterSpacing: '-0.03em'
         }
     },
-    components: {
-        MuiCssBaseline: {
-            styleOverrides: {
-                'html': [
-                //     {
-                //     '@font-face': FontFaces.ralewayFontFace
-                // },
-                //     {
-                //     '@font-face': FontFaces.rainbowFontFace
-                // }
-                ]
-
-            }
-        },
-        MuiInputBase: {
-            styleOverrides: {
-                root: {
-                    borderRadius: 0,
-                    "& .Mui-focus": {
-                        borderBottom: 0
-                    }
-                },
-            }
-        },
-        MuiSnackbarContent: {
-            styleOverrides: {
-                root: {
-                    marginTop: "100px",
-                    border: "3px solid white",
-                    backgroundColor: 'rgba(210,0,39,0.9) !important'
-                }
-            }
-        },
-        MuiFormLabel: {
-            styleOverrides: {
-                root: {
-                    color: "#383838 !important",
-                    paddingTop: "4px !important",
-                }
-            }
-        },
-        MuiButton: {
-            styleOverrides: {
-                root: {
-                    borderRadius: '5px',
-                    paddingTop: "16px",
-                    paddingBottom: "16px"
-                },
-                contained: {
-                    boxShadow: "none",
-                },
-                containedPrimary: {
-                    border: '1px solid white',
-                    '&.Mui-disabled': {
-                        color: '#969284'
-                    },
-                },
-                containedSecondary: {
-                    border: '1px solid whitesmoke',
-                    '&.Mui-disabled': {
-                        color: 'rgba(207, 207, 207, .5)',
-                    },
-                },
-                outlinedPrimary: {
-                    borderWidth: '3px',
-                    paddingTop: "16px",
-                    paddingBottom: "16px",
-                    paddingLeft: "64px",
-                    paddingRight: "64px"
-                },
-                outlinedSecondary: {
-                    borderWidth: '3px',
-                    paddingTop: "16px",
-                    paddingBottom: "16px",
-                    paddingLeft: "64px",
-                    paddingRight: "64px",
-                }
-            }
-        },
-        MuiOutlinedInput: {
-            styleOverrides: {
-                root: {
-                    paddingRight: "16px",
-                    // border: "2px solid black"
-                }
-            }
-        }
-    }
+    // components: {
+    //     MuiCssBaseline: {
+    //         styleOverrides: {
+    //             'html': [
+    //             //     {
+    //             //     '@font-face': FontFaces.ralewayFontFace
+    //             // },
+    //             //     {
+    //             //     '@font-face': FontFaces.rainbowFontFace
+    //             // }
+    //             ]
+    //
+    //         }
+    //     },
+    //     MuiInputBase: {
+    //         styleOverrides: {
+    //             root: {
+    //                 borderRadius: 0,
+    //                 "& .Mui-focus": {
+    //                     borderBottom: 0
+    //                 }
+    //             },
+    //         }
+    //     },
+    //     MuiSnackbarContent: {
+    //         styleOverrides: {
+    //             root: {
+    //                 marginTop: "100px",
+    //                 border: "3px solid white",
+    //                 backgroundColor: 'rgba(210,0,39,0.9) !important'
+    //             }
+    //         }
+    //     },
+    //     MuiFormLabel: {
+    //         styleOverrides: {
+    //             root: {
+    //                 color: "#383838 !important",
+    //                 paddingTop: "4px !important",
+    //             }
+    //         }
+    //     },
+    //     MuiButton: {
+    //         styleOverrides: {
+    //             root: {
+    //                 borderRadius: '5px',
+    //                 paddingTop: "16px",
+    //                 paddingBottom: "16px"
+    //             },
+    //             contained: {
+    //                 boxShadow: "none",
+    //             },
+    //             containedPrimary: {
+    //                 border: '1px solid white',
+    //                 '&.Mui-disabled': {
+    //                     color: '#969284'
+    //                 },
+    //             },
+    //             containedSecondary: {
+    //                 border: '1px solid whitesmoke',
+    //                 '&.Mui-disabled': {
+    //                     color: 'rgba(207, 207, 207, .5)',
+    //                 },
+    //             },
+    //             outlinedPrimary: {
+    //                 borderWidth: '3px',
+    //                 paddingTop: "16px",
+    //                 paddingBottom: "16px",
+    //                 paddingLeft: "64px",
+    //                 paddingRight: "64px"
+    //             },
+    //             outlinedSecondary: {
+    //                 borderWidth: '3px',
+    //                 paddingTop: "16px",
+    //                 paddingBottom: "16px",
+    //                 paddingLeft: "64px",
+    //                 paddingRight: "64px",
+    //             }
+    //         }
+    //     },
+    //     MuiOutlinedInput: {
+    //         styleOverrides: {
+    //             root: {
+    //                 paddingRight: "16px",
+    //                 // border: "2px solid black"
+    //             }
+    //         }
+    //     }
+    // }
 })
 
 export default TheWebsiteTheme

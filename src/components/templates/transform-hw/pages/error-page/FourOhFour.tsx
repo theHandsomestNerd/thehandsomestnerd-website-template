@@ -1,6 +1,5 @@
-import {Grid, Typography, useMediaQuery} from '@mui/material'
+import {Grid, Typography, useMediaQuery, useTheme} from '@mui/material'
 import React, {FunctionComponent, useContext} from 'react'
-import TheWebsiteTheme from "../../../../../theme/Theme";
 import clsx from "clsx";
 import speakingWithTherapist from "./assets/speakingWithTherapist.jpg";
 import LoadingButton from "../../../../loading-button/LoadingButton";
@@ -14,6 +13,8 @@ export type AppLayoutProps = {}
 const FourOhFour: FunctionComponent<AppLayoutProps> = (props) => {
     const classes = useCustomStyles({bgImage: speakingWithTherapist})
     const history = useNavigate()
+
+    const theme = useTheme()
 
     const customizedThemeContext = useContext(CustomizedThemeContext)
 
@@ -39,9 +40,9 @@ const FourOhFour: FunctionComponent<AppLayoutProps> = (props) => {
             <Grid item container className={clsx(classes.fullscreen)}
                   style={{
                       position: 'absolute',
-                      paddingTop: TheWebsiteTheme
+                      paddingTop: theme
 .spacing(10),
-                      paddingBottom: TheWebsiteTheme
+                      paddingBottom: theme
 .spacing(10)
                   }}
                   justifyContent='center' alignItems='center'>

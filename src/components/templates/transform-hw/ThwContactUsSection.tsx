@@ -161,7 +161,7 @@ const ContactUs: FunctionComponent<ContactUsProps> = (props) => {
     );
 
     useEffect(() => {
-        console.log("data", data)
+        // console.log("data", data)
     }, [data])
 
     const getHelperText = () => {

@@ -1,7 +1,7 @@
 import React, {FunctionComponent, PropsWithChildren, useContext, useMemo,} from 'react';
 import CustomizedThemeContext from './CustomizedThemeContext';
 import {CssBaseline} from "@mui/material";
-import {createTheme, Theme, ThemeProvider} from "@mui/material/styles";
+import {createTheme, ThemeProvider} from "@mui/material/styles";
 import {COLORS} from "../../theme/common/ColorPalette";
 import {grey} from "@mui/material/colors";
 import {SanityMuiTheme} from "../../common/sanityIo/Types";
@@ -14,23 +14,35 @@ type IProps = {
 };
 
 
+const capitalizeArray = (theString: string[]) => {
+    const place = theString.map((aString) => {
+
+        const lower = aString.toLowerCase()
+        const upper = aString.toUpperCase()
+
+        return `"${upper[0] + lower.slice(1)}"`
+    })
+
+    // console.log("the capitalized array",place)
+    return place
+}
+
 const CustomizedThemeProvider: FunctionComponent<IProps & PropsWithChildren> = (
     props: PropsWithChildren<IProps>,
 ) => {
 
-    const [customizedTheme, setCustomizedTheme] = React.useState<Partial<Theme>>({})
+    const [customizedTheme, setCustomizedTheme] = React.useState<any>(TheWebsiteTheme)
     const fonts = `"Raleway", "Oswald"`
 
     const pageContext = useContext(PageContext);
     React.useEffect(() => {
-        console.log('Theme ', pageContext.page?.theme)
-        if (pageContext.page?.theme && customizedTheme) {
+        // console.log('Theme ', pageContext.page?.theme)
+        if (pageContext.page?.theme) {
             const theCustomizedTheme = getThemeFromSanity(pageContext.page?.theme)
 
             setCustomizedTheme(theCustomizedTheme)
         } else {
-            setCustomizedTheme(TheWebsiteTheme
-            )
+            setCustomizedTheme(TheWebsiteTheme)
         }
     }, [pageContext.page?.theme])
 
@@ -108,14 +120,14 @@ const CustomizedThemeProvider: FunctionComponent<IProps & PropsWithChildren> = (
             return defaultBg
         }
 
-        const theCustomizedTheme = createTheme({
+        return createTheme({
             breakpoints: {
                 values: {
-                    xs: theme.breakpoints?.xs ?? 0,
-                    sm: theme.breakpoints?.sm ?? 640,
-                    md: theme.breakpoints?.md ?? 980,
-                    lg: theme.breakpoints?.lg ?? 1160,
-                    xl: theme.breakpoints?.xl ?? 1320,
+                    xs: parseInt(String(theme.breakpoints?.xs ?? 0)),
+                    sm: parseInt(String(theme.breakpoints?.sm ?? 640)),
+                    md: parseInt(String(theme.breakpoints?.md ?? 980)),
+                    lg: parseInt(String(theme.breakpoints?.lg ?? 1160)),
+                    xl: parseInt(String(theme.breakpoints?.xl ?? 1320)),
                 }
             },
             palette: {
@@ -157,7 +169,7 @@ const CustomizedThemeProvider: FunctionComponent<IProps & PropsWithChildren> = (
                 }
             },
             typography: {
-                fontFamily: theme.typography?.fontFamily ? theme.typography?.fontFamily.join(',') : fonts,
+                fontFamily: theme.typography?.fontFamily ? capitalizeArray(theme.typography.fontFamily).join(',') : fonts,
                 h1: {
                     // Title1
                     fontSize: '4.25rem',
@@ -325,8 +337,7 @@ const CustomizedThemeProvider: FunctionComponent<IProps & PropsWithChildren> = (
                     }
                 }
             }
-        })
-        return theCustomizedTheme;
+        });
     }
 
     const getThemeBySlug = async (slug: string) => {
@@ -340,8 +351,9 @@ const CustomizedThemeProvider: FunctionComponent<IProps & PropsWithChildren> = (
             customizedTheme,
             getThemeBySlug
         }),
-        [customizedTheme]
+        [customizedTheme, getThemeBySlug]
     );
+
     return (
         <CustomizedThemeContext.Provider value={newValue}>
             <ThemeProvider theme={customizedTheme}>

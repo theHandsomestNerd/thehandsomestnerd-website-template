@@ -1,6 +1,6 @@
 import React, {FunctionComponent} from 'react'
 import BlockContent from '@sanity/block-content-to-react'
-import {Card, Grid, Link} from '@mui/material'
+import {Card, Grid, Link, useTheme} from '@mui/material'
 import sanityClient from '../sanityClient'
 import {blockSerializers} from '../common/sanityIo/BlockContentRenderer'
 import {
@@ -52,7 +52,6 @@ import WebDevServicesSection from "./templates/web-dev-site/WebDevServicesSectio
 import WebDevPortfolioSection from "./templates/web-dev-site/WebDevPortfolioSection";
 import WebDevTestimonialsSection from "./templates/web-dev-site/WebDevTestimonialsSection";
 import WebDevHowItWorksSection from "./templates/web-dev-site/WebDevHowItWorksSection";
-import TheWebsiteTheme from "../theme/Theme";
 import HeroAnimatedContentSection from "./animated/HeroAnimatedContentSection";
 import AnimatedAboutUsSection from "./animated/AnimatedAboutUsSection";
 import AnimatedServicesSection from './animated/AnimatedServicesSection'
@@ -64,6 +63,7 @@ export type BlockContentLayoutContainerProps = {
 
 const BlockContentLayoutContainer: FunctionComponent<BlockContentLayoutContainerProps> = (props) => {
     const classes = useThwCommonStyles()
+    const theme= useTheme()
 
     return (
         <Grid container item>
@@ -142,7 +142,7 @@ const BlockContentLayoutContainer: FunctionComponent<BlockContentLayoutContainer
                         return (
                             <Grid key={'transformPositivePsychologySection'} container item xs={12}
                                   justifyContent='center'
-                                  style={{backgroundColor: TheWebsiteTheme.palette.background.paper}}>
+                                  style={{backgroundColor: theme.palette.background.paper}}>
                                 <Link
                                     id={"ABOUT_US"}
                                     style={{position: "relative", top: -80}}
@@ -157,7 +157,7 @@ const BlockContentLayoutContainer: FunctionComponent<BlockContentLayoutContainer
                         const thwMottoSection: ThwMottoSectionType = columnLayoutContainer
 
                         return <Grid key={'transformMottoSection'} container item xs={12} justifyContent='center'
-                                     style={{backgroundColor: TheWebsiteTheme.palette.background.paper}}>
+                                     style={{backgroundColor: theme.palette.background.paper}}>
                             <ThwMottoSection
                                 sectionData={thwMottoSection}
                             />
@@ -167,7 +167,7 @@ const BlockContentLayoutContainer: FunctionComponent<BlockContentLayoutContainer
 
                         return (
                             <Grid key={'transformAboutProprietorSection'} container item xs={12} justifyContent='center'
-                                  style={{backgroundColor: TheWebsiteTheme.palette.background.paper}}>
+                                  style={{backgroundColor: theme.palette.background.paper}}>
                                 <Link
                                     id={"ABOUT_PROPRIETOR"}
                                     style={{position: "relative", top: -80}}
@@ -183,7 +183,7 @@ const BlockContentLayoutContainer: FunctionComponent<BlockContentLayoutContainer
 
                         return (
                             <Grid key={'transformServicesSection'} container item xs={12} justifyContent='center'
-                                  style={{backgroundColor: TheWebsiteTheme.palette.background.paper}}>
+                                  style={{backgroundColor: theme.palette.background.paper}}>
                                 <Link
                                     id={"SERVICES"}
                                     style={{position: "relative", top: -80}}
@@ -198,7 +198,7 @@ const BlockContentLayoutContainer: FunctionComponent<BlockContentLayoutContainer
                         const thwWCUSection: ThwWhyChooseUsSectionType = columnLayoutContainer
 
                         return <Grid key={'transformWhyChooseUsSection'} container item xs={12} justifyContent='center'
-                                     style={{backgroundColor: TheWebsiteTheme.palette.background.paper}}>
+                                     style={{backgroundColor: theme.palette.background.paper}}>
                             <ThwWhyChooseUsSection
                                 sectionData={thwWCUSection}
                             />
@@ -207,7 +207,7 @@ const BlockContentLayoutContainer: FunctionComponent<BlockContentLayoutContainer
                         const thwCUSection: ThwContactUsSectionType = columnLayoutContainer
 
                         return <Grid key={'transformContactUsSection'} container item xs={12} justifyContent='center'
-                                     style={{backgroundColor: TheWebsiteTheme.palette.background.paper}}>
+                                     style={{backgroundColor: theme.palette.background.paper}}>
                             <ThwContactUsSection
                                 sectionData={thwCUSection}
                             />

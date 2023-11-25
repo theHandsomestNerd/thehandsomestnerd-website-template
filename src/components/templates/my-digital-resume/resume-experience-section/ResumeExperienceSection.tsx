@@ -1,11 +1,8 @@
-import React, {FunctionComponent, useContext} from 'react'
+import React, {FunctionComponent} from 'react'
 import {Chip, Grid, Typography, useMediaQuery, useTheme} from '@mui/material'
 import {ResumeExperience, ResumeExperienceSectionType} from "../../../BlockContentTypes";
 import useThwCommonStyles from "../../../../common/sanityIo/ThwCommonStyles";
 import {COLORS} from "../../../../theme/common/ColorPalette";
-import {ThemeProvider} from "@mui/material/styles";
-import TheWebsiteTheme from "../../../../theme/Theme";
-import CustomizedThemeContext from "../../../customized-theme-provider/CustomizedThemeContext";
 
 interface IProps {
     sectionData: ResumeExperienceSectionType
@@ -15,12 +12,10 @@ const ResumeExperienceSection: FunctionComponent<IProps> = (props: IProps) => {
     const classes = useThwCommonStyles()
     const theme = useTheme()
 
-    const customizedThemeContext = useContext(CustomizedThemeContext)
 
-    const xsOnly = useMediaQuery(customizedThemeContext.customizedTheme.breakpoints.only('xs'))
+    const xsOnly = useMediaQuery(theme.breakpoints.only('xs'))
     return (
-        <ThemeProvider theme={TheWebsiteTheme
-}><Grid
+        <Grid
             container
             item
             style={{
@@ -30,9 +25,10 @@ const ResumeExperienceSection: FunctionComponent<IProps> = (props: IProps) => {
         >
             <Grid container item spacing={3}>
                 <Grid item container md={4} alignContent='flex-start' spacing={1}>
-                    <Grid item container><Typography variant='h6'>{props.sectionData.title}</Typography><Typography variant='h6'
-                                                                                             color='primary'
-                                                                                             display='inline'>.</Typography></Grid>
+                    <Grid item container><Typography variant='h6'>{props.sectionData.title}</Typography><Typography
+                        variant='h6'
+                        color='primary'
+                        display='inline'>.</Typography></Grid>
                     <Grid item><Typography variant='body1'>{props.sectionData.introduction}</Typography></Grid>
                 </Grid>
                 <Grid item container md={8} spacing={2} justifyContent={xsOnly ? 'center' : 'flex-start'}>
@@ -88,7 +84,8 @@ const ResumeExperienceSection: FunctionComponent<IProps> = (props: IProps) => {
                                       style={{overflowX: "scroll", paddingBottom: theme.spacing(1)}} wrap='nowrap'>
                                     {
                                         experience.skillsUsed?.map((skill, index) => {
-                                            return <Grid item key={index}><Chip role={'experienceskill'} size='small' color='primary'
+                                            return <Grid item key={index}><Chip role={'experienceskill'} size='small'
+                                                                                color='primary'
                                                                                 label={skill.title}/></Grid>
                                         })
                                     }
@@ -99,7 +96,6 @@ const ResumeExperienceSection: FunctionComponent<IProps> = (props: IProps) => {
                 </Grid>
             </Grid>
         </Grid>
-        </ThemeProvider>
     );
 }
 

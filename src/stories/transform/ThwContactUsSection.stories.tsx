@@ -5,7 +5,6 @@ import ThwHomePageData from "../data/ThwHomePageData";
 import ThwContactUsSection from "../../components/templates/transform-hw/ThwContactUsSection";
 import thwContactUsData from "../data/ThwContactUsData";
 import CustomizedThemeProvider from "../../components/customized-theme-provider/CustomizedThemeProvider";
-import TheWebsiteTheme from "../../theme/Theme";
 import DigitalResumeThemeData from "../data/DigitalResumeThemeData";
 
 const meta: Meta<typeof ThwContactUsSection> = {
@@ -29,10 +28,10 @@ export const Primary: Story = {
     },
     render: ({sectionData}) => <PageProvider page={ThwHomePageData}>
         <CustomizedThemeProvider pageTheme={DigitalResumeThemeData}>
-        <AmenityProvider>
-            <ThwContactUsSection
-                sectionData={sectionData}></ThwContactUsSection>
-        </AmenityProvider>
+            <AmenityProvider>
+                <ThwContactUsSection
+                    sectionData={sectionData}></ThwContactUsSection>
+            </AmenityProvider>
         </CustomizedThemeProvider>
     </PageProvider>,
 };

@@ -1,10 +1,9 @@
 import React, {FunctionComponent} from 'react'
 import BlockContent from '@sanity/block-content-to-react'
-import { Card, Grid, Link, ThemeProvider, Theme, StyledEngineProvider } from '@mui/material';
+import {Card, Grid, Link, ThemeProvider} from '@mui/material';
 import sanityClient from '../sanityClient'
 import {blockSerializers} from '../common/sanityIo/BlockContentRenderer'
 import {DevelopmentFooterSectionType, FooterSectionType,} from "./BlockContentTypes";
-import TheWebsiteTheme from "../theme/Theme";
 import useThwCommonStyles from "../common/sanityIo/ThwCommonStyles";
 import WebDevSiteTheme from "../theme/WebDevSiteTheme";
 import Footer from "./templates/mackenzies-mind/footer/Footer";
@@ -68,28 +67,28 @@ const FooterBlockContentLayoutContainer: FunctionComponent<FooterBlockContentLay
                         const developmentFooter: DevelopmentFooterSectionType = columnLayoutContainer
 
                         return (
-                                <ThemeProvider key={'BOTTOM_OF_PAGE_DEV'}  theme={WebDevSiteTheme}><Grid container item
-                                                                                       xs={12}
-                                                                                       >
-                                    <Link id={"BOTTOM_OF_PAGE"} underline="hover"><></>
-                                    </Link>
-                                    <WebDevFooter
-                                        pageFooter={developmentFooter.footerMenuRef}
-                                    />
-                                </Grid></ThemeProvider>
+                            <ThemeProvider key={'BOTTOM_OF_PAGE_DEV'} theme={WebDevSiteTheme}><Grid container item
+                                                                                                    xs={12}
+                            >
+                                <Link id={"BOTTOM_OF_PAGE"} underline="hover"><></>
+                                </Link>
+                                <WebDevFooter
+                                    pageFooter={developmentFooter.footerMenuRef}
+                                />
+                            </Grid></ThemeProvider>
                         );
                     case 'FooterSection':
                         const footer: FooterSectionType = columnLayoutContainer
 
                         return (
-                                <ThemeProvider key={'BOTTOM_OF_PAGE'}  theme={TheWebsiteTheme}><Grid container item xs={12}
-                                                                                          >
-                                    <Link id={"BOTTOM_OF_PAGE"} underline="hover"><></>
-                                    </Link>
-                                    <Footer
-                                        pageFooter={footer.footerMenuRef}
-                                    />
-                                </Grid></ThemeProvider>
+                            <Grid key={'BOTTOM_OF_PAGE'} container item xs={12}
+                            >
+                                <Link id={"BOTTOM_OF_PAGE"} underline="hover"><></>
+                                </Link>
+                                <Footer
+                                    pageFooter={footer.footerMenuRef}
+                                />
+                            </Grid>
                         );
                     default:
                         return <span key={index}>Undefined section {columnLayoutContainer._type}</span>

@@ -1,6 +1,5 @@
 import React, {FunctionComponent, PropsWithChildren, useContext} from 'react'
 import {AppBar} from "@mui/material";
-import clsx from "clsx";
 import CustomizedThemeContext from "../../../customized-theme-provider/CustomizedThemeContext";
 import makeStyles from "@mui/styles/makeStyles";
 import {Theme} from "@mui/material/styles";
@@ -18,9 +17,12 @@ export const useStyles = makeStyles((theme: Theme) => ({
     },
 }))
 
-interface IProps { isAppBar?: boolean, children:any }
+interface IProps {
+    isAppBar?: boolean,
+    children: any
+}
 
-const AppBarWrapper: FunctionComponent<PropsWithChildren<IProps>> = (props:IProps) => {
+const AppBarWrapper: FunctionComponent<PropsWithChildren<IProps>> = (props: IProps) => {
 
     const customizedTheme = useContext(CustomizedThemeContext)
     const classes = useStyles({
@@ -29,9 +31,11 @@ const AppBarWrapper: FunctionComponent<PropsWithChildren<IProps>> = (props:IProp
     })
 
     return (
-        props.isAppBar ? <AppBar className={clsx({[classes.opaque]: true}, classes.root)}>
+        props.isAppBar ? <AppBar style={{
+            backgroundColor: `${props.isAppBar ? "white" : "white"}`,
+        }} className={classes.root}>
             {props.children}
-        </AppBar>: <>{props.children}</>
+        </AppBar> : <>{props.children}</>
     )
 }
 

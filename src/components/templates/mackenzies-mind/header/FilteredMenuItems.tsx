@@ -44,7 +44,7 @@ const FilteredMenuItems: FunctionComponent<FilteredMenuProps> = ({
     return (<Grid item container justifyContent={mdDown ? 'flex-start' : 'flex-end'}>{
             subMenus?.map(
                 (menuLink: any, index) => {
-                    console.log(menuLink._type)
+                    // console.log(menuLink._type)
                     if (menuLink["_type"] === "menuItem" && (includeMenuItems || (onlyButtons && (menuLink.isOutlinedButton || menuLink.isContainedButton || menuLink.isModalButton)))) {
                         const menuItem: SanityMenuItem = menuLink
                         return <Grid item key={uuidv4()}>
@@ -68,7 +68,7 @@ const FilteredMenuItems: FunctionComponent<FilteredMenuProps> = ({
                     } else if (menuLink["_type"] === "menuGroup" && includeMenuGroups) {
                         const menuGroup: SanityMenuGroup = menuLink
                         return <Grid item key={uuidv4()} ref={() => {
-                            console.log("anchor", anchorEl)
+                            // console.log("anchor", anchorEl)
                             return anchorEl
                         }}>
                             <Button

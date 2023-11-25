@@ -1,10 +1,9 @@
 import React, {FunctionComponent, useContext} from 'react'
-import {Button, Collapse, Divider, List, ListItem, ListItemText, Typography,} from '@mui/material';
+import {Button, Collapse, Divider, List, ListItem, ListItemText, Typography, useTheme,} from '@mui/material';
 import createStyles from '@mui/styles/createStyles';
 import {Theme} from "@mui/material/styles";
 import makeStyles from '@mui/styles/makeStyles';
 import {ExpandLess, ExpandMore} from "@mui/icons-material";
-import TheWebsiteTheme from "../../../../theme/Theme";
 import {SanityMenuGroup} from "../../../../common/sanityIo/Types";
 import ModalContext from "../../../snackbar-context/ModalContext";
 
@@ -17,7 +16,7 @@ const useStyles = makeStyles((theme: Theme) =>
             paddingLeft: theme.spacing(4),
         },
         listItem: {
-            "&.MuiListItem-gutters" :{
+            "&.MuiListItem-gutters": {
                 paddingTop: 0,
                 paddingBottom: 0,
                 paddingLeft: 0,
@@ -41,6 +40,7 @@ const MainMenuSubMenu: FunctionComponent<MainMenuSubMenuProps> = ({menuGroup}) =
         setOpen(!open);
     };
 
+    const theme = useTheme()
     const modalContext = useContext(ModalContext)
     return (
         <List
@@ -51,10 +51,10 @@ const MainMenuSubMenu: FunctionComponent<MainMenuSubMenuProps> = ({menuGroup}) =
             className={classes.root}
         >
             <ListItem button style={{
-                paddingTop: TheWebsiteTheme
-.spacing(2.25),
-                paddingBottom: TheWebsiteTheme
-.spacing(2.25),
+                paddingTop: theme
+                    .spacing(2.25),
+                paddingBottom: theme
+                    .spacing(2.25),
             }} onClick={handleClick}>
                 <ListItemText primary={menuGroup.menuGroupTitle}/>
                 {open ? <ExpandLess/> : <ExpandMore/>}
@@ -63,27 +63,26 @@ const MainMenuSubMenu: FunctionComponent<MainMenuSubMenuProps> = ({menuGroup}) =
                 <List component="div" disablePadding>
                     {
                         menuGroup.links?.map((menuLink: any, index: number) => (
-                            <ListItem href={menuLink.url} key={index} button className={ classes.listItem} style={{
-
-                            }}>
+                            <ListItem href={menuLink.url} key={index} button className={classes.listItem} style={{}}>
                                 <Button variant='text' href={menuLink.url}
-                                        onClick={menuLink.isModalButton?()=>{
-                                            console.log()
-                                            if(menuLink.isModalButton) {
+                                        onClick={menuLink.isModalButton ? () => {
+                                            // console.log()
+                                            if (menuLink.isModalButton) {
                                                 modalContext.openModal && modalContext.openModal(menuLink.modalRef)
                                             }
-                                        }:undefined}
+                                        } : undefined}
                                         style={{
-                                paddingTop: TheWebsiteTheme
-.spacing(2.25),
-                                paddingLeft: TheWebsiteTheme
-.spacing(6),
-                                paddingBottom: TheWebsiteTheme
-.spacing(2.25),
-                                    height: "100%",
-                                    margin:0,
-                                }} fullWidth>
-                                    <ListItemText>{<Typography align='left'>{menuLink.displayText}</Typography>}</ListItemText>
+                                            paddingTop: theme
+                                                .spacing(2.25),
+                                            paddingLeft: theme
+                                                .spacing(6),
+                                            paddingBottom: theme
+                                                .spacing(2.25),
+                                            height: "100%",
+                                            margin: 0,
+                                        }} fullWidth>
+                                    <ListItemText>{<Typography
+                                        align='left'>{menuLink.displayText}</Typography>}</ListItemText>
                                 </Button>
                             </ListItem>
                         ))

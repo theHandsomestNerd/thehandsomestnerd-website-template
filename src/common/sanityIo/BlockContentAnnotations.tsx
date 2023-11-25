@@ -65,7 +65,10 @@ export const ButtonMarkRender = (props: React.PropsWithChildren<{}> & BlockConte
 
     return <Grid container item>
         <Button
-            style={props?.mark?.color === 'mint' ? props?.mark?.variant === 'contained' ? {backgroundColor: "", borderRadius: "20px"} : {backgroundColor: 'transparent', borderColor: "", borderRadius: "20px"} : {borderRadius: "20px"}}
+            style={props?.mark?.color === 'mint' ? props?.mark?.variant === 'contained' ? {
+                backgroundColor: "",
+                borderRadius: "20px"
+            } : {backgroundColor: 'transparent', borderColor: "", borderRadius: "20px"} : {borderRadius: "20px"}}
             variant={props?.mark?.variant as 'text' | 'outlined' | 'contained'}
             color={props?.mark?.color != 'mint' ? props?.mark?.color : 'inherit'}
             href={props?.mark?.buttonLink}>
@@ -97,7 +100,7 @@ export const ListItemRender: React.FunctionComponent = (props: React.PropsWithCh
                                           className={classes.orderedListIndex}>{(props?.index ?? 0) + 1}.</Typography>}
                     </ListItemIcon>
                 </Grid>
-                <Grid item wrap='nowrap'>
+                <Grid item wrap='nowrap' container>
                     <ListItemText>{props.children}</ListItemText>
                 </Grid>
             </Grid>

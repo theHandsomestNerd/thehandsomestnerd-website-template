@@ -7,30 +7,26 @@ import cmsClient from "../../../block-content-ui/cmsClient";
 import CustomizedThemeContext from "../../../customized-theme-provider/CustomizedThemeContext";
 import makeStyles from "@mui/styles/makeStyles";
 import {Theme} from "@mui/material/styles";
-import TheWebsiteTheme from "../../../../theme/Theme";
-import ServiceItem from "../../../../../sanityIo/schemas/services/ServiceItem";
 import {
     AnimatedAboutUsSectionType,
-    HeroAnimatedContentSectionType, SanityHeroContentSlide,
+    HeroAnimatedContentSectionType,
+    SanityHeroContentSlide,
     ServiceItemNoRefType
 } from "../../../BlockContentTypes";
-import AnimatedHeroContentSection from "../../../../../sanityIo/schemas/sections/hero/AnimatedHeroContentSection";
-import HeroContentSection from "../../../../../sanityIo/schemas/sections/aft/HeroContentSection";
-import AnimatedAboutUsSection from "../../../animated/AnimatedAboutUsSection";
 
 export const useStyles = makeStyles((theme: Theme) => ({
     endAdornedInput: {
         "& .MuiFilledInput-adornedEnd": {
             border: "1px solid red",
             // marginRight: '-12px',
-            borderTopRightRadius: TheWebsiteTheme.shape.borderRadius,
-            borderBottomRightRadius: TheWebsiteTheme.shape.borderRadius,
+            borderTopRightRadius: theme.shape.borderRadius,
+            borderBottomRightRadius: theme.shape.borderRadius,
         },
         "& .MuiOutlinedInput-adornedEnd": {
             border: "1px solid white",
             // paddingRight: 0,
-            borderTopRightRadius: TheWebsiteTheme.shape.borderRadius,
-            borderBottomRightRadius: TheWebsiteTheme.shape.borderRadius,
+            borderTopRightRadius: theme.shape.borderRadius,
+            borderBottomRightRadius: theme.shape.borderRadius,
         },
         "& .MuiInputBase-input": {
             borderRightWidth: 0,
@@ -123,17 +119,22 @@ const FullTextSearch: FunctionComponent<IProps> = (props: IProps) => {
                                     <Grid item sx={{paddingLeft: "16px"}} container>
                                         {/*<Grid container item><Typography color='textSecondary'*/}
                                         {/*                                 fontWeight={'bold'}>{convertedAnimatedServicesSection.title}</Typography></Grid>*/}
-                                        {convertedAnimatedHeroSection.contentSlides.map((slide:SanityHeroContentSlide) => {
-                                            return <Grid container item sx={{borderLeft: "1px solid whitesmoke", marginBottom: "8px", paddingLeft: "8px"}}>
-                                            <Grid item container>
+                                        {convertedAnimatedHeroSection.contentSlides.map((slide: SanityHeroContentSlide) => {
+                                            return <Grid container item sx={{
+                                                borderLeft: "1px solid whitesmoke",
+                                                marginBottom: "8px",
+                                                paddingLeft: "8px"
+                                            }}>
+                                                <Grid item container>
                                                     <Typography color='textSecondary'
                                                                 fontWeight={'bold'}>{`${
                                                         slide
-                                                        .contentWelcomeMessage
+                                                            .contentWelcomeMessage
                                                     } - ${slide.contentTitle}`}</Typography>
                                                 </Grid>
-                                            <Grid item container>
-                                                    <Typography color='textSecondary' variant={'body1'}>{slide.contentText}</Typography>
+                                                <Grid item container>
+                                                    <Typography color='textSecondary'
+                                                                variant={'body1'}>{slide.contentText}</Typography>
                                                 </Grid>
                                             </Grid>
                                         })}
@@ -146,12 +147,17 @@ const FullTextSearch: FunctionComponent<IProps> = (props: IProps) => {
                                 return <Grid container sx={{marginBottom: "16px"}}>
                                     <Grid container item><Typography color='textSecondary'>Services:</Typography></Grid>
                                     <Grid item sx={{paddingLeft: "16px"}} container>
-                                    <Grid container item><Typography color='textSecondary'>{convertedAnimatedServicesSection.contentPreTitle}-{convertedAnimatedServicesSection.contentTitle}</Typography></Grid>
+                                        <Grid container item><Typography
+                                            color='textSecondary'>{convertedAnimatedServicesSection.contentPreTitle}-{convertedAnimatedServicesSection.contentTitle}</Typography></Grid>
                                         {/*<Grid container item><Typography color='textSecondary'*/}
                                         {/*                                 fontWeight={'bold'}>{convertedAnimatedServicesSection.title}</Typography></Grid>*/}
-                                        {convertedAnimatedServicesSection.contentTexts.map((textContent:string) => {
-                                            return <Grid container item sx={{borderLeft: "1px solid whitesmoke", marginBottom: "8px", paddingLeft: "8px"}}>
-                                            <Grid item container>
+                                        {convertedAnimatedServicesSection.contentTexts.map((textContent: string) => {
+                                            return <Grid container item sx={{
+                                                borderLeft: "1px solid whitesmoke",
+                                                marginBottom: "8px",
+                                                paddingLeft: "8px"
+                                            }}>
+                                                <Grid item container>
                                                     <Typography color='textSecondary'
                                                                 fontWeight={'bold'}>{textContent}</Typography>
                                                 </Grid>

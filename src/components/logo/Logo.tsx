@@ -45,7 +45,8 @@ const Logo: FunctionComponent<LogoProps> = (props) => {
         <Grid item container className={classes.imageRoot}
               style={{backgroundPosition: props.isCenter ? "center" : "left"}}/>
         : <Grid container item className={classes.root}
-                style={{paddingTop: '12px'}}
+                alignItems='center'
+                alignContent='center'
                 justifyContent={props.isCenter ? 'center' : 'flex-start'}>
             <AlternatingText logoText={props.logoText} logoAccentText={props.logoAccentText}/>
         </Grid>

@@ -7,8 +7,6 @@ import {useLocation} from "react-router";
 import HeaderBlockContentLayoutContainer from "../../../HeaderBlockContentLayoutContainer";
 import FooterBlockContentLayoutContainer from "../../../FooterBlockContentLayoutContainer";
 import BusinessCard from "../../../BusinessCard";
-import {ThemeProvider} from "@mui/material/styles";
-import TheWebsiteTheme from "../../../../theme/Theme";
 
 interface IProps {
     homePage: SanityTransformHwHomePage
@@ -31,9 +29,10 @@ const PageLayout: FunctionComponent<IProps> = (props: IProps) => {
             {/*<Grid container item>*/}
             {/*    <Header pageHeader={props.homePage.headerMenuRef}/>*/}
             {/*</Grid>*/}
-            {props.homePage.isFabActivated && <Grid container item style={{position: "fixed", bottom: 0, right: 0, zIndex: 9999}}>
-                <BusinessCard homePage={props.homePage} anchor={'bottom'}/>
-            </Grid>}
+            {props.homePage.isFabActivated &&
+                <Grid container item style={{position: "fixed", bottom: 0, right: 0, zIndex: 9999}}>
+                    <BusinessCard homePage={props.homePage} anchor={'bottom'}/>
+                </Grid>}
             <Grid container item>
                 {props.homePage.headerContent && <Grid container item>
                     <HeaderBlockContentLayoutContainer
@@ -55,8 +54,7 @@ const PageLayout: FunctionComponent<IProps> = (props: IProps) => {
                         content={props.homePage.footerContent.content}/>
                 </Grid>}
             </Grid>
-            <ThemeProvider theme={TheWebsiteTheme
-}><Grid container item
+            <Grid container item
                   alignContent='center'
                   alignItems='center'
                   style={{
@@ -77,7 +75,7 @@ const PageLayout: FunctionComponent<IProps> = (props: IProps) => {
                     © Copyright 2023
                     TheHandsomestNerd, LLC. All Rights Reserved.
                 </Link>
-            </Grid></ThemeProvider>
+            </Grid>
         </Grid>
     );
 }
