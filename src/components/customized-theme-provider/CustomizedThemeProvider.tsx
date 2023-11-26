@@ -44,6 +44,7 @@ const CustomizedThemeProvider: FunctionComponent<IProps & PropsWithChildren> = (
         } else {
             setCustomizedTheme(TheWebsiteTheme)
         }
+        // eslint-disable-next-line
     }, [pageContext.page?.theme])
 
     const getThemeFromSanity = (theme: SanityMuiTheme) => {

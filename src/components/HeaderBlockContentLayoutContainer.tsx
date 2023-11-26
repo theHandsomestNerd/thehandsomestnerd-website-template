@@ -37,7 +37,7 @@ const HeaderBlockContentLayoutContainer: FunctionComponent<HeaderBlockContentLay
             window.removeEventListener('resize', handResize)
         }
 
-
+        // eslint-disable-next-line
     }, [])
 
 

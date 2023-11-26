@@ -96,79 +96,77 @@ const FullTextSearch: FunctionComponent<IProps> = (props: IProps) => {
             </Grid>
             <Grid item container sx={{paddingX: "16px"}}>
                 {results?.map((theResult: any) => {
-                    {
-                        switch (theResult?._type) {
-                            case "ServiceItem":
-                                const convertedServiceItem: ServiceItemNoRefType = theResult;
-                                return <Grid container sx={{marginBottom: "16px"}}>
-                                    <Grid container item><Typography color='textSecondary'>Service We
-                                        Provide:</Typography></Grid>
-                                    <Grid item sx={{paddingLeft: "16px"}}>
-                                        <Grid container item><Typography color='textSecondary'
-                                                                         fontWeight={'bold'}>{convertedServiceItem.contentTitle}</Typography></Grid>
-                                        <Grid container item><Typography
-                                            color='textSecondary'>{convertedServiceItem.contentText}</Typography></Grid>
-                                    </Grid>
+                    switch (theResult?._type) {
+                        case "ServiceItem":
+                            const convertedServiceItem: ServiceItemNoRefType = theResult;
+                            return <Grid container sx={{marginBottom: "16px"}}>
+                                <Grid container item><Typography color='textSecondary'>Service We
+                                    Provide:</Typography></Grid>
+                                <Grid item sx={{paddingLeft: "16px"}}>
+                                    <Grid container item><Typography color='textSecondary'
+                                                                     fontWeight={'bold'}>{convertedServiceItem.contentTitle}</Typography></Grid>
+                                    <Grid container item><Typography
+                                        color='textSecondary'>{convertedServiceItem.contentText}</Typography></Grid>
                                 </Grid>
-                            case "HeroAnimatedContentSection":
-                                const convertedAnimatedHeroSection: HeroAnimatedContentSectionType = theResult;
+                            </Grid>
+                        case "HeroAnimatedContentSection":
+                            const convertedAnimatedHeroSection: HeroAnimatedContentSectionType = theResult;
 
-                                return <Grid container sx={{marginBottom: "16px"}}>
-                                    <Grid container item><Typography color='textSecondary'>Animated Slide
-                                        Show:</Typography></Grid>
-                                    <Grid item sx={{paddingLeft: "16px"}} container>
-                                        {/*<Grid container item><Typography color='textSecondary'*/}
-                                        {/*                                 fontWeight={'bold'}>{convertedAnimatedServicesSection.title}</Typography></Grid>*/}
-                                        {convertedAnimatedHeroSection.contentSlides.map((slide: SanityHeroContentSlide) => {
-                                            return <Grid container item sx={{
-                                                borderLeft: "1px solid whitesmoke",
-                                                marginBottom: "8px",
-                                                paddingLeft: "8px"
-                                            }}>
-                                                <Grid item container>
-                                                    <Typography color='textSecondary'
-                                                                fontWeight={'bold'}>{`${
-                                                        slide
-                                                            .contentWelcomeMessage
-                                                    } - ${slide.contentTitle}`}</Typography>
-                                                </Grid>
-                                                <Grid item container>
-                                                    <Typography color='textSecondary'
-                                                                variant={'body1'}>{slide.contentText}</Typography>
-                                                </Grid>
+                            return <Grid container sx={{marginBottom: "16px"}}>
+                                <Grid container item><Typography color='textSecondary'>Animated Slide
+                                    Show:</Typography></Grid>
+                                <Grid item sx={{paddingLeft: "16px"}} container>
+                                    {/*<Grid container item><Typography color='textSecondary'*/}
+                                    {/*                                 fontWeight={'bold'}>{convertedAnimatedServicesSection.title}</Typography></Grid>*/}
+                                    {convertedAnimatedHeroSection.contentSlides.map((slide: SanityHeroContentSlide) => {
+                                        return <Grid container item sx={{
+                                            borderLeft: "1px solid whitesmoke",
+                                            marginBottom: "8px",
+                                            paddingLeft: "8px"
+                                        }}>
+                                            <Grid item container>
+                                                <Typography color='textSecondary'
+                                                            fontWeight={'bold'}>{`${
+                                                    slide
+                                                        .contentWelcomeMessage
+                                                } - ${slide.contentTitle}`}</Typography>
                                             </Grid>
-                                        })}
-                                    </Grid>
+                                            <Grid item container>
+                                                <Typography color='textSecondary'
+                                                            variant={'body1'}>{slide.contentText}</Typography>
+                                            </Grid>
+                                        </Grid>
+                                    })}
                                 </Grid>
-                            case "AnimatedServicesSection":
-                                const convertedAnimatedServicesSection: AnimatedAboutUsSectionType = theResult;
+                            </Grid>
+                        case "AnimatedServicesSection":
+                            const convertedAnimatedServicesSection: AnimatedAboutUsSectionType = theResult;
 
-                                console.log(convertedAnimatedServicesSection)
-                                return <Grid container sx={{marginBottom: "16px"}}>
-                                    <Grid container item><Typography color='textSecondary'>Services:</Typography></Grid>
-                                    <Grid item sx={{paddingLeft: "16px"}} container>
-                                        <Grid container item><Typography
-                                            color='textSecondary'>{convertedAnimatedServicesSection.contentPreTitle}-{convertedAnimatedServicesSection.contentTitle}</Typography></Grid>
-                                        {/*<Grid container item><Typography color='textSecondary'*/}
-                                        {/*                                 fontWeight={'bold'}>{convertedAnimatedServicesSection.title}</Typography></Grid>*/}
-                                        {convertedAnimatedServicesSection.contentTexts.map((textContent: string) => {
-                                            return <Grid container item sx={{
-                                                borderLeft: "1px solid whitesmoke",
-                                                marginBottom: "8px",
-                                                paddingLeft: "8px"
-                                            }}>
-                                                <Grid item container>
-                                                    <Typography color='textSecondary'
-                                                                fontWeight={'bold'}>{textContent}</Typography>
-                                                </Grid>
+                            console.log(convertedAnimatedServicesSection)
+                            return <Grid container sx={{marginBottom: "16px"}}>
+                                <Grid container item><Typography color='textSecondary'>Services:</Typography></Grid>
+                                <Grid item sx={{paddingLeft: "16px"}} container>
+                                    <Grid container item><Typography
+                                        color='textSecondary'>{convertedAnimatedServicesSection.contentPreTitle}-{convertedAnimatedServicesSection.contentTitle}</Typography></Grid>
+                                    {/*<Grid container item><Typography color='textSecondary'*/}
+                                    {/*                                 fontWeight={'bold'}>{convertedAnimatedServicesSection.title}</Typography></Grid>*/}
+                                    {convertedAnimatedServicesSection.contentTexts.map((textContent: string) => {
+                                        return <Grid container item sx={{
+                                            borderLeft: "1px solid whitesmoke",
+                                            marginBottom: "8px",
+                                            paddingLeft: "8px"
+                                        }}>
+                                            <Grid item container>
+                                                <Typography color='textSecondary'
+                                                            fontWeight={'bold'}>{textContent}</Typography>
                                             </Grid>
-                                        })}
-                                    </Grid>
+                                        </Grid>
+                                    })}
                                 </Grid>
-                            default:
-                                return <Grid container sx={{marginBottom: "16px"}}><Typography
-                                    color='textSecondary'>{theResult?._type}</Typography></Grid>
-                        }
+                            </Grid>
+                        default:
+                            return <Grid container sx={{marginBottom: "16px"}}><Typography
+                                color='textSecondary'>{theResult?._type}</Typography></Grid>
                     }
 
                 })}
