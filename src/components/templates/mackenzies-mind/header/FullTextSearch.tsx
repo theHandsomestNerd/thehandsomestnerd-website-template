@@ -92,7 +92,7 @@ const FullTextSearch: FunctionComponent<IProps> = (props: IProps) => {
             <Grid item>
 
                 {results?.length && <Typography
-                    color='textSecondary'>{results?.length} {results?.length ?? 1 > 1 ? "results" : "result"}</Typography>}
+                    color='textSecondary'>{results?.length} {(results?.length ?? 1) > 1 ? "results" : "result"}</Typography>}
             </Grid>
             <Grid item container sx={{paddingX: "16px"}}>
                 {results?.map((theResult: any) => {

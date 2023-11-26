@@ -70,7 +70,7 @@ export const ButtonMarkRender = (props: React.PropsWithChildren<{}> & BlockConte
                 borderRadius: "20px"
             } : {backgroundColor: 'transparent', borderColor: "", borderRadius: "20px"} : {borderRadius: "20px"}}
             variant={props?.mark?.variant as 'text' | 'outlined' | 'contained'}
-            color={props?.mark?.color != 'mint' ? props?.mark?.color : 'inherit'}
+            color={props?.mark?.color !== 'mint' ? props?.mark?.color : 'inherit'}
             href={props?.mark?.buttonLink}>
             <Typography variant='button'
                         style={{color: textColor}}>{props?.children}</Typography>
@@ -107,10 +107,4 @@ export const ListItemRender: React.FunctionComponent = (props: React.PropsWithCh
 
         </ListItem>
     </Grid>)
-}
-
-export default {
-    UtmLinkRender,
-    ListRender,
-    ListItemRender
 }

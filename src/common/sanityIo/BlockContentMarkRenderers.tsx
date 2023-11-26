@@ -94,15 +94,3 @@ export const LargeBodyTextRender: React.FunctionComponent<PropsWithChildren> = (
 // export const ButtonRender: (props: any, color: string, variant: string, buttonText: string, buttonLink: string) => any = (props:any, color:string, variant:string, buttonText:string, buttonLink:string):any => {
 //   return <Button variant={variant as 'text' | 'outlined' | 'contained'} color={color as PropTypes.Color} href={buttonLink}>{props.buttonText}</Button>
 // }
-
-
-export default {
-  LightRender,
-  BoldRender,
-  DropCapRender,
-  HighlightRender: TextColorRender,
-  UnderlineRender,
-  TypographyRender,
-  LargeBodyTextRender,
-  KeystrokeRender
-}

@@ -200,7 +200,7 @@ const BusinessCard: FunctionComponent<MainMenuProps> = ({anchor, homePage}) => {
                                                     style={{height: "80px"}}
                                                     onClick={() => share(homePage.website ?? "")}>
                                                 <Grid item>
-                                                    <img height={42}
+                                                    <img alt='website QR code' height={42}
                                                          src={urlFor(homePage.websiteQrCode ?? "").url() ?? ""}/>
                                                     <Typography variant='subtitle1'>Qr</Typography>
                                                 </Grid>
@@ -249,7 +249,7 @@ const BusinessCard: FunctionComponent<MainMenuProps> = ({anchor, homePage}) => {
                                             <Button style={{height: "80px"}} variant='contained' color='primary' fullWidth
                                                     onClick={() => share(homePage.bookAppointmentLink ?? "")}>
                                                 <Grid item>
-                                                    <img height={42}
+                                                    <img alt={'make apppointment qr code'} height={42}
                                                          src={urlFor(homePage.bookAppointmentQrCode ?? "").url() ?? ""}/>
                                                     <Typography variant='subtitle1'>Qr</Typography>
                                                 </Grid>
