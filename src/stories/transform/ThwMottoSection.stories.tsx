@@ -2,6 +2,8 @@ import type {Meta, StoryObj} from '@storybook/react';
 import ThwMottoSection from "../../components/templates/transform-hw/ThwMottoSection";
 import homePageResumeData from "../data/HomePageData";
 import thwMottoData from "../data/ThwMottoData";
+import TransformHWTheme from "../../theme/TransformHWTheme";
+import {ThemeProvider} from "@mui/material/styles";
 
 
 const meta: Meta<typeof ThwMottoSection> = {
@@ -23,5 +25,5 @@ export const Primary: Story = {
     args:{
         sectionData:thwMottoData
     },
-    render: ({sectionData}) => <ThwMottoSection sectionData={sectionData}></ThwMottoSection>,
+    render: ({sectionData}) => <ThemeProvider theme={TransformHWTheme}><ThwMottoSection sectionData={sectionData}></ThwMottoSection></ThemeProvider>,
 };

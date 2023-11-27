@@ -1,6 +1,8 @@
 import type {Meta, StoryObj} from '@storybook/react';
 import ThwHeroContentSection from "../../components/templates/transform-hw/ThwHeroContentSection";
 import ThwHeroContentSectionData from "../data/ThwHeroContentSectionData";
+import TransformHWTheme from "../../theme/TransformHWTheme";
+import {ThemeProvider} from "@mui/material/styles";
 
 
 const meta: Meta<typeof ThwHeroContentSection> = {
@@ -19,5 +21,5 @@ type Story = StoryObj<typeof ThwHeroContentSection>;
  */
 
 export const Primary: Story = {
-    render: () => <ThwHeroContentSection sectionData={ThwHeroContentSectionData}></ThwHeroContentSection>,
+    render: () => <ThemeProvider theme={TransformHWTheme}><ThwHeroContentSection sectionData={ThwHeroContentSectionData}></ThwHeroContentSection></ThemeProvider>,
 };

@@ -34,7 +34,7 @@ const PositivePsychologySection: FunctionComponent<IProps> = (props) => {
 
     const mdUp = useMediaQuery(customizedThemeContext.customizedTheme.breakpoints.up('md'))
     return (
-        <ThemeProvider theme={TransformHWTheme}><Grid container item className={classes.root} xs={11}>
+        <Grid container item className={classes.root} xs={11}>
             <Grid container item justifyContent='space-between' spacing={4}>
                 <Grid item xs={12} md={7} lg={8} container direction='column' spacing={2}>
                     <Grid container item>
@@ -87,7 +87,7 @@ const PositivePsychologySection: FunctionComponent<IProps> = (props) => {
                     </Grid>
                 </Grid>
             </Grid>
-        </Grid></ThemeProvider>
+        </Grid>
     );
 }
 

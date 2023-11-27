@@ -1,11 +1,11 @@
 {
   "name": "the-handsomest-nerd-sanity",
   "private": true,
-  "version": "0.0.1",
-  "description": "",
+  "version": "0.2.0",
+  "description": "Sanity CMS for React Website Builder",
   "main": "package.json",
   "author": "theHandsomestNerd <hello@thehandsomestnerd.com>",
-  "license": "UNLICENSED",
+  "license": "GPL-3.0-or-later",
   "scripts": {
     "start": "sanity start",
     "build": "sanity build",

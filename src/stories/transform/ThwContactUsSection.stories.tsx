@@ -6,6 +6,8 @@ import ThwContactUsSection from "../../components/templates/transform-hw/ThwCont
 import thwContactUsData from "../data/ThwContactUsData";
 import CustomizedThemeProvider from "../../components/customized-theme-provider/CustomizedThemeProvider";
 import DigitalResumeThemeData from "../data/DigitalResumeThemeData";
+import TransformHWTheme from "../../theme/TransformHWTheme";
+import {ThemeProvider} from "@mui/material/styles";
 
 const meta: Meta<typeof ThwContactUsSection> = {
     title: "THW/Section/THW Contact Us Section",
@@ -27,11 +29,11 @@ export const Primary: Story = {
         sectionData: thwContactUsData
     },
     render: ({sectionData}) => <PageProvider page={ThwHomePageData}>
-        <CustomizedThemeProvider pageTheme={DigitalResumeThemeData}>
+        <ThemeProvider theme={TransformHWTheme}>
             <AmenityProvider>
                 <ThwContactUsSection
                     sectionData={sectionData}></ThwContactUsSection>
             </AmenityProvider>
-        </CustomizedThemeProvider>
+        </ThemeProvider>
     </PageProvider>,
 };

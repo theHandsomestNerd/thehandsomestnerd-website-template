@@ -120,7 +120,6 @@ const AboutTheProprietorSection: FunctionComponent<IProps> = (props) => {
 
     const xsOnly = useMediaQuery(customizedThemeContext.customizedTheme.breakpoints.only('xs'))
     return (
-        <ThemeProvider theme={TransformHWTheme}>
             <Grid container item className={classes.root} xs={xsOnly ? 12 : 11}
                   style={xsOnly ? {paddingBottom: 0, paddingTop: 0} : {
                       paddingBottom: TransformHWTheme.spacing(10),
@@ -224,7 +223,7 @@ const AboutTheProprietorSection: FunctionComponent<IProps> = (props) => {
                     ><ProprietorAtAGlance source={'about-the-proprietor'}
                                           sectionData={props.sectionData.proprietorServices}/></Grid>}
                 </Grid>
-            </Grid></ThemeProvider>
+            </Grid>
     )
 }
 

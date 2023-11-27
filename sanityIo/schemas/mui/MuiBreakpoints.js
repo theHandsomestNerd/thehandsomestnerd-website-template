@@ -4,11 +4,6 @@ export default {
     type: 'object',
     fields: [
         {
-            name: 'name',
-            title: 'Name',
-            type: 'string',
-        },
-        {
             name: 'xs',
             title: 'XS',
             type: 'string',
@@ -33,11 +28,5 @@ export default {
             title: 'XL',
             type: 'string',
         },
-    ],
-    preview: {
-        select: {
-            title: 'name',
-            media: 'image',
-        },
-    },
+    ]
 }

@@ -48,7 +48,6 @@ const WebDevHeroContentSection: FunctionComponent<IProps> = (props) => {
     const classes = useStyles(classParameters)
     const globalClasses = useCustomStyles({})
     return (
-        <ThemeProvider theme={WebDevSiteTheme}>
         <Grid container item className={classes.marketingBackground} justifyContent='center'>
             <Grid container item
                   className={clsx(globalClasses.fullSection, globalClasses.fullSectionOverlay)}>
@@ -87,7 +86,6 @@ const WebDevHeroContentSection: FunctionComponent<IProps> = (props) => {
                 </Grid>
             </Grid>
         </Grid>
-        </ThemeProvider>
     )
 }
 

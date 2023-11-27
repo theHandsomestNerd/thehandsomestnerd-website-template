@@ -4,11 +4,6 @@ export default {
     type: 'object',
     fields: [
         {
-            name: 'title',
-            title: 'Title',
-            type: 'string',
-        },
-        {
             name: 'fontFamily',
             title: 'Font Family',
             type: "array",
@@ -23,6 +18,12 @@ export default {
                     ]
                 }}],
 
+        },
+        {
+            name: 'fontFaces',
+            title: 'Font Faces',
+            type: "array",
+            of:[{type: "MuiFontFace"}],
         },
     ],
     preview: {

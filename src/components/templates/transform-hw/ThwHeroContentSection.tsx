@@ -5,9 +5,8 @@ import clsx from "clsx";
 import PageContext from "../../page-context/PageContext";
 import useCustomStyles from "../mackenzies-mind/pages/Styles";
 import firebaseAnalyticsClient from "../../../common/firebase/FirebaseAnalyticsClient";
-import TransformHWTheme from "../../../theme/TransformHWTheme";
 import {Theme, ThemeProvider} from "@mui/material/styles";
-import {Button, Grid, Typography} from "@mui/material";
+import {Button, Grid, Typography, useTheme} from "@mui/material";
 import makeStyles from "@mui/styles/makeStyles";
 
 interface IProps {
@@ -19,30 +18,31 @@ interface CSSProps {
     heroOverlay?: string | null
 }
 
-export const useStyles = makeStyles((theme: Theme) => ({
-    marketingBackground: (props: CSSProps) => ({
-        backgroundRepeat: 'no-repeat',
-        backgroundImage: `url('${props.heroBaseImageUrl}'), url('${props.heroOverlay}')`,
-        backgroundSize: 'cover, contain',
-        minHeight: '521px',
-        backgroundColor: 'transparent',
-        position: "relative"
-    }),
-    contentSection: {
-        height: '510px',
-        marginTop: '16px',
-        backgroundColor: 'transparent',
-    },
-    contentBullets: {
-        borderLeft: `4px solid ${TransformHWTheme.palette.primary.main}`,
-        paddingLeft: '26px',
-    }
-}))
-
 const ThwHeroContentSection: FunctionComponent<IProps> = (props) => {
+    const theme = useTheme()
+
     let classParameters: CSSProps = {
         heroBaseImageUrl: urlFor(props.sectionData.heroImage).url() ?? '',
     }
+    const useStyles = makeStyles((theme: Theme) => ({
+        marketingBackground: (props: CSSProps) => ({
+            backgroundRepeat: 'no-repeat',
+            backgroundImage: `url('${props.heroBaseImageUrl}'), url('${props.heroOverlay}')`,
+            backgroundSize: 'cover, contain',
+            minHeight: '521px',
+            backgroundColor: 'transparent',
+            position: "relative"
+        }),
+        contentSection: {
+            height: '510px',
+            marginTop: '16px',
+            backgroundColor: 'transparent',
+        },
+        contentBullets: {
+            borderLeft: `4px solid ${theme.palette.primary.main}`,
+            paddingLeft: '26px',
+        }
+    }))
 
     if (props.sectionData.heroImageBackground) {
         classParameters = {
@@ -55,7 +55,6 @@ const ThwHeroContentSection: FunctionComponent<IProps> = (props) => {
     const classes = useStyles(classParameters)
     const globalClasses = useCustomStyles({})
     return (
-        <ThemeProvider theme={TransformHWTheme}>
             <Grid container item className={classes.marketingBackground}>
                 <Grid container item
                       className={clsx(globalClasses.fullSection, globalClasses.fullSectionOverlay)}>
@@ -66,7 +65,7 @@ const ThwHeroContentSection: FunctionComponent<IProps> = (props) => {
                             <Grid container direction='column' style={{paddingLeft: "40px", paddingTop: "80px"}}>
                                 <Grid item>
                                     <Typography variant='subtitle1'
-                                                style={{color: TransformHWTheme.palette.text.secondary}}>{props.sectionData.contentWelcomeMessage}</Typography>
+                                                style={{color: theme.palette.text.secondary}}>{props.sectionData.contentWelcomeMessage}</Typography>
                                 </Grid>
                                 <Grid item style={{marginBottom: "30px"}}>
                                     <Typography variant='h3'
@@ -94,7 +93,6 @@ const ThwHeroContentSection: FunctionComponent<IProps> = (props) => {
                     </Grid>
                 </Grid>
             </Grid>
-        </ThemeProvider>
     )
 }
 

@@ -1,10 +1,11 @@
 import type {Meta, StoryObj} from '@storybook/react';
 import ThwServicesSection from "../../components/templates/transform-hw/ThwServicesSection";
 import thwServicesSectionData from "../data/ThwServicesSectionData";
-import HomePageResumeData from "../data/HomePageData";
 import PageProvider from "../../components/page-context/PageProvider";
 import AmenityProvider from "../../components/amenity-context/AmenityProvider";
 import ThwHomePageData from "../data/ThwHomePageData";
+import {ThemeProvider} from "@mui/material/styles";
+import TransformHWTheme from "../../theme/TransformHWTheme";
 
 
 const meta: Meta<typeof ThwServicesSection> = {
@@ -26,10 +27,10 @@ export const Primary: Story = {
     args: {
         sectionData: thwServicesSectionData
     },
-    render: ({sectionData}) => <PageProvider page={ThwHomePageData}>
+    render: ({sectionData}) => <ThemeProvider theme={TransformHWTheme}><PageProvider page={ThwHomePageData}>
         <AmenityProvider>
             <ThwServicesSection
                 sectionData={sectionData}></ThwServicesSection>
         </AmenityProvider>
-    </PageProvider>,
+    </PageProvider></ThemeProvider>,
 };
