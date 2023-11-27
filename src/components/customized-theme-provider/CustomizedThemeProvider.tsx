@@ -148,7 +148,7 @@ const CustomizedThemeProvider: FunctionComponent<IProps & PropsWithChildren> = (
             }
         }
         const extractSanityFontFace = (fontFaceName: string) => {
-            const fontFaceFromSanity = theme.typography?.fontFaces.find((fontFace: SanityMuiFontFace) => {
+            const fontFaceFromSanity = theme.typography?.fontFaces?.find((fontFace: SanityMuiFontFace) => {
                 if (fontFace.name === fontFaceName) {
                     return fontFace
                 }

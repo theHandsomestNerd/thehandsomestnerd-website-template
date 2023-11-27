@@ -13,7 +13,7 @@ const DigitalResumeThemeData:SanityMuiTheme ={
         "xl": 1320
     },
     "colorPalette": {
-        "name":"Digital Resume",
+        // "name":"Digital Resume",
         "disabledTextColor": "LIGHT_GRAY",
         "defaultBackground": "WHITESMOKE",
         "defaultPaperBackgroundColor": "DARKGRAY",
@@ -34,7 +34,7 @@ const DigitalResumeThemeData:SanityMuiTheme ={
             "OSWALD",
         ],
         // "_type": "MuiTypography",
-        "title": "Oswald and Raleway"
+        // "title": "Oswald and Raleway"
     },
     // "_rev": "46Ky6Oj1Dro85iJlEnmWLK",
     // "_type": "MuiTheme"

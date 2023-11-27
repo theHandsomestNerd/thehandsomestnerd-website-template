@@ -126,7 +126,7 @@ export type SanityMuiMediaQuery = {
 }
 export type SanityMuiTypography = {
     fontFamily: string[]
-    fontFaces: SanityMuiFontFace[]
+    fontFaces?: SanityMuiFontFace[]
 }
 
 export type SanityMuiColorPalette = {
@@ -137,7 +137,7 @@ export type SanityMuiColorPalette = {
     primaryTextColor: string
     secondaryTextColor: string
     disabledTextColor: string
-    buttonOutlineColor: string
+    buttonOutlineColor?: string
 }
 
 export type SanityBlogCategory = {
