@@ -11,13 +11,6 @@ import SnackbarProvider from "./components/modal-context/SnackbarProvider";
 import PageMux from "./components/templates/mackenzies-mind/pages/PageMux";
 import CustomizedThemeProvider from "./components/customized-theme-provider/CustomizedThemeProvider";
 
-export enum RoutesEnum {
-    MAINROUTE = "/chow-works/:pageSlug",
-    HOMEROUTE = "/chow-works/home",
-
-    ERROR = '/error'
-}
-
 function App() {
     const queryClient = new QueryClient({
         defaultOptions: {
@@ -49,11 +42,11 @@ function App() {
 
                                                     <Grid item>
                                                         <Routes>
-                                                            <Route path={RoutesEnum.MAINROUTE} element={<PageMux/>}/>
-                                                            <Route path={RoutesEnum.ERROR} element={<FourOhFour/>}/>
+                                                            <Route path={"/"+process.env.REACT_APP_BASE_ROUTE +"/:pageSlug"} element={<PageMux/>}/>
+                                                            <Route path={'/error'} element={<FourOhFour/>}/>
                                                             <Route path={"/*"}
                                                                    element={<Navigate
-                                                                       to={RoutesEnum.HOMEROUTE}/>}/>
+                                                                       to={"/"+process.env.REACT_APP_BASE_ROUTE+"/home"}/>}/>
                                                         </Routes>
                                                     </Grid>
                                                 </Grid>

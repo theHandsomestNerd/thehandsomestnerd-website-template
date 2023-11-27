@@ -32,6 +32,7 @@ Application that serves as the website builder from React Components
   REACT_APP_MESSAGING_SENDER_ID=
   REACT_APP_APP_ID=
   REACT_APP_FIREBASE_ANALYTICS_TRACKING_ID=
+  REACT_APP_BASE_ROUTE=
   ```
 
 #### Firebase
@@ -48,6 +49,7 @@ Application that serves as the website builder from React Components
   ```
   SANITY_PROJECTID=
   SANITY_DB=development
+  SANITY_APIVERSION=
   SANITY_API_TOKEN=
   SENDGRID_API_KEY=
   SENDGRID_FROM_EMAIL=
