@@ -28,8 +28,8 @@ const AnimatedServiceItem: FunctionComponent<IProps> = (props: IProps) => {
     }
 
     return (
-        <ThemeProvider theme={customizedTheme.customizedTheme} key={uuidv4()}>
             <motion.div
+                style={{width:"100%"}}
                 onHoverStart={async () => {
                     await animateShrinkIcon()
                 }}
@@ -38,7 +38,7 @@ const AnimatedServiceItem: FunctionComponent<IProps> = (props: IProps) => {
                 }}
             >
                 <Card>
-                    <Grid item container xs={12} md={6}
+                    <Grid container item
                           padding={customizedTheme.customizedTheme.spacing(3, 2)}
                           style={{backgroundColor: "#000000", position: "relative"}}
                           justifyContent='center'>
@@ -95,7 +95,6 @@ const AnimatedServiceItem: FunctionComponent<IProps> = (props: IProps) => {
                     </Grid>
                 </Card>
             </motion.div>
-        </ThemeProvider>
     )
 }
 
