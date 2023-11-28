@@ -73,7 +73,7 @@ const AnimatedServicesSection: FunctionComponent<IProps> = (props) => {
                     </Grid>
                     <Grid item container justifyContent='center' spacing={2}>
                         {props.sectionData.servicesList?.map((service: AnimatedServiceItemNoRefType, index: number) => {
-                            return <Grid key={`service-item-${index}`} item xs={6}><AnimatedServiceItem
+                            return <Grid key={`service-item-${index}`} item sm={6}><AnimatedServiceItem
                                 service={service}/></Grid>
                         })}
                     </Grid>
