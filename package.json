@@ -1,13 +1,14 @@
 {
   "name": "chowworks-website",
-  "version": "0.0.0",
+  "version": "0.3.1",
+  "license": "GPL-3.0-or-later",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
-    "@mui/icons-material": "^5.14.11",
+    "@mui/icons-material": "^5.14.18",
     "@mui/material": "^5.14.18",
-    "@mui/styles": "^5.14.11",
+    "@mui/styles": "^5.14.18",
     "@storybook/addon-mdx-gfm": "^7.4.6",
     "@storybook/react-webpack5": "^7.4.6",
     "@tanstack/react-query": "^4.36.1",
@@ -112,7 +113,7 @@
     "@types/react-router": "^5.1.19",
     "@types/react-router-dom": "^5.3.3",
     "@types/react-syntax-highlighter": "^13.5.0",
-    "@types/uuid": "^8.3.4",
+    "@types/uuid": "^9.0.0",
     "@types/validator": "^13.7.7",
     "storybook-addon-material-ui": "^0.9.0-alpha.24",
     "url-loader": "^4.1.1"

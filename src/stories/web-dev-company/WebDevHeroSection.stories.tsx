@@ -5,6 +5,11 @@ import {Grid} from "@mui/material";
 import WebDevHeroContentSection from "../../components/templates/web-dev-site/WebDevHeroContentSection";
 import WebDevHeroSectionData from "../data/WebDevHeroContentSectionData";
 import ThwHeroContentSection from "../../components/templates/transform-hw/ThwHeroContentSection";
+import DigitalResumeThemeData from "../data/DigitalResumeThemeData";
+import React from "react";
+import CustomizedThemeProvider from "../../components/customized-theme-provider/CustomizedThemeProvider";
+import {ThemeProvider} from "@mui/material/styles";
+import WebDevSiteTheme from "../../theme/WebDevSiteTheme";
 
 
 const meta: Meta<typeof WebDevHeroContentSection> = {
@@ -23,5 +28,7 @@ type Story = StoryObj<typeof WebDevHeroContentSection>;
  */
 
 export const Primary: Story = {
-    render: () => <WebDevHeroContentSection sectionData={WebDevHeroSectionData}></WebDevHeroContentSection>,
+    render: () =>                         <ThemeProvider theme={WebDevSiteTheme}>
+        <WebDevHeroContentSection sectionData={WebDevHeroSectionData}></WebDevHeroContentSection>
+    </ThemeProvider>,
 };

@@ -2,6 +2,8 @@ import type {Meta, StoryObj} from '@storybook/react';
 import thwMottoData from "../data/ThwMottoData";
 import ThwPositivePsychology from "../../components/templates/transform-hw/ThwPositivePsychology";
 import thwPositivePsychologyData from "../data/ThwPositivePsychologyData";
+import TransformHWTheme from "../../theme/TransformHWTheme";
+import {ThemeProvider} from "@mui/material/styles";
 
 
 const meta: Meta<typeof ThwPositivePsychology> = {
@@ -23,5 +25,5 @@ export const Primary: Story = {
     args:{
         sectionData:thwPositivePsychologyData
     },
-    render: ({sectionData}) => <ThwPositivePsychology sectionData={sectionData}></ThwPositivePsychology>,
+    render: ({sectionData}) => <ThemeProvider theme={TransformHWTheme}><ThwPositivePsychology sectionData={sectionData}></ThwPositivePsychology></ThemeProvider>,
 };

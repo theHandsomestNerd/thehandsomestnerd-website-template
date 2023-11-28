@@ -1,12 +1,9 @@
-import React, {FunctionComponent, useContext} from 'react'
-import {ThemeProvider} from "@mui/material/styles";
-import {Grid, Typography, useMediaQuery} from '@mui/material'
+import React, {FunctionComponent} from 'react'
+import {Grid, Typography, useMediaQuery, useTheme} from '@mui/material'
 import {ResumeFeedback, ResumeFeedbackSectionType} from "../../../BlockContentTypes";
 import useThwCommonStyles from "../../../../common/sanityIo/ThwCommonStyles";
 import {urlFor} from "../../../block-content-ui/static-pages/cmsStaticPagesClient";
 import {COLORS} from "../../../../theme/common/ColorPalette";
-import TheWebsiteTheme from "../../../../theme/Theme";
-import CustomizedThemeContext from "../../../customized-theme-provider/CustomizedThemeContext";
 
 
 interface IProps {
@@ -17,16 +14,15 @@ const ResumeFeedbackSection: FunctionComponent<IProps> = (props: IProps) => {
     const globalClasses = useThwCommonStyles()
     // const theme = useTheme()
 
-    const customizedThemeContext = useContext(CustomizedThemeContext)
+    const customizedThemeContext = useTheme()
 
-    const xsOnly = useMediaQuery(customizedThemeContext.customizedTheme.breakpoints.only('xs'))
+    const xsOnly = useMediaQuery(customizedThemeContext.breakpoints.only('xs'))
     return (
-        <ThemeProvider theme={TheWebsiteTheme
-        }><Grid
+        <Grid
             container
             item
             style={{
-                padding: TheWebsiteTheme
+                padding: customizedThemeContext
                     .spacing(4)
             }}
             className={globalClasses.resumeSection}
@@ -56,7 +52,7 @@ const ResumeFeedbackSection: FunctionComponent<IProps> = (props: IProps) => {
                                              // padding: theme.spacing(1.75, 0)
                                          }} xs={12} spacing={2} justifyContent='flex-start'>
                                 <Grid item md={3} lg={2} xl={2} container>
-                                    <img src={urlFor(feedbackEntry.imageSrc ?? "").url() ?? ""} height={50}
+                                    <img alt={feedbackEntry.name} src={urlFor(feedbackEntry.imageSrc ?? "").url() ?? ""} height={50}
                                          style={{maxWidth: "100%"}}/>
                                 </Grid>
                                 <Grid item md={9} lg={10} xl={10} container>
@@ -85,7 +81,6 @@ const ResumeFeedbackSection: FunctionComponent<IProps> = (props: IProps) => {
                 </Grid>
             </Grid>
         </Grid>
-        </ThemeProvider>
     );
 }
 

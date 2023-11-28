@@ -1,10 +1,9 @@
-import React, {CSSProperties, FunctionComponent, useContext} from 'react'
+import React, {CSSProperties, FunctionComponent} from 'react'
 import {v4 as uuidv4} from 'uuid'
-import {Grid, useMediaQuery} from '@mui/material'
+import {Grid, useMediaQuery, useTheme} from '@mui/material'
 import HeaderMenuItemButton from "../templates/transform-hw/HeaderMenuItemButton";
 import PopupStateWrapper from "./PopupStateWrapper";
 import {SanityMenuContainer} from "../../common/sanityIo/Types";
-import CustomizedThemeContext from "../customized-theme-provider/CustomizedThemeContext";
 
 
 interface FilteredMenuItemsProps {
@@ -29,15 +28,16 @@ const FilteredMenuItems: FunctionComponent<FilteredMenuItemsProps> = ({
                                                                           onlyButtons,
                                                                           includeMenuItems,
                                                                           includeMenuGroups,
-                                                                          textStyle, contentJustification
+                                                                          textStyle,
+                                                                          contentJustification
                                                                       }) => {
-    const customizedThemeContext = useContext(CustomizedThemeContext)
-
-    const mdDown = useMediaQuery(customizedThemeContext.customizedTheme.breakpoints.down('md'))
+    const theme = useTheme()
+    const mdDown = useMediaQuery(theme.breakpoints.down('md'))
 
     return (<Grid item container
+                  wrap='nowrap'
                   justifyContent={contentJustification ? contentJustification : (mdDown ? 'flex-start' : 'flex-end')}
-                  alignItems='stretch' style={{height: "100%"}} alignContent='center'>
+                  alignItems='stretch' alignContent='center'>
             {
                 subMenus?.reduce(
                     (accumulated: JSX.Element[], menuButton: any, index) => {

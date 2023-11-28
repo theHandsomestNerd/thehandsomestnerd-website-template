@@ -1,6 +1,5 @@
 import React, {FunctionComponent} from 'react'
-import {Button, Typography} from '@mui/material'
-import TheWebsiteTheme from "../../../theme/Theme";
+import {Button, Typography, useTheme} from '@mui/material'
 import {ArrowDropDown} from "@mui/icons-material";
 import {bindTrigger} from "material-ui-popup-state";
 import {SanityMenuGroup} from "../../../common/sanityIo/Types";
@@ -12,17 +11,19 @@ interface HeaderMenuItemButtonProps {
 }
 
 const HeaderMenuGroupButton: FunctionComponent<HeaderMenuItemButtonProps> = ({popupState,menuGroup}) => {
+    const theme = useTheme()
+
     return (<Button
         {...bindTrigger(popupState)}
         color={"secondary"}
         style={{
             borderRadius: 0,
-            paddingLeft: TheWebsiteTheme
+            paddingLeft: theme
 .spacing(2),
-            paddingRight: TheWebsiteTheme
+            paddingRight: theme
 .spacing(3),
             height: "100%",
-            color: TheWebsiteTheme
+            color: theme
 .palette.secondary.main
         }}
         onClick={popupState.handleClick}

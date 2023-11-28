@@ -1,9 +1,4 @@
-import {
-    ThwAboutProprietorSectionType,
-    ThwMottoSectionType,
-    ThwPositivePsychologySectionType
-} from "../../components/BlockContentTypes";
-import ThwAboutTheProprietorData from "./ThwAboutTheProprietorData";
+import {ThwAboutProprietorSectionType} from "../../components/BlockContentTypes";
 
 const thwAboutProprietorData:ThwAboutProprietorSectionType = {
     "proprietorImageAltText": "Julie Green MSW, LCSW-C",

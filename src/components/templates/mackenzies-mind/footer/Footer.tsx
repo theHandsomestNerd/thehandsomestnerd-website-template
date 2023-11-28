@@ -1,11 +1,11 @@
-import React, {FunctionComponent} from 'react'
+import React, {FunctionComponent, useContext} from 'react'
 import {Theme, ThemeProvider} from '@mui/material/styles';
 import makeStyles from '@mui/styles/makeStyles';
-import {Grid, useTheme} from '@mui/material'
+import {Grid} from '@mui/material'
 import FooterMenuContainer from './FooterMenuContainer'
 import {SanityMenuContainer} from "../../../../common/sanityIo/Types";
 import {COLORS} from "../../../../theme/common/ColorPalette";
-import TheWebsiteTheme from "../../../../theme/Theme";
+import CustomizedThemeContext from "../../../customized-theme-provider/CustomizedThemeContext";
 
 export const useStyles = makeStyles((theme: Theme) => ({
     root: {
@@ -13,7 +13,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
         // color: '#FDF3EB',
         // marginLeft: -1 * theme.spacing(1),
         // zIndex: 1000,
-        padding: TheWebsiteTheme.spacing(4),
+        padding: theme.spacing(4),
         '& .MuiFormLabel-root': {
             color: 'white',
         },
@@ -45,11 +45,11 @@ interface IProps {
 }
 
 const Footer: FunctionComponent<IProps> = (props: IProps) => {
-    const theme = useTheme()
-    const classes = useStyles(theme)
+    const customizedTheme = useContext(CustomizedThemeContext)
+    const classes = useStyles(customizedTheme)
 
     return (
-        <ThemeProvider theme={TheWebsiteTheme}>
+        <ThemeProvider theme={customizedTheme.customizedTheme}>
             <Grid container className={classes.root}>
                 <Grid container justifyContent="flex-start">
                     <Grid item xs={12}>

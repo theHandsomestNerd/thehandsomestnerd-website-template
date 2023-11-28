@@ -107,13 +107,29 @@ export type SanityMuiBreakpoints = {
     xl: number
 }
 
+
+export type SanityMuiFontFace = {
+    name: string
+    fontSize: string
+    fontStyle: string
+    fontWeight: string
+    lineHeight: string
+    letterSpacing: string
+    textTransform?: any
+    [key:string]: any
+    mediaQueries: SanityMuiMediaQuery[]
+}
+
+export type SanityMuiMediaQuery = {
+    breakpoint: string
+    typography: SanityMuiFontFace
+}
 export type SanityMuiTypography = {
-    title: string
     fontFamily: string[]
+    fontFaces?: SanityMuiFontFace[]
 }
 
 export type SanityMuiColorPalette = {
-    name: string
     defaultBackground: string
     defaultPaperBackgroundColor: string
     primaryColor: string
@@ -121,6 +137,7 @@ export type SanityMuiColorPalette = {
     primaryTextColor: string
     secondaryTextColor: string
     disabledTextColor: string
+    buttonOutlineColor?: string
 }
 
 export type SanityBlogCategory = {

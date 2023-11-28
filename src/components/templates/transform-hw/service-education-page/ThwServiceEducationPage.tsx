@@ -1,16 +1,14 @@
-import React, {FunctionComponent, useContext} from 'react'
+import React, {FunctionComponent} from 'react'
 import {Theme} from '@mui/material/styles';
 import makeStyles from '@mui/styles/makeStyles';
-import {Divider, Grid, Typography, useMediaQuery} from '@mui/material'
+import {Divider, Grid, Typography, useMediaQuery, useTheme} from '@mui/material'
 import {ServiceAmenityType, ThwServiceItemType} from "../../../BlockContentTypes";
 import {urlFor} from "../../../block-content-ui/static-pages/cmsStaticPagesClient";
 import ResponsiveBullet from "../../../ResponsiveBullet";
-import TheWebsiteTheme from "../../../../theme/Theme";
 import LoadingButton from "../../../loading-button/LoadingButton";
 import OtherServices from "./OtherServices";
 import {v4 as uuidv4} from 'uuid'
 import imagePlaceholderClient from "../../../../utils/imagePlaceholderClient";
-import CustomizedThemeContext from "../../../customized-theme-provider/CustomizedThemeContext";
 
 export const useStyles = makeStyles((theme: Theme) => ({
     root: {
@@ -35,20 +33,19 @@ interface IProps {
 
 
 const ThwServiceEducationPage: FunctionComponent<IProps> = (props) => {
-    const classes = useStyles(TheWebsiteTheme
-)
+    const classes = useStyles()
 
     // const {data} = thwClient.useFetchRefsQuery(props.serviceData.serviceAmenities)
 
-    const customizedThemeContext = useContext(CustomizedThemeContext)
+    const customizedThemeContext = useTheme()
 
-    const smDown = useMediaQuery(customizedThemeContext.customizedTheme.breakpoints.down('sm'))
-    const xsDown = useMediaQuery(customizedThemeContext.customizedTheme.breakpoints.down('xs'))
+    const smDown = useMediaQuery(customizedThemeContext.breakpoints.down('sm'))
+    const xsDown = useMediaQuery(customizedThemeContext.breakpoints.down('xs'))
     return (
 
         <Grid container item className={classes.root} xs={12} style={{position: "relative"}}>
             <Grid container item >
-                <Grid item container style={{marginTop: TheWebsiteTheme.spacing(76)}}>
+                <Grid item container style={{marginTop: customizedThemeContext.spacing(76)}}>
 
                 </Grid>
                 <Grid container style={{
@@ -78,13 +75,13 @@ const ThwServiceEducationPage: FunctionComponent<IProps> = (props) => {
                             width: "100%",
                             position: "absolute",
                             backgroundPosition: "center",
-                            top: TheWebsiteTheme
+                            top: customizedThemeContext
 .mixins.toolbar.height,
                             // left: TransformHWTheme.spacing(-6),
                             backgroundSize: 'cover',
                             // backgroundImage: `url(${urlFor(props.serviceData.educationPageSlimHeroImage).height(200).url()})`
                         }}>
-                            <Grid container alignItems='center' alignContent='center' style={{ padding: TheWebsiteTheme
+                            <Grid container alignItems='center' alignContent='center' style={{ padding: customizedThemeContext
 .spacing(4,4,0,4),
                             }}>
                                 <Grid item container justifyContent={smDown ? 'center' : "flex-start"}>
@@ -138,17 +135,17 @@ const ThwServiceEducationPage: FunctionComponent<IProps> = (props) => {
                         {props.serviceData.serviceAmenities?.map((serviceAmenity: ServiceAmenityType) => {
                             return <Grid key={uuidv4()} container item xs={6} sm={5} md={4} lg={3} xl={3}
                                          style={{
-                                             padding: xsDown ? TheWebsiteTheme
-.spacing(4, 0, 4, 0) : TheWebsiteTheme
+                                             padding: xsDown ? customizedThemeContext
+.spacing(4, 0, 4, 0) : customizedThemeContext
 .spacing(6, 0, 6, 0),
-                                             margin: xsDown ? TheWebsiteTheme
-.spacing(-.2, -.1, .05, -.1,) : TheWebsiteTheme
+                                             margin: xsDown ? customizedThemeContext
+.spacing(-.2, -.1, .05, -.1,) : customizedThemeContext
 .spacing(-.1, -.1, -.1, -.1,),
                                              maxWidth: "300px",
                                              minWidth: "230px",
-                                             border: `1px solid ${TheWebsiteTheme
+                                             border: `1px solid ${customizedThemeContext
 .palette.secondary.main}`,
-                                             backgroundColor: TheWebsiteTheme
+                                             backgroundColor: customizedThemeContext
 .palette.background.paper
                                          }}>
                                 <Grid container item justifyContent='center' alignContent='flex-start' spacing={1}>
@@ -193,7 +190,7 @@ const ThwServiceEducationPage: FunctionComponent<IProps> = (props) => {
                     </Grid>
                 </Grid>
                 <Grid container item alignItems="center" justifyContent="center"
-                      style={{margin: TheWebsiteTheme
+                      style={{margin: customizedThemeContext
 .spacing(8, 0, 6)}}>
                     <LoadingButton
                         width={250}
@@ -204,7 +201,7 @@ const ThwServiceEducationPage: FunctionComponent<IProps> = (props) => {
                     </LoadingButton>
                 </Grid>
                 <Grid container item>
-                    <Divider style={{width: "100%", margin: TheWebsiteTheme
+                    <Divider style={{width: "100%", margin: customizedThemeContext
 .spacing(4, 0, 2, 0)}}/>
                 </Grid>
                 <Grid container item>

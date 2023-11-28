@@ -1,6 +1,6 @@
 import React, {FunctionComponent, useContext} from 'react'
 import BlockContent from '@sanity/block-content-to-react'
-import {Card, Grid, Link, Theme, ThemeProvider} from '@mui/material';
+import {Card, Grid, Link, ThemeProvider} from '@mui/material';
 import sanityClient from '../sanityClient'
 import {blockSerializers} from '../common/sanityIo/BlockContentRenderer'
 import {DevelopmentHeaderSectionType, HeaderSectionType,} from "./BlockContentTypes";
@@ -10,21 +10,6 @@ import Header from "./templates/mackenzies-mind/header/Header";
 import WebDevSiteTheme from "../theme/WebDevSiteTheme";
 import EnhancedHeader from "./templates/mackenzies-mind/header/EnhancedHeader";
 import CustomizedThemeContext from "./customized-theme-provider/CustomizedThemeContext";
-
-
-declare module '@mui/styles/defaultTheme' {
-    // eslint-disable-next-line @typescript-eslint/no-empty-interface
-    interface DefaultTheme extends Theme {
-    }
-}
-
-
-declare module '@mui/styles/defaultTheme' {
-    // eslint-disable-next-line @typescript-eslint/no-empty-interface
-    interface DefaultTheme extends Theme {
-    }
-}
-
 
 export type HeaderBlockContentLayoutContainerProps = {
     content?: any,
@@ -52,8 +37,8 @@ const HeaderBlockContentLayoutContainer: FunctionComponent<HeaderBlockContentLay
             window.removeEventListener('resize', handResize)
         }
 
-
-    },[])
+        // eslint-disable-next-line
+    }, [])
 
 
     return (
@@ -124,18 +109,16 @@ const HeaderBlockContentLayoutContainer: FunctionComponent<HeaderBlockContentLay
                         const header: HeaderSectionType = columnLayoutContainer
 
                         return (
-                            <ThemeProvider theme={customizedTheme} key={'TOP_OF_PAGE'}>
-                                <Grid container item xs={12}>
-                                    <Link id={"TOP_OF_PAGE"} underline="hover"><></>
-                                    </Link>
-                                    {
-                                        showBasicHeader || !header.isEnhanced ?
-                                            <Header isSearch={header.isSearch} isAppBar={true}
-                                                    pageHeader={header.headerMenuRef}/>
-                                            : <EnhancedHeader pageHeader={header}/>
-                                    }
-                                </Grid>
-                            </ThemeProvider>
+                            <Grid container item xs={12} key={'TOP_OF_PAGE'}>
+                                <Link id={"TOP_OF_PAGE"} underline="hover"><></>
+                                </Link>
+                                {
+                                    showBasicHeader || !header.isEnhanced ?
+                                        <Header isSearch={header.isSearch} isAppBar={true}
+                                                pageHeader={header.headerMenuRef}/>
+                                        : <EnhancedHeader pageHeader={header}/>
+                                }
+                            </Grid>
                         );
                     default:
                         return <span key={index}>Undefined section {columnLayoutContainer._type}</span>

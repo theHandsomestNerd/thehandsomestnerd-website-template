@@ -1,10 +1,10 @@
 import React, {FunctionComponent, PropsWithChildren, useContext, useMemo,} from 'react';
 import CustomizedThemeContext from './CustomizedThemeContext';
 import {CssBaseline} from "@mui/material";
-import {createTheme, Theme, ThemeProvider} from "@mui/material/styles";
+import {createTheme, ThemeProvider} from "@mui/material/styles";
 import {COLORS} from "../../theme/common/ColorPalette";
 import {grey} from "@mui/material/colors";
-import {SanityMuiTheme} from "../../common/sanityIo/Types";
+import {SanityMuiFontFace, SanityMuiTheme} from "../../common/sanityIo/Types";
 import PageContext from "../page-context/PageContext";
 import TheWebsiteTheme from "../../theme/Theme";
 import cmsClient from "../block-content-ui/cmsClient";
@@ -14,108 +14,157 @@ type IProps = {
 };
 
 
+const capitalizeArray = (theString: string[]) => {
+    const place = theString.map((aString) => {
+
+        const lower = aString.toLowerCase()
+        const upper = aString.toUpperCase()
+
+        return `"${upper[0] + lower.slice(1)}"`
+    })
+
+    // console.log("the capitalized array",place)
+    return place
+}
+
+const convertToHexCode = (value?: string) => {
+    let defaultBg = COLORS.WHITESMOKE;
+    switch (value) {
+        case 'WHITESMOKE':
+            defaultBg = COLORS.WHITESMOKE
+            break;
+        case 'DARKBLUE':
+            defaultBg = COLORS.DARKBLUE
+            break;
+        case 'TRANSPARENT_DARKBLUE':
+            defaultBg = COLORS.TRANSPARENT_DARKBLUE
+            break;
+        case 'BLUE':
+            defaultBg = COLORS.BLUE
+            break;
+        case 'GRAY':
+            defaultBg = COLORS.GRAY
+            break;
+        case 'LIGHT_GRAY':
+            defaultBg = COLORS.LIGHT_GRAY
+            break;
+        case 'TRANSPARENTWHITE':
+            defaultBg = COLORS.TRANSPARENTWHITE
+            break;
+        case 'LIGHTBLUE':
+            defaultBg = COLORS.LIGHTBLUE
+            break;
+        case 'ALMOSTPURPLE':
+            defaultBg = COLORS.ALMOSTPURPLE
+            break;
+        case 'LIGHTGRAY':
+            defaultBg = COLORS.LIGHTGRAY
+            break;
+        case 'TRANPARENTLIGHTGRAY':
+            defaultBg = COLORS.TRANSPARENTLIGHTGRAY
+            break;
+        case 'MEDIUMGRAY':
+            defaultBg = COLORS.MEDIUMGRAY
+            break;
+        case 'DARKGRAY':
+            defaultBg = COLORS.DARKGRAY
+            break;
+        case 'TRANPARENTDARKGRAY':
+            defaultBg = COLORS.TRANSPARENTDARKGRAY
+            break;
+        case 'AQUA':
+            defaultBg = COLORS.AQUA
+            break;
+        case 'RED':
+            defaultBg = COLORS.RED
+            break;
+        case 'ALMOSTWHITE':
+            defaultBg = COLORS.ALMOSTWHITE
+            break;
+        case 'DARKERGRAY':
+            defaultBg = COLORS.DARKERGRAY
+            break;
+        // case 'DARKERGRAY':
+        //     defaultBg = COLORS.DARKERGRAY
+        //     break;
+        case 'LIGHTER_GRAY':
+            defaultBg = COLORS.LIGHTER_GRAY
+            break;
+        case 'DARK_GRAY':
+            defaultBg = COLORS.DARK_GRAY
+            break;
+        default:
+            defaultBg = COLORS.WHITESMOKE
+    }
+
+    return defaultBg
+}
+
 const CustomizedThemeProvider: FunctionComponent<IProps & PropsWithChildren> = (
     props: PropsWithChildren<IProps>,
 ) => {
 
-    const [customizedTheme, setCustomizedTheme] = React.useState<Partial<Theme>>({})
+    const [customizedTheme, setCustomizedTheme] = React.useState<any>(TheWebsiteTheme)
     const fonts = `"Raleway", "Oswald"`
 
     const pageContext = useContext(PageContext);
     React.useEffect(() => {
-        console.log('Theme ', pageContext.page?.theme)
-        if (pageContext.page?.theme && customizedTheme) {
+        // console.log('Theme ', pageContext.page?.theme)
+        if (pageContext.page?.theme) {
             const theCustomizedTheme = getThemeFromSanity(pageContext.page?.theme)
 
             setCustomizedTheme(theCustomizedTheme)
         } else {
-            setCustomizedTheme(TheWebsiteTheme
-            )
+            setCustomizedTheme(TheWebsiteTheme)
         }
+        // eslint-disable-next-line
     }, [pageContext.page?.theme])
 
+    React.useEffect(() => {
+        console.log("customized theme change",customizedTheme)
+    }, [customizedTheme])
+
     const getThemeFromSanity = (theme: SanityMuiTheme) => {
-        const convertToHexCode = (value?: string) => {
-            let defaultBg = COLORS.WHITESMOKE;
-            switch (value) {
-                case 'WHITESMOKE':
-                    defaultBg = COLORS.WHITESMOKE
-                    break;
-                case 'DARKBLUE':
-                    defaultBg = COLORS.DARKBLUE
-                    break;
-                case 'TRANSPARENT_DARKBLUE':
-                    defaultBg = COLORS.TRANSPARENT_DARKBLUE
-                    break;
-                case 'BLUE':
-                    defaultBg = COLORS.BLUE
-                    break;
-                case 'GRAY':
-                    defaultBg = COLORS.GRAY
-                    break;
-                case 'LIGHT_GRAY':
-                    defaultBg = COLORS.LIGHT_GRAY
-                    break;
-                case 'TRANSPARENTWHITE':
-                    defaultBg = COLORS.TRANSPARENTWHITE
-                    break;
-                case 'LIGHTBLUE':
-                    defaultBg = COLORS.LIGHTBLUE
-                    break;
-                case 'ALMOSTPURPLE':
-                    defaultBg = COLORS.ALMOSTPURPLE
-                    break;
-                case 'LIGHTGRAY':
-                    defaultBg = COLORS.LIGHTGRAY
-                    break;
-                case 'TRANPARENTLIGHTGRAY':
-                    defaultBg = COLORS.TRANSPARENTLIGHTGRAY
-                    break;
-                case 'MEDIUMGRAY':
-                    defaultBg = COLORS.MEDIUMGRAY
-                    break;
-                case 'DARKGRAY':
-                    defaultBg = COLORS.DARKGRAY
-                    break;
-                case 'TRANPARENTDARKGRAY':
-                    defaultBg = COLORS.TRANSPARENTDARKGRAY
-                    break;
-                case 'AQUA':
-                    defaultBg = COLORS.AQUA
-                    break;
-                case 'RED':
-                    defaultBg = COLORS.RED
-                    break;
-                case 'ALMOSTWHITE':
-                    defaultBg = COLORS.ALMOSTWHITE
-                    break;
-                case 'DARKERGRAY':
-                    defaultBg = COLORS.DARKERGRAY
-                    break;
-                // case 'DARKERGRAY':
-                //     defaultBg = COLORS.DARKERGRAY
-                //     break;
-                case 'LIGHTER_GRAY':
-                    defaultBg = COLORS.LIGHTER_GRAY
-                    break;
-                case 'DARK_GRAY':
-                    defaultBg = COLORS.DARK_GRAY
-                    break;
-                default:
-                    defaultBg = COLORS.WHITESMOKE
+        const createMuiFontFace = (sanityFontFace: SanityMuiFontFace) => {
+            let processedMediaQuery:any[] = [];
+            if(sanityFontFace.mediaQueries?.length > 0){
+                processedMediaQuery = sanityFontFace.mediaQueries.map((mediaQuery)=>{
+
+                const query:any = {}
+                     // @ts-ignore
+                     query[`@media (max-width:${theme.breakpoints[mediaQuery.breakpoint[0]]}px)`] = mediaQuery.typography;
+                return query
+                })
             }
 
-            return defaultBg
+            return {
+                fontSize: sanityFontFace.fontSize,
+                ...processedMediaQuery[0],
+                fontStyle: sanityFontFace.fontStyle,
+                fontWeight: sanityFontFace.fontWeight,
+                lineHeight: sanityFontFace.lineHeight,
+                letterSpacing: sanityFontFace.letterSpacing,
+                textTransform: sanityFontFace.textTransform
+            }
+        }
+        const extractSanityFontFace = (fontFaceName: string) => {
+            const fontFaceFromSanity = theme.typography?.fontFaces?.find((fontFace: SanityMuiFontFace) => {
+                if (fontFace.name === fontFaceName) {
+                    return fontFace
+                }
+                return undefined
+            })
+            return fontFaceFromSanity ? createMuiFontFace(fontFaceFromSanity) : undefined
         }
 
-        const theCustomizedTheme = createTheme({
+        return createTheme({
             breakpoints: {
                 values: {
-                    xs: theme.breakpoints?.xs ?? 0,
-                    sm: theme.breakpoints?.sm ?? 640,
-                    md: theme.breakpoints?.md ?? 980,
-                    lg: theme.breakpoints?.lg ?? 1160,
-                    xl: theme.breakpoints?.xl ?? 1320,
+                    xs: parseInt(String(theme.breakpoints?.xs ?? 0)),
+                    sm: parseInt(String(theme.breakpoints?.sm ?? 640)),
+                    md: parseInt(String(theme.breakpoints?.md ?? 980)),
+                    lg: parseInt(String(theme.breakpoints?.lg ?? 1160)),
+                    xl: parseInt(String(theme.breakpoints?.xl ?? 1320)),
                 }
             },
             palette: {
@@ -152,101 +201,22 @@ const CustomizedThemeProvider: FunctionComponent<IProps & PropsWithChildren> = (
             },
             mixins: {
                 toolbar: {
-                    // height: "55px"
                     height: (theme.appBarHeight ?? 55) + "px"
                 }
             },
             typography: {
-                fontFamily: theme.typography?.fontFamily ? theme.typography?.fontFamily.join(',') : fonts,
-                h1: {
-                    // Title1
-                    fontSize: '4.25rem',
-                    '@media (max-width:640px)': {
-                        fontSize: '2.8rem',
-                    },
-                    fontStyle: 'normal',
-                    fontWeight: "bold",
-                    lineHeight: 1.3,
-                    letterSpacing: '-0.01em'
-                },
-                h2: {
-                    // Title2
-                    fontSize: '3.78rem',
-                    fontStyle: 'normal',
-                    fontWeight: 700,
-                    lineHeight: 1.25,
-                    letterSpacing: '-0.02em'
-                },
-                h3: {
-                    // Title3
-                    '@media (max-width:640px)': {
-                        fontSize: '1.4rem',
-                    },
-                    fontSize: '3rem',
-                    fontStyle: 'normal',
-                    fontWeight: 600,
-                    lineHeight: 1.4,
-                    letterSpacing: '-0.03em'
-                },
-                h4: {
-                    fontWeight: 'bold',
-                    fontStyle: 'normal',
-                    fontSize: '2.5rem',
-                    lineHeight: 1
-                },
-                h5: {
-                    fontWeight: 'bold',
-                    fontStyle: 'normal',
-                    fontSize: '2rem',
-                    lineHeight: 1
-                },
-                h6: {
-                    fontWeight: 'bold',
-                    fontStyle: 'normal',
-                    fontSize: '1.7rem',
-                    lineHeight: 1
-                },
-                body1: {
-                    // Body
-                    fontSize: '1rem',
-                    fontStyle: 'normal',
-                    fontWeight: 400,
-                    lineHeight: 1.5,
-                    letterSpacing: '-0.02em'
-                },
-                body2: {
-                    // Large
-                    fontSize: "1.285rem",
-                    fontStyle: 'normal',
-                    fontWeight: 550,
-                    lineHeight: 1.5,
-                    letterSpacing: '0.0em'
-                },
-                button: {
-                    // Button
-                    fontSize: '19px',
-                    fontStyle: 'normal',
-                    fontWeight: 700,
-                    lineHeight: 1,
-                    letterSpacing: '-0.03em',
-                    textTransform: 'none'
-                },
-                subtitle1: {
-                    // Small
-                    fontSize: '14px',
-                    fontStyle: 'normal',
-                    fontWeight: 750,
-                    lineHeight: 1,
-                    letterSpacing: '-0.03em'
-                },
-                subtitle2: {
-                    // Micro
-                    fontSize: '11px',
-                    fontStyle: 'normal',
-                    fontWeight: 600,
-                    lineHeight: 1.45,
-                    letterSpacing: '-0.03em'
-                }
+                fontFamily: theme.typography?.fontFamily ? capitalizeArray(theme.typography.fontFamily).join(',') : fonts,
+                h1: extractSanityFontFace('h1'),
+                h2: extractSanityFontFace('h2'),
+                h3: extractSanityFontFace('h3'),
+                h4: extractSanityFontFace('h4'),
+                h5: extractSanityFontFace('h5'),
+                h6: extractSanityFontFace('h6'),
+                body1: extractSanityFontFace('body1'),
+                body2: extractSanityFontFace('body2'),
+                button: extractSanityFontFace('button'),
+                subtitle1: extractSanityFontFace('subtitle1'),
+                subtitle2: extractSanityFontFace('subtitle2')
             },
             components: {
                 MuiInputBase: {
@@ -282,13 +252,12 @@ const CustomizedThemeProvider: FunctionComponent<IProps & PropsWithChildren> = (
                             borderRadius: '-64px',
                             paddingTop: "16px",
                             paddingBottom: "16px",
-
                         },
                         contained: {
                             boxShadow: "none",
                         },
                         containedPrimary: {
-                            border: '1px solid transparent',
+                            border: `1px solid ${theme.colorPalette?.buttonOutlineColor ? convertToHexCode(theme.colorPalette.buttonOutlineColor):"transparent"}`,
                             '&.Mui-disabled': {
                                 color: '#969284'
                             },
@@ -320,13 +289,12 @@ const CustomizedThemeProvider: FunctionComponent<IProps & PropsWithChildren> = (
                         root: {
                             paddingRight: "16px",
                             borderColor: 'black',
-                            border: "1px solid transparent"
+                            // border: "1px solid transparent"
                         }
                     }
                 }
             }
-        })
-        return theCustomizedTheme;
+        });
     }
 
     const getThemeBySlug = async (slug: string) => {
@@ -340,8 +308,9 @@ const CustomizedThemeProvider: FunctionComponent<IProps & PropsWithChildren> = (
             customizedTheme,
             getThemeBySlug
         }),
-        [customizedTheme]
+        [customizedTheme, getThemeBySlug]
     );
+
     return (
         <CustomizedThemeContext.Provider value={newValue}>
             <ThemeProvider theme={customizedTheme}>

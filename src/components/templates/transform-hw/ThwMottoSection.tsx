@@ -4,22 +4,20 @@ import {ThwMottoSectionType} from "../../BlockContentTypes";
 import {Parallax} from 'react-parallax';
 import clsx from "clsx";
 import useCustomStyles from "../mackenzies-mind/pages/Styles";
-import TransformHWTheme from "../../../theme/TransformHWTheme";
-import {Theme, ThemeProvider} from "@mui/material/styles";
+import {Theme} from "@mui/material/styles";
 import makeStyles from "@mui/styles/makeStyles";
 import {Grid, Typography, useMediaQuery} from "@mui/material";
-import TheWebsiteTheme from "../../../theme/Theme";
 import CustomizedThemeContext from "../../customized-theme-provider/CustomizedThemeContext";
 
 export const useStyles = makeStyles((theme: Theme) => ({
     root: {
         height: '430px',
         // backgroundColor: theme.palette.background.paper,
-        paddingBottom: TransformHWTheme.spacing(5)
+        paddingBottom: theme.spacing(5)
     },
     contentBullets: {
         // border: "1px solid black"
-        marginBottom: TransformHWTheme.spacing(5)
+        marginBottom: theme.spacing(5)
     }
 }))
 
@@ -29,13 +27,13 @@ interface IProps {
 }
 
 const ThwMottoSection: FunctionComponent<IProps> = (props) => {
-    const globalClasses = useCustomStyles(TheWebsiteTheme)
+    const globalClasses = useCustomStyles({})
     const classes = useStyles()
     const customizedThemeContext = useContext(CustomizedThemeContext)
 
     const smDown = useMediaQuery(customizedThemeContext.customizedTheme.breakpoints.down('sm'))
     return (
-        <ThemeProvider theme={TransformHWTheme}><Parallax blur={1}
+        <Parallax blur={1}
                                                           bgImage={urlFor(props.sectionData.parallaxImage).url() ?? undefined}
                                                           bgImageAlt="the cat"
                                                           strength={600}>
@@ -56,7 +54,7 @@ const ThwMottoSection: FunctionComponent<IProps> = (props) => {
                     </Typography>
                 </Grid>
             </Grid>
-        </Parallax></ThemeProvider>
+        </Parallax>
     )
 }
 

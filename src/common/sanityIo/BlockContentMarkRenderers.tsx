@@ -4,8 +4,7 @@
 // it would also block other html elements causing that mark to line break
 import React, {PropsWithChildren} from 'react'
 import {useCommonStyles} from './CommonStyles'
-import {CssBaseline, ThemeProvider, Typography} from '@mui/material';
-import TheWebsiteTheme from "../../theme/Theme";
+import {CssBaseline, ThemeProvider, Typography, useTheme} from '@mui/material';
 
 export type TypographyVariantType =
   'inherit'
@@ -25,28 +24,30 @@ export type TypographyVariantType =
   | 'srOnly'
   | undefined
 export const LightRender: React.FunctionComponent<PropsWithChildren> = (props) => {
-  const classes = useCommonStyles(TheWebsiteTheme)
+  const classes = useCommonStyles()
   return <span className={classes.lightWeightFont}>{props.children}</span>
 }
 
 export const BoldRender: React.FunctionComponent<PropsWithChildren> = (props) => {
-  const classes = useCommonStyles(TheWebsiteTheme)
+  const classes = useCommonStyles()
   return <span className={classes.boldWeightFont}>{props.children}</span>
 }
 
 export const DropCapRender: React.FunctionComponent<PropsWithChildren> = (props) => {
-  const classes = useCommonStyles(TheWebsiteTheme)
+  const classes = useCommonStyles()
   return <span className={classes.dropCapLetter}>{props.children}</span>
 }
 
 export const KeystrokeRender: React.FunctionComponent<PropsWithChildren> = (props) => {
-  const classes = useCommonStyles(TheWebsiteTheme)
+  const classes = useCommonStyles()
   return <span className={classes.keystroke}>{props.children}</span>
 }
 
 export const TextColorRender: React.FunctionComponent<PropsWithChildren> = (props, color) => {
+  const theme = useTheme()
+
   return (
-      <ThemeProvider theme={TheWebsiteTheme}><CssBaseline/><span
+      <ThemeProvider theme={theme}><CssBaseline/><span
         style={{color: color}}>{props.children}</span></ThemeProvider>
   );
 }
@@ -56,7 +57,7 @@ export const UnderlineRender: React.FunctionComponent<PropsWithChildren> = (prop
 }
 
 export const NormalRender: React.FunctionComponent<PropsWithChildren> = (props: React.PropsWithChildren<{}> & { listItem?: string, level?: number }) => {
-  const classes = useCommonStyles(TheWebsiteTheme)
+  const classes = useCommonStyles()
   return <p className={classes.bodyText}>{props.children}</p>
 }
 
@@ -93,15 +94,3 @@ export const LargeBodyTextRender: React.FunctionComponent<PropsWithChildren> = (
 // export const ButtonRender: (props: any, color: string, variant: string, buttonText: string, buttonLink: string) => any = (props:any, color:string, variant:string, buttonText:string, buttonLink:string):any => {
 //   return <Button variant={variant as 'text' | 'outlined' | 'contained'} color={color as PropTypes.Color} href={buttonLink}>{props.buttonText}</Button>
 // }
-
-
-export default {
-  LightRender,
-  BoldRender,
-  DropCapRender,
-  HighlightRender: TextColorRender,
-  UnderlineRender,
-  TypographyRender,
-  LargeBodyTextRender,
-  KeystrokeRender
-}

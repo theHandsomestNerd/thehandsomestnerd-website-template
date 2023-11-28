@@ -26,11 +26,6 @@ export default {
     type: 'object',
     fields: [
         {
-            name: 'name',
-            title: 'Name',
-            type: 'string',
-        },
-        {
             name: 'defaultBackground',
             title: 'Default Background Color',
             type: 'string',
@@ -60,6 +55,12 @@ export default {
             type: 'string',
            options: {list: listing}
         },
+        {
+            name: 'buttonOutlineColor',
+            title: 'Button Outline Color',
+            type: 'string',
+            options: {list: listing}
+        },
        {
             name: 'secondaryTextColor',
             title: 'Secondary Text Color',
@@ -73,10 +74,5 @@ export default {
            options: {list: listing}
         },
 
-    ],
-    preview: {
-        select: {
-            title: 'name',
-        },
-    },
+    ]
 }
