@@ -56,18 +56,8 @@ const HeroAnimatedContentSection: FunctionComponent<IProps> = (props) => {
     }, [props.sectionData.contentSlides, pageNumber])
 
     return (
-        <ThemeProvider theme={themeContext.customizedTheme}>
             <Grid container item style={{overflow: "hidden", paddingTop: "148px"}}>
-                <motion.div
-                    animate={{scale: 1}}
-                    initial={{scale: 1.1}}
-                    transition={{
-                        // ease: "linear",
-                        duration: 2,
-                        // scale: {duration: 3},
-                        // opacity: {duration: .5}
-                    }}
-                >
+
                     <Grid container item style={{
                         backgroundRepeat: 'no-repeat',
                         backgroundImage: contentSlide?.heroImage ? `url('${urlFor(contentSlide?.heroImage).url() ?? ''}'), url('${urlFor(contentSlide?.heroImageBackground ?? "").url()}')` : "",
@@ -100,6 +90,16 @@ const HeroAnimatedContentSection: FunctionComponent<IProps> = (props) => {
                                 </IconButton>
                             </Grid>
                             <Grid item xs={10}>
+                                <motion.div
+                                    animate={{scale: 1}}
+                                    initial={{scale: 1.1}}
+                                    transition={{
+                                        // ease: "linear",
+                                        duration: 2,
+                                        // scale: {duration: 3},
+                                        // opacity: {duration: .5}
+                                    }}
+                                >
                                 <Grid item>
                                     <Grid container className={classes.contentSection} item>
                                         <Grid container justifyContent='center' alignContent={'center'}>
@@ -201,6 +201,7 @@ const HeroAnimatedContentSection: FunctionComponent<IProps> = (props) => {
                                         </Grid>
                                     </Grid>
                                 </Grid>
+                                </motion.div>
                             </Grid>
                             <Grid item>
                                 <Grid item >
@@ -222,9 +223,8 @@ const HeroAnimatedContentSection: FunctionComponent<IProps> = (props) => {
                             </Grid>
                         </Grid>
                     </Grid>
-                </motion.div>
+
             </Grid>
-        </ThemeProvider>
     )
 }
 
