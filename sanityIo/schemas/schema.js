@@ -88,6 +88,8 @@ import AnimatedAboutUsSection from "./services/AnimatedAboutUsSection";
 import AnimatedServicesSection from "./services/AnimatedServicesSection";
 import MuiFontFace from "./mui/MuiFontFace";
 import MuiMediaQuery from "./mui/MuiMediaQuery";
+import AnimatedPortfolioItem from "./sections/animated/AnimatedPortfolioItem";
+import AnimatedPortfolioSection from "./sections/animated/AnimatedPortfolioSection";
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default [
@@ -181,5 +183,7 @@ export default [
     AnimatedHeroContentSection,
     AnimatedAboutUsSection,
     AnimatedServicesSection,
+    AnimatedPortfolioItem,
+    AnimatedPortfolioSection,
     HeroSlideContent
 ]

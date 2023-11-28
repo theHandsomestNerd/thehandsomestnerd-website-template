@@ -4,7 +4,7 @@ import {Card, Grid, Link, useTheme} from '@mui/material'
 import sanityClient from '../sanityClient'
 import {blockSerializers} from '../common/sanityIo/BlockContentRenderer'
 import {
-    AnimatedAboutUsSectionType, AnimatedServicesSectionType,
+    AnimatedAboutUsSectionType, AnimatedPortfolioSectionType, AnimatedServicesSectionType,
     HeroAnimatedContentSectionType,
     HowItWorksSectionType,
     PortfolioSectionType,
@@ -55,6 +55,7 @@ import WebDevHowItWorksSection from "./templates/web-dev-site/WebDevHowItWorksSe
 import HeroAnimatedContentSection from "./animated/HeroAnimatedContentSection";
 import AnimatedAboutUsSection from "./animated/AnimatedAboutUsSection";
 import AnimatedServicesSection from './animated/AnimatedServicesSection'
+import AnimatedPortfolioSection from "./animated/AnimatedPortfolioSection";
 
 export type BlockContentLayoutContainerProps = {
     content?: any,
@@ -434,6 +435,17 @@ const BlockContentLayoutContainer: FunctionComponent<BlockContentLayoutContainer
                                 </Link>
                                 <AnimatedServicesSection
                                     sectionData={animatedServicesSection}
+                                />
+                            </Grid>
+                        );
+                    case 'AnimatedPortfolioSection':
+                        const animatedPortfolioSection: AnimatedPortfolioSectionType = columnLayoutContainer
+                        return (
+                            <Grid key={'animated-portfolio'} container item xs={12}>
+                                <Link id={"ANIMATED_PORTFOLIO"} underline="hover"><></>
+                                </Link>
+                                <AnimatedPortfolioSection
+                                    sectionData={animatedPortfolioSection}
                                 />
                             </Grid>
                         );

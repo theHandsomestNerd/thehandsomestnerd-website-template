@@ -34,6 +34,7 @@ export default {
         {name: 'Resume Feedback Section', title: 'Resume Feedback Section',type: 'reference', to: [{type: 'ResumeFeedbackSection'}]},
         {name: 'Resume ContactUs Section', title: 'Resume ContactUs Section',type: 'reference', to: [{type: 'ResumeContactUsSection'}]},
         {name: 'Resume Portfolio Section', title: 'Resume Portfolio Section',type: 'reference', to: [{type: 'ResumePortfolioSection'}]},
+        {name: 'Animated Portfolio Section', title: 'Animated Portfolio Section',type: 'reference', to: [{type: 'AnimatedPortfolioSection'}]},
         {name: 'WebDevHeroContentSection', title: "Web Dev Hero Image + Content section",type: 'reference', to: [{type: 'WebDevHeroContentSection'}]},
         {name: 'WebDevStatsCounterSection', title: "Web Dev Stats Counter section",type: 'reference', to: [{type: 'WebDevStatsCounterSection'}]},
         {name: 'WebDevAboutUsSection', title: "Web Dev About Us section",type: 'reference', to: [{type: 'WebDevAboutUsSection'}]},

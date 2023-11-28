@@ -455,6 +455,21 @@ export type ResumePortfolioItem = {
     linkToDev?: string
     imageGallery?: SanityImageAsset[]
 }
+export type AnimatedPortfolioItemType = {
+    _type?: "AnimatedPortfolioItem"
+    name?: string
+    preTitle?:string
+    title?: string
+    coverImage?: SanityImageAsset
+    inceptionDate?: Date | string
+    slug?: SanitySlug
+    skillsHighlighted?: ResumeSkill[]
+    detailTitle?: string
+    detailDescription?: string
+    linkToProd?: string
+    linkToDev?: string
+    imageGallery?: SanityImageAsset[]
+}
 
 export type ResumePortfolioSectionType = {
     name?: string
@@ -463,6 +478,14 @@ export type ResumePortfolioSectionType = {
     title?: string
     introduction?: string
     portfolioEntries?: ResumePortfolioItem[]
+}
+export type AnimatedPortfolioSectionType = {
+    name?: string
+    _type?: "AnimatedPortfolioSection"
+    preTitle?: string
+    heroBullet?: SanityImageAsset
+    title?: string
+    portfolioEntries?: AnimatedPortfolioItemType[]
 }
 
 
