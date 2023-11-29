@@ -4,7 +4,7 @@ import {Card, Grid, Link, useTheme} from '@mui/material'
 import sanityClient from '../sanityClient'
 import {blockSerializers} from '../common/sanityIo/BlockContentRenderer'
 import {
-    AnimatedAboutUsSectionType, AnimatedPortfolioSectionType, AnimatedServicesSectionType,
+    AnimatedAboutUsSectionType, AnimatedPortfolioSectionType, AnimatedServicesSectionType, HeadlineCTASectionType,
     HeroAnimatedContentSectionType,
     HowItWorksSectionType,
     PortfolioSectionType,
@@ -56,6 +56,7 @@ import HeroAnimatedContentSection from "./animated/HeroAnimatedContentSection";
 import AnimatedAboutUsSection from "./animated/AnimatedAboutUsSection";
 import AnimatedServicesSection from './animated/AnimatedServicesSection'
 import AnimatedPortfolioSection from "./animated/AnimatedPortfolioSection";
+import HeadlineCTASection from "./animated/HeadlineCTASection";
 
 export type BlockContentLayoutContainerProps = {
     content?: any,
@@ -449,6 +450,14 @@ const BlockContentLayoutContainer: FunctionComponent<BlockContentLayoutContainer
                                 />
                             </Grid>
                         );
+                    case 'HeadlineCTASection':
+                        const headlineSection: HeadlineCTASectionType = columnLayoutContainer
+
+                        return <Grid key={'headline-section'} container item>
+                            <HeadlineCTASection
+                                sectionData={headlineSection}
+                            />
+                        </Grid>
                     default:
                         return <Grid container item></Grid>
                     // return <span key={index}>Undefined section {columnLayoutContainer._type}</span>

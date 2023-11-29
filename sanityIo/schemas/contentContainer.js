@@ -24,6 +24,7 @@ export default {
         {name: 'column2BlockContent', title: 'Custom 2 Column Section',type: 'reference', to: [{type: 'column2BlockContent'}]},
         {name: 'header', title: 'Header Menu',type: 'reference', to: [{type: 'menuContainer',}]},
         {name: 'footer', title: 'Footer Menu',type: 'reference', to: [{type: 'menuContainer',}]},
+        {name: 'Headline with CTA', title: 'Headline with CTA',type: 'reference', to: [{type: 'HeadlineCTASection',}]},
         {name: 'HeroAnimatedContentSection', title: 'Animated Hero Content',type: 'reference', to: [{type: 'HeroAnimatedContentSection'}]},
         {name: 'AnimatedAboutUsSection', title: 'Animated About Us Section',type: 'reference', to: [{type: 'AnimatedAboutUsSection'}]},
         {name: 'AnimatedServicesSection', title: 'Animated Services Section',type: 'reference', to: [{type: 'AnimatedServicesSection'}]},

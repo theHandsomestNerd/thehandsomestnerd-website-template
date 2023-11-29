@@ -90,6 +90,7 @@ import MuiFontFace from "./mui/MuiFontFace";
 import MuiMediaQuery from "./mui/MuiMediaQuery";
 import AnimatedPortfolioItem from "./sections/animated/AnimatedPortfolioItem";
 import AnimatedPortfolioSection from "./sections/animated/AnimatedPortfolioSection";
+import HeadlineCTASection from "./HeadlineCTASection";
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default [
@@ -185,5 +186,6 @@ export default [
     AnimatedServicesSection,
     AnimatedPortfolioItem,
     AnimatedPortfolioSection,
-    HeroSlideContent
+    HeroSlideContent,
+    HeadlineCTASection
 ]

@@ -624,3 +624,15 @@ export type SanityDocumentFields = {
     _type?: string
     _id?: string
 }
+
+export type HeadlineCTASectionType = {
+    name: string
+    contentText: string
+    ctaButtonText: string
+    ctaButtonLink: string
+    insetTop: string
+    insetBottom: string
+    insetLeft: string
+    insetRight: string
+    backgroundImgSrc: SanityImageAsset
+}

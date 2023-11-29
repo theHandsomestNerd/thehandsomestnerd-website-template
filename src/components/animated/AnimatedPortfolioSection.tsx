@@ -37,7 +37,7 @@ const AnimatedPortfolioSection: FunctionComponent<IProps> = (props: IProps) => {
     }
 
     return (
-        <Grid container item style={{padding: theme.spacing(4)}}
+        <Grid container item style={{padding: theme.spacing(2,4,12,4), borderBottom: "1px solid gray"}}
               justifyContent={'center'}>
             <Grid
                 container item spacing={3} justifyContent='center'>
