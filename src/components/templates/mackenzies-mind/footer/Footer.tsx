@@ -1,7 +1,7 @@
 import React, {FunctionComponent, useContext} from 'react'
 import {Theme, ThemeProvider} from '@mui/material/styles';
 import makeStyles from '@mui/styles/makeStyles';
-import {Grid} from '@mui/material'
+import {Grid, useMediaQuery, useTheme} from '@mui/material'
 import FooterMenuContainer from './FooterMenuContainer'
 import {SanityMenuContainer} from "../../../../common/sanityIo/Types";
 import {COLORS} from "../../../../theme/common/ColorPalette";
@@ -9,6 +9,7 @@ import CustomizedThemeContext from "../../../customized-theme-provider/Customize
 
 export const useStyles = makeStyles((theme: Theme) => ({
     root: {
+        // paddingTop: "32px",
         backgroundColor: COLORS.DARK_GRAY,
         // color: '#FDF3EB',
         // marginLeft: -1 * theme.spacing(1),
@@ -45,13 +46,14 @@ interface IProps {
 }
 
 const Footer: FunctionComponent<IProps> = (props: IProps) => {
-    const customizedTheme = useContext(CustomizedThemeContext)
-    const classes = useStyles(customizedTheme)
+    const classes = useStyles()
 
+    const theme = useTheme()
+
+    const mdDown = useMediaQuery(theme.breakpoints.down('md'))
     return (
-        <ThemeProvider theme={customizedTheme.customizedTheme}>
             <Grid container className={classes.root}>
-                <Grid container justifyContent="flex-start">
+                <Grid container justifyContent="flex-start" sx={{paddingTop:mdDown?0:"56px"}}>
                     <Grid item xs={12}>
                         {props.pageFooter && <FooterMenuContainer pageFooterMenu={props.pageFooter}
                                                                   updateIsLoading={props.updateIsLoading}
@@ -59,7 +61,6 @@ const Footer: FunctionComponent<IProps> = (props: IProps) => {
                     </Grid>
                 </Grid>
             </Grid>
-        </ThemeProvider>
     )
 }
 

@@ -2,12 +2,12 @@ import React, {FunctionComponent} from 'react'
 
 import makeStyles from "@mui/styles/makeStyles";
 import {Theme} from "@mui/material/styles";
-import {Box, Card, CircularProgress, Grid, Typography, useMediaQuery, useTheme} from "@mui/material";
+import {Card, CircularProgress, Grid, Typography, useMediaQuery, useTheme} from "@mui/material";
 import {MapSectionType, ServiceAmenityType} from "../BlockContentTypes";
-import {Email, LocationOn, Phone, Rectangle} from "@mui/icons-material";
+import {Email, LocationOn, Phone} from "@mui/icons-material";
 import {urlFor} from "../block-content-ui/static-pages/cmsStaticPagesClient";
 import {COLORS} from "../../theme/common/ColorPalette";
-import {GoogleMap, Marker, useJsApiLoader, Data} from '@react-google-maps/api';
+import {GoogleMap, Marker, useJsApiLoader} from '@react-google-maps/api';
 
 
 export const useStyles = makeStyles((theme: Theme) => ({
@@ -75,7 +75,6 @@ const MapSection: FunctionComponent<IProps> = (props: IProps) => {
     }
 
 
-
     return (<Grid container item>
         <Grid item container className={classes.grayscale}>
             {
@@ -90,70 +89,76 @@ const MapSection: FunctionComponent<IProps> = (props: IProps) => {
                                     text: props.sectionData?.mapMarkerTitle ?? " ",
                                     className: classes.markerClass,
                                     fontSize: "18px"
-                        }}></Marker>
+                                }}></Marker>
 
 
                     </GoogleMap>
                     : <CircularProgress/>
             }
         </Grid>
-        <Grid container item style={{position: "relative"}}>
+        <Grid container item style={{position: "relative",}}>
             <Grid item container sx={{
-                position: "relative",
+                position: mdDown?"relative":"absolute",
                 top: mdDown ? 0 : -66,
-                backgroundColor: COLORS.TRANSPARENT_DARKBLUE,
-                border: "1px solid white",
-                marginLeft: mdDown ? 0 : "32px",
-                marginRight: mdDown ? 0 : "32px",
-                padding: theme.spacing(4, 4, 2, 4)
-            }} justifyContent='space-between'>{
-                props.sectionData?.contactInfo.map((detail: ServiceAmenityType, index) =>
-                    <Grid key={index}
-                          container
-                          xs={12}
-                          md={3}
-                          style={{marginBottom: "16px"}}
-                          justifyContent='center'
-                    >
-                        <Grid item container alignItems='center' maxWidth={380} minWidth={290}
-                              justifyContent='center'>
-                            <Grid item xs={12} md={3} style={{marginRight: "8px", marginBottom: "4px"}} container
+                paddingLeft: mdDown?0:"32px",
+                paddingRight: mdDown?0:"32px",
+            }}>
+                <Grid item container
+                      sx={{
+                          backgroundColor: COLORS.TRANSPARENT_DARKBLUE,
+                          border: "1px solid white",
+                          padding: theme.spacing(4, 4, 2, 4)
+                      }}
+                      justifyContent='space-between'>{
+                    props.sectionData?.contactInfo.map((detail: ServiceAmenityType, index) =>
+                        <Grid key={index}
+                              container
+                              xs={12}
+                              md={3}
+                              style={{marginBottom: "16px"}}
+                              justifyContent='center'
+                        >
+                            <Grid item container alignItems='center' maxWidth={380} minWidth={290}
                                   justifyContent='center'>
-                                <Card
-                                    elevation={0}
-                                    style={{
-                                        width: "60px",
-                                        height: "60px",
-                                        backgroundColor: theme.palette.primary.main,
-                                        borderRadius: "50%",
-                                        border: `3px solid ${theme.palette.secondary.main}`
-                                    }}>
-                                    <Grid container justifyContent='center' alignContent='center' alignItems='center'
-                                          style={{height: "100%",}}>
-                                        <Grid item style={{paddingTop: "6px"}}>
-                                            {
-                                                detail.imageSrc ?
-                                                    <img width={24} src={urlFor(detail.imageSrc ?? "").url() ?? ""}
-                                                    /> : getIcon(detail.muiIcon)
-                                            }
+                                <Grid item xs={12} md={3} style={{marginRight: "8px", marginBottom: "4px"}} container
+                                      justifyContent='center'>
+                                    <Card
+                                        elevation={0}
+                                        style={{
+                                            width: "60px",
+                                            height: "60px",
+                                            backgroundColor: theme.palette.primary.main,
+                                            borderRadius: "50%",
+                                            border: `3px solid ${theme.palette.secondary.main}`
+                                        }}>
+                                        <Grid container justifyContent='center' alignContent='center'
+                                              alignItems='center'
+                                              style={{height: "100%",}}>
+                                            <Grid item style={{paddingTop: "6px"}}>
+                                                {
+                                                    detail.imageSrc ?
+                                                        <img width={24} src={urlFor(detail.imageSrc ?? "").url() ?? ""}
+                                                        /> : getIcon(detail.muiIcon)
+                                                }
+                                            </Grid>
                                         </Grid>
+                                    </Card>
+                                </Grid>
+                                <Grid item maxWidth={260}>
+                                    <Grid item>
+                                        <Typography variant='body1' color='textSecondary' noWrap
+                                                    align={mdDown ? "center" : "left"}>{detail.name}</Typography>
                                     </Grid>
-                                </Card>
-                            </Grid>
-                            <Grid item maxWidth={260}>
-                                <Grid item>
-                                    <Typography variant='body1' color='textSecondary' noWrap
-                                                align={mdDown ? "center" : "left"}>{detail.name}</Typography>
-                                </Grid>
-                                <Grid item>
-                                    <Typography fontWeight='bold' fontSize='16px' variant='body2'
-                                                color='textSecondary'
-                                                align={mdDown ? "center" : "left"}>{detail.description}</Typography>
+                                    <Grid item>
+                                        <Typography fontWeight='bold' fontSize='16px' variant='body2'
+                                                    color='textSecondary'
+                                                    align={mdDown ? "center" : "left"}>{detail.description}</Typography>
+                                    </Grid>
                                 </Grid>
                             </Grid>
-                        </Grid>
-                    </Grid>)
-            }</Grid>
+                        </Grid>)
+                }</Grid>
+            </Grid>
         </Grid>
     </Grid>)
 }

@@ -463,6 +463,8 @@ const BlockContentLayoutContainer: FunctionComponent<BlockContentLayoutContainer
                         const mapSection: MapSectionType = columnLayoutContainer
 
                         return <Grid key={'map-section'} container item>
+                            <Link id={"MAP_SECTION"} underline="hover"><></>
+                            </Link>
                             <MapSection
                                 sectionData={mapSection}
                             />
