@@ -94,5 +94,15 @@ export default {
             type: "array",
             of: [{type: "scheduleGroup"}]
         },
+        {
+            name: 'longitude',
+            title: 'Longitude',
+            type: 'string',
+        },
+        {
+            name: 'latitude',
+            title: 'Latitude',
+            type: 'string',
+        },
     ]
 }

@@ -6,7 +6,7 @@ import {blockSerializers} from '../common/sanityIo/BlockContentRenderer'
 import {
     AnimatedAboutUsSectionType, AnimatedPortfolioSectionType, AnimatedServicesSectionType, HeadlineCTASectionType,
     HeroAnimatedContentSectionType,
-    HowItWorksSectionType,
+    HowItWorksSectionType, MapSectionType,
     PortfolioSectionType,
     ResumeBioSectionType,
     ResumeContactUsSectionType,
@@ -57,6 +57,7 @@ import AnimatedAboutUsSection from "./animated/AnimatedAboutUsSection";
 import AnimatedServicesSection from './animated/AnimatedServicesSection'
 import AnimatedPortfolioSection from "./animated/AnimatedPortfolioSection";
 import HeadlineCTASection from "./animated/HeadlineCTASection";
+import MapSection from "./animated/MapSection";
 
 export type BlockContentLayoutContainerProps = {
     content?: any,
@@ -453,9 +454,17 @@ const BlockContentLayoutContainer: FunctionComponent<BlockContentLayoutContainer
                     case 'HeadlineCTASection':
                         const headlineSection: HeadlineCTASectionType = columnLayoutContainer
 
-                        return <Grid key={'headline-section'} container item>
+                        return <Grid key={'headline-section'} container item style={{zIndex: 1000}}>
                             <HeadlineCTASection
                                 sectionData={headlineSection}
+                            />
+                        </Grid>
+                     case 'MapSection':
+                        const mapSection: MapSectionType = columnLayoutContainer
+
+                        return <Grid key={'map-section'} container item>
+                            <MapSection
+                                sectionData={mapSection}
                             />
                         </Grid>
                     default:

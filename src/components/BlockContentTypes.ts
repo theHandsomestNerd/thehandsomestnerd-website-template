@@ -101,6 +101,7 @@ export type ServiceAmenityType = {
     imageSrc?: SanityImageAsset
     title: string
     description: string
+    muiIcon?:string
 } & SanityDocumentFields
 
 
@@ -635,4 +636,14 @@ export type HeadlineCTASectionType = {
     insetLeft: string
     insetRight: string
     backgroundImgSrc: SanityImageAsset
+}
+
+export type MapSectionType = {
+    name: string
+    address: string
+    latitude: string
+    longitude: string
+    contactInfo: ServiceAmenityType[]
+    mapMarkerTitle: string
+    mapMarkerLabel: string
 }
