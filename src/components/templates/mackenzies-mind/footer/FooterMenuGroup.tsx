@@ -3,7 +3,7 @@ import {Theme} from '@mui/material/styles';
 
 import makeStyles from '@mui/styles/makeStyles';
 
-import {Grid, Link, Typography} from '@mui/material'
+import {Grid, Link, Typography, useMediaQuery, useTheme} from '@mui/material'
 import {SanityMenuGroup, SanityMenuItem} from "../../../../common/sanityIo/Types";
 
 export const useStyles = makeStyles((theme: Theme) => ({
@@ -43,7 +43,7 @@ export type LandingPagesFooterMenuGroupProps = {
 
 const FooterMenuGroup: FunctionComponent<LandingPagesFooterMenuGroupProps> = ({menuGroup}) => {
     const classes = useStyles()
-
+    const theme = useTheme()
     const [menuGroupContents, setMenuGroupContents] = useState<SanityMenuGroup>()
     const [menuItemContents, setMenuItemContents] = useState<SanityMenuItem>()
 
@@ -55,14 +55,18 @@ const FooterMenuGroup: FunctionComponent<LandingPagesFooterMenuGroupProps> = ({m
         }
     }, [menuGroup])
 
+    const mdOnly = useMediaQuery(theme.breakpoints.only('sm'))
+    const lgUp = useMediaQuery(theme.breakpoints.up('md'))
+    const mdUp = useMediaQuery(theme.breakpoints.up('md'))
+
     return (
-        <Grid container direction="column" spacing={2} className={classes.root}>
-            <Grid container item>
+        <Grid container direction="column" spacing={2} className={classes.root} >
+            <Grid container item justifyContent={lgUp?'flex-start':'center'}>
                 <Typography color='primary' variant="body2"
                             className={classes.menuTitle}>{menuGroupContents && menuGroupContents.menuGroupTitle}</Typography>
             </Grid>
             <Grid item container>
-                <Grid container item xs={8} direction='column' spacing={2}>
+                <Grid container item xs={12} direction={mdOnly ? 'row' : 'column'} spacing={2} alignItems={lgUp?'flex-start':'center'} alignContent={lgUp?'flex-start':'center'} justifyContent={mdUp?'flex-start':'center'} >
                     {
                         menuGroup?.links && menuGroup.links.map((menuLink: any, index: any) => {
                             return (

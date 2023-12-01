@@ -30,6 +30,8 @@ const FooterMenuContainer: FunctionComponent<IProps> = (props: IProps) => {
 
     const smDown = useMediaQuery(customizedThemeContext.breakpoints.down('sm'))
     const mdDown = useMediaQuery(customizedThemeContext.breakpoints.down('md'))
+    const mdOnly = useMediaQuery(customizedThemeContext.breakpoints.only('md'))
+    const mdUp = useMediaQuery(customizedThemeContext.breakpoints.up('md'))
     return (
         <Grid container item className={classes.root}>
             <Grid container item xs={12} md={4}
@@ -45,8 +47,8 @@ const FooterMenuContainer: FunctionComponent<IProps> = (props: IProps) => {
                 {
                     props.pageFooterMenu?.subMenus?.map((menuGroup: any, index: number) => {
                         return (
-                            <Grid key={index} item xs={6}>
-                                <FooterMenuGroup menuGroup={menuGroup}/>
+                            <Grid key={index} item xs={12} container justifyContent={mdUp?'flex-start':'center'}>
+                                <Grid item><FooterMenuGroup menuGroup={menuGroup}/></Grid>
                             </Grid>
                         )
                     })
@@ -99,8 +101,8 @@ const FooterMenuContainer: FunctionComponent<IProps> = (props: IProps) => {
                 {!mdDown && <Grid container item justifyContent='flex-end' xs={6} md={12}>
                     <Typography variant='body2'>Social Media</Typography>
                 </Grid>}
-                <Grid container item xs={12} md={12} sx={{marginTop:mdDown?4:0,borderTop:"1px solid "+theme.palette.primary.main}}>
-                    {mdDown && <Grid container item justifyContent='flex-end'>
+                <Grid container item xs={12} md={12} sx={{paddingTop:"4px !important", marginTop:mdDown?4:0,borderTop:"1px solid "+theme.palette.primary.main}}>
+                    {mdDown && <Grid container item justifyContent='flex-end' >
                         <Typography variant='body2'>Social Media</Typography>
                     </Grid>}
                     {
