@@ -32,15 +32,14 @@ const SocialMediaBlock: FunctionComponent<IProps> = (props: IProps) => {
     }))
     const classes = useStyles()
     return (
-        <ThemeProvider theme={customizedThemeContext.customizedTheme}>
-            <Grid data-testid='social-media-block' item xs={12} container alignItems='center' justifyContent='center'
-                  spacing={props.spacing ? props.spacing : 0}>
+            <Grid data-testid='social-media-block' item xs={12} container alignItems='center' justifyContent='flex-end'
+                  spacing={props.spacing ? props.spacing : 0} wrap={'nowrap'}>
                 {props.facebook && <Grid item>
                     <Grid item className={clsx({[classes.buttonBackground]: props.bgColor})}>
                         <IconButton
                             color={props.color ?? 'primary'}
                             href={`https://facebook.com/${props.facebook}`}
-                            size="large"><Facebook/></IconButton>
+                            size="medium"><Facebook/></IconButton>
                     </Grid>
                 </Grid>}
                 {props.twitter && <Grid item>
@@ -48,7 +47,7 @@ const SocialMediaBlock: FunctionComponent<IProps> = (props: IProps) => {
                         <IconButton
                             color={props.color ?? 'primary'}
                             href={`https://twitter.com/${props.twitter}`}
-                            size="large"><Twitter/></IconButton>
+                            size="medium"><Twitter/></IconButton>
                     </Grid>
                 </Grid>}
                 {props.instagram && <Grid item>
@@ -56,7 +55,7 @@ const SocialMediaBlock: FunctionComponent<IProps> = (props: IProps) => {
                         <IconButton
                             color={props.color ?? 'primary'}
                             href={`https://instagram.com/${props.instagram}`}
-                            size="large"><Instagram/></IconButton>
+                            size="medium"><Instagram/></IconButton>
                     </Grid>
                 </Grid>}
                 {props.linkedIn && <Grid item>
@@ -64,7 +63,7 @@ const SocialMediaBlock: FunctionComponent<IProps> = (props: IProps) => {
                         <IconButton
                             color={props.color ?? 'primary'}
                             href={`https://linkedIn.com/in/${props.linkedIn}`}
-                            size="large"><LinkedIn/></IconButton>
+                            size="medium"><LinkedIn/></IconButton>
                     </Grid>
                 </Grid>}
                 {props.github && <Grid item>
@@ -72,10 +71,11 @@ const SocialMediaBlock: FunctionComponent<IProps> = (props: IProps) => {
                         <IconButton
                             color={props.color ?? 'primary'}
                             href={`https://github.com/${props.github}`}
-                            size="large"><GitHub/></IconButton>
+                            size="medium"><GitHub/></IconButton>
                     </Grid>
                 </Grid>}
-            </Grid></ThemeProvider>
+            </Grid>
+
     );
 }
 

@@ -1,11 +1,10 @@
-import React, {FunctionComponent, useContext} from 'react'
-import {Theme, ThemeProvider} from '@mui/material/styles';
+import React, {FunctionComponent} from 'react'
+import {Theme} from '@mui/material/styles';
 import makeStyles from '@mui/styles/makeStyles';
 import {Grid, useMediaQuery, useTheme} from '@mui/material'
 import FooterMenuContainer from './FooterMenuContainer'
 import {SanityMenuContainer} from "../../../../common/sanityIo/Types";
 import {COLORS} from "../../../../theme/common/ColorPalette";
-import CustomizedThemeContext from "../../../customized-theme-provider/CustomizedThemeContext";
 
 export const useStyles = makeStyles((theme: Theme) => ({
     root: {
@@ -14,7 +13,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
         // color: '#FDF3EB',
         // marginLeft: -1 * theme.spacing(1),
         // zIndex: 1000,
-        padding: theme.spacing(4),
+        padding: theme.spacing(4, 4, 1, 4),
         '& .MuiFormLabel-root': {
             color: 'white',
         },
@@ -43,6 +42,7 @@ interface IProps {
     pageFooter?: SanityMenuContainer
     footerMenuSlug?: string
     updateIsLoading?: (value: boolean) => void
+    isSocialMediaBlock?: boolean
 }
 
 const Footer: FunctionComponent<IProps> = (props: IProps) => {
@@ -52,15 +52,16 @@ const Footer: FunctionComponent<IProps> = (props: IProps) => {
 
     const mdDown = useMediaQuery(theme.breakpoints.down('md'))
     return (
-            <Grid container className={classes.root}>
-                <Grid container justifyContent="flex-start" sx={{paddingTop:mdDown?0:"56px"}}>
-                    <Grid item xs={12}>
-                        {props.pageFooter && <FooterMenuContainer pageFooterMenu={props.pageFooter}
-                                                                  updateIsLoading={props.updateIsLoading}
-                        />}
-                    </Grid>
+        <Grid container className={classes.root}>
+            <Grid container justifyContent="flex-start" sx={{paddingTop: mdDown ? 0 : "56px"}}>
+                <Grid item xs={12}>
+                    {props.pageFooter && <FooterMenuContainer isSocialMediaBlock={props.isSocialMediaBlock}
+                                                              pageFooterMenu={props.pageFooter}
+                                                              updateIsLoading={props.updateIsLoading}
+                    />}
                 </Grid>
             </Grid>
+        </Grid>
     )
 }
 

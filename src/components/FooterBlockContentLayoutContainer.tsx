@@ -86,6 +86,7 @@ const FooterBlockContentLayoutContainer: FunctionComponent<FooterBlockContentLay
                                 <Link id={"BOTTOM_OF_PAGE"} underline="hover"><></>
                                 </Link>
                                 <Footer
+                                    isSocialMediaBlock={footer.isSocialMediaBlock}
                                     pageFooter={footer.footerMenuRef}
                                 />
                             </Grid>

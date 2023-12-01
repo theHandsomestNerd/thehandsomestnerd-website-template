@@ -241,7 +241,6 @@ export type SanityMenuContainer = {
     logoAccentText?: string
     logoImageSrc?: SanityImageAsset
     isSearch?: boolean
-
 }
 
 export type MainMenuAnchorType = 'left' | 'top' | 'right' | 'bottom'
