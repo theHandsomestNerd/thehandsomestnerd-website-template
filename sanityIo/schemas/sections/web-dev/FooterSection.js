@@ -9,6 +9,11 @@ export default {
             type: 'string',
         },
         {
+            name: 'isSocialMediaBlock',
+            title: 'Show Social Media Block',
+            type: 'boolean',
+        },
+        {
             name: 'footerMenuRef',
             title: 'Footer Menu',
             type: 'reference',

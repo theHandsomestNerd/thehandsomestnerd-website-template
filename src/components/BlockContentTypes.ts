@@ -615,6 +615,7 @@ export type DevelopmentFooterSectionType = {
 }
 export type FooterSectionType = {
     name: string
+    isSocialMediaBlock: boolean
     footerMenuRef: SanityMenuContainer
 }
 
