@@ -82,7 +82,7 @@ const AnimatedAboutUsSection: FunctionComponent<IProps> = (props) => {
                                             gutterBottom>{props.sectionData?.highlightedAmenitiesTitle}</Typography>
                             </Grid>
                         </Grid>
-                        <Grid item container style={{paddingBottom: "32px"}}>
+                        <Grid item container style={{paddingBottom: "32px"}} spacing={2}>
                             {props.sectionData.highlightedAmenities?.map((amenity: ServiceAmenityType, index: number) => {
                                 return <Grid container item key={index} xs={12} sm={6}><HorizontalAmenity amenity={amenity} /></Grid>
                             })}

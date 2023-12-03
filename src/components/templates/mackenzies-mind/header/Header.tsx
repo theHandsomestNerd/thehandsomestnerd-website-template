@@ -25,11 +25,11 @@ const Header: FunctionComponent<HeaderProps> = (props) => {
             {props.pageHeader?.title ?
                 <Grid item container
                       alignContent='center' alignItems='center' style={{height:"100%",paddingLeft:"8px"}}>
-                    <Grid container item xs={2} sm={2} md={2} >
-                        <Logo logoText={props.pageHeader?.logoText}
+                    <Grid container item xs={4} sm={3} md={3} >
+                        <Logo noWrap logoText={props.pageHeader?.logoText}
                                          logoAccentText={props.pageHeader?.logoAccentText}/>
                     </Grid>
-                    <Grid item container xs={10} sm={10} md={10} justifyContent='flex-end' >
+                    <Grid item container xs={8} sm={9} md={9} justifyContent='flex-end' >
 
                             {
                                 !mdDown && <Grid xs={4} md={10} lg={10} container item justifyContent='flex-end'

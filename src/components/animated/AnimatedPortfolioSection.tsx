@@ -116,7 +116,7 @@ const AnimatedPortfolioSection: FunctionComponent<IProps> = (props: IProps) => {
                                     Back
                                 </Button>
                                 <Button variant='contained' color="primary" href={currentItem?.linkToProd}>
-                                    Go to this Project
+                                    Goto Project
                                 </Button>
                             </ButtonGroup>
                         </Grid>

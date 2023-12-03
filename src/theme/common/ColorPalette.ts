@@ -6,6 +6,7 @@ export enum COLORS {
     GRAY = 'rgba(207, 207, 207, 1)',
     LIGHT_GRAY = '#949495',
     TRANSPARENTWHITE = 'rgba(255,255,255,0.75)',
+    TRANSPARENTERWHITE = 'rgba(255,255,255,0.55)',
     LIGHTBLUE = '#2CC4D7',
     ALMOSTPURPLE = "#331BAD",
     LIGHTGRAY = "#F4F3F5",

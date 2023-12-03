@@ -27,7 +27,7 @@ const capitalizeArray = (theString: string[]) => {
     return place
 }
 
-const convertToHexCode = (value?: string) => {
+export const convertToHexCode = (value?: string) => {
     let defaultBg = COLORS.WHITESMOKE;
     switch (value) {
         case 'WHITESMOKE':
@@ -50,6 +50,9 @@ const convertToHexCode = (value?: string) => {
             break;
         case 'TRANSPARENTWHITE':
             defaultBg = COLORS.TRANSPARENTWHITE
+            break;
+        case 'TRANSPARENTERWHITE':
+            defaultBg = COLORS.TRANSPARENTERWHITE
             break;
         case 'LIGHTBLUE':
             defaultBg = COLORS.LIGHTBLUE

@@ -8,6 +8,9 @@ import MailTo from "../../../mail-to/MailTo";
 import Logo from "../../../logo/Logo";
 import AlternatingText from "../../../logo/AlternatingText";
 import SocialMediaBlock from "../../my-digital-resume/social-media-block/SocialMediaBlock";
+import {urlFor} from "../../../block-content-ui/static-pages/cmsStaticPagesClient";
+import {SanityImageAsset} from "../../../BlockContentTypes";
+import {COLORS} from "../../../../theme/common/ColorPalette";
 
 interface IProps {
     pageFooterMenu?: SanityMenuContainer
@@ -28,19 +31,19 @@ const FooterMenuContainer: FunctionComponent<IProps> = (props: IProps) => {
     }))
     const classes = useStyles(customizedThemeContext)
 
-    const smDown = useMediaQuery(customizedThemeContext.breakpoints.down('sm'))
     const mdDown = useMediaQuery(customizedThemeContext.breakpoints.down('md'))
-    const mdOnly = useMediaQuery(customizedThemeContext.breakpoints.only('md'))
     const mdUp = useMediaQuery(customizedThemeContext.breakpoints.up('md'))
     return (
-        <Grid container item className={classes.root}>
+        <Grid container item className={classes.root}
+
+        >
             <Grid container item xs={12} md={4}
-                  sx={smDown ? {
+                  sx={mdDown ? {
                       paddingLeft: "16px",
                       paddingTop: "16px",
                       paddingBottom: "16px",
                       borderLeft: `4px solid ${customizedThemeContext.palette.primary.main}`,
-                      backgroundColor: "rgba(117,117,117,.5)",
+                      backgroundColor: COLORS.TRANSPARENTERWHITE,
                       borderRight: `4px solid ${customizedThemeContext.palette.primary.main}`,
                   } : {}}
             >
@@ -97,27 +100,38 @@ const FooterMenuContainer: FunctionComponent<IProps> = (props: IProps) => {
                     </Grid>
                 </Grid>
             </Grid>
-            <Grid item container xs={12} md={4} spacing={2} alignItems='center' alignContent='center'>
-                {!mdDown && <Grid container item justifyContent='flex-end' xs={6} md={12}>
-                    <Typography variant='body2'>Social Media</Typography>
-                </Grid>}
-                <Grid container item xs={12} md={12} sx={{paddingTop:"4px !important", marginTop:mdDown?4:0,borderTop:"1px solid "+theme.palette.primary.main}}>
-                    {mdDown && <Grid container item justifyContent='flex-end' >
+            {
+                <Grid item container xs={12} md={4} spacing={2} alignItems='center' alignContent='center'>
+                {!mdDown &&
+                    props.isSocialMediaBlock && <Grid container item justifyContent='flex-end' xs={6} md={12}>
                         <Typography variant='body2'>Social Media</Typography>
                     </Grid>}
+                <Grid container item xs={12} md={12} sx={{
+                    paddingTop: "4px !important",
+                    marginTop: mdDown ? 4 : 0,
+                    borderTop: "1px solid " + theme.palette.primary.main
+                }}>
+                    {mdDown &&
+                        props.isSocialMediaBlock &&
+                        <Grid container item justifyContent='flex-end'>
+                            <Typography variant='body2'>Social Media</Typography>
+                        </Grid>}
                     {
-                    props.isSocialMediaBlock && <SocialMediaBlock
-                        bgColor={true}
-                        color='secondary'
-                        spacing={1}
-                        facebook={pageContext.page?.businessContact?.facebook}
-                        twitter={pageContext.page?.businessContact?.twitter}
-                        instagram={pageContext.page?.businessContact?.instagram}
-                        linkedIn={pageContext.page?.businessContact?.linkedIn}
-                        github={pageContext.page?.businessContact?.linkedIn}
-                    />
-                }</Grid>
-            </Grid>
+                        props.isSocialMediaBlock && <SocialMediaBlock
+                            bgColor={true}
+                            theBackgroundColor={'white'}
+                            iconColor={'rgba(0,0,0,0.85)'}
+                            // isBackgroundColor={true}
+                            color='primary'
+                            spacing={1}
+                            facebook={pageContext.page?.businessContact?.facebook}
+                            twitter={pageContext.page?.businessContact?.twitter}
+                            instagram={pageContext.page?.businessContact?.instagram}
+                            linkedIn={pageContext.page?.businessContact?.linkedIn}
+                            github={pageContext.page?.businessContact?.linkedIn}
+                        />}
+                </Grid>
+            </Grid>}
         </Grid>
     )
 }

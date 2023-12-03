@@ -16,7 +16,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
         paddingLeft: "32px",
         paddingRight: "56px",
         paddingTop: "32px",
-        height: theme.mixins.toolbar.height,
+        height: "148px",
         position: "relative"
     },
     opaque: {

@@ -36,6 +36,7 @@ interface LogoProps {
     isCenter?: boolean
     logoText?: string
     logoAccentText?: string
+    noWrap?: boolean
 }
 
 const Logo: FunctionComponent<LogoProps> = (props) => {
@@ -48,7 +49,7 @@ const Logo: FunctionComponent<LogoProps> = (props) => {
                 alignItems='center'
                 alignContent='center'
                 justifyContent={props.isCenter ? 'center' : 'flex-start'}>
-            <AlternatingText logoText={props.logoText} logoAccentText={props.logoAccentText}/>
+            <AlternatingText noWrap logoText={props.logoText} logoAccentText={props.logoAccentText}/>
         </Grid>
 
 }

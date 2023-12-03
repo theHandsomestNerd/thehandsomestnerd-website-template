@@ -1,6 +1,6 @@
 import React, {FunctionComponent, useContext} from 'react'
 import {Theme, ThemeProvider} from "@mui/material/styles";
-import {Button, Grid, IconButton, Typography} from "@mui/material";
+import {Button, Grid, IconButton, Typography, useMediaQuery, useTheme} from "@mui/material";
 import makeStyles from "@mui/styles/makeStyles";
 import {HeroAnimatedContentSectionType, SanityHeroContentSlide} from "../BlockContentTypes";
 import {urlFor} from "../block-content-ui/static-pages/cmsStaticPagesClient";
@@ -48,6 +48,8 @@ const HeroAnimatedContentSection: FunctionComponent<IProps> = (props) => {
     const [pageNumber, setPageNumber] = React.useState<number>(0)
     const [contentSlide, setContentSlide] = React.useState<SanityHeroContentSlide | undefined>()
     const themeContext = useContext(CustomizedThemeContext)
+
+    const theme = useTheme()
     const pageContext: PageContextType = useContext(PageContext)
 
     React.useEffect(() => {
@@ -55,8 +57,10 @@ const HeroAnimatedContentSection: FunctionComponent<IProps> = (props) => {
             setContentSlide(props.sectionData.contentSlides[pageNumber])
     }, [props.sectionData.contentSlides, pageNumber])
 
+    const mdDown = useMediaQuery(theme.breakpoints.down('md'))
+
     return (
-            <Grid container item style={{overflow: "hidden", paddingTop: "148px"}}>
+            <Grid container item style={{overflow: "hidden", paddingTop: mdDown?theme.mixins.toolbar.height:"148px"}}>
 
                     <Grid container item style={{
                         backgroundRepeat: 'no-repeat',

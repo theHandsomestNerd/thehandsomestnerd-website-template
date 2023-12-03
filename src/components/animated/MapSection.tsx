@@ -105,6 +105,7 @@ const MapSection: FunctionComponent<IProps> = (props: IProps) => {
             }}>
                 <Grid item container
                       sx={{
+                          zIndex:2,
                           backgroundColor: COLORS.TRANSPARENT_DARKBLUE,
                           border: "1px solid white",
                           padding: theme.spacing(4, 4, 2, 4)
@@ -120,7 +121,7 @@ const MapSection: FunctionComponent<IProps> = (props: IProps) => {
                         >
                             <Grid item container alignItems='center' maxWidth={380} minWidth={290}
                                   justifyContent='center'>
-                                <Grid item xs={12} md={3} style={{marginRight: "8px", marginBottom: "4px"}} container
+                                <Grid item xs={12} md={3} style={{marginRight: mdDown?0:"8px", marginBottom: mdDown?0:"4px"}} container
                                       justifyContent='center'>
                                     <Card
                                         elevation={0}

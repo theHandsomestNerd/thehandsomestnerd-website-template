@@ -6,6 +6,7 @@ interface IProps {
     logoText?: string
     logoAccentText?: string
     isLarge?: boolean
+    noWrap?: boolean
 }
 
 const AlternatingText: FunctionComponent<IProps> = (props: IProps) => {
@@ -18,7 +19,7 @@ const AlternatingText: FunctionComponent<IProps> = (props: IProps) => {
         }
     }, [props.logoText])
 
-    return <Typography display='inline' component='div' align='center'>{textArray.map((textArrayItem, index) => {
+    return <Typography display='inline' component='div' align='center' >{textArray.map((textArrayItem, index) => {
         return <Typography
             key={index}
             display='inline'
