@@ -1,7 +1,7 @@
 import React, {FunctionComponent, useContext, useState} from 'react'
 import {Theme} from "@mui/material/styles";
 import makeStyles from '@mui/styles/makeStyles';
-import {Button, Divider, Drawer, Grid, List, ListItem, ListItemText, useTheme} from '@mui/material';
+import {Button, Divider, Drawer, Grid, List, ListItem, ListItemText, Typography, useTheme} from '@mui/material';
 import createStyles from '@mui/styles/createStyles';
 import {Close, Menu} from "@mui/icons-material";
 import MainMenuSubMenu from "./MainMenuSubMenu";
@@ -76,7 +76,7 @@ const MainMenu: FunctionComponent<MainMenuProps> = ({menu, anchor}) => {
                                             height: "100%",
                                             margin: 0
                                         }} fullWidth>
-                                    <ListItemText secondary={menuItem.displayText}/>
+                                    <ListItemText secondary={<Typography color={'primary'}>{menuItem.displayText}</Typography>}/>
                                 </Button>
 
                             </ListItem>
@@ -106,7 +106,7 @@ const MainMenu: FunctionComponent<MainMenuProps> = ({menu, anchor}) => {
 
                     <Grid item xs={3}>
 
-                        {menu.logoImageSrc && <Logo logoImageSrc={menu.logoImageSrc}/>}
+                        <Logo logoImageSrc={menu.logoImageSrc} logoText={'Chow Works'}/>
                     </Grid>
                     <Grid item xs={1}><Button onClick={() => {
                         setIsDrawerOpen(false)
