@@ -4,11 +4,10 @@ import makeStyles from '@mui/styles/makeStyles';
 import {Grid, useMediaQuery, useTheme} from '@mui/material'
 import FooterMenuContainer from './FooterMenuContainer'
 import {SanityMenuContainer} from "../../../../common/sanityIo/Types";
-import {COLORS} from "../../../../theme/common/ColorPalette";
+import {COLORS, convertToHexCode} from "../../../../theme/common/ColorPalette";
 import {SanityImageAsset} from "../../../BlockContentTypes";
 import {urlFor} from "../../../block-content-ui/static-pages/cmsStaticPagesClient";
 import useCustomStyles from "../pages/Styles";
-import {convertToHexCode} from "../../../customized-theme-provider/CustomizedThemeProvider";
 
 export const useStyles = makeStyles((theme: Theme) => ({
     root: {
