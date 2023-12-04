@@ -10,7 +10,8 @@ export const useStyles = makeStyles((theme: Theme) => ({
         backgroundColor: COLORS.TRANSPARENTWHITE,
         transition: 'background-color .5s ease 0s',
         paddingLeft: props.paddingLeft,
-        height: props.appBarHeight
+        height: props.appBarHeight,
+        width: "100%"
     }),
     opaque: {
         backgroundColor: `black !important`,
@@ -20,6 +21,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
 interface IProps {
     isAppBar?: boolean,
     children: any
+    isEnhanced?: boolean
 }
 
 const AppBarWrapper: FunctionComponent<PropsWithChildren<IProps>> = (props: IProps) => {
@@ -32,7 +34,7 @@ const AppBarWrapper: FunctionComponent<PropsWithChildren<IProps>> = (props: IPro
 
     return (
         props.isAppBar ? <AppBar style={{
-            backgroundColor: `${props.isAppBar ? "white" : "white"}`,
+            backgroundColor: `${props.isAppBar && props.isEnhanced ? "black" : "white"}`,
         }} className={classes.root}>
             {props.children}
         </AppBar> : <>{props.children}</>

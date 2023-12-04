@@ -101,6 +101,7 @@ export type ServiceAmenityType = {
     imageSrc?: SanityImageAsset
     title: string
     description: string
+    muiIcon?:string
 } & SanityDocumentFields
 
 
@@ -455,6 +456,21 @@ export type ResumePortfolioItem = {
     linkToDev?: string
     imageGallery?: SanityImageAsset[]
 }
+export type AnimatedPortfolioItemType = {
+    _type?: "AnimatedPortfolioItem"
+    name?: string
+    preTitle?:string
+    title?: string
+    coverImage?: SanityImageAsset
+    inceptionDate?: Date | string
+    slug?: SanitySlug
+    skillsHighlighted?: ResumeSkill[]
+    detailTitle?: string
+    detailDescription?: string
+    linkToProd?: string
+    linkToDev?: string
+    imageGallery?: SanityImageAsset[]
+}
 
 export type ResumePortfolioSectionType = {
     name?: string
@@ -463,6 +479,14 @@ export type ResumePortfolioSectionType = {
     title?: string
     introduction?: string
     portfolioEntries?: ResumePortfolioItem[]
+}
+export type AnimatedPortfolioSectionType = {
+    name?: string
+    _type?: "AnimatedPortfolioSection"
+    preTitle?: string
+    heroBullet?: SanityImageAsset
+    title?: string
+    portfolioEntries?: AnimatedPortfolioItemType[]
 }
 
 
@@ -591,6 +615,9 @@ export type DevelopmentFooterSectionType = {
 }
 export type FooterSectionType = {
     name: string
+    backgroundImgSrc?: SanityImageAsset
+    backgroundColor?: string
+    isSocialMediaBlock: boolean
     footerMenuRef: SanityMenuContainer
 }
 
@@ -600,4 +627,26 @@ export type SanityDocumentFields = {
     _updatedAt?: string
     _type?: string
     _id?: string
+}
+
+export type HeadlineCTASectionType = {
+    name: string
+    contentText: string
+    ctaButtonText: string
+    ctaButtonLink: string
+    insetTop: string
+    insetBottom: string
+    insetLeft: string
+    insetRight: string
+    backgroundImgSrc: SanityImageAsset
+}
+
+export type MapSectionType = {
+    name: string
+    address: string
+    latitude: string
+    longitude: string
+    contactInfo: ServiceAmenityType[]
+    mapMarkerTitle: string
+    mapMarkerLabel: string
 }

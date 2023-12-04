@@ -1,19 +1,22 @@
-import React, {FunctionComponent, useContext} from 'react'
-import {Theme, ThemeProvider} from '@mui/material/styles';
+import React, {FunctionComponent} from 'react'
+import {Theme} from '@mui/material/styles';
 import makeStyles from '@mui/styles/makeStyles';
-import {Grid} from '@mui/material'
+import {Grid, useMediaQuery, useTheme} from '@mui/material'
 import FooterMenuContainer from './FooterMenuContainer'
 import {SanityMenuContainer} from "../../../../common/sanityIo/Types";
-import {COLORS} from "../../../../theme/common/ColorPalette";
-import CustomizedThemeContext from "../../../customized-theme-provider/CustomizedThemeContext";
+import {COLORS, convertToHexCode} from "../../../../theme/common/ColorPalette";
+import {SanityImageAsset} from "../../../BlockContentTypes";
+import {urlFor} from "../../../block-content-ui/static-pages/cmsStaticPagesClient";
+import useCustomStyles from "../pages/Styles";
 
 export const useStyles = makeStyles((theme: Theme) => ({
     root: {
-        backgroundColor: COLORS.DARK_GRAY,
+        // paddingTop: "32px",
+        // backgroundColor: COLORS.DARK_GRAY,
         // color: '#FDF3EB',
         // marginLeft: -1 * theme.spacing(1),
-        // zIndex: 1000,
-        padding: theme.spacing(4),
+        zIndex: 1000,
+        padding: theme.spacing(4, 4, 1, 4),
         '& .MuiFormLabel-root': {
             color: 'white',
         },
@@ -42,24 +45,44 @@ interface IProps {
     pageFooter?: SanityMenuContainer
     footerMenuSlug?: string
     updateIsLoading?: (value: boolean) => void
+    isSocialMediaBlock?: boolean
+    backgroundImgSrc?: SanityImageAsset
+    backgroundColor?:string
 }
 
 const Footer: FunctionComponent<IProps> = (props: IProps) => {
-    const customizedTheme = useContext(CustomizedThemeContext)
-    const classes = useStyles(customizedTheme)
+    const classes = useStyles()
 
+    const globalClasses = useCustomStyles({})
+
+    const theme = useTheme()
+
+    const mdDown = useMediaQuery(theme.breakpoints.down('md'))
     return (
-        <ThemeProvider theme={customizedTheme.customizedTheme}>
-            <Grid container className={classes.root}>
-                <Grid container justifyContent="flex-start">
-                    <Grid item xs={12}>
-                        {props.pageFooter && <FooterMenuContainer pageFooterMenu={props.pageFooter}
-                                                                  updateIsLoading={props.updateIsLoading}
-                        />}
-                    </Grid>
+        <Grid container
+              sx={{
+                  zIndex: 1,
+                  backgroundColor: props.backgroundColor?convertToHexCode(props.backgroundColor):COLORS.LIGHTGRAY,
+                  position:"relative"
+              }}
+        >
+            <Grid container className={classes.root}  sx={{
+                    backgroundImage: `url(${urlFor(props.backgroundImgSrc ?? "").url()})`,
+                    backgroundSize: "cover",}}>
+            <Grid container justifyContent="flex-start" sx={{paddingTop: mdDown ? 0 : "56px"}}>
+                <Grid item xs={12}>
+                    {props.pageFooter && <FooterMenuContainer
+                        isSocialMediaBlock={props.isSocialMediaBlock}
+                        pageFooterMenu={props.pageFooter}
+                        updateIsLoading={props.updateIsLoading}
+                    />}
                 </Grid>
             </Grid>
-        </ThemeProvider>
+        </Grid>
+            <Grid container item className={globalClasses.fullSectionOverlay}>
+            {/*Makes the background image darker*/}
+            </Grid>
+        </Grid>
     )
 }
 

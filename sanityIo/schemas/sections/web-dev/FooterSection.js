@@ -1,3 +1,5 @@
+import {ColorListing} from "../../mui/ColorListing";
+
 export default {
     name: 'FooterSection',
     title: 'Footer Section',
@@ -7,6 +9,25 @@ export default {
             name: 'name',
             title: 'Name',
             type: 'string',
+        },
+        {
+            name: 'backgroundImgSrc',
+            title: 'Background Image',
+            type: 'image',
+            options: {
+                hotspot: true,
+            },
+        },
+        {
+            name: 'backgroundColor',
+            title: 'Background Color',
+            type: 'string',
+            options: {list: ColorListing}
+        },
+        {
+            name: 'isSocialMediaBlock',
+            title: 'Show Social Media Block',
+            type: 'boolean',
         },
         {
             name: 'footerMenuRef',

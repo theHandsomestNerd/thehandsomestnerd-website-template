@@ -102,10 +102,10 @@ const AnimatedAboutUsItem: FunctionComponent<IProps> = (props: IProps) => {
                         <Grid item>
                             <motion.div animate={textColorControls} initial={{color: 'initial'}}>
                                 <Typography style={{marginTop: "16px", marginBottom: "16px",}}
-                                            variant='h6' align='center'>{props.service.contentTitle}</Typography>
+                                            variant='h6' align='center' noWrap>{props.service.contentTitle}</Typography>
                             </motion.div>
                         </Grid>
-                        <Grid item container justifyContent='center'>
+                        <Grid item container justifyContent='center' minWidth={150}>
                             <Typography variant='body1' align='center'
                             >{props.service.contentText}</Typography>
                         </Grid>

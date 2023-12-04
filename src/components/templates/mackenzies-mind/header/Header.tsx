@@ -1,5 +1,5 @@
 import React, {FunctionComponent} from 'react'
-import {Grid, IconButton, Modal, useMediaQuery, useTheme} from '@mui/material'
+import {Box, Grid, IconButton, Modal, useMediaQuery, useTheme} from '@mui/material'
 import MainMenu from "./MainMenu";
 import FilteredMenuItems from "../../../filtered-menu-items/FilteredMenuItems";
 import Logo from "../../../logo/Logo";
@@ -13,6 +13,7 @@ export type HeaderProps = {
     isAppBar?: boolean
     isSearch?: boolean
     updateIsLoading?: (value: boolean) => void
+    isEnhanced?: boolean
 }
 
 const Header: FunctionComponent<HeaderProps> = (props) => {
@@ -21,52 +22,57 @@ const Header: FunctionComponent<HeaderProps> = (props) => {
     const mdDown = useMediaQuery(customizedTheme.breakpoints.down('md'))
     const [isSearchOpen, setIsSearchOpen] = React.useState<boolean>(false)
 
-    return (<AppBarWrapper isAppBar={props.isAppBar}>
+    return (<AppBarWrapper isAppBar={props.isAppBar} isEnhanced={props.isEnhanced}>
             {props.pageHeader?.title ?
-                <Grid item xs={12} container justifyContent="space-between"
-                      alignContent='center' alignItems='center' wrap={'nowrap'}>
-                    <Grid container item xs={3} sm={2} md={1} alignItems='center' alignContent='center' wrap={'nowrap'}>
-                        <Grid item><Logo logoText={props.pageHeader?.logoText}
-                                         logoAccentText={props.pageHeader?.logoAccentText}/></Grid>
+                <Grid item container
+                      alignContent='center' alignItems='center' style={{height:"100%",paddingLeft:"8px"}}>
+                    <Grid container item xs={4} sm={3} md={3} >
+                        <Logo noWrap logoText={props.pageHeader?.logoText}
+                                         logoAccentText={props.pageHeader?.logoAccentText}/>
                     </Grid>
-                    <Grid item xs={props.isSearch ? 8 : 6} sm={props.isSearch ? 9 : 7} md={props.isSearch ? 6 : 8}
-                          justifyContent='flex-end' alignItems='center' container
-                          alignContent='center' wrap={'nowrap'}>
-                        {
-                            !mdDown && <Grid xs={4} md={10} lg={10} container item justifyContent='flex-end'
-                                             alignItems='center'
-                                             alignContent='center'
-                                             sx={{
-                                                 height: "100%",
-                                                 paddingRight: mdDown ? customizedTheme.spacing(0) : customizedTheme.spacing(4)
-                                             }}>
-                                <FilteredMenuItems
-                                    // bgColor={!mdDown ? TransformHWTheme.palette.primary.main : COLORS.TRANSPARENTWHITE}
-                                    subMenus={props.pageHeader?.subMenus ?? []} onlyButtons={mdDown}
-                                    includeMenuItems={!mdDown}
-                                    includeMenuGroups={!mdDown}/>
+                    <Grid item container xs={8} sm={9} md={9} justifyContent='flex-end' >
 
-                            </Grid>
-                        }
-                        {
-                            mdDown && <Grid item xs={11} sm={2} container justifyContent='flex-end'>
-                                {props.pageHeader && <MainMenu menu={props.pageHeader} anchor='top'/>}
-                            </Grid>
-                        }
+                            {
+                                !mdDown && <Grid xs={4} md={10} lg={10} container item justifyContent='flex-end'
+                                                 alignItems='center'
+                                                 alignContent='center'
+                                                 sx={{
+                                                     height: "100%",
+                                                     paddingRight: mdDown ? customizedTheme.spacing(0) : customizedTheme.spacing(4)
+                                                 }}>
+                                    <FilteredMenuItems
+                                        // bgColor={!mdDown ? TransformHWTheme.palette.primary.main : COLORS.TRANSPARENTWHITE}
+                                        subMenus={props.pageHeader?.subMenus ?? []} onlyButtons={mdDown}
+                                        includeMenuItems={!mdDown}
+                                        includeMenuGroups={!mdDown}/>
+
+                                </Grid>
+                            }
+                            {
+                                mdDown && <Grid item xs={5} sm={4} container justifyContent='flex-end'>
+                                    {props.pageHeader && <MainMenu menu={props.pageHeader} anchor='top'/>}
+                                </Grid>
+                            }
+                        {props.isSearch && <Grid container item maxWidth={96}
+        // style={{backgroundColor: "blue"}}
+                                                  justifyContent='flex-end'
+                                                 alignContent='center' alignItems='center'>
+                            <Grid item><Box sx={{
+                                // maxWidth: "64px",
+                                paddingLeft:"16px",
+                                paddingRight: mdDown?"16px":"8px",
+                                borderLeft: `1px solid ${customizedTheme.palette.primary.main}`
+                            }}><IconButton color='secondary' sx={{
+                                // marginLeft: "32px",
+                                // marginRight: "32px",
+                                backgroundColor: customizedTheme.palette.primary.main
+                            }}>
+                                <Search color='secondary' fontSize='large' onClick={() => {
+                                    setIsSearchOpen((state) => !state)
+                                }}/>
+                            </IconButton></Box></Grid>
+                        </Grid>}
                     </Grid>
-                    {props.isSearch && <Grid item xs={2} sm={2} md={2}
-                                             sx={{borderLeft: `1px solid ${customizedTheme.palette.primary.main}`}}
-                                             alignContent='center' alignItems='center'>
-                        <IconButton color='secondary' sx={{
-                            marginLeft: "32px",
-                            marginRight: "32px",
-                            backgroundColor: customizedTheme.palette.primary.main
-                        }}>
-                            <Search color='secondary' fontSize='large' onClick={() => {
-                                setIsSearchOpen((state) => !state)
-                            }}/>
-                        </IconButton>
-                    </Grid>}
                 </Grid>
                 : <></>
             }
