@@ -1,7 +1,7 @@
 {
   "name": "the-handsomest-nerd-sanity",
   "private": true,
-  "version": "0.3.1",
+  "version": "0.4.0",
   "description": "Sanity CMS for React Website Builder",
   "main": "package.json",
   "author": "theHandsomestNerd <hello@thehandsomestnerd.com>",
@@ -31,7 +31,6 @@
     "sanity": "^3.16.7",
     "sanity-plugin-color-list": "^2.0.1",
     "sanity-plugin-json-input": "^0.1.0",
-    "sanity-plugin-media": "^1.4.8",
     "sanity-super-pane": "^1.0.0-alpha.11",
     "styled-components": "^5.3.0"
   }

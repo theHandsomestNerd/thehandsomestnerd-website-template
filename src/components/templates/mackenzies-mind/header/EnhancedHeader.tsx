@@ -10,15 +10,15 @@ import {HeaderSectionType} from "../../../BlockContentTypes";
 import {urlFor} from "../../../block-content-ui/static-pages/cmsStaticPagesClient";
 
 export const useStyles = makeStyles((theme: Theme) => ({
-    root: (props: any) => ({
+    root: {
         backgroundColor: COLORS.TRANSPARENTWHITE,
         transition: 'background-color .5s ease 0s',
         paddingLeft: "32px",
         paddingRight: "56px",
         paddingTop: "32px",
-        height: props.appBarHeight,
+        height: "148px",
         position: "relative"
-    }),
+    },
     opaque: {
         backgroundColor: `${COLORS.LIGHTGRAY} !important`,
     }
@@ -34,17 +34,7 @@ const EnhancedHeader: FunctionComponent<EnhancedHeaderProps> = (props) => {
 
     const classes = useStyles({
         paddingLeft: customizedTheme.customizedTheme.spacing(4),
-        appBarHeight: customizedTheme.customizedTheme.mixins.toolbar.height
     })
-
-    // const mdDown = widthUtils.useIsWidthDown('md')
-
-    // const theme = useTheme()
-    // React.useEffect(() => {
-    //     console.log("Page header in the header", props.pageHeader)
-    // }, [props.pageHeader])
-
-    // const lgUp = widthUtils.useIsWidthUp('md')
 
     return (
         <AppBar className={clsx({[classes.opaque]: true}, classes.root)}>{props.pageHeader?.headerMenuRef.title ?
@@ -52,12 +42,12 @@ const EnhancedHeader: FunctionComponent<EnhancedHeaderProps> = (props) => {
             <Grid container item>
                 <Grid container item spacing={4} justifyContent='space-between' wrap='nowrap'>
                     <Grid item xs={3}>
-                        <Button variant='contained'
+                        <Button fullWidth variant='contained'
                                 href={props.pageHeader?.ctaButtonLink}><Typography variant='button' noWrap>{props.pageHeader?.ctaButtonText}</Typography></Button>
                     </Grid>
                     {
-                        props.pageHeader.highlightedDetails.map((detail, index)=><Grid key={index} item xs={3}>
-                            <Grid  item container xs={12} sm={6} maxWidth={350} spacing={1} wrap='nowrap'>
+                        props.pageHeader.highlightedDetails.map((detail, index)=><Grid key={index}  xs={3}  container justifyContent='flex-end' alignItems='flex-end' alignContent='flex-end'>
+                            <Grid  item container xs={12} sm={3} maxWidth={350} minWidth={270} spacing={1} wrap='nowrap' justifyContent='flex-end' alignItems='center'>
                                 <Grid item maxWidth={64} style={{position: "relative"}}>
 
                                     <Card elevation={0} style={{
@@ -77,26 +67,26 @@ const EnhancedHeader: FunctionComponent<EnhancedHeaderProps> = (props) => {
                                     {/*>*/}
                                     {/*</motion.div>*/}
                                 </Grid>
-                                <Grid item maxWidth={250}>
+                                <Grid item maxWidth={260}>
                                     <Grid item>
                                         <Typography variant='body1' color='textPrimary' noWrap>{detail.name}</Typography>
                                     </Grid>
                                     <Grid item>
-                                        <Typography variant='body2' color='textPrimary' noWrap>{detail.description}</Typography>
+                                        <Typography fontWeight='bold' fontSize='16px' variant='body2' color='textPrimary'>{detail.description}</Typography>
                                     </Grid>
                                 </Grid>
                             </Grid>
                         </Grid>)
                     }
                 </Grid>
-                <Grid container item justifyContent='center'>
+                <Grid container item>
                     {/*enhanced*/}
-                    <Grid item style={{
-                        padding: "16px",
-                        // padding:"16px",
+                    <Grid xs={12} container item style={{
+                        // padding: "16px",
+                        padding:"8px",
                         // maxWidth: "calc(100%-100px)",
                         // marginRight: "8px",
-                        width: "100%",
+                        // width: "100%",
                         position: "relative",
                         top: "16px",
                         borderRadius: 4,

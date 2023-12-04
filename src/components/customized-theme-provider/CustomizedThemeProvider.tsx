@@ -2,103 +2,18 @@ import React, {FunctionComponent, PropsWithChildren, useContext, useMemo,} from 
 import CustomizedThemeContext from './CustomizedThemeContext';
 import {CssBaseline} from "@mui/material";
 import {createTheme, ThemeProvider} from "@mui/material/styles";
-import {COLORS} from "../../theme/common/ColorPalette";
+import {COLORS, convertToHexCode} from "../../theme/common/ColorPalette";
 import {grey} from "@mui/material/colors";
 import {SanityMuiFontFace, SanityMuiTheme} from "../../common/sanityIo/Types";
 import PageContext from "../page-context/PageContext";
 import TheWebsiteTheme from "../../theme/Theme";
 import cmsClient from "../block-content-ui/cmsClient";
+import capitalizeArray from "../../utils/textProcessingUtils";
 
 type IProps = {
     pageTheme?: SanityMuiTheme
 };
 
-
-const capitalizeArray = (theString: string[]) => {
-    const place = theString.map((aString) => {
-
-        const lower = aString.toLowerCase()
-        const upper = aString.toUpperCase()
-
-        return `"${upper[0] + lower.slice(1)}"`
-    })
-
-    // console.log("the capitalized array",place)
-    return place
-}
-
-const convertToHexCode = (value?: string) => {
-    let defaultBg = COLORS.WHITESMOKE;
-    switch (value) {
-        case 'WHITESMOKE':
-            defaultBg = COLORS.WHITESMOKE
-            break;
-        case 'DARKBLUE':
-            defaultBg = COLORS.DARKBLUE
-            break;
-        case 'TRANSPARENT_DARKBLUE':
-            defaultBg = COLORS.TRANSPARENT_DARKBLUE
-            break;
-        case 'BLUE':
-            defaultBg = COLORS.BLUE
-            break;
-        case 'GRAY':
-            defaultBg = COLORS.GRAY
-            break;
-        case 'LIGHT_GRAY':
-            defaultBg = COLORS.LIGHT_GRAY
-            break;
-        case 'TRANSPARENTWHITE':
-            defaultBg = COLORS.TRANSPARENTWHITE
-            break;
-        case 'LIGHTBLUE':
-            defaultBg = COLORS.LIGHTBLUE
-            break;
-        case 'ALMOSTPURPLE':
-            defaultBg = COLORS.ALMOSTPURPLE
-            break;
-        case 'LIGHTGRAY':
-            defaultBg = COLORS.LIGHTGRAY
-            break;
-        case 'TRANPARENTLIGHTGRAY':
-            defaultBg = COLORS.TRANSPARENTLIGHTGRAY
-            break;
-        case 'MEDIUMGRAY':
-            defaultBg = COLORS.MEDIUMGRAY
-            break;
-        case 'DARKGRAY':
-            defaultBg = COLORS.DARKGRAY
-            break;
-        case 'TRANPARENTDARKGRAY':
-            defaultBg = COLORS.TRANSPARENTDARKGRAY
-            break;
-        case 'AQUA':
-            defaultBg = COLORS.AQUA
-            break;
-        case 'RED':
-            defaultBg = COLORS.RED
-            break;
-        case 'ALMOSTWHITE':
-            defaultBg = COLORS.ALMOSTWHITE
-            break;
-        case 'DARKERGRAY':
-            defaultBg = COLORS.DARKERGRAY
-            break;
-        // case 'DARKERGRAY':
-        //     defaultBg = COLORS.DARKERGRAY
-        //     break;
-        case 'LIGHTER_GRAY':
-            defaultBg = COLORS.LIGHTER_GRAY
-            break;
-        case 'DARK_GRAY':
-            defaultBg = COLORS.DARK_GRAY
-            break;
-        default:
-            defaultBg = COLORS.WHITESMOKE
-    }
-
-    return defaultBg
-}
 
 const CustomizedThemeProvider: FunctionComponent<IProps & PropsWithChildren> = (
     props: PropsWithChildren<IProps>,

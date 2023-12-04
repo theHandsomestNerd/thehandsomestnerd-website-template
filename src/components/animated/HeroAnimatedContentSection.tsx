@@ -1,6 +1,6 @@
 import React, {FunctionComponent, useContext} from 'react'
 import {Theme, ThemeProvider} from "@mui/material/styles";
-import {Button, Grid, IconButton, Typography} from "@mui/material";
+import {Button, Grid, IconButton, Typography, useMediaQuery, useTheme} from "@mui/material";
 import makeStyles from "@mui/styles/makeStyles";
 import {HeroAnimatedContentSectionType, SanityHeroContentSlide} from "../BlockContentTypes";
 import {urlFor} from "../block-content-ui/static-pages/cmsStaticPagesClient";
@@ -48,6 +48,8 @@ const HeroAnimatedContentSection: FunctionComponent<IProps> = (props) => {
     const [pageNumber, setPageNumber] = React.useState<number>(0)
     const [contentSlide, setContentSlide] = React.useState<SanityHeroContentSlide | undefined>()
     const themeContext = useContext(CustomizedThemeContext)
+
+    const theme = useTheme()
     const pageContext: PageContextType = useContext(PageContext)
 
     React.useEffect(() => {
@@ -55,19 +57,11 @@ const HeroAnimatedContentSection: FunctionComponent<IProps> = (props) => {
             setContentSlide(props.sectionData.contentSlides[pageNumber])
     }, [props.sectionData.contentSlides, pageNumber])
 
+    const mdDown = useMediaQuery(theme.breakpoints.down('md'))
+
     return (
-        <ThemeProvider theme={themeContext.customizedTheme}>
-            <Grid container item style={{overflow: "hidden", paddingTop: "148px"}}>
-                <motion.div
-                    animate={{scale: 1}}
-                    initial={{scale: 1.1}}
-                    transition={{
-                        // ease: "linear",
-                        duration: 2,
-                        // scale: {duration: 3},
-                        // opacity: {duration: .5}
-                    }}
-                >
+            <Grid container item style={{overflow: "hidden", paddingTop: mdDown?theme.mixins.toolbar.height:"148px"}}>
+
                     <Grid container item style={{
                         backgroundRepeat: 'no-repeat',
                         backgroundImage: contentSlide?.heroImage ? `url('${urlFor(contentSlide?.heroImage).url() ?? ''}'), url('${urlFor(contentSlide?.heroImageBackground ?? "").url()}')` : "",
@@ -100,6 +94,16 @@ const HeroAnimatedContentSection: FunctionComponent<IProps> = (props) => {
                                 </IconButton>
                             </Grid>
                             <Grid item xs={10}>
+                                <motion.div
+                                    animate={{scale: 1}}
+                                    initial={{scale: 1.1}}
+                                    transition={{
+                                        // ease: "linear",
+                                        duration: 2,
+                                        // scale: {duration: 3},
+                                        // opacity: {duration: .5}
+                                    }}
+                                >
                                 <Grid item>
                                     <Grid container className={classes.contentSection} item>
                                         <Grid container justifyContent='center' alignContent={'center'}>
@@ -201,6 +205,7 @@ const HeroAnimatedContentSection: FunctionComponent<IProps> = (props) => {
                                         </Grid>
                                     </Grid>
                                 </Grid>
+                                </motion.div>
                             </Grid>
                             <Grid item>
                                 <Grid item >
@@ -222,9 +227,8 @@ const HeroAnimatedContentSection: FunctionComponent<IProps> = (props) => {
                             </Grid>
                         </Grid>
                     </Grid>
-                </motion.div>
+
             </Grid>
-        </ThemeProvider>
     )
 }
 

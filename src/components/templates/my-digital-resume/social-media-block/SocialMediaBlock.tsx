@@ -18,6 +18,8 @@ interface IProps {
     github?: string
     color?: PropTypes.Color
     bgColor?: boolean
+    theBackgroundColor?: string
+    iconColor?: string
     spacing?: GridSpacing
 }
 
@@ -25,57 +27,59 @@ const SocialMediaBlock: FunctionComponent<IProps> = (props: IProps) => {
     const customizedThemeContext = useContext(CustomizedThemeContext)
      const useStyles = makeStyles(({
         buttonBackground: {
-            backgroundColor: customizedThemeContext.customizedTheme.palette.primary.main,
+            backgroundColor: props.bgColor ? props.theBackgroundColor:customizedThemeContext.customizedTheme.palette.primary.main,
             borderRadius: 40,
-            padding: customizedThemeContext.customizedTheme.spacing(1)
+            // padding: customizedThemeContext.customizedTheme.spacing(1),
+            color: props.iconColor ?? customizedThemeContext.customizedTheme.palette.primary.main
         },
     }))
     const classes = useStyles()
     return (
-        <ThemeProvider theme={customizedThemeContext.customizedTheme}>
-            <Grid data-testid='social-media-block' item xs={12} container alignItems='center' justifyContent='center'
-                  spacing={props.spacing ? props.spacing : 0}>
+            <Grid data-testid='social-media-block' item xs={12} container alignItems='center' justifyContent='flex-end'
+                  spacing={props.spacing ? props.spacing : 0} wrap={'nowrap'} >
                 {props.facebook && <Grid item>
                     <Grid item className={clsx({[classes.buttonBackground]: props.bgColor})}>
                         <IconButton
-                            color={props.color ?? 'primary'}
+
+                            color={'inherit'}
                             href={`https://facebook.com/${props.facebook}`}
-                            size="large"><Facebook/></IconButton>
+                            size="small"><Facebook/></IconButton>
                     </Grid>
                 </Grid>}
                 {props.twitter && <Grid item>
                     <Grid item className={clsx({[classes.buttonBackground]: props.bgColor})}>
                         <IconButton
-                            color={props.color ?? 'primary'}
+                            color={'inherit'}
                             href={`https://twitter.com/${props.twitter}`}
-                            size="large"><Twitter/></IconButton>
+                            size="small"><Twitter/></IconButton>
                     </Grid>
                 </Grid>}
                 {props.instagram && <Grid item>
                     <Grid item className={clsx({[classes.buttonBackground]: props.bgColor})}>
                         <IconButton
-                            color={props.color ?? 'primary'}
+                            color={'inherit'}
                             href={`https://instagram.com/${props.instagram}`}
-                            size="large"><Instagram/></IconButton>
+                            size="small"><Instagram/></IconButton>
                     </Grid>
                 </Grid>}
                 {props.linkedIn && <Grid item>
                     <Grid item className={clsx({[classes.buttonBackground]: props.bgColor})}>
                         <IconButton
-                            color={props.color ?? 'primary'}
+                            color={'inherit'}
                             href={`https://linkedIn.com/in/${props.linkedIn}`}
-                            size="large"><LinkedIn/></IconButton>
+                            size="small"><LinkedIn/></IconButton>
                     </Grid>
                 </Grid>}
                 {props.github && <Grid item>
                     <Grid item className={clsx({[classes.buttonBackground]: props.bgColor})}>
                         <IconButton
-                            color={props.color ?? 'primary'}
+                            color={'inherit'}
                             href={`https://github.com/${props.github}`}
-                            size="large"><GitHub/></IconButton>
+                            size="small"><GitHub/></IconButton>
                     </Grid>
                 </Grid>}
-            </Grid></ThemeProvider>
+            </Grid>
+
     );
 }
 

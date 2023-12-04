@@ -5,7 +5,8 @@ import {AnimatedServiceItemNoRefType} from "../BlockContentTypes";
 import CustomizedThemeContext from "../customized-theme-provider/CustomizedThemeContext";
 import {urlFor} from "../block-content-ui/static-pages/cmsStaticPagesClient";
 import ColoredPng from "../colored-png/ColoredPng";
-import {motion, useAnimationControls} from "framer-motion"
+import {motion, useAnimation, useAnimationControls} from "framer-motion"
+import {useInView} from "react-intersection-observer";
 
 interface IProps {
     service: AnimatedServiceItemNoRefType
@@ -27,9 +28,29 @@ const AnimatedServiceItem: FunctionComponent<IProps> = (props: IProps) => {
         await controls.start({scale: 1.1})
     }
 
+    const shapeControls = useAnimation();
+    const [shapeRef, shapeInView] = useInView();
+
+    React.useEffect(() => {
+        if (shapeInView) {
+             shapeControls.start("onScreen");
+        }
+        else {
+            shapeControls.start("offScreen");
+        }
+    }, [shapeControls, shapeInView]);
+
+    const variants = {
+        onScreen: {opacity: 1, transition: {duration: 2.5}},
+        offScreen: {opacity: 0, transition: {duration: 1}}
+    };
+
     return (
-        <ThemeProvider theme={customizedTheme.customizedTheme} key={uuidv4()}>
             <motion.div
+                ref={shapeRef}
+                variants={variants}
+                initial="offScreen"
+                animate={shapeControls}
                 onHoverStart={async () => {
                     await animateShrinkIcon()
                 }}
@@ -38,7 +59,7 @@ const AnimatedServiceItem: FunctionComponent<IProps> = (props: IProps) => {
                 }}
             >
                 <Card>
-                    <Grid item container xs={12} md={6}
+                    <Grid container item
                           padding={customizedTheme.customizedTheme.spacing(3, 2)}
                           style={{backgroundColor: "#000000", position: "relative"}}
                           justifyContent='center'>
@@ -84,8 +105,8 @@ const AnimatedServiceItem: FunctionComponent<IProps> = (props: IProps) => {
                             backgroundImage: `url(${urlFor(props.service.backgroundImageSrc ?? "").url() ?? ""})`,
                         }} justifyContent='center'>
                             <Grid item>
-                                <Typography color='textSecondary' style={{marginTop: "16px", marginBottom: "16px",}}
-                                            variant='h6' align='center'>{props.service.contentTitle}</Typography>
+                                <Typography fontSize={24} color='textSecondary' style={{marginTop: "16px", marginBottom: "16px",}}
+                                            variant='body2' align='center'>{props.service.contentTitle}</Typography>
                             </Grid>
                             <Grid item>
                                 <Typography color='textSecondary' variant='body1' align='center'
@@ -95,7 +116,6 @@ const AnimatedServiceItem: FunctionComponent<IProps> = (props: IProps) => {
                     </Grid>
                 </Card>
             </motion.div>
-        </ThemeProvider>
     )
 }
 

@@ -16,10 +16,23 @@ export default {
                 hotspot: true,
             },
         },
+
         {
             name: 'title',
             title: 'Title',
             type: 'string',
+        },
+        {
+            name: 'muiIcon',
+            title: 'Icon',
+            type: 'string',
+            options: {
+                list:[
+                    {title:"location", value: "location"},
+                    {title:"email", value: "email"},
+                    {title:"phone", value: "phone"}
+                ]
+            }
         },
         {
             name: 'description',

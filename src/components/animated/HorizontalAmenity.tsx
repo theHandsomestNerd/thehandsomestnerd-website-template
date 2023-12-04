@@ -30,8 +30,7 @@ const HorizontalAmenity: FunctionComponent<IProps> = (props: IProps) => {
 
     return (
         <motion.div onHoverStart={animateFlipIcon} onHoverEnd={animateUnFlipIcon}>
-            <Grid item container xs={12} sm={6}
-                  maxWidth={350} spacing={1}>
+            <Grid item container spacing={1}>
                 <Grid item maxWidth={64} style={{position: "relative"}}>
                     <Card style={{
                         position: "absolute",
@@ -50,7 +49,7 @@ const HorizontalAmenity: FunctionComponent<IProps> = (props: IProps) => {
                 </Grid>
                 <Grid item maxWidth={250}>
                     <Grid item>
-                        <Typography variant='body2' gutterBottom>{props.amenity.name}</Typography>
+                        <Typography variant='body2' gutterBottom noWrap>{props.amenity.name}</Typography>
                     </Grid>
                     <Grid item>
                         <Typography variant='body1'>{props.amenity.description}</Typography>

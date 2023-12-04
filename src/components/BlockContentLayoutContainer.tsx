@@ -4,9 +4,9 @@ import {Card, Grid, Link, useTheme} from '@mui/material'
 import sanityClient from '../sanityClient'
 import {blockSerializers} from '../common/sanityIo/BlockContentRenderer'
 import {
-    AnimatedAboutUsSectionType, AnimatedServicesSectionType,
+    AnimatedAboutUsSectionType, AnimatedPortfolioSectionType, AnimatedServicesSectionType, HeadlineCTASectionType,
     HeroAnimatedContentSectionType,
-    HowItWorksSectionType,
+    HowItWorksSectionType, MapSectionType,
     PortfolioSectionType,
     ResumeBioSectionType,
     ResumeContactUsSectionType,
@@ -55,6 +55,9 @@ import WebDevHowItWorksSection from "./templates/web-dev-site/WebDevHowItWorksSe
 import HeroAnimatedContentSection from "./animated/HeroAnimatedContentSection";
 import AnimatedAboutUsSection from "./animated/AnimatedAboutUsSection";
 import AnimatedServicesSection from './animated/AnimatedServicesSection'
+import AnimatedPortfolioSection from "./animated/AnimatedPortfolioSection";
+import HeadlineCTASection from "./animated/HeadlineCTASection";
+import MapSection from "./animated/MapSection";
 
 export type BlockContentLayoutContainerProps = {
     content?: any,
@@ -437,6 +440,35 @@ const BlockContentLayoutContainer: FunctionComponent<BlockContentLayoutContainer
                                 />
                             </Grid>
                         );
+                    case 'AnimatedPortfolioSection':
+                        const animatedPortfolioSection: AnimatedPortfolioSectionType = columnLayoutContainer
+                        return (
+                            <Grid key={'animated-portfolio'} container item xs={12}>
+                                <Link id={"ANIMATED_PORTFOLIO"} underline="hover"><></>
+                                </Link>
+                                <AnimatedPortfolioSection
+                                    sectionData={animatedPortfolioSection}
+                                />
+                            </Grid>
+                        );
+                    case 'HeadlineCTASection':
+                        const headlineSection: HeadlineCTASectionType = columnLayoutContainer
+
+                        return <Grid key={'headline-section'} container item style={{zIndex: 1000}}>
+                            <HeadlineCTASection
+                                sectionData={headlineSection}
+                            />
+                        </Grid>
+                     case 'MapSection':
+                        const mapSection: MapSectionType = columnLayoutContainer
+
+                        return <Grid key={'map-section'} container item>
+                            <Link id={"MAP_SECTION"} underline="hover"><></>
+                            </Link>
+                            <MapSection
+                                sectionData={mapSection}
+                            />
+                        </Grid>
                     default:
                         return <Grid container item></Grid>
                     // return <span key={index}>Undefined section {columnLayoutContainer._type}</span>
