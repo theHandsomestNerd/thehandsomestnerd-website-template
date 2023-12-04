@@ -21,6 +21,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
 interface IProps {
     isAppBar?: boolean,
     children: any
+    isEnhanced?: boolean
 }
 
 const AppBarWrapper: FunctionComponent<PropsWithChildren<IProps>> = (props: IProps) => {
@@ -33,7 +34,7 @@ const AppBarWrapper: FunctionComponent<PropsWithChildren<IProps>> = (props: IPro
 
     return (
         props.isAppBar ? <AppBar style={{
-            backgroundColor: `${props.isAppBar ? "black" : "white"}`,
+            backgroundColor: `${props.isAppBar && props.isEnhanced ? "black" : "white"}`,
         }} className={classes.root}>
             {props.children}
         </AppBar> : <>{props.children}</>

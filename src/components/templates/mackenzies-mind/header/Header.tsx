@@ -13,6 +13,7 @@ export type HeaderProps = {
     isAppBar?: boolean
     isSearch?: boolean
     updateIsLoading?: (value: boolean) => void
+    isEnhanced?: boolean
 }
 
 const Header: FunctionComponent<HeaderProps> = (props) => {
@@ -21,7 +22,7 @@ const Header: FunctionComponent<HeaderProps> = (props) => {
     const mdDown = useMediaQuery(customizedTheme.breakpoints.down('md'))
     const [isSearchOpen, setIsSearchOpen] = React.useState<boolean>(false)
 
-    return (<AppBarWrapper isAppBar={props.isAppBar}>
+    return (<AppBarWrapper isAppBar={props.isAppBar} isEnhanced={props.isEnhanced}>
             {props.pageHeader?.title ?
                 <Grid item container
                       alignContent='center' alignItems='center' style={{height:"100%",paddingLeft:"8px"}}>

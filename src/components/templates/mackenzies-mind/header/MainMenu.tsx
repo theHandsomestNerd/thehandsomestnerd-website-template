@@ -104,9 +104,9 @@ const MainMenu: FunctionComponent<MainMenuProps> = ({menu, anchor}) => {
                           paddingRight: theme.spacing(6),
                       }}>
 
-                    <Grid item xs={3}>
+                    <Grid item xs={11}>
 
-                        <Logo logoImageSrc={menu.logoImageSrc} logoText={'Chow Works'}/>
+                        <Logo logoImageSrc={menu.logoImageSrc} logoText={'James Terrell Singleton'}/>
                     </Grid>
                     <Grid item xs={1}><Button onClick={() => {
                         setIsDrawerOpen(false)

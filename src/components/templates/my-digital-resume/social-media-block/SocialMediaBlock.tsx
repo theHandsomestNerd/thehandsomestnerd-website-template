@@ -1,6 +1,6 @@
 import React, {FunctionComponent, useContext} from 'react'
 import makeStyles from '@mui/styles/makeStyles';
-import {Grid, IconButton, PropTypes, ThemeProvider} from '@mui/material';
+import {Grid, IconButton, PropTypes, ThemeProvider, useTheme} from '@mui/material';
 import {Facebook, GitHub, Instagram, LinkedIn, Twitter} from "@mui/icons-material";
 import clsx from "clsx";
 import {GridSpacing} from "@mui/material/Grid/Grid";
@@ -16,6 +16,7 @@ interface IProps {
     instagram?: string
     linkedIn?: string
     github?: string
+    isCentered?: boolean
     color?: PropTypes.Color
     bgColor?: boolean
     theBackgroundColor?: string
@@ -25,58 +26,50 @@ interface IProps {
 
 const SocialMediaBlock: FunctionComponent<IProps> = (props: IProps) => {
     const customizedThemeContext = useContext(CustomizedThemeContext)
+    const theme = useTheme()
      const useStyles = makeStyles(({
         buttonBackground: {
-            backgroundColor: props.bgColor ? props.theBackgroundColor:customizedThemeContext.customizedTheme.palette.primary.main,
+            backgroundColor: props.bgColor ? props.theBackgroundColor:theme.palette.primary.main,
             borderRadius: 40,
-            // padding: customizedThemeContext.customizedTheme.spacing(1),
-            color: props.iconColor ?? customizedThemeContext.customizedTheme.palette.primary.main
+            // padding: theme.spacing(1),
+            color: `${props.iconColor ?? theme.palette.primary.main} !important`
         },
     }))
+
+    console.log(props.iconColor)
     const classes = useStyles()
     return (
-            <Grid data-testid='social-media-block' item xs={12} container alignItems='center' justifyContent='flex-end'
-                  spacing={props.spacing ? props.spacing : 0} wrap={'nowrap'} >
+            <Grid data-testid='social-media-block' item xs={12} container alignItems='center' justifyContent={props.isCentered?'center':'flex-end'}
+                  spacing={props.spacing ? props.spacing : 0} wrap={'nowrap'}>
                 {props.facebook && <Grid item>
-                    <Grid item className={clsx({[classes.buttonBackground]: props.bgColor})}>
                         <IconButton
-
-                            color={'inherit'}
+                            className={clsx({[classes.buttonBackground]: props.bgColor})}
                             href={`https://facebook.com/${props.facebook}`}
-                            size="small"><Facebook/></IconButton>
-                    </Grid>
+                            size="small"><Facebook color={'inherit'}/></IconButton>
                 </Grid>}
                 {props.twitter && <Grid item>
-                    <Grid item className={clsx({[classes.buttonBackground]: props.bgColor})}>
                         <IconButton
-                            color={'inherit'}
+                            className={clsx({[classes.buttonBackground]: props.bgColor})}
                             href={`https://twitter.com/${props.twitter}`}
-                            size="small"><Twitter/></IconButton>
-                    </Grid>
+                            size="small"><Twitter  color={'inherit'}/></IconButton>
                 </Grid>}
                 {props.instagram && <Grid item>
-                    <Grid item className={clsx({[classes.buttonBackground]: props.bgColor})}>
                         <IconButton
-                            color={'inherit'}
+                            className={clsx({[classes.buttonBackground]: props.bgColor})}
                             href={`https://instagram.com/${props.instagram}`}
-                            size="small"><Instagram/></IconButton>
-                    </Grid>
+                            size="small"><Instagram  color={'inherit'}/></IconButton>
                 </Grid>}
                 {props.linkedIn && <Grid item>
-                    <Grid item className={clsx({[classes.buttonBackground]: props.bgColor})}>
                         <IconButton
-                            color={'inherit'}
+                            className={clsx({[classes.buttonBackground]: props.bgColor})}
                             href={`https://linkedIn.com/in/${props.linkedIn}`}
-                            size="small"><LinkedIn/></IconButton>
-                    </Grid>
+                            size="small"><LinkedIn color={'inherit'}/></IconButton>
                 </Grid>}
                 {props.github && <Grid item>
-                    <Grid item className={clsx({[classes.buttonBackground]: props.bgColor})}>
                         <IconButton
-                            color={'inherit'}
+                            className={clsx({[classes.buttonBackground]: props.bgColor})}
                             href={`https://github.com/${props.github}`}
-                            size="small"><GitHub/></IconButton>
-                    </Grid>
+                            size="small"><GitHub color={'inherit'}/></IconButton>
                 </Grid>}
             </Grid>
 

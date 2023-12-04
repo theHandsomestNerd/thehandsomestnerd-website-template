@@ -324,7 +324,7 @@ const BusinessCard: FunctionComponent<MainMenuProps> = ({anchor, homePage}) => {
 
                             </Grid>
                             <Grid item>
-                                <Typography color='secondary' variant='button'>Contact Info</Typography>
+                                <Typography color='textSecondary' variant='button'>Contact Info</Typography>
 
                             </Grid>
                         </Grid>

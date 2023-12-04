@@ -23,16 +23,15 @@ const FooterMenuContainer: FunctionComponent<IProps> = (props: IProps) => {
     const theme = useTheme()
 
     const pageContext = useContext(PageContext)
-    const customizedThemeContext = useTheme()
     const useStyles = makeStyles(({
         root: {
-            color: customizedThemeContext.palette.text.secondary,
+            color: theme.palette.text.secondary,
         }
     }))
-    const classes = useStyles(customizedThemeContext)
+    const classes = useStyles(theme)
 
-    const mdDown = useMediaQuery(customizedThemeContext.breakpoints.down('md'))
-    const mdUp = useMediaQuery(customizedThemeContext.breakpoints.up('md'))
+    const mdDown = useMediaQuery(theme.breakpoints.down('md'))
+    const mdUp = useMediaQuery(theme.breakpoints.up('md'))
     return (
         <Grid container item className={classes.root}
 
@@ -42,15 +41,15 @@ const FooterMenuContainer: FunctionComponent<IProps> = (props: IProps) => {
                       paddingLeft: "16px",
                       paddingTop: "16px",
                       paddingBottom: "16px",
-                      borderLeft: `4px solid ${customizedThemeContext.palette.primary.main}`,
+                      borderLeft: `4px solid ${theme.palette.primary.main}`,
                       backgroundColor: COLORS.TRANSPARENTERWHITE,
-                      borderRight: `4px solid ${customizedThemeContext.palette.primary.main}`,
-                  } : {}}
+                      borderRight: `4px solid ${theme.palette.primary.main}`,
+                  } : {                      }}
             >
                 {
                     props.pageFooterMenu?.subMenus?.map((menuGroup: any, index: number) => {
                         return (
-                            <Grid key={index} item xs={12} container justifyContent={mdUp?'flex-start':'center'}>
+                            <Grid key={index} item xs={6} sm={12} md={6} container justifyContent={mdUp?'flex-start':'center'}>
                                 <Grid item><FooterMenuGroup menuGroup={menuGroup}/></Grid>
                             </Grid>
                         )
@@ -109,7 +108,7 @@ const FooterMenuContainer: FunctionComponent<IProps> = (props: IProps) => {
                 <Grid container item xs={12} md={12} sx={{
                     paddingTop: "4px !important",
                     marginTop: mdDown ? 4 : 0,
-                    borderTop: "1px solid " + theme.palette.primary.main
+                    borderTop: props.isSocialMediaBlock?"1px solid " + theme.palette.primary.main:"0px solid transparent"
                 }}>
                     {mdDown &&
                         props.isSocialMediaBlock &&

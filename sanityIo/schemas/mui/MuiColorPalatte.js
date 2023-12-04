@@ -20,6 +20,7 @@
 //     {value: "DARK_GRAY", title: "Dark Gray"},
 //     {value: "LIGHTER_GRAY", title: "Lighter Gray"},
 // ]
+
 import {ColorListing} from "./ColorListing";
 
 export default {
@@ -62,12 +63,6 @@ export default {
             title: 'Button Outline Color',
             type: 'string',
             options: {list: ColorListing}
-        },
-        {
-            name: 'buttonOutlineColor',
-            title: 'Button Outline Color',
-            type: 'string',
-            options: {list: listing}
         },
        {
             name: 'secondaryTextColor',
