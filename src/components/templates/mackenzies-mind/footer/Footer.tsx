@@ -48,6 +48,7 @@ interface IProps {
     isSocialMediaBlock?: boolean
     backgroundImgSrc?: SanityImageAsset
     backgroundColor?:string
+    topPadding?: string
 }
 
 const Footer: FunctionComponent<IProps> = (props: IProps) => {
@@ -69,7 +70,7 @@ const Footer: FunctionComponent<IProps> = (props: IProps) => {
             <Grid container className={classes.root}  sx={{
                     backgroundImage: `url(${urlFor(props.backgroundImgSrc ?? "").url()})`,
                     backgroundSize: "cover",}}>
-            <Grid container justifyContent="flex-start" sx={{paddingTop: mdDown ? 0 : "56px"}}>
+            <Grid container justifyContent="flex-start" sx={{paddingTop: mdDown ? 0 : (props.topPadding ?? "0px")}}>
                 <Grid item xs={12}>
                     {props.pageFooter && <FooterMenuContainer
                         isSocialMediaBlock={props.isSocialMediaBlock}

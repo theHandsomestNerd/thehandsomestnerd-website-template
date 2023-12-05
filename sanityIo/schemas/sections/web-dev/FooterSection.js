@@ -11,6 +11,11 @@ export default {
             type: 'string',
         },
         {
+            name: 'topPadding',
+            title: 'Top Padding',
+            type: 'string',
+        },
+        {
             name: 'backgroundImgSrc',
             title: 'Background Image',
             type: 'image',
@@ -18,6 +23,7 @@ export default {
                 hotspot: true,
             },
         },
+
         {
             name: 'backgroundColor',
             title: 'Background Color',

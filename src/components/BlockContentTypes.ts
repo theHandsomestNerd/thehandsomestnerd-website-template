@@ -618,6 +618,7 @@ export type FooterSectionType = {
     backgroundImgSrc?: SanityImageAsset
     backgroundColor?: string
     isSocialMediaBlock: boolean
+    topPadding?: string
     footerMenuRef: SanityMenuContainer
 }
 
