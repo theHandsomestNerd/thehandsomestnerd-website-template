@@ -16,15 +16,15 @@ const ResumePortfolioSection: FunctionComponent<IProps> = (props: IProps) => {
     const globalClasses = useThwCommonStyles()
     const theme = useTheme()
 
-    const [isOpen, setIsOpen] = React.useState<boolean>(false)
-    const [currentItem, setCurrentItem] = React.useState<ResumePortfolioItem>()
+    // const [isOpen, setIsOpen] = React.useState<boolean>(false)
+    // const [currentItem, setCurrentItem] = React.useState<ResumePortfolioItem>()
 
-    const sendToModal = (portfolioItem?: ResumePortfolioItem) => {
-        console.log("The current Item", portfolioItem)
-        setCurrentItem(portfolioItem)
-
-        setIsOpen(true)
-    }
+    // const sendToModal = (portfolioItem?: ResumePortfolioItem) => {
+    //     console.log("The current Item", portfolioItem)
+    //     setCurrentItem(portfolioItem)
+    //
+    //     setIsOpen(true)
+    // }
 
     return (
         <Grid container item style={{padding: theme.spacing(4)}}
@@ -46,15 +46,15 @@ const ResumePortfolioSection: FunctionComponent<IProps> = (props: IProps) => {
                     <Grid item container>
                         <Typography variant='body1'>{props.sectionData.introduction}</Typography></Grid>
                 </Grid>
-                <Grid item container justifyContent={'center'} xs={10} justifySelf={'center'}>
+                <Grid item container justifyContent={'center'} xs={11} justifySelf={'center'}>
                     {
                         props.sectionData.portfolioEntries?.map((portfolioItem: ResumePortfolioItem, index2: number) => {
-                            return <ResumePortfolioEntry action={sendToModal} portfolioItem={portfolioItem} />
+                            return <ResumePortfolioEntry portfolioItem={portfolioItem} />
                         })
                     }
                 </Grid>
             </Grid>
-            <PortfolioItemModal currentItem={currentItem} isOpen={isOpen} setIsOpen={(value)=>{setIsOpen(value)}}/>
+            {/*<PortfolioItemModal currentItem={currentItem} isOpen={isOpen} setIsOpen={(value)=>{setIsOpen(value)}}/>*/}
         </Grid>
     );
 }

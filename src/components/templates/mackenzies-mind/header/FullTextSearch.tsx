@@ -9,15 +9,14 @@ import makeStyles from "@mui/styles/makeStyles";
 import {Theme} from "@mui/material/styles";
 import {
     AnimatedAboutUsSectionType,
-    HeroAnimatedContentSectionType, ResumeExperience, ResumeExperienceSectionType, ResumeSkill, ResumeSkillSet,
+    HeroAnimatedContentSectionType,
+    ResumeExperience,
+    ResumeSkill,
     SanityHeroContentSlide,
     ServiceItemNoRefType
 } from "../../../BlockContentTypes";
-import ResumeExperienceSection from "../../my-digital-resume/resume-experience-section/ResumeExperienceSection";
 import ResumeExperienceItem from "../../my-digital-resume/resume-experience-section/ResumeExperienceItem";
 import {COLORS} from "../../../../theme/common/ColorPalette";
-import ResumeSkillsSection from "../../my-digital-resume/resume-skills-section/ResumeSkillsSection";
-import ResumeSkillSetItem from "../../my-digital-resume/resume-skills-section/ResumeSkillSetItem";
 import ResumeSkillReferences from "../../my-digital-resume/resume-skills-section/ResumeSkillReferences";
 
 export const useStyles = makeStyles((theme: Theme) => ({
@@ -67,8 +66,8 @@ const FullTextSearch: FunctionComponent<IProps> = (props: IProps) => {
         setSearchText(event.target.value)
     }
 
-    return (<Grid container item >
-        <Grid container>
+    return (<Grid container item>
+        <Grid container item>
 
             <TextField fullWidth
                        key={'full-text-search-field'}
@@ -94,7 +93,8 @@ const FullTextSearch: FunctionComponent<IProps> = (props: IProps) => {
                            ,
                        }}/>
         </Grid>
-        {<Grid container style={{overflow: "scroll", height: "800px"}}>
+        {<Grid container item style={{overflow: "scroll", height: "800px"}} alignContent='flex-start'
+               alignItems='flex-start'>
             <Grid item>
 
                 {results?.length && <Typography
@@ -174,7 +174,11 @@ const FullTextSearch: FunctionComponent<IProps> = (props: IProps) => {
                             const convertedResumeExperience: ResumeExperience = theResult;
 
                             console.log(convertedResumeExperience)
-                            return <Grid container sx={{marginBottom: "16px", backgroundColor:COLORS.LIGHTGRAY, padding: "16px"}}>
+                            return <Grid container sx={{
+                                marginBottom: "16px",
+                                backgroundColor: COLORS.LIGHTGRAY,
+                                padding: "16px"
+                            }}>
                                 <Grid container>
                                     <Typography variant='h6' gutterBottom color='primary'>My Experience</Typography>
                                 </Grid>
@@ -184,11 +188,16 @@ const FullTextSearch: FunctionComponent<IProps> = (props: IProps) => {
                             const convertedResumeSkill: ResumeSkill = theResult;
 
                             console.log(convertedResumeSkill)
-                            return <Grid container sx={{marginBottom: "16px", backgroundColor:COLORS.LIGHTGRAY, padding: "16px"}}>
+                            return <Grid container sx={{
+                                marginBottom: "16px",
+                                backgroundColor: COLORS.LIGHTGRAY,
+                                padding: "16px"
+                            }}>
                                 <Grid container>
-                                    <Typography variant='h6' gutterBottom color='primary'>My Skill - {convertedResumeSkill.title}</Typography>
+                                    <Typography variant='h6' gutterBottom color='primary'>My Skill
+                                        - {convertedResumeSkill.title}</Typography>
                                 </Grid>
-                                <ResumeSkillReferences skill={convertedResumeSkill} />
+                                <ResumeSkillReferences skill={convertedResumeSkill}/>
                             </Grid>
                         default:
                             return <Grid container sx={{marginBottom: "16px"}}><Typography

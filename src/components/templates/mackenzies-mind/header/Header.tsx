@@ -7,6 +7,7 @@ import {SanityMenuContainer} from "../../../../common/sanityIo/Types";
 import {Close, Search} from "@mui/icons-material";
 import FullTextSearch from "./FullTextSearch";
 import AppBarWrapper from './AppBarWrapper';
+import {COLORS} from "../../../../theme/common/ColorPalette";
 
 export type HeaderProps = {
     pageHeader?: SanityMenuContainer
@@ -78,14 +79,16 @@ const Header: FunctionComponent<HeaderProps> = (props) => {
             }
             <Modal open={isSearchOpen}>
                 <Grid container style={{height: "100%"}}>
-                    <Grid container item justifyContent='flex-end'>
+                    <Grid container item justifyContent='flex-end' >
+                        <IconButton sx={{marginTop: "4px", marginRight:"4px", width: "64px", height: "64px", backgroundColor: COLORS.WHITESMOKE}} onClick={() => {
+                            setIsSearchOpen(false)
+                        }}>
+
                         <Close sx={{marginX: "16px", marginY: "16px"}} fontSize={"large"} color={'secondary'}
-                               onClick={() => {
-                                   setIsSearchOpen(false)
-                               }}/>
+                               />
+                        </IconButton>
                     </Grid>
-                    <Grid container item justifyContent='center' alignContent='center' alignItems='center' paddingX={'32px'}
-                          >
+                    <Grid container item justifyContent='center' paddingX={'8px'} alignContent='flex-start' alignItems='flex-start'>
                         <FullTextSearch/>
                     </Grid>
                 </Grid>

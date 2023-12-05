@@ -72,13 +72,15 @@ const ResumeBioSection: FunctionComponent<IProps> = (props: IProps) => {
                     />
                 </Grid>
             </Grid>
-            <Grid data-testid='bio-image' container item md={6} style={{
-                backgroundImage: `url(${urlFor(props.sectionData.mainImage ?? "").url()})`,
-                backgroundSize: "cover",
-                backgroundPosition: "top right",
-                backgroundRepeat: "no-repeat",
-                minHeight: "350px"
-            }}>
+            <Grid item container md={6}>
+                <Grid data-testid='bio-image' container item style={{
+                    backgroundImage: `url(${urlFor(props.sectionData.mainImage ?? "").url()})`,
+                    backgroundSize: "cover",
+                    backgroundPosition: "top right",
+                    backgroundRepeat: "no-repeat",
+                    minHeight: "350px"
+                }}>
+                </Grid>
             </Grid>
             <Grid container item xs={12} sm={10} spacing={1} style={{marginTop: theme.spacing(2)}}>
                 <Grid item container>
