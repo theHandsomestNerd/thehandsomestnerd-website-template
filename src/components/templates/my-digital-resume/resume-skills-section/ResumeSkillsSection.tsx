@@ -6,6 +6,7 @@ import {ResumeSkillSectionType, ResumeSkillSet} from "../../../BlockContentTypes
 import useThwCommonStyles from "../../../../common/sanityIo/ThwCommonStyles";
 import {COLORS} from "../../../../theme/common/ColorPalette";
 import CustomizedThemeContext from "../../../customized-theme-provider/CustomizedThemeContext";
+import ResumeSkillSetItem from "./ResumeSkillSetItem";
 
 
 export const useStyles = makeStyles((theme: Theme) => ({
@@ -33,33 +34,15 @@ const ResumeSkillsSection: FunctionComponent<IProps> = (props: IProps) => {
             >
                 <Grid container item spacing={3}>
                     <Grid item container md={4} alignContent='flex-start' spacing={1}>
-                        <Grid item container><Typography component='div' variant='h6'>{props.sectionData.title}</Typography><Typography variant='h6'
+                        <Grid item container><Typography component='div' variant='h6'>{props.sectionData?.title}</Typography><Typography variant='h6'
                                                                                                  color='primary'
                                                                                                  display='inline'>.</Typography></Grid>
-                        <Grid item><Typography variant='body1'>{props.sectionData.introduction}</Typography></Grid>
+                        <Grid item><Typography variant='body1'>{props.sectionData?.introduction}</Typography></Grid>
                     </Grid>
                     <Grid item container md={8} spacing={2} justifyContent='space-between'>
                         {
-                            props.sectionData.skillsets?.map((skillset: ResumeSkillSet, index2: number) => {
-                                return <Grid key={index2} item container xs={11} sm={6} md={6} alignContent='flex-start'
-                                             role='skilldivider'
-                                             style={{
-                                                 borderBottom: `1px solid ${index2 >= (props.sectionData.skillsets?.length ?? 0) - 2 ? 'transparent' : COLORS.LIGHTGRAY}`
-                                             }}>
-                                    <Grid container item>
-                                        <Typography display='inline'
-                                                    role='skillheader'
-                                                    variant='body2'>{skillset.title}</Typography>
-                                    </Grid>
-                                    <Grid container item>
-                                        {
-                                            skillset.skills?.map((skill, index) => {
-                                                return <Typography role='subskill' key={index} display='inline'
-                                                                   variant='body1'>{skill.title}{index !== (skillset.skills?.length ?? 0) - 1 ? ',' : ''}&nbsp;</Typography>
-                                            })
-                                        }
-                                    </Grid>
-                                </Grid>
+                            props.sectionData?.skillsets?.map((skillset: ResumeSkillSet, index2: number) => {
+                                return <ResumeSkillSetItem skillset={skillset} />
                             })
                         }
                     </Grid>

@@ -84,8 +84,8 @@ const Header: FunctionComponent<HeaderProps> = (props) => {
                                    setIsSearchOpen(false)
                                }}/>
                     </Grid>
-                    <Grid container justifyContent='center' alignContent='center' alignItems='center' paddingX={'32px'}
-                          style={{height: "100%"}}>
+                    <Grid container item justifyContent='center' alignContent='center' alignItems='center' paddingX={'32px'}
+                          >
                         <FullTextSearch/>
                     </Grid>
                 </Grid>
