@@ -6,9 +6,14 @@ import {Button, ButtonGroup, Chip, Grid, IconButton, Modal, Typography, useTheme
 import {Close} from "@mui/icons-material";
 import {urlFor} from "../../../block-content-ui/static-pages/cmsStaticPagesClient";
 import {ResumePortfolioItem} from "../../../BlockContentTypes";
+import {COLORS} from "../../../../theme/common/ColorPalette";
 
 export const useStyles = makeStyles((theme: Theme) => ({
-    root: {},
+    hover: {
+        "&:hover":{
+            backgroundColor: "whitesmoke"
+        }
+    }
 }))
 
 interface IProps {
@@ -19,12 +24,14 @@ interface IProps {
 
 const PortfolioItemModal: FunctionComponent<IProps> = (props: IProps) => {
     const theme = useTheme()
+    const classes = useStyles()
+
 
     const [isOpen, setIsOpen] = React.useState<boolean>(false)
 
     const setOpenWrapper = (theValue:boolean)=>{
         setIsOpen(theValue)
-        props.setIsOpen(theValue)
+        // props.setIsOpen(theValue)
     }
 
     React.useEffect(() => {
@@ -33,19 +40,23 @@ const PortfolioItemModal: FunctionComponent<IProps> = (props: IProps) => {
         // }
     }, [props.isOpen])
 
-    return (<Modal open={isOpen} onClick={() => setIsOpen(false)}>
+    return (<Modal open={isOpen} onClick={() => setIsOpen(false)} sx={{paddingBottom: 4, overflow:"scroll"}}>
         <Grid container item justifyContent='center' alignContent='center' alignItems='center'
-              style={{width: "100vw", height: "100vh", position: "relative"}}>
+              style={{ position: "relative"}}>
+
             <IconButton
-                color='secondary'
-                style={{position: "absolute", top: 0, right: 0}}
+                className={classes.hover}
+                style={{position: "absolute", top: 0, right: 0,
+                    width: "64px",
+                    height: "64px",
+                    backgroundColor: "white"}}
                 onClick={() => setIsOpen(false)}
                 size="large"><Close fontSize={'large'}/></IconButton>
             <Grid container sm={8} item style={{
                 backgroundColor: "white",
                 padding: theme.spacing(4),
-                maxHeight: "800px",
-                overflowY: "scroll",
+                minHeight: "600px",
+                // overflowY: "scroll",
                 maxWidth: "100%"
             }} spacing={2}>
                 <Grid item container><Typography variant='h3'>{props.currentItem?.detailTitle}</Typography>
@@ -53,7 +64,7 @@ const PortfolioItemModal: FunctionComponent<IProps> = (props: IProps) => {
                 <Grid item container><Typography
                     variant='body1'>{props.currentItem?.detailDescription}</Typography></Grid>
                 <Grid item container spacing={1}>
-                    {props.currentItem?.skillsHighlighted?.map((skill) => (<Grid item>
+                    {props.currentItem?.skillsHighlighted?.map((skill, index) => (<Grid item key={index}>
                         <Chip color='primary' label={skill.title}/>
                     </Grid>))}
                 </Grid>

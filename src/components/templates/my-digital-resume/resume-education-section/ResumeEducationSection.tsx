@@ -62,11 +62,11 @@ const ResumeEducationSection: FunctionComponent<IProps> = (props: IProps) => {
                                         <Typography display='inline'
                                                     variant='body1'
                                         >{experience.dateStart?.toString().replaceAll('-', '.')}</Typography>
-                                        <Typography display='inline'
+                                        {experience.dateEnd?<Typography display='inline'
                                                     variant='body1'
                                                     style={{
                                                         margin: theme.spacing(0, 1)
-                                                    }}>—</Typography>
+                                                    }}>—</Typography>:<></>}
                                         <Typography display='inline'
                                                     variant='body1'
                                         >{experience.dateEnd?.toString().replaceAll('-', '.')}</Typography>

@@ -54,12 +54,12 @@ const ResumeBioSection: FunctionComponent<IProps> = (props: IProps) => {
                     <Grid item xs={9}><Typography gutterBottom
                                                   variant='body1'>{props.homePage.businessContact?.email}</Typography></Grid>
                 </Grid>
-                <Grid container item xs={11} sm={12}>
-                    <Grid item xs={3}><Typography gutterBottom variant='body1'
-                                                  style={{textTransform: "uppercase"}}>MAIL</Typography></Grid>
-                    <Grid item xs={9}><Typography noWrap gutterBottom
-                                                  variant='body1'>{props.homePage.businessContact?.address}</Typography></Grid>
-                </Grid>
+                {/*<Grid container item xs={11} sm={12}>*/}
+                {/*    <Grid item xs={3}><Typography gutterBottom variant='body1'*/}
+                {/*                                  style={{textTransform: "uppercase"}}>MAIL</Typography></Grid>*/}
+                {/*    <Grid item xs={9}><Typography noWrap gutterBottom*/}
+                {/*                                  variant='body1'>{props.homePage.businessContact?.address}</Typography></Grid>*/}
+                {/*</Grid>*/}
                 <Grid container item xs={11} sm={12} justifyContent={'center'}>
                     <SocialMediaBlock
                         isCentered={true}

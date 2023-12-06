@@ -17,12 +17,8 @@ experience: ResumeExperience
 }
 
 const ResumeExperienceItem: FunctionComponent<IProps> = (props:IProps) => {
-    const classes = useStyles()
 
     const theme = useTheme()
-
-    React.useEffect(()=>{
-    }, [])
 
     return (<Grid item container alignContent='flex-start'
                   role={'experiencedivider'}
@@ -72,7 +68,7 @@ const ResumeExperienceItem: FunctionComponent<IProps> = (props:IProps) => {
               style={{overflowX: "scroll", paddingBottom: theme.spacing(1)}} wrap='nowrap'>
             {
                 props.experience.skillsUsed?.map((skill, index) => {
-                    console.log(skill)
+                    // console.log(skill)
                     return <Grid item key={index}><Chip role={'experienceskill'} size='small'
                                                         color='primary'
                                                         label={skill.title}/></Grid>

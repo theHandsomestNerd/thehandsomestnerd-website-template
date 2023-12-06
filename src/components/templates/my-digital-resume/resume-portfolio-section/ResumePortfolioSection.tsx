@@ -48,10 +48,10 @@ const ResumePortfolioSection: FunctionComponent<IProps> = (props: IProps) => {
                     <Grid item container>
                         <Typography variant='body1'>{props.sectionData.introduction}</Typography></Grid>
                 </Grid>
-                <Grid item container justifyContent={'center'} xs={11} justifySelf={'center'}>
+                <Grid item container justifyContent={'center'} xs={11} justifySelf={'center'} spacing={1}>
                     {
                         props.sectionData.portfolioEntries?.map((portfolioItem: ResumePortfolioItem, index2: number) => {
-                            return <ResumePortfolioEntry portfolioItem={portfolioItem} />
+                            return <ResumePortfolioEntry portfolioItem={portfolioItem} key={index2}/>
                         })
                     }
                 </Grid>

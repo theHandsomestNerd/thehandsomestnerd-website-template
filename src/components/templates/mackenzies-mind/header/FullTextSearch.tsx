@@ -47,6 +47,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
 }))
 
 interface IProps {
+    searchText?:string
 }
 
 const FullTextSearch: FunctionComponent<IProps> = (props: IProps) => {
