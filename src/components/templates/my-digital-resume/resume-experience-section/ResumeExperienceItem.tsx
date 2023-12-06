@@ -5,6 +5,7 @@ import { Theme} from "@mui/material/styles";
 import {Chip, Grid, Typography, useTheme} from "@mui/material";
 import {COLORS} from "../../../../theme/common/ColorPalette";
 import {ResumeExperience} from "../../../BlockContentTypes";
+import dateUtils from "../../../../utils/dateUtils";
 
 export const useStyles = makeStyles((theme: Theme) => ({
     root: {
@@ -30,20 +31,17 @@ const ResumeExperienceItem: FunctionComponent<IProps> = (props:IProps) => {
                   //     // padding: theme.spacing(1.75, 0)
                   // }}
                   xs={12}>
-        <Grid container item role={'experienceheader'}>
+        <Grid container item role={'experienceheader'} alignContent='center' alignItems='center'>
             <Grid item xs={12} md={4}>
                 <Typography display='inline'
                             variant='body2'>{props.experience.companyName}</Typography>
             </Grid>
-            <Grid item xs={6} md={4}>
-
-                <Typography display='inline'
-                            variant='body1'>{props.experience.title}</Typography>
+            <Grid item xs={12} sm={6} md={4} container sx={{paddingTop: "4px", paddingBottom: "4px"}}>
+                <Typography variant='subtitle1'>{props.experience.companySubtitle}</Typography>
             </Grid>
-            <Grid item xs={6} md={4}>
-
-                <Typography display='inline'
-                            variant='subtitle1'>{props.experience.companySubtitle}</Typography>
+            <Grid item xs={12} sm={6} md={4} >
+                <Typography
+                            variant='body1'>{props.experience.title}</Typography>
             </Grid>
         </Grid>
         <Grid container item>
@@ -51,7 +49,7 @@ const ResumeExperienceItem: FunctionComponent<IProps> = (props:IProps) => {
 
             <Grid item sm={4}>
                 <Typography display='inline'
-                            variant='body1'>{props.experience.dateStart?.toString().replaceAll('-', '.')}</Typography>
+                            variant='body1'>{dateUtils.YearMonth(new Date(props.experience.dateStart as string))}</Typography>
 
                 {/*</Grid>*/}
                 {/*<Grid item xs={1} container justifyContent='center'>*/}
@@ -61,7 +59,7 @@ const ResumeExperienceItem: FunctionComponent<IProps> = (props:IProps) => {
                 {/*</Grid>*/}
                 {/*<Grid item xs={2} container>*/}
                 <Typography display='inline'
-                            variant='body1'>{props.experience.dateEnd?.toString().replaceAll('-', '.')}</Typography>
+                            variant='body1'>{dateUtils.YearMonth(new Date(props.experience.dateEnd as string))}</Typography>
 
             </Grid>
 
