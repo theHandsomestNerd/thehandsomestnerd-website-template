@@ -11,7 +11,7 @@ import leadClient from "../transform-hw/pages/under-construction-page/leadClient
 import SnackbarContext from "../../modal-context/SnackbarContext";
 import {Theme} from "@mui/material/styles";
 import withStyles from "@mui/styles/withStyles";
-import {Grid, TextField, Typography, useTheme} from "@mui/material";
+import {Grid, TextField, Typography, useMediaQuery, useTheme} from "@mui/material";
 
 export const useStyles = makeStyles((theme: Theme) => ({
     root: {
@@ -172,14 +172,15 @@ const ResumeContactUsSection: FunctionComponent<ContactUsProps> = (props) => {
     }
 
     const theme = useTheme()
+    const smDown = useMediaQuery(theme.breakpoints.down('sm'))
+
 
     return (
         <Grid
             container
             item
-            style={{
-                padding: theme.spacing(4)
-            }}
+            style={{padding: theme.spacing(4,smDown?1:4)}}
+
             className={globalClasses.resumeSection}
         >
             <Grid container item spacing={3}>
@@ -272,16 +273,18 @@ const ResumeContactUsSection: FunctionComponent<ContactUsProps> = (props) => {
                                 }}
                             />
                         </Grid>
-                        <Grid container item justifyContent='flex-end' style={{marginTop: theme.spacing(1)}}>
+                    </Grid>
+                        <Grid container item justifyContent='flex-end' style={{paddingRight:"16px"}}>
                             <LoadingButton
                                 width={200}
                                 isLoading={isLoading || isRefetching}
                                 disabled={!!(data || isError || (email && (email.length > 0) && !isEmail(email)))}
                                 clickHandler={createLead}
-                                color="primary" variant="contained"><Typography>Send
-                                Message</Typography></LoadingButton>
+                                color="primary" variant="contained">
+                                <Typography>Send
+                                Message</Typography>
+                            </LoadingButton>
                         </Grid>
-                    </Grid>
 
 
                 </Grid>
