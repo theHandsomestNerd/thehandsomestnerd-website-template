@@ -21,7 +21,7 @@ const ResumeBioSection: FunctionComponent<IProps> = (props: IProps) => {
     const smDown = useMediaQuery(theme.breakpoints.down('sm'))
 
     return (
-        <Grid container item style={{padding: theme.spacing(4)}} justifyContent='center'
+        <Grid container item style={{padding: theme.spacing(4,smDown?1:4)}} justifyContent='center'
               className={classes.resumeSection} spacing={3}>
             <Grid item xs={12} style={{paddingTop: "64px"}}>
                 <BusinessCardSubmitEmail

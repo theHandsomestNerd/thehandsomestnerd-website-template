@@ -13,15 +13,14 @@ const ResumeExperienceSection: FunctionComponent<IProps> = (props: IProps) => {
     const classes = useThwCommonStyles()
     const theme = useTheme()
 
+    const smDown = useMediaQuery(theme.breakpoints.down('sm'))
 
     const xsOnly = useMediaQuery(theme.breakpoints.only('xs'))
     return (
         <Grid
             container
             item
-            style={{
-                padding: theme.spacing(4)
-            }}
+            style={{padding: theme.spacing(4,smDown?1:4)}}
             className={classes.resumeSection}
         >
             <Grid container item spacing={3}>

@@ -15,9 +15,10 @@ const ResumeEducationSection: FunctionComponent<IProps> = (props: IProps) => {
 
 
     const xsOnly = useMediaQuery(theme.breakpoints.only('xs'))
+    const smDown = useMediaQuery(theme.breakpoints.down('sm'))
 
     return (
-        <Grid container item style={{padding: theme.spacing(4)}} className={globalClasses.resumeSection}>
+        <Grid container item style={{padding: theme.spacing(4,smDown?1:4)}} className={globalClasses.resumeSection}>
             <Grid
                 container item spacing={3}>
                 <Grid item container md={4} alignContent='flex-start' spacing={1}>

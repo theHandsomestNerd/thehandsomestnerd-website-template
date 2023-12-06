@@ -12,19 +12,17 @@ interface IProps {
 
 const ResumeFeedbackSection: FunctionComponent<IProps> = (props: IProps) => {
     const globalClasses = useThwCommonStyles()
-    // const theme = useTheme()
+    const theme = useTheme()
 
     const customizedThemeContext = useTheme()
+    const smDown = useMediaQuery(theme.breakpoints.down('sm'))
 
     const xsOnly = useMediaQuery(customizedThemeContext.breakpoints.only('xs'))
     return (
         <Grid
             container
             item
-            style={{
-                padding: customizedThemeContext
-                    .spacing(4)
-            }}
+            style={{padding: theme.spacing(4,smDown?1:4)}}
             className={globalClasses.resumeSection}
         >
             <Grid container item spacing={3}>

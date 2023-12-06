@@ -1,7 +1,7 @@
 import React, {FunctionComponent, useContext} from 'react'
 import {Theme, ThemeProvider, useTheme} from "@mui/material/styles";
 import makeStyles from '@mui/styles/makeStyles';
-import {Grid, Typography} from '@mui/material'
+import {Grid, Typography, useMediaQuery} from '@mui/material'
 import {ResumeSkillSectionType, ResumeSkillSet} from "../../../BlockContentTypes";
 import useThwCommonStyles from "../../../../common/sanityIo/ThwCommonStyles";
 import {COLORS} from "../../../../theme/common/ColorPalette";
@@ -20,16 +20,15 @@ interface IProps {
 const ResumeSkillsSection: FunctionComponent<IProps> = (props: IProps) => {
     // const classes = useStyles()
     const globalClasses = useThwCommonStyles()
-
-
     const theme = useTheme()
+
+    const smDown = useMediaQuery(theme.breakpoints.down('sm'))
+
     return (
             <Grid
                 container
                 item
-                style={{
-                    padding: theme.spacing(4)
-                }}
+                style={{padding: theme.spacing(4,smDown?1:4)}}
                 className={globalClasses.resumeSection}
             >
                 <Grid container item spacing={3}>

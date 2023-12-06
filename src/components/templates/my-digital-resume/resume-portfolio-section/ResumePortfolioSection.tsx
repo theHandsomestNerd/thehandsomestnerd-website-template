@@ -1,5 +1,5 @@
 import React, {FunctionComponent} from 'react'
-import {Button, ButtonGroup, Chip, Grid, IconButton, Modal, Typography, useTheme} from '@mui/material'
+import {Button, ButtonGroup, Chip, Grid, IconButton, Modal, Typography, useMediaQuery, useTheme} from '@mui/material'
 import {ResumePortfolioItem, ResumePortfolioSectionType} from "../../../BlockContentTypes";
 import useThwCommonStyles from "../../../../common/sanityIo/ThwCommonStyles";
 import {urlFor} from "../../../block-content-ui/static-pages/cmsStaticPagesClient";
@@ -25,9 +25,11 @@ const ResumePortfolioSection: FunctionComponent<IProps> = (props: IProps) => {
     //
     //     setIsOpen(true)
     // }
+    const smDown = useMediaQuery(theme.breakpoints.down('sm'))
+
 
     return (
-        <Grid container item style={{padding: theme.spacing(4)}}
+        <Grid container item style={{padding: theme.spacing(4,smDown?1:4)}}
               className={globalClasses.resumeSection} justifyContent={'center'}>
             <Grid
                 container item spacing={3} justifyContent='center'>
