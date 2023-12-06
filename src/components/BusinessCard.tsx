@@ -117,7 +117,7 @@ const BusinessCard: FunctionComponent<MainMenuProps> = ({anchor, homePage}) => {
                             height: "max-content",
                             padding: theme.spacing(2, 3)
                         }}>
-                            <SocialMediaBlock spacing={1} bgColor color='secondary' {...homePage.businessContact}/>
+                            <SocialMediaBlock  isCentered spacing={1} iconColor='white' bgColor theBackgroundColor={theme.palette.primary.main}  {...homePage.businessContact}/>
                         </Grid>
                     </Grid>
                 </Grid>

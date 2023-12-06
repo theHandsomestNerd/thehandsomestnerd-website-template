@@ -62,7 +62,6 @@ const ResumeBioSection: FunctionComponent<IProps> = (props: IProps) => {
                 </Grid>
                 <Grid container item xs={11} sm={12} justifyContent={'center'}>
                     <SocialMediaBlock
-                        iconColor={theme.palette.primary.main}
                         isCentered={true}
                         facebook={props.homePage.businessContact?.facebook}
                         twitter={props.homePage.businessContact?.twitter}
