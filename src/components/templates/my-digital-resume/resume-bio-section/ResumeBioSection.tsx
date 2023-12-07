@@ -21,7 +21,7 @@ const ResumeBioSection: FunctionComponent<IProps> = (props: IProps) => {
     const smDown = useMediaQuery(theme.breakpoints.down('sm'))
 
     return (
-        <Grid container item style={{padding: theme.spacing(4)}} justifyContent='center'
+        <Grid container item style={{padding: theme.spacing(4,smDown?1:4)}} justifyContent='center'
               className={classes.resumeSection} spacing={3}>
             <Grid item xs={12} style={{paddingTop: "64px"}}>
                 <BusinessCardSubmitEmail
@@ -54,14 +54,15 @@ const ResumeBioSection: FunctionComponent<IProps> = (props: IProps) => {
                     <Grid item xs={9}><Typography gutterBottom
                                                   variant='body1'>{props.homePage.businessContact?.email}</Typography></Grid>
                 </Grid>
-                <Grid container item xs={11} sm={12}>
-                    <Grid item xs={3}><Typography gutterBottom variant='body1'
-                                                  style={{textTransform: "uppercase"}}>MAIL</Typography></Grid>
-                    <Grid item xs={9}><Typography noWrap gutterBottom
-                                                  variant='body1'>{props.homePage.businessContact?.address}</Typography></Grid>
-                </Grid>
-                <Grid container item xs={11} sm={12}>
+                {/*<Grid container item xs={11} sm={12}>*/}
+                {/*    <Grid item xs={3}><Typography gutterBottom variant='body1'*/}
+                {/*                                  style={{textTransform: "uppercase"}}>MAIL</Typography></Grid>*/}
+                {/*    <Grid item xs={9}><Typography noWrap gutterBottom*/}
+                {/*                                  variant='body1'>{props.homePage.businessContact?.address}</Typography></Grid>*/}
+                {/*</Grid>*/}
+                <Grid container item xs={11} sm={12} justifyContent={'center'}>
                     <SocialMediaBlock
+                        isCentered={true}
                         facebook={props.homePage.businessContact?.facebook}
                         twitter={props.homePage.businessContact?.twitter}
                         instagram={props.homePage.businessContact?.instagram}
@@ -70,13 +71,15 @@ const ResumeBioSection: FunctionComponent<IProps> = (props: IProps) => {
                     />
                 </Grid>
             </Grid>
-            <Grid data-testid='bio-image' container item md={6} style={{
-                backgroundImage: `url(${urlFor(props.sectionData.mainImage ?? "").url()})`,
-                backgroundSize: "cover",
-                backgroundPosition: "top right",
-                backgroundRepeat: "no-repeat",
-                minHeight: "350px"
-            }}>
+            <Grid item container md={6}>
+                <Grid data-testid='bio-image' container item style={{
+                    backgroundImage: `url(${urlFor(props.sectionData.mainImage ?? "").url()})`,
+                    backgroundSize: "cover",
+                    backgroundPosition: "top right",
+                    backgroundRepeat: "no-repeat",
+                    minHeight: "350px"
+                }}>
+                </Grid>
             </Grid>
             <Grid container item xs={12} sm={10} spacing={1} style={{marginTop: theme.spacing(2)}}>
                 <Grid item container>

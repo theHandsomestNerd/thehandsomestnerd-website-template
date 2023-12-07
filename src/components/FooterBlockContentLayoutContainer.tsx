@@ -86,6 +86,7 @@ const FooterBlockContentLayoutContainer: FunctionComponent<FooterBlockContentLay
                                 <Link id={"BOTTOM_OF_PAGE"} underline="hover"><></>
                                 </Link>
                                 <Footer
+                                    topPadding={footer.topPadding}
                                     backgroundColor={footer.backgroundColor}
                                     backgroundImgSrc={footer.backgroundImgSrc}
                                     isSocialMediaBlock={footer.isSocialMediaBlock}

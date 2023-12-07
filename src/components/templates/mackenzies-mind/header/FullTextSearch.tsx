@@ -10,9 +10,14 @@ import {Theme} from "@mui/material/styles";
 import {
     AnimatedAboutUsSectionType,
     HeroAnimatedContentSectionType,
+    ResumeExperience,
+    ResumeSkill,
     SanityHeroContentSlide,
     ServiceItemNoRefType
 } from "../../../BlockContentTypes";
+import ResumeExperienceItem from "../../my-digital-resume/resume-experience-section/ResumeExperienceItem";
+import {COLORS} from "../../../../theme/common/ColorPalette";
+import ResumeSkillReferences from "../../my-digital-resume/resume-skills-section/ResumeSkillReferences";
 
 export const useStyles = makeStyles((theme: Theme) => ({
     endAdornedInput: {
@@ -42,6 +47,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
 }))
 
 interface IProps {
+    searchText?:string
 }
 
 const FullTextSearch: FunctionComponent<IProps> = (props: IProps) => {
@@ -62,7 +68,7 @@ const FullTextSearch: FunctionComponent<IProps> = (props: IProps) => {
     }
 
     return (<Grid container item>
-        <Grid container>
+        <Grid container item>
 
             <TextField fullWidth
                        key={'full-text-search-field'}
@@ -88,13 +94,14 @@ const FullTextSearch: FunctionComponent<IProps> = (props: IProps) => {
                            ,
                        }}/>
         </Grid>
-        {<Grid container>
+        {<Grid container item style={{overflow: "scroll", height: "800px"}} alignContent='flex-start'
+               alignItems='flex-start'>
             <Grid item>
 
                 {results?.length && <Typography
                     color='textSecondary'>{results?.length} {(results?.length ?? 1) > 1 ? "results" : "result"}</Typography>}
             </Grid>
-            <Grid item container sx={{paddingX: "16px"}}>
+            <Grid item container sx={{paddingX: "16px",}}>
                 {results?.map((theResult: any) => {
                     switch (theResult?._type) {
                         case "ServiceItem":
@@ -117,7 +124,7 @@ const FullTextSearch: FunctionComponent<IProps> = (props: IProps) => {
                                     Show:</Typography></Grid>
                                 <Grid item sx={{paddingLeft: "16px"}} container>
                                     {/*<Grid container item><Typography color='textSecondary'*/}
-                                    {/*                                 fontWeight={'bold'}>{convertedAnimatedServicesSection.title}</Typography></Grid>*/}
+                                    {/*                                 fontWeight={'bold'}>{convertedResumeSkill.title}</Typography></Grid>*/}
                                     {convertedAnimatedHeroSection.contentSlides.map((slide: SanityHeroContentSlide) => {
                                         return <Grid container item sx={{
                                             borderLeft: "1px solid whitesmoke",
@@ -149,7 +156,7 @@ const FullTextSearch: FunctionComponent<IProps> = (props: IProps) => {
                                     <Grid container item><Typography
                                         color='textSecondary'>{convertedAnimatedServicesSection.contentPreTitle}-{convertedAnimatedServicesSection.contentTitle}</Typography></Grid>
                                     {/*<Grid container item><Typography color='textSecondary'*/}
-                                    {/*                                 fontWeight={'bold'}>{convertedAnimatedServicesSection.title}</Typography></Grid>*/}
+                                    {/*                                 fontWeight={'bold'}>{convertedResumeSkill.title}</Typography></Grid>*/}
                                     {convertedAnimatedServicesSection.contentTexts.map((textContent: string) => {
                                         return <Grid container item sx={{
                                             borderLeft: "1px solid whitesmoke",
@@ -164,16 +171,41 @@ const FullTextSearch: FunctionComponent<IProps> = (props: IProps) => {
                                     })}
                                 </Grid>
                             </Grid>
+                        case "ResumeExperience":
+                            const convertedResumeExperience: ResumeExperience = theResult;
+
+                            console.log(convertedResumeExperience)
+                            return <Grid container sx={{
+                                marginBottom: "16px",
+                                backgroundColor: COLORS.LIGHTGRAY,
+                                padding: "16px"
+                            }}>
+                                <Grid container>
+                                    <Typography variant='h6' gutterBottom color='primary'>My Experience</Typography>
+                                </Grid>
+                                <ResumeExperienceItem experience={convertedResumeExperience}/>
+                            </Grid>
+                        case "ResumeSkill":
+                            const convertedResumeSkill: ResumeSkill = theResult;
+
+                            console.log(convertedResumeSkill)
+                            return <Grid container sx={{
+                                marginBottom: "16px",
+                                backgroundColor: COLORS.LIGHTGRAY,
+                                padding: "16px"
+                            }}>
+                                <Grid container>
+                                    <Typography variant='h6' gutterBottom color='primary'>My Skill
+                                        - {convertedResumeSkill.title}</Typography>
+                                </Grid>
+                                <ResumeSkillReferences skill={convertedResumeSkill}/>
+                            </Grid>
                         default:
                             return <Grid container sx={{marginBottom: "16px"}}><Typography
                                 color='textSecondary'>{theResult?._type}</Typography></Grid>
                     }
-
                 })}
-
-
             </Grid>
-
         </Grid>}
     </Grid>)
 }

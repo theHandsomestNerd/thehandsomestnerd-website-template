@@ -92,7 +92,7 @@ const EnhancedHeader: FunctionComponent<EnhancedHeaderProps> = (props) => {
                         borderRadius: 4,
                         backgroundColor: "black"
                     }}>
-                        <Header isSearch={props.pageHeader.isSearch} pageHeader={props.pageHeader.headerMenuRef}/>
+                        <Header isSearch={props.pageHeader.isSearch} pageHeader={props.pageHeader.headerMenuRef} isEnhanced={true}/>
                     </Grid>
                 </Grid></Grid>
             : <></>

@@ -20,6 +20,7 @@
 //     {value: "DARK_GRAY", title: "Dark Gray"},
 //     {value: "LIGHTER_GRAY", title: "Lighter Gray"},
 // ]
+
 import {ColorListing} from "./ColorListing";
 
 export default {

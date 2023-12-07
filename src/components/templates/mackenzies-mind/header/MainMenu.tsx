@@ -61,7 +61,7 @@ const MainMenu: FunctionComponent<MainMenuProps> = ({menu, anchor}) => {
                     default:
                         const menuItem: SanityMenuItem = subMenu
                         return <List style={{padding: 0}} key={menuItem.displayText}>
-                            <ListItem href={menuItem.url ?? ""} className={classes.listItem} button>
+                            <ListItem className={classes.listItem}>
                                 <Button variant='text' href={menuItem.isModalButton ? undefined : menuItem.url}
                                         onClick={menuItem.isModalButton ? () => {
                                             // console.log()
@@ -70,13 +70,11 @@ const MainMenu: FunctionComponent<MainMenuProps> = ({menu, anchor}) => {
                                             }
                                         } : undefined}
                                         style={{
-                                            paddingTop: theme.spacing(2.25),
-                                            paddingLeft: theme.spacing(2),
-                                            paddingBottom: theme.spacing(2.25),
+                                            padding: theme.spacing(2.25, 2),
                                             height: "100%",
-                                            margin: 0
                                         }} fullWidth>
-                                    <ListItemText secondary={<Typography color={'primary'}>{menuItem.displayText}</Typography>}/>
+                                    <ListItemText
+                                        secondary={<Typography color={'primary'}>{menuItem.displayText}</Typography>}/>
                                 </Button>
 
                             </ListItem>
@@ -98,22 +96,25 @@ const MainMenu: FunctionComponent<MainMenuProps> = ({menu, anchor}) => {
             <Drawer anchor={anchor} open={isDrawerOpen}
                     onClose={toggleDrawer(anchor, false)}
             >
-                <Grid container alignItems='center' justifyContent='space-between'
+                <Grid container alignItems='center'
                       style={{
                           paddingLeft: theme.spacing(4),
-                          paddingRight: theme.spacing(6),
+                          // paddingRight: theme.spacing(6),
                       }}>
-
-                    <Grid item xs={3}>
-
-                        <Logo logoImageSrc={menu.logoImageSrc} logoText={'Chow Works'}/>
+                    <Grid item xs={10}  >
+                        <Logo logoImageSrc={menu.logoImageSrc} logoText={menu.logoText} logoAccentText={"."}/>
                     </Grid>
-                    <Grid item xs={1}><Button onClick={() => {
-                        setIsDrawerOpen(false)
-                    }}><Close color='primary' fontSize='large'/></Button></Grid>
+                    <Grid item xs={2} container justifyContent='flex-end' >
+                        <Button onClick={() => {
+                            setIsDrawerOpen(false)
+                        }}>
+                            <Close color='primary' fontSize='large'/>
+                        </Button>
+                    </Grid>
                 </Grid>
                 {list(anchor)}
-            </Drawer></Grid>
+            </Drawer>
+        </Grid>
     )
 }
 

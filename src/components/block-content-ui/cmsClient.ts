@@ -7,7 +7,7 @@ import {
     SanityRef, SanityTransformHwHomePage
 } from '../../common/sanityIo/Types'
 
-import {ThwServiceItemType, WhySwitchSectionType} from "../BlockContentTypes";
+import {ResumeSkill, ThwServiceItemType, WhySwitchSectionType} from "../BlockContentTypes";
 import GroqQueries from "../../common/sanityIo/groqQueries";
 import groqQueries from "../../common/sanityIo/groqQueries";
 import {SanityHomePage} from "./static-pages/cmsStaticPagesClient";
@@ -483,16 +483,35 @@ const fullTextSearch = (textToSearch: string): Promise<any> => {
                 contentWelcomeMessage,
                 contentSummaryTitle,
                 contentSummaryTexts,
-                videoUrl
-            ] match '*${textToSearch}*']`,
+                videoUrl,
+                
+            ] match '*${textToSearch}*']{
+                ..., 
+                "skillsUsed" : skillsUsed[]->,
+            }`,
             // {searchText: textToSearch}
         ).then((data: any) => {
             console.log("data from fulltext search", data)
             return data
         })
 }
+const skillReferenceSearch = (skill: ResumeSkill): Promise<any> => {
+    return sanityClient
+        .fetch(
+            `*[references($searchText)]{
+                ..., 
+                "skillsHighlighted": skillsHighlighted[]->,
+                "skillsUsed" : skillsUsed[]->,
+            }`,
+            {searchText: skill._id}
+        ).then((data: any) => {
+            console.log("data from skillReference search", data)
+            return data
+        })
+}
 
 export default {
+    skillReferenceSearch,
     fetchRef,
     fetchRefs,
     fetchLandingPage,

@@ -1,7 +1,7 @@
 {
   "name": "chow-works-sanity",
   "private": true,
-  "version": "0.3.1",
+  "version": "0.5.0",
   "description": "Sanity CMS for React Website Builder",
   "main": "package.json",
   "author": "theHandsomestNerd <hello@thehandsomestnerd.com>",
@@ -17,7 +17,7 @@
   ],
   "dependencies": {
     "@sanity/block-content-to-react": "^3.0.0",
-    "@sanity/cli": "^3.19.1",
+    "@sanity/cli": "^3.20.2",
     "@sanity/code-input": "^2.30.0",
     "@sanity/components": "^2.14.0",
     "@sanity/vision": "^3.16.7",

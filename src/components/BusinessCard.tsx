@@ -1,7 +1,18 @@
 import React, {FunctionComponent, useContext, useState} from 'react'
 import {Theme, ThemeProvider} from "@mui/material/styles";
 import makeStyles from '@mui/styles/makeStyles';
-import {Avatar, Button, Divider, Drawer, Grid, List, ListItem, Typography, useTheme,} from '@mui/material';
+import {
+    Avatar,
+    Button,
+    Divider,
+    Drawer,
+    Grid,
+    List,
+    ListItem,
+    Typography,
+    useMediaQuery,
+    useTheme,
+} from '@mui/material';
 import createStyles from '@mui/styles/createStyles';
 import {Close, FileCopy} from "@mui/icons-material";
 import SocialMediaBlock from "./templates/my-digital-resume/social-media-block/SocialMediaBlock";
@@ -94,7 +105,6 @@ const BusinessCard: FunctionComponent<MainMenuProps> = ({anchor, homePage}) => {
     // }, [qrCodeContext.qr_code_value])
 
     const list = (anchor: MainMenuAnchorType) => (
-        <ThemeProvider theme={theme}>
             <Grid xs={12} md={6} container item
                   role="presentation"
                 // onClick={toggleDrawer(anchor, false)}
@@ -117,7 +127,7 @@ const BusinessCard: FunctionComponent<MainMenuProps> = ({anchor, homePage}) => {
                             height: "max-content",
                             padding: theme.spacing(2, 3)
                         }}>
-                            <SocialMediaBlock spacing={1} bgColor color='secondary' {...homePage.businessContact}/>
+                            <SocialMediaBlock  isCentered spacing={1} iconColor='white' bgColor theBackgroundColor={theme.palette.primary.main}  {...homePage.businessContact}/>
                         </Grid>
                     </Grid>
                 </Grid>
@@ -307,27 +317,18 @@ const BusinessCard: FunctionComponent<MainMenuProps> = ({anchor, homePage}) => {
 
                 {/*})}*/}
             </Grid>
-        </ThemeProvider>
     );
 
+
     return (
-            <ThemeProvider theme={theme
-}><Grid item container>
+            <Grid item container>
                 <Grid item container justifyContent='flex-end' style={{padding: theme
-.spacing(2, 3)}}>
+.spacing(3, 3)}}>
 
                     <Button variant='contained' color='primary' onClick={toggleDrawer(anchor, true)}>
-                        <Grid container spacing={2} alignItems='center'>
-                            <Grid item>
-                                <Avatar style={{backgroundColor: "whitesmoke"}}
-                                        src={urlFor(homePage.headerContent.content[0].headerMenuRef.logoImageSrc ?? "").url() ?? ""}/>
+                        <Avatar style={{backgroundColor: "whitesmoke"}}
+                                src={urlFor(homePage.headerContent.content[0].headerMenuRef.logoImageSrc ?? "").url() ?? ""}/>
 
-                            </Grid>
-                            <Grid item>
-                                <Typography color='secondary' variant='button'>Contact Info</Typography>
-
-                            </Grid>
-                        </Grid>
                     </Button>
                 </Grid>
 
@@ -341,10 +342,8 @@ const BusinessCard: FunctionComponent<MainMenuProps> = ({anchor, homePage}) => {
 
                               position: "absolute",
                               zIndex: 1000,
-                              paddingLeft: theme
-.spacing(4),
-                              paddingRight: theme
-.spacing(6),
+                              paddingLeft: theme.spacing(4),
+                              paddingRight: theme.spacing(6),
                           }}>
 
                         {/*<Grid item xs={3}>*/}
@@ -358,7 +357,7 @@ const BusinessCard: FunctionComponent<MainMenuProps> = ({anchor, homePage}) => {
                         {list(anchor)}
                     </Grid>
                 </Drawer>
-            </Grid></ThemeProvider>
+            </Grid>
     );
 }
 

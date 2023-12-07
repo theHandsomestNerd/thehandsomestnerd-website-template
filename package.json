@@ -1,6 +1,6 @@
 {
   "name": "chowworks-website",
-  "version": "0.3.1",
+  "version": "0.5.0",
   "license": "GPL-3.0-or-later",
   "private": true,
   "dependencies": {
@@ -9,6 +9,7 @@
     "@mui/icons-material": "^5.14.18",
     "@mui/material": "^5.14.18",
     "@mui/styles": "^5.14.18",
+    "@react-google-maps/api": "^2.19.2",
     "@storybook/addon-mdx-gfm": "^7.4.6",
     "@storybook/react-webpack5": "^7.4.6",
     "@tanstack/react-query": "^4.36.1",
