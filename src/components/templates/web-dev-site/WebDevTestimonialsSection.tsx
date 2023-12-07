@@ -44,7 +44,6 @@ const WebDevTestimonialsSection: FunctionComponent<IProps> = (props: IProps) => 
                             <Grid item container wrap='nowrap'>
                                 <Grid item>
                                     <Typography color='primary' variant='h2' align='center'
-                                                style={{fontFamily: "Elaine Sans"}}
                                                 display='inline'>{props.sectionData?.title}</Typography>
                                 </Grid>
                             </Grid>
@@ -68,11 +67,12 @@ const WebDevTestimonialsSection: FunctionComponent<IProps> = (props: IProps) => 
                                     <Grid item container>
                                         <Grid container item>
                                             <Typography
-                                                variant='h6' gutterBottom
-                                                style={{fontFamily: "Elaine Sans"}}>{feedbackEntry.quoteSummary}</Typography>
+                                                color='textSecondary'
+                                                variant='h6' gutterBottom>{feedbackEntry.quoteSummary}</Typography>
                                         </Grid>
                                         <Grid container item>
                                             <Typography
+                                                color='textSecondary'
                                                 variant='body1' gutterBottom>"{feedbackEntry.quote}"</Typography>
                                         </Grid>
                                     </Grid>
@@ -85,17 +85,17 @@ const WebDevTestimonialsSection: FunctionComponent<IProps> = (props: IProps) => 
                                         <Grid item container xs={9}>
                                             <Grid container item>
                                                 <Typography display='inline'
-                                                            style={{fontFamily:"Elaine Sans"}}
+                                                            color='textSecondary'
                                                             variant='body2'>{feedbackEntry.customerName}</Typography>
                                             </Grid>
                                             <Grid item container style={{color: COLORS.AQUA}}>
                                                 <Typography display='inline'
                                                             color='inherit'
-                                                            style={{fontFamily:"Elaine Sans"}}
                                                             variant='subtitle2'>{feedbackEntry.customerTitle}</Typography>
                                             </Grid>
                                             <Grid item container>
                                                 <Typography display='inline'
+                                                            color='textSecondary'
                                                             variant='body1'>{feedbackEntry.companyName}</Typography>
                                             </Grid>
                                         </Grid>

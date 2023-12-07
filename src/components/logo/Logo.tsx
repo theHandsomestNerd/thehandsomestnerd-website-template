@@ -14,7 +14,7 @@ interface CssProps {
 
 export const useStyles = makeStyles((theme: Theme) => ({
     imageRoot: (props: CssProps) => ({
-        backgroundImage: `url(${props.logoImageSrc ? urlFor(props.logoImageSrc).height(props.height ?? 0).url() : logoImg})`,
+        backgroundImage: `url('${props.logoImageSrc ? urlFor(props.logoImageSrc).height(props.height ?? 68).url() : logoImg}')`,
         backgroundSize: "contain",
         backgroundRepeat: "no-repeat",
         minWidth: "100px",
@@ -41,7 +41,7 @@ interface LogoProps {
 
 const Logo: FunctionComponent<LogoProps> = (props) => {
     const classes = useStyles({logoImageSrc: props.logoImageSrc, height: props.height})
-
+console.log(props.logoImageSrc && urlFor(props.logoImageSrc).height(props.height ?? 0).url())
     return !props.logoText ?
         <Grid item container className={classes.imageRoot}
               style={{backgroundPosition: props.isCenter ? "center" : "left"}}/>

@@ -14,7 +14,8 @@ export default {
                         {value: "Prompt", title: "Prompt"},
                         {value: "Raleway", title: "Raleway"},
                         {value: "Poppins", title: "Poppins"},
-                        {value: "Monteserrat", title: "Monteserrat"}
+                        {value: "Monteserrat", title: "Monteserrat"},
+                        {value: "Elaine Sans", title: "Elaine Sans"}
                     ]
                 }}],
 

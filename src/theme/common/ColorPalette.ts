@@ -24,6 +24,10 @@ export enum COLORS {
     PINK = '#FFA9E7',
     DARKORANGE = '#462600',
     LIGHT_GRAY2 = '#E3E3E3',
+    ALMOST_BLACK='#131313',
+    PURPLE='#333784',
+    LIGHT_WHITE='#404040',
+    DISABLED_GRAY='#949495'
 }
 
 export const convertToHexCode = (value?: string) => {
@@ -95,6 +99,20 @@ export const convertToHexCode = (value?: string) => {
         case 'DARK_GRAY':
             defaultBg = COLORS.DARK_GRAY
             break;
+        case 'ALMOST_BLACK':
+            defaultBg = COLORS.ALMOST_BLACK
+            break;
+        case 'PURPLE':
+            defaultBg = COLORS.PURPLE
+            break;
+        case 'LIGHT_WHITE':
+            defaultBg = COLORS.LIGHT_WHITE
+            break;
+        case 'DISABLED_GRAY':
+            defaultBg = COLORS.DISABLED_GRAY
+            break;
+
+
         default:
             defaultBg = COLORS.WHITESMOKE
     }

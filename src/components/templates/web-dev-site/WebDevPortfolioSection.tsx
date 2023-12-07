@@ -6,7 +6,6 @@ import {ResumePortfolioItem, ResumePortfolioSectionType} from "../../BlockConten
 import {COLORS} from "../../../theme/common/ColorPalette";
 import {urlFor} from "../../block-content-ui/static-pages/cmsStaticPagesClient";
 import {Close} from "@mui/icons-material";
-import WebDevSiteTheme from "../../../theme/WebDevSiteTheme";
 import firebaseAnalyticsClient from "../../../common/firebase/FirebaseAnalyticsClient";
 import PageContext from "../../page-context/PageContext";
 import CustomizedThemeContext from "../../customized-theme-provider/CustomizedThemeContext";
@@ -61,8 +60,7 @@ const WebDevPortfolioSection: FunctionComponent<IProps> = (props: IProps) => {
 
     const mdDown = useMediaQuery(customizedThemeContext.customizedTheme.breakpoints.down('md'))
     return (
-        <StyledEngineProvider injectFirst>
-            <ThemeProvider theme={WebDevSiteTheme}>
+
                 <Grid container item
                       className={classes.root}>
                     <Grid
@@ -90,12 +88,12 @@ const WebDevPortfolioSection: FunctionComponent<IProps> = (props: IProps) => {
                             {
                                 props.sectionData.portfolioEntries?.map((portfolioItem: ResumePortfolioItem, index2: number) => {
                                     return <Grid container item key={index2}>
-                                        <Grid container item>
+                                        <Grid container item direction={index2%2 == 0?"row":"row-reverse"}>
                                             <Grid container item md={6} style={{
                                                 backgroundImage: `url('${urlFor(portfolioItem.coverImage ?? "").url()}')`,
                                                 backgroundSize: "cover",
                                                 backgroundRepeat: "no-repeat",
-                                                minHeight: "100px"
+                                                minHeight: "400px"
                                             }}></Grid>
                                             <Grid container item md={6}
                                                   style={{
@@ -109,7 +107,7 @@ const WebDevPortfolioSection: FunctionComponent<IProps> = (props: IProps) => {
                                                                              width: "max-content",
                                                                              // padding: "0 !important",
                                                                              // backgroundColor: "red",
-                                                                             color: (index2) % 2 === 1 ? COLORS.AQUA : theme.palette.secondary.main,
+                                                                             color:COLORS.AQUA,
                                                                          }}>
                                                                 <Grid item container>
                                                                     <Typography variant='subtitle2'
@@ -239,8 +237,7 @@ const WebDevPortfolioSection: FunctionComponent<IProps> = (props: IProps) => {
                             </Grid>
                         </Grid>
                     </Modal>
-                </Grid></ThemeProvider>
-        </StyledEngineProvider>
+                </Grid>
     );
 }
 

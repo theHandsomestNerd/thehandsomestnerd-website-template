@@ -88,6 +88,7 @@ const HOMEPAGE = `_type,
           metaImage,
           theme->,
           headerContent {
+            ...,
             "content": content[]->{
                 ...,
                 headerMenuRef->{

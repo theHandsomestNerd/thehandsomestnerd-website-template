@@ -604,8 +604,10 @@ export type HeaderSectionType = {
     name: string
     isSearch: boolean
     isEnhanced: boolean
+    backgroundColor: string
     ctaButtonText: string
     ctaButtonLink: string
+    logoImgSrc: SanityImageAsset
     highlightedDetails: ServiceAmenityType[]
     headerMenuRef: SanityMenuContainer
 }
