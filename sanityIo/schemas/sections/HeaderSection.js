@@ -1,3 +1,5 @@
+import {ColorListing} from "../mui/ColorListing";
+
 export default {
     name: 'HeaderSection',
     title: 'Header Section',
@@ -17,6 +19,17 @@ export default {
             name: 'ctaButtonText',
             title: 'CTA Button Text',
             type: 'string'
+        },
+        {
+            name: 'logoImgSrc',
+            title: 'Logo Image',
+            type: 'image'
+        },
+        {
+            name: 'backgroundColor',
+            title: 'Background Color',
+            type: 'string',
+            options: {list: ColorListing}
         },
         {
             name: 'isSearch',

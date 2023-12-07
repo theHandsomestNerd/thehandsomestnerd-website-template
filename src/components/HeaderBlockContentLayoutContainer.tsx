@@ -10,6 +10,7 @@ import Header from "./templates/mackenzies-mind/header/Header";
 import WebDevSiteTheme from "../theme/WebDevSiteTheme";
 import EnhancedHeader from "./templates/mackenzies-mind/header/EnhancedHeader";
 import CustomizedThemeContext from "./customized-theme-provider/CustomizedThemeContext";
+import {convertToHexCode} from "../theme/common/ColorPalette";
 
 export type HeaderBlockContentLayoutContainerProps = {
     content?: any,
@@ -88,23 +89,6 @@ const HeaderBlockContentLayoutContainer: FunctionComponent<HeaderBlockContentLay
                                     </Grid>
                                 </Card></Grid>
                         </Grid>
-                    case 'DevelopmentHeaderSection':
-                        const developmentHeader: DevelopmentHeaderSectionType = columnLayoutContainer
-
-                        return (
-                            <ThemeProvider theme={WebDevSiteTheme} key={'TOP_OF_PAGE_DEV'}>
-                                <Grid container item xs={12}
-                                      style={{height: WebDevSiteTheme.mixins.toolbar.height}}
-                                      alignContent='center'
-                                      alignItems='center'>
-                                    <Link id={"TOP_OF_PAGE"} underline="hover"><></>
-                                    </Link>
-                                    <DevelopmentHeader
-                                        pageHeader={developmentHeader.headerMenuRef}
-                                    />
-                                </Grid>
-                            </ThemeProvider>
-                        );
                     case 'HeaderSection':
                         const header: HeaderSectionType = columnLayoutContainer
 
@@ -114,7 +98,7 @@ const HeaderBlockContentLayoutContainer: FunctionComponent<HeaderBlockContentLay
                                 </Link>
                                 {
                                     showBasicHeader || !header.isEnhanced ?
-                                        <Header isSearch={header.isSearch} isAppBar={true}
+                                        <Header backgroundColor={header.backgroundColor}  isSearch={header.isSearch} isAppBar={true}
                                                 pageHeader={header.headerMenuRef}/>
                                         : <EnhancedHeader pageHeader={header}/>
                                 }

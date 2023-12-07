@@ -103,6 +103,7 @@ const HOMEPAGE = `_type,
               }
           },
           headerContent {
+          ...,
             "content": content[]->{
                 ...,
                 headerMenuRef->{

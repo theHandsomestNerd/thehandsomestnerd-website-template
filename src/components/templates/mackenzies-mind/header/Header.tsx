@@ -1,4 +1,4 @@
-import React, {FunctionComponent} from 'react'
+import React, {FunctionComponent, useContext} from 'react'
 import {Box, Grid, IconButton, Modal, useMediaQuery, useTheme} from '@mui/material'
 import MainMenu from "./MainMenu";
 import FilteredMenuItems from "../../../filtered-menu-items/FilteredMenuItems";
@@ -12,6 +12,7 @@ import {COLORS} from "../../../../theme/common/ColorPalette";
 
 import makeStyles from "@mui/styles/makeStyles";
 import {Theme} from "@mui/material/styles";
+import PageContext from "../../../page-context/PageContext";
 
 export const useStyles = makeStyles((theme: Theme) => ({
     hover:{
@@ -33,21 +34,23 @@ export type HeaderProps = {
     isSearch?: boolean
     updateIsLoading?: (value: boolean) => void
     isEnhanced?: boolean
+    backgroundColor?:string
 }
 
 const Header: FunctionComponent<HeaderProps> = (props) => {
     const classes = useStyles()
     const customizedTheme = useTheme()
+    const page = useContext(PageContext)
 
     const mdDown = useMediaQuery(customizedTheme.breakpoints.down('md'))
     const [isSearchOpen, setIsSearchOpen] = React.useState<boolean>(false)
 
-    return (<AppBarWrapper isAppBar={props.isAppBar} isEnhanced={props.isEnhanced}>
+    return (<AppBarWrapper backgroundColor={props.backgroundColor} isAppBar={props.isAppBar} isEnhanced={props.isEnhanced}>
             {props.pageHeader?.title ?
                 <Grid item container
                       alignContent='center' alignItems='center' style={{height: "100%", paddingLeft: "8px"}}>
                     <Grid container item xs={4} sm={3} md={3}>
-                        <Logo noWrap logoText={props.pageHeader?.logoText}
+                        <Logo logoImageSrc={props.pageHeader?.logoImageSrc} noWrap logoText={props.pageHeader?.logoText}
                               logoAccentText={props.pageHeader?.logoAccentText}/>
                     </Grid>
                     <Grid item container xs={8} sm={9} md={9} justifyContent='flex-end'>

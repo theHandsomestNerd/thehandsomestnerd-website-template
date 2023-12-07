@@ -92,6 +92,7 @@ import AnimatedPortfolioItem from "./sections/animated/AnimatedPortfolioItem";
 import AnimatedPortfolioSection from "./sections/animated/AnimatedPortfolioSection";
 import HeadlineCTASection from "./HeadlineCTASection";
 import MapSection from "./sections/MapSection";
+import PortfolioItem from "./portfolio/PortfolioItem";
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default [
@@ -165,7 +166,7 @@ export default [
     TestimonialsSection,
     Testimonials,
     PortfolioSection,
-    portfolioItem,
+    PortfolioItem,
     headerContentContainer,
     footerContentContainer,
     HeaderSection,

@@ -3,7 +3,7 @@ import {AppBar} from "@mui/material";
 import CustomizedThemeContext from "../../../customized-theme-provider/CustomizedThemeContext";
 import makeStyles from "@mui/styles/makeStyles";
 import {Theme} from "@mui/material/styles";
-import {COLORS} from "../../../../theme/common/ColorPalette";
+import {COLORS, convertToHexCode} from "../../../../theme/common/ColorPalette";
 
 export const useStyles = makeStyles((theme: Theme) => ({
     root: (props: any) => ({
@@ -22,6 +22,7 @@ interface IProps {
     isAppBar?: boolean,
     children: any
     isEnhanced?: boolean
+    backgroundColor?:string
 }
 
 const AppBarWrapper: FunctionComponent<PropsWithChildren<IProps>> = (props: IProps) => {
@@ -34,7 +35,7 @@ const AppBarWrapper: FunctionComponent<PropsWithChildren<IProps>> = (props: IPro
 
     return (
         props.isAppBar ? <AppBar style={{
-            backgroundColor: `${props.isAppBar && props.isEnhanced ? "black" : "white"}`,
+            backgroundColor: `${props.isAppBar && props.isEnhanced ? "black" : convertToHexCode(props.backgroundColor)}`,
         }} className={classes.root}>
             {props.children}
         </AppBar> : <>{props.children}</>

@@ -63,20 +63,6 @@ const FooterBlockContentLayoutContainer: FunctionComponent<FooterBlockContentLay
                                     </Grid>
                                 </Card></Grid>
                         </Grid>
-                    case 'DevelopmentFooterSection':
-                        const developmentFooter: DevelopmentFooterSectionType = columnLayoutContainer
-
-                        return (
-                            <ThemeProvider key={'BOTTOM_OF_PAGE_DEV'} theme={WebDevSiteTheme}><Grid container item
-                                                                                                    xs={12}
-                            >
-                                <Link id={"BOTTOM_OF_PAGE"} underline="hover"><></>
-                                </Link>
-                                <WebDevFooter
-                                    pageFooter={developmentFooter.footerMenuRef}
-                                />
-                            </Grid></ThemeProvider>
-                        );
                     case 'FooterSection':
                         const footer: FooterSectionType = columnLayoutContainer
 
