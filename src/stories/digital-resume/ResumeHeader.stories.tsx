@@ -1,6 +1,9 @@
 import type {Meta, StoryObj} from '@storybook/react';
 import homePageResumeData from "../data/HomePageData";
 import Header from "../../components/templates/mackenzies-mind/header/Header";
+import getThemeFromSanity from "../../components/customized-theme-provider/getThemeFromSanity";
+import DigitalResumeThemeData from "../data/DigitalResumeThemeData";
+import {ThemeProvider} from "@mui/material/styles";
 
 
 const meta: Meta<typeof Header> = {
@@ -22,5 +25,6 @@ export const Primary: Story = {
     args: {
         pageHeader: homePageResumeData.headerContent.content[0].headerMenuRef
     },
-    render: ({pageHeader}) => <Header pageHeader={pageHeader}></Header>,
+    render: ({pageHeader}) =>         <ThemeProvider theme={getThemeFromSanity(DigitalResumeThemeData)}>
+        <Header pageHeader={pageHeader}></Header></ThemeProvider>,
 };

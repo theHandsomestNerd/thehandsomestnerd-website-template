@@ -12,6 +12,7 @@ import AbstractShapesBackground from "./abstract-shapes-background/AbstractShape
 import {urlFor} from "../block-content-ui/static-pages/cmsStaticPagesClient";
 import {PlayArrow} from "@mui/icons-material";
 import {motion} from 'framer-motion';
+import imagePlaceholderClient from "../../utils/imagePlaceholderClient";
 
 export const useStyles = makeStyles((theme: Theme) => ({
     root: {
@@ -29,21 +30,19 @@ interface IProps {
 
 const AnimatedServicesSection: FunctionComponent<IProps> = (props) => {
     const classes = useStyles()
-    const customizedThemeContext = useContext(CustomizedThemeContext)
     const theme= useTheme()
 
     const pageContext = useContext(PageContext)
-    const smDown = useMediaQuery(customizedThemeContext.customizedTheme.breakpoints.down('sm'))
+    const smDown = useMediaQuery(theme.breakpoints.down('sm'))
 
 
     return (
-        <ThemeProvider theme={customizedThemeContext.customizedTheme}>
+        <Grid container item>
             <Grid container item className={classes.root} xs={12} alignItems='center' style={{
                 position: "relative",
-                // backgroundColor:customizedThemeContext.customizedTheme.palette.primary.dark
             }}>
                 <Grid item container
-                      style={{padding: customizedThemeContext.customizedTheme?.spacing(8, 6), zIndex: 10}}
+                      style={{padding: theme?.spacing(8, 6), zIndex: 10}}
                       spacing={2} justifyContent='center'>
                     <Grid item xs={12}>
                         <Grid item container>
@@ -121,13 +120,14 @@ const AnimatedServicesSection: FunctionComponent<IProps> = (props) => {
                 position: "relative",
                 backgroundRepeat: "repeat-x",
                 backgroundSize: "256px",
-                backgroundImage: `url(${urlFor(props.sectionData?.videoPreviewSectionBackgroundImageSrc ?? "").url() ?? ""})`
+                backgroundImage: `url(${urlFor(props.sectionData?.videoPreviewSectionBackgroundImageSrc ?? "").url() ?? imagePlaceholderClient.placeholderOrImage(props.sectionData?.videoPreviewSectionBackgroundImageSrc, 230, 265)})`
             }} justifyContent='center' alignContent='center'>
                 <Grid item container xs={12} justifyContent='center' style={{top: -64, position: "relative"}}>
                     <Grid item xs={12} sm={10} sx={{height: "100%", position: "relative"}}
                     >
                         <img height="100%" width="100%"
-                             src={urlFor(props.sectionData?.videoPreviewImageSrc ?? "").url() ?? ""}/>
+
+                             src={urlFor(props.sectionData?.videoPreviewImageSrc ?? "").url() ?? imagePlaceholderClient.placeholderOrImage(props.sectionData?.videoPreviewImageSrc, 300, 500)}/>
 
                     </Grid>
                 </Grid>
@@ -141,7 +141,7 @@ const AnimatedServicesSection: FunctionComponent<IProps> = (props) => {
                                 height: 56,
                                 position: "relative",
                                 zIndex: 10,
-                                backgroundColor: customizedThemeContext.customizedTheme?.palette?.primary.main
+                                backgroundColor: theme?.palette?.primary.main
                             }}>
                                         <PlayArrow style={{fontSize: "2.8rem"}} color='secondary'/>
                             </IconButton>
@@ -222,8 +222,7 @@ const AnimatedServicesSection: FunctionComponent<IProps> = (props) => {
                         </Grid>
                     </Grid>
                 </Grid>
-            </Grid>
-        </ThemeProvider>
+            </Grid></Grid>
     )
 }
 

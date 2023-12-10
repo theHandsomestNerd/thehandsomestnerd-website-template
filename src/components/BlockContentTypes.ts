@@ -17,20 +17,19 @@ export type HeroContentSectionType = {
 export type HeroAnimatedContentSectionType = {
     name: string
     title: string
-    theme: SanityMuiTheme
     contentSlides: SanityHeroContentSlide[]
 }
 
 export type SanityHeroContentSlide = {
-    heroImage: SanityImageAsset
-    heroBullet: SanityImageAsset
-    heroImageAltText: string
-    heroImageBackground: SanityImageAsset
-    contentTitle: string
-    contentWelcomeMessage: string
-    contentText: string
-    ctaButtonTitle: string
-    ctaButtonLink: string
+    heroImage?: SanityImageAsset
+    heroBullet?: SanityImageAsset
+    heroImageAltText?: string
+    heroImageBackground?: SanityImageAsset
+    contentTitle?: string
+    contentWelcomeMessage?: string
+    contentText?: string
+    ctaButtonTitle?: string
+    ctaButtonLink?: string
 }
 
 
@@ -192,25 +191,25 @@ export type ThwServiceItemNoRefType = {
 } & SanityDocumentFields
 
 export type AnimatedServiceItemNoRefType = {
-    name: string
+    name?: string
     imageSrc?: SanityImageAsset
     iconImageSrc?: SanityImageAsset
     backgroundImageSrc?: SanityImageAsset
-    imageSrcAltText: string
-    contentTitle: string
-    contentText: string
-    ctaButtonText: string
-    ctaButtonLink: string
-    learnMoreLink: string
-    learnMoreText: string
-    educationPageTitle: string
-    educationPageSlimHeroImage: SanityImageAsset
-    extendedDescriptions: string[]
-    benefitsOfServiceTitle: string
-    benefitsOfServiceContents: string[]
-    benefitsOfServiceBullets: string[]
-    serviceAmenities: ServiceAmenityType[]
-    slug: SanitySlug
+    imageSrcAltText?: string
+    contentTitle?: string
+    contentText?: string
+    ctaButtonText?: string
+    ctaButtonLink?: string
+    learnMoreLink?: string
+    learnMoreText?: string
+    educationPageTitle?: string
+    educationPageSlimHeroImage?: SanityImageAsset
+    extendedDescriptions?: string[]
+    benefitsOfServiceTitle?: string
+    benefitsOfServiceContents?: string[]
+    benefitsOfServiceBullets?: string[]
+    serviceAmenities?: ServiceAmenityType[] | undefined
+    slug?: SanitySlug
 } & SanityDocumentFields
 
 export type AnimatedAboutUsSectionType = {
@@ -221,13 +220,13 @@ export type AnimatedAboutUsSectionType = {
     contentPreTitle: string
     contentText: string
     contentTexts: string[]
-    servicesList: AnimatedServiceItemNoRefType[]
+    servicesList: AnimatedServiceItemNoRefType[] | undefined
     highlightedAmenities?: ServiceAmenityType[]
     highlightedAmenitiesTitle?: string
     highlightedAmenitiesTexts?: string[]
     highlightedAmenitiesBullets?: string[]
-    servicesImageSrcArr: SanityImageAsset[]
-    servicesMasonryAccentImageSrc: SanityImageAsset
+    servicesImageSrcArr: (SanityImageAsset| undefined)[]
+    servicesMasonryAccentImageSrc?: SanityImageAsset
 }
 
 export type AnimatedServicesSectionType = {
@@ -241,9 +240,9 @@ export type AnimatedServicesSectionType = {
     contentSummaryTexts: string[]
     ctaButtonText: string
     ctaButtonLink: string
-    videoPreviewImageSrc:SanityImageAsset
-    videoPreviewSectionBackgroundImageSrc: SanityImageAsset
-    videoUrl:string
+    videoPreviewImageSrc?:SanityImageAsset
+    videoPreviewSectionBackgroundImageSrc?: SanityImageAsset
+    videoUrl?:string
     videoPreviewText:string
 }
 
@@ -601,21 +600,23 @@ export type DevelopmentHeaderSectionType = {
     headerMenuRef: SanityMenuContainer
 }
 export type HeaderSectionType = {
-    name: string
-    isSearch: boolean
-    isEnhanced: boolean
-    backgroundColor: string
-    ctaButtonText: string
-    ctaButtonLink: string
-    logoImgSrc: SanityImageAsset
-    highlightedDetails: ServiceAmenityType[]
-    headerMenuRef: SanityMenuContainer
+    title?: string
+    name?: string
+    isSearch?: boolean
+    isEnhanced?: boolean
+    backgroundColor?: string
+    ctaButtonText?: string
+    ctaButtonLink?: string
+    logoImgSrc?: SanityImageAsset
+    highlightedDetails?: ServiceAmenityType[]
+    headerMenuRef?: SanityMenuContainer
 }
 export type DevelopmentFooterSectionType = {
     name: string
     footerMenuRef: SanityMenuContainer
 }
 export type FooterSectionType = {
+    _type:string
     name: string
     backgroundImgSrc?: SanityImageAsset
     backgroundColor?: string

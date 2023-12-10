@@ -2,6 +2,10 @@ import type {Meta, StoryObj} from '@storybook/react';
 import ResumeContactUsSection from "../../components/templates/my-digital-resume/ResumeContactUsSection";
 import ResumeContactSectionData from "../data/ResumeContactSectionData";
 import {ResumeContactUsSectionType} from "../../components/BlockContentTypes";
+import getThemeFromSanity from "../../components/customized-theme-provider/getThemeFromSanity";
+import DigitalResumeThemeData from "../data/DigitalResumeThemeData";
+import React from "react";
+import {ThemeProvider} from "@mui/material/styles";
 
 const meta: Meta<typeof ResumeContactUsSection> = {
     title:"Resume/Section/Resume Contact Us Section",
@@ -22,5 +26,6 @@ export const Primary: Story = {
     args:{
         sectionData: ResumeContactSectionData
     },
-    render: ({sectionData}:{sectionData: ResumeContactUsSectionType}) => <ResumeContactUsSection sectionData={sectionData}></ResumeContactUsSection>,
+    render: ({sectionData}:{sectionData: ResumeContactUsSectionType}) =>         <ThemeProvider theme={getThemeFromSanity(DigitalResumeThemeData)}>
+        <ResumeContactUsSection sectionData={sectionData}></ResumeContactUsSection></ThemeProvider>,
 };

@@ -1,4 +1,4 @@
-import React, {FunctionComponent} from 'react'
+import React, {FunctionComponent, useContext} from 'react'
 import {Button, ButtonGroup, Grid, Typography, useMediaQuery, useTheme,} from '@mui/material';
 import {ResumeBioSectionType} from "../../../BlockContentTypes";
 import {urlFor} from "../../../block-content-ui/static-pages/cmsStaticPagesClient";
@@ -6,6 +6,8 @@ import {SanityTransformHwHomePage} from "../../../../common/sanityIo/Types";
 import useThwCommonStyles from "../../../../common/sanityIo/ThwCommonStyles";
 import SocialMediaBlock from "../social-media-block/SocialMediaBlock";
 import BusinessCardSubmitEmail from "../../transform-hw/pages/BusinessCardSubmitEmail";
+import CustomizedThemeProvider from "../../../customized-theme-provider/CustomizedThemeProvider";
+import CustomizedThemeContext from "../../../customized-theme-provider/CustomizedThemeContext";
 
 
 interface IProps {
@@ -20,6 +22,7 @@ const ResumeBioSection: FunctionComponent<IProps> = (props: IProps) => {
 
     const smDown = useMediaQuery(theme.breakpoints.down('sm'))
 
+    const customizedthemeContext = useContext(CustomizedThemeContext)
     return (
         <Grid container item style={{padding: theme.spacing(4,smDown?1:4)}} justifyContent='center'
               className={classes.resumeSection} spacing={3}>

@@ -4,6 +4,7 @@ import makeStyles from '@mui/styles/makeStyles';
 import {Grid} from '@mui/material'
 import {SanityImageAsset} from "../BlockContentTypes";
 import {urlFor} from "../block-content-ui/static-pages/cmsStaticPagesClient";
+import imagePlaceholderClient from "../../utils/imagePlaceholderClient";
 
 export const useStyles = makeStyles((theme: Theme) => ({
     root: {},
@@ -29,10 +30,9 @@ const ColoredPng: FunctionComponent<IProps> = (props: IProps) => {
             setImageUrl(props.maskUrl)
         }
         if (props.maskAsset) {
-            setImageUrl(urlFor(props.maskAsset).url() ?? "")
-        }
-            else{
-            setImageUrl(`https://placehold.co/${imageSize}x${imageSize}`)
+            setImageUrl(urlFor(props.maskAsset).url() ?? imagePlaceholderClient.placeholderOrImage(props.maskAsset, props.size, props.size))
+        }else {
+            setImageUrl(imagePlaceholderClient.placeholderOrImage(props.maskAsset, props.size, props.size))
         }
     }, [])
 

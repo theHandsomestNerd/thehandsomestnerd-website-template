@@ -1,11 +1,12 @@
 import React, {FunctionComponent, useContext} from 'react'
-import {Card, Grid, ThemeProvider, Typography, useMediaQuery} from '@mui/material'
+import {Card, Grid, ThemeProvider, Typography, useMediaQuery, useTheme} from '@mui/material'
 import {v4 as uuidv4} from 'uuid'
 import {AnimatedServiceItemNoRefType} from "../BlockContentTypes";
 import ImageWIthButtonOverlay from "../image-with-button-overlay/ImageWithButtonOverlay";
 import CustomizedThemeContext from "../customized-theme-provider/CustomizedThemeContext";
 import {urlFor} from "../block-content-ui/static-pages/cmsStaticPagesClient";
 import {motion, useAnimationControls} from "framer-motion";
+import imagePlaceholderClient from "../../utils/imagePlaceholderClient";
 
 
 interface IProps {
@@ -18,28 +19,29 @@ interface IProps {
 
 
 const AnimatedAboutUsItem: FunctionComponent<IProps> = (props: IProps) => {
-    const customizedTheme = useContext(CustomizedThemeContext)
+    // const customizedTheme = useContext(CustomizedThemeContext)
     const controls = useAnimationControls()
     const textColorControls = useAnimationControls()
     const overlayControl = useAnimationControls()
 
+    const theme = useTheme()
+
     const animateServiceHover = async () => {
         overlayControl.start({opacity: 1}, {duration: .5})
         controls.start({scale: 1}, {duration: .5})
-        textColorControls.start({color: customizedTheme.customizedTheme.palette.primary.main})
+        textColorControls.start({color: theme.palette.primary.main})
     }
 
     const animateServiceNoHover = async () => {
         controls.start({scale: 1.1}, {duration: .25})
         overlayControl.start({opacity: 0}, {duration: .5})
-        textColorControls.start({color: customizedTheme.customizedTheme.palette.text.primary})
+        textColorControls.start({color: theme.palette.text.primary})
     }
 
-    const smDown = useMediaQuery(customizedTheme.customizedTheme.breakpoints.down('sm'))
+    const smDown = useMediaQuery(theme.breakpoints.down('sm'))
 
     return (
-        <ThemeProvider theme={customizedTheme.customizedTheme} key={uuidv4()}>
-            <motion.div onHoverStart={async () => {
+            <motion.div key={uuidv4()} onHoverStart={async () => {
                 animateServiceHover()
             }} onHoverEnd={async () => {
                 animateServiceNoHover()
@@ -79,12 +81,12 @@ const AnimatedAboutUsItem: FunctionComponent<IProps> = (props: IProps) => {
                                       alignContent='center' style={{height: "100%"}}>
                                     <motion.div animate={controls} initial={{scale: 1.1}}>
                                         <img style={{zIndex: 2}} width={64} height={64}
-                                             src={urlFor(props.service.iconImageSrc ?? "").url() ?? ""}/>
+                                             src={urlFor(props.service.iconImageSrc ?? "").url() ?? imagePlaceholderClient.placeholderOrImage(props.service.iconImageSrc, 64, 64)}/>
                                     </motion.div>
                                 </Grid>
                             </Card>
                             <Grid item container style={{
-                                backgroundColor: customizedTheme.customizedTheme.palette.primary.main,
+                                backgroundColor: theme.palette.primary.main,
                                 height: "8px",
                                 zIndex: 2,
                                 position: "absolute"
@@ -93,7 +95,7 @@ const AnimatedAboutUsItem: FunctionComponent<IProps> = (props: IProps) => {
                         </Grid>
                     </Grid>
                     <Grid item style={{
-                        padding: customizedTheme.customizedTheme.spacing(4, 4, 4, 4),
+                        padding: theme.spacing(4, 4, 4, 4),
                         backgroundSize: "contain",
                         backgroundRepeat: "no-repeat",
                         backgroundPosition: "right",
@@ -112,7 +114,6 @@ const AnimatedAboutUsItem: FunctionComponent<IProps> = (props: IProps) => {
                     </Grid>
                 </Grid>
             </motion.div>
-        </ThemeProvider>
     )
 }
 

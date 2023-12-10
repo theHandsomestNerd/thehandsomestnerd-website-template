@@ -58,8 +58,8 @@ const homePageResumeData:SanityTransformHwHomePage = {
         },
         "typography": {
             "fontFamily": [
-                "RALEWAY",
-                "OSWALD",
+                "Raleway",
+                "Oswald",
             ],
             // "_type": "MuiTypography",
             // "title": "Oswald and Raleway"

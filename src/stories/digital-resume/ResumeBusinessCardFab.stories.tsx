@@ -6,6 +6,9 @@ import SocialMediaBlock from "../../components/templates/my-digital-resume/socia
 import homePageResumeData from "../data/HomePageData";
 import BusinessCard from "../../components/BusinessCard";
 import React from "react";
+import getThemeFromSanity from "../../components/customized-theme-provider/getThemeFromSanity";
+import DigitalResumeThemeData from "../data/DigitalResumeThemeData";
+import {ThemeProvider} from "@mui/material/styles";
 
 
 const meta: Meta<typeof BusinessCard> = {
@@ -30,5 +33,6 @@ export const Primary: Story = {
         homePage: homePageResumeData,
         anchor:'bottom'
     },
-    render: ({homePage, anchor}) => <BusinessCard homePage={homePage} anchor={anchor}/>,
+    render: ({homePage, anchor}) =>         <ThemeProvider theme={getThemeFromSanity(DigitalResumeThemeData)}>
+        <BusinessCard homePage={homePage} anchor={anchor}/></ThemeProvider>,
 };

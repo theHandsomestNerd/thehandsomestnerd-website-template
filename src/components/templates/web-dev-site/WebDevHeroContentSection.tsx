@@ -8,7 +8,7 @@ import PageContext from "../../page-context/PageContext";
 import WebDevSiteTheme from "../../../theme/WebDevSiteTheme";
 import makeStyles from "@mui/styles/makeStyles";
 import {Theme, ThemeProvider} from "@mui/material/styles";
-import {Button, Grid, Typography} from "@mui/material";
+import {Button, Grid, Typography, useTheme} from "@mui/material";
 // import FontFaces from "../../theme/common/FontFaces";
 
 interface IProps {
@@ -44,7 +44,7 @@ const WebDevHeroContentSection: FunctionComponent<IProps> = (props) => {
     }
 
     const pageContext = useContext(PageContext)
-
+const theme= useTheme()
     const classes = useStyles(classParameters)
     const globalClasses = useCustomStyles({})
     return (
@@ -58,13 +58,13 @@ const WebDevHeroContentSection: FunctionComponent<IProps> = (props) => {
                         <Grid container spacing={2} xs={8}>
                             <Grid item xs={8} container>
                                 <Typography variant='h2'
-                                            color={'textPrimary'}
-                                            style={{fontFamily:"Elaine Sans"}}>{props.sectionData.contentTitle}</Typography>
+                                            color={'textPrimary'}>{props.sectionData.contentTitle}</Typography>
                             </Grid>
                             <Grid container item xs={8}>
                                 <Typography variant='body1'
+                                            sx={{fontFamily:theme.typography.fontFamily?.split(',')[1]}}
                                             color='textPrimary'
-                                            style={{fontFamily: "Raleway"}}>{props.sectionData.contentText}</Typography>
+                                            >{props.sectionData.contentText}</Typography>
                             </Grid>
                             <Grid item container>
                                 <Button color='primary' variant='outlined'

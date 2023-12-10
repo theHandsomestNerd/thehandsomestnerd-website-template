@@ -3,6 +3,9 @@ import ResumeSkillsSection from "../../components/templates/my-digital-resume/re
 import ResumeSkillSectionData from "../data/ResumeSkillSectionData";
 import ResumeBioSectionData from "../data/ResumeBioSectionData";
 import homePageResumeData from "../data/HomePageData";
+import getThemeFromSanity from "../../components/customized-theme-provider/getThemeFromSanity";
+import DigitalResumeThemeData from "../data/DigitalResumeThemeData";
+import { ThemeProvider } from '@mui/material/styles';
 
 const meta: Meta<typeof ResumeSkillsSection> = {
     title:"Resume/Section/Resume Skills Section",
@@ -23,5 +26,6 @@ export const ResumeSkillsSectionCompleteStory: Story = {
     args :{
         sectionData: ResumeSkillSectionData,
     },
-    render: ({sectionData}) => <ResumeSkillsSection sectionData={sectionData}></ResumeSkillsSection>,
+    render: ({sectionData}) =>         <ThemeProvider theme={getThemeFromSanity(DigitalResumeThemeData)}>
+        <ResumeSkillsSection sectionData={sectionData}></ResumeSkillsSection></ThemeProvider>,
 };

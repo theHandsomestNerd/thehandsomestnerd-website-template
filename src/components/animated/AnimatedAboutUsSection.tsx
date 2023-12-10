@@ -9,6 +9,7 @@ import {Circle} from "@mui/icons-material";
 import {motion} from "framer-motion"
 import BulletedHeader from "./BulletedHeader";
 import HorizontalAmenity from "./HorizontalAmenity";
+import imagePlaceholderClient from "../../utils/imagePlaceholderClient";
 
 export const useStyles = makeStyles((theme: Theme) => ({
     root: {
@@ -47,7 +48,7 @@ const AnimatedAboutUsSection: FunctionComponent<IProps> = (props) => {
                     <img
                         width={256}
                         height={256}
-                        src={urlFor(props.sectionData?.servicesMasonryAccentImageSrc ?? "").width(64).height(64).url() ?? ""}
+                        src={urlFor(props.sectionData?.servicesMasonryAccentImageSrc ?? "").width(256).height(256).url() ?? imagePlaceholderClient.placeholderOrImage(props.sectionData?.servicesMasonryAccentImageSrc, 256, 256)}
                     />
                 </motion.div>}
                 <Grid item container justifyContent='center' spacing={2} px={4}>
@@ -56,8 +57,8 @@ const AnimatedAboutUsSection: FunctionComponent<IProps> = (props) => {
                     })}
                 </Grid>
                 <Grid item container style={{padding: theme.spacing(8, 6)}}
-                      spacing={2} justifyContent='center'>
-                    <Grid item xs={12} sm={11}>
+                      spacing={2} >
+                    <Grid item container xs={12} sm={12} md={6}><Grid item  container xs={12}>
                         <Grid item container>
                             <BulletedHeader textContent={props.sectionData?.contentPreTitle} heroBullet={props.sectionData?.heroBullet} />
                         </Grid>
@@ -100,7 +101,7 @@ const AnimatedAboutUsSection: FunctionComponent<IProps> = (props) => {
                                     variant='body1' gutterBottom>{segment}</Typography></Grid>
                                 </Grid>))}
                         </Grid>
-                    </Grid>
+                    </Grid></Grid>
 
                     <Grid item xs={12} md={6} spacing={2} container justifyContent='center'>
 
@@ -132,7 +133,7 @@ const AnimatedAboutUsSection: FunctionComponent<IProps> = (props) => {
                                             <img
                                                 width={64}
                                                 height={64}
-                                                src={urlFor(props.sectionData?.servicesMasonryAccentImageSrc ?? "").width(64).height(64).url() ?? ""}
+                                                src={urlFor(props.sectionData?.servicesMasonryAccentImageSrc ?? "").width(64).height(64).url() ?? imagePlaceholderClient.placeholderOrImage(props.sectionData?.servicesMasonryAccentImageSrc, 64, 64)}
                                             />
                                         </motion.div>
                                     </Grid>
@@ -141,10 +142,10 @@ const AnimatedAboutUsSection: FunctionComponent<IProps> = (props) => {
                             }
                             {
                                 props.sectionData?.servicesImageSrcArr &&
-                                <Grid item container justifyContent='center'>
+                                <Grid item container justifyContent='center' alignContent='flex-end' alignItems='flex-end'>
                                     <Grid item>
                                         <img
-                                        src={urlFor(props.sectionData?.servicesImageSrcArr[0] ?? "").url() ?? ""}/>
+                                        src={urlFor(props.sectionData?.servicesImageSrcArr[0] ?? "").url() ?? imagePlaceholderClient.placeholderOrImage(props.sectionData?.servicesImageSrcArr[0], 485, 356)}/>
                                     </Grid>
                                 </Grid>
                             }
@@ -153,13 +154,13 @@ const AnimatedAboutUsSection: FunctionComponent<IProps> = (props) => {
                                 <Grid item container justifyContent='center' spacing={2}>
                                     <Grid item xs={6} container justifyContent='flex-end'>
                                         <Grid item><img
-                                            src={urlFor(props.sectionData?.servicesImageSrcArr[1] ?? "").url() ?? ""}/></Grid>
+                                            src={urlFor(props.sectionData?.servicesImageSrcArr[1] ?? "").url() ?? imagePlaceholderClient.placeholderOrImage(props.sectionData?.servicesImageSrcArr[1], 230, 265)}/></Grid>
                                     </Grid>
                                     <Grid item xs={6}>
                                         <Grid item>
                                             <img
                                                 style={{maxWidth: "100%"}}
-                                            src={urlFor(props.sectionData?.servicesImageSrcArr[2] ?? "").url() ?? ""}/></Grid>
+                                            src={urlFor(props.sectionData?.servicesImageSrcArr[2] ?? "").url() ?? imagePlaceholderClient.placeholderOrImage(props.sectionData?.servicesImageSrcArr[2], 260, 305)}/></Grid>
                                     </Grid>
                                 </Grid>
                             }

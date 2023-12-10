@@ -2,6 +2,12 @@ import type {Meta, StoryObj} from '@storybook/react';
 import ResumeBioSection from "../../components/templates/my-digital-resume/resume-bio-section/ResumeBioSection";
 import homePageResumeData from "../data/HomePageData";
 import ResumeBioSectionData from "../data/ResumeBioSectionData";
+import {ThemeProvider} from "@mui/material/styles";
+import WebDevThemeData from "../data/WebDevThemeData";
+import CustomizedThemeProvider from "../../components/customized-theme-provider/CustomizedThemeProvider";
+import DigitalResumeThemeData from "../data/DigitalResumeThemeData";
+import calculatedHomePageResumeData from "../data/CalculatedHomePageData";
+import getThemeFromSanity from "../../components/customized-theme-provider/getThemeFromSanity";
 
 const meta: Meta<typeof ResumeBioSection> = {
     title:"Resume/Section/Resume Bio Section",
@@ -24,5 +30,8 @@ export const ResumeBioSectionComplete: Story = {
       sectionData: ResumeBioSectionData,
         homePage: homePageResumeData
     },
-    render: ({sectionData, homePage}) => <ResumeBioSection sectionData={sectionData} homePage={homePage}></ResumeBioSection>,
+    render: ({sectionData, homePage}) =>
+        <ThemeProvider theme={getThemeFromSanity(DigitalResumeThemeData)}>
+            <ResumeBioSection sectionData={sectionData} homePage={calculatedHomePageResumeData(WebDevThemeData)}></ResumeBioSection>
+        </ThemeProvider> ,
 };
