@@ -32,6 +32,8 @@ export type SanityGroupSchedule = {
 }
 
 export type SanityBusinessContact = {
+    "_type"?: "BusinessContact"
+    title?:string
     email?: string
     address?: string
     phone?: string
@@ -91,6 +93,7 @@ export type SanityUnderConstructionPageType = {
 }
 
 export type SanityMuiTheme = {
+    _type?: "MuiTheme"
     title?: string
     slug?: SanitySlug
     appBarHeight?: number
@@ -109,27 +112,30 @@ export type SanityMuiBreakpoints = {
 
 
 export type SanityMuiFontFace = {
-    name: string
-    fontSize: string
-    fontStyle: string
-    fontWeight: string
-    lineHeight: string
-    letterSpacing: string
+    name?: string
+    fontSize?: string
+    fontStyle?: string
+    fontWeight?: string
+    lineHeight?: string
+    letterSpacing?: string
     textTransform?: any
     [key:string]: any
-    mediaQueries: SanityMuiMediaQuery[]
+    mediaQueries?: SanityMuiMediaQuery[]
 }
 
 export type SanityMuiMediaQuery = {
-    breakpoint: string
+    "_type"?: "MuiMediaQuery"
+    breakpoint: string[]
     typography: SanityMuiFontFace
 }
 export type SanityMuiTypography = {
+    "_type"?: "MuiTypography",
     fontFamily: string[]
     fontFaces?: SanityMuiFontFace[]
 }
 
 export type SanityMuiColorPalette = {
+    "_type"?: "MuiColorPalette",
     defaultBackground: string
     defaultPaperBackgroundColor: string
     primaryColor: string
@@ -211,7 +217,7 @@ export type SanityModalType = {
 }
 
 export type SanityMenuItem = {
-    _type: string
+    _type:string,
     title?: string,
     displayText?: string,
     url?: string,
@@ -222,7 +228,7 @@ export type SanityMenuItem = {
 }
 
 export type SanityMenuGroup = {
-    _type: string
+    _type?:string,
     title?: string,
     slug?: SanitySlug,
     menuGroupTitle?: string,
@@ -235,7 +241,7 @@ export type SanityMenuContainer = {
     title?: string,
     slug?: SanitySlug,
     displayText?: string,
-    subMenus?: SanityMenuGroup & SanityMenuItem[]
+    subMenus?: (SanityMenuGroup & SanityMenuItem)[]
     logoImageAltText?: string
     logoText?: string
     logoAccentText?: string

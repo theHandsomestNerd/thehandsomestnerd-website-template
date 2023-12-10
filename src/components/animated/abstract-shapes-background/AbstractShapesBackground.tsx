@@ -1,4 +1,4 @@
-import React, {FunctionComponent, useContext} from 'react'
+import React, {FunctionComponent} from 'react'
 import shape3 from "./services-v1-shape3-dark-blue.png";
 import shape9 from "./services-v1-shape9-dark-blue.png";
 import shape11 from "./services-v1-shape11-dark-blue.png";
@@ -9,8 +9,7 @@ import shape5 from "./services-v1-shape5-dark-blue.png";
 import shape2 from "./services-v1-shape2-dark-blue.png";
 import shape6 from "./services-v1-shape6-dark-blue.png";
 import shape10 from "./services-v1-shape10-dark-blue.png";
-import CustomizedThemeContext from "../../customized-theme-provider/CustomizedThemeContext";
-import {Grid} from "@mui/material";
+import {Grid, useTheme} from "@mui/material";
 import makeStyles from "@mui/styles/makeStyles";
 import {Theme} from "@mui/material/styles";
 import AnimatedAbstractShape from "./AnimatedAbstractShape";
@@ -23,8 +22,7 @@ interface IProps {
 }
 
 const AbstractShapesBackground: FunctionComponent<IProps> = (props: IProps) => {
-    const customizedThemeContext = useContext(CustomizedThemeContext)
-
+    const theme = useTheme()
     const shape2Variants = {
         onScreen: {top: 0, transition: {duration: .65}},
         offScreen: {top: -440, transition: {duration: .65}}
@@ -77,7 +75,7 @@ const AbstractShapesBackground: FunctionComponent<IProps> = (props: IProps) => {
 
     return (<Grid container item
                   style={{
-                      backgroundColor: customizedThemeContext.customizedTheme.palette.primary.dark,
+                      backgroundColor: theme.palette.primary.dark,
                       zIndex: 0,
                       width: "100%",
                       height: "100%",

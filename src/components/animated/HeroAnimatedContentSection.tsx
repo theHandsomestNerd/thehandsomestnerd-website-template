@@ -11,6 +11,7 @@ import firebaseAnalyticsClient from "../../common/firebase/FirebaseAnalyticsClie
 import CustomizedThemeContext from "../customized-theme-provider/CustomizedThemeContext";
 import {ArrowBack, ArrowForward, ChevronLeft, ChevronRight} from "@mui/icons-material";
 import {motion} from "framer-motion"
+import imagePlaceholderClient from "../../utils/imagePlaceholderClient";
 
 interface IProps {
     sectionData: HeroAnimatedContentSectionType
@@ -47,11 +48,13 @@ const HeroAnimatedContentSection: FunctionComponent<IProps> = (props) => {
 
     const [pageNumber, setPageNumber] = React.useState<number>(0)
     const [contentSlide, setContentSlide] = React.useState<SanityHeroContentSlide | undefined>()
-    const themeContext = useContext(CustomizedThemeContext)
 
     const theme = useTheme()
     const pageContext: PageContextType = useContext(PageContext)
 
+    React.useEffect(() => {
+        console.log('image placeholder url',)
+        }, [contentSlide])
     React.useEffect(() => {
         if (props.sectionData.contentSlides[pageNumber])
             setContentSlide(props.sectionData.contentSlides[pageNumber])
@@ -64,7 +67,7 @@ const HeroAnimatedContentSection: FunctionComponent<IProps> = (props) => {
 
                     <Grid container item style={{
                         backgroundRepeat: 'no-repeat',
-                        backgroundImage: contentSlide?.heroImage ? `url('${urlFor(contentSlide?.heroImage).url() ?? ''}'), url('${urlFor(contentSlide?.heroImageBackground ?? "").url()}')` : "",
+                        backgroundImage: contentSlide?.heroImage ? `url('${urlFor(contentSlide?.heroImage).url() ?? imagePlaceholderClient.placeholderOrImage(contentSlide?.heroImage, 200, 100)}'), url('${urlFor(contentSlide?.heroImageBackground ?? "").url()?? imagePlaceholderClient.placeholderOrImage(contentSlide?.heroImageBackground, 200, 100)}')` : `url('${imagePlaceholderClient.placeholderOrImage(contentSlide?.heroImage, 500, 700)}')`,
                         backgroundSize: 'cover, contain',
                         backgroundPosition: "center",
                         minHeight: '700px',
@@ -131,15 +134,15 @@ const HeroAnimatedContentSection: FunctionComponent<IProps> = (props) => {
                                                         <Grid item container justifyContent='center' spacing={1}
                                                               wrap='nowrap'>
                                                             <Grid item>
-                                                                {contentSlide?.heroBullet && <img width={12}
-                                                                                                  src={urlFor(contentSlide?.heroBullet).url() ?? ""}/>}
+                                                                 <img width={12}
+                                                                                                  src={imagePlaceholderClient.placeholderOrImage(contentSlide?.heroBullet, 100, 200)}/>
                                                             </Grid>
                                                             <Grid item>
                                                                 <Typography variant='body1' alignContent='center'
                                                                             noWrap
                                                                             style={{
                                                                                 textTransform: "uppercase",
-                                                                                color: themeContext.customizedTheme.palette.text.secondary,
+                                                                                color: theme.palette.text.secondary,
                                                                                 fontWeight: "700",
                                                                                 letterSpacing: 4.3
                                                                             }}>{contentSlide?.contentWelcomeMessage}</Typography>
@@ -153,7 +156,7 @@ const HeroAnimatedContentSection: FunctionComponent<IProps> = (props) => {
                                                                             fontWeight: "700",
                                                                             lineHeight: ".98em",
                                                                             maxWidth: "350px",
-                                                                            fontFamily: themeContext.customizedTheme.typography.fontFamily.split(',')[1]
+                                                                            // fontFamily: themeContext.customizedTheme.typography.fontFamily.split(',')[1]
                                                                         }}
                                                                         color={'textSecondary'}>{contentSlide?.contentTitle}</Typography>
                                                         </Grid>
@@ -188,7 +191,7 @@ const HeroAnimatedContentSection: FunctionComponent<IProps> = (props) => {
                                                                     style={{
                                                                         height: "48px",
                                                                         border: "0",
-                                                                        padding: themeContext.customizedTheme.spacing(3.5, 8)
+                                                                        padding: theme.spacing(3.5, 8)
                                                                     }}
                                                                     onClick={() => {
                                                                         firebaseAnalyticsClient.ctaClick("hero-section", contentSlide?.ctaButtonTitle ?? "", pageContext.analyticsId,)

@@ -5,6 +5,9 @@ import ResumeExperienceSection from "../../components/templates/my-digital-resum
 import ResumeExperienceSectionData from "../data/ResumeExperienceSectionData";
 import ResumeEducationSection from "../../components/templates/my-digital-resume/resume-education-section/ResumeEducationSection";
 import ResumeEducationSectionData from "../data/ResumeEducationSectionData";
+import getThemeFromSanity from "../../components/customized-theme-provider/getThemeFromSanity";
+import DigitalResumeThemeData from "../data/DigitalResumeThemeData";
+import {ThemeProvider} from "@mui/material/styles";
 
 const meta: Meta<typeof ResumeEducationSection> = {
     title:"Resume/Section/Resume Education Section",
@@ -25,5 +28,6 @@ export const ResumeEducationSectionStory: Story = {
     args:{
         sectionData: ResumeEducationSectionData
     },
-    render: ({sectionData}) => <ResumeEducationSection sectionData={sectionData}></ResumeEducationSection>,
+    render: ({sectionData}) =>         <ThemeProvider theme={getThemeFromSanity(DigitalResumeThemeData)}>
+        <ResumeEducationSection sectionData={sectionData}></ResumeEducationSection></ThemeProvider>,
 };

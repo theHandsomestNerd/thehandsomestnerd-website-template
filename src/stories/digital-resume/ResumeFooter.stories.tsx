@@ -1,6 +1,9 @@
 import type {Meta, StoryObj} from '@storybook/react';
 import homePageResumeData from "../data/HomePageData";
 import Footer from "../../components/templates/mackenzies-mind/footer/Footer";
+import getThemeFromSanity from "../../components/customized-theme-provider/getThemeFromSanity";
+import DigitalResumeThemeData from "../data/DigitalResumeThemeData";
+import { ThemeProvider } from '@mui/material/styles';
 
 
 const meta: Meta<typeof Footer> = {
@@ -22,5 +25,6 @@ export const Primary: Story = {
     args: {
         pageFooter: homePageResumeData.footerContent.content[0].footerMenuRef
     },
-    render: ({pageFooter}) => <Footer pageFooter={pageFooter}></Footer>,
+    render: ({pageFooter}) =>         <ThemeProvider theme={getThemeFromSanity(DigitalResumeThemeData)}>
+        <Footer pageFooter={pageFooter}></Footer></ThemeProvider>,
 };

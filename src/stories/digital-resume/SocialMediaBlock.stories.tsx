@@ -4,6 +4,9 @@ import {ButtonGroupMemberEnum} from "../../components/loading-button/ButtonGroup
 import {Grid} from "@mui/material";
 import SocialMediaBlock from "../../components/templates/my-digital-resume/social-media-block/SocialMediaBlock";
 import homePageResumeData from "../data/HomePageData";
+import getThemeFromSanity from "../../components/customized-theme-provider/getThemeFromSanity";
+import DigitalResumeThemeData from "../data/DigitalResumeThemeData";
+import {ThemeProvider} from "@mui/material/styles";
 
 
 const meta: Meta<typeof SocialMediaBlock> = {
@@ -45,5 +48,6 @@ export const SocialMediaBlockOnly3: Story = {
         twitter:homePageResumeData.businessContact?.twitter,
         instagram: "thehandsomestNerd"
     },
-    render: ({facebook, twitter, instagram}) => <SocialMediaBlock facebook={facebook} instagram={instagram} twitter={twitter}></SocialMediaBlock>,
+    render: ({facebook, twitter, instagram}) =>         <ThemeProvider theme={getThemeFromSanity(DigitalResumeThemeData)}>
+        <SocialMediaBlock facebook={facebook} instagram={instagram} twitter={twitter}></SocialMediaBlock></ThemeProvider>,
 };

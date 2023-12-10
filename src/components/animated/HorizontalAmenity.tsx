@@ -1,11 +1,11 @@
-import React, {FunctionComponent, useContext} from 'react'
-import {Card, Grid, Typography} from "@mui/material";
+import React, {FunctionComponent} from 'react'
+import {Card, Grid, Typography, useTheme} from "@mui/material";
 import {motion, useAnimationControls} from "framer-motion";
 import {urlFor} from "../block-content-ui/static-pages/cmsStaticPagesClient";
-import CustomizedThemeContext from "../customized-theme-provider/CustomizedThemeContext";
 import {ServiceAmenityType} from "../BlockContentTypes";
 import makeStyles from "@mui/styles/makeStyles";
 import {Theme} from "@mui/material/styles";
+import imagePlaceholderClient from "../../utils/imagePlaceholderClient";
 
 export const useStyles = makeStyles((theme: Theme) => ({
     root: {},
@@ -16,17 +16,18 @@ interface IProps {
 }
 
 const HorizontalAmenity: FunctionComponent<IProps> = (props: IProps) => {
-    const customizedThemeContext = useContext(CustomizedThemeContext)
 
     const controls = useAnimationControls()
 
     const animateFlipIcon = async () => {
-        await controls.start({rotateY: 180},{duration: .5})
+        await controls.start({rotateY: 180}, {duration: .5})
     }
 
     const animateUnFlipIcon = async () => {
         await controls.start({rotateY: 0}, {duration: .2})
     }
+
+    const theme = useTheme()
 
     return (
         <motion.div onHoverStart={animateFlipIcon} onHoverEnd={animateUnFlipIcon}>
@@ -38,13 +39,13 @@ const HorizontalAmenity: FunctionComponent<IProps> = (props: IProps) => {
                         opacity: .5,
                         width: "36px",
                         height: "36px",
-                        backgroundColor: customizedThemeContext.customizedTheme.palette.primary.main,
+                        backgroundColor: theme.palette.primary.main,
                         borderRadius: "50%"
                     }}></Card>
                     <motion.div
                         animate={controls}
                     >
-                        <img width={56} src={urlFor(props.amenity.imageSrc ?? "").url() ?? ""}/>
+                        <img width={56} src={urlFor(props.amenity.imageSrc ?? "").url() ?? imagePlaceholderClient.placeholderOrImage(props.amenity.imageSrc, 56, 56)}/>
                     </motion.div>
                 </Grid>
                 <Grid item maxWidth={250}>
@@ -55,7 +56,8 @@ const HorizontalAmenity: FunctionComponent<IProps> = (props: IProps) => {
                         <Typography variant='body1'>{props.amenity.description}</Typography>
                     </Grid>
                 </Grid>
-            </Grid></motion.div>)
+            </Grid>
+        </motion.div>)
 }
 
 export default HorizontalAmenity

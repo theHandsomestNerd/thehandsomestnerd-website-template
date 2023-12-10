@@ -6,6 +6,7 @@ import makeStyles from "@mui/styles/makeStyles";
 import {Theme} from "@mui/material/styles";
 import {AnimatedPortfolioItemType} from "../BlockContentTypes";
 import {motion, useAnimationControls} from 'framer-motion';
+import imagePlaceholderClient from "../../utils/imagePlaceholderClient";
 
 export const useStyles = makeStyles((theme: Theme) => ({
     root: {
@@ -42,7 +43,7 @@ const AnimatedPortfolioItem: FunctionComponent<IProps> = (props:IProps) => {
             console.log("not hovering")
             animateServiceNoHover()
         }}><Button style={{
-            backgroundImage: `url(${urlFor(props.portfolioItem?.coverImage ?? "").url() ?? ""})`,
+            backgroundImage: `url(${urlFor(props.portfolioItem?.coverImage ?? "").url() ?? imagePlaceholderClient.placeholderOrImage(props.portfolioItem?.coverImage,300, 250)})`,
             backgroundSize: "cover",
             backgroundPosition: "top center",
             backgroundRepeat: "no-repeat",

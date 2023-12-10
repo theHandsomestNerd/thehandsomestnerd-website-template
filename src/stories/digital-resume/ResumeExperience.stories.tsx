@@ -2,6 +2,9 @@ import type {Meta, StoryObj} from '@storybook/react';
 import ResumeExperienceSection
     from "../../components/templates/my-digital-resume/resume-experience-section/ResumeExperienceSection";
 import ResumeExperienceSectionData from "../data/ResumeExperienceSectionData";
+import getThemeFromSanity from "../../components/customized-theme-provider/getThemeFromSanity";
+import DigitalResumeThemeData from "../data/DigitalResumeThemeData";
+import { ThemeProvider } from '@mui/material/styles';
 
 const meta: Meta<typeof ResumeExperienceSection> = {
     title:"Resume/Section/Resume Experience Section",
@@ -22,5 +25,6 @@ export const ResumeExperienceSectionComplete: Story = {
     args:{
         sectionData: ResumeExperienceSectionData
     },
-    render: ({sectionData}) => <ResumeExperienceSection sectionData={sectionData}></ResumeExperienceSection>,
+    render: ({sectionData}) =>  <ThemeProvider theme={getThemeFromSanity(DigitalResumeThemeData)}>
+        <ResumeExperienceSection sectionData={sectionData}></ResumeExperienceSection></ThemeProvider>,
 };

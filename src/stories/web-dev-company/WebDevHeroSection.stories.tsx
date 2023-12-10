@@ -10,6 +10,10 @@ import React from "react";
 import CustomizedThemeProvider from "../../components/customized-theme-provider/CustomizedThemeProvider";
 import {ThemeProvider} from "@mui/material/styles";
 import WebDevSiteTheme from "../../theme/WebDevSiteTheme";
+import getThemeFromSanity from "../../components/customized-theme-provider/getThemeFromSanity";
+import WebDevThemeData from "../data/WebDevThemeData";
+import HeroAnimatedContentSection from "../../components/animated/HeroAnimatedContentSection";
+import AnimatedHeroSectionData from "../data/AnimatedHeroSectionData";
 
 
 const meta: Meta<typeof WebDevHeroContentSection> = {
@@ -27,8 +31,9 @@ type Story = StoryObj<typeof WebDevHeroContentSection>;
  * to learn how to use render functions.
  */
 
+console.log(getThemeFromSanity(WebDevThemeData))
 export const Primary: Story = {
-    render: () =>                         <ThemeProvider theme={WebDevSiteTheme}>
-        <WebDevHeroContentSection sectionData={WebDevHeroSectionData}></WebDevHeroContentSection>
+    render: () =>  <ThemeProvider theme={getThemeFromSanity(WebDevThemeData)}>
+    <WebDevHeroContentSection sectionData={WebDevHeroSectionData}></WebDevHeroContentSection>
     </ThemeProvider>,
 };
