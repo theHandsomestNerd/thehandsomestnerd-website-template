@@ -46,6 +46,7 @@ const Header: FunctionComponent<HeaderProps> = (props) => {
     const [isSearchOpen, setIsSearchOpen] = React.useState<boolean>(false)
 
     return (<AppBarWrapper backgroundColor={props.backgroundColor} isAppBar={props.isAppBar} isEnhanced={props.isEnhanced}>
+
             {props.pageHeader?.title ?
                 <Grid item container
                       alignContent='center' alignItems='center' style={{height: "100%", paddingLeft: "8px"}}>
