@@ -1,7 +1,7 @@
 {
   "name": "the-handsomest-nerd-sanity",
   "private": true,
-  "version": "0.5.0",
+  "version": "0.6.0",
   "description": "Sanity CMS for React Website Builder",
   "main": "package.json",
   "author": "theHandsomestNerd <hello@thehandsomestnerd.com>",
