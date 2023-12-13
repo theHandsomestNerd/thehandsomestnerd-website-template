@@ -17,7 +17,7 @@ import AnimatedHeroSectionData from "../data/AnimatedHeroSectionData";
 
 
 const meta: Meta<typeof WebDevHeroContentSection> = {
-    title:"Web Development/Web Dev Hero Section",
+    title:"Web Development/Section/Web Dev Hero Section",
     component: WebDevHeroContentSection,
 };
 
@@ -31,7 +31,6 @@ type Story = StoryObj<typeof WebDevHeroContentSection>;
  * to learn how to use render functions.
  */
 
-console.log(getThemeFromSanity(WebDevThemeData))
 export const Primary: Story = {
     render: () =>  <ThemeProvider theme={getThemeFromSanity(WebDevThemeData)}>
     <WebDevHeroContentSection sectionData={WebDevHeroSectionData}></WebDevHeroContentSection>

@@ -1,13 +1,8 @@
 import React, {FunctionComponent} from 'react'
-import {StyledEngineProvider, Theme, ThemeProvider} from "@mui/material/styles";
 import {Grid, Typography, useTheme} from '@mui/material'
 import {WebDevTestimonialsSectionType, WebDevTestimonialsType} from "../../BlockContentTypes";
 import {urlFor} from "../../block-content-ui/static-pages/cmsStaticPagesClient";
-import WebDevSiteTheme from "../../../theme/WebDevSiteTheme";
 import {COLORS} from "../../../theme/common/ColorPalette";
-
-
-
 
 
 interface IProps {
@@ -18,8 +13,7 @@ const WebDevTestimonialsSection: FunctionComponent<IProps> = (props: IProps) => 
     const theme = useTheme()
 
     return (
-        <StyledEngineProvider injectFirst>
-            <ThemeProvider theme={WebDevSiteTheme}><Grid
+        <Grid
                 container
                 item
                 style={{
@@ -107,8 +101,6 @@ const WebDevTestimonialsSection: FunctionComponent<IProps> = (props: IProps) => 
                     </Grid>
                 </Grid>
             </Grid>
-            </ThemeProvider>
-        </StyledEngineProvider>
     );
 }
 

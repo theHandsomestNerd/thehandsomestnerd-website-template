@@ -32,8 +32,6 @@ const WebDevHowItWorksSection: FunctionComponent<IProps> = (props) => {
     const classes = useStyles()
 
     return (
-        <StyledEngineProvider injectFirst>
-            <ThemeProvider theme={WebDevSiteTheme}>
                 <Grid container item className={classes.root} xs={12} justifyContent='center'>
                     <Grid container item spacing={2} xs={11}>
                         <Grid container item>
@@ -54,7 +52,7 @@ const WebDevHowItWorksSection: FunctionComponent<IProps> = (props) => {
                         <Grid item container>
                             {props.sectionData?.contentTexts?.map((segment: string, index: number) => (
                                 <Grid item key={index}>
-                                    <Typography variant='body1' color='primary' gutterBottom>{segment}</Typography>
+                                    <Typography variant='body1' color='primary' gutterBottom fontFamily='Raleway'>{segment}</Typography>
                                 </Grid>))}
                         </Grid>
                         <Grid item container>
@@ -64,8 +62,6 @@ const WebDevHowItWorksSection: FunctionComponent<IProps> = (props) => {
                         </Grid>
                     </Grid>
                 </Grid>
-            </ThemeProvider>
-        </StyledEngineProvider>
     );
 }
 

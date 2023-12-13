@@ -26,9 +26,10 @@ export default {
             type: 'string',
         },
         {
-            name: 'content',
-            title: 'Content',
-            type: 'text',
+            name: 'contentTexts',
+            title: 'Content Text',
+            type: 'array',
+            of:[{type: 'text'}]
         },
         {
             name: 'steps',
