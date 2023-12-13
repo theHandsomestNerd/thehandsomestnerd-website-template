@@ -31,8 +31,6 @@ const WebDevServicesSection: FunctionComponent<IProps> = (props) => {
     const classes = useStyles()
 
     return (
-        <StyledEngineProvider injectFirst>
-            <ThemeProvider theme={WebDevSiteTheme}>
                 <Grid container item className={classes.root} xs={12} justifyContent='center'>
                     <Grid container item spacing={2} xs={11}>
                         <Grid container item>
@@ -58,14 +56,13 @@ const WebDevServicesSection: FunctionComponent<IProps> = (props) => {
                                 </Grid>))}
                         </Grid>
                         <Grid item container>
-                            {props.sectionData?.servicesList?.map((service: ThwServiceItemNoRefType, index: number) => {
+                            {props.sectionData?.servicesList?.map((service, index: number) => {
                                 return <WebDevServiceItem showAmenities key={index} index={index} service={service}/>
                             })}
                         </Grid>
                     </Grid>
                 </Grid>
-            </ThemeProvider>
-        </StyledEngineProvider>
+
     );
 }
 

@@ -511,7 +511,7 @@ export type WebDevHeroContentSectionType = {
 export type WebDevStatsCounterSectionType = {
     name: string
     title: string
-    stats: { statValue: string, statContent: string }[]
+    stats: { statValue: string, statContent: string, isEnabled: boolean, "_type": "WebDevStatistic" }[]
 }
 
 
@@ -522,37 +522,39 @@ export type WebDevAboutUsSectionType = {
     contentTitle: string
     contentText: string[]
     ctaButtonText: string
-    ctaButtonLink: string
+    ctaButtonLink?: string
 }
 
 
 export type ServiceItemNoRefType = {
-    name: string
+    name?: string
     imageSrc?: SanityImageAsset
-    imageSrcAltText: string
-    contentTitle: string
-    contentText: string
-    ctaButtonText: string
-    ctaButtonLink: string
-    learnMoreLink: string
-    learnMoreText: string
-    educationPageTitle: string
-    educationPageSlimHeroImage: SanityImageAsset
-    extendedDescriptions: string[]
-    benefitsOfServiceTitle: string
-    benefitsOfServiceContents: string[]
-    benefitsOfServiceBullets: string[]
-    serviceAmenities: ServiceAmenityType[]
-    slug: SanitySlug
+    imageSrcAltText?: string
+    contentTitle?: string
+    contentText?: string
+    ctaButtonText?: string
+    ctaButtonLink?: string
+    learnMoreLink?: string
+    learnMoreText?: string
+    educationPageTitle?: string
+    educationPageSlimHeroImage?: SanityImageAsset
+    extendedDescriptions?: string[]
+    benefitsOfServiceTitle?: string
+    benefitsOfServiceContents?: string[]
+    benefitsOfServiceBullets?: string[]
+    serviceAmenities?: ServiceAmenityType[]
+    slug?: SanitySlug
 }
 
 export type PortfolioSectionType = {
-    name: string
-    contentTitle: string
-    contentPreTitle: string
-    contentText: string
-    contentTexts: string[]
-    servicesList: ServiceItemNoRefType[]
+    name?: string
+    introduction?: string
+    contentTitle?: string
+    contentPreTitle?: string
+    contentText?: string
+    contentTexts?: string[]
+    portfolioEntries?: ResumePortfolioItem[]
+    servicesList?: ServiceItemNoRefType[]
 }
 
 export type WebDevTestimonialsType = {
@@ -577,17 +579,20 @@ export type WebDevTestimonialsSectionType = {
 
 
 export type HowItWorksStepNoRefType = {
-    title: string
-    slug: SanitySlug
-    content: string
-    imageSrc: SanityImageAsset
-    isEnabled: boolean
-    contentText: string
-    contentTexts: string[]
-    learnMoreLink: string
-    learnMoreText: string
+    _type?: "WebDevHowItWorksStep",
+    title?: string
+    name?: string
+    slug?: SanitySlug
+    content?: string
+    imageSrc?: SanityImageAsset
+    isEnabled?: boolean
+    contentText?: string
+    contentTexts?: string[]
+    learnMoreLink?: string
+    learnMoreText?: string
 }
 export type HowItWorksSectionType = {
+    _type: "WebDevHowItWorksSection"
     name: string
     contentTitle: string
     contentPreTitle: string

@@ -217,7 +217,7 @@ export type SanityModalType = {
 }
 
 export type SanityMenuItem = {
-    _type:string,
+    _type?:string,
     title?: string,
     displayText?: string,
     url?: string,

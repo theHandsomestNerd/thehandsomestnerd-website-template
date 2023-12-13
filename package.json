@@ -1,6 +1,6 @@
 {
   "name": "the-handsomestnerd-internal",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "license": "GPL-3.0-or-later",
   "private": true,
   "dependencies": {
@@ -58,8 +58,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "firebaseDeploy": "firebase deploy --only hosting",
-    "storybook": "storybook dev -p 6006 -s public",
-    "build-storybook": "storybook build -s public"
+    "storybook": "sb dev"
   },
   "eslintConfig": {
     "extends": [
