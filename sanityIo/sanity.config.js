@@ -7,7 +7,7 @@ export default defineConfig({
     title: "The Handsomest Nerd",
     projectId: "e5l5k4i5",
     dataset: "development",
-    plugins: [deskTool(), visionTool()],
+    plugins: [deskTool({}), visionTool()],
     schema: {
         types: schemas,
     },

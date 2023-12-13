@@ -473,6 +473,8 @@ const fullTextSearch = (textToSearch: string): Promise<any> => {
             `*[
             [
                 title, 
+                careerTitle,
+                introduction,
                 name, 
                 contentText, 
                 contentTexts, 
@@ -484,10 +486,10 @@ const fullTextSearch = (textToSearch: string): Promise<any> => {
                 contentSummaryTitle,
                 contentSummaryTexts,
                 videoUrl,
-                
             ] match '*${textToSearch}*']{
                 ..., 
                 "skillsUsed" : skillsUsed[]->,
+                "skills" : skills[]->,
             }`,
             // {searchText: textToSearch}
         ).then((data: any) => {
@@ -502,6 +504,7 @@ const skillReferenceSearch = (skill: ResumeSkill): Promise<any> => {
                 ..., 
                 "skillsHighlighted": skillsHighlighted[]->,
                 "skillsUsed" : skillsUsed[]->,
+                "skills":skills[]->,
             }`,
             {searchText: skill._id}
         ).then((data: any) => {

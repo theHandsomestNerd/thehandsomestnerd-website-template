@@ -1,7 +1,7 @@
 export default {
     name: 'ResumeSkillset',
     title: 'Resume Skillset',
-    type: 'object',
+    type: 'document',
     fields: [
         {
             name: 'name',
