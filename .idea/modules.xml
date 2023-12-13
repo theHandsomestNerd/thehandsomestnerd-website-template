@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/functions.iml" filepath="$PROJECT_DIR$/functions.iml" />
       <module fileurl="file://$PROJECT_DIR$/resume.iml" filepath="$PROJECT_DIR$/resume.iml" />
+      <module fileurl="file://$PROJECT_DIR$/sanityIo.iml" filepath="$PROJECT_DIR$/sanityIo.iml" />
     </modules>
   </component>
 </project>

@@ -128,12 +128,10 @@ const HOMEPAGE = `_type,
                 },
                 "serviceAmenities": serviceAmenities[]->,
                 "prosList": prosList[]->,
-                "skillsets": skillsets[]{
+                "skillsets": skillsets[]->{
                     ...,
                     "skills": skills[]->{
-                        _id,
-                        name,
-                        title,
+                        ...
                     },
                 }, 
                 "experiences": experiences[]->{

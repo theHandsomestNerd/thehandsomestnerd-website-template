@@ -113,12 +113,10 @@ const HOMEPAGE = `_type,
                 },
                 "prosList": prosList[]->,
                 "serviceAmenities": serviceAmenities[]->,
-                "skillsets": skillsets[]{
+                "skillsets": skillsets[]->{
                     ...,
                     "skills": skills[]->{
-                        _id,
-                        name,
-                        title,
+                        ...
                     },
                 }, 
                 "experiences": experiences[]->{

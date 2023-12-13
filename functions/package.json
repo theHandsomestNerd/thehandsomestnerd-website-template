@@ -1,6 +1,6 @@
 {
   "name": "functions",
-  "version": "0.6.1",
+  "version": "0.7.0",
   "scripts": {
     "lint": "eslint --ext .js,.ts .",
     "build": "tsc",
@@ -8,7 +8,7 @@
     "serve": "npm run build && firebase emulators:start --only functions",
     "shell": "npm run build && firebase functions:shell",
     "start": "npm run shell",
-    "deploy": "npm run build && firebase deploy",
+    "deploy": "npm run build && npm run html && firebase deploy",
     "logs": "firebase functions:log",
     "html": "cp ../build/index.html ./lib",
     "fonts": "mv ../build/fonts ./lib/functions/src"
@@ -22,7 +22,6 @@
     "@sanity/image-url": "^1.0.2",
     "@sanity/types": "^2.34.0",
     "@sendgrid/mail": "^7.7.0",
-    "@shopify/shopify-api": "^8.0.2",
     "axios": "^1.6.2",
     "dotenv": "^16.3.1",
     "es6-promise": "^4.2.8",
