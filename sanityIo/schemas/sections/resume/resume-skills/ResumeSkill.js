@@ -12,6 +12,13 @@ export default {
             name: 'title',
             title: 'Title of Skillset',
             type: 'string',
-        }
+        },
+        {
+            name: 'searchableOnPages',
+            title: 'Make Searchable on pages',
+            type: 'array',
+            of:[{type: "reference", to: {type:"homePage"}}]
+        },
+
     ]
 }

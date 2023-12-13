@@ -30,6 +30,13 @@ export default {
       title: 'Form Submit Button Text',
       type: 'string'
     },
+    {
+      name: 'searchableOnPages',
+      title: 'Make Searchable on pages',
+      type: 'array',
+      of:[{type: "reference", to: {type:"homePage"}}]
+    },
+
   ],
   preview: {
     select: {

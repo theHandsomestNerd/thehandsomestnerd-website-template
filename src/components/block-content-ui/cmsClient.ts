@@ -466,8 +466,9 @@ const useFetchServicesQuery = (pageSlug?: string) => {
         });
 }
 
-const fullTextSearch = (textToSearch: string): Promise<any> => {
+const fullTextSearch = (textToSearch: string, pageId: string): Promise<any> => {
 
+    console.log("the page id", pageId)
     return sanityClient
         .fetch(
             `*[
@@ -476,6 +477,7 @@ const fullTextSearch = (textToSearch: string): Promise<any> => {
                 careerTitle,
                 introduction,
                 name, 
+                email,
                 contentText, 
                 contentTexts, 
                 contentTitle, 
@@ -486,18 +488,17 @@ const fullTextSearch = (textToSearch: string): Promise<any> => {
                 contentSummaryTitle,
                 contentSummaryTexts,
                 videoUrl,
-            ] match '*${textToSearch}*']{
+            ] match '*${textToSearch}*' && references('${pageId}')]{
                 ..., 
                 "skillsUsed" : skillsUsed[]->,
                 "skills" : skills[]->,
             }`,
             // {searchText: textToSearch}
         ).then((data: any) => {
-            console.log("data from fulltext search", data)
             return data
         })
 }
-const skillReferenceSearch = (skill: ResumeSkill): Promise<any> => {
+const skillReferenceSearch = (skill: ResumeSkill, pageId: string): Promise<any> => {
     return sanityClient
         .fetch(
             `*[references($searchText)]{
@@ -506,9 +507,21 @@ const skillReferenceSearch = (skill: ResumeSkill): Promise<any> => {
                 "skillsUsed" : skillsUsed[]->,
                 "skills":skills[]->,
             }`,
-            {searchText: skill._id}
-        ).then((data: any) => {
-            console.log("data from skillReference search", data)
+            {searchText: skill._id, pageId: pageId}
+        ).then((data: any[]) => {
+
+
+            data.sort((left, right)=>{
+                if (left._type === right._type) {
+                    return 0
+                }
+
+                if(left._type > right._type)
+                    return 1
+
+                return -1
+            })
+
             return data
         })
 }

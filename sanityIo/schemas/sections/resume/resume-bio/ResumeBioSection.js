@@ -14,6 +14,12 @@ export default {
             type: 'string',
         },
         {
+            name: 'searchableOnPages',
+            title: 'Make Searchable on pages',
+            type: 'array',
+            of:[{type: "reference", to: {type:"homePage"}}]
+        },
+        {
             name: 'introduction',
             title: 'Introduction',
             type: 'text',

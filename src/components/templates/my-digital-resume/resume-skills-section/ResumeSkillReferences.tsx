@@ -1,13 +1,11 @@
-import React, {FunctionComponent} from 'react'
-
-import makeStyles from "@mui/styles/makeStyles";
-import {Theme} from "@mui/material/styles";
+import React, {FunctionComponent, useContext} from 'react'
 import {Grid, Typography} from "@mui/material";
 import {ResumePortfolioItem, ResumeSkill} from "../../../BlockContentTypes";
 import cmsClient from "../../../block-content-ui/cmsClient";
 import ResumeExperienceItem from "../resume-experience-section/ResumeExperienceItem";
 import ResumePortfolioEntry from "../resume-portfolio-section/ResumePortfolioEntry";
 import ResumeSkillSetItem from "./ResumeSkillSetItem";
+import PageContext from "../../../page-context/PageContext";
 
 interface IProps {
     skill?: ResumeSkill
@@ -16,11 +14,13 @@ interface IProps {
 const ResumeSkillReferences: FunctionComponent<IProps> = (props: IProps) => {
     const [referenceResults, setReferenceResults] = React.useState<[]>()
 
+    const pageContext = useContext(PageContext)
+
     const searchCMS = async () => {
-        console.log("about to search full text")
+        // console.log("about to search full text")
         if (props.skill) {
-            const cmsResponse = await cmsClient.skillReferenceSearch(props.skill)
-            console.log("results", cmsResponse)
+            const cmsResponse = await cmsClient.skillReferenceSearch(props.skill, pageContext.page?._id ?? "")
+
             setReferenceResults(cmsResponse)
         }
     }
@@ -28,24 +28,54 @@ const ResumeSkillReferences: FunctionComponent<IProps> = (props: IProps) => {
     React.useEffect(() => {
         // find the rerences of this skill
         searchCMS().then()
-
     }, [])
-    
-    const [currentItem, setCurrentItem] = React.useState<ResumePortfolioItem>()
 
-    const [isOpen, setIsOpen] = React.useState<boolean>(false)
+
     return (<Grid container item spacing={2}>
         {
-            referenceResults?.map((searchResult: any) => {
+            referenceResults?.map((searchResult: any, index) => {
+
+
                 switch (searchResult?._type) {
                     case "ResumeExperience":
-                        return <ResumeExperienceItem experience={searchResult}/>
+                        return <Grid container item>
+                            <Grid container>
+                                {<Typography color='textPrimary' variant='subtitle2'
+                                             textTransform={'uppercase'} sx={{
+                                    borderLeft: "1px solid red",
+                                    paddingLeft: "4px"
+                                }}>My Job Experience</Typography>}
+                            </Grid>
+                            <ResumeExperienceItem
+                                experience={searchResult}/>
+                        </Grid>
                     case "ResumePortfolioItem":
-                        return <ResumePortfolioEntry portfolioItem={searchResult}/>
+                        return <Grid xs={12} sm={6} lg={4} xl={4} item>
+                            <Typography color='textPrimary'
+                                        variant='subtitle2'
+                                        fontWeight={'bold'}
+                                        textTransform={'uppercase'} sx={{
+                                borderLeft: "1px solid red",
+                                paddingLeft: "4px",
+                                marginBottom: "4px"
+                            }}>My Portfolio item</Typography>
+                            <ResumePortfolioEntry portfolioItem={searchResult}/>
+                        </Grid>
                     case "ResumeSkillSection":
                         return <></>
                     case "ResumeSkillset":
-                        return <Grid container item><ResumeSkillSetItem skillset={searchResult}/></Grid>
+                        return <Grid container item>
+                            <Grid container>
+                                {<Typography color='textPrimary' variant='subtitle2'
+                                             fontWeight={'bold'}
+                                             textTransform={'uppercase'} sx={{
+                                    borderLeft: "1px solid red",
+                                    paddingLeft: "4px"
+                                }}>My Related
+                                    Skills</Typography>}
+                            </Grid>
+                            <ResumeSkillSetItem skillset={searchResult}/>
+                        </Grid>
                     // case "PortfolioItem":
                     //     return <>{searchResult.title}</>
                     default:

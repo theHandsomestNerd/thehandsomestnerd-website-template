@@ -1,7 +1,6 @@
 import {SanityImageSource} from "@sanity/asset-utils";
 import {SanityImageAsset, ThwServiceItemNoRefType} from "../../components/BlockContentTypes";
 import {Slug} from "@sanity/types";
-import BusinessContact from "../../../sanityIo/schemas/businessContact";
 
 export type SanitySlug = Slug
 
@@ -53,6 +52,7 @@ export type SanityBusinessContact = {
 export type SanityTransformHwHomePage = {
     _type?: string
     title?: string
+    _id?:string
     description?: string
     bookAppointmentLink?: string
     bookAppointmentQrCode?: SanityImageSource
