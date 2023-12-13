@@ -31,5 +31,11 @@ export default {
             of: [{type: "reference", to:{type:"ResumeSkillset"}},
             ]
         },
+        {
+            name: 'searchableOnPages',
+            title: 'Make Searchable on pages',
+            type: 'array',
+            of:[{type: "reference", to: {type:"homePage"}}]
+        },
     ]
 }

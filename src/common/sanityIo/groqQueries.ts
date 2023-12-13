@@ -42,7 +42,8 @@ const SERVICE =
       `
 
 
-const HOMEPAGE = `_type,
+const HOMEPAGE = `_type, 
+          _id,
           title,
           isUnderConstruction,
           releaseDate,

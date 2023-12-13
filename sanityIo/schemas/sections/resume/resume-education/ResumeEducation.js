@@ -43,6 +43,13 @@ export default {
             title: 'Job Description or Requirements',
             type: 'text',
         },
+        {
+            name: 'searchableOnPages',
+            title: 'Make Searchable on pages',
+            type: 'array',
+            of:[{type: "reference", to: {type:"homePage"}}]
+        },
+
     ],
     preview: {
         select: {

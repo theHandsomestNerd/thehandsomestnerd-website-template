@@ -57,6 +57,13 @@ export default {
                 to: [{type: "ResumeSkill"}]
             }]
         },
+        {
+            name: 'searchableOnPages',
+            title: 'Make Searchable on pages',
+            type: 'array',
+            of:[{type: "reference", to: {type:"homePage"}}]
+        },
+
     ],
     preview: {
         select: {

@@ -36,6 +36,13 @@ export default {
                 hotspot: true,
             },
         },
+        {
+            name: 'searchableOnPages',
+            title: 'Make Searchable on pages',
+            type: 'array',
+            of:[{type: "reference", to: {type:"homePage"}}]
+        },
+
     ],
     preview: {
         select: {

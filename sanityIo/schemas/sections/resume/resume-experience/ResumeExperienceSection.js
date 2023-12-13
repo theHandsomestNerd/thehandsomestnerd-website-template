@@ -35,5 +35,12 @@ export default {
             type: 'reference',
             to:[{type: 'MuiTheme'}]
         },
+        {
+            name: 'searchableOnPages',
+            title: 'Make Searchable on pages',
+            type: 'array',
+            of:[{type: "reference", to: {type:"homePage"}}]
+        },
+
     ]
 }

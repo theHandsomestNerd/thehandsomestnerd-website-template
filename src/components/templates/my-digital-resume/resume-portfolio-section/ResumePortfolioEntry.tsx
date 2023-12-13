@@ -29,7 +29,7 @@ const ResumePortfolioEntry: FunctionComponent<IProps> = (props:IProps) => {
     return (<Grid
                   role='portfoliobutton'
                   // style={{backgroundColor: index2 % 2 === 1 ? "whitesmoke" : "white"}}
-                  container item xs={12} sm={6} lg={4} xl={4} alignContent='flex-start'
+                  container item alignContent='flex-start'
                   justifyContent='center'>
         <Card elevation={0} sx={{width:"100%",border: `1px solid ${COLORS.GRAY}`}}>
             <Button fullWidth sx={{padding:0}} onClick={(e) => {
