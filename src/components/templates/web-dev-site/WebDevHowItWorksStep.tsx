@@ -37,7 +37,7 @@ const WebDevHowItWorksStep: FunctionComponent<IProps> = (props: IProps) => {
             {props.step.learnMoreText && props.step?.learnMoreText.length > 0 &&
                 <Button fullWidth
                         onClick={() =>
-                            firebaseAnalyticsClient.ctaClick(props.step.slug?.current ?? "", props.step.learnMoreText, pageContext.analyticsId,)
+                            firebaseAnalyticsClient.ctaClick(props.step.slug?.current ?? "", props.step.learnMoreText ?? "", pageContext.analyticsId,)
 
                         } color='primary' href={props.step.learnMoreLink}
                         variant='outlined'><Typography variant='button'

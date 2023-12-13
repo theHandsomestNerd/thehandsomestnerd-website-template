@@ -472,7 +472,7 @@ const fullTextSearch = (textToSearch: string, pageId: string): Promise<any> => {
     return sanityClient
         .fetch(
             `*[
-            [
+            ([
                 title, 
                 careerTitle,
                 introduction,
@@ -488,20 +488,22 @@ const fullTextSearch = (textToSearch: string, pageId: string): Promise<any> => {
                 contentSummaryTitle,
                 contentSummaryTexts,
                 videoUrl,
-            ] match '*${textToSearch}*' && references('${pageId}')]{
+            ] match '*${textToSearch}*') && references('${pageId}')]{
                 ..., 
                 "skillsUsed" : skillsUsed[]->,
                 "skills" : skills[]->,
+                "skillsHighlighted": skillsHighlighted[]->,
             }`,
             // {searchText: textToSearch}
         ).then((data: any) => {
+            console.log("results from full text search", data, textToSearch, pageId)
             return data
         })
 }
 const skillReferenceSearch = (skill: ResumeSkill, pageId: string): Promise<any> => {
     return sanityClient
         .fetch(
-            `*[references($searchText)]{
+            `*[references($searchText) && references('${pageId}')]{
                 ..., 
                 "skillsHighlighted": skillsHighlighted[]->,
                 "skillsUsed" : skillsUsed[]->,
@@ -521,6 +523,7 @@ const skillReferenceSearch = (skill: ResumeSkill, pageId: string): Promise<any> 
 
                 return -1
             })
+            console.log("results from skills reference search", data, skill._id, pageId)
 
             return data
         })

@@ -38,7 +38,7 @@ const WebDevServiceItem: FunctionComponent<IProps> = (props: IProps) => {
             {props.service.learnMoreText && props.service?.learnMoreText.length > 0 &&
                 <Button fullWidth
                         onClick={() =>
-                            firebaseAnalyticsClient.ctaClick(props.service.slug?.current ?? "", props.service.learnMoreText, pageContext.analyticsId,)
+                            firebaseAnalyticsClient.ctaClick(props.service.slug?.current ?? "", props.service.learnMoreText ?? "", pageContext.analyticsId,)
 
                         } color='primary' href={props.service.learnMoreLink}
                         variant='contained'><Typography variant='button'

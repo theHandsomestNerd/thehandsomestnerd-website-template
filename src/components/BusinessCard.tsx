@@ -73,6 +73,8 @@ const BusinessCard: FunctionComponent<MainMenuProps> = ({anchor, homePage}) => {
 
     const theme = useTheme()
 
+    const smDown = useMediaQuery(theme.breakpoints.down('sm'))
+
     // const pageContext = useContext(PageContext)
 
     const [userBio, setUserBio] = React.useState<ResumeBioSectionType>()
@@ -115,7 +117,7 @@ const BusinessCard: FunctionComponent<MainMenuProps> = ({anchor, homePage}) => {
                     <Grid item container style={{
                         marginBottom: theme.spacing(4),
                         backgroundRepeat: "none",
-                        minHeight: 250,
+                        minHeight: smDown?350:450,
                         backgroundSize: "cover",
                         overflow: "visible",
                         position: "relative",

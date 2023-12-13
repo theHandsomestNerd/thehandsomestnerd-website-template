@@ -77,7 +77,7 @@ const ResumeBioSection: FunctionComponent<IProps> = (props: IProps) => {
                     backgroundSize: "cover",
                     backgroundPosition: "top right",
                     backgroundRepeat: "no-repeat",
-                    minHeight: "350px"
+                    minHeight: smDown?"500px":"450px"
                 }}>
                 </Grid>
             </Grid>
