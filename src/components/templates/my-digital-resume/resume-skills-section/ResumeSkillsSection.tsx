@@ -41,7 +41,7 @@ const ResumeSkillsSection: FunctionComponent<IProps> = (props: IProps) => {
                     <Grid item container md={8} spacing={2} justifyContent='space-between'>
                         {
                             props.sectionData?.skillsets?.map((skillset: ResumeSkillSet, index2: number) => {
-                                return <ResumeSkillSetItem skillset={skillset} />
+                                return <ResumeSkillSetItem skillset={skillset} key={index2}/>
                             })
                         }
                     </Grid>
