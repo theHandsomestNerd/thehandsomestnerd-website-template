@@ -128,8 +128,8 @@ const FullTextSearch: FunctionComponent<IProps> = (props: IProps) => {
                                 <Grid item sx={{paddingLeft: "16px"}} container>
                                     {/*<Grid container item><Typography color='textSecondary'*/}
                                     {/*                                 fontWeight={'bold'}>{convertedResumeSkill.title}</Typography></Grid>*/}
-                                    {convertedAnimatedHeroSection.contentSlides.map((slide: SanityHeroContentSlide) => {
-                                        return <Grid container item sx={{
+                                    {convertedAnimatedHeroSection.contentSlides.map((slide: SanityHeroContentSlide, slideIdx) => {
+                                        return <Grid key={slideIdx} container item sx={{
                                             borderLeft: "1px solid whitesmoke",
                                             marginBottom: "8px",
                                             paddingLeft: "8px"
@@ -176,7 +176,6 @@ const FullTextSearch: FunctionComponent<IProps> = (props: IProps) => {
                         case "ResumeExperience":
                             const convertedResumeExperience: ResumeExperience = theResult;
 
-                            console.log(convertedResumeExperience)
                             return <Grid container sx={{
                                 marginBottom: "16px",
                                 backgroundColor: COLORS.LIGHTGRAY,
@@ -189,7 +188,6 @@ const FullTextSearch: FunctionComponent<IProps> = (props: IProps) => {
                             </Grid>
                         case "ResumeSkill":
                             const convertedResumeSkill: ResumeSkill = theResult;
-
                             return <Grid container sx={{
                                 marginBottom: "16px",
                                 backgroundColor: COLORS.LIGHTGRAY,
@@ -212,7 +210,7 @@ const FullTextSearch: FunctionComponent<IProps> = (props: IProps) => {
                                     <Typography variant='h6' gutterBottom color='primary'>My Bio
                                         - {resumeBioSectionObj.title}</Typography>
                                 </Grid>
-                                <ResumeBioSection sectionData={resumeBioSectionObj} homePage={pageContext.page}/>
+                                <ResumeBioSection isHideButtons={true} isHideEmail={true} sectionData={resumeBioSectionObj} homePage={pageContext.page}/>
                             </Grid>
                         default:
                             return <Grid container sx={{marginBottom: "16px"}}><Typography

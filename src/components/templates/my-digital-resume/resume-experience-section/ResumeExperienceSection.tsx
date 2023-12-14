@@ -34,7 +34,7 @@ const ResumeExperienceSection: FunctionComponent<IProps> = (props: IProps) => {
                 <Grid item container md={8} spacing={2} justifyContent={xsOnly ? 'center' : 'flex-start'}>
                     {
                         props.sectionData.experiences?.map((experience: ResumeExperience, index2: number) => {
-                            return <ResumeExperienceItem experience={experience} />
+                            return <ResumeExperienceItem experience={experience} key={index2}/>
                         })
                     }
                 </Grid>

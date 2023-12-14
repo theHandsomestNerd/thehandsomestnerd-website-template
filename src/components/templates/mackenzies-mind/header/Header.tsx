@@ -15,13 +15,13 @@ import {Theme} from "@mui/material/styles";
 import PageContext from "../../../page-context/PageContext";
 
 export const useStyles = makeStyles((theme: Theme) => ({
-    hover:{
+    hover: {
         "&:hover": {
             backgroundColor: "lightgray !important",
             color: "#383838"
         }
     },
-    hoverSearch:{
+    hoverSearch: {
         "&:hover": {
             color: theme.palette.primary.main
         }
@@ -34,7 +34,7 @@ export type HeaderProps = {
     isSearch?: boolean
     updateIsLoading?: (value: boolean) => void
     isEnhanced?: boolean
-    backgroundColor?:string
+    backgroundColor?: string
 }
 
 const Header: FunctionComponent<HeaderProps> = (props) => {
@@ -45,7 +45,8 @@ const Header: FunctionComponent<HeaderProps> = (props) => {
     const mdDown = useMediaQuery(customizedTheme.breakpoints.down('md'))
     const [isSearchOpen, setIsSearchOpen] = React.useState<boolean>(false)
 
-    return (<AppBarWrapper backgroundColor={props.backgroundColor} isAppBar={props.isAppBar} isEnhanced={props.isEnhanced}>
+    return (
+        <AppBarWrapper backgroundColor={props.backgroundColor} isAppBar={props.isAppBar} isEnhanced={props.isEnhanced}>
             {props.pageHeader?.title ?
                 <Grid item container
                       alignContent='center' alignItems='center' style={{height: "100%", paddingLeft: "8px"}}>
@@ -86,15 +87,15 @@ const Header: FunctionComponent<HeaderProps> = (props) => {
                                 paddingRight: mdDown ? "16px" : "8px",
                                 borderLeft: `1px solid ${customizedTheme.palette.primary.main}`
                             }}>
-                                <IconButton color='secondary' sx={{
+                                <IconButton onClick={() => {
+                                    setIsSearchOpen((state) => !state)
+                                }} color='secondary' sx={{
                                     // marginLeft: "32px",
                                     // marginRight: "32px",
                                     color: customizedTheme.palette.text.secondary,
                                     backgroundColor: customizedTheme.palette.primary.main
                                 }} className={classes.hoverSearch}>
-                                    <Search color='inherit' fontSize='large' onClick={() => {
-                                        setIsSearchOpen((state) => !state)
-                                    }}/>
+                                    <Search color='inherit' fontSize='large'/>
                                 </IconButton></Box></Grid>
                         </Grid>}
                     </Grid>
@@ -104,18 +105,20 @@ const Header: FunctionComponent<HeaderProps> = (props) => {
             <Modal open={isSearchOpen}>
                 <Grid container style={{height: "100%"}}>
                     <Grid container item justifyContent='flex-end'>
-                        <IconButton sx={{
-                            marginTop: "4px",
-                            marginRight: "4px",
-                            width: "64px",
-                            height: "64px",
-                            backgroundColor: COLORS.WHITESMOKE
-                        }} onClick={() => {
-                            setIsSearchOpen(false)
-                        }} className={classes.hover}>
+                        <IconButton
+                            sx={{
+                                marginTop: "4px",
+                                marginRight: "4px",
+                                width: "64px",
+                                height: "64px",
+                                backgroundColor: COLORS.WHITESMOKE
+                            }}
+                            onClick={() => {
+                                setIsSearchOpen(false)
+                            }}
+                            className={classes.hover}>
 
-                            <Close sx={{marginX: "16px", marginY: "16px"}} fontSize={"large"} color={'secondary'}
-                            />
+                            <Close sx={{marginX: "16px", marginY: "16px"}} fontSize={"large"} color={'secondary'}/>
                         </IconButton>
                     </Grid>
                     <Grid container item justifyContent='center' paddingX={'8px'} alignContent='flex-start'

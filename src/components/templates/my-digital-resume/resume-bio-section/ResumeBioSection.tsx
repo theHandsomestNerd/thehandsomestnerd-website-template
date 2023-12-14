@@ -11,6 +11,8 @@ import BusinessCardSubmitEmail from "../../transform-hw/pages/BusinessCardSubmit
 interface IProps {
     sectionData: ResumeBioSectionType
     homePage?: SanityTransformHwHomePage
+    isHideEmail?: boolean
+    isHideButtons?:boolean
 }
 
 const ResumeBioSection: FunctionComponent<IProps> = (props: IProps) => {
@@ -23,13 +25,13 @@ const ResumeBioSection: FunctionComponent<IProps> = (props: IProps) => {
     return (
         <Grid container item style={{padding: theme.spacing(4,smDown?1:4)}} justifyContent='center'
               className={classes.resumeSection} spacing={3}>
-            <Grid item xs={12} style={{paddingTop: "64px"}}>
+            {!props.isHideEmail && <Grid item xs={12} style={{paddingTop: "64px"}}>
                 <BusinessCardSubmitEmail
                     source={"Bio Section"}
                     emailFieldText={'Email Address'}
                     emailButtonText={'Submit'}
                     subscribeText={'Want a copy of my resume emailed to you?'}/>
-            </Grid>
+            </Grid>}
             <Grid item md={6} justifyContent='center'>
                 <Grid item container>
                     <Typography component='div' display='inline' variant='h5' gutterBottom>{props.sectionData.title}
@@ -81,7 +83,7 @@ const ResumeBioSection: FunctionComponent<IProps> = (props: IProps) => {
                 }}>
                 </Grid>
             </Grid>
-            <Grid container item xs={12} sm={10} spacing={1} style={{marginTop: theme.spacing(2)}}>
+            {!props.isHideButtons && <Grid container item xs={12} sm={10} spacing={1} style={{marginTop: theme.spacing(2)}}>
                 <Grid item container>
                     <ButtonGroup fullWidth orientation={smDown ? 'vertical' : "horizontal"}>
                         <Button name={'appointment'} variant='contained' fullWidth color='primary'
@@ -103,7 +105,7 @@ const ResumeBioSection: FunctionComponent<IProps> = (props: IProps) => {
                         {/*    CV</Typography></Button>}*/}
                     </ButtonGroup>
                 </Grid>
-            </Grid>
+            </Grid>}
         </Grid>
     );
 }
