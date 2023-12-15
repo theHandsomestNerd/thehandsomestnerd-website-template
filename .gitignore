@@ -33,3 +33,4 @@ yarn.*
 
 *.log
 build
+storybook-static
