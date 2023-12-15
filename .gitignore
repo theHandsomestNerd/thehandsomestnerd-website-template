@@ -32,3 +32,4 @@ yarn*
 yarn.*
 
 *.log
+build
