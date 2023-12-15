@@ -97,6 +97,8 @@ export type SanityMuiTheme = {
     title?: string
     slug?: SanitySlug
     appBarHeight?: number
+    borderRadius?: number
+    shape?: {borderRadius: number}
     breakpoints?: SanityMuiBreakpoints
     colorPalette?: SanityMuiColorPalette
     typography?: SanityMuiTypography

@@ -48,6 +48,11 @@ export default {
             name: 'insetRight',
             title: 'Right Inset',
             type: 'string'
+        },
+        {
+            name: 'isHideBorder',
+            title: 'Hide Border for this Section ',
+            type: 'boolean'
         }
     ],
     preview: {

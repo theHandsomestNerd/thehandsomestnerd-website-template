@@ -58,7 +58,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "firebaseDeploy": "firebase deploy --only hosting",
-    "storybook": "sb dev"
+    "storybook": "sb dev",
+    "build-storybook": "sb build"
   },
   "eslintConfig": {
     "extends": [

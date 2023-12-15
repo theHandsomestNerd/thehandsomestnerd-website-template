@@ -73,6 +73,7 @@ const Footer: FunctionComponent<IProps> = (props: IProps) => {
             <Grid container justifyContent="flex-start" sx={{paddingTop: mdDown ? 0 : (props.topPadding ?? "0px")}}>
                 <Grid item xs={12}>
                     {props.pageFooter && <FooterMenuContainer
+                        backgroundColor={props.backgroundColor}
                         isSocialMediaBlock={props.isSocialMediaBlock}
                         pageFooterMenu={props.pageFooter}
                         updateIsLoading={props.updateIsLoading}

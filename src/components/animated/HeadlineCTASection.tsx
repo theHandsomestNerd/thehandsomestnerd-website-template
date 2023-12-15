@@ -12,7 +12,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
     },
 }))
 
-interface IProps { sectionData: HeadlineCTASectionType }
+interface IProps { sectionData: HeadlineCTASectionType,  }
 
 const HeadlineCTASection: FunctionComponent<IProps> = (props:IProps) => {
     const theme = useTheme()
@@ -29,20 +29,20 @@ const HeadlineCTASection: FunctionComponent<IProps> = (props:IProps) => {
         backgroundImage: `url(${urlFor(props.sectionData.backgroundImgSrc).url()})`,
         backgroundSize: "40%, 40%",
         // backgroundRepeat: "no-repeat",
-        borderRadius: mdDown?0:1,
-        border:mdDown?'none':`1px solid ${theme.palette.primary.main}`,
+        // borderRadius: mdDown?0:1,
+        border:mdDown || props.sectionData.isHideBorder ?'none':`1px solid ${theme.palette.primary.main}`,
         marginLeft: mdDown?0:props.sectionData.insetLeft,
         marginRight: mdDown?0:props.sectionData.insetRight,
         marginTop: mdDown?0:props.sectionData.insetTop,
         marginBottom: mdDown?0:props.sectionData.insetBottom,
     }}>
-        <Grid container alignItems='center' alignContent='center' item
-              style={{ padding: "40px"}} md={8}>
+        <Grid container alignItems='center' alignContent='center' item justifyContent={smDown?'center':'flex-start'}
+              style={{ padding: "40px"}} sm={8}>
             <Typography variant={'h4'} color='primary'>
                 {props.sectionData.contentText}
             </Typography>
         </Grid>
-        <Grid style={{padding: "40px"}} container item justifyContent={smDown?'center':'flex-end'} alignItems='center' alignContent='center' md={4} >
+        <Grid style={{padding: theme.spacing(!smDown?5:0,5,5,5)}} container item justifyContent={smDown?'center':'flex-end'} alignItems='center' alignContent='center' sm={4} >
             <Button color='primary' variant='contained'
                     onClick={() => {
                         firebaseAnalyticsClient.ctaClick("hero-section", props.sectionData.ctaButtonText, pageContext.analyticsId,)

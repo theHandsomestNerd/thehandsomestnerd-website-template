@@ -48,6 +48,9 @@ const getThemeFromSanity = (theme: SanityMuiTheme) => {
                 xl: parseInt(String(theme.breakpoints?.xl ?? 1320)),
             }
         },
+        shape:{
+          borderRadius: parseInt(String(theme.borderRadius ?? "4"))
+        },
         palette: {
             background: {
                 default: theme.colorPalette?.defaultBackground ? convertToHexCode(theme.colorPalette?.defaultBackground) : COLORS.WHITESMOKE,

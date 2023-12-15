@@ -30,8 +30,19 @@ export const ResumeBioSectionComplete: Story = {
       sectionData: ResumeBioSectionData,
         homePage: homePageResumeData
     },
-    render: ({sectionData, homePage}) =>
+    render: ({sectionData, isHideEmail, isHideButtons, homePage}) =>
         <ThemeProvider theme={getThemeFromSanity(DigitalResumeThemeData)}>
-            <ResumeBioSection sectionData={sectionData} homePage={calculatedHomePageResumeData(WebDevThemeData)}></ResumeBioSection>
+            <ResumeBioSection isHideButtons={isHideButtons} isHideEmail={isHideEmail} sectionData={sectionData} homePage={calculatedHomePageResumeData(WebDevThemeData)}></ResumeBioSection>
+        </ThemeProvider> ,
+};
+
+export const ResumeBioSectionSearchResult: Story = {
+    args :{
+        sectionData: ResumeBioSectionData,
+        homePage: homePageResumeData
+    },
+    render: ({sectionData, isHideEmail, isHideButtons, homePage}) =>
+        <ThemeProvider theme={getThemeFromSanity(DigitalResumeThemeData)}>
+            <ResumeBioSection isHideButtons={true} isHideEmail={true} sectionData={sectionData} homePage={calculatedHomePageResumeData(WebDevThemeData)}></ResumeBioSection>
         </ThemeProvider> ,
 };

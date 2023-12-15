@@ -10,12 +10,13 @@ import AlternatingText from "../../../logo/AlternatingText";
 import SocialMediaBlock from "../../my-digital-resume/social-media-block/SocialMediaBlock";
 import {urlFor} from "../../../block-content-ui/static-pages/cmsStaticPagesClient";
 import {SanityImageAsset} from "../../../BlockContentTypes";
-import {COLORS} from "../../../../theme/common/ColorPalette";
+import {COLORS, convertToHexCode} from "../../../../theme/common/ColorPalette";
 
 interface IProps {
     pageFooterMenu?: SanityMenuContainer
     updateIsLoading?: (value: boolean) => void
     isSocialMediaBlock?:boolean
+    backgroundColor?:string
 }
 
 const FooterMenuContainer: FunctionComponent<IProps> = (props: IProps) => {
@@ -25,7 +26,7 @@ const FooterMenuContainer: FunctionComponent<IProps> = (props: IProps) => {
     const pageContext = useContext(PageContext)
     const useStyles = makeStyles(({
         root: {
-            color: theme.palette.text.secondary,
+            color: theme.palette.getContrastText(convertToHexCode(props.backgroundColor)),
         }
     }))
     const classes = useStyles(theme)
@@ -45,6 +46,7 @@ const FooterMenuContainer: FunctionComponent<IProps> = (props: IProps) => {
                       backgroundColor: COLORS.TRANSPARENTERWHITE,
                       borderRight: `4px solid ${theme.palette.primary.main}`,
                   } : {                      }}
+                  justifyContent={mdDown?'center':'flex-start'}
             >
                 {
                     props.pageFooterMenu?.subMenus?.map((menuGroup: any, index: number) => {
@@ -91,7 +93,7 @@ const FooterMenuContainer: FunctionComponent<IProps> = (props: IProps) => {
                     </Grid>
                     <Grid container item spacing={1} justifyContent='center'>
                         {<Grid item>
-                            <MailTo color={"#383838"} email={pageContext.page?.businessContact?.email ?? ""}
+                            <MailTo color={"inherit"} email={pageContext.page?.businessContact?.email ?? ""}
                                     subject={"Information Request"}
                                     body={""}><Typography
                                 color='inherit'>{pageContext.page?.businessContact?.email}</Typography></MailTo>

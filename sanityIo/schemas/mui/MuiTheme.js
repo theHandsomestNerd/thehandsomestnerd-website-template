@@ -23,6 +23,11 @@ export default {
             type: 'number',
         },
         {
+            name: 'borderRadius',
+            title: 'Border Radius',
+            type: 'number',
+        },
+        {
             name: 'breakpoints',
             title: 'BreakPoints',
             type: 'MuiBreakpoints',

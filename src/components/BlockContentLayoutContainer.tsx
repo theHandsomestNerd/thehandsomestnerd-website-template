@@ -7,7 +7,7 @@ import {
     AnimatedAboutUsSectionType, AnimatedPortfolioSectionType, AnimatedServicesSectionType, HeadlineCTASectionType,
     HeroAnimatedContentSectionType,
     HowItWorksSectionType, MapSectionType,
-    PortfolioSectionType,
+    PortfolioSectionType, PricingSectionType,
     ResumeBioSectionType,
     ResumeContactUsSectionType,
     ResumeEducationSectionType,
@@ -58,6 +58,7 @@ import AnimatedServicesSection from './animated/AnimatedServicesSection'
 import AnimatedPortfolioSection from "./animated/AnimatedPortfolioSection";
 import HeadlineCTASection from "./animated/HeadlineCTASection";
 import MapSection from "./animated/MapSection";
+import WebDevPricingSection from "./templates/web-dev-site/WebDevPricingSection";
 
 export type BlockContentLayoutContainerProps = {
     content?: any,
@@ -459,7 +460,7 @@ const BlockContentLayoutContainer: FunctionComponent<BlockContentLayoutContainer
                                 sectionData={headlineSection}
                             />
                         </Grid>
-                     case 'MapSection':
+                    case 'MapSection':
                         const mapSection: MapSectionType = columnLayoutContainer
 
                         return <Grid key={'map-section'} container item>
@@ -467,6 +468,16 @@ const BlockContentLayoutContainer: FunctionComponent<BlockContentLayoutContainer
                             </Link>
                             <MapSection
                                 sectionData={mapSection}
+                            />
+                        </Grid>
+                    case 'WebDevPricingSection':
+                        const pricingSection: PricingSectionType = columnLayoutContainer
+
+                        return <Grid key={'map-section'} container item>
+                            <Link id={"PRICING_SECTION"} underline="hover"><></>
+                            </Link>
+                            <WebDevPricingSection
+                                sectionData={pricingSection}
                             />
                         </Grid>
                     default:

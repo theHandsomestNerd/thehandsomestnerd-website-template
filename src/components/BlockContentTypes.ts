@@ -591,6 +591,17 @@ export type HowItWorksStepNoRefType = {
     learnMoreLink?: string
     learnMoreText?: string
 }
+export type PricingPlanNoRefType = {
+    // _type?: "WebDevHowItWorksStep",
+    title?: string
+    name?: string
+    slug?: SanitySlug
+    cost?: string
+    isEnabled?: boolean
+    contentTexts?: string[]
+    learnMoreLink?: string
+    learnMoreText?: string
+}
 export type HowItWorksSectionType = {
     _type: "WebDevHowItWorksSection"
     name: string
@@ -598,6 +609,14 @@ export type HowItWorksSectionType = {
     contentPreTitle: string
     contentTexts: string[]
     steps: HowItWorksStepNoRefType[]
+}
+export type PricingSectionType = {
+    // _type: "WebDevHowItWorksSection"
+    name: string
+    contentTitle: string
+    contentPreTitle: string
+    contentTexts: string[]
+    plans: PricingPlanNoRefType[]
 }
 
 export type DevelopmentHeaderSectionType = {
@@ -640,6 +659,7 @@ export type SanityDocumentFields = {
 
 export type HeadlineCTASectionType = {
     name: string
+    isHideBorder?:boolean
     contentText: string
     ctaButtonText: string
     ctaButtonLink: string

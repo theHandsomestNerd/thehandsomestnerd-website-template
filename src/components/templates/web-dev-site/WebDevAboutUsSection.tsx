@@ -7,10 +7,6 @@ import WebDevSiteTheme from "../../../theme/WebDevSiteTheme";
 import {COLORS} from "../../../theme/common/ColorPalette";
 import {urlFor} from "../../block-content-ui/static-pages/cmsStaticPagesClient";
 
-
-
-
-
 export const useStyles = makeStyles((theme: Theme) => ({
     root: {
         minHeight: '521px',
@@ -32,8 +28,6 @@ const WebDevAboutUsSection: FunctionComponent<IProps> = (props) => {
     const theme = useTheme()
 
     return (
-        <StyledEngineProvider injectFirst>
-            <ThemeProvider theme={WebDevSiteTheme}>
                 <Grid container item className={classes.root} alignItems='stretch'>
                     <Grid
                         item
@@ -110,8 +104,6 @@ const WebDevAboutUsSection: FunctionComponent<IProps> = (props) => {
                         </Grid>
                     </Grid>
                 </Grid>
-            </ThemeProvider>
-        </StyledEngineProvider>
     );
 }
 

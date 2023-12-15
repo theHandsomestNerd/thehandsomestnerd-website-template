@@ -92,6 +92,8 @@ import MapSection from "./sections/MapSection";
 import PortfolioItem from "./portfolio/PortfolioItem";
 import WebDevHowItWorksSection from "./sections/web-dev/WebDevHowItWorksSection";
 import WebDevHowItWorksStep from "./sections/web-dev/WebDevHowItWorksStep";
+import WebDevPricingSection from "./sections/web-dev/WebDevPricingSection";
+import WebDevPricingPlan from "./sections/web-dev/WebDevPricingPlan";
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default [
@@ -189,5 +191,7 @@ export default [
     AnimatedPortfolioSection,
     HeroSlideContent,
     HeadlineCTASection,
-    MapSection
+    MapSection,
+    WebDevPricingSection,
+    WebDevPricingPlan
 ]

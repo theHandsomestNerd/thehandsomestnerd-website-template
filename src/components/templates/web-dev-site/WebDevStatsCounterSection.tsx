@@ -1,10 +1,9 @@
 import React, {FunctionComponent} from 'react'
-import { Theme, ThemeProvider, StyledEngineProvider } from '@mui/material/styles';
+import {Theme} from '@mui/material/styles';
 import makeStyles from '@mui/styles/makeStyles';
 import {Grid, Typography} from '@mui/material'
 import {WebDevStatsCounterSectionType} from "../../BlockContentTypes";
 import {COLORS} from "../../../theme/common/ColorPalette";
-import WebDevSiteTheme from "../../../theme/WebDevSiteTheme";
 
 
 interface IProps {
@@ -16,7 +15,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
         backgroundColor: COLORS.AQUA,
         minHeight: '100px',
         position: "relative",
-        padding: theme.spacing(3,8)
+        padding: theme.spacing(3, 8)
     },
     contentSection: {
         marginTop: '16px',
@@ -30,27 +29,26 @@ export const useStyles = makeStyles((theme: Theme) => ({
 }))
 
 const WebDevStatsCounterSection: FunctionComponent<IProps> = (props) => {
-    const classes = useStyles(WebDevSiteTheme)
+    const classes = useStyles()
     return (
-        <StyledEngineProvider injectFirst>
-            <ThemeProvider theme={WebDevSiteTheme}>
-                <Grid container item className={classes.marketingBackground}>
-                    <Grid container spacing={3}>
-                        {
-                            props.sectionData?.stats?.map((particularStat, index:number)=><Grid key={index} item sm={6} md={3} container spacing={1}  alignItems='center' alignContent='center'>
-                                <Grid item xs={4}><Typography variant='h4'
-                                                              align='right'
-                                                       color={'textPrimary'}
-                                                       style={{fontFamily:"Elaine Sans"}}>{particularStat.statValue}</Typography></Grid>
-                                <Grid item xs={8}><Typography variant='body1'
-                                                       color={'textPrimary'}
-                                                       style={{fontFamily:"Elaine Sans"}}>{particularStat.statContent}</Typography></Grid>
-                            </Grid>)
-                        }
-                    </Grid>
-                </Grid>
-            </ThemeProvider>
-        </StyledEngineProvider>
+        <Grid container item className={classes.marketingBackground}>
+            <Grid container spacing={3}>
+                {
+                    props.sectionData?.stats?.map((particularStat, index: number) => <Grid key={index} item sm={6}
+                                                                                           md={3} container spacing={1}
+                                                                                           alignItems='center'
+                                                                                           alignContent='center'>
+                        <Grid item xs={4}><Typography variant='h4'
+                                                      align='right'
+                                                      color={'textPrimary'}
+                                                      style={{fontFamily: "Elaine Sans"}}>{particularStat.statValue}</Typography></Grid>
+                        <Grid item xs={8}><Typography variant='body1'
+                                                      color={'textPrimary'}
+                                                      style={{fontFamily: "Elaine Sans"}}>{particularStat.statContent}</Typography></Grid>
+                    </Grid>)
+                }
+            </Grid>
+        </Grid>
     );
 }
 

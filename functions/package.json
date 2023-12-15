@@ -11,7 +11,7 @@
     "deploy": "npm run build && npm run html && firebase deploy",
     "logs": "firebase functions:log",
     "html": "cp ../build/index.html ./lib",
-    "fonts": "mv ../build/fonts ./lib/functions/src"
+    "cp-storybook": "cp -Rf ../storybook-static ../build/sb"
   },
   "engines": {
     "node": "14"

@@ -40,6 +40,7 @@ export default {
         {name: 'WebDevHeroContentSection', title: "Web Dev Hero Image + Content section",type: 'reference', to: [{type: 'WebDevHeroContentSection'}]},
         {name: 'WebDevStatsCounterSection', title: "Web Dev Stats Counter section",type: 'reference', to: [{type: 'WebDevStatsCounterSection'}]},
         {name: 'WebDevAboutUsSection', title: "Web Dev About Us section",type: 'reference', to: [{type: 'WebDevAboutUsSection'}]},
+        {name: 'WebDevPricingSection', title: "Web Dev pricing section",type: 'reference', to: [{type: 'WebDevPricingSection'}]},
         {name: 'ServicesSection', title: "Services section",type: 'reference', to: [{type: 'ServicesSection'}]},
         {name: 'PortfolioSection', title: "Portfolio section",type: 'reference', to: [{type: 'PortfolioSection'}]},
         {name: 'Testimonials Section', title: 'Testimonials Section', type: 'reference', to: [{type: 'TestimonialsSection'}]},

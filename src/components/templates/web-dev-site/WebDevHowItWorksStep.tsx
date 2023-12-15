@@ -46,8 +46,6 @@ const WebDevHowItWorksStep: FunctionComponent<IProps> = (props: IProps) => {
     }
 
     return (
-        <StyledEngineProvider injectFirst>
-            <ThemeProvider theme={WebDevSiteTheme}>
                 <Grid className={classes.root} key={uuidv4()} container item xs={12} sm={12} md={6}
                       style={{backgroundColor: COLOR_ROTATION[(props.index ?? 0) % 3]}}>
                     <Grid container item direction='column'>
@@ -73,8 +71,7 @@ const WebDevHowItWorksStep: FunctionComponent<IProps> = (props: IProps) => {
                             </Grid>
                         </Grid>
                     </Grid>
-                </Grid></ThemeProvider>
-        </StyledEngineProvider>
+                </Grid>
     );
 }
 
