@@ -1,4 +1,4 @@
-import React, {ChangeEvent, FunctionComponent, useState} from 'react'
+import React, {ChangeEvent, FunctionComponent, useContext, useState} from 'react'
 import {Theme} from "@mui/material/styles";
 import makeStyles from '@mui/styles/makeStyles';
 import {Grid, TextField, Typography, useTheme} from '@mui/material'
@@ -7,6 +7,9 @@ import {ButtonGroupMemberEnum} from "../../../loading-button/ButtonGroupMemberEn
 import isEmail from "validator/lib/isEmail";
 import leadClient from "./under-construction-page/leadClient";
 import useCustomStyles from "../../mackenzies-mind/pages/Styles";
+import ResumeDocumentPDF from "../../../pdf-renderer/ResumeDocumentPDF";
+import {PDFDownloadLink} from "@react-pdf/renderer";
+import PageContext from "../../../page-context/PageContext";
 
 const useStyles = makeStyles((theme: Theme) => ({
     endAdornedInput: {
@@ -46,6 +49,7 @@ const BusinessCardSubmitEmail: FunctionComponent<SubmitEmailIProps> = (props: Su
     const theme = useTheme()
     const classes = useCustomStyles({})
     const myClasses = useStyles()
+    const page = useContext(PageContext)
 
     const [email, setEmail] = useState("")
     const [isLoading, setIsLoading] = React.useState<boolean>(false)
@@ -138,7 +142,11 @@ const BusinessCardSubmitEmail: FunctionComponent<SubmitEmailIProps> = (props: Su
         </Grid>
         <Grid item container justifyContent='center' className={classes.spacer}>
             {getHelperText()}
-        </Grid></Grid>)
+        </Grid>
+        <Grid container item justifyContent='center'>
+            <PDFDownloadLink style={{color: theme.palette.primary.main}} fileName={'James Terrell Singleton - Software Engineer - Resume.pdf'} document={<ResumeDocumentPDF homePage={page.page} />}><Typography variant='subtitle1'>Download PDF</Typography> </PDFDownloadLink>
+        </Grid>
+    </Grid>)
 }
 
 export default BusinessCardSubmitEmail
