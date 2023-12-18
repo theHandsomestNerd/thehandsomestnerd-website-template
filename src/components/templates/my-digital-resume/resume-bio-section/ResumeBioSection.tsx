@@ -13,7 +13,6 @@ import {Close} from "@mui/icons-material";
 
 interface IProps {
     sectionData: ResumeBioSectionType
-    content: any
     homePage?: SanityTransformHwHomePage
     isHideEmail?: boolean
     isHideButtons?:boolean
@@ -95,8 +94,7 @@ const ResumeBioSection: FunctionComponent<IProps> = (props: IProps) => {
                                 href={props.homePage?.bookAppointmentLink}><Typography variant="button" align='center'>Meet
                             with Me</Typography></Button>
                         <Button name={'contact-me'} variant='contained' fullWidth color='primary'
-                                href={'#CONTACT_ME'}><Typography variant="button" align='center'>Contact
-                            Me</Typography></Button>
+                                href={'#CONTACT_ME'}><Typography variant="button" align='center'>{props.sectionData.contactMeButtonTitle}</Typography></Button>
                         <Button
                             name={'download-resume'}
                             onClick={
@@ -107,7 +105,7 @@ const ResumeBioSection: FunctionComponent<IProps> = (props: IProps) => {
                             // href={props.sectionData.resumeFile?.url + "?dl=James Terrell Singleton - Software Engineer - Resume.pdf"}
                             variant='contained' fullWidth color='primary'><Typography variant="button" align='center'
                                                                                       noWrap>
-                            Download Resume</Typography></Button>
+                            {props.sectionData.resumeFileDownloadText}</Typography></Button>
                         {/*{props.sectionData.cvFile && props.sectionData.cvFile.url.length > 0 && <Button*/}
                         {/*    href={props.sectionData.cvFile?.url + "?dl=James Terrell Singleton - Software Engineer - CV.pdf"}*/}
                         {/*    variant='contained' fullWidth color='primary'><CloudDownload*/}
@@ -118,8 +116,8 @@ const ResumeBioSection: FunctionComponent<IProps> = (props: IProps) => {
             </Grid>}
             <Modal open={isPDFResumeOpen}>
                 <><IconButton onClick={()=>{setIsPDFResumeOpen(false)}}><Close htmlColor={"#FFFFFF"} /></IconButton>
-                <PDFViewer width={"100%"} height={"90%"}>
-                    <ResumeDocumentPDF content={props.content} homePage={props.homePage} />
+                <PDFViewer width="100%" height="90%">
+                    <ResumeDocumentPDF homePage={props.homePage} />
                 </PDFViewer>
                     </>
             </Modal>

@@ -8,6 +8,7 @@ import CustomizedThemeProvider from "../../components/customized-theme-provider/
 import DigitalResumeThemeData from "../data/DigitalResumeThemeData";
 import calculatedHomePageResumeData from "../data/CalculatedHomePageData";
 import getThemeFromSanity from "../../components/customized-theme-provider/getThemeFromSanity";
+import homePageData from "../data/HomePageData";
 
 const meta: Meta<typeof ResumeBioSection> = {
     title:"Resume/Section/Resume Bio Section",
@@ -24,25 +25,24 @@ type Story = StoryObj<typeof ResumeBioSection>;
  * to learn how to use render functions.
  */
 
-const buttonText = "Button Text"
 export const ResumeBioSectionComplete: Story = {
     args :{
       sectionData: ResumeBioSectionData,
-        homePage: homePageResumeData
+        homePage: homePageResumeData,
     },
     render: ({sectionData, isHideEmail, isHideButtons, homePage}) =>
         <ThemeProvider theme={getThemeFromSanity(DigitalResumeThemeData)}>
-            <ResumeBioSection isHideButtons={isHideButtons} isHideEmail={isHideEmail} sectionData={sectionData} homePage={calculatedHomePageResumeData(WebDevThemeData)}></ResumeBioSection>
+            <ResumeBioSection isHideButtons={isHideButtons} isHideEmail={isHideEmail} sectionData={sectionData} homePage={homePage}></ResumeBioSection>
         </ThemeProvider> ,
 };
 
 export const ResumeBioSectionSearchResult: Story = {
     args :{
         sectionData: ResumeBioSectionData,
-        homePage: homePageResumeData
+        homePage: homePageResumeData,
     },
     render: ({sectionData, isHideEmail, isHideButtons, homePage}) =>
         <ThemeProvider theme={getThemeFromSanity(DigitalResumeThemeData)}>
-            <ResumeBioSection isHideButtons={true} isHideEmail={true} sectionData={sectionData} homePage={calculatedHomePageResumeData(WebDevThemeData)}></ResumeBioSection>
+            <ResumeBioSection isHideButtons={true} isHideEmail={true} sectionData={sectionData} homePage={homePage}></ResumeBioSection>
         </ThemeProvider> ,
 };

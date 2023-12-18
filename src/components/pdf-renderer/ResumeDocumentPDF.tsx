@@ -13,6 +13,7 @@ import RalewayFont from "../../fonts/raleway/static/Raleway-Regular.ttf"
 import CustomizedThemeContext from "../customized-theme-provider/CustomizedThemeContext";
 import dateUtils from "../../utils/dateUtils";
 import {COLORS} from "../../theme/common/ColorPalette";
+import {SanityTransformHwHomePage} from "../../common/sanityIo/Types";
 
 
 Font.register({family: 'Raleway', src: RalewayFont, fontStyle: 'normal', fontWeight: 'normal'});
@@ -22,8 +23,7 @@ Font.register({family: 'Raleway', src: RalewayFont, fontStyle: 'normal', fontWei
 
 
 interface IProps {
-    content?: any
-    homePage?: SanityHomePage
+    homePage?: SanityTransformHwHomePage
 }
 
 const PDF_COLORS = {
@@ -101,7 +101,7 @@ const ResumeDocumentPDF: FunctionComponent<IProps> = (props: IProps) => {
 
     return (<Document>
         <Page size="A4" style={styles.page}>
-            {props?.content?.map((columnLayoutContainer: any, index: number) => {
+            {props?.homePage?.pageContent.content?.map((columnLayoutContainer: any, index: number) => {
                 switch (columnLayoutContainer._type) {
                     case 'ResumeBioSection':
                         const resumeBioSection: ResumeBioSectionType = columnLayoutContainer
