@@ -45,20 +45,24 @@ const ResumeExperienceItem: FunctionComponent<IProps> = (props:IProps) => {
 
             <Grid item sm={4}>
                 <Typography display='inline'
-                            variant='body1'>{dateUtils.YearMonth(new Date(props.experience.dateStart as string))}</Typography>
+                            variant='body1'  fontWeight={'bold'}>{dateUtils.YearMonth(new Date(props.experience.dateStart as string))}</Typography>
 
                 {/*</Grid>*/}
                 {/*<Grid item xs={1} container justifyContent='center'>*/}
-                <Typography display='inline'
+                <Typography  fontWeight={'bold'} display='inline'
                             variant='body1' style={{margin: theme.spacing(0, 1)}}>—</Typography>
 
                 {/*</Grid>*/}
                 {/*<Grid item xs={2} container>*/}
-                <Typography display='inline'
+                <Typography  fontWeight={'bold'} display='inline'
                             variant='body1'>{dateUtils.YearMonth(new Date(props.experience.dateEnd as string))}</Typography>
 
             </Grid>
 
+        </Grid>
+        <Grid container item>
+            <Typography
+                variant='body1' fontStyle={'italic'}>{dateUtils.getLengthOfTime(new Date(props.experience.dateStart ??""), new Date(props.experience.dateEnd ?? '')).result}</Typography>
         </Grid>
         <Grid container item>
             <Typography

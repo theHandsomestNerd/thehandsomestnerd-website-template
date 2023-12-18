@@ -4,10 +4,15 @@ import {Card, Grid, Link, useTheme} from '@mui/material'
 import sanityClient from '../sanityClient'
 import {blockSerializers} from '../common/sanityIo/BlockContentRenderer'
 import {
-    AnimatedAboutUsSectionType, AnimatedPortfolioSectionType, AnimatedServicesSectionType, HeadlineCTASectionType,
+    AnimatedAboutUsSectionType,
+    AnimatedPortfolioSectionType,
+    AnimatedServicesSectionType,
+    HeadlineCTASectionType,
     HeroAnimatedContentSectionType,
-    HowItWorksSectionType, MapSectionType,
-    PortfolioSectionType, PricingSectionType,
+    HowItWorksSectionType,
+    MapSectionType,
+    PortfolioSectionType,
+    PricingSectionType,
     ResumeBioSectionType,
     ResumeContactUsSectionType,
     ResumeEducationSectionType,
@@ -67,7 +72,7 @@ export type BlockContentLayoutContainerProps = {
 
 const BlockContentLayoutContainer: FunctionComponent<BlockContentLayoutContainerProps> = (props) => {
     const classes = useThwCommonStyles()
-    const theme= useTheme()
+    const theme = useTheme()
 
     return (
         <Grid container item>
@@ -230,6 +235,7 @@ const BlockContentLayoutContainer: FunctionComponent<BlockContentLayoutContainer
                                 </Link>
 
                                 <ResumeBioSection
+                                    content={props.content}
                                     homePage={props.homePage}
                                     sectionData={resumeBioSection}
                                 />

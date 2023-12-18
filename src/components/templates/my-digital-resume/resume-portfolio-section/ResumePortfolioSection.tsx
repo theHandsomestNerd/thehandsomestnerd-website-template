@@ -1,12 +1,8 @@
 import React, {FunctionComponent} from 'react'
-import {Button, ButtonGroup, Chip, Grid, IconButton, Modal, Typography, useMediaQuery, useTheme} from '@mui/material'
+import {Grid, Typography, useMediaQuery, useTheme} from '@mui/material'
 import {ResumePortfolioItem, ResumePortfolioSectionType} from "../../../BlockContentTypes";
 import useThwCommonStyles from "../../../../common/sanityIo/ThwCommonStyles";
-import {urlFor} from "../../../block-content-ui/static-pages/cmsStaticPagesClient";
-import {Close} from "@mui/icons-material";
-import dateUtils from "../../../../utils/dateUtils";
 import ResumePortfolioEntry from "./ResumePortfolioEntry";
-import PortfolioItemModal from "./PortfolioItemModal";
 
 interface IProps {
     sectionData: ResumePortfolioSectionType
