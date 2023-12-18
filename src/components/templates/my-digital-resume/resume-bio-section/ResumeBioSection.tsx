@@ -1,15 +1,19 @@
 import React, {FunctionComponent} from 'react'
-import {Button, ButtonGroup, Grid, Typography, useMediaQuery, useTheme,} from '@mui/material';
+import {Button, ButtonGroup, Grid, IconButton, Modal, Typography, useMediaQuery, useTheme,} from '@mui/material';
 import {ResumeBioSectionType} from "../../../BlockContentTypes";
 import {urlFor} from "../../../block-content-ui/static-pages/cmsStaticPagesClient";
 import {SanityTransformHwHomePage} from "../../../../common/sanityIo/Types";
 import useThwCommonStyles from "../../../../common/sanityIo/ThwCommonStyles";
 import SocialMediaBlock from "../social-media-block/SocialMediaBlock";
 import BusinessCardSubmitEmail from "../../transform-hw/pages/BusinessCardSubmitEmail";
+import {PDFViewer} from "@react-pdf/renderer";
+import ResumeDocumentPDF from "../../../pdf-renderer/ResumeDocumentPDF";
+import {Close} from "@mui/icons-material";
 
 
 interface IProps {
     sectionData: ResumeBioSectionType
+    content: any
     homePage?: SanityTransformHwHomePage
     isHideEmail?: boolean
     isHideButtons?:boolean
@@ -19,6 +23,7 @@ const ResumeBioSection: FunctionComponent<IProps> = (props: IProps) => {
     const classes = useThwCommonStyles()
 
     const theme = useTheme()
+    const [isPDFResumeOpen, setIsPDFResumeOpen] = React.useState<boolean>(false)
 
     const smDown = useMediaQuery(theme.breakpoints.down('sm'))
 
@@ -94,7 +99,12 @@ const ResumeBioSection: FunctionComponent<IProps> = (props: IProps) => {
                             Me</Typography></Button>
                         <Button
                             name={'download-resume'}
-                            href={props.sectionData.resumeFile?.url + "?dl=James Terrell Singleton - Software Engineer - Resume.pdf"}
+                            onClick={
+                                ()=>{
+                                    setIsPDFResumeOpen(true)
+                                }
+                            }
+                            // href={props.sectionData.resumeFile?.url + "?dl=James Terrell Singleton - Software Engineer - Resume.pdf"}
                             variant='contained' fullWidth color='primary'><Typography variant="button" align='center'
                                                                                       noWrap>
                             Download Resume</Typography></Button>
@@ -106,6 +116,13 @@ const ResumeBioSection: FunctionComponent<IProps> = (props: IProps) => {
                     </ButtonGroup>
                 </Grid>
             </Grid>}
+            <Modal open={isPDFResumeOpen}>
+                <><IconButton onClick={()=>{setIsPDFResumeOpen(false)}}><Close htmlColor={"#FFFFFF"} /></IconButton>
+                <PDFViewer width={"100%"} height={"90%"}>
+                    <ResumeDocumentPDF content={props.content} homePage={props.homePage} />
+                </PDFViewer>
+                    </>
+            </Modal>
         </Grid>
     );
 }
