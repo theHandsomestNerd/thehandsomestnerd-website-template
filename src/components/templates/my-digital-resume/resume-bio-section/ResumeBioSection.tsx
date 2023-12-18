@@ -6,7 +6,7 @@ import {SanityTransformHwHomePage} from "../../../../common/sanityIo/Types";
 import useThwCommonStyles from "../../../../common/sanityIo/ThwCommonStyles";
 import SocialMediaBlock from "../social-media-block/SocialMediaBlock";
 import BusinessCardSubmitEmail from "../../transform-hw/pages/BusinessCardSubmitEmail";
-import {PDFViewer} from "@react-pdf/renderer";
+import  {PDFViewer, PDFDownloadLink} from "@react-pdf/renderer";
 import ResumeDocumentPDF from "../../../pdf-renderer/ResumeDocumentPDF";
 import {Close} from "@mui/icons-material";
 
@@ -95,17 +95,18 @@ const ResumeBioSection: FunctionComponent<IProps> = (props: IProps) => {
                             with Me</Typography></Button>
                         <Button name={'contact-me'} variant='contained' fullWidth color='primary'
                                 href={'#CONTACT_ME'}><Typography variant="button" align='center'>{props.sectionData.contactMeButtonTitle}</Typography></Button>
-                        <Button
+
+                        <PDFDownloadLink style={{width:"100%"}} fileName={'James Terrell Singleton - Software Engineer - Resume.pdf'} document={<ResumeDocumentPDF homePage={props.homePage} />}><Button
                             name={'download-resume'}
-                            onClick={
-                                ()=>{
-                                    setIsPDFResumeOpen(true)
-                                }
-                            }
+                            // onClick={
+                            //     ()=>{
+                            //         setIsPDFResumeOpen(true)
+                            //     }
+                            // }
                             // href={props.sectionData.resumeFile?.url + "?dl=James Terrell Singleton - Software Engineer - Resume.pdf"}
                             variant='contained' fullWidth color='primary'><Typography variant="button" align='center'
                                                                                       noWrap>
-                            {props.sectionData.resumeFileDownloadText}</Typography></Button>
+                            {props.sectionData.resumeFileDownloadText}</Typography></Button></PDFDownloadLink>
                         {/*{props.sectionData.cvFile && props.sectionData.cvFile.url.length > 0 && <Button*/}
                         {/*    href={props.sectionData.cvFile?.url + "?dl=James Terrell Singleton - Software Engineer - CV.pdf"}*/}
                         {/*    variant='contained' fullWidth color='primary'><CloudDownload*/}
@@ -114,13 +115,13 @@ const ResumeBioSection: FunctionComponent<IProps> = (props: IProps) => {
                     </ButtonGroup>
                 </Grid>
             </Grid>}
-            <Modal open={isPDFResumeOpen}>
-                <><IconButton onClick={()=>{setIsPDFResumeOpen(false)}}><Close htmlColor={"#FFFFFF"} /></IconButton>
-                <PDFViewer width="100%" height="90%">
-                    <ResumeDocumentPDF homePage={props.homePage} />
-                </PDFViewer>
-                    </>
-            </Modal>
+            {/*<Modal open={isPDFResumeOpen}>*/}
+            {/*    <><IconButton onClick={()=>{setIsPDFResumeOpen(false)}}><Close htmlColor={"#FFFFFF"} /></IconButton>*/}
+            {/*    <PDFViewer width="100%" height="90%" key={'pdfview-modal'}>*/}
+            {/*        <ResumeDocumentPDF homePage={props.homePage} />*/}
+            {/*    </PDFViewer>*/}
+            {/*        </>*/}
+            {/*</Modal>*/}
         </Grid>
     );
 }

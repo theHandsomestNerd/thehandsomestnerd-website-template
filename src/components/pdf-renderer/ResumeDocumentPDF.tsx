@@ -100,14 +100,14 @@ const ResumeDocumentPDF: FunctionComponent<IProps> = (props: IProps) => {
 
 
     return (<Document>
-        <Page size="A4" style={styles.page}>
-            {props?.homePage?.pageContent.content?.map((columnLayoutContainer: any, index: number) => {
+        <Page size="A4" style={styles.page} key={'page'} >
+            {props?.homePage?.pageContent.content?.map((columnLayoutContainer: any, pageIdx: number) => {
                 switch (columnLayoutContainer._type) {
                     case 'ResumeBioSection':
                         const resumeBioSection: ResumeBioSectionType = columnLayoutContainer
 
                         return (
-                            <View>
+                            <View key={'resume-bio-section-'+pageIdx}>
                                 <View style={{textAlign: 'center', marginBottom: "8px"}}>
                                     <View style={styles.body2}>
                                         <Text>{resumeBioSection.title}</Text>
@@ -138,13 +138,13 @@ const ResumeDocumentPDF: FunctionComponent<IProps> = (props: IProps) => {
                                 <View><Text>{resumeSkillSection.title}</Text></View>
                                 <View><Text style={styles.body}>{resumeSkillSection.introduction}</Text></View>
                                 <View style={styles.container}>{
-                                    resumeSkillSection.skillsets?.map((skillset) => {
-                                        return <View style={styles.resumeSkillset}>
+                                    resumeSkillSection.skillsets?.map((skillset, skillsetIndx) => {
+                                        return <View key={skillsetIndx} style={styles.resumeSkillset}>
                                             <Text style={styles.body2}>{skillset.title}</Text>
                                             <View style={styles.container}>
                                                 {
                                                     skillset.skills?.map((theSkill, index) => {
-                                                        return <View><Text
+                                                        return <View key={index}><Text
                                                             style={styles.body}>{theSkill.title}{index !== (skillset.skills?.length ?? 0) - 1 ? "," : ""} </Text></View>
                                                     })
                                                 }
@@ -162,8 +162,8 @@ const ResumeDocumentPDF: FunctionComponent<IProps> = (props: IProps) => {
                                 <View><Text>{resumeExperienceSection.title}</Text></View>
                                 <View><Text style={styles.body}>{resumeExperienceSection.introduction}</Text></View>
                                 <View style={styles.container}>{
-                                    resumeExperienceSection.experiences?.map((experience) => {
-                                        return <View style={styles.resumeExperience}>
+                                    resumeExperienceSection.experiences?.map((experience, expIdx) => {
+                                        return <View key={expIdx} style={styles.resumeExperience}>
                                             <Text style={styles.body2}>{experience.companyName}</Text>
                                             <Text style={styles.subtitle}>{experience.companySubtitle}</Text>
                                             <Text style={styles.body}>{experience.title}</Text>
@@ -181,7 +181,7 @@ const ResumeDocumentPDF: FunctionComponent<IProps> = (props: IProps) => {
                                             <View style={styles.container}>
                                                 {
                                                     experience.skillsUsed?.map((theSkill, index) => {
-                                                        return <View
+                                                        return <View key={index}
                                                             style={styles.chip}>{theme.customizedTheme?.palette.primary.main}<Text
                                                             style={styles.subtitle}>{theSkill.title}</Text></View>
                                                     })
@@ -200,8 +200,8 @@ const ResumeDocumentPDF: FunctionComponent<IProps> = (props: IProps) => {
                                 <View><Text>{resumeEducationSection.title}</Text></View>
                                 <View><Text style={styles.body}>{resumeEducationSection.introduction}</Text></View>
                                 {
-                                    resumeEducationSection.educationExperiences?.map((theEducation) => {
-                                        return <View style={{padding: "8px"}}>
+                                    resumeEducationSection.educationExperiences?.map((theEducation,educationIdx) => {
+                                        return <View style={{padding: "8px"}} key={educationIdx}>
                                             <View>
                                                 <Text style={styles.body2}>{theEducation.institutionName}</Text>
                                             </View>
@@ -238,8 +238,8 @@ const ResumeDocumentPDF: FunctionComponent<IProps> = (props: IProps) => {
                                     <View><Text>{resumePortfolioSection.title}</Text></View>
                                     <View><Text style={styles.body}>{resumePortfolioSection.introduction}</Text></View>
                                     {
-                                        resumePortfolioSection.portfolioEntries?.map((entry) => {
-                                            return <View style={{padding: "8px"}}>
+                                        resumePortfolioSection.portfolioEntries?.map((entry, entryIdx) => {
+                                            return <View style={{padding: "8px"}} key={entryIdx}>
                                                 <View>
                                                     <Text style={styles.body2}>{entry.title}</Text>
                                                 </View>

@@ -235,7 +235,6 @@ const BlockContentLayoutContainer: FunctionComponent<BlockContentLayoutContainer
                                 </Link>
 
                                 <ResumeBioSection
-                                    content={props.content}
                                     homePage={props.homePage}
                                     sectionData={resumeBioSection}
                                 />
