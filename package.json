@@ -1,10 +1,10 @@
 {
-  "name": "the-handsomestnerd-internal",
+  "name": "chowworks-website",
   "version": "0.7.0",
   "license": "GPL-3.0-or-later",
   "private": true,
   "dependencies": {
-    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "@babel/plugin-transform-private-property-in-object": "^7.23.4",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
     "@mui/icons-material": "^5.14.18",
