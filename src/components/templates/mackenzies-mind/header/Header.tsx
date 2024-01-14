@@ -1,4 +1,4 @@
-import React, {FunctionComponent, useContext} from 'react'
+import React, {FunctionComponent} from 'react'
 import {Box, Grid, IconButton, Modal, useMediaQuery, useTheme} from '@mui/material'
 import MainMenu from "./MainMenu";
 import FilteredMenuItems from "../../../filtered-menu-items/FilteredMenuItems";
@@ -12,7 +12,6 @@ import {COLORS} from "../../../../theme/common/ColorPalette";
 
 import makeStyles from "@mui/styles/makeStyles";
 import {Theme} from "@mui/material/styles";
-import PageContext from "../../../page-context/PageContext";
 
 export const useStyles = makeStyles((theme: Theme) => ({
     hover: {
@@ -39,10 +38,9 @@ export type HeaderProps = {
 
 const Header: FunctionComponent<HeaderProps> = (props) => {
     const classes = useStyles()
-    const customizedTheme = useTheme()
-    const page = useContext(PageContext)
+    const theme = useTheme()
 
-    const mdDown = useMediaQuery(customizedTheme.breakpoints.down('md'))
+    const mdDown = useMediaQuery(theme.breakpoints.down('md'))
     const [isSearchOpen, setIsSearchOpen] = React.useState<boolean>(false)
 
     return (
@@ -62,7 +60,7 @@ const Header: FunctionComponent<HeaderProps> = (props) => {
                                              alignContent='center'
                                              sx={{
                                                  height: "100%",
-                                                 paddingRight: mdDown ? customizedTheme.spacing(0) : customizedTheme.spacing(4)
+                                                 paddingRight: mdDown ? theme.spacing(0) : theme.spacing(4)
                                              }}>
                                 <FilteredMenuItems
                                     // bgColor={!mdDown ? TransformHWTheme.palette.primary.main : COLORS.TRANSPARENTWHITE}
@@ -85,15 +83,15 @@ const Header: FunctionComponent<HeaderProps> = (props) => {
                                 // maxWidth: "64px",
                                 paddingLeft: "16px",
                                 paddingRight: mdDown ? "16px" : "8px",
-                                borderLeft: `1px solid ${customizedTheme.palette.primary.main}`
+                                borderLeft: `1px solid ${theme.palette.primary.main}`
                             }}>
                                 <IconButton onClick={() => {
                                     setIsSearchOpen((state) => !state)
                                 }} color='secondary' sx={{
                                     // marginLeft: "32px",
                                     // marginRight: "32px",
-                                    color: customizedTheme.palette.text.secondary,
-                                    backgroundColor: customizedTheme.palette.primary.main
+                                    color: theme.palette.text.secondary,
+                                    backgroundColor: theme.palette.primary.main
                                 }} className={classes.hoverSearch}>
                                     <Search color='inherit' fontSize='large'/>
                                 </IconButton></Box></Grid>

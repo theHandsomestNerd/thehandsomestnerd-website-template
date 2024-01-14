@@ -19,20 +19,20 @@ export declare type SanityColdLead = {
     source?: string
 }
 export type SanityGroupScheduleEntry = {
-    name:string,
-    dayName:string,
-    isClosed:boolean,
-    startTime:string,
-    endTime:string
+    name: string,
+    dayName: string,
+    isClosed: boolean,
+    startTime: string,
+    endTime: string
 }
 export type SanityGroupSchedule = {
-    name:string,
+    name: string,
     hoursOfOperation: SanityGroupScheduleEntry[]
 }
 
 export type SanityBusinessContact = {
     "_type"?: "BusinessContact"
-    title?:string
+    title?: string
     email?: string
     address?: string
     phone?: string
@@ -52,7 +52,7 @@ export type SanityBusinessContact = {
 export type SanityTransformHwHomePage = {
     _type?: string
     title?: string
-    _id?:string
+    _id?: string
     description?: string
     bookAppointmentLink?: string
     bookAppointmentQrCode?: SanityImageSource
@@ -98,7 +98,7 @@ export type SanityMuiTheme = {
     slug?: SanitySlug
     appBarHeight?: number
     borderRadius?: number
-    shape?: {borderRadius: number}
+    shape?: { borderRadius: number }
     breakpoints?: SanityMuiBreakpoints
     colorPalette?: SanityMuiColorPalette
     typography?: SanityMuiTypography
@@ -121,7 +121,7 @@ export type SanityMuiFontFace = {
     lineHeight?: string
     letterSpacing?: string
     textTransform?: any
-    [key:string]: any
+    [key: string]: any
     mediaQueries?: SanityMuiMediaQuery[]
 }
 
@@ -219,7 +219,7 @@ export type SanityModalType = {
 }
 
 export type SanityMenuItem = {
-    _type?:string,
+    _type?: string,
     title?: string,
     displayText?: string,
     url?: string,
@@ -230,7 +230,7 @@ export type SanityMenuItem = {
 }
 
 export type SanityMenuGroup = {
-    _type?:string,
+    _type?: string,
     title?: string,
     slug?: SanitySlug,
     menuGroupTitle?: string,
@@ -249,6 +249,140 @@ export type SanityMenuContainer = {
     logoAccentText?: string
     logoImageSrc?: SanityImageAsset
     isSearch?: boolean
+}
+
+export type SanityCocktailType = {
+    _id: string
+    title: string,
+    slug: SanitySlug,
+    description: string,
+    imageSrc: SanityImageAsset,
+    glassPrep: string[],
+    glass: SanityGlass,
+    garnish: SanityGarnish[],
+    mixingGlass: (SanityMixingGlass)[],
+    mixingGlassGarnishes: (SanityGarnish)[],
+    instructions: SanityMixingInstruction[],
+    drinkCount: number,
+    isOnMenu: boolean
+    cocktailIngredientIds: string[]
+}
+
+export type SanityDrinkGetReqParamsType = {
+    drinkSlug: string
+}
+
+export type SanityGlass = {
+    title: string,
+    sizeOz: number,
+    rim: string,
+    isIced: boolean,
+    imageSrc: SanityImageAsset,
+}
+
+export type SanityCocktailIngredient = {
+    _id?: string
+    _type?: 'Ingredient'
+    title: string,
+    liquorType: SanityLiquorType
+    product: string,
+    imageSrc: SanityImageAsset,
+    isLiquor: boolean,
+    isCordial: boolean,
+    isJuice: boolean
+}
+export type SanityBarInventoryType = {
+    _id?: string
+    _type?: 'BarInventory'
+    title: string,
+    name: string,
+    theBarLiquorTypes: any[]
+    theBar: (SanityCocktailIngredient | SanityGarnish)[]
+}
+
+export type SanityLiquorType = {
+    _id?: string
+    _type?: 'LiquorType'
+    name?: string,
+    title?: string,
+    slug?: SanitySlug,
+    description?: string
+    imageSrc?: SanityImageAsset,
+    proof?: number
+}
+
+// export type SanityCocktailIngredientContainer ={
+//   amount: string,
+//   ingredient: SanityCocktailIngredient,
+// }
+
+export type SanityMixingGlass = {
+    _type: "MixingGlass"
+    amount: number,
+    ingredient: SanityCocktailIngredient,
+}
+
+export type SanityGarnish = {
+    _type: "Garnish",
+    title: string,
+    imageSrc: SanityImageAsset
+}
+export type SanityMixingInstruction = {
+    title: string,
+    tool: string
+    action: string
+    instruction: string
+    mixingGlass: (SanityMixingGlass)[],
+    mixingGlassGarnishes: (SanityGarnish)[],
+}
+
+export type CocktailDbResultType = {
+    [key: string]: any,
+    "idDrink": string,
+    "strDrink": string,
+    "strDrinkAlternate": string,
+    "strTags": string, // comma separated string
+    "strVideo": string,
+    "strCategory": string,
+    "strIBA": string,
+    "strAlcoholic": string,
+    "strGlass": string,
+    "strInstructions": string,
+    "strDrinkThumb": string,
+    "strIngredient1": string,
+    "strIngredient2": string,
+    "strIngredient3": string,
+    "strIngredient4": string,
+    "strIngredient5": string,
+    "strIngredient6": string,
+    "strIngredient7": string,
+    "strIngredient8": string,
+    "strIngredient9": string,
+    "strIngredient10": string,
+    "strIngredient11": string,
+    "strIngredient12": string,
+    "strIngredient13": string,
+    "strIngredient14": string,
+    "strIngredient15": string,
+    "strMeasure1": string, // fraction formatted string with oz string
+    "strMeasure2": string,// fraction formatted string with oz string
+    "strMeasure3": string,// fraction formatted string with oz string
+    "strMeasure4": string,
+    "strMeasure5": string,
+    "strMeasure6": string,
+    "strMeasure7": string,
+    "strMeasure8": string,
+    "strMeasure9": string,
+    "strMeasure10": string,
+    "strMeasure11": string,
+    "strMeasure12": string,
+    "strMeasure13": string,
+    "strMeasure14": string,
+    "strMeasure15": string,
+    "strImageSource": string,
+    "strImageAttribution": string,
+    "strCreativeCommonsConfirmed": string, // yes or no
+    "dateModified": Date
 }
 
 export type MainMenuAnchorType = 'left' | 'top' | 'right' | 'bottom'

@@ -1,6 +1,6 @@
 import {SanityImageSource} from "@sanity/asset-utils";
-import {SanityMenuContainer, SanityMuiTheme, SanityRef, SanitySlug} from "../common/sanityIo/Types";
-import {FileAsset, ImageAsset} from "@sanity/types";
+import {SanityMenuContainer, SanityRef, SanitySlug} from "../common/sanityIo/Types";
+import {FileAsset} from "@sanity/types";
 
 export type HeroContentSectionType = {
     name: string
@@ -100,7 +100,7 @@ export type ServiceAmenityType = {
     imageSrc?: SanityImageAsset
     title: string
     description: string
-    muiIcon?:string
+    muiIcon?: string
 } & SanityDocumentFields
 
 
@@ -214,8 +214,8 @@ export type AnimatedServiceItemNoRefType = {
 
 export type AnimatedAboutUsSectionType = {
     name: string
-    heroBullet?:SanityImageAsset
-    title:string
+    heroBullet?: SanityImageAsset
+    title: string
     contentTitle: string
     contentPreTitle: string
     contentText: string
@@ -225,13 +225,13 @@ export type AnimatedAboutUsSectionType = {
     highlightedAmenitiesTitle?: string
     highlightedAmenitiesTexts?: string[]
     highlightedAmenitiesBullets?: string[]
-    servicesImageSrcArr: (SanityImageAsset| undefined)[]
+    servicesImageSrcArr: (SanityImageAsset | undefined)[]
     servicesMasonryAccentImageSrc?: SanityImageAsset
 }
 
 export type AnimatedServicesSectionType = {
     name: string
-    heroBullet?:SanityImageAsset
+    heroBullet?: SanityImageAsset
     contentTitle: string
     contentPreTitle: string
     contentTexts: string[]
@@ -240,10 +240,10 @@ export type AnimatedServicesSectionType = {
     contentSummaryTexts: string[]
     ctaButtonText: string
     ctaButtonLink: string
-    videoPreviewImageSrc?:SanityImageAsset
+    videoPreviewImageSrc?: SanityImageAsset
     videoPreviewSectionBackgroundImageSrc?: SanityImageAsset
-    videoUrl?:string
-    videoPreviewText:string
+    videoUrl?: string
+    videoPreviewText: string
 }
 
 export type ThwServicesSectionType = {
@@ -458,7 +458,7 @@ export type ResumePortfolioItem = {
 export type AnimatedPortfolioItemType = {
     _type?: "AnimatedPortfolioItem"
     name?: string
-    preTitle?:string
+    preTitle?: string
     title?: string
     coverImage?: SanityImageAsset
     inceptionDate?: Date | string
@@ -640,7 +640,7 @@ export type DevelopmentFooterSectionType = {
     footerMenuRef: SanityMenuContainer
 }
 export type FooterSectionType = {
-    _type:string
+    _type: string
     name: string
     backgroundImgSrc?: SanityImageAsset
     backgroundColor?: string
@@ -659,7 +659,7 @@ export type SanityDocumentFields = {
 
 export type HeadlineCTASectionType = {
     name: string
-    isHideBorder?:boolean
+    isHideBorder?: boolean
     contentText: string
     ctaButtonText: string
     ctaButtonLink: string
@@ -678,4 +678,12 @@ export type MapSectionType = {
     contactInfo: ServiceAmenityType[]
     mapMarkerTitle: string
     mapMarkerLabel: string
+}
+
+export type FlashCardSectionType = {
+    _type?: "FlashCardSection"
+    name: string
+    title: string
+    isFlashCard?: boolean
+    slug: SanitySlug
 }

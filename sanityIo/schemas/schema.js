@@ -94,6 +94,14 @@ import WebDevHowItWorksSection from "./sections/web-dev/WebDevHowItWorksSection"
 import WebDevHowItWorksStep from "./sections/web-dev/WebDevHowItWorksStep";
 import WebDevPricingSection from "./sections/web-dev/WebDevPricingSection";
 import WebDevPricingPlan from "./sections/web-dev/WebDevPricingPlan";
+import Cocktail from "./cocktail-flash-cards/Cocktail";
+import Garnish from "./cocktail-flash-cards/Garnish";
+import Glass from "./cocktail-flash-cards/Glass";
+import Ingredient from "./cocktail-flash-cards/Ingredient";
+import Instruction from "./cocktail-flash-cards/Instruction";
+import MixingGlass from "./cocktail-flash-cards/MixingGlass";
+import FlashCardSection from "./cocktail-flash-cards/FlashCardSection";
+import LiquorType from "./cocktail-flash-cards/LiquorType";
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default [
@@ -193,5 +201,13 @@ export default [
     HeadlineCTASection,
     MapSection,
     WebDevPricingSection,
-    WebDevPricingPlan
+    WebDevPricingPlan,
+    Cocktail,
+    Garnish,
+    Glass,
+    Ingredient,
+    Instruction,
+    MixingGlass,
+    FlashCardSection,
+    LiquorType,
 ]

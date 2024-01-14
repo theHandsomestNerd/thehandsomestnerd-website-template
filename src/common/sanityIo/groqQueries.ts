@@ -44,12 +44,7 @@ const SERVICE =
 
 const HOMEPAGE = `_type, 
           _id,
-          title,
-          isUnderConstruction,
-          releaseDate,
-          slug,
-          description,
-          businessCardImageSrc,
+          ...,
           "businessContact": businessContactRef->{
               ...,
               address,
@@ -143,11 +138,67 @@ const HOMEPAGE = `_type,
           structuredData,
 `
 
+const INSTRUCTION = `
+          title,
+          slug,
+          tool,
+          action,
+          instruction,
+          "mixingGlassGarnishes":mixingGlass[]->,
+          "mixingGlass":mixingGlass[]{
+                _type,
+                amount,
+                ingredient->  
+          },
+`
+const LIQUOR_TYPE = `
+          ...,
+          imageSrc {
+            asset->{
+              _id,
+              url,
+              altText
+             }
+          },
+`
+
+const INGREDIENT = `
+          ...,
+          liquorType->{
+            ${LIQUOR_TYPE}
+          },
+`
+
+const COCKTAIL = `
+          ...,
+          glass->,
+          "glassPrep": glassPrep[],
+          "garnish": garnish[]->,
+          "mixingGlassGarnishes": mixingGlass[]->,
+          "mixingGlass": mixingGlass[]{
+                _type,
+                amount,
+                ingredient->{
+                    ${INGREDIENT}
+                }  
+          },
+          "instructions": instructions[]->{
+            ${INSTRUCTION}
+          },
+`
+
+
 enum SANITY_TYPES_ENUM {
-    SERVICE="transformServiceItem"
+    SERVICE = "transformServiceItem"
 }
 
-const defaultObj = {HOMEPAGE, MENUGROUPCONTAINER, MENUGROUP, SERVICE, SANITY_TYPES_ENUM}
+const defaultObj = {HOMEPAGE, MENUGROUPCONTAINER, MENUGROUP, SERVICE, SANITY_TYPES_ENUM, COCKTAIL, INGREDIENT, LIQUOR_TYPE, INSTRUCTION}
 
-
+// get all my liquor types
+//     *[ _type == "BarInventory"]{
+// ...,
+//     "theBarLiquorTypes": *[ _type == "Ingredient" && _id in ^.theBar[]._ref ]{
+//         liquorType->
+//     }
+// }
 export default defaultObj

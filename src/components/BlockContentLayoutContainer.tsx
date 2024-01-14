@@ -7,6 +7,7 @@ import {
     AnimatedAboutUsSectionType,
     AnimatedPortfolioSectionType,
     AnimatedServicesSectionType,
+    FlashCardSectionType,
     HeadlineCTASectionType,
     HeroAnimatedContentSectionType,
     HowItWorksSectionType,
@@ -64,6 +65,7 @@ import AnimatedPortfolioSection from "./animated/AnimatedPortfolioSection";
 import HeadlineCTASection from "./animated/HeadlineCTASection";
 import MapSection from "./animated/MapSection";
 import WebDevPricingSection from "./templates/web-dev-site/WebDevPricingSection";
+import FlashCardsContentSection from './templates/cocktail-flash-cards/FlashCardsContentSection'
 
 export type BlockContentLayoutContainerProps = {
     content?: any,
@@ -483,6 +485,14 @@ const BlockContentLayoutContainer: FunctionComponent<BlockContentLayoutContainer
                             </Link>
                             <WebDevPricingSection
                                 sectionData={pricingSection}
+                            />
+                        </Grid>
+                    case 'FlashCardSection':
+                        const flashCardSection: FlashCardSectionType = columnLayoutContainer
+
+                        return <Grid key={index} container item xs={12}>
+                            <FlashCardsContentSection
+                                sectionData={flashCardSection}
                             />
                         </Grid>
                     default:

@@ -14,16 +14,16 @@ import PageContext from "../../../page-context/PageContext";
 const useStyles = makeStyles((theme: Theme) => ({
     endAdornedInput: {
         "& .MuiFilledInput-adornedEnd": {
-            border: `1px solid ${theme.palette.primary.main}`,
+            border: `1px solid ${theme.palette?.primary.main}`,
             // marginRight: '-12px',
-            borderTopRightRadius: theme.shape.borderRadius,
-            borderBottomRightRadius: theme.shape.borderRadius,
+            borderTopRightRadius: theme?.shape?.borderRadius,
+            borderBottomRightRadius: theme?.shape?.borderRadius,
         },
         "& .MuiOutlinedInput-adornedEnd": {
             border: "1px solid white",
             // paddingRight: 0,
-            borderTopRightRadius: theme.shape.borderRadius,
-            borderBottomRightRadius: theme.shape.borderRadius,
+            borderTopRightRadius: theme?.shape?.borderRadius,
+            borderBottomRightRadius: theme?.shape?.borderRadius,
         },
         "& .MuiInputBase-input": {
             borderRightWidth: 0,
@@ -144,7 +144,10 @@ const BusinessCardSubmitEmail: FunctionComponent<SubmitEmailIProps> = (props: Su
             {getHelperText()}
         </Grid>
         <Grid container item justifyContent='center'>
-            <PDFDownloadLink style={{color: theme.palette.primary.main}} fileName={`${page.page?.businessContact?.title}-Resume.pdf`} document={<ResumeDocumentPDF homePage={page.page} />}><Typography variant='subtitle1'>Download PDF</Typography> </PDFDownloadLink>
+            <PDFDownloadLink style={{color: theme.palette.primary.main}}
+                             fileName={`${page.page?.businessContact?.title}-Resume.pdf`}
+                             document={<ResumeDocumentPDF homePage={page.page}/>}><Typography variant='subtitle1'>Download
+                PDF</Typography> </PDFDownloadLink>
         </Grid>
     </Grid>)
 }

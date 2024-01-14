@@ -1,13 +1,7 @@
 import type {Meta, StoryObj} from '@storybook/react';
 import {ThemeProvider} from "@mui/material/styles";
 import getThemeFromSanity from "../../components/customized-theme-provider/getThemeFromSanity";
-import HeroAnimatedContentSection from "../../components/animated/HeroAnimatedContentSection";
 import WebConsultingThemeData from "../data/WebConsultingThemeData";
-import AnimatedHeroSectionData from "../data/AnimatedHeroSectionData";
-import AnimatedAboutUsSection from "../../components/animated/AnimatedAboutUsSection";
-import AnimatedAboutUsSectionData from "../data/AnimatedAboutUsSectionData";
-import AnimatedServicesSection from "../../components/animated/AnimatedServicesSection";
-import AnimatedServicesSectionData from "../data/AnimatedServicesSectionData";
 import MapSection from "../../components/animated/MapSection";
 import MapSectionData from "../data/MapSectionData";
 

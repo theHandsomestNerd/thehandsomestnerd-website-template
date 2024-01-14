@@ -8,7 +8,6 @@ import {
     ResumePortfolioSectionType,
     ResumeSkillSectionType
 } from "../BlockContentTypes";
-import {SanityHomePage} from "../block-content-ui/static-pages/cmsStaticPagesClient";
 import RalewayFont from "../../fonts/raleway/static/Raleway-Regular.ttf"
 import CustomizedThemeContext from "../customized-theme-provider/CustomizedThemeContext";
 import dateUtils from "../../utils/dateUtils";
@@ -100,14 +99,14 @@ const ResumeDocumentPDF: FunctionComponent<IProps> = (props: IProps) => {
 
 
     return (<Document>
-        <Page size="A4" style={styles.page} key={'page'} >
+        <Page size="A4" style={styles.page} key={'page'}>
             {props?.homePage?.pageContent.content?.map((columnLayoutContainer: any, pageIdx: number) => {
                 switch (columnLayoutContainer._type) {
                     case 'ResumeBioSection':
                         const resumeBioSection: ResumeBioSectionType = columnLayoutContainer
 
                         return (
-                            <View key={'resume-bio-section-'+pageIdx}>
+                            <View key={'resume-bio-section-' + pageIdx}>
                                 <View style={{textAlign: 'center', marginBottom: "8px"}}>
                                     <View style={styles.body2}>
                                         <Text>{resumeBioSection.title}</Text>
@@ -182,7 +181,7 @@ const ResumeDocumentPDF: FunctionComponent<IProps> = (props: IProps) => {
                                                 {
                                                     experience.skillsUsed?.map((theSkill, index) => {
                                                         return <View key={index}
-                                                            style={styles.chip}>{theme.customizedTheme?.palette.primary.main}<Text
+                                                                     style={styles.chip}>{theme.customizedTheme?.palette.primary.main}<Text
                                                             style={styles.subtitle}>{theSkill.title}</Text></View>
                                                     })
                                                 }
@@ -200,7 +199,7 @@ const ResumeDocumentPDF: FunctionComponent<IProps> = (props: IProps) => {
                                 <View><Text>{resumeEducationSection.title}</Text></View>
                                 <View><Text style={styles.body}>{resumeEducationSection.introduction}</Text></View>
                                 {
-                                    resumeEducationSection.educationExperiences?.map((theEducation,educationIdx) => {
+                                    resumeEducationSection.educationExperiences?.map((theEducation, educationIdx) => {
                                         return <View style={{padding: "8px"}} key={educationIdx}>
                                             <View>
                                                 <Text style={styles.body2}>{theEducation.institutionName}</Text>

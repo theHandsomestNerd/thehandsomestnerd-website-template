@@ -48,7 +48,7 @@ const LoadingButton: FunctionComponent<PropsWithChildren<LoadingButtonIProps>> =
                         return "0 !important"
                     case ButtonGroupMemberEnum.LEFT:
                     default:
-                        return themeContext.customizedTheme.shape.borderRadius
+                        return themeContext.customizedTheme?.shape.borderRadius
                 }
             },
             borderTopRightRadius: (props: CssProps) => {
@@ -59,7 +59,7 @@ const LoadingButton: FunctionComponent<PropsWithChildren<LoadingButtonIProps>> =
                         return "0 !important"
                     case ButtonGroupMemberEnum.RIGHT:
                     default:
-                        return themeContext.customizedTheme.shape.borderRadius
+                        return themeContext.customizedTheme?.shape.borderRadius
                 }
             },
             borderBottomRightRadius: (props: CssProps) => {
@@ -70,7 +70,7 @@ const LoadingButton: FunctionComponent<PropsWithChildren<LoadingButtonIProps>> =
                         return "0 !important"
                     case ButtonGroupMemberEnum.RIGHT:
                     default:
-                        return themeContext.customizedTheme.shape.borderRadius
+                        return themeContext.customizedTheme?.shape.borderRadius
 
                 }
             },
@@ -82,7 +82,7 @@ const LoadingButton: FunctionComponent<PropsWithChildren<LoadingButtonIProps>> =
                         return "0 !important"
                     case ButtonGroupMemberEnum.LEFT:
                     default:
-                        return themeContext.customizedTheme.shape.borderRadius
+                        return themeContext.customizedTheme?.shape.borderRadius
                 }
             },
         }
@@ -114,7 +114,7 @@ const LoadingButton: FunctionComponent<PropsWithChildren<LoadingButtonIProps>> =
                 {
                     props.isLoading ?
                         <CircularProgress style={{
-                            color: themeContext.customizedTheme.palette.getContrastText(getProgressContrastColor()),
+                            color: themeContext.customizedTheme?.palette.getContrastText(getProgressContrastColor()),
                             width: "22px",
                             height: "22px"
                         }}/>

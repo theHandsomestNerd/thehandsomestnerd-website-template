@@ -2,125 +2,127 @@ import imageUrlBuilder from '@sanity/image-url'
 import sanityClient from '../../../sanityClient'
 import {SanityImageAsset, SanityImageSource} from "@sanity/asset-utils";
 import {SanityBusinessContact, SanityMenuGroup, SanitySlug} from "../../../common/sanityIo/Types";
+import bartenderSanityClient from "../../../bartenderSanityClient";
 
 const builder = imageUrlBuilder(sanityClient)
+const cocktailBuilder = imageUrlBuilder(bartenderSanityClient)
 
 export type SanityHomePage = {
-  slug?: SanitySlug,
-  heroImage?: SanityHeroImageWithText,
-  businessContact?: SanityBusinessContact,
-  introduction?: string
-  specializationsMenuGroup?: SanityMenuGroup,
-  weWorkWithSection?: SanityWeWorkWith,
-  ourServicesSection?: SanityOurServices,
-  solutions?: SanitySolutions
+    slug?: SanitySlug,
+    heroImage?: SanityHeroImageWithText,
+    businessContact?: SanityBusinessContact,
+    introduction?: string
+    specializationsMenuGroup?: SanityMenuGroup,
+    weWorkWithSection?: SanityWeWorkWith,
+    ourServicesSection?: SanityOurServices,
+    solutions?: SanitySolutions
 }
 
 export type SanitySolutions = {
-  sectionHeader?: string,
-  solutionList?: ListItemType[]
+    sectionHeader?: string,
+    solutionList?: ListItemType[]
 }
 
 export type SanityWeWorkWith = {
-  title?: string,
-  sectionHeader?: string,
-  description?: string,
-  companyPartnerLogos?: SanityImageAssetProj[]
+    title?: string,
+    sectionHeader?: string,
+    description?: string,
+    companyPartnerLogos?: SanityImageAssetProj[]
 }
 
 export type ListItemType = {
-  title?: string,
-  description?: string
+    title?: string,
+    description?: string
 }
 
 export type SanityOurServices = {
-  title?: string,
-  sectionHeader?: string,
-  serviceList?: ListItemType[]
+    title?: string,
+    sectionHeader?: string,
+    serviceList?: ListItemType[]
 }
 
 export type SanityGradient = {
-  color1?: { title: string, value: string }
-  color2?: { title: string, value: string }
+    color1?: { title: string, value: string }
+    color2?: { title: string, value: string }
 }
 
 export type SanityHeroImageWithText = {
-  slug?: SanitySlug
-  mainImage?: SanityImageAsset
-  gradient?: SanityGradient
+    slug?: SanitySlug
+    mainImage?: SanityImageAsset
+    gradient?: SanityGradient
 }
 
 export type SanitySimpleHeroImage = {
-  slug?: SanitySlug
-  text?: string
-  mainImage?: SanityImageAsset
-  gradient?: SanityGradient
+    slug?: SanitySlug
+    text?: string
+    mainImage?: SanityImageAsset
+    gradient?: SanityGradient
 }
 
 export type SanityBrandQuoteItem = {
-  title?: string
-  description?: string
-  image?: SanityImageAsset
+    title?: string
+    description?: string
+    image?: SanityImageAsset
 }
 
 export type SanityOurStoryPage = {
-  slug?: SanitySlug
-  titleText?: string
-  mainImage?: SanityImageAsset
-  gradient?: SanityGradient
-  introduction?: string
-  storyStartTitle?: string
-  storyStartLeft1?: string
-  storyStartLeft2?: string
-  storyStartLeft3?: string
-  storyStartRightImage?: SanityImageAsset
-  brandQuotesTitle?: string
-  brandQuotesList?: SanityBrandQuoteItem[]
-  howWeGrowBrandsTitle?: string
-  howWeGrowBrandsContent?: string
+    slug?: SanitySlug
+    titleText?: string
+    mainImage?: SanityImageAsset
+    gradient?: SanityGradient
+    introduction?: string
+    storyStartTitle?: string
+    storyStartLeft1?: string
+    storyStartLeft2?: string
+    storyStartLeft3?: string
+    storyStartRightImage?: SanityImageAsset
+    brandQuotesTitle?: string
+    brandQuotesList?: SanityBrandQuoteItem[]
+    howWeGrowBrandsTitle?: string
+    howWeGrowBrandsContent?: string
 }
 
 export type SanityCommunityPage = {
-  slug?: SanitySlug
-  titleText?: string
-  mainImage?: SanityImageAsset
-  gradient?: SanityGradient
-  introduction?: string
-  howWeGrowBrandsTitle?: string
-  howWeGrowBrandsContent?: string
-  weWorkWithSection?: SanityWeWorkWith,
-  callToAction?: string
+    slug?: SanitySlug
+    titleText?: string
+    mainImage?: SanityImageAsset
+    gradient?: SanityGradient
+    introduction?: string
+    howWeGrowBrandsTitle?: string
+    howWeGrowBrandsContent?: string
+    weWorkWithSection?: SanityWeWorkWith,
+    callToAction?: string
 }
 
 export type SanityImageAssetProj = {
-  title?: string
-  slug?: SanitySlug
-  mainImage?: SanityImageSource
-  caption?: string
+    title?: string
+    slug?: SanitySlug
+    mainImage?: SanityImageSource
+    caption?: string
 }
 
 export type SanityImageCarousel = {
-  title?: string
-  slug?: SanitySlug
-  images?: SanityImageAssetProj[]
+    title?: string
+    slug?: SanitySlug
+    images?: SanityImageAssetProj[]
 }
 
 export type SanityStaticPage = {
-  title?: string
-  slug?: SanitySlug
-  body?: string
+    title?: string
+    slug?: SanitySlug
+    body?: string
 }
 
 export type SanityEvergreenPage = {
-  mainImage?: SanityImageAsset
-  title?: string
-  pageContent?: any
+    mainImage?: SanityImageAsset
+    title?: string
+    pageContent?: any
 }
 
 const fetchHomePage = (): Promise<SanityHomePage> => {
-  return sanityClient
-    .fetch(
-      `*[_type=="abHomePage" && slug.current == "home"]{
+    return sanityClient
+        .fetch(
+            `*[_type=="abHomePage" && slug.current == "home"]{
           slug,
           heroImage->{
             slug,
@@ -164,15 +166,15 @@ const fetchHomePage = (): Promise<SanityHomePage> => {
             }
           }
        }[0]`,
-    ).then((data: SanityHomePage) => {
-      return data
-    })
+        ).then((data: SanityHomePage) => {
+            return data
+        })
 }
 
 const fetchCommunityPage = (): Promise<SanityCommunityPage> => {
-  return sanityClient
-    .fetch(
-      `*[_type=="communityPage" && slug.current == "community"]{
+    return sanityClient
+        .fetch(
+            `*[_type=="communityPage" && slug.current == "community"]{
           slug,
           titleText,
           mainImage{
@@ -200,16 +202,16 @@ const fetchCommunityPage = (): Promise<SanityCommunityPage> => {
           },
           callToAction
        }[0]`,
-    ).then((data: SanityCommunityPage) => {
-      return data
-    })
+        ).then((data: SanityCommunityPage) => {
+            return data
+        })
 }
 
 
 const fetchOurStoryPage = (): Promise<SanityOurStoryPage> => {
-  return sanityClient
-    .fetch(
-      `*[_type=="ourStoryPage" && slug.current == "our-story"]{
+    return sanityClient
+        .fetch(
+            `*[_type=="ourStoryPage" && slug.current == "our-story"]{
           slug,
           titleText,
           mainImage{
@@ -246,29 +248,29 @@ const fetchOurStoryPage = (): Promise<SanityOurStoryPage> => {
             content
           }
        }[0]`,
-    ).then((data: SanityOurStoryPage) => {
-      return data
-    })
+        ).then((data: SanityOurStoryPage) => {
+            return data
+        })
 }
 
 const fetchHomePageSpecializationsMenu = (): Promise<SanityMenuGroup> => {
-  return sanityClient
-    .fetch(
-      `*[_type=="menuGroup" && slug.current == 'specializations']{
+    return sanityClient
+        .fetch(
+            `*[_type=="menuGroup" && slug.current == 'specializations']{
           slug,
           displayText,
          "links": links[]->{displayText, url}
        }[0]`,
-    )
-    .then((data: SanityMenuGroup) => {
-      return data
-    })
+        )
+        .then((data: SanityMenuGroup) => {
+            return data
+        })
 }
 
 const fetchImageCarousel = (slug: string): Promise<SanityImageCarousel> => {
-  return sanityClient
-    .fetch(
-      `*[_type=="imageCarousel" && slug.current == $slug]{
+    return sanityClient
+        .fetch(
+            `*[_type=="imageCarousel" && slug.current == $slug]{
           title,
           slug,
           images[] -> { title, mainImage{
@@ -278,16 +280,16 @@ const fetchImageCarousel = (slug: string): Promise<SanityImageCarousel> => {
              }
            }}
        }[0]`,
-      {slug},
-    ).then((data: SanityImageCarousel) => {
-      return data
-    })
+            {slug},
+        ).then((data: SanityImageCarousel) => {
+            return data
+        })
 }
 
 const fetchEvergreenPage = (slug: string): Promise<SanityEvergreenPage> => {
-  return sanityClient
-    .fetch(
-      `*[_type=="abEvergreenPage" && slug.current == $slug]{
+    return sanityClient
+        .fetch(
+            `*[_type=="abEvergreenPage" && slug.current == $slug]{
           title,
           mainImage{
             asset->{
@@ -299,16 +301,19 @@ const fetchEvergreenPage = (slug: string): Promise<SanityEvergreenPage> => {
             content
           }
        }[0]`,
-      {slug},
-    ).then((data: SanityEvergreenPage) => {
-      return data
-    })
+            {slug},
+        ).then((data: SanityEvergreenPage) => {
+            return data
+        })
 }
 
 export const urlFor = (source: SanityImageSource) => {
-  return builder.image(source)
+    return builder.image(source)
 }
 
+export const cocktailUrlFor = (source: SanityImageSource) => {
+    return cocktailBuilder.image(source)
+}
 // const sanityCredentials = {projectId: "", dataset: "production"}
 //
 // export const metaDataFor = (source: any)=>{
@@ -329,11 +334,11 @@ export const urlFor = (source: SanityImageSource) => {
 // }
 
 export default {
-  fetchHomePage,
-  fetchOurStoryPage,
-  fetchCommunityPage,
-  fetchHomePageSpecializationsMenu,
-  urlFor,
-  fetchImageCarousel,
-  fetchEvergreenPage,
+    fetchHomePage,
+    fetchOurStoryPage,
+    fetchCommunityPage,
+    fetchHomePageSpecializationsMenu,
+    urlFor,
+    fetchImageCarousel,
+    fetchEvergreenPage,
 }

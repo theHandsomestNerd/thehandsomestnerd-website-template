@@ -1,8 +1,8 @@
 import {render, screen} from '@testing-library/react';
-import {Grouped, Loading, Primary, PrimaryDisabled} from "../../../../stories/digital-resume/Button.stories";
 import expect from "expect";
 import {
-    SocialMediaBlockFromHomepage, SocialMediaBlockOnly3,
+    SocialMediaBlockFromHomepage,
+    SocialMediaBlockOnly3,
     SocialMediaBlockOnlyFacebook
 } from "../../../../stories/digital-resume/SocialMediaBlock.stories";
 

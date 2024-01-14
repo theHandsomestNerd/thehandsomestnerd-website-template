@@ -1,21 +1,20 @@
 import React, {FunctionComponent} from 'react'
-import {Button, ButtonGroup, Grid, IconButton, Modal, Typography, useMediaQuery, useTheme,} from '@mui/material';
+import {Button, ButtonGroup, Grid, Typography, useMediaQuery, useTheme,} from '@mui/material';
 import {ResumeBioSectionType} from "../../../BlockContentTypes";
 import {urlFor} from "../../../block-content-ui/static-pages/cmsStaticPagesClient";
 import {SanityTransformHwHomePage} from "../../../../common/sanityIo/Types";
 import useThwCommonStyles from "../../../../common/sanityIo/ThwCommonStyles";
 import SocialMediaBlock from "../social-media-block/SocialMediaBlock";
 import BusinessCardSubmitEmail from "../../transform-hw/pages/BusinessCardSubmitEmail";
-import  {PDFViewer, PDFDownloadLink} from "@react-pdf/renderer";
+import {PDFDownloadLink} from "@react-pdf/renderer";
 import ResumeDocumentPDF from "../../../pdf-renderer/ResumeDocumentPDF";
-import {Close} from "@mui/icons-material";
 
 
 interface IProps {
     sectionData: ResumeBioSectionType
     homePage?: SanityTransformHwHomePage
     isHideEmail?: boolean
-    isHideButtons?:boolean
+    isHideButtons?: boolean
 }
 
 const ResumeBioSection: FunctionComponent<IProps> = (props: IProps) => {
@@ -27,7 +26,7 @@ const ResumeBioSection: FunctionComponent<IProps> = (props: IProps) => {
     const smDown = useMediaQuery(theme.breakpoints.down('sm'))
 
     return (
-        <Grid container item style={{padding: theme.spacing(4,smDown?1:4)}} justifyContent='center'
+        <Grid container item style={{padding: theme.spacing(4, smDown ? 1 : 4)}} justifyContent='center'
               className={classes.resumeSection} spacing={3}>
             {!props.isHideEmail && <Grid item xs={12} style={{paddingTop: "64px"}}>
                 <BusinessCardSubmitEmail
@@ -83,38 +82,44 @@ const ResumeBioSection: FunctionComponent<IProps> = (props: IProps) => {
                     backgroundSize: "cover",
                     backgroundPosition: "top right",
                     backgroundRepeat: "no-repeat",
-                    minHeight: smDown?"500px":"450px"
+                    minHeight: smDown ? "500px" : "450px"
                 }}>
                 </Grid>
             </Grid>
-            {!props.isHideButtons && <Grid container item xs={12} sm={10} spacing={1} style={{marginTop: theme.spacing(2)}}>
-                <Grid item container>
-                    <ButtonGroup fullWidth orientation={smDown ? 'vertical' : "horizontal"}>
-                        <Button name={'appointment'} variant='contained' fullWidth color='primary'
-                                href={props.homePage?.bookAppointmentLink}><Typography variant="button" align='center'>Meet
-                            with Me</Typography></Button>
-                        <Button name={'contact-me'} variant='contained' fullWidth color='primary'
-                                href={'#CONTACT_ME'}><Typography variant="button" align='center'>{props.sectionData.contactMeButtonTitle}</Typography></Button>
+            {!props.isHideButtons &&
+                <Grid container item xs={12} sm={10} spacing={1} style={{marginTop: theme.spacing(2)}}>
+                    <Grid item container>
+                        <ButtonGroup fullWidth orientation={smDown ? 'vertical' : "horizontal"}>
+                            <Button name={'appointment'} variant='contained' fullWidth color='primary'
+                                    href={props.homePage?.bookAppointmentLink}><Typography variant="button"
+                                                                                           align='center'>Meet
+                                with Me</Typography></Button>
+                            <Button name={'contact-me'} variant='contained' fullWidth color='primary'
+                                    href={'#CONTACT_ME'}><Typography variant="button"
+                                                                     align='center'>{props.sectionData.contactMeButtonTitle}</Typography></Button>
 
-                        <PDFDownloadLink style={{width:"100%"}} fileName={'James Terrell Singleton - Software Engineer - Resume.pdf'} document={<ResumeDocumentPDF homePage={props.homePage} />}><Button
-                            name={'download-resume'}
-                            // onClick={
-                            //     ()=>{
-                            //         setIsPDFResumeOpen(true)
-                            //     }
-                            // }
-                            // href={props.sectionData.resumeFile?.url + "?dl=James Terrell Singleton - Software Engineer - Resume.pdf"}
-                            variant='contained' fullWidth color='primary'><Typography variant="button" align='center'
-                                                                                      noWrap>
-                            {props.sectionData.resumeFileDownloadText}</Typography></Button></PDFDownloadLink>
-                        {/*{props.sectionData.cvFile && props.sectionData.cvFile.url.length > 0 && <Button*/}
-                        {/*    href={props.sectionData.cvFile?.url + "?dl=James Terrell Singleton - Software Engineer - CV.pdf"}*/}
-                        {/*    variant='contained' fullWidth color='primary'><CloudDownload*/}
-                        {/*    className={classes.iconOnButton}/><Typography variant="button" align='center'>*/}
-                        {/*    CV</Typography></Button>}*/}
-                    </ButtonGroup>
-                </Grid>
-            </Grid>}
+                            <PDFDownloadLink style={{width: "100%", textDecoration: "none"}}
+                                             fileName={'James Terrell Singleton - Software Engineer - Resume.pdf'}
+                                             document={<ResumeDocumentPDF homePage={props.homePage}/>}><Button
+                                name={'download-resume'}
+                                // onClick={
+                                //     ()=>{
+                                //         setIsPDFResumeOpen(true)
+                                //     }
+                                // }
+                                // href={props.sectionData.resumeFile?.url + "?dl=James Terrell Singleton - Software Engineer - Resume.pdf"}
+                                variant='contained' fullWidth color='primary'><Typography variant="button"
+                                                                                          align='center'
+                                                                                          noWrap>
+                                {props.sectionData.resumeFileDownloadText}</Typography></Button></PDFDownloadLink>
+                            {/*{props.sectionData.cvFile && props.sectionData.cvFile.url.length > 0 && <Button*/}
+                            {/*    href={props.sectionData.cvFile?.url + "?dl=James Terrell Singleton - Software Engineer - CV.pdf"}*/}
+                            {/*    variant='contained' fullWidth color='primary'><CloudDownload*/}
+                            {/*    className={classes.iconOnButton}/><Typography variant="button" align='center'>*/}
+                            {/*    CV</Typography></Button>}*/}
+                        </ButtonGroup>
+                    </Grid>
+                </Grid>}
             {/*<Modal open={isPDFResumeOpen}>*/}
             {/*    <><IconButton onClick={()=>{setIsPDFResumeOpen(false)}}><Close htmlColor={"#FFFFFF"} /></IconButton>*/}
             {/*    <PDFViewer width="100%" height="90%" key={'pdfview-modal'}>*/}
