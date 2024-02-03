@@ -123,7 +123,7 @@ const serveIndexFile = (req: any, res: any) => {
         ogTitle: pageFromSanity?.title,
         description: pageFromSanity?.description,
         ogDescription: pageFromSanity?.description,
-        ogImage: pageFromSanity.metaImage && builder.image(pageFromSanity.metaImage).url()?.replace("undefined", process.env.SANITY_DB ?? "development"),
+        ogImage: pageFromSanity?.metaImage && builder.image(pageFromSanity.metaImage).url()?.replace("undefined", process.env.SANITY_DB ?? "development"),
       };
 
       logClient.log("server-side", "NOTICE",
