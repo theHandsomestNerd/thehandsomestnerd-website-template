@@ -627,6 +627,7 @@ export type HeaderSectionType = {
     title?: string
     name?: string
     isSearch?: boolean
+    isShowSocialMedia?: boolean
     isEnhanced?: boolean
     backgroundColor?: string
     ctaButtonText?: string
@@ -686,4 +687,83 @@ export type FlashCardSectionType = {
     title: string
     isFlashCard?: boolean
     slug: SanitySlug
+}
+
+export type DrinkerySpecialsSectionType = {
+    name: string
+    contentTitle: string
+    contentText: string
+    disclaimer: string
+    subTitle: string
+    theSpecials: DrinkerySpecialType[]
+    imageSrc?: SanityImageAsset
+    imageSrcAltText: string
+}
+
+export type TeamSectionType = {
+    name: string
+    contentPretitle?: string
+    contentTitle: string
+    contentTexts?: string[],
+    teamList: TeamMember[],
+}
+
+export type DrinkeryOtherSideSectionType = {
+    name: string
+    contentPretitle?: string
+    contentTitle: string
+    isLink?: boolean
+    isShowMenu?: boolean
+    description: string
+    isLogo?: boolean
+    theLiquors?: string[]
+    // contentTexts: string[],
+    // teamList: TeamMember[],
+}
+export type DrinkeryPhotoType = {
+    imageSrc?: SanityImageAsset
+    cols?: string
+    title: string
+    subtitle: string
+}
+
+export type DrinkeryAlbumSectionType = {
+    name: string
+    isLogo?:boolean
+    contentPretitle?: string
+    hashtags:string[]
+    contentTitle: string
+    contentText: string
+    imageList: DrinkeryPhotoType[]
+    // contentTexts: string[],
+    // teamList: TeamMember[],
+}
+
+export type TeamMember =  {
+    image?: SanityImageAsset
+    title: string
+    firstName: string
+    lastName?: string
+    isEnabled: boolean
+    homeCity?:string
+    homeState?:string
+    hobby?:string
+    faveDrinkToMake?:string
+}
+
+export type DrinkerySpecialType = {
+    name: string
+    title: string
+    content: string
+    imageSrc?: SanityImageAsset
+}
+
+export type HolidayHeadlineSectionType = {
+    name: string
+    slug: SanitySlug
+    contentText: string
+    contentSubtext: string
+    holidayDate: Date | string
+    holidayIconLeft?: SanityImageAsset
+    holidayIconRight?: SanityImageAsset
 }

@@ -1,139 +1,104 @@
 import React, {FunctionComponent} from 'react'
-import {Avatar, Grid, Link, Typography, useMediaQuery, useTheme} from '@mui/material'
 import clsx from "clsx";
-import {COLORS} from "../../../theme/common/ColorPalette";
-import CssFadeToColor from "../../css-fade-to-color/CssFadeToColor";
 import useCustomStyles from "../mackenzies-mind/pages/Styles";
-import bgImage from "./drinkery-background.jpg"
+import bgImage from "./dont-need/drinkery-background.jpg"
 import TheOtherSideLogo from "./TheOtherSideLogo";
-import openDoorSign from './Shutterstock_1025370412.png'
-import ashboy from "./ashboy-drinkery.jpg";
-import jt from "./jt-drinkery.jpg";
+import {DrinkerySpecialsSectionType} from "../../BlockContentTypes";
+import makeStyles from "@mui/styles/makeStyles";
+import {Theme} from "@mui/material/styles";
+import {Grid, Typography, useTheme} from "@mui/material";
+import {urlFor} from "../../block-content-ui/static-pages/cmsStaticPagesClient";
+import imagePlaceholderClient from "../../../utils/imagePlaceholderClient";
 
 interface IProps {
     email?: string
+    sectionData: DrinkerySpecialsSectionType
 }
+
+export const useStyles = makeStyles((theme: Theme) => ({
+    preroot: {
+        minHeight: '521px',
+        color: "white",
+        position: "relative",
+        padding: theme.spacing(9, 0)
+    },
+}))
 
 const TheDrinkerySpecials: FunctionComponent<IProps> = (props) => {
     const classes = useCustomStyles({bgImage: bgImage})
     const theme = useTheme()
-    const smDown = useMediaQuery(theme.breakpoints.down('lg'))
-    const xsDown = useMediaQuery(theme.breakpoints.down('md'))
+    const theClasses = useStyles()
 
     return (
-        <Grid container className={clsx(xsDown ? classes.fullscreenPlus : classes.fullscreen, classes.fullScreenImage)}
-              style={{position: "relative", color: "white"}}>
-            <CssFadeToColor
-                toColor={COLORS.LIGHTGRAY}
-                isResponsive/>
-            <Grid container item
-                  className={clsx(xsDown ? classes.fullscreenPlus : classes.fullscreen, classes.fullscreenOverlay)}>
-            </Grid>
-            <Grid item container className={clsx(classes.fullscreen)}
-                  style={{
-                      position: 'absolute',
-                      // paddingBottom: smDown ? 0 : theme.spacing(10)
-                  }}
+        <Grid container item className={theClasses.preroot}>
+            <Grid item container className={clsx(classes.fullSection)}
                   justifyContent='center' alignItems='center'>
-                <Grid item container>
-                    <Grid container item justifyContent='center' style={{paddingBottom: theme.spacing(4)}}>
+                <Grid item container spacing={1}>
+                    <Grid container item justifyContent='center'>
                         <TheOtherSideLogo isCenter={true}></TheOtherSideLogo>
                     </Grid>
                     <Grid container item justifyContent='center'>
-                        <Typography variant='h3'>Weekly Drink Specials</Typography>
+                        <img
+                            src={(props.sectionData?.imageSrc ? urlFor(props.sectionData?.imageSrc).url() : imagePlaceholderClient.placeholderOrImage(props.sectionData.imageSrc, 485, 356)) ?? ""}
+                             alt={props.sectionData?.imageSrcAltText}/>
                     </Grid>
                     <Grid container item justifyContent='center'>
-                        <Typography variant='body1'>(must mention qrcode)</Typography>
-                    </Grid>
-                    <Grid container item style={{paddingTop: theme.spacing(4)}}>
-                        <Grid container item justifyContent='center'>
-                            <Typography variant='h4'> 2 for 1 Natty Boh</Typography>
+                        <Grid item style={{maxWidth: 800}}>
+                            <Typography align='center' variant='body2'
+                                        style={{
+                                            fontWeight: 400,
+                                            paddingTop: 16,
+                                            paddingRight: 32,
+                                            paddingLeft: 32
+                                        }}>
+                                {props.sectionData?.contentText}
+                            </Typography>
                         </Grid>
-
-                        <Grid container item justifyContent='center'>
-                            <Typography variant='body2'> Get Two Natty Bohs for the price of one.</Typography>
+                    </Grid>
+                    <Grid
+                        container
+                        item
+                        justifyContent='center'
+                        alignItems='center'
+                        alignContent='center'>
+                        <Grid
+                            item
+                            style={{
+                                backgroundColor: "whitesmoke"
+                            }}>
+                            <Typography align='center'
+                                        variant='body1'
+                                        style={{
+                                            fontWeight: 400,
+                                            paddingRight: 32,
+                                            paddingLeft: 32,
+                                            color: "black"
+                                        }}>*{props.sectionData?.disclaimer}</Typography>
                         </Grid>
                     </Grid>
-                </Grid>
-                <Grid container item justifyContent='center' style={{paddingTop: theme.spacing(2)}}>
                     <Grid container item justifyContent='center'>
-                        <Typography variant='body2' align='center' gutterBottom>Meet your Bartenders</Typography>
+                        <Typography variant='h3'>{props.sectionData?.contentTitle}</Typography>
                     </Grid>
-                    <Grid container item justifyContent='center' xs={12} sm={9} md={7} lg={5} xl={5}>
-                        <Grid item justifyContent='center' xs={6} sm={4} alignItems={'center'}
-                              alignContent='center'>
-                            <Grid container item justifyContent='center'>
-
-                                <Avatar variant='rounded' style={{width: theme.spacing(18),
-                                    height: theme.spacing(18),}}/>
-                            </Grid>
-                            <Grid container item justifyContent='center'>
-                                <Typography variant='body1'>Tim</Typography>
-                            </Grid>
-                        </Grid>
-                        <Grid container item xs={6} sm={4} justifyContent='center'>
-                            <Grid container item justifyContent='center'>
-
-                                <Avatar variant='rounded' style={{width: theme.spacing(18),
-                                    height: theme.spacing(18),}}/>
-                            </Grid>
-                            <Grid container item justifyContent='center'>
-                                <Typography variant='body1'>Dre</Typography>
-                            </Grid>
-                        </Grid>
-                        <Grid item justifyContent='center' xs={6} sm={4} alignItems={'center'}
-                              alignContent='center'>
-                            <Grid container item justifyContent='center'>
-                                <Avatar variant='rounded' style={{width: theme.spacing(18),
-                                    height: theme.spacing(18),}}/>
-                            </Grid>
-                            <Grid container item justifyContent='center'>
-                                <Typography variant='body1'>Shaun</Typography>
-                            </Grid>
-                        </Grid>
+                    <Grid container item justifyContent='center'>
+                        <Typography variant='body1'>{props.sectionData?.subTitle}</Typography>
                     </Grid>
-                </Grid>
-                <Grid item container>
-                    <Grid container item style={{
-                        paddingBottom: theme.spacing(5)
-                    }}>
-                        <Grid container item spacing={2}>
-                            <Grid item container>
+                    {
+                        props.sectionData?.theSpecials.map((specialData,index) =>
+                            <Grid container item
+                                  key={index}
+                                  style={{paddingTop: theme.spacing(4)}}>
                                 <Grid container item justifyContent='center'>
-                                    <Typography variant='h5'>Checkout the Other Side!</Typography>
+                                    <Typography variant='h4'>{specialData.title}</Typography>
                                 </Grid>
-                                <Grid container item justifyContent='center' style={{
-                                    // width: "200px",
-                                    // height: "200px",
-                                    // backgroundImage: `url(${openDoor})`,
-                                    // backgroundSize: "contain",
-                                    // backgroundPosition:"center",
-                                    // backgroundRepeat: "no-repeat"
-                                }}>
-
-                                    <Link href={'/theOtherSide'} underline="hover"><Grid item style={{
-                                        marginTop: theme.spacing(2),
-                                        width: "200px",
-                                        height: "200px",
-                                        backgroundImage: `url(${openDoorSign})`,
-                                        backgroundSize: "contain",
-                                        backgroundPosition: "center",
-                                        backgroundRepeat: "no-repeat"
-                                    }}>
-
-                                    </Grid>
-                                        <Grid item container justifyContent='center'><Typography variant='body1'
-                                                                                                 style={{color: "white"}}>(click
-                                            to enter)</Typography></Grid>
-                                    </Link>
+                                <Grid container item justifyContent='center'>
+                                    <Typography variant='body2'>{specialData.content}</Typography>
                                 </Grid>
-                            </Grid>
-                        </Grid>
-                    </Grid>
+                            </Grid>)
+                    }
                 </Grid>
             </Grid>
         </Grid>
-    );
+    )
 }
 
 export default TheDrinkerySpecials

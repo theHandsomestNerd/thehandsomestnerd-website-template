@@ -16,6 +16,11 @@ export default {
             type: 'boolean',
         },
         {
+            name: 'isShowSocialMedia',
+            title: 'Show Social media buttons?',
+            type: 'boolean',
+        },
+        {
             name: 'ctaButtonText',
             title: 'CTA Button Text',
             type: 'string'

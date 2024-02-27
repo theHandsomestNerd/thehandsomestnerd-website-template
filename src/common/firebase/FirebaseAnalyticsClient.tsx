@@ -64,11 +64,28 @@ const qrCodeShown = (qrCodeValue: string, analyticsId: string) => {
     });
 }
 
+const albumImageClick = ( imageName: string, imageCaption: string, analyticsId:string) =>{
+    utils.logEventWithData('album_image_clicked', {
+        analyticsId,
+        imageName,
+        imageCaption
+    });
+}
+const utmCodes = (source:string, medium:string, campaign:string, id:string) =>{
+    utils.logEventWithData('utm_codes_received', {
+        source,
+        medium,
+        campaign,
+        id
+    });
+}
 export default {
     analyticsPageView,
     ctaClick,
     reportVital,
     setAppUserId,
     amenityTooltipShown,
-    qrCodeShown
+    qrCodeShown,
+    albumImageClick,
+    utmCodes
 };

@@ -3,8 +3,8 @@ import {Box, Grid, IconButton, Modal, useMediaQuery, useTheme} from '@mui/materi
 import MainMenu from "./MainMenu";
 import FilteredMenuItems from "../../../filtered-menu-items/FilteredMenuItems";
 import Logo from "../../../logo/Logo";
-import {SanityMenuContainer} from "../../../../common/sanityIo/Types";
-import {Close, Search} from "@mui/icons-material";
+import {SanityBusinessContact, SanityMenuContainer} from "../../../../common/sanityIo/Types";
+import {Close, Facebook, Instagram, Search, Twitter} from "@mui/icons-material";
 import FullTextSearch from "./FullTextSearch";
 import AppBarWrapper from './AppBarWrapper';
 import {COLORS} from "../../../../theme/common/ColorPalette";
@@ -29,6 +29,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
 
 export type HeaderProps = {
     pageHeader?: SanityMenuContainer
+    businessContact?: SanityBusinessContact
     isAppBar?: boolean
     isSearch?: boolean
     updateIsLoading?: (value: boolean) => void
@@ -40,6 +41,7 @@ const Header: FunctionComponent<HeaderProps> = (props) => {
     const classes = useStyles()
     const theme = useTheme()
 
+    const xsDown = useMediaQuery(theme.breakpoints.down('xs'))
     const mdDown = useMediaQuery(theme.breakpoints.down('md'))
     const [isSearchOpen, setIsSearchOpen] = React.useState<boolean>(false)
 
@@ -49,8 +51,20 @@ const Header: FunctionComponent<HeaderProps> = (props) => {
                 <Grid item container
                       alignContent='center' alignItems='center' style={{height: "100%", paddingLeft: "8px"}}>
                     <Grid container item xs={4} sm={3} md={3}>
-                        <Logo logoImageSrc={props.pageHeader?.logoImageSrc} noWrap logoText={props.pageHeader?.logoText}
-                              logoAccentText={props.pageHeader?.logoAccentText}/>
+                        <Grid item xs={8} sm={7} container>
+                            <Logo logoImageSrc={props.pageHeader?.logoImageSrc} noWrap
+                                  logoText={props.pageHeader?.logoText}
+                                  logoAccentText={props.pageHeader?.logoAccentText}/>
+                        </Grid>
+                        {props.pageHeader.isShowSocialMedia ?<Grid xs={4} sm={5} container item alignContent='center' alignItems='center'
+                               justifyContent={xsDown ? 'center' : "flex-start"} wrap='nowrap'>
+                            <IconButton href={`https://facebook.com/${props.businessContact?.facebook}`}
+                                        color='primary'><Facebook/></IconButton>
+                            <IconButton href={`https://instagram.com/${props.businessContact?.instagram}`}
+                                        color='primary'><Instagram/></IconButton>
+                            <IconButton href={`https://twitter.com/${props.businessContact?.twitter}`}
+                                        color='primary'><Twitter/></IconButton>
+                        </Grid>:<></>}
                     </Grid>
                     <Grid item container xs={8} sm={9} md={9} justifyContent='flex-end'>
 

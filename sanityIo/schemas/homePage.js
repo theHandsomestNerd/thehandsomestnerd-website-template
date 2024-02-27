@@ -20,6 +20,14 @@ export default {
             },
         },
         {
+            name: 'backgroundImageSrc',
+            title: 'Entire Page Background Image',
+            type: 'image',
+            options: {
+                hotspot: true,
+            },
+        },
+        {
             name: 'title',
             title: 'Title(Title in Browser Tab)',
             type: 'string',

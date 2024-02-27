@@ -3,7 +3,7 @@ import { Theme } from "@mui/material/styles";
 import makeStyles from '@mui/styles/makeStyles';
 import {Grid} from '@mui/material'
 import {SanityImageSource} from "@sanity/asset-utils";
-import logoImg from './drinkery-logo.png'
+import logoImg from './dont-need/drinkery-logo.png'
 
 
 interface CssProps {
