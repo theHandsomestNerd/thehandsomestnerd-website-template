@@ -102,6 +102,14 @@ import Instruction from "./cocktail-flash-cards/Instruction";
 import MixingGlass from "./cocktail-flash-cards/MixingGlass";
 import FlashCardSection from "./cocktail-flash-cards/FlashCardSection";
 import LiquorType from "./cocktail-flash-cards/LiquorType";
+import DrinkerySpecialsSection from "./sections/drinkery/DrinkerySpecialsSection";
+import DrinkeryOtherSideSection from "./sections/drinkery/DrinkeryOtherSideSection";
+import DrinkeryAlbumSection from "./sections/drinkery/DrinkeryAlbumSection";
+import DrinkeryAlbumItem from "./sections/drinkery/DrinkeryAlbumItem";
+import drinkeryTeamMember from "./team/DrinkeryTeamMember";
+import drinkeryTeamPage from "./team/DrinkeryTeamPage";
+import drinkerySpecial from "./sections/drinkery/drinkerySpecial";
+import HolidayHeadlineSection from "./HolidayHeadlineSection";
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default [
@@ -210,4 +218,13 @@ export default [
     MixingGlass,
     FlashCardSection,
     LiquorType,
+
+    DrinkerySpecialsSection,
+    drinkeryTeamMember,
+    drinkeryTeamPage,
+    drinkerySpecial,
+    DrinkeryOtherSideSection,
+    DrinkeryAlbumSection,
+    DrinkeryAlbumItem,
+    HolidayHeadlineSection,
 ]

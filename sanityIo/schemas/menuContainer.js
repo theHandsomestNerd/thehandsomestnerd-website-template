@@ -47,6 +47,16 @@ export default {
             type: 'string',
         },
         {
+            name: 'isShowSocialMedia',
+            title: 'Show Social Media?',
+            type: 'boolean',
+        },
+        {
+            name: 'isHideOverlay',
+            title: 'Lighten the background',
+            type: 'boolean',
+        },
+        {
             name: 'subMenus',
             title: 'Sub Menu',
             type: 'array',

@@ -6,10 +6,10 @@ import {blockSerializers} from '../common/sanityIo/BlockContentRenderer'
 import {
     AnimatedAboutUsSectionType,
     AnimatedPortfolioSectionType,
-    AnimatedServicesSectionType,
+    AnimatedServicesSectionType, DrinkeryAlbumSectionType, DrinkeryOtherSideSectionType, DrinkerySpecialsSectionType,
     FlashCardSectionType,
     HeadlineCTASectionType,
-    HeroAnimatedContentSectionType,
+    HeroAnimatedContentSectionType, HolidayHeadlineSectionType,
     HowItWorksSectionType,
     MapSectionType,
     PortfolioSectionType,
@@ -20,7 +20,7 @@ import {
     ResumeExperienceSectionType,
     ResumeFeedbackSectionType,
     ResumePortfolioSectionType,
-    ResumeSkillSectionType,
+    ResumeSkillSectionType, TeamSectionType,
     ThwAboutProprietorSectionType,
     ThwContactUsSectionType,
     ThwHeroContentSectionType,
@@ -66,6 +66,11 @@ import HeadlineCTASection from "./animated/HeadlineCTASection";
 import MapSection from "./animated/MapSection";
 import WebDevPricingSection from "./templates/web-dev-site/WebDevPricingSection";
 import FlashCardsContentSection from './templates/cocktail-flash-cards/FlashCardsContentSection'
+import TheDrinkerySpecials from "./templates/the-drinkery/TheDrinkerySpecials";
+import TheDrinkeryStaffSection from "./templates/the-drinkery/TheDrinkeryStaffSection";
+import TheDrinkeryOtherSideSection from "./templates/the-drinkery/TheDrinkeryOtherSideSection";
+import TheDrinkeryAlbumSection from "./templates/the-drinkery/TheDrinkeryAlbumSection";
+import HolidayHeadlineSection from "./holiday-headline-section/HolidayHeadlineSection";
 
 export type BlockContentLayoutContainerProps = {
     content?: any,
@@ -493,6 +498,50 @@ const BlockContentLayoutContainer: FunctionComponent<BlockContentLayoutContainer
                         return <Grid key={index} container item xs={12}>
                             <FlashCardsContentSection
                                 sectionData={flashCardSection}
+                            />
+                        </Grid>
+                    case 'DrinkerySpecialsSection':
+                        const drinkerySpecialsSection: DrinkerySpecialsSectionType = columnLayoutContainer
+
+                        return <Grid key={'specials-section'} container item xs={12}>
+                            <Link id={"SPECIALS"}><></></Link>
+                            <TheDrinkerySpecials
+                                sectionData={drinkerySpecialsSection}
+                            />
+                        </Grid>
+                    case 'DrinkeryTeamSection':
+                        const drinkeryStaffSection: TeamSectionType = columnLayoutContainer
+
+                        return <Grid key={'staff-section'} container item xs={12}>
+                            <Link id={"STAFF_SECTION"}><></></Link>
+                            <TheDrinkeryStaffSection
+                                sectionData={drinkeryStaffSection}
+                            />
+                        </Grid>
+                    case 'DrinkeryOtherSideSection':
+                        const drinkeryOtherSideSection: DrinkeryOtherSideSectionType = columnLayoutContainer
+
+                        return <Grid key={'other-side-section'} container item xs={12}>
+                            <Link id={"OTHER_SIDE_SECTION"}><></></Link>
+                            <TheDrinkeryOtherSideSection
+                                sectionData={drinkeryOtherSideSection}
+                            />
+                        </Grid>
+                    case 'DrinkeryAlbumSection':
+                        const drinkeryAlbumSection: DrinkeryAlbumSectionType = columnLayoutContainer
+
+                        return <Grid key={'album-section'} container item xs={12}>
+                            <Link id={"ALBUM_SECTION"}><></></Link>
+                            <TheDrinkeryAlbumSection
+                                sectionData={drinkeryAlbumSection}
+                            />
+                        </Grid>
+                    case 'HolidayHeadlineSection':
+                        const holidayHeadlineSection: HolidayHeadlineSectionType = columnLayoutContainer
+
+                        return <Grid key={holidayHeadlineSection.slug.current+'-holiday-headline-section'} container item xs={12} justifyContent='center'>
+                            <HolidayHeadlineSection
+                                sectionData={holidayHeadlineSection}
                             />
                         </Grid>
                     default:

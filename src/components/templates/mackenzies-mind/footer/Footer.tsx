@@ -81,9 +81,9 @@ const Footer: FunctionComponent<IProps> = (props: IProps) => {
                 </Grid>
             </Grid>
         </Grid>
-            <Grid container item className={globalClasses.fullSectionOverlay}>
-            {/*Makes the background image darker*/}
-            </Grid>
+            {!props.pageFooter?.isHideOverlay?<Grid container item className={globalClasses.fullSectionOverlay}>
+                {/*Makes the background image darker*/}
+            </Grid>:<></>}
         </Grid>
     )
 }

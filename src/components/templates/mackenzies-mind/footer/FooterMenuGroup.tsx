@@ -5,6 +5,7 @@ import makeStyles from '@mui/styles/makeStyles';
 
 import {Grid, Link, Typography, useMediaQuery, useTheme} from '@mui/material'
 import {SanityMenuGroup, SanityMenuItem} from "../../../../common/sanityIo/Types";
+import LoadingButton from "../../../loading-button/LoadingButton";
 
 export const useStyles = makeStyles((theme: Theme) => ({
     root: {
@@ -57,6 +58,7 @@ const FooterMenuGroup: FunctionComponent<LandingPagesFooterMenuGroupProps> = ({m
 
     const mdOnly = useMediaQuery(theme.breakpoints.only('sm'))
     const mdUp = useMediaQuery(theme.breakpoints.up('md'))
+    const mdDown = useMediaQuery(theme.breakpoints.down('md'))
 
     return (
         <Grid container direction="column" spacing={2} className={classes.root} >
@@ -70,25 +72,26 @@ const FooterMenuGroup: FunctionComponent<LandingPagesFooterMenuGroupProps> = ({m
                         menuGroup?.links && menuGroup.links.map((menuLink: any, index: any) => {
                             return (
                                 <Grid key={index} item>
-                                    <Link href={menuLink.url} className={classes.footerLink} underline="hover">
-                                        <Typography variant="body1" color='white' noWrap>
+                                    {!menuLink.isContainedButton && !menuLink.isOutlinedButton ? <Link underline='hover' href={menuLink.url}>
+                                        <Typography variant="body1" color='textPrimary' noWrap>
                                             {menuLink.displayText}
                                         </Typography>
-                                    </Link>
+                                    </Link>:<LoadingButton variant={menuLink.isContainedButton?'contained':'outlined'} href={menuLink.url}><Typography variant="body1" color='textPrimary' noWrap>
+                                        {menuLink.displayText}{menuLink.isContainedButton}{menuLink.isOutlinedButton}
+                                    </Typography></LoadingButton>}
                                 </Grid>
                             );
                         })
                     }
                     {
-                        menuItemContents && <Grid item>
-                            <Link
-                                href={menuItemContents.url}
-                                className={classes.footerLink}
-                                underline="hover">
-                                <Typography variant="body1" color='white' noWrap>
+                        menuItemContents && <Grid item container justifyContent={mdDown && (menuItemContents.isContainedButton || menuItemContents.isOutlinedButton)?'center':'flex-start'}>
+                            {!menuItemContents.isContainedButton && !menuItemContents.isOutlinedButton ? <Link underline='hover'  href={menuItemContents.url}>
+                                <Typography variant="body1" color='textPrimary' noWrap>
                                     {menuItemContents.displayText}
                                 </Typography>
-                            </Link>
+                            </Link>:<LoadingButton variant={menuItemContents.isContainedButton?'contained':'outlined'} href={menuItemContents.url}><Typography variant="body1" color='textPrimary' noWrap>
+                                {menuItemContents.displayText}
+                            </Typography></LoadingButton>}
                         </Grid>
                     }
                     {!menuGroupContents && !menuItemContents && <></>}

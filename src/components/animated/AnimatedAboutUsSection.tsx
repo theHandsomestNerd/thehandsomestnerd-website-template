@@ -145,7 +145,7 @@ const AnimatedAboutUsSection: FunctionComponent<IProps> = (props) => {
                                 <Grid item container justifyContent='center' alignContent='flex-end' alignItems='flex-end'>
                                     <Grid item>
                                         <img
-                                        src={urlFor(props.sectionData?.servicesImageSrcArr[0] ?? "").url() ?? imagePlaceholderClient.placeholderOrImage(props.sectionData?.servicesImageSrcArr[0], 485, 356)}/>
+                                        src={(props.sectionData?.servicesImageSrcArr[0] ? urlFor(props.sectionData?.servicesImageSrcArr[0]).url() : imagePlaceholderClient.placeholderOrImage(props.sectionData?.servicesImageSrcArr[0], 485, 356)) ?? ""}/>
                                     </Grid>
                                 </Grid>
                             }

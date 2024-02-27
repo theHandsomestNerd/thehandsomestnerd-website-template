@@ -11,12 +11,14 @@ export default {
                 type: "string", options: {
                     list: [
                         {value: "Oswald", title: "Oswald"},
+                        {value: "Bitter", title: "Bitter"},
                         {value: "Inter", title: "Inter"},
                         {value: "Prompt", title: "Prompt"},
                         {value: "Raleway", title: "Raleway"},
                         {value: "Poppins", title: "Poppins"},
                         {value: "Monteserrat", title: "Monteserrat"},
                         {value: "Elaine Sans", title: "Elaine Sans"},
+                        {value: "Open Sans", title: "Open Sans"},
                         {value: "Covered By Your Grace", title: "Covered By Your Grace"},
                     ]
                 }

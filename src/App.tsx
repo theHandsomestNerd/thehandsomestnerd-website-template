@@ -11,12 +11,21 @@ import SnackbarProvider from "./components/modal-context/SnackbarProvider";
 import PageMux from "./components/templates/mackenzies-mind/pages/PageMux";
 import CustomizedThemeProvider from "./components/customized-theme-provider/CustomizedThemeProvider";
 import {queryClient} from "./queryClient";
+import firebaseAnalyticsClient from "./common/firebase/FirebaseAnalyticsClient";
 import DJSpadesRulesContentSection from "./components/dj-40-spades-rules/41AcresSpadesContentSection";
 
 function App() {
 
     const theme = useTheme()
 
+    React.useEffect(() => {
+        const windowUrl = window.location.search;
+        const params:any = new URLSearchParams(windowUrl);
+
+        if(params.has('utm_source') || params.has('utm_medium') || params.has('utm_campaign') || params.has('utm_id')){
+            firebaseAnalyticsClient.utmCodes(params.get('utm_source'), params.get('utm_medium'),params.get('utm_campaign'),params.get('utm_id'))
+        }
+    }, [])
 
     return (
         <BrowserRouter>

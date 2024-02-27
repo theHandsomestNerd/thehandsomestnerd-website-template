@@ -36,10 +36,15 @@ export default {
             type: 'boolean',
         },
         {
+            name: 'isHideOverlay',
+            title: 'Lighten the background',
+            type: 'boolean',
+        },
+        {
             name: 'footerMenuRef',
             title: 'Footer Menu',
             type: 'reference',
-            to: [{type:'menuContainer'}]
+            to: [{type: 'menuContainer'}]
         },
     ],
     preview: {

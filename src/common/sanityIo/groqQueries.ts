@@ -77,6 +77,13 @@ const HOMEPAGE = `_type,
                  }
               }
           },
+          backgroundImageSrc{
+                asset->{
+                  _id,
+                  url,
+                  altText
+                 }
+              },
           bookAppointmentLink,
           bookAppointmentQrCode,
           website,
@@ -107,6 +114,7 @@ const HOMEPAGE = `_type,
                 "servicesList": servicesList[]->{
                     ${SERVICE}
                 },
+                "teamList": teamList[]->,
                 "prosList": prosList[]->,
                 "serviceAmenities": serviceAmenities[]->,
                 "skillsets": skillsets[]->{

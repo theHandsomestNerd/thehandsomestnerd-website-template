@@ -1,5 +1,5 @@
 import React, {FunctionComponent} from 'react'
-import {Grid, Link, useTheme} from '@mui/material'
+import {Grid, Link, useMediaQuery, useTheme} from '@mui/material'
 import {SanityTransformHwHomePage} from "../../../../common/sanityIo/Types";
 import BlockContentLayoutContainer from "../../../BlockContentLayoutContainer";
 import firebaseAnalyticsClient from "../../../../common/firebase/FirebaseAnalyticsClient";
@@ -7,6 +7,9 @@ import {useLocation} from "react-router";
 import HeaderBlockContentLayoutContainer from "../../../HeaderBlockContentLayoutContainer";
 import FooterBlockContentLayoutContainer from "../../../FooterBlockContentLayoutContainer";
 import BusinessCard from "../../../BusinessCard";
+import useCustomStyles from "./Styles";
+import clsx from "clsx";
+import {urlFor} from "../../../block-content-ui/static-pages/cmsStaticPagesClient";
 
 interface IProps {
     homePage: SanityTransformHwHomePage
@@ -15,7 +18,9 @@ interface IProps {
 const PageLayout: FunctionComponent<IProps> = (props: IProps) => {
     const location = useLocation();
     const theme = useTheme()
+    const classes = useCustomStyles({bgImage: urlFor(props.homePage.backgroundImageSrc ?? "")})
 
+    const xsDown  = useMediaQuery(theme.breakpoints.down('xs'))
     React.useEffect(() => {
         props.homePage.title && firebaseAnalyticsClient.analyticsPageView(
             location.pathname,
@@ -39,14 +44,18 @@ const PageLayout: FunctionComponent<IProps> = (props: IProps) => {
                         content={props.homePage.headerContent.content}/>
                 </Grid>}
             </Grid>
-            <Grid item container>
+            <Grid item container style={{position:"relative",backgroundSize:"cover",backgroundImage: `url(${urlFor(props.homePage.backgroundImageSrc??"")})`}}>
+
                 {
-                    props.homePage.pageContent && <Grid container item>
+                    props.homePage.pageContent && <Grid container item style={{zIndex: 1000}}>
                         <BlockContentLayoutContainer
                             homePage={props.homePage}
                             content={props.homePage.pageContent.content}/>
                     </Grid>
                 }
+                {props.homePage.backgroundImageSrc ?<Grid container item
+                       className={clsx(xsDown ? classes.fullSection : classes.fullSection, classes.fullSectionOverlay)}>
+                </Grid>:<></>}
             </Grid>
             <Grid container item>
                 {props.homePage.footerContent && <Grid container item>

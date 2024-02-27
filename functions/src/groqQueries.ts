@@ -62,6 +62,13 @@ const HOMEPAGE = `_type,
           title,
           isUnderConstruction,
           releaseDate,
+          backgroundImageSrc{
+                asset->{
+                  _id,
+                  url,
+                  altText
+                 }
+              },
           slug,
           description,
           businessCardImageSrc,
@@ -127,6 +134,7 @@ const HOMEPAGE = `_type,
                 "servicesList": servicesList[]->{
                     ${SERVICE}
                 },
+                "teamList": teamList[]->,
                 "serviceAmenities": serviceAmenities[]->,
                 "prosList": prosList[]->,
                 "skillsets": skillsets[]->{

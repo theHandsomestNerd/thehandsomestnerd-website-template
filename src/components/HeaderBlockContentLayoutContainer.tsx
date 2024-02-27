@@ -11,6 +11,7 @@ import WebDevSiteTheme from "../theme/WebDevSiteTheme";
 import EnhancedHeader from "./templates/mackenzies-mind/header/EnhancedHeader";
 import CustomizedThemeContext from "./customized-theme-provider/CustomizedThemeContext";
 import {convertToHexCode} from "../theme/common/ColorPalette";
+import PageContext from "./page-context/PageContext";
 
 export type HeaderBlockContentLayoutContainerProps = {
     content?: any,
@@ -21,6 +22,7 @@ const HeaderBlockContentLayoutContainer: FunctionComponent<HeaderBlockContentLay
     // const mdDown = widthUtils.useIsWidthDown('md')
     const customizedTheme = useContext(CustomizedThemeContext)
 
+    const page = useContext(PageContext)
     const [showBasicHeader, setShowBasicHeader] = React.useState<boolean>(false)
 
     React.useEffect(() => {
@@ -98,7 +100,7 @@ const HeaderBlockContentLayoutContainer: FunctionComponent<HeaderBlockContentLay
                                 </Link>
                                 {
                                     showBasicHeader || !header.isEnhanced ?
-                                        <Header backgroundColor={header.backgroundColor}  isSearch={header.isSearch} isAppBar={true}
+                                        <Header businessContact={page.page?.businessContact} backgroundColor={header.backgroundColor} isSearch={header.isSearch} isAppBar={true}
                                                 pageHeader={header.headerMenuRef}/>
                                         : <EnhancedHeader pageHeader={header}/>
                                 }

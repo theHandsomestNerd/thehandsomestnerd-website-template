@@ -21,9 +21,9 @@ export declare type SanityColdLead = {
 export type SanityGroupScheduleEntry = {
     name: string,
     dayName: string,
-    isClosed: boolean,
-    startTime: string,
-    endTime: string
+    isClosed?: boolean,
+    startTime?: string,
+    endTime?: string
 }
 export type SanityGroupSchedule = {
     name: string,
@@ -54,6 +54,7 @@ export type SanityTransformHwHomePage = {
     title?: string
     _id?: string
     description?: string
+    backgroundImageSrc?: SanityImageAsset
     bookAppointmentLink?: string
     bookAppointmentQrCode?: SanityImageSource
     imgSrc?: SanityImageSource
@@ -241,6 +242,7 @@ export type SanityMenuGroup = {
 
 export type SanityMenuContainer = {
     title?: string,
+    backgroundColor?: string
     slug?: SanitySlug,
     displayText?: string,
     subMenus?: (SanityMenuGroup & SanityMenuItem)[]
@@ -248,7 +250,9 @@ export type SanityMenuContainer = {
     logoText?: string
     logoAccentText?: string
     logoImageSrc?: SanityImageAsset
+    isShowSocialMedia?: boolean
     isSearch?: boolean
+    isHideOverlay?: boolean
 }
 
 export type SanityCocktailType = {
