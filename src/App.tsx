@@ -12,6 +12,7 @@ import PageMux from "./components/templates/mackenzies-mind/pages/PageMux";
 import CustomizedThemeProvider from "./components/customized-theme-provider/CustomizedThemeProvider";
 import {queryClient} from "./queryClient";
 import firebaseAnalyticsClient from "./common/firebase/FirebaseAnalyticsClient";
+import DJSpadesRulesContentSection from "./components/dj-40-spades-rules/41AcresSpadesContentSection";
 
 function App() {
 
@@ -43,6 +44,8 @@ function App() {
 
                                         <Grid item>
                                             <Routes>
+                                                <Route path={"/DJs-40th-spades-rules"}
+                                                       element={<DJSpadesRulesContentSection />}/>
                                                 <Route path={"/" + process.env.REACT_APP_BASE_ROUTE + "/:pageSlug"}
                                                        element={<PageMux/>}/>
                                                 <Route path={'/error'} element={<FourOhFour/>}/>
