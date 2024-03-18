@@ -27,7 +27,8 @@ const FooterMenuContainer: FunctionComponent<IProps> = (props: IProps) => {
         <Grid container item
               style={{
                   color: theme.palette.getContrastText(convertToHexCode(props.backgroundColor)),
-                  backgroundColor: props.backgroundColor
+                  backgroundColor: props.backgroundColor,
+                  padding: theme.spacing(4, 4, 1, 4),
               }}
         >
             <Grid container item xs={12} md={4}
@@ -36,7 +37,7 @@ const FooterMenuContainer: FunctionComponent<IProps> = (props: IProps) => {
                       paddingTop: "16px",
                       paddingBottom: "16px",
                       borderLeft: `4px solid ${theme.palette.primary.main}`,
-                      backgroundColor: COLORS.TRANSPARENTERWHITE,
+                      backgroundColor: convertToHexCode(COLORS.GRAY),
                       borderRight: `4px solid ${theme.palette.primary.main}`,
                   } : {}}
                   justifyContent={mdDown ? 'center' : 'flex-start'}
@@ -105,9 +106,9 @@ const FooterMenuContainer: FunctionComponent<IProps> = (props: IProps) => {
                 </Grid>
             </Grid>
             {pageContext.page?.businessContact?.hoursOfOperation ?
-                <Grid item container xs={12} md={4} alignContent='flex-start' spacing={2}>
+                <Grid item container xs={12} md={4} alignContent='flex-start' spacing={2} paddingLeft={3}>
                     <Grid container item>
-                        <Grid item><Typography variant='h6'>Hours</Typography></Grid>
+                        <Grid item><Typography variant='h6' color='textSecondary'>Hours</Typography></Grid>
                     </Grid>
                     {
                         pageContext.page?.businessContact?.hoursOfOperation?.map((location, index: number) => {
@@ -117,7 +118,7 @@ const FooterMenuContainer: FunctionComponent<IProps> = (props: IProps) => {
                                 {
                                     location.hoursOfOperation.map((hours, index2: number) => {
                                         return <Grid item container
-                                                     key={index2}><Typography><b>{hours.dayName}: &nbsp;</b>
+                                                     key={index2}><Typography color='textSecondary'><b>{hours.dayName}: &nbsp;</b>
                                             {
                                                 hours.isClosed ? "closed" :
                                                     `${hours.startTime}-${hours.endTime}`

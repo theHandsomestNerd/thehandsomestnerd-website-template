@@ -73,10 +73,11 @@ const FooterMenuGroup: FunctionComponent<LandingPagesFooterMenuGroupProps> = ({m
                             return (
                                 <Grid key={index} item>
                                     {!menuLink.isContainedButton && !menuLink.isOutlinedButton ? <Link underline='hover' href={menuLink.url}>
-                                        <Typography variant="body1" color='textPrimary' noWrap>
+                                        <Typography variant="body1" color='textSecondary' noWrap>
                                             {menuLink.displayText}
                                         </Typography>
-                                    </Link>:<LoadingButton variant={menuLink.isContainedButton?'contained':'outlined'} href={menuLink.url}><Typography variant="body1" color='textPrimary' noWrap>
+                                    </Link>:<LoadingButton variant={menuLink.isContainedButton?'contained':'outlined'} href={menuLink.url}>
+                                        <Typography variant="body1" color='textSecondary' noWrap>
                                         {menuLink.displayText}
                                     </Typography></LoadingButton>}
                                 </Grid>
@@ -86,10 +87,11 @@ const FooterMenuGroup: FunctionComponent<LandingPagesFooterMenuGroupProps> = ({m
                     {
                         menuItemContents && <Grid item container justifyContent={mdDown && (menuItemContents.isContainedButton || menuItemContents.isOutlinedButton)?'center':'flex-start'}>
                             {!menuItemContents.isContainedButton && !menuItemContents.isOutlinedButton ? <Link underline='hover'  href={menuItemContents.url}>
-                                <Typography variant="body1" color='textPrimary' noWrap>
+                                <Typography variant="body1" color='textSecondary' noWrap>
                                     {menuItemContents.displayText}
                                 </Typography>
-                            </Link>:<LoadingButton variant={menuItemContents.isContainedButton?'contained':'outlined'} href={menuItemContents.url}><Typography variant="body1" color='textPrimary' noWrap>
+                            </Link>:<LoadingButton variant={menuItemContents.isContainedButton?'contained':'outlined'} href={menuItemContents.url}>
+                                <Typography variant="body1" color='textSecondary' noWrap>
                                 {menuItemContents.displayText}
                             </Typography></LoadingButton>}
                         </Grid>

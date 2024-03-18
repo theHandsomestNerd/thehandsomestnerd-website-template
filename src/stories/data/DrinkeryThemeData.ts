@@ -154,7 +154,7 @@ const DrinkeryThemeData:SanityMuiTheme ={
     "colorPalette": {
         "secondaryColor": "DARKERGRAY",
         "buttonOutlineColor": "WHITESMOKE",
-        "secondaryTextColor": "ALMOSTWHITE",
+        "secondaryTextColor": "ALMOST_BLACK",
         "defaultBackground": "ALMOST_BLACK",
         "defaultPaperBackgroundColor": "WHITESMOKE",
         "disabledTextColor": "LIGHT_GRAY",

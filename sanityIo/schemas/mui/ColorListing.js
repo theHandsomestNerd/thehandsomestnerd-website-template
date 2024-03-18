@@ -22,5 +22,6 @@ export const ColorListing = [
     {value: "ALMOST_BLACK", title: "Almost Black"},
     {value: "PURPLE", title: "Purple"},
     {value: "LIGHT_WHITE", title: "Light White"},
+    {value: "WHITE", title: "White"},
     {value: "DISABLED_GRAY", title: "Disabled Gray"},
 ]

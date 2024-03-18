@@ -23,7 +23,7 @@
     "parcel-cli": "^1.1.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "the-handsomestnerd-internal": "^0.9.241",
+    "the-handsomestnerd-internal": "^0.9.250",
     "typescript": "^5.4.2"
   },
   "devDependencies": {

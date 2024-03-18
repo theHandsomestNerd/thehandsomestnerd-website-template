@@ -16,6 +16,7 @@ export enum COLORS {
     DARKGRAY = "#43424A",
     AQUA = "#12b3be",
     WHITESMOKE = '#f6f6f6',
+    WHITE = '#ffffff',
     RED = "#d20027",
     ALMOSTWHITE="#dfd8d9",
     DARKERGRAY = "#383838",
@@ -111,10 +112,8 @@ export const convertToHexCode = (value?: string) => {
         case 'DISABLED_GRAY':
             defaultBg = COLORS.DISABLED_GRAY
             break;
-
-
         default:
-            defaultBg = COLORS.WHITESMOKE
+            defaultBg = COLORS.WHITE
     }
 
     return defaultBg

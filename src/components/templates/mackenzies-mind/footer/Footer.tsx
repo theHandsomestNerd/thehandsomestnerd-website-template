@@ -1,5 +1,4 @@
 import React, {FunctionComponent, useContext} from 'react'
-import {Theme} from '@mui/material/styles';
 import makeStyles from '@mui/styles/makeStyles';
 import {Grid, useMediaQuery, useTheme} from '@mui/material'
 import FooterMenuContainer from './FooterMenuContainer'
@@ -9,14 +8,13 @@ import {SanityImageAsset} from "../../../BlockContentTypes";
 import useCustomStyles from "../pages/Styles";
 import SanityContext from "../../../../common/sanityIo/sanity-context/SanityContext";
 
-export const useStyles = makeStyles((theme: Theme) => ({
+export const useStyles = makeStyles(() => ({
     root: {
         // paddingTop: "32px",
         // backgroundColor: COLORS.DARK_GRAY,
         // color: '#FDF3EB',
         // marginLeft: -1 * theme.spacing(1),
         zIndex: 1000,
-        padding: theme.spacing(4, 4, 1, 4),
         '& .MuiFormLabel-root': {
             color: 'white',
         },
