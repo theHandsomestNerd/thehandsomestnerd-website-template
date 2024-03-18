@@ -4,7 +4,6 @@ import ImageWIthButtonOverlay from "../../image-with-button-overlay/ImageWithBut
 import {ImageWithButtonOverlayAligmentEnum} from "../../image-with-button-overlay/ImageWithButtonOverlayAligmentEnum";
 import LoadingButton from "../../loading-button/LoadingButton";
 import {v4 as uuidv4} from 'uuid'
-import amenitiesIcon from "../../../assets/amenitiesIcon.png";
 import AmenitiesSection from "./AmenitiesSection";
 import PageContext from "../../page-context/PageContext";
 import {ThwServiceItemNoRefType} from "../../BlockContentTypes";
@@ -72,24 +71,7 @@ const ThwServiceItem: FunctionComponent<IProps> = (props: IProps) => {
                     </Grid>
                 </Grid>
                 {props.showAmenities &&
-                    <AmenitiesSection service={props.service} placeHolder={
-
-                            <Grid container>
-                            {<Grid container alignItems='center' direction='column'>
-                                <Grid item style={{
-                                    height: "32px",
-                                    width: "32px",
-                                    backgroundSize: "contain",
-                                    backgroundImage: `url(${amenitiesIcon})`
-                                }}>
-
-                                </Grid>
-                                <Grid item>
-                                    <Typography variant={"subtitle1"} color={"secondary"}>Amenities</Typography>
-                                </Grid>
-                            </Grid>}
-                        </Grid>
-                    }/>}
+                    <AmenitiesSection service={props.service}/>}
                 {!props.hideLearnMoreButton && <LearnMoreButton />}
             </Grid>
         </Grid>)
