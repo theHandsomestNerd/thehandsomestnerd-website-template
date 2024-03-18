@@ -15,7 +15,6 @@ import SanityContext from "./common/sanityIo/sanity-context/SanityContext";
 import AppSettingsProvider from "./components/templates/anybody-walking/app-settings/AppSettingsProvider";
 
 interface IProps {
-    react_app_releaseDate: string
     react_app_api_url: string
     react_app_sanity_projectid: string
     react_app_sanity_db: string

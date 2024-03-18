@@ -6,7 +6,6 @@ import {AppWrapper} from 'the-handsomestnerd-internal'
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 root.render(
                 <AppWrapper
-                    react_app_releaseDate = {process.env.REACT_APP_RELEASEDATE??""??""}
                     react_app_api_url = ""
                     react_app_sanity_projectid = {process.env.REACT_APP_SANITY_PROJECTID??""}
                     react_app_sanity_db = {process.env.REACT_APP_SANITY_DB??""}

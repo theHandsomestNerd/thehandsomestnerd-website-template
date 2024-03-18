@@ -37,7 +37,6 @@ const AppWrapper: FunctionComponent<IProps & PropsWithChildren> = (props) => {
                 <FirebaseProvider>
                     <SanityProvider>
                     <App
-                        react_app_releaseDate = {process.env.REACT_APP_RELEASEDATE??props.react_app_releaseDate}
                          react_app_api_url = ""
                          react_app_sanity_projectid = {process.env.REACT_APP_SANITY_PROJECTID??props.react_app_sanity_projectid}
                          react_app_sanity_db = {process.env.REACT_APP_SANITY_DB??props.react_app_sanity_db}
