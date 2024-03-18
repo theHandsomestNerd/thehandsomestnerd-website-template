@@ -1,6 +1,7 @@
-import React, { FunctionComponent } from 'react'
+import React, {FunctionComponent, useContext} from 'react'
 import { Grid } from '@mui/material'
 import { SanityLocation } from '../ballroomTypes'
+import PageContext from "../../../page-context/PageContext";
 
 // https://developers.google.com/maps/documentation/embed/get-started
 
@@ -38,13 +39,15 @@ const BallMapComponent: FunctionComponent<BallMapComponentProps> = (props: BallM
     return query
   }
 
+  const pageContext = useContext(PageContext)
+
   return (<Grid container>
     <iframe
       title="googleMapsMap"
       height={`${props.height? props.height: 450}`}
       style={{border: 0, width: '100%'}}
       allowFullScreen
-      src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyDVwbgakJ3_v3qCB08ICpwyCBOM3iahCBc&q=${getQueryfromLocation()}`}>
+      src={`https://www.google.com/maps/embed/v1/place?key=${pageContext.googleMapsApiKey}&q=${getQueryfromLocation()}`}>
     </iframe>
   </Grid>)
 }
