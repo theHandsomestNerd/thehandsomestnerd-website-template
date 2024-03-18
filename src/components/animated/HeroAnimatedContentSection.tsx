@@ -57,7 +57,7 @@ const HeroAnimatedContentSection: FunctionComponent<IProps> = (props) => {
 
             <Grid container item style={{
                 backgroundRepeat: 'no-repeat',
-                backgroundImage: contentSlide?.heroImage ? `url('${sanityContext.urlFor(contentSlide?.heroImage).url() ?? sanityContext.placeholderOrImage(contentSlide?.heroImage, 200, 100)}'), url('${sanityContext.urlFor(contentSlide?.heroImageBackground ?? "").url() ?? sanityContext.placeholderOrImage(contentSlide?.heroImageBackground, 200, 100)}')` : `url('${sanityContext.placeholderOrImage(contentSlide?.heroImage, 500, 700)}')`,
+                backgroundImage: contentSlide?.heroImage ? `url('${sanityContext.placeholderOrImage(contentSlide?.heroImage, 200, 100)}'), url('${sanityContext.placeholderOrImage(contentSlide?.heroImageBackground, 200, 100)}')` : `url('${sanityContext.placeholderOrImage(contentSlide?.heroImage, 500, 700)}')`,
                 backgroundSize: 'cover, contain',
                 backgroundPosition: "center",
                 minHeight: '700px',

@@ -1,14 +1,10 @@
-import {
-    AnimatedAboutUsSectionType, AnimatedServicesSectionType,
-    HeroAnimatedContentSectionType,
-    ResumeBioSectionType
-} from "../../components/BlockContentTypes";
-import HeroAnimatedContentSection from "../../components/animated/HeroAnimatedContentSection";
+import {AnimatedServicesSectionType} from "../../components/BlockContentTypes";
 
-const animatedServicesSectionType:AnimatedServicesSectionType = {
+const animatedServicesSectionType: AnimatedServicesSectionType = {
     ctaButtonLink: "",
     videoUrl: "",
     "videoPreviewImageSrc": undefined,
+    "imagesArray": [],
     "servicesList": [
         {
             "contentText": "There are many variations of passages of lorem Ipsum not simply random\n\n",

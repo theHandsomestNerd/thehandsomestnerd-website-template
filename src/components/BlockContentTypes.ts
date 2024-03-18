@@ -234,6 +234,7 @@ export type AnimatedServicesSectionType = {
     heroBullet?: SanityImageAsset
     contentTitle: string
     contentPreTitle: string
+    imagesArray: SanityImageAsset[]
     contentTexts: string[]
     servicesList: AnimatedServiceItemNoRefType[]
     contentSummaryTitle: string

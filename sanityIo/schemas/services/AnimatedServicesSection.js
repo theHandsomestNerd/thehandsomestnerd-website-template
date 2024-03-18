@@ -29,6 +29,12 @@ export default {
             type: 'array',
             of: [{type: 'text'}]
         },
+        {
+            name: 'imagesArray',
+            title: 'Images Array',
+            type: 'array',
+            of: [{type: 'image'}]
+        },
         // {
         //     name: 'highlightedAmenitiesTitle',
         //     title: 'Highlighted Amenities Title',

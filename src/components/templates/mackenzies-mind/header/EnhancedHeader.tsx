@@ -41,7 +41,7 @@ const EnhancedHeader: FunctionComponent<EnhancedHeaderProps> = (props) => {
                                                                                    noWrap>{props.pageHeader?.ctaButtonText}</Typography></Button>
                     </Grid>
                     {
-                        props.pageHeader.highlightedDetails?.map((detail, index) => <Grid key={index} xs={3} container
+                        props.pageHeader.highlightedDetails?.map((detail, index) => <Grid key={index} xs={3} item container
                                                                                           justifyContent='flex-end'
                                                                                           alignItems='flex-end'
                                                                                           alignContent='flex-end'>

@@ -106,6 +106,7 @@ const MapSection: FunctionComponent<IProps> = (props: IProps) => {
                     props.sectionData?.contactInfo.map((detail: ServiceAmenityType, index) =>
                         <Grid key={index}
                               container
+                              item
                               xs={12}
                               md={3}
                               style={{marginBottom: "16px"}}

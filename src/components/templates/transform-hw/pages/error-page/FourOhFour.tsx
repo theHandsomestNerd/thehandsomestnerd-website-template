@@ -1,7 +1,6 @@
 import {Grid, Typography, useMediaQuery, useTheme} from '@mui/material'
 import React, {FunctionComponent, useContext} from 'react'
 import clsx from "clsx";
-import speakingWithTherapist from "../../../../../assets/speakingWithTherapist.jpg";
 import LoadingButton from "../../../../loading-button/LoadingButton";
 import useCustomStyles from "../../../mackenzies-mind/pages/Styles";
 import {useNavigate} from "react-router-dom";
@@ -11,7 +10,7 @@ import CustomizedThemeContext from "../../../../customized-theme-provider/Custom
 export type AppLayoutProps = {}
 
 const FourOhFour: FunctionComponent<AppLayoutProps> = () => {
-    const classes = useCustomStyles({bgImage: speakingWithTherapist})
+    const classes = useCustomStyles({bgImage: undefined})
     const history = useNavigate()
 
     const theme = useTheme()

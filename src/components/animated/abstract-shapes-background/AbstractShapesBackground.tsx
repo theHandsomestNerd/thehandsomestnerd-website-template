@@ -1,73 +1,66 @@
-import React, {FunctionComponent} from 'react'
-import shape3 from "../../../assets/animated-shapes/services-v1-shape3-dark-blue.png";
-import shape9 from "../../../assets/animated-shapes/services-v1-shape9-dark-blue.png";
-import shape11 from "../../../assets/animated-shapes/services-v1-shape11-dark-blue.png";
-import shape4 from "../../../assets/animated-shapes/services-v1-shape4-cyan.png";
-import shape7 from "../../../assets/animated-shapes/services-v1-shape7-dark-blue.png";
-import shape8 from "../../../assets/animated-shapes/services-v1-shape8-cyan.png";
-import shape5 from "../../../assets/animated-shapes/services-v1-shape5-dark-blue.png";
-import shape2 from "../../../assets/animated-shapes/services-v1-shape2-dark-blue.png";
-import shape6 from "../../../assets/animated-shapes/services-v1-shape6-dark-blue.png";
-import shape10 from "../../../assets/animated-shapes/services-v1-shape10-dark-blue.png";
+import React, {FunctionComponent, useContext} from 'react'
 import {Grid, useTheme} from "@mui/material";
-import makeStyles from "@mui/styles/makeStyles";
 import AnimatedAbstractShape from "./AnimatedAbstractShape";
+import {SanityImageAsset} from '../../BlockContentTypes';
+import SanityContext from '../../../common/sanityIo/sanity-context/SanityContext';
 
-export const useStyles = makeStyles(() => ({
-    root: {},
-}))
+interface IProps {
+    imagesArray: SanityImageAsset[]
+}
 
-const AbstractShapesBackground: FunctionComponent = () => {
+const AbstractShapesBackground: FunctionComponent<IProps> = (props:IProps) => {
     const theme = useTheme()
-    const shape2Variants = {
+    const shape0Variants = {
         onScreen: {top: 0, transition: {duration: .65}},
         offScreen: {top: -440, transition: {duration: .65}}
     };
 
-    const shape3Variants = {
+    const shape1Variants = {
         onScreen: {bottom: -5, transition: {duration: .5}},
         offScreen: {bottom: -500, transition: {duration: .5}}
     };
 
-    const shape4Variants = {
+    const shape2Variants = {
         onScreen: {bottom: -5, transition: {duration: .75}},
         offScreen: {bottom: -300, transition: {duration: .75}}
     };
 
-    const shape5Variants = {
+    const shape3Variants = {
         onScreen: {top: 0, transition: {duration: .65}},
         offScreen: {top: -900, transition: {duration: .65}}
     };
 
-    const shape6Variants = {
+    const shape4Variants = {
         onScreen: {right: 0, top: 0, transition: {duration: .75}},
         offScreen: {right: 0, top: -720, transition: {duration: .75}}
     };
 
-    const shape7Variants = {
+    const shape5Variants = {
         onScreen: {right: 0, top: 0, transition: {duration: 1}},
         offScreen: {right: 0, top: -250, transition: {duration: 1}}
     };
 
-    const shape8Variants = {
+    const shape6Variants = {
         onScreen: {right: 0, top: 0, transition: {duration: .65}},
         offScreen: {right: 0, top: -250, transition: {duration: .65}}
     };
 
-    const shape9Variants = {
+    const shape7Variants = {
         onScreen: {bottom: 0, transition: {duration: .85}},
         offScreen: {bottom: -900, transition: {duration: .85}}
     };
 
-    const shape10Variants = {
+    const shape8Variants = {
+        onScreen: {bottom: 0, transition: {duration: .55}},
+        offScreen: {bottom: -800, transition: {duration: .55}}
+    };
+
+    const shape9Variants = {
         onScreen: {top: 0, right: 0, bottom: 0, transition: {duration: .65}},
         offScreen: {top: -980, right: 0, bottom: 0, transition: {duration: .65}}
     };
 
-    const shape11Variants = {
-        onScreen: {bottom: 0, transition: {duration: .55}},
-        offScreen: {bottom: -800, transition: {duration: .55}}
-    };
+    const sanityContext = useContext(SanityContext)
 
     return (<Grid container item
                   style={{
@@ -78,34 +71,34 @@ const AbstractShapesBackground: FunctionComponent = () => {
                       position: "absolute"
                   }}>
         <Grid item>
-            <AnimatedAbstractShape shapeVariants={shape3Variants} image={shape3}/>
+            <AnimatedAbstractShape shapeVariants={shape1Variants} image={sanityContext.placeholderOrImage(props.imagesArray[1])}/>
         </Grid>
         <Grid item>
-            <AnimatedAbstractShape shapeVariants={shape9Variants} image={shape9} opacity={.35}/>
+            <AnimatedAbstractShape shapeVariants={shape7Variants} image={sanityContext.placeholderOrImage(props.imagesArray[7])} opacity={.35}/>
         </Grid>
         <Grid item>
-            <AnimatedAbstractShape shapeVariants={shape11Variants} image={shape11} opacity={.15}/>
+            <AnimatedAbstractShape shapeVariants={shape8Variants} image={sanityContext.placeholderOrImage(props.imagesArray[8])} opacity={.15}/>
         </Grid>
         <Grid item>
-            <AnimatedAbstractShape shapeVariants={shape4Variants} opacity={.5} image={shape4}/>
+            <AnimatedAbstractShape shapeVariants={shape2Variants} opacity={.5} image={sanityContext.placeholderOrImage(props.imagesArray[2])}/>
         </Grid>
         <Grid item>
-            <AnimatedAbstractShape shapeVariants={shape7Variants} image={shape7}/>
+            <AnimatedAbstractShape shapeVariants={shape5Variants} image={sanityContext.placeholderOrImage(props.imagesArray[5])}/>
         </Grid>
         <Grid item>
-            <AnimatedAbstractShape shapeVariants={shape8Variants} image={shape8} opacity={.35}/>
+            <AnimatedAbstractShape shapeVariants={shape6Variants} image={sanityContext.placeholderOrImage(props.imagesArray[6])} opacity={.35}/>
         </Grid>
         <Grid item>
-            <AnimatedAbstractShape shapeVariants={shape5Variants} image={shape5}/>
+            <AnimatedAbstractShape shapeVariants={shape3Variants} image={sanityContext.placeholderOrImage(props.imagesArray[3])}/>
         </Grid>
         <Grid item>
-            <AnimatedAbstractShape shapeVariants={shape2Variants} image={shape2} opacity={.6}/>
+            <AnimatedAbstractShape shapeVariants={shape0Variants} image={sanityContext.placeholderOrImage(props.imagesArray[0])} opacity={.6}/>
         </Grid>
         <Grid item>
-            <AnimatedAbstractShape shapeVariants={shape6Variants} image={shape6}/>
+            <AnimatedAbstractShape shapeVariants={shape4Variants} image={sanityContext.placeholderOrImage(props.imagesArray[4])}/>
         </Grid>
         <Grid item>
-            <AnimatedAbstractShape shapeVariants={shape10Variants} image={shape10} opacity={.6}/>
+            <AnimatedAbstractShape shapeVariants={shape9Variants} image={sanityContext.placeholderOrImage(props.imagesArray[9])} opacity={.6}/>
         </Grid>
     </Grid>)
 }

@@ -113,20 +113,20 @@ const AnimatedServicesSection: FunctionComponent<IProps> = (props) => {
                         </Grid>
                     </Grid>
                 </Grid>
-                <AbstractShapesBackground/>
+                <AbstractShapesBackground imagesArray={props.sectionData.imagesArray}/>
             </Grid>
             <Grid container item style={{
                 position: "relative",
                 backgroundRepeat: "repeat-x",
                 backgroundSize: "256px",
-                backgroundImage: `url(${sanityContext.urlFor(props.sectionData?.videoPreviewSectionBackgroundImageSrc ?? "").url() ?? sanityContext.placeholderOrImage(props.sectionData?.videoPreviewSectionBackgroundImageSrc, 230, 265)})`
+                backgroundImage: `url(${sanityContext.placeholderOrImage(props.sectionData?.videoPreviewSectionBackgroundImageSrc, 230, 265)})`
             }} justifyContent='center' alignContent='center'>
                 <Grid item container xs={12} justifyContent='center' style={{top: -64, position: "relative"}}>
                     <Grid item xs={12} sm={10} sx={{height: "100%", position: "relative"}}
                     >
                         <img height="100%" width="100%"
 
-                             src={sanityContext.urlFor(props.sectionData?.videoPreviewImageSrc ?? "").url() ?? sanityContext.placeholderOrImage(props.sectionData?.videoPreviewImageSrc, 300, 500)}/>
+                             src={sanityContext.placeholderOrImage(props.sectionData?.videoPreviewImageSrc, 300, 500)}/>
 
                     </Grid>
                 </Grid>

@@ -4,6 +4,7 @@ import {ArrowRightAlt} from "@mui/icons-material";
 import {AnimatedPortfolioItemType} from "../BlockContentTypes";
 import {motion, useAnimationControls} from 'framer-motion';
 import SanityContext from "../../common/sanityIo/sanity-context/SanityContext";
+import {v4 as uuidv4} from 'uuid'
 
 
 interface IProps { portfolioItem?:AnimatedPortfolioItemType, action:(item:AnimatedPortfolioItemType|undefined)=>void }
@@ -27,6 +28,7 @@ const AnimatedPortfolioItem: FunctionComponent<IProps> = (props:IProps) => {
 
     return (<Grid
                   role='portfoliobutton'
+                  key={uuidv4()}
                   container item xs={12} md={6} lg={4} alignContent='flex-start'
                   justifyContent='center' overflow='hidden' borderRadius={theme.shape.borderRadius}>
         <motion.div initial={{scale:1}} animate={controls} style={{width: "100%"}} onHoverStart={async () => {
@@ -34,7 +36,7 @@ const AnimatedPortfolioItem: FunctionComponent<IProps> = (props:IProps) => {
         }} onHoverEnd={async () => {
             animateServiceNoHover()
         }}><Button style={{
-            backgroundImage: `url(${sanityContext.urlFor(props.portfolioItem?.coverImage ?? "").url() ?? sanityContext.placeholderOrImage(props.portfolioItem?.coverImage,300, 250)})`,
+            backgroundImage: `url(${sanityContext.placeholderOrImage(props.portfolioItem?.coverImage,300, 250)})`,
             backgroundSize: "cover",
             backgroundPosition: "top center",
             backgroundRepeat: "no-repeat",

@@ -75,7 +75,7 @@ const AnimatedPortfolioSection: FunctionComponent<IProps> = (props: IProps) => {
                         overflowY: "scroll",
                     }} spacing={1}>
                         <Grid container item sx={{
-                            backgroundImage: `url(${sanityContext.urlFor(currentItem?.coverImage ?? "").url() ?? ""})`,
+                            backgroundImage: `url(${sanityContext.placeholderOrImage(currentItem?.coverImage)})`,
                             backgroundSize: "cover",
                             backgroundPosition: "top center",
                             backgroundRepeat: "no-repeat",
@@ -90,7 +90,7 @@ const AnimatedPortfolioSection: FunctionComponent<IProps> = (props: IProps) => {
                         <Grid item container><Typography variant='h3'>{currentItem?.detailTitle}</Typography>
                         </Grid>
                         <Grid item container spacing={1}>
-                            {currentItem?.skillsHighlighted?.map((skill) => (<Grid item>
+                            {currentItem?.skillsHighlighted?.map((skill, index:number) => (<Grid item key={index}>
                                 <Chip color='primary' label={skill.title}/>
                             </Grid>))}
                         </Grid>
@@ -98,10 +98,10 @@ const AnimatedPortfolioSection: FunctionComponent<IProps> = (props: IProps) => {
                             variant='body1'>{currentItem?.detailDescription}</Typography></Grid>
                         <Grid item container justifyContent='center'>
                             <Grid item container justifyContent='center'>
-                                {currentItem?.imageGallery?.map((image) => (
-                                    <Grid item container xs={11} justifyContent='center'>
-                                        <Grid item>
-                                            <img alt={'imageGalleryEntry'} src={sanityContext.urlFor(image ?? "").url() ?? ""}
+                                {currentItem?.imageGallery?.map((image,index:number) => (
+                                    <Grid item container xs={11} justifyContent='center' key={index}>
+                                        <Grid item key={index}>
+                                            <img alt={'imageGalleryEntry'} src={sanityContext.placeholderOrImage(image) ?? ""}
                                                  width={"100%"}/>
                                         </Grid>
                                     </Grid>))}
