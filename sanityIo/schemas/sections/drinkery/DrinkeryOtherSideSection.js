@@ -19,6 +19,11 @@ export default {
             type: 'string',
         },
         {
+            name: 'imageSrc',
+            title: 'The First Image',
+            type: 'image',
+        },
+        {
             name: 'isLogo',
             title: 'Show Logo in this section',
             type: 'boolean',

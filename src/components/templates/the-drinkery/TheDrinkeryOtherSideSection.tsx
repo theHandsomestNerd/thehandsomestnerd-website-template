@@ -3,11 +3,11 @@ import {Button, Grid, Typography, useTheme} from '@mui/material'
 import clsx from "clsx";
 import useCustomStyles from "../mackenzies-mind/pages/Styles";
 import TheOtherSideLogo from "./TheOtherSideLogo";
-import openDoorSign from '../../../assets/Shutterstock_1025370412.png'
 import {DrinkeryOtherSideSectionType} from "../../BlockContentTypes";
 import {Theme} from "@mui/material/styles";
 import makeStyles from '@mui/styles/makeStyles';
 import PageContext from '../../page-context/PageContext';
+import SanityContext from '../../../common/sanityIo/sanity-context/SanityContext';
 
 interface IProps {
     sectionData: DrinkeryOtherSideSectionType
@@ -27,6 +27,7 @@ const TheDrinkeryOtherSideSection: FunctionComponent<IProps> = (props) => {
     const theClasses = useStyles()
     const theme = useTheme()
     const pageContext = useContext(PageContext)
+    const sanityContext = useContext(SanityContext)
 
     return (
         <Grid container className={theClasses.preroot}>
@@ -49,7 +50,7 @@ const TheDrinkeryOtherSideSection: FunctionComponent<IProps> = (props) => {
                                                 marginTop: theme.spacing(2),
                                                 width: "200px",
                                                 height: "200px",
-                                                backgroundImage: `url(${openDoorSign})`,
+                                                backgroundImage: `url(${sanityContext.placeholderOrImage(props.sectionData.imageSrc, 200, 200)})`,
                                                 backgroundSize: "contain",
                                                 backgroundPosition: "center",
                                                 backgroundRepeat: "no-repeat"

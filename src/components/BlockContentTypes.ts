@@ -717,6 +717,7 @@ export type DrinkeryOtherSideSectionType = {
     description: string
     isLogo?: boolean
     theLiquors?: string[]
+    imageSrc?: SanityImageAsset
     // contentTexts: string[],
     // teamList: TeamMember[],
 }
