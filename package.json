@@ -1,6 +1,6 @@
 {
   "name": "the-handsomestnerd-internal",
-  "version": "0.9.257",
+  "version": "0.9.270",
   "files": [
     "dist",
     "README.md"
@@ -71,7 +71,7 @@
     "build-web": "tsc && react-scripts build",
     "build-publish": "npm run build && npm publish",
     "build:esm": "tsc",
-    "build:assets": "cp -r src/assets dist/cjs && cp -r src/assets dist/esm",
+    "build:assets": "cp src/logo.png dist/cjs && cp src/logo.png dist/esm",
     "build:fonts": "cp -r src/fonts dist/cjs && cp -r src/fonts dist/esm",
     "build:cjs": "tsc --module commonjs --outDir dist/cjs",
     "build-npm": "rm -rf dist && NODE_ENV=production babel src --out-dir dist --copy-files",

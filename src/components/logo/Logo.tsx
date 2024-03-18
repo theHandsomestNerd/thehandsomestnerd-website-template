@@ -2,7 +2,7 @@ import React, {FunctionComponent, useContext} from 'react'
 import makeStyles from '@mui/styles/makeStyles';
 import {Grid} from '@mui/material'
 import {SanityImageSource} from "@sanity/asset-utils";
-import logoImg from '../../assets/thehandsomestNerdlogo-small.png'
+import logoImg from '../../logo.png'
 import AlternatingText from './AlternatingText';
 import SanityContext from "../../common/sanityIo/sanity-context/SanityContext";
 
@@ -13,7 +13,7 @@ interface CssProps {
 
 export const useStyles = makeStyles(() => ({
     imageRoot: (props: CssProps) => ({
-        backgroundImage: `url('${props.logoImageSrc ? props.logoImageSrc : logoImg}')`,
+        backgroundImage: `url('${props.logoImageSrc}')`,
         backgroundSize: "contain",
         backgroundRepeat: "no-repeat",
         minWidth: "100px",
@@ -41,7 +41,7 @@ interface LogoProps {
 const Logo: FunctionComponent<LogoProps> = (props) => {
     const sanityContext = useContext(SanityContext)
 
-    const classes = useStyles({logoImageSrc: sanityContext.urlFor(props.logoImageSrc)?.url(), height: props.height})
+    const classes = useStyles({logoImageSrc: props.logoImageSrc?sanityContext.placeholderOrImage(props.logoImageSrc):logoImg, height: props.height})
 
     return !props.logoText ?
         <Grid item container className={classes.imageRoot}
