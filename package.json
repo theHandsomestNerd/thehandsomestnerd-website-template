@@ -1,6 +1,6 @@
 {
   "name": "the-handsomestnerd-internal",
-  "version": "0.9.224",
+  "version": "0.9.239",
   "files": [
     "dist",
     "README.md"
@@ -67,10 +67,12 @@
     "start": "NODE_ENV=production react-scripts start",
     "start:debug": "yarn build:dev && NODE_ENV=development serve -s build",
     "start:dev": "NODE_ENV=development react-scripts start",
-    "build": "npm run build:esm && npm run build:cjs",
+    "build": "npm run build:esm && npm run build:cjs && npm run build:assets && npm run build:fonts",
     "build-web": "tsc && react-scripts build",
     "build-publish": "npm run build && npm publish",
     "build:esm": "tsc",
+    "build:assets": "cp -r src/assets dist/cjs && cp -r src/assets dist/esm",
+    "build:fonts": "cp -r src/fonts dist/cjs && cp -r src/fonts dist/esm",
     "build:cjs": "tsc --module commonjs --outDir dist/cjs",
     "build-npm": "rm -rf dist && NODE_ENV=production babel src --out-dir dist --copy-files",
     "build:dev": " NODE_ENV=development tsc --build && react-scripts build && cd functions && npm run build",

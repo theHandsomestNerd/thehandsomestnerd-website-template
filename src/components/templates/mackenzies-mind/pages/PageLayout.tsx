@@ -72,10 +72,10 @@ const PageLayout: FunctionComponent<IProps> = (props: IProps) => {
                   alignItems='center'
                   style={{
                       backgroundColor: "white",
-                      position: "static",
+                      position: "sticky",
                       bottom: 0,
                       zIndex: 10,
-                      padding: theme.spacing(1, 3, .5)
+                      padding: theme.spacing(.5, 3, .5)
                   }}
                 // xs={11}
             >

@@ -768,3 +768,7 @@ export type HolidayHeadlineSectionType = {
     holidayIconRight?: SanityImageAsset
 }
 
+export type ListSectionType = {
+    textListItems: string[]
+}
+

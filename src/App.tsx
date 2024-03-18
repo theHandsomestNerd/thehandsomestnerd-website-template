@@ -10,7 +10,6 @@ import SnackbarProvider from "./components/modal-context/SnackbarProvider";
 import PageMux from "./components/templates/mackenzies-mind/pages/PageMux";
 import CustomizedThemeProvider from "./components/customized-theme-provider/CustomizedThemeProvider";
 import {queryClient} from "./queryClient";
-import DJSpadesRulesContentSection from "./components/dj-40-spades-rules/41AcresSpadesContentSection";
 import FirebaseContext from "./common/firebase/firebase-context/FirebaseContext";
 import SanityContext from "./common/sanityIo/sanity-context/SanityContext";
 import AppSettingsProvider from "./components/templates/anybody-walking/app-settings/AppSettingsProvider";
@@ -94,12 +93,14 @@ const App: FunctionComponent<IProps & PropsWithChildren> = (props) => {
                                                   width: "100vw"
                                               }} justifyContent='center'>
 
-                                            <Grid item>
+                                            <Grid item style={{
+                                                overflow: "hidden",
+                                            }}>
                                                 <Routes>
-                                                    <Route path={"/DJs-40th-spades-rules"}
-                                                           element={<DJSpadesRulesContentSection/>}/>
+                                                    {/*<Route path={"/DJs-40th-spades-rules"}*/}
+                                                    {/*       element={<DJSpadesRulesContentSection/>}/>*/}
                                                     <Route
-                                                        path={"/" + props.react_app_base_route + "/:pageSlug" + "/:documentType" + "/:documentSlug"}
+                                                        path={"/" + props.react_app_base_route + "/:pageSlug/:documentType/:documentSlug"}
                                                         element={<PageMux baseRoute={props.react_app_base_route}/>}/>
                                                     <Route path={"/" + props.react_app_base_route + "/:pageSlug"}
                                                            element={<PageMux baseRoute={props.react_app_base_route}/>}/>

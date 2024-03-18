@@ -9,7 +9,7 @@ import {
     FlashCardSectionType,
     HeadlineCTASectionType,
     HeroAnimatedContentSectionType, HolidayHeadlineSectionType,
-    HowItWorksSectionType,
+    HowItWorksSectionType, ListSectionType,
     MapSectionType,
     PortfolioSectionType,
     PricingSectionType,
@@ -82,6 +82,7 @@ import AWBallSummarySection from "./templates/anybody-walking/AWBallSummarySecti
 import BallToolsSection from "./templates/anybody-walking/BallToolsSection";
 import AWNewHouseFormSection from "./templates/anybody-walking/AWNewHouseFormSection";
 import AWContactUs from "./templates/anybody-walking/AWContactUs";
+import DJSpadesRulesContentSection from "./dj-40-spades-rules/41AcresSpadesContentSection";
 
 export type BlockContentLayoutContainerProps = {
     content?: any,
@@ -586,6 +587,12 @@ const BlockContentLayoutContainer: FunctionComponent<BlockContentLayoutContainer
 
                         return <Grid key={'aw-ball-section'} container item xs={12} justifyContent='center'>
                             <AWSingleBallPageSection sectionData={awSingleBallPageSection}/>
+                        </Grid>
+                    case 'SimpleStringListSection':
+                        const simpleStringListSection: ListSectionType = columnLayoutContainer
+
+                        return <Grid key={'spades-rules-list'} container item xs={12} justifyContent='center'>
+                            <DJSpadesRulesContentSection sectionData={simpleStringListSection}/>
                         </Grid>
                     case 'ContactUs':
                         const awContactUsSection: SanityContactUs = columnLayoutContainer

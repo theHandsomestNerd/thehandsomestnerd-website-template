@@ -34,16 +34,16 @@ export default {
                     to: [{type: 'FlashCardSection'}]
                 },
                 {
+                    name: 'SimpleTextListSection',
+                    title: 'Simple Text List Section',
+                    type: 'reference',
+                    to: [{type: 'SimpleStringListSection'}]
+                },
+                {
                     name: 'AWBallSection',
                     title: 'AW Ball Section',
                     type: 'reference',
                     to: [{type: 'AWBallSection'}]
-                },
-                {
-                    name: 'AWBallToolsSection',
-                    title: 'AW Ball Tools Section',
-                    type: 'reference',
-                    to: [{type: 'AWBallToolsSection'}]
                 },
                 {
                     name: 'AWBallToolsSection',

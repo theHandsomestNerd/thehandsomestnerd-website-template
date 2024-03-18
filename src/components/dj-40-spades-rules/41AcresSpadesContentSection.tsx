@@ -1,8 +1,10 @@
-import React, {FunctionComponent} from 'react'
+import React, {FunctionComponent, useContext} from 'react'
 import makeStyles from "@mui/styles/makeStyles";
 import {Theme} from "@mui/material/styles";
-import {Grid, Typography} from "@mui/material";
-import cardsBg from '../../assets/cardsbg.png'
+import {Grid, List, ListItem, ListItemText, Typography} from "@mui/material";
+import {ListSectionType} from "../BlockContentTypes";
+import SanityContext from '../../common/sanityIo/sanity-context/SanityContext';
+import PageContext from '../page-context/PageContext';
 
 
 export const useStyles = makeStyles((theme: Theme) => ({
@@ -17,31 +19,19 @@ export const useStyles = makeStyles((theme: Theme) => ({
     }
 }))
 
-const DJSpadesRulesContentSection: FunctionComponent = () => {
-    const theRules = [
-        "Largest Diamond Starts the Game.",
-        "Joker(Large/Color), Joker (Guaranteed), Deuce of Diamonds, Deuce of Spades",
-        "First hand Bids Itself",
-        "First Hand set, game continues(must play, 10s do not double, doesn't count as a set)",
-        "Board is 4",
-        "Double your bid, you go back 100",
-        "3 Books for a renig, one chance to call",
-        "1 Blind, must be down 100/ 6 is the minimum(if set, it doesnt count. Its a welfare.",
-        "2 sets = Game",
-        "Collective bid of 10 or less is books made; Bid increase only by 1 (9 is a number)",
-        "Straight cut. (2 chops max). Straight deal.",
-        "Spades lead anytime.",
-        "2 min dog(must set timer, then call)",
-        "No spades(hands 2-13) option to toss",
-        "No talking across the board",
-        "RESPECT OUR HOME",
-        "Any and all debates are settled by 41 Acres",
-    ]
+interface IProps {
+    sectionData: ListSectionType
+}
+
+const DJSpadesRulesContentSection: FunctionComponent<IProps> = (props: IProps) => {
+    const sanityContext = useContext(SanityContext)
+    const pageContext = useContext(PageContext)
+
     return (
         <Grid container item
-              style={{overflow: 'hidden', height: "100vh", width: "100vw", backgroundColor: "#19468D", color: "white", position: "relative", zIndex: 2, border:"3px solid white", padding: "16px", overflowX:"scroll"}}>
+              style={{ width: "100vw", backgroundColor: "#19468D", color: "white", position: "relative", zIndex: 2, border:"3px solid white", padding: "16px"}}>
             <Grid container item
-                  style={{height: "100%", width: "100%", backgroundSize: "cover", backgroundImage: `url('${cardsBg}')`, opacity: .1, position: "absolute", zIndex: 1}}>
+                  style={{height: "100%", width: "100%", backgroundSize: "cover", backgroundImage: `url('${sanityContext.urlFor(pageContext.page?.backgroundImageSrc).url() ?? ""}')`, opacity: .1, position: "absolute", zIndex: 1}}>
 
             </Grid>
             <Grid container item style={{zIndex: 2}} justifyContent='center'>
@@ -50,16 +40,15 @@ const DJSpadesRulesContentSection: FunctionComponent = () => {
                     <Typography variant='h3'>Spades Rules - DJ's 40th edition</Typography>
                 </Grid>
                 <Grid container item spacing={1} justifyContent='center' sx={{maxWidth:"550px"}}>
-                    <ol>
-
+                    <List sx={{ listStyle: "decimal", paddingLeft: 4 }}>
                         {
-                            theRules.map((aRule, index) => {
-                                return <li style={{marginBottom: "8px"}} key={index}><Typography
-                                    variant='body1'>{aRule}</Typography>
-                                </li>
+                            props.sectionData.textListItems.map((aRule:string, index:number) => {
+                                return <ListItem sx={{ display: "list-item" }} key={index}>
+                                    <ListItemText primary={aRule} />
+                                </ListItem>
                             })
                         }
-                    </ol>
+                    </List>
                 </Grid>
             </Grid>
 
