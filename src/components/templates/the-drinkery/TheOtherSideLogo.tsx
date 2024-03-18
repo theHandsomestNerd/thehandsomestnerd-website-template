@@ -1,8 +1,8 @@
-import React, {FunctionComponent} from 'react'
+import React, {FunctionComponent, useContext} from 'react'
 import makeStyles from '@mui/styles/makeStyles';
 import {Grid} from '@mui/material'
 import {SanityImageSource} from "@sanity/asset-utils";
-import logoImg from '../../../assets/drinkery-logo.png'
+import SanityContext from '../../../common/sanityIo/sanity-context/SanityContext';
 
 
 interface CssProps {
@@ -12,7 +12,7 @@ interface CssProps {
 
 export const useStyles = makeStyles(() => ({
     root: (props: CssProps) => ({
-        backgroundImage: `url(${logoImg})`,
+        backgroundImage: `url(${props.logoImageSrc})`,
         backgroundSize: "contain",
         backgroundRepeat: "no-repeat",
         minWidth: "100px",
@@ -28,8 +28,11 @@ interface LogoProps {
     isCenter?: boolean
 }
 
+
+
 const TheOtherSideLogo: FunctionComponent<LogoProps> = (props) => {
-    const classes = useStyles({logoImageSrc: props.logoImageSrc, height: props.height})
+    const sanityContext = useContext(SanityContext)
+    const classes = useStyles({logoImageSrc: sanityContext.placeholderOrImage(props.logoImageSrc, 732, 192), height: props.height})
 
     return (
         <Grid item container className={classes.root} style={{backgroundPosition: props.isCenter ? "center" : "left"}}/>

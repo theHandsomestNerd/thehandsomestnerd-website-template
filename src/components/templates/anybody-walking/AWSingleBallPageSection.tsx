@@ -5,7 +5,6 @@ import {Theme} from "@mui/material/styles";
 import {Grid} from "@mui/material";
 import clsx from "clsx";
 import useCustomStyles from "../mackenzies-mind/pages/Styles";
-import bgImage from "../../../assets/drinkery-background.jpg";
 import PageContext from '../../page-context/PageContext';
 import BallPage from './ball-page/BallPage';
 import {AWSingleBallSectionType} from "./ballroomTypes";
@@ -26,7 +25,7 @@ interface IProps {
 }
 
 const AWSingleBallPageSection: FunctionComponent<IProps> = (props: IProps) => {
-    const classes = useCustomStyles({bgImage: bgImage})
+    const classes = useCustomStyles({bgImage: undefined})
     const theClasses = useStyles()
 
     const pageContext = useContext(PageContext)

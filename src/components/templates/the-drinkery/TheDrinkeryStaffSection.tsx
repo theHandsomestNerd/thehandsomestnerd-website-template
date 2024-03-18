@@ -2,7 +2,6 @@ import React, {FunctionComponent, useContext} from 'react'
 import {Avatar, Grid, Typography, useTheme} from '@mui/material'
 import clsx from "clsx";
 import useCustomStyles from "../mackenzies-mind/pages/Styles";
-// import bgImage from "./drinkery-background.jpg"
 import {TeamSectionType} from "../../BlockContentTypes";
 import makeStyles from "@mui/styles/makeStyles";
 import SanityContext from "../../../common/sanityIo/sanity-context/SanityContext";

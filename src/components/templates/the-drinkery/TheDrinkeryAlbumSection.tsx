@@ -67,7 +67,7 @@ const TheDrinkeryAlbumSection: FunctionComponent<IProps> = (props) => {
         <Grid container className={theClasses.preroot}
               style={{color: "white"}} spacing={1}>
             {props.sectionData.isLogo && <Grid container item justifyContent='center'>
-                <TheOtherSideLogo isCenter={true}></TheOtherSideLogo>
+                <TheOtherSideLogo isCenter={true} logoImageSrc={pageContext.page?.businessCardImageSrc}></TheOtherSideLogo>
             </Grid>}
             <Grid item container
                   justifyContent='center' alignItems='center' spacing={2}>

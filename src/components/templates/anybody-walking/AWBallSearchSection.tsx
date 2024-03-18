@@ -4,7 +4,6 @@ import makeStyles from "@mui/styles/makeStyles";
 import {Fab, Grid, Typography} from "@mui/material";
 import clsx from "clsx";
 import useCustomStyles from "../mackenzies-mind/pages/Styles";
-import bgImage from "../../../assets/drinkery-background.jpg";
 import BallSearchContext from "./ball-search-context/BallSearchContext";
 import AppSettingsContext from './app-settings/AppSettingsContext';
 import {useNavigate} from "react-router-dom";
@@ -46,7 +45,7 @@ const BallSearchProviderWrapper: FunctionComponent<PropsWithChildren<{
 }
 
 const AWBallSearchSection: FunctionComponent<IProps> = (props: IProps) => {
-    const classes = useCustomStyles({bgImage: bgImage})
+    const classes = useCustomStyles({bgImage: undefined})
 
     const navigate = useNavigate()
     const theClasses = useStyles()

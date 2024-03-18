@@ -1,13 +1,13 @@
-import React, {FunctionComponent} from 'react'
+import React, {FunctionComponent, useContext} from 'react'
 import {Button, Grid, Typography, useTheme} from '@mui/material'
 import clsx from "clsx";
 import useCustomStyles from "../mackenzies-mind/pages/Styles";
-import bgImage from "../../../assets/drinkery-background.jpg"
 import TheOtherSideLogo from "./TheOtherSideLogo";
 import openDoorSign from '../../../assets/Shutterstock_1025370412.png'
 import {DrinkeryOtherSideSectionType} from "../../BlockContentTypes";
 import {Theme} from "@mui/material/styles";
 import makeStyles from '@mui/styles/makeStyles';
+import PageContext from '../../page-context/PageContext';
 
 interface IProps {
     sectionData: DrinkeryOtherSideSectionType
@@ -23,9 +23,10 @@ export const useStyles = makeStyles((theme: Theme) => ({
 
 
 const TheDrinkeryOtherSideSection: FunctionComponent<IProps> = (props) => {
-    const classes = useCustomStyles({bgImage: bgImage})
+    const classes = useCustomStyles({bgImage: undefined})
     const theClasses = useStyles()
     const theme = useTheme()
+    const pageContext = useContext(PageContext)
 
     return (
         <Grid container className={theClasses.preroot}>
@@ -36,7 +37,7 @@ const TheDrinkeryOtherSideSection: FunctionComponent<IProps> = (props) => {
                         <Grid container item spacing={2}>
                             <Grid item container>
                                 {props.sectionData.isLogo && <Grid container item justifyContent='center'>
-                                    <TheOtherSideLogo isCenter={true}></TheOtherSideLogo>
+                                    <TheOtherSideLogo isCenter={true} logoImageSrc={pageContext.page?.businessCardImageSrc}></TheOtherSideLogo>
                                 </Grid>}
                                 <Grid container item justifyContent='center'>
                                     <Typography variant='h5'>{props.sectionData.contentTitle}</Typography>

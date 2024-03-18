@@ -1,13 +1,13 @@
 import React, {FunctionComponent, useContext} from 'react'
 import clsx from "clsx";
 import useCustomStyles from "../mackenzies-mind/pages/Styles";
-import bgImage from "../../../assets/drinkery-background.jpg"
 import TheOtherSideLogo from "./TheOtherSideLogo";
 import {DrinkerySpecialsSectionType} from "../../BlockContentTypes";
 import makeStyles from "@mui/styles/makeStyles";
 import {Theme} from "@mui/material/styles";
 import {Grid, Typography, useTheme} from "@mui/material";
 import SanityContext from "../../../common/sanityIo/sanity-context/SanityContext";
+import PageContext from '../../page-context/PageContext';
 
 interface IProps {
     email?: string
@@ -24,18 +24,18 @@ export const useStyles = makeStyles((theme: Theme) => ({
 }))
 
 const TheDrinkerySpecials: FunctionComponent<IProps> = (props) => {
-    const classes = useCustomStyles({bgImage: bgImage})
+    const classes = useCustomStyles({bgImage: undefined})
     const theme = useTheme()
     const theClasses = useStyles()
     const sanityContext = useContext(SanityContext)
-
+const pageContext = useContext(PageContext)
     return (
         <Grid container item className={theClasses.preroot}>
             <Grid item container className={clsx(classes.fullSection)}
                   justifyContent='center' alignItems='center'>
                 <Grid item container spacing={1}>
                     <Grid container item justifyContent='center'>
-                        <TheOtherSideLogo isCenter={true}></TheOtherSideLogo>
+                        <TheOtherSideLogo isCenter={true} logoImageSrc={pageContext.page?.businessCardImageSrc}></TheOtherSideLogo>
                     </Grid>
                     <Grid container item justifyContent='center'>
                         <img
