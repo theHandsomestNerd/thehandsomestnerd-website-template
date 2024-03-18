@@ -80,6 +80,10 @@ Component Library that serves as a website builder using React Components
 * go to web-client directory
   * Modify files in web-client for your project and latest version of the-handsomest-nerd-internal component library
   * ```npm start```
+  * stop the server
+  * ```npm run build:assets```
+  * Restart the server
+    * ```npm start```
   * navigate to http://localhost:1234/
 #### Functions
 * ```npm serve```
@@ -98,6 +102,8 @@ Component Library that serves as a website builder using React Components
 #### Build web client
 * update web-client package.json with latest version of the-handsomest-nerd-internal
 * ```npm install && npm start```
+* stop the server
+* ```npm run build:assets```
 * you can stop the server(this step is just to the get dist dir in the client since this is needed for deploying functions which is the server side code)
 #### Then Build Functions
 * ```cd functions```
