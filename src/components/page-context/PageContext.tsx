@@ -20,7 +20,7 @@ export type PageContextType = {
     baseRoute?: string
     updateGoogleApiKey?: (apiKey:string) => void
     googleMapsApiKey?: string
-
+    barInventorySlug?:string
     // setBaseRoute?: any
 };
 

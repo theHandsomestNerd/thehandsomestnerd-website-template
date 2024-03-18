@@ -1,10 +1,11 @@
 import React, {FunctionComponent, useContext, useState} from 'react'
 import {Button, CircularProgress, Divider, Drawer, Grid, List, ListItem,} from "@mui/material";
 import {makeStyles} from "@mui/styles";
-import {MainMenuAnchorType} from "../../../common/sanityIo/Types";
+import {MainMenuAnchorType, SanityBarInventoryType} from "../../../common/sanityIo/Types";
 import LiquorBarFilter from "./LiquorBarFilter";
 import {Close, FilterList} from "@mui/icons-material";
 import SanityContext from "../../../common/sanityIo/sanity-context/SanityContext";
+import PageContext from '../../page-context/PageContext';
 
 
 const useStyles = makeStyles(() => ({
@@ -33,6 +34,10 @@ const FiltersMenu: FunctionComponent<MainMenuProps> = ({anchor}) => {
     const [isDrawerOpen, setIsDrawerOpen] = useState<boolean>()
     const sanityContext = useContext(SanityContext)
 
+    const [isBarIngredientsLoading, setIsBarIngredientsLoading] = React.useState<boolean>(false)
+    const [myBarIngredients, setMyBarIngredients] = React.useState<SanityBarInventoryType[]>([])
+
+
     const toggleDrawer = (_anchor: MainMenuAnchorType, open: boolean) => (event: any) => {
         if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
             return;
@@ -40,9 +45,22 @@ const FiltersMenu: FunctionComponent<MainMenuProps> = ({anchor}) => {
 
         setIsDrawerOpen(open);
     };
+    const pageContext = useContext(PageContext)
 
+    React.useEffect(() => {
+        setIsBarIngredientsLoading(true)
 
-    const {data, isLoading} = sanityContext.useFetchMyBarIngredients()
+        sanityContext.fetchMyBarIngredients(pageContext.barInventorySlug)
+            .then((barIngredientResponse: SanityBarInventoryType[]) => {
+                setMyBarIngredients(barIngredientResponse)
+            })
+            .catch((e: any) => {
+                console.log(`ERROR loading bar ingredients: config - barInventorySlug: ${pageContext.barInventorySlug}`, e)
+            })
+            .finally(() => {
+                setIsBarIngredientsLoading(false)
+            })
+    }, [])
 
     const list = () => (
         <Grid xs={12} container item
@@ -66,7 +84,7 @@ const FiltersMenu: FunctionComponent<MainMenuProps> = ({anchor}) => {
                     {/*    </Grid>*/}
                     {/*</ListItem>*/}
                     <ListItem>
-                        {data && <LiquorBarFilter entireBar={data}/>}
+                        {myBarIngredients && <LiquorBarFilter entireBar={myBarIngredients}/>}
                     </ListItem>
                     <Divider/>
                 </List>
@@ -136,7 +154,7 @@ const FiltersMenu: FunctionComponent<MainMenuProps> = ({anchor}) => {
                     }}><Close color='primary' fontSize='large'/></Button></Grid>
                 </Grid>
                 <Grid container item justifyContent='center'>
-                    {isLoading ? <Grid container item justifyContent='center'>
+                    {isBarIngredientsLoading ? <Grid container item justifyContent='center'>
                         <Grid
                             item>
                             <CircularProgress/>

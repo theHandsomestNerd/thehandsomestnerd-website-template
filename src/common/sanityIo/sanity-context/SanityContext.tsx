@@ -45,7 +45,8 @@ export type SanityContextType = {
     useFetchFilteredCocktails?: any,
     useFetchSearchedCocktails?: any,
     getProduct?: any,
-    useFetchMyBarIngredients?: any,
+    // useFetchMyBarIngredients?: any,
+    fetchMyBarIngredients?: any,
     useFetchMyFilteredIngredients?: any,
     useFetchMyCocktails?: any,
     getMyProduct?: any

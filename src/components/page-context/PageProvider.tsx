@@ -9,6 +9,7 @@ import SanityContext from "../../common/sanityIo/sanity-context/SanityContext";
 type IProps = {
     page?: SanityTransformHwHomePage
     googleApiKey?: string
+    barInventorySlug?: string
 };
 
 type PageProviderState = {
@@ -26,6 +27,7 @@ type PageProviderState = {
     documentSlug?: string
     baseRoute?: string
     googleMapsApiKey?: string
+    barInventorySlug?: string
 }
 
 const initialState: PageProviderState = {
@@ -40,7 +42,9 @@ const initialState: PageProviderState = {
     pageFooter: undefined,
     analyticsId: uuidv4().toString(),
     baseRoute: "",
-    googleMapsApiKey: ""
+    googleMapsApiKey: "",
+    barInventorySlug: ""
+
 };
 
 const reducer = (state: PageProviderState, action: any) => {
@@ -68,10 +72,15 @@ const reducer = (state: PageProviderState, action: any) => {
                 baseRoute: action.payload.baseRoute,
             };
         case 'SET_GOOGLE_MAPS_API_KEY':
-            console.log(`in page context provider/reducer update the google maps key ${action.payload.googleMapsApiKey}`)
             return {
                 ...state,
                 googleMapsApiKey: action.payload.googleMapsApiKey,
+            };
+        case 'SET_BAR_INVENTORY_SLUG':
+            console.log(`in page context provider/reducer update the bar inventory slug ${action.payload.barInventorySlug}`)
+            return {
+                ...state,
+                barInventorySlug: action.payload.barInventorySlug,
             };
         case 'LOAD_PAGE_COMPONENTS':
             return {
@@ -144,14 +153,27 @@ const PageProvider: FunctionComponent<IProps & PropsWithChildren> = (
 
     React.useEffect(() => {
         if (props.googleApiKey) {
-            dispatch({
-                type: "SET_GOOGLE_MAPS_API_KEY",
-                payload: {
-                    googleMapsApiKey: props.googleApiKey,
-                }
-            })
+            updateGoogleApiKey(props.googleApiKey)
+            // dispatch({
+            //     type: "SET_GOOGLE_MAPS_API_KEY",
+            //     payload: {
+            //         googleMapsApiKey: props.googleApiKey,
+            //     }
+            // })
         }
     }, [props.googleApiKey])
+
+    React.useEffect(() => {
+        if (props.barInventorySlug) {
+            updateBarInventorySlug(props.barInventorySlug)
+            // dispatch({
+            //     type: "SET_BAR_INVENTORY_SLUG",
+            //     payload: {
+            //         barInventorySlug: props.barInventorySlug,
+            //     }
+            // })
+        }
+    }, [props.barInventorySlug])
 
     React.useEffect(() => {
         if (props.page && !state.page) {
@@ -219,6 +241,15 @@ const PageProvider: FunctionComponent<IProps & PropsWithChildren> = (
             type: "SET_GOOGLE_MAPS_API_KEY",
             payload: {
                 googleMapsApiKey: apiKey,
+            }
+        })
+    }
+
+    const updateBarInventorySlug = (barInventorySlug: string) => {
+        dispatch({
+            type: "SET_BAR_INVENTORY_SLUG",
+            payload: {
+                barInventorySlug: barInventorySlug,
             }
         })
     }

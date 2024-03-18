@@ -108,7 +108,7 @@ type IProps = {
     getSanityUserRef?: any,
     createContactUs?: any
 
-    fetchDocumentByTypeAndSlugQuery?:any
+    fetchDocumentByTypeAndSlugQuery?: any
     getSanityDocumentRef?: (sanityId: string) => SanityRef
 };
 
@@ -596,7 +596,7 @@ const SanityProvider: FunctionComponent<IProps & PropsWithChildren> = (
         const menuId = headerMenuRef?._ref ?? ['no-id']
 
         return useQuery(
-        // @ts-ignore
+            // @ts-ignore
             [...menuId],
             () => {
                 return theSanityClient
@@ -951,7 +951,7 @@ const SanityProvider: FunctionComponent<IProps & PropsWithChildren> = (
     }
 
     const urlFor = (source: SanityImageSource) => {
-        if(!source){
+        if (!source) {
             return undefined
         }
         return builder?.image(source)
@@ -1047,25 +1047,32 @@ const SanityProvider: FunctionComponent<IProps & PropsWithChildren> = (
         );
     }
 
-    const useFetchMyBarIngredients = () => {
+    // const useFetchMyBarIngredients = () => {
+    //     const pageContext = useContext(PageContext)
+    //     return useQuery(
+    //         ["my-bar-ingredients"],
+    //         () => {
+    //             return fetchMyBarIngredients(pageContext.barInventorySlug)
+    //         }
+    //     );
+    // }
 
-        return useQuery(
-            ["my-bar-ingredients"],
-            () => {
-                return theSanityBartenderClient
-                    .fetch(
-                        `*[_type == "BarInventory" && slug.current=='${process.env.REACT_APP_BAR_INVENTORY_SLUG}']{
+    const fetchMyBarIngredients = (barInventorySlug?: string) => {
+        if (barInventorySlug === undefined || barInventorySlug === null)
+            return []
+        else
+            return theSanityBartenderClient
+                .fetch(
+                    `*[_type == "BarInventory" && slug.current=='${barInventorySlug}']{
                     ...,
                     "theBar": theBar[]->
        }`,)
-                    .then((data: (SanityBarInventoryType)[]) => {
-                        console.log("the ingredients and garnishes from my bar", process.env.REACT_APP_BAR_INVENTORY_SLUG, data)
-                        if(data !== undefined && data[0] !== undefined && data[0].theBar !== undefined )
+                .then((data:SanityBarInventoryType[]) => {
+                    console.log("the ingredients and garnishes from my bar", barInventorySlug, data)
+                    if (data !== undefined && data[0] !== undefined && data[0].theBar !== undefined)
                         return data[0].theBar
-                        else return []
-                    })
-            }
-        );
+                    else return []
+                })
     }
 
     const useFetchAllLiquorTypes = () => {
@@ -1086,7 +1093,7 @@ const SanityProvider: FunctionComponent<IProps & PropsWithChildren> = (
 
 
     const useFetchFilteredIngredients = () => {
-        const searchContext:SearchContextType = useContext(SearchContext)
+        const searchContext: SearchContextType = useContext(SearchContext)
 
         const liquorTypes = searchContext.searchFilters
 
@@ -1118,7 +1125,7 @@ const SanityProvider: FunctionComponent<IProps & PropsWithChildren> = (
     }
 
     const useFetchMyFilteredIngredients = () => {
-        const searchContext:SearchContextType = useContext(SearchContext)
+        const searchContext: SearchContextType = useContext(SearchContext)
 
         const liquorTypes = searchContext.searchFilters
 
@@ -1177,7 +1184,7 @@ const SanityProvider: FunctionComponent<IProps & PropsWithChildren> = (
         );
     }
     const useFetchFilteredCocktails = () => {
-        const searchContext:SearchContextType = useContext(SearchContext)
+        const searchContext: SearchContextType = useContext(SearchContext)
 
         const liquorTypes = searchContext.searchFilters
 
@@ -1215,7 +1222,7 @@ const SanityProvider: FunctionComponent<IProps & PropsWithChildren> = (
         // const liquorTypes = searchContext.searchFilters
         // console.log("fetching cocktails filtered by liquor type ", liquorTypes)
 
-        const searchContext:any = useContext(SearchContext)
+        const searchContext: any = useContext(SearchContext)
         // const liquorTypes = searchContext.searchFilters
 
         return useQuery(
@@ -1538,7 +1545,7 @@ const SanityProvider: FunctionComponent<IProps & PropsWithChildren> = (
             .fetch(queryString).then((data: SanityBallType[]) => data[0])
     }
 
-    const createBall = (ball: SanityBallType): Promise<{ response:SanityBallType, status: number }> => {
+    const createBall = (ball: SanityBallType): Promise<{ response: SanityBallType, status: number }> => {
         return fetch("/create-ball",
             {
                 method: 'POST',
@@ -1583,21 +1590,21 @@ const SanityProvider: FunctionComponent<IProps & PropsWithChildren> = (
         })
     }
 
- const createHouse = (house: SanityHouse): Promise<SanityHouse> => {
-     return fetch("/create-new-house",
-         {
-             method: 'POST',
-             body: JSON.stringify(house),
-         },
-     )
-         .then((response: any) => {
-             return clientUtils.processResponse(response, 'NewHouseCreated');
-         })
-         .catch((e: any) => {
-             // console.error(LOG, 'ERROR', 'error', e);
-             // eslint-disable-next-line prefer-promise-reject-errors
-             return Promise.reject({attempt: Error(e)});
-         });
+    const createHouse = (house: SanityHouse): Promise<SanityHouse> => {
+        return fetch("/create-new-house",
+            {
+                method: 'POST',
+                body: JSON.stringify(house),
+            },
+        )
+            .then((response: any) => {
+                return clientUtils.processResponse(response, 'NewHouseCreated');
+            })
+            .catch((e: any) => {
+                // console.error(LOG, 'ERROR', 'error', e);
+                // eslint-disable-next-line prefer-promise-reject-errors
+                return Promise.reject({attempt: Error(e)});
+            });
     }
 
     const createUser = (user: SanityUser): Promise<SanityUser> => {
@@ -1664,7 +1671,7 @@ const SanityProvider: FunctionComponent<IProps & PropsWithChildren> = (
         console.log('aw - query string to filter by', queryString)
         console.log('aw - sanity client in sanityProvider', theSanityClient)
 
-        const response = theSanityClient?await theSanityClient
+        const response = theSanityClient ? await theSanityClient
             .fetch(
                 `*[_type=="ball" && approval == true${queryString}] | order(_createdAt desc){
           _id,
@@ -1677,7 +1684,7 @@ const SanityProvider: FunctionComponent<IProps & PropsWithChildren> = (
              }
            },
        }`,
-            ):[]
+            ) : []
 
         console.log("aw - result from fetchAllBalls", response)
         return response
@@ -1743,7 +1750,7 @@ const SanityProvider: FunctionComponent<IProps & PropsWithChildren> = (
             .catch((e: any) => {
                 // console.error(LOG, 'ERROR', 'error', e);
                 // eslint-disable-next-line prefer-promise-reject-errors
-                return Promise.reject({ attempt: Error(e) });
+                return Promise.reject({attempt: Error(e)});
             });
     }
 
@@ -1960,12 +1967,13 @@ const SanityProvider: FunctionComponent<IProps & PropsWithChildren> = (
             placeholderOrImage,
             useFetchAllFlashCards,
             useFetchAllBarIngredients,
+            fetchMyBarIngredients,
             useFetchAllLiquorTypes,
             useFetchFilteredIngredients,
             useFetchFilteredCocktails,
             useFetchSearchedCocktails,
             getProduct,
-            useFetchMyBarIngredients,
+            // useFetchMyBarIngredients,
             useFetchMyFilteredIngredients,
             useFetchMyCocktails,
             getMyProduct,

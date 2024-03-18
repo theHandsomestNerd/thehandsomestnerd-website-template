@@ -80,7 +80,7 @@ const App: FunctionComponent<IProps & PropsWithChildren> = (props) => {
     return (
         <BrowserRouter>
             <QueryClientProvider client={queryClient}>
-                <PageProvider googleApiKey={props.react_app_googlemaps_embed_api_key}>
+                <PageProvider googleApiKey={props.react_app_googlemaps_embed_api_key} barInventorySlug={props.react_app_bar_inventory_slug}>
                     <CustomizedThemeProvider>
                         <SnackbarProvider>
                             <ModalProvider>

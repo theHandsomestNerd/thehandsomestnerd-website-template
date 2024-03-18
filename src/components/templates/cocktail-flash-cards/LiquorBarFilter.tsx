@@ -1,13 +1,13 @@
 import React, {FunctionComponent, useContext} from 'react'
 import FilteredIngredients from "./FilteredIngredients";
 import {Button, Grid, Typography} from "@mui/material";
-import {SanityCocktailIngredient, SanityGarnish, SanityLiquorType} from "../../../common/sanityIo/Types";
+import {SanityBarInventoryType, SanityLiquorType} from "../../../common/sanityIo/Types";
 import SearchContext from "./search-context/SearchContext";
 import SanityContext from "../../../common/sanityIo/sanity-context/SanityContext";
 
 
 interface IProps {
-    entireBar?: (SanityCocktailIngredient | SanityGarnish)[]
+    entireBar?: SanityBarInventoryType[]
 }
 
 const LiquorBarFilter: FunctionComponent<IProps> = (props: IProps) => {
