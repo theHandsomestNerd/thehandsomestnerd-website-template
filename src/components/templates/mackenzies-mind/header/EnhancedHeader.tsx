@@ -1,15 +1,13 @@
-import React, {FunctionComponent} from 'react'
-import {Theme} from "@mui/material/styles";
+import React, {FunctionComponent, useContext} from 'react'
 import makeStyles from '@mui/styles/makeStyles';
-import {AppBar, Button, Card, Grid, Typography, useTheme} from '@mui/material'
+import {AppBar, Button, Card, Grid, Typography} from '@mui/material'
 import clsx from "clsx";
 import {COLORS} from "../../../../theme/common/ColorPalette";
 import Header from "./Header";
 import {HeaderSectionType} from "../../../BlockContentTypes";
-import {urlFor} from "../../../block-content-ui/static-pages/cmsStaticPagesClient";
-import imagePlaceholderClient from "../../../../utils/imagePlaceholderClient";
+import SanityContext from "../../../../common/sanityIo/sanity-context/SanityContext";
 
-export const useStyles = makeStyles((theme: Theme) => ({
+export const useStyles = makeStyles(() => ({
     root: {
         backgroundColor: COLORS.TRANSPARENTWHITE,
         transition: 'background-color .5s ease 0s',
@@ -31,10 +29,10 @@ export type EnhancedHeaderProps = {
 
 const EnhancedHeader: FunctionComponent<EnhancedHeaderProps> = (props) => {
     const classes = useStyles()
+    const sanityContext = useContext(SanityContext)
 
     return (
         <AppBar className={clsx({[classes.opaque]: true}, classes.root)}>{props.pageHeader?.headerMenuRef?.title ?
-
             <Grid container item>
                 <Grid container item spacing={4} justifyContent='space-between' wrap='nowrap'>
                     <Grid item xs={3}>
@@ -59,7 +57,7 @@ const EnhancedHeader: FunctionComponent<EnhancedHeaderProps> = (props) => {
                                     }}>
                                         <Grid container justifyContent='center' alignContent='center'
                                               alignItems='center' style={{height: "100%", width: "100%"}}><Grid item>
-                                            <img width={24} src={imagePlaceholderClient.placeholderOrImage(detail.imageSrc,24,24)}
+                                            <img width={24} src={sanityContext.placeholderOrImage(detail.imageSrc,24,24)}
                                                  style={{paddingTop: "6px"}}/>
                                         </Grid></Grid>
                                     </Card>

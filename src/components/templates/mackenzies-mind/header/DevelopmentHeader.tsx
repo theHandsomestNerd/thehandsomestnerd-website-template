@@ -7,11 +7,11 @@ import FilteredMenuItems from "../../../filtered-menu-items/FilteredMenuItems";
 import {SanityMenuContainer} from "../../../../common/sanityIo/Types";
 // import {elainSansExtraBold} from "../../../theme/WebDevSiteTheme";
 import PageContext from "../../../page-context/PageContext";
-import {urlFor} from "../../../block-content-ui/static-pages/cmsStaticPagesClient";
 import FullWidthColoredPng from "../../../fullwidth-colored-png/FullWidthColoredPng";
 import {useScrollPosition} from "../../../../utils/useScrollPosition";
 import clsx from "clsx";
 import CustomizedThemeContext from "../../../customized-theme-provider/CustomizedThemeContext";
+import SanityContext from "../../../../common/sanityIo/sanity-context/SanityContext";
 
 export const useStyles = makeStyles((theme: Theme) => ({
     root: {
@@ -38,6 +38,7 @@ export type DevelopmentHeaderProps = {
 
 const DevelopmentHeader: FunctionComponent<DevelopmentHeaderProps> = (props) => {
     const classes = useStyles()
+    const sanityContext = useContext(SanityContext)
 
     const customizedThemeContext = useContext(CustomizedThemeContext)
 
@@ -51,9 +52,9 @@ const DevelopmentHeader: FunctionComponent<DevelopmentHeaderProps> = (props) => 
 
     const [opaqueOnScroll, setOpaqueOnScroll] = React.useState<boolean>()
 
-    useScrollPosition(({prevPos, currPos}: any) => {
+    useScrollPosition(({currPos}: any) => {
         const isShow = currPos.y === 0
-        console.log(currPos, isShow, opaqueOnScroll)
+        // console.log(currPos, isShow, opaqueOnScroll)
         if (isShow !== opaqueOnScroll) setOpaqueOnScroll(isShow)
     }, [opaqueOnScroll])
 
@@ -67,7 +68,7 @@ const DevelopmentHeader: FunctionComponent<DevelopmentHeaderProps> = (props) => 
                     <Grid item container justifyContent="space-between" alignItems='stretch' alignContent='center'
                           spacing={mdDown ? 3 : 0}>
                         <Grid item container xs={5} md={3} alignItems='center' alignContent='center'>
-                            <FullWidthColoredPng maskUrl={urlFor(pageContext.page?.metaImage ?? "").url() ?? ""}
+                            <FullWidthColoredPng maskUrl={sanityContext.urlFor(pageContext.page?.metaImage ?? "").url() ?? ""}
                                                  color={'white'} height={80}/>
                             {/*<ColoredPng maskUrl={urlFor(pageContext.page?.metaImage??"").url()??""} color={'white'}/>*/}
                         </Grid>

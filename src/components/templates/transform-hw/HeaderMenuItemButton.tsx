@@ -37,7 +37,7 @@ const HeaderMenuItemButton: FunctionComponent<HeaderMenuItemButtonProps> = ({men
                         height: menuItem.isOutlinedButton || menuItem.isContainedButton ? "48px" : "100%",
                     }}
                     className={classes.hover}
-                    onClick={ (e:any)=>{
+                    onClick={ ()=>{
                         if(menuItem.isModalButton) {
                             modalContext.openModal && modalContext.openModal(menuItem.modalRef)
                         }

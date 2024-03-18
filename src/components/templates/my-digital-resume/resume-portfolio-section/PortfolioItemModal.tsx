@@ -1,14 +1,12 @@
-import React, {FunctionComponent} from 'react'
+import React, {FunctionComponent, useContext} from 'react'
 
 import makeStyles from "@mui/styles/makeStyles";
-import {Theme} from "@mui/material/styles";
 import {Button, ButtonGroup, Chip, Grid, IconButton, Modal, Typography, useTheme} from "@mui/material";
 import {Close} from "@mui/icons-material";
-import {urlFor} from "../../../block-content-ui/static-pages/cmsStaticPagesClient";
 import {ResumePortfolioItem} from "../../../BlockContentTypes";
-import {COLORS} from "../../../../theme/common/ColorPalette";
+import SanityContext from "../../../../common/sanityIo/sanity-context/SanityContext";
 
-export const useStyles = makeStyles((theme: Theme) => ({
+export const useStyles = makeStyles(() => ({
     hover: {
         "&:hover":{
             backgroundColor: "whitesmoke"
@@ -25,6 +23,7 @@ interface IProps {
 const PortfolioItemModal: FunctionComponent<IProps> = (props: IProps) => {
     const theme = useTheme()
     const classes = useStyles()
+    const sanityContext = useContext(SanityContext)
 
 
     const [isOpen, setIsOpen] = React.useState<boolean>(false)
@@ -74,7 +73,7 @@ const PortfolioItemModal: FunctionComponent<IProps> = (props: IProps) => {
                         {props.currentItem?.imageGallery?.map((image) => (
                             <Grid item container xs={11} justifyContent='center'>
                                 <Grid item>
-                                    <img alt={'imageGalleryEntry'} src={urlFor(image ?? "").url() ?? ""}
+                                    <img alt={'imageGalleryEntry'} src={sanityContext.urlFor(image ?? "").url() ?? ""}
                                          width={"100%"}/>
                                 </Grid>
                             </Grid>))}

@@ -11,19 +11,30 @@ interface IProps {
     homePage?: SanityTransformHwHomePage
     isLoading?: boolean
     isRefetching?: boolean
+    baseRoute?: string
 }
 
-const PageMux: FunctionComponent<IProps> = (props: IProps) => {
+const PageMux: FunctionComponent<IProps> = (props:IProps) => {
     const pageContext = useContext(PageContext)
 
     const urlParams = useParams()
 
     React.useEffect(() => {
+        if(urlParams.documentSlug && urlParams.documentType) {
+            // console.log("Page Mux reading URL Params", urlParams)
+
+            pageContext.fetchDocument && pageContext.fetchDocument(urlParams.documentType, urlParams.documentSlug)
+        }
         if (urlParams.pageSlug) {
             // console.log("found a slug in the mux", urlParams)
             pageContext.fetchPage && pageContext.fetchPage(urlParams.pageSlug)
         }
     }, [])
+
+    React.useEffect(() => {
+        if(props.baseRoute && pageContext.updateBaseRoute)
+            pageContext.updateBaseRoute(props.baseRoute)
+        }, [props.baseRoute])
 
     const PageContents = () => {
         if (!pageContext.page || pageContext.isPageLoading || !pageContext.page.theme)

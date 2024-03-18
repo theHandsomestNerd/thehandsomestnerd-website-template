@@ -110,7 +110,19 @@ import drinkeryTeamMember from "./team/DrinkeryTeamMember";
 import drinkeryTeamPage from "./team/DrinkeryTeamPage";
 import drinkerySpecial from "./sections/drinkery/drinkerySpecial";
 import HolidayHeadlineSection from "./HolidayHeadlineSection";
-
+import appSettings from "./sections/aw/appSettings";
+import ball from "./sections/aw/ball";
+import user from "./sections/aw/user";
+import comment from "./sections/aw/comment";
+import location from "./sections/aw/location";
+import house from "./sections/aw/house";
+import checkinPage from "./sections/aw/checkinPage";
+import checkin from "./sections/aw/checkin";
+import ContactUs from "./sections/aw/contactUs";
+import AWBallSection from "./sections/aw/AWBallSection"
+import AWSingleBallPageSection from "./sections/aw/AWSingleBallPageSection"
+import AWBallSummarySection from "./sections/aw/AWBallSummarySection";
+import AWBallToolsSection from "./sections/aw/AWBallToolsSection";
 // Then we give our schema to the builder and provide the result to Sanity
 export default [
     // The following are document types which will appear
@@ -192,7 +204,7 @@ export default [
     FooterSection,
     MuiBreakpoints,
     MuiTheme,
-    category,
+    // category,
     MuiTypography,
     MuiFontFace,
     MuiMediaQuery,
@@ -218,7 +230,16 @@ export default [
     MixingGlass,
     FlashCardSection,
     LiquorType,
-
+    appSettings,
+    ball,
+    category,
+    location,
+    user,
+    comment,
+    house,
+    checkinPage,
+    checkin,
+    ContactUs,
     DrinkerySpecialsSection,
     drinkeryTeamMember,
     drinkeryTeamPage,
@@ -227,4 +248,9 @@ export default [
     DrinkeryAlbumSection,
     DrinkeryAlbumItem,
     HolidayHeadlineSection,
+
+    AWBallSection,
+    AWBallToolsSection,
+    AWSingleBallPageSection,
+    AWBallSummarySection,
 ]

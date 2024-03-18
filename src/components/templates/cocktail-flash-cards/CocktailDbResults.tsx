@@ -4,18 +4,19 @@ import SnackbarContext from "../../modal-context/SnackbarContext";
 import {useLocation} from "react-router";
 import SearchContext from "./search-context/SearchContext";
 import {CocktailDbResultType} from "../../../common/sanityIo/Types";
-import firebaseAnalyticsClient from "../../../common/firebase/FirebaseAnalyticsClient";
+import FirebaseContext from "../../../common/firebase/firebase-context/FirebaseContext";
 
 
 interface IProps {
 }
 
 
-const CocktailDbResults: FunctionComponent<IProps> = (props: IProps) => {
+const CocktailDbResults: FunctionComponent<IProps> = () => {
     const snackBar = useContext(SnackbarContext)
     const location = useLocation()
 
     const searchContext = useContext(SearchContext)
+    const firebaseContext = useContext(FirebaseContext)
 
     const getIngredientsFromCocktailDbCocktail = (cocktailDbCocktail: CocktailDbResultType) => {
         const numIngredients = [...Array(10).keys()]
@@ -74,7 +75,7 @@ const CocktailDbResults: FunctionComponent<IProps> = (props: IProps) => {
         </Grid>
 
         snackBar.openSnackbar && snackBar.openSnackbar(snack)
-        cocktailDbResult && firebaseAnalyticsClient.analyticsPageView(
+        cocktailDbResult && firebaseContext.analytics.analyticsPageView(
             location.pathname,
             location.search,
             `${cocktailDbResult.strDrink} | Cocktail from cocktailDb`)

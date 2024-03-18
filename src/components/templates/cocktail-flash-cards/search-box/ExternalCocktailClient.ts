@@ -12,7 +12,7 @@ const search = async (searchTerm: string) => {
         })
 }
 
-const convertFromCocktailDbResultsToCocktails = (cocktailDbResults: any[]) => {
+const convertFromCocktailDbResultsToCocktails = (_cocktailDbResults: any[]) => {
 
     // const cocktailResults =
 }

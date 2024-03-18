@@ -10,6 +10,8 @@ export default {
             of: [{
                 type: "string", options: {
                     list: [
+                        {value: "Poppins", title: "Poppins"},
+                        {value: "Cantarell", title: "Cantarell"},
                         {value: "Oswald", title: "Oswald"},
                         {value: "Bitter", title: "Bitter"},
                         {value: "Inter", title: "Inter"},

@@ -1,0 +1,26 @@
+export enum RoutesEnum {
+  BALL = '/ball',
+  SHOW_BALL = '/ball/:slug',
+  CONTACT_US = '/contactUs',
+  LANDING = '/',
+  SEARCH = 'search-balls',
+  SIGN_UP = '/signup',
+  SIGN_IN = '/signin',
+  HOME = '/',
+  ADD_BALL = '/addBall',
+  ACCOUNT = '/account',
+  ADMIN = '/admin',
+  PASSWORD_FORGET = '/passwordForget',
+  PASSWORD_RESET = '/passwordReset',
+  BALL_INFO = '/ballInfo',
+  NEW_HOUSE = 'new-house',
+  EDIT_BALL = '/editBall/:ballId',
+  IMPORT = '/import',
+  FAVORITES = '/favorites',
+  LINK_ACCOUNTS = '/linkAccounts',
+  CHECK_IN = '/checkIn/:slug/:step',
+  CHECK_IN_2 = '/checkIn2',
+  CHECK_IN_3 = '/checkIn3',
+}
+
+export default { RoutesEnum }

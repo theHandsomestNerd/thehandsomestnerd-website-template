@@ -1,9 +1,8 @@
 import React, {FunctionComponent} from 'react'
-import { Theme, ThemeProvider, StyledEngineProvider } from '@mui/material/styles';
+import {Theme} from '@mui/material/styles';
 import makeStyles from '@mui/styles/makeStyles';
 import {Grid, Typography} from '@mui/material'
-import {PortfolioSectionType, ThwServiceItemNoRefType} from "../../BlockContentTypes";
-import WebDevSiteTheme from "../../../theme/WebDevSiteTheme";
+import {PortfolioSectionType} from "../../BlockContentTypes";
 import WebDevServiceItem from "./WebDevServiceItem";
 import {COLORS} from "../../../theme/common/ColorPalette";
 
@@ -31,37 +30,37 @@ const WebDevServicesSection: FunctionComponent<IProps> = (props) => {
     const classes = useStyles()
 
     return (
-                <Grid container item className={classes.root} xs={12} justifyContent='center'>
-                    <Grid container item spacing={2} xs={11}>
-                        <Grid container item>
-                            <Grid item container>
-                                <Typography variant='subtitle2'
-                                            color='secondary'
-                                            style={{color: COLORS.AQUA}}
-                                >{props.sectionData?.contentPreTitle}</Typography>
-                            </Grid>
-                            <Grid item container wrap='nowrap'>
-                                <Grid item>
-                                    <Typography color='primary' variant='h2' align='center'
-                                                style={{fontFamily:"Elaine Sans"}}
-                                                display='inline'>{props.sectionData?.contentTitle}</Typography>
-                                </Grid>
-                            </Grid>
-                        </Grid>
-                        <Grid item container>
-                            {props.sectionData?.contentTexts?.map((segment: string, index: number) => (
-                                <Grid item key={index}>
-                                    <Typography variant='body1' color='primary' gutterBottom
-                                                style={{fontFamily: "Raleway"}}>{segment}</Typography>
-                                </Grid>))}
-                        </Grid>
-                        <Grid item container>
-                            {props.sectionData?.servicesList?.map((service, index: number) => {
-                                return <WebDevServiceItem showAmenities key={index} index={index} service={service}/>
-                            })}
+        <Grid container item className={classes.root} xs={12} justifyContent='center'>
+            <Grid container item spacing={2} xs={11}>
+                <Grid container item>
+                    <Grid item container>
+                        <Typography variant='subtitle2'
+                                    color='secondary'
+                                    style={{color: COLORS.AQUA}}
+                        >{props.sectionData?.contentPreTitle}</Typography>
+                    </Grid>
+                    <Grid item container wrap='nowrap'>
+                        <Grid item>
+                            <Typography color='primary' variant='h2' align='center'
+                                        style={{fontFamily: "Elaine Sans"}}
+                                        display='inline'>{props.sectionData?.contentTitle}</Typography>
                         </Grid>
                     </Grid>
                 </Grid>
+                <Grid item container>
+                    {props.sectionData?.contentTexts?.map((segment: string, index: number) => (
+                        <Grid item key={index}>
+                            <Typography variant='body1' color='primary' gutterBottom
+                                        style={{fontFamily: "Raleway"}}>{segment}</Typography>
+                        </Grid>))}
+                </Grid>
+                <Grid item container>
+                    {props.sectionData?.servicesList?.map((service, index: number) => {
+                        return <WebDevServiceItem showAmenities key={index} index={index} service={service}/>
+                    })}
+                </Grid>
+            </Grid>
+        </Grid>
 
     );
 }

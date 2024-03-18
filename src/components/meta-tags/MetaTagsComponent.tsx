@@ -1,11 +1,7 @@
-import React, {FunctionComponent} from 'react'
-import { Theme } from '@mui/material/styles';
-import makeStyles from '@mui/styles/makeStyles';
+import React, {FunctionComponent, useContext} from 'react'
 import MetaTags from 'react-meta-tags'
-import {urlFor} from '../block-content-ui/static-pages/cmsStaticPagesClient'
 import {SanityImageSource} from "@sanity/asset-utils";
-
-export const useStyles = makeStyles((theme: Theme) => ({}))
+import SanityContext from "../../common/sanityIo/sanity-context/SanityContext";
 
 interface IProps {
   title: string
@@ -17,16 +13,17 @@ interface IProps {
 
 const MetaTagsComponent: FunctionComponent<IProps> = (props) => {
   const [structuredJSONObj, setStructuredJSONObj] = React.useState<any>()
+  const sanityContext = useContext(SanityContext)
 
   React.useEffect(() => {
-    console.log("Structured data", props.structuredData)
+    // console.log("Structured data", props.structuredData)
     if (props.structuredData) {
       // let data={}
       let data = {
         '@context': 'http://schema.org/',
         '@type': props.structuredData.type ? props.structuredData.type : 'Product',
         "name": `${props.structuredData.name}`,
-        "image": props.structuredData.image?.map((image:SanityImageSource) => urlFor(image).url()),
+        "image": props.structuredData.image?.map((image:SanityImageSource) => sanityContext.urlFor(image).url()),
         "description": props.structuredData.description,
         "url": props.structuredData.url,
         "offers": {

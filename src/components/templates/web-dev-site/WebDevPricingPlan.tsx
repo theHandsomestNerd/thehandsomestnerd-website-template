@@ -1,14 +1,11 @@
 import React, {FunctionComponent, useContext} from 'react'
-import { Theme, ThemeProvider, StyledEngineProvider } from "@mui/material/styles";
+import {Theme} from "@mui/material/styles";
 import makeStyles from '@mui/styles/makeStyles';
 import {Button, Grid, Typography} from '@mui/material'
 import {v4 as uuidv4} from 'uuid'
-import WebDevSiteTheme  from "../../../theme/WebDevSiteTheme";
 import PageContext from "../../page-context/PageContext";
-import {HowItWorksStepNoRefType, PricingPlanNoRefType} from "../../BlockContentTypes";
-import firebaseAnalyticsClient from "../../../common/firebase/FirebaseAnalyticsClient";
-
-
+import {PricingPlanNoRefType} from "../../BlockContentTypes";
+import FirebaseContext from "../../../common/firebase/firebase-context/FirebaseContext";
 
 
 export const useStyles = makeStyles((theme: Theme) => ({
@@ -31,6 +28,7 @@ const COLOR_ROTATION = ["#cd3647", "#343656", "#333784"]
 const WebDevPricingPlan: FunctionComponent<IProps> = (props: IProps) => {
     const pageContext = useContext(PageContext)
     const classes = useStyles()
+    const firebaseContext = useContext(FirebaseContext)
 
     const LearnMoreButton = () => {
         return <Grid item container sm={8}>
@@ -38,7 +36,7 @@ const WebDevPricingPlan: FunctionComponent<IProps> = (props: IProps) => {
                 <Button fullWidth
                         sx={{borderRadius:"32px"}}
                         onClick={() =>
-                            firebaseAnalyticsClient.ctaClick(props.step.slug?.current ?? "", props.step.learnMoreText ?? "", pageContext.analyticsId,)
+                            firebaseContext.analytics.ctaClick(props.step.slug?.current ?? "", props.step.learnMoreText ?? "", pageContext.analyticsId,)
 
                         } color='primary' href={props.step.learnMoreLink}
                         variant='outlined'><Typography variant='button'

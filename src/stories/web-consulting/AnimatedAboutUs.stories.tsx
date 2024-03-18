@@ -1,9 +1,7 @@
 import type {Meta, StoryObj} from '@storybook/react';
 import {ThemeProvider} from "@mui/material/styles";
 import getThemeFromSanity from "../../components/customized-theme-provider/getThemeFromSanity";
-import HeroAnimatedContentSection from "../../components/animated/HeroAnimatedContentSection";
 import WebConsultingThemeData from "../data/WebConsultingThemeData";
-import AnimatedHeroSectionData from "../data/AnimatedHeroSectionData";
 import AnimatedAboutUsSection from "../../components/animated/AnimatedAboutUsSection";
 import AnimatedAboutUsSectionData from "../data/AnimatedAboutUsSectionData";
 
@@ -22,7 +20,6 @@ type Story = StoryObj<typeof AnimatedAboutUsSection>;
  * to learn how to use render functions.
  */
 
-const buttonText = "Button Text"
 export const AnimatedAboutUsSectionComplete: Story = {
     args: {
         sectionData: AnimatedAboutUsSectionData,

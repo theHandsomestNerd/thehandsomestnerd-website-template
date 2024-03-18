@@ -22,4 +22,4 @@ const search = (searchString: string) => {
         .then(resp => resp.json())
 };
 
-export default {search}
+export default {search, processResponse}

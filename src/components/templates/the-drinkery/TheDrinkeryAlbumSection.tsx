@@ -14,18 +14,16 @@ import {
 import TheOtherSideLogo from "./TheOtherSideLogo";
 import {DrinkeryAlbumSectionType} from "../../BlockContentTypes";
 import makeStyles from "@mui/styles/makeStyles";
-import {Theme} from "@mui/material/styles";
 import PageContext from "../../page-context/PageContext";
 import {Facebook, Instagram} from "@mui/icons-material";
-import firebaseAnalyticsClient from "../../../common/firebase/FirebaseAnalyticsClient";
-import {urlFor} from "../../block-content-ui/static-pages/cmsStaticPagesClient";
-import imagePlaceholderClient from "../../../utils/imagePlaceholderClient";
+import FirebaseContext from "../../../common/firebase/firebase-context/FirebaseContext";
+import SanityContext from "../../../common/sanityIo/sanity-context/SanityContext";
 
 interface IProps {
     sectionData: DrinkeryAlbumSectionType
 }
 
-export const useStyles = makeStyles((theme: Theme) => ({
+export const useStyles = makeStyles(() => ({
     preroot: {
         minHeight: '1400px',
         // backgroundColor: "black",
@@ -47,6 +45,8 @@ export const useStyles = makeStyles((theme: Theme) => ({
 
 const TheDrinkeryAlbumSection: FunctionComponent<IProps> = (props) => {
     const pageContext = useContext(PageContext)
+    const firebaseContext = useContext(FirebaseContext)
+    const sanityContext = useContext(SanityContext)
 
     const theClasses = useStyles()
     const theme = useTheme()
@@ -108,11 +108,11 @@ const TheDrinkeryAlbumSection: FunctionComponent<IProps> = (props) => {
                     <ImageList rowHeight={500} className={theClasses.imageList} cols={xsDown ? 2 : 3}>
                         {props.sectionData.imageList.map((item, index) => (
                             <ImageListItem key={index} cols={parseInt(item.cols ?? "1")} onClick={() => {
-                                firebaseAnalyticsClient.albumImageClick(item.title, item.subtitle, pageContext.analyticsId || "no-id")
+                                firebaseContext.analytics.albumImageClick(item.title, item.subtitle, pageContext.analyticsId || "no-id")
                                 setSelectedItem(item)
                                 handleClickOpen()
                             }} style={{cursor: "pointer"}}>
-                                <img src={imagePlaceholderClient.placeholderOrImage(item.imageSrc,800, 500)} alt={item.title}/>
+                                <img src={sanityContext.placeholderOrImage(item.imageSrc,800, 500)} alt={item.title}/>
                                 <ImageListItemBar
                                     title={item.title}
                                     subtitle={<Typography variant='subtitle1' style={{
@@ -126,7 +126,7 @@ const TheDrinkeryAlbumSection: FunctionComponent<IProps> = (props) => {
                     </ImageList>
                     <Dialog onClick={() => handleClose()} onClose={handleClose} aria-labelledby="simple-dialog-title"
                             open={open}>
-                        <img src={imagePlaceholderClient.placeholderOrImage(selectedItem?.imageSrc, 480,480)} alt={selectedItem?.title}/>
+                        <img src={sanityContext.placeholderOrImage(selectedItem?.imageSrc, 480,480)} alt={selectedItem?.title}/>
                         <DialogTitle id="simple-dialog-title"
                                      style={{
                                          backgroundColor: 'black'

@@ -1,13 +1,12 @@
 import React, {FunctionComponent, useContext} from 'react'
-import { Theme } from '@mui/material/styles';
+import {Theme} from '@mui/material/styles';
 import makeStyles from '@mui/styles/makeStyles';
 import {Button, Grid, Typography} from '@mui/material'
-import {urlFor} from '../../block-content-ui/static-pages/cmsStaticPagesClient'
 import {ThwHeroContentSectionType} from "../../BlockContentTypes";
-import firebaseAnalyticsClient from "../../../common/firebase/FirebaseAnalyticsClient";
 import PageContext from "../../page-context/PageContext";
-import useCustomStyles from "./pages/Styles";
 import {COLORS} from "../../../theme/common/ColorPalette";
+import FirebaseContext from "../../../common/firebase/firebase-context/FirebaseContext";
+import SanityContext from "../../../common/sanityIo/sanity-context/SanityContext";
 
 interface IProps {
     sectionData: ThwHeroContentSectionType
@@ -39,21 +38,23 @@ export const useStyles = makeStyles((theme: Theme) => ({
 }))
 
 const MMHeroContentSection: FunctionComponent<IProps> = (props) => {
+    const firebaseContext = useContext(FirebaseContext)
+    const sanityContext = useContext(SanityContext)
+
     let classParameters: CSSProps = {
-        heroBaseImageUrl: urlFor(props.sectionData.heroImage).url() ?? '',
+        heroBaseImageUrl: sanityContext.urlFor(props.sectionData.heroImage).url() ?? '',
     }
 
     if (props.sectionData.heroImageBackground) {
         classParameters = {
             ...classParameters,
-            heroOverlay: urlFor(props.sectionData.heroImageBackground).url()
+            heroOverlay: sanityContext.urlFor(props.sectionData.heroImageBackground).url()
         }
     }
 
     const pageContext = useContext(PageContext)
 
     const classes = useStyles(classParameters)
-    const globalClasses = useCustomStyles({})
     return (
         <Grid container item className={classes.marketingBackground}>
             {/*<Grid container item*/}
@@ -65,14 +66,16 @@ const MMHeroContentSection: FunctionComponent<IProps> = (props) => {
                         <Grid container direction='column' style={{paddingLeft: "40px", paddingTop: "80px"}}>
                             <Grid item style={{marginBottom: "30px"}}>
                                 <Typography variant='h1'
-                                            color={'primary'} style={{fontFamily:"Oswald"
+                                            color={'primary'} style={{
+                                    fontFamily: "Oswald"
 
-,}}>{props.sectionData.contentTitle}</Typography>
+                                    ,
+                                }}>{props.sectionData.contentTitle}</Typography>
                             </Grid>
                             <Grid container item>
                                 <Button color='primary' variant='text'
                                         onClick={() => {
-                                            firebaseAnalyticsClient.ctaClick("hero-section", props.sectionData.ctaButtonTitle, pageContext.analyticsId,)
+                                            firebaseContext.analytics.ctaClick("hero-section", props.sectionData.ctaButtonTitle, pageContext.analyticsId,)
                                         }}
                                         href={props.sectionData.ctaButtonLink ?? ""}>
                                     <Typography variant='button'

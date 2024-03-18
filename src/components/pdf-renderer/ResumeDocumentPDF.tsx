@@ -25,9 +25,9 @@ interface IProps {
     homePage?: SanityTransformHwHomePage
 }
 
-const PDF_COLORS = {
-    primary: "#d20027"
-}
+// const PDF_COLORS = {
+//     primary: "#d20027"
+// }
 
 const ResumeDocumentPDF: FunctionComponent<IProps> = (props: IProps) => {
 
@@ -131,7 +131,7 @@ const ResumeDocumentPDF: FunctionComponent<IProps> = (props: IProps) => {
                         );
                     case 'ResumeSkillSection':
                         const resumeSkillSection: ResumeSkillSectionType = columnLayoutContainer
-                        console.log(resumeSkillSection)
+                        // console.log(resumeSkillSection)
                         return (
                             <View style={styles.section}>
                                 <View><Text>{resumeSkillSection.title}</Text></View>

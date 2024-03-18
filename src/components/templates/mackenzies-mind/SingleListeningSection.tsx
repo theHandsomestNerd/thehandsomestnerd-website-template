@@ -1,12 +1,12 @@
-import React, {FunctionComponent} from 'react'
+import React, {FunctionComponent, useContext} from 'react'
 import {Theme} from '@mui/material/styles';
 import makeStyles from '@mui/styles/makeStyles';
 import {Grid, Typography, useTheme} from '@mui/material'
-import {urlFor} from '../../block-content-ui/static-pages/cmsStaticPagesClient'
 import {ThwHeroContentSectionType} from "../../BlockContentTypes";
 import clsx from "clsx";
 import useCustomStyles from "./pages/Styles";
 import ImageWIthButtonOverlay from "../../image-with-button-overlay/ImageWithButtonOverlay";
+import SanityContext from "../../../common/sanityIo/sanity-context/SanityContext";
 
 interface IProps {
     sectionData: ThwHeroContentSectionType
@@ -38,14 +38,16 @@ export const useStyles = makeStyles((theme: Theme) => ({
 }))
 
 const SingleListeningSection: FunctionComponent<IProps> = (props) => {
+    const sanityContext = useContext(SanityContext)
+
     let classParameters: CSSProps = {
-        heroBaseImageUrl: urlFor(props.sectionData.heroImage).url() ?? '',
+        heroBaseImageUrl: sanityContext.urlFor(props.sectionData.heroImage).url() ?? '',
     }
 
     if (props.sectionData.heroImageBackground) {
         classParameters = {
             ...classParameters,
-            heroOverlay: urlFor(props.sectionData.heroImageBackground).url()
+            heroOverlay: sanityContext.urlFor(props.sectionData.heroImageBackground).url()
         }
     }
 

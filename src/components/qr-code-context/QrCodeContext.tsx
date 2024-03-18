@@ -1,5 +1,4 @@
 import React from 'react';
-import {ServiceAmenityType} from "../BlockContentTypes";
 
 export type QrCodeContextType = {
     qr_code_value?: string

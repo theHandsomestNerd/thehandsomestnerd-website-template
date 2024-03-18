@@ -1,17 +1,14 @@
 import React, {FunctionComponent, useContext} from 'react'
 import BlockContent from '@sanity/block-content-to-react'
-import {Card, Grid, Link, ThemeProvider} from '@mui/material';
-import sanityClient from '../sanityClient'
+import {Card, Grid, Link} from '@mui/material';
 import {blockSerializers} from '../common/sanityIo/BlockContentRenderer'
-import {DevelopmentHeaderSectionType, HeaderSectionType,} from "./BlockContentTypes";
+import {HeaderSectionType,} from "./BlockContentTypes";
 import useThwCommonStyles from "../common/sanityIo/ThwCommonStyles";
-import DevelopmentHeader from "./templates/mackenzies-mind/header/DevelopmentHeader";
 import Header from "./templates/mackenzies-mind/header/Header";
-import WebDevSiteTheme from "../theme/WebDevSiteTheme";
 import EnhancedHeader from "./templates/mackenzies-mind/header/EnhancedHeader";
 import CustomizedThemeContext from "./customized-theme-provider/CustomizedThemeContext";
-import {convertToHexCode} from "../theme/common/ColorPalette";
 import PageContext from "./page-context/PageContext";
+import SanityContext from "../common/sanityIo/sanity-context/SanityContext";
 
 export type HeaderBlockContentLayoutContainerProps = {
     content?: any,
@@ -24,6 +21,7 @@ const HeaderBlockContentLayoutContainer: FunctionComponent<HeaderBlockContentLay
 
     const page = useContext(PageContext)
     const [showBasicHeader, setShowBasicHeader] = React.useState<boolean>(false)
+    const sanityContext = useContext(SanityContext)
 
     React.useEffect(() => {
         const handResize = () => {
@@ -58,8 +56,8 @@ const HeaderBlockContentLayoutContainer: FunctionComponent<HeaderBlockContentLay
                                             <BlockContent
                                                 blocks={columnLayoutContainer.content}
                                                 serializers={blockSerializers}
-                                                projectId={sanityClient.config().projectId}
-                                                dataset={sanityClient.config().dataset}
+                                                projectId={sanityContext.theSanityClient.config().projectId}
+                                                dataset={sanityContext.theSanityClient.config().dataset}
                                             />
                                         </Grid>
                                     </Grid>
@@ -76,16 +74,16 @@ const HeaderBlockContentLayoutContainer: FunctionComponent<HeaderBlockContentLay
                                             <BlockContent
                                                 blocks={columnLayoutContainer.column1.content}
                                                 serializers={blockSerializers}
-                                                projectId={sanityClient.config().projectId}
-                                                dataset={sanityClient.config().dataset}
+                                                projectId={sanityContext.theSanityClient.config().projectId}
+                                                dataset={sanityContext.theSanityClient.config().dataset}
                                             />
                                         </Grid>
                                         <Grid item xs={6}>
                                             <BlockContent
                                                 blocks={columnLayoutContainer.column2.content}
                                                 serializers={blockSerializers}
-                                                projectId={sanityClient.config().projectId}
-                                                dataset={sanityClient.config().dataset}
+                                                projectId={sanityContext.theSanityClient.config().projectId}
+                                                dataset={sanityContext.theSanityClient.config().dataset}
                                             />
                                         </Grid>
                                     </Grid>

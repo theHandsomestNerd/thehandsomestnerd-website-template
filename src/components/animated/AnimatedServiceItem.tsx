@@ -1,11 +1,9 @@
 import React, {FunctionComponent} from 'react'
 import {Card, Grid, Typography, useTheme} from '@mui/material'
 import {AnimatedServiceItemNoRefType} from "../BlockContentTypes";
-import {urlFor} from "../block-content-ui/static-pages/cmsStaticPagesClient";
 import ColoredPng from "../colored-png/ColoredPng";
 import {motion, useAnimation, useAnimationControls} from "framer-motion"
 import {useInView} from "react-intersection-observer";
-import imagePlaceholderClient from "../../utils/imagePlaceholderClient";
 
 interface IProps {
     service: AnimatedServiceItemNoRefType

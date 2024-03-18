@@ -1,16 +1,18 @@
-import React, {FunctionComponent} from 'react'
+import React, {FunctionComponent, useContext} from 'react'
 import BlockContent from '@sanity/block-content-to-react'
 import {abBlockSerializers} from './common/sanityIo/BlockContentRenderer'
-import sanityClient from '../../sanityClient'
+import SanityContext from "../../common/sanityIo/sanity-context/SanityContext";
 
 export type BlockContentContainerProps = { body?: any | undefined }
 
 const BlockContentContainer: FunctionComponent<BlockContentContainerProps> = ({body}) => {
+  const sanityContext = useContext(SanityContext)
+
   return <BlockContent
     blocks={body}
     serializers={abBlockSerializers}
-    projectId={sanityClient.config().projectId}
-    dataset={sanityClient.config().dataset}
+    projectId={sanityContext.theSanityClient.config().projectId}
+    dataset={sanityContext.theSanityClient.config().dataset}
   />
 }
 

@@ -3,7 +3,7 @@ import PageMux from "./PageMux";
 
 export type AppLayoutProps = {}
 
-const Layout: FunctionComponent<AppLayoutProps> = (props) => {
+const Layout: FunctionComponent<AppLayoutProps> = () => {
     return (
         <PageMux/>
     )

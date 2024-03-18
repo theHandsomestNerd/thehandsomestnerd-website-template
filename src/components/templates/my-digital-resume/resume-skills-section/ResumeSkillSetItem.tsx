@@ -1,22 +1,13 @@
 import React, {FunctionComponent} from 'react'
-
-import makeStyles from "@mui/styles/makeStyles";
-import { Theme} from "@mui/material/styles";
 import {Grid, Typography} from "@mui/material";
-import {COLORS} from "../../../../theme/common/ColorPalette";
 import {ResumeSkillSet} from "../../../BlockContentTypes";
 
-export const useStyles = makeStyles((theme: Theme) => ({
-    root: {
-    },
-}))
 
 interface IProps {
     skillset: ResumeSkillSet
 }
 
 const ResumeSkillSetItem: FunctionComponent<IProps> = (props:IProps) => {
-    const classes = useStyles()
 
     React.useEffect(()=>{
     }, [])

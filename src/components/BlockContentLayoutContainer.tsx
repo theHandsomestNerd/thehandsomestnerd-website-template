@@ -1,7 +1,6 @@
-import React, {FunctionComponent} from 'react'
+import React, {FunctionComponent, useContext} from 'react'
 import BlockContent from '@sanity/block-content-to-react'
 import {Card, Grid, Link, useTheme} from '@mui/material'
-import sanityClient from '../sanityClient'
 import {blockSerializers} from '../common/sanityIo/BlockContentRenderer'
 import {
     AnimatedAboutUsSectionType,
@@ -41,7 +40,6 @@ import AboutTheProprietorSection from "./templates/transform-hw/AboutThePropriet
 import ThwServicesSection from "./templates/transform-hw/ThwServicesSection";
 import ThwWhyChooseUsSection from "./templates/transform-hw/ThwWhyChooseUsSection";
 import ThwContactUsSection from "./templates/transform-hw/ThwContactUsSection";
-import {SanityHomePage} from "./block-content-ui/static-pages/cmsStaticPagesClient";
 import ThwServicesEducationPage from "./templates/transform-hw/service-education-page/ThwServiceEducationPage";
 import ResumeBioSection from "./templates/my-digital-resume/resume-bio-section/ResumeBioSection";
 import MMHeroContentSection from "./templates/mackenzies-mind/MMHeroContentSection";
@@ -71,6 +69,19 @@ import TheDrinkeryStaffSection from "./templates/the-drinkery/TheDrinkeryStaffSe
 import TheDrinkeryOtherSideSection from "./templates/the-drinkery/TheDrinkeryOtherSideSection";
 import TheDrinkeryAlbumSection from "./templates/the-drinkery/TheDrinkeryAlbumSection";
 import HolidayHeadlineSection from "./holiday-headline-section/HolidayHeadlineSection";
+import SanityContext from "../common/sanityIo/sanity-context/SanityContext";
+import {SanityHomePage} from "../common/sanityIo/Types";
+import {
+    AWBallSectionType,
+    AWBallSummarySectionType,
+    AWSingleBallSectionType, SanityContactUs
+} from './templates/anybody-walking/ballroomTypes';
+import AWBallSearchSection from './templates/anybody-walking/AWBallSearchSection';
+import AWSingleBallPageSection from './templates/anybody-walking/AWSingleBallPageSection';
+import AWBallSummarySection from "./templates/anybody-walking/AWBallSummarySection";
+import BallToolsSection from "./templates/anybody-walking/BallToolsSection";
+import AWNewHouseFormSection from "./templates/anybody-walking/AWNewHouseFormSection";
+import AWContactUs from "./templates/anybody-walking/AWContactUs";
 
 export type BlockContentLayoutContainerProps = {
     content?: any,
@@ -80,6 +91,8 @@ export type BlockContentLayoutContainerProps = {
 const BlockContentLayoutContainer: FunctionComponent<BlockContentLayoutContainerProps> = (props) => {
     const classes = useThwCommonStyles()
     const theme = useTheme()
+    const sanityContext = useContext(SanityContext)
+
 
     return (
         <Grid container item>
@@ -94,8 +107,8 @@ const BlockContentLayoutContainer: FunctionComponent<BlockContentLayoutContainer
                                             <BlockContent
                                                 blocks={columnLayoutContainer.content}
                                                 serializers={blockSerializers}
-                                                projectId={sanityClient.config().projectId}
-                                                dataset={sanityClient.config().dataset}
+                                                projectId={sanityContext.theSanityClient.config().projectId}
+                                                dataset={sanityContext.theSanityClient.config().dataset}
                                             />
                                         </Grid>
                                     </Grid>
@@ -111,16 +124,16 @@ const BlockContentLayoutContainer: FunctionComponent<BlockContentLayoutContainer
                                             <BlockContent
                                                 blocks={columnLayoutContainer.column1.content}
                                                 serializers={blockSerializers}
-                                                projectId={sanityClient.config().projectId}
-                                                dataset={sanityClient.config().dataset}
+                                                projectId={sanityContext.theSanityClient.config().projectId}
+                                                dataset={sanityContext.theSanityClient.config().dataset}
                                             />
                                         </Grid>
                                         <Grid item xs={6}>
                                             <BlockContent
                                                 blocks={columnLayoutContainer.column2.content}
                                                 serializers={blockSerializers}
-                                                projectId={sanityClient.config().projectId}
-                                                dataset={sanityClient.config().dataset}
+                                                projectId={sanityContext.theSanityClient.config().projectId}
+                                                dataset={sanityContext.theSanityClient.config().dataset}
                                             />
                                         </Grid>
                                     </Grid>
@@ -543,6 +556,42 @@ const BlockContentLayoutContainer: FunctionComponent<BlockContentLayoutContainer
                             <HolidayHeadlineSection
                                 sectionData={holidayHeadlineSection}
                             />
+                        </Grid>
+                    case 'AWBallSection':
+                        const awBallSection: AWBallSectionType = columnLayoutContainer
+
+                        return <Grid key={'aw-ball-section'} container item xs={12} justifyContent='center'>
+                            <AWBallSearchSection sectionData={awBallSection}/>
+                        </Grid>
+                     case 'AWNewHouseFormSection':
+                        const awNewHouseFormSection: AWBallSectionType = columnLayoutContainer
+
+                        return <Grid key={'aw-new-house-form-section'} container item xs={12} justifyContent='center'>
+                            <AWNewHouseFormSection sectionData={awNewHouseFormSection}/>
+                        </Grid>
+                    case 'AWBallToolsSection':
+                        const awBallToolsSection: AWBallSectionType = columnLayoutContainer
+
+                        return <Grid key={'aw-ball-section'} container item xs={12} justifyContent='center'>
+                            <BallToolsSection sectionData={awBallToolsSection}/>
+                        </Grid>
+                    case 'AWBallSummarySection':
+                        const awBallSummarySection: AWBallSummarySectionType = columnLayoutContainer
+
+                        return <Grid key={'aw-ball-summary-section'} container item xs={12} justifyContent='center'>
+                            <AWBallSummarySection sectionData={awBallSummarySection}/>
+                        </Grid>
+                    case 'AWSingleBallPageSection':
+                        const awSingleBallPageSection: AWSingleBallSectionType = columnLayoutContainer
+
+                        return <Grid key={'aw-ball-section'} container item xs={12} justifyContent='center'>
+                            <AWSingleBallPageSection sectionData={awSingleBallPageSection}/>
+                        </Grid>
+                    case 'ContactUs':
+                        const awContactUsSection: SanityContactUs = columnLayoutContainer
+
+                        return <Grid key={'aw-contact-us-section'} container item xs={12} justifyContent='center'>
+                            <AWContactUs sectionData={awContactUsSection}/>
                         </Grid>
                     default:
                         return <Grid container item></Grid>

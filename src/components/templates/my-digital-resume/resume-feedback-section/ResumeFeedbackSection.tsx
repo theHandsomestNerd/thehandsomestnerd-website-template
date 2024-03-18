@@ -1,9 +1,9 @@
-import React, {FunctionComponent} from 'react'
+import React, {FunctionComponent, useContext} from 'react'
 import {Grid, Typography, useMediaQuery, useTheme} from '@mui/material'
 import {ResumeFeedback, ResumeFeedbackSectionType} from "../../../BlockContentTypes";
 import useThwCommonStyles from "../../../../common/sanityIo/ThwCommonStyles";
-import {urlFor} from "../../../block-content-ui/static-pages/cmsStaticPagesClient";
 import {COLORS} from "../../../../theme/common/ColorPalette";
+import SanityContext from "../../../../common/sanityIo/sanity-context/SanityContext";
 
 
 interface IProps {
@@ -17,6 +17,7 @@ const ResumeFeedbackSection: FunctionComponent<IProps> = (props: IProps) => {
     const customizedThemeContext = useTheme()
     const smDown = useMediaQuery(theme.breakpoints.down('sm'))
 
+    const sanityContext = useContext(SanityContext)
     const xsOnly = useMediaQuery(customizedThemeContext.breakpoints.only('xs'))
     return (
         <Grid
@@ -50,7 +51,7 @@ const ResumeFeedbackSection: FunctionComponent<IProps> = (props: IProps) => {
                                              // padding: theme.spacing(1.75, 0)
                                          }} xs={12} spacing={2} justifyContent='flex-start'>
                                 <Grid item md={3} lg={2} xl={2} container>
-                                    <img alt={feedbackEntry.name} src={urlFor(feedbackEntry.imageSrc ?? "").url() ?? ""} height={50}
+                                    <img alt={feedbackEntry.name} src={sanityContext.urlFor(feedbackEntry.imageSrc ?? "").url() ?? ""} height={50}
                                          style={{maxWidth: "100%"}}/>
                                 </Grid>
                                 <Grid item md={9} lg={10} xl={10} container>

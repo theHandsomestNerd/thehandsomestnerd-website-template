@@ -1,16 +1,9 @@
-import React, {FunctionComponent, PropsWithChildren} from 'react'
+import React, {FunctionComponent} from 'react'
 import makeStyles from "@mui/styles/makeStyles";
 import {Theme} from "@mui/material/styles";
 import {Grid, Typography} from "@mui/material";
-import cardsBg from './cardsbg.png'
+import cardsBg from '../../assets/cardsbg.png'
 
-interface IProps {
-}
-
-interface CSSProps {
-    heroBaseImageUrl: string,
-    heroOverlay?: string | null
-}
 
 export const useStyles = makeStyles((theme: Theme) => ({
     contentSection: {
@@ -24,7 +17,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
     }
 }))
 
-const DJSpadesRulesContentSection: FunctionComponent<IProps & PropsWithChildren> = (props) => {
+const DJSpadesRulesContentSection: FunctionComponent = () => {
     const theRules = [
         "Largest Diamond Starts the Game.",
         "Joker(Large/Color), Joker (Guaranteed), Deuce of Diamonds, Deuce of Spades",

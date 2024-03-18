@@ -1,4 +1,4 @@
-import React, {FunctionComponent} from 'react'
+import React, {FunctionComponent, useContext} from 'react'
 import {Grid, Typography} from "@mui/material";
 import {
     SanityCocktailType,
@@ -7,7 +7,7 @@ import {
     SanityMixingInstruction
 } from "../../../../common/sanityIo/Types";
 import {Close} from "@mui/icons-material";
-import {cocktailUrlFor} from "../../../block-content-ui/static-pages/cmsStaticPagesClient";
+import SanityContext from "../../../../common/sanityIo/sanity-context/SanityContext";
 
 
 interface IProps {
@@ -44,10 +44,8 @@ const DrinkCardBottom: FunctionComponent<IProps> = ({currentCard}: IProps) => {
 
     }
 
-    React.useEffect(() => {
-        if (currentCard)
-            console.log("currentCard", currentCard)
-    }, [currentCard])
+    const sanityContext = useContext(SanityContext)
+
 
     return (<Grid container item>
         {/*<Grid item>*/}
@@ -66,7 +64,7 @@ const DrinkCardBottom: FunctionComponent<IProps> = ({currentCard}: IProps) => {
                 {currentCard?.mixingGlass[0]._type === "MixingGlass" && <Grid container item>
                     <Grid item container justifyContent='center'>
                         <img alt='drink type' height={42}
-                             src={cocktailUrlFor(currentCard.mixingGlass[0].ingredient.liquorType?.imageSrc ?? "").url() ?? ""}/>
+                             src={sanityContext.cocktailUrlFor(currentCard.mixingGlass[0].ingredient.liquorType?.imageSrc ?? "").url() ?? ""}/>
                     </Grid>
                     <Grid item container justifyContent='center'>
                         <Typography
@@ -93,6 +91,8 @@ const DrinkCardBottom: FunctionComponent<IProps> = ({currentCard}: IProps) => {
                                     </Grid>
                                 </Grid>
                             </Grid>
+                        } else {
+                            return <></>
                         }
 
                     })
@@ -112,6 +112,8 @@ const DrinkCardBottom: FunctionComponent<IProps> = ({currentCard}: IProps) => {
                                     </Grid>
                                     <Grid item><Typography>{mixin?.title.toLowerCase()}</Typography></Grid>
                                 </Grid>
+                            } else {
+                                return <></>
                             }
 
                         })
@@ -163,6 +165,8 @@ const DrinkCardBottom: FunctionComponent<IProps> = ({currentCard}: IProps) => {
                                                     <Grid item><Typography
                                                         variant='subtitle2'>{mixin.title}</Typography></Grid>
                                                 </Grid>
+                                            } else {
+                                                return <></>
                                             }
                                         })
                                     }

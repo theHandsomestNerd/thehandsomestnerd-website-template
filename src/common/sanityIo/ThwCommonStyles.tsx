@@ -1,10 +1,9 @@
 // block renderers can return JSX Elements that are block or inline elements since they will be the top level element
-import { Theme } from '@mui/material/styles';
 import makeStyles from '@mui/styles/makeStyles';
 import {COLORS} from "../../theme/common/ColorPalette";
 import TransformHWTheme from "../../theme/TransformHWTheme";
 
-export const useThwCommonStyles = makeStyles((theme: Theme) => ({
+export const useThwCommonStyles = makeStyles(() => ({
     layoutContainer: {
         marginBottom: '32px',
     },

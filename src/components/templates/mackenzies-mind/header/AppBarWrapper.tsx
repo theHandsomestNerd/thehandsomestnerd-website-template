@@ -2,10 +2,9 @@ import React, {FunctionComponent, PropsWithChildren, useContext} from 'react'
 import {AppBar} from "@mui/material";
 import CustomizedThemeContext from "../../../customized-theme-provider/CustomizedThemeContext";
 import makeStyles from "@mui/styles/makeStyles";
-import {Theme} from "@mui/material/styles";
 import {COLORS, convertToHexCode} from "../../../../theme/common/ColorPalette";
 
-export const useStyles = makeStyles((theme: Theme) => ({
+export const useStyles = makeStyles(() => ({
     root: (props: any) => ({
         backgroundColor: COLORS.TRANSPARENTWHITE,
         transition: 'background-color .5s ease 0s',
@@ -22,7 +21,7 @@ interface IProps {
     isAppBar?: boolean,
     children: any
     isEnhanced?: boolean
-    backgroundColor?:string
+    backgroundColor?: string
 }
 
 const AppBarWrapper: FunctionComponent<PropsWithChildren<IProps>> = (props: IProps) => {

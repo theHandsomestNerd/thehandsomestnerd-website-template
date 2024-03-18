@@ -1,22 +1,15 @@
-import React, {FunctionComponent} from 'react'
+import React, {FunctionComponent, useContext} from 'react'
 import {Card, Grid, Typography, useTheme} from "@mui/material";
 import {motion, useAnimationControls} from "framer-motion";
-import {urlFor} from "../block-content-ui/static-pages/cmsStaticPagesClient";
 import {ServiceAmenityType} from "../BlockContentTypes";
-import makeStyles from "@mui/styles/makeStyles";
-import {Theme} from "@mui/material/styles";
-import imagePlaceholderClient from "../../utils/imagePlaceholderClient";
-
-export const useStyles = makeStyles((theme: Theme) => ({
-    root: {},
-}))
+import SanityContext from "../../common/sanityIo/sanity-context/SanityContext";
 
 interface IProps {
     amenity: ServiceAmenityType
 }
 
 const HorizontalAmenity: FunctionComponent<IProps> = (props: IProps) => {
-
+    const sanityContext = useContext(SanityContext)
     const controls = useAnimationControls()
 
     const animateFlipIcon = async () => {
@@ -45,7 +38,7 @@ const HorizontalAmenity: FunctionComponent<IProps> = (props: IProps) => {
                     <motion.div
                         animate={controls}
                     >
-                        <img width={56} src={urlFor(props.amenity.imageSrc ?? "").url() ?? imagePlaceholderClient.placeholderOrImage(props.amenity.imageSrc, 56, 56)}/>
+                        <img width={56} src={sanityContext.urlFor(props.amenity.imageSrc ?? "").url() ?? sanityContext.placeholderOrImage(props.amenity.imageSrc, 56, 56)}/>
                     </motion.div>
                 </Grid>
                 <Grid item maxWidth={250}>

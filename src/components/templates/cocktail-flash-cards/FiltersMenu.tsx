@@ -1,14 +1,13 @@
-import React, {FunctionComponent, useState} from 'react'
+import React, {FunctionComponent, useContext, useState} from 'react'
 import {Button, CircularProgress, Divider, Drawer, Grid, List, ListItem,} from "@mui/material";
 import {makeStyles} from "@mui/styles";
 import {MainMenuAnchorType} from "../../../common/sanityIo/Types";
-import apiClient from "./apiClient";
 import LiquorBarFilter from "./LiquorBarFilter";
 import {Close, FilterList} from "@mui/icons-material";
-import {Theme} from "@mui/material/styles";
+import SanityContext from "../../../common/sanityIo/sanity-context/SanityContext";
 
 
-const useStyles = makeStyles((theme: Theme) => ({
+const useStyles = makeStyles(() => ({
     drawer: {
         // "& .MuiDrawer-paper": {
         //     backgroundColor: "transparent"
@@ -32,8 +31,9 @@ interface MainMenuProps {
 const FiltersMenu: FunctionComponent<MainMenuProps> = ({anchor}) => {
     const classes = useStyles()
     const [isDrawerOpen, setIsDrawerOpen] = useState<boolean>()
+    const sanityContext = useContext(SanityContext)
 
-    const toggleDrawer = (anchor: MainMenuAnchorType, open: boolean) => (event: any) => {
+    const toggleDrawer = (_anchor: MainMenuAnchorType, open: boolean) => (event: any) => {
         if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
             return;
         }
@@ -42,9 +42,9 @@ const FiltersMenu: FunctionComponent<MainMenuProps> = ({anchor}) => {
     };
 
 
-    const {data, isLoading} = apiClient.useFetchMyBarIngredients()
+    const {data, isLoading} = sanityContext.useFetchMyBarIngredients()
 
-    const list = (anchor: MainMenuAnchorType) => (
+    const list = () => (
         <Grid xs={12} container item
               role="presentation"
             // onClick={toggleDrawer(anchor, false)}
@@ -141,7 +141,7 @@ const FiltersMenu: FunctionComponent<MainMenuProps> = ({anchor}) => {
                             item>
                             <CircularProgress/>
                         </Grid>
-                    </Grid> : list(anchor)}
+                    </Grid> : list()}
                 </Grid>
             </Drawer>
         </Grid>

@@ -21,6 +21,24 @@ const createColdLead = async (coldLead: any) => {
   });
 };
 
+const createContactUs = async (contactUs: any) => {
+    log("createSanityContactUs", "INFO", "creating contact Us ", contactUs);
+
+    const newContactUs: any = {
+        ...contactUs,
+    };
+
+    log("createSanityContactUs", "INFO", "potential contact Us ", newContactUs);
+
+    return sanityClient.create({
+        _type: "ContactUs",
+        ...newContactUs,
+    }).catch((e:any)=>{
+        log("createSanityContactUs", "ERROR", "creating contact us ", {newContactUs: newContactUs, e});
+        return Promise.reject(e.message);
+    });
+};
+
 const fetchPage = async (pageSlug:string)=>{
   return sanityClient
       .fetch(
@@ -38,4 +56,4 @@ const fetchPage = async (pageSlug:string)=>{
 };
 
 
-export {createColdLead, fetchPage};
+export {createColdLead, fetchPage, createContactUs};

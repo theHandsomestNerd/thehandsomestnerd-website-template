@@ -1,14 +1,13 @@
-import React, {FunctionComponent} from 'react'
+import React, {FunctionComponent, useContext} from 'react'
 import clsx from "clsx";
 import useCustomStyles from "../mackenzies-mind/pages/Styles";
-import bgImage from "./dont-need/drinkery-background.jpg"
+import bgImage from "../../../assets/drinkery-background.jpg"
 import TheOtherSideLogo from "./TheOtherSideLogo";
 import {DrinkerySpecialsSectionType} from "../../BlockContentTypes";
 import makeStyles from "@mui/styles/makeStyles";
 import {Theme} from "@mui/material/styles";
 import {Grid, Typography, useTheme} from "@mui/material";
-import {urlFor} from "../../block-content-ui/static-pages/cmsStaticPagesClient";
-import imagePlaceholderClient from "../../../utils/imagePlaceholderClient";
+import SanityContext from "../../../common/sanityIo/sanity-context/SanityContext";
 
 interface IProps {
     email?: string
@@ -28,6 +27,7 @@ const TheDrinkerySpecials: FunctionComponent<IProps> = (props) => {
     const classes = useCustomStyles({bgImage: bgImage})
     const theme = useTheme()
     const theClasses = useStyles()
+    const sanityContext = useContext(SanityContext)
 
     return (
         <Grid container item className={theClasses.preroot}>
@@ -39,7 +39,7 @@ const TheDrinkerySpecials: FunctionComponent<IProps> = (props) => {
                     </Grid>
                     <Grid container item justifyContent='center'>
                         <img
-                            src={(props.sectionData?.imageSrc ? urlFor(props.sectionData?.imageSrc).url() : imagePlaceholderClient.placeholderOrImage(props.sectionData.imageSrc, 485, 356)) ?? ""}
+                            src={(props.sectionData?.imageSrc ? sanityContext.urlFor(props.sectionData?.imageSrc).url() : sanityContext.placeholderOrImage(props.sectionData.imageSrc, 485, 356)) ?? ""}
                              alt={props.sectionData?.imageSrcAltText}/>
                     </Grid>
                     <Grid container item justifyContent='center'>

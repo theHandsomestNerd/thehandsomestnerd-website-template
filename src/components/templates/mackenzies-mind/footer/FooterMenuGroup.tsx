@@ -77,7 +77,7 @@ const FooterMenuGroup: FunctionComponent<LandingPagesFooterMenuGroupProps> = ({m
                                             {menuLink.displayText}
                                         </Typography>
                                     </Link>:<LoadingButton variant={menuLink.isContainedButton?'contained':'outlined'} href={menuLink.url}><Typography variant="body1" color='textPrimary' noWrap>
-                                        {menuLink.displayText}{menuLink.isContainedButton}{menuLink.isOutlinedButton}
+                                        {menuLink.displayText}
                                     </Typography></LoadingButton>}
                                 </Grid>
                             );

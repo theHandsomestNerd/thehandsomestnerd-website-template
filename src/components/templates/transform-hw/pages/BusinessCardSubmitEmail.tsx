@@ -56,12 +56,12 @@ const BusinessCardSubmitEmail: FunctionComponent<SubmitEmailIProps> = (props: Su
     const [isError, setIsError] = React.useState<boolean>(false)
     const [data, setData] = React.useState<any>()
 
-    const createLead = async (e: any): Promise<any> => {
+    const createLead = async (): Promise<any> => {
         setIsLoading(true)
         setIsError(false)
 
         const response = await leadClient.sendBusinessCardEmail({email, source: props.source});
-        console.log(response)
+        // console.log(response)
 
         if (response.status === "400") {
             console.log("there was error")

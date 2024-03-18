@@ -1,15 +1,9 @@
 import React, {FunctionComponent, useContext} from 'react'
-import {Theme} from "@mui/material/styles";
-import makeStyles from '@mui/styles/makeStyles';
 import {Grid, List, useTheme} from '@mui/material'
 import {ArrowLeft, ArrowRight} from "@mui/icons-material";
 import {ThwServiceItemNoRefType} from "../../BlockContentTypes";
 import AmenityContext from "../../amenity-context/AmenityContext";
 import {useIsHorizontalOverflow} from "../../../utils/useIsHorizontalOverflow";
-
-export const useStyles = makeStyles((theme: Theme) => ({
-    root: {},
-}))
 
 interface IProps {
     service: ThwServiceItemNoRefType

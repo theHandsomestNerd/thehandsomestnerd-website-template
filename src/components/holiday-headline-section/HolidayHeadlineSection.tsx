@@ -1,19 +1,16 @@
-import React, {FunctionComponent} from 'react'
+import React, {FunctionComponent, useContext} from 'react'
 import {HolidayHeadlineSectionType} from "../BlockContentTypes";
-import {urlFor} from "../block-content-ui/static-pages/cmsStaticPagesClient";
 import makeStyles from "@mui/styles/makeStyles";
-import { Theme } from '@mui/material/styles';
-import {Box, Grid, Typography, useTheme} from "@mui/material";
-import imagePlaceholderClient from "../../utils/imagePlaceholderClient";
+import {Theme} from '@mui/material/styles';
+import {Box, Grid, Typography} from "@mui/material";
+import SanityContext from "../../common/sanityIo/sanity-context/SanityContext";
 
 export const useStyles = makeStyles((theme: Theme) => ({
     root: {
         height: '430px',
-        // backgroundColor: theme.palette.background.paper,
         paddingBottom: theme.spacing(5)
     },
     contentBullets: {
-        // border: "1px solid black"
         marginBottom: theme.spacing(5)
     }
 }))
@@ -24,12 +21,13 @@ interface IProps {
 }
 
 const HolidayHeadlineSection: FunctionComponent<IProps> = (props) => {
-    const theme = useTheme()
+    const sanityContext = useContext(SanityContext)
+
     return (
         <Grid container justifyContent='center' item alignContent='center' alignItems='center'
               style={{padding: "40px"}}>
             <Grid item xs={12} sm={2} container justifyContent='center'>
-                <img  height={156} width={156} alt={props.sectionData.slug.current + " Icon"} src={imagePlaceholderClient.placeholderOrImage(props.sectionData?.holidayIconLeft, 156, 156)}/>
+                <img  height={156} width={156} alt={props.sectionData.slug.current + " Icon"} src={sanityContext.placeholderOrImage(props.sectionData?.holidayIconLeft, 156, 156)}/>
             </Grid>
             <Grid item xs={12} sm={8} container justifyContent='center'>
                 <Grid item>
@@ -44,7 +42,7 @@ const HolidayHeadlineSection: FunctionComponent<IProps> = (props) => {
                 </Grid>
             </Grid>
             <Grid item xs={12} sm={2} container  justifyContent='center' >
-                <Box sx={{ display: { xs: 'none', sm: 'block' } }}><img height={156} width={156} alt={props.sectionData.slug.current + " Icon"} src={imagePlaceholderClient.placeholderOrImage(props.sectionData?.holidayIconRight, 156, 156)}/></Box>
+                <Box sx={{ display: { xs: 'none', sm: 'block' } }}><img height={156} width={156} alt={props.sectionData.slug.current + " Icon"} src={sanityContext.placeholderOrImage(props.sectionData?.holidayIconRight, 156, 156)}/></Box>
             </Grid>
         </Grid>
     )

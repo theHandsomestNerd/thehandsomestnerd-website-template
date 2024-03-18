@@ -4,11 +4,11 @@ import AmenityContext from './AmenityContext';
 import {Grid, ListItem, ListItemIcon, ListItemText, Typography} from "@mui/material";
 import {v4 as uuidv4} from "uuid";
 import ToolTipWrap from "../templates/transform-hw/ToolTipWrap";
-import {urlFor} from "../block-content-ui/static-pages/cmsStaticPagesClient";
 import PageContext from "../page-context/PageContext";
 import ColoredPng from "../colored-png/ColoredPng";
 import SnackbarContext from "../modal-context/SnackbarContext";
-import firebaseAnalyticsClient from "../../common/firebase/FirebaseAnalyticsClient";
+import FirebaseContext from "../../common/firebase/firebase-context/FirebaseContext";
+import SanityContext from "../../common/sanityIo/sanity-context/SanityContext";
 
 type IProps = {};
 
@@ -67,6 +67,7 @@ const AmenityProvider: FunctionComponent<IProps & PropsWithChildren> = (
 ) => {
     const [state, dispatch] = useReducer(reducer, initialState)
     const pageContext = useContext(PageContext)
+    const sanityContext = useContext(SanityContext)
 
     React.useEffect(() => {
         pageContext.page?.servicesAvailable?.map((service) => {
@@ -76,7 +77,7 @@ const AmenityProvider: FunctionComponent<IProps & PropsWithChildren> = (
         })
     }, [pageContext.page?.servicesAvailable])
 
-    const generateAmenitiesElement = (amenities: any[], serviceSlug: string, serviceTitle: string) => {
+    const generateAmenitiesElement = (amenities: any[], _serviceSlug: string, serviceTitle: string) => {
         // console.log(" generate", serviceSlug, state.serviceId)
         // if(serviceSlug === state.serviceId)
         const newElements = amenities?.map((serviceAmenity: ServiceAmenityType) => {
@@ -108,7 +109,7 @@ const AmenityProvider: FunctionComponent<IProps & PropsWithChildren> = (
                                   minWidth: "32px",
                                   backgroundSize: 'contain',
                                   backgroundPosition: 'center',
-                                  backgroundImage: `url(${serviceAmenity.imageSrc?urlFor(serviceAmenity.imageSrc).width(32).height(32).url():"https://placehold.co/32x32"})`,
+                                  backgroundImage: `url(${serviceAmenity.imageSrc?sanityContext.urlFor(serviceAmenity.imageSrc).width(32).height(32).url():"https://placehold.co/32x32"})`,
                                   backgroundRepeat: "no-repeat",
 
                               }}
@@ -133,6 +134,8 @@ const AmenityProvider: FunctionComponent<IProps & PropsWithChildren> = (
     const init = async (slug: string) => {
         await dispatch({type: "LOAD_SERVICE_ID", payload: {serviceId: slug}})
     }
+    const firebaseContext = useContext(FirebaseContext)
+
 
     const getElements = (slug: string) => {
 
@@ -141,7 +144,7 @@ const AmenityProvider: FunctionComponent<IProps & PropsWithChildren> = (
     const snackbarContext = useContext(SnackbarContext)
 
     const openSnackbar = (serviceTitle: string, amenity: ServiceAmenityType) => {
-        pageContext.analyticsId && firebaseAnalyticsClient.amenityTooltipShown && firebaseAnalyticsClient.amenityTooltipShown(serviceTitle, amenity.title, pageContext.analyticsId)
+        pageContext.analyticsId && firebaseContext.analytics.amenityTooltipShown && firebaseContext.analytics.amenityTooltipShown(serviceTitle, amenity.title, pageContext.analyticsId)
         const snack = <Grid
             container
             style={{minWidth: "200px"}}

@@ -1,14 +1,9 @@
 import React, {FunctionComponent, PropsWithChildren, ReactElement, useContext} from 'react'
-import {Theme} from "@mui/material/styles";
-import makeStyles from '@mui/styles/makeStyles';
 import {Grid, Tooltip, Typography, useMediaQuery} from '@mui/material'
 import {ServiceAmenityType} from "../../BlockContentTypes";
 import AmenityContext from "../../amenity-context/AmenityContext";
 import CustomizedThemeContext from "../../customized-theme-provider/CustomizedThemeContext";
 
-export const useStyles = makeStyles((theme: Theme) => ({
-    root: {},
-}))
 
 interface IProps {
     amenity: ServiceAmenityType
@@ -22,9 +17,9 @@ const ToolTipWrap: FunctionComponent<PropsWithChildren & IProps> = (props: Props
 
     const smDown = useMediaQuery(customizedThemeContext.customizedTheme.breakpoints.down('sm'))
     return <Grid container xs={6} item
-                                               onClick={() => {
-                                                   amenityContext.openSnackbar && amenityContext.openSnackbar(props.serviceTitle,props.amenity)
-                                               }}>
+                 onClick={() => {
+                     amenityContext.openSnackbar && amenityContext.openSnackbar(props.serviceTitle, props.amenity)
+                 }}>
         <Tooltip disableHoverListener={smDown} title={
             <Grid container style={{maxWidth: "160px"}}>
                 <Typography

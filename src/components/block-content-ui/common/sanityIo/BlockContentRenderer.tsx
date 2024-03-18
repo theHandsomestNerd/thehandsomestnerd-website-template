@@ -15,7 +15,6 @@ import {
 } from './BlockContentMarkRenderers'
 import BlockContent from '@sanity/block-content-to-react'
 import {ListItemRender, ListRender, UtmLinkRender} from './BlockContentAnnotations'
-import {urlFor} from '../../static-pages/cmsStaticPagesClient'
 import {SanityImageSource} from "@sanity/asset-utils";
 import TheWebsiteTheme from "../../../../theme/Theme";
 
@@ -29,18 +28,17 @@ export type LinkType = {
     }
 }
 
-export type BlockPropsType = {
-    _type: string,
-    listItem?: string,
-    level?: number
-}
+// export type BlockPropsType = {
+//     _type: string,
+//     listItem?: string,
+//     level?: number
+// }
 export type BlockContentPropsType<T> = {
     mark?: T
 }
 
 export const HeaderRender = (props: any, variant: HeaderVariantType) => {
-    const classes = useCommonStyles(TheWebsiteTheme
-    )
+    const classes = useCommonStyles()
 
     const wrapWithHTag = (children: any) => {
         switch (variant) {
@@ -72,16 +70,16 @@ export const HeaderRender = (props: any, variant: HeaderVariantType) => {
     return wrapWithHTag(props.children)
 }
 
-export const ImageAssetRender = (image?: SanityImageSource, caption?: string, className?: any) => {
+export const ImageAssetRender = (image?: SanityImageSource, caption?: string, _className?: any) => {
     return image ?
         <figure style={{overflow: 'hidden'}}>
-            <img className={className ?? ''} src={urlFor(image).url() ?? ''}/>
+            {/*<img className={className ?? ''} src={urlFor(image).url() ?? ''}/>*/}
             {caption && <figcaption>{caption}</figcaption>}
         </figure>
         : <></>
 }
 
-export const HrRender: React.FunctionComponent = (props) => {
+export const HrRender: React.FunctionComponent = () => {
     const classes = useCommonStyles(TheWebsiteTheme
     )
 
@@ -117,8 +115,10 @@ export const abBlockSerializers: any = {
                     return BlockContent.defaultSerializers.types.block(props)
             }
         },
-        image: (props: any) => {
-            return <figure style={{overflow: 'hidden'}}><img src={urlFor(props.node).url() ?? ''}/></figure>
+        image: () => {
+            return <figure style={{overflow: 'hidden'}}>
+                {/*<img src={urlFor(props.node).url() ?? ''}/>*/}
+            </figure>
         },
         lineBreak: (props: any) => {
             const {style} = props.node

@@ -1,10 +1,10 @@
-import React, {FunctionComponent, PropsWithChildren, useReducer,} from 'react';
+import React, {FunctionComponent, PropsWithChildren, useContext, useReducer,} from 'react';
 import SearchContext from "./SearchContext";
 import {useLocation} from "react-router-dom";
 import {CocktailDbResultType, SanityCocktailIngredient, SanityCocktailType} from "../../../../common/sanityIo/Types";
 import externalCocktailClient from "../search-box/ExternalCocktailClient";
-import apiClient from "../apiClient";
-import firebaseAnalyticsClient from "../../../../common/firebase/FirebaseAnalyticsClient";
+import FirebaseContext from "../../../../common/firebase/firebase-context/FirebaseContext";
+import SanityContext from "../../../../common/sanityIo/sanity-context/SanityContext";
 
 type IProps = {};
 
@@ -188,7 +188,7 @@ const SearchProvider: FunctionComponent<IProps & PropsWithChildren> = (
 
     const searchAppCocktails = async (terms: string) => {
         if (terms === "") {
-            console.log(" all the cocktails", state.allCocktails)
+            // console.log(" all the cocktails", state.allCocktails)
             return state.allCocktails
         }
         const tokenizedTerms = terms.split(" ")
@@ -236,7 +236,7 @@ const SearchProvider: FunctionComponent<IProps & PropsWithChildren> = (
             const appResults = await searchAppCocktails(terms)
             const externalResults: any[] | undefined = await getExternalResults(terms)
 
-            console.log(externalResults)
+            // console.log(externalResults)
             dispatch({
                 type: "UPDATE_SEARCH_RESULTS",
                 payload: {
@@ -269,10 +269,11 @@ const SearchProvider: FunctionComponent<IProps & PropsWithChildren> = (
     //
     //     return uniqueGenres
     // }
+    const sanityContext = useContext(SanityContext)
 
     //update the search when the user changes the string
     React.useEffect(() => {
-        apiClient.getMyProduct(state.searchString, state.searchFilters ?? [], state.ingredientFilters ?? [], state.isAndSearch).then((results) => {
+        sanityContext.getMyProduct(state.searchString, state.searchFilters ?? [], state.ingredientFilters ?? [], state.isAndSearch).then((results:any) => {
             dispatch({type: "UPDATE_SEARCH_RESULTS", payload: {cocktails: results}})
         })
     }, [state.searchString, state.searchFilters, state.ingredientFilters, state.isAndSearch])
@@ -355,10 +356,11 @@ const SearchProvider: FunctionComponent<IProps & PropsWithChildren> = (
     //     console.log("Search filters changed", state.searchFilters)
     //     refetch()
     // }, [state.searchFilters])
+    const firebaseContext = useContext(FirebaseContext)
 
     React.useEffect(() => {
         if (state.cardCounter && state.cocktails && state.cocktails[state.cardCounter])
-            state.cardCounter && firebaseAnalyticsClient.analyticsPageView(
+            state.cardCounter && firebaseContext.analytics.analyticsPageView && firebaseContext.analytics.analyticsPageView(
                 location.pathname,
                 location.search,
                 `${state.cocktails[state.cardCounter].title} | Cocktail`,

@@ -1,13 +1,11 @@
-import React, {FunctionComponent} from 'react'
+import React, {FunctionComponent, useContext} from 'react'
 import BlockContent from '@sanity/block-content-to-react'
-import {Card, Grid, Link, ThemeProvider} from '@mui/material';
-import sanityClient from '../sanityClient'
+import {Card, Grid, Link} from '@mui/material';
 import {blockSerializers} from '../common/sanityIo/BlockContentRenderer'
-import {DevelopmentFooterSectionType, FooterSectionType,} from "./BlockContentTypes";
+import {FooterSectionType,} from "./BlockContentTypes";
 import useThwCommonStyles from "../common/sanityIo/ThwCommonStyles";
-import WebDevSiteTheme from "../theme/WebDevSiteTheme";
 import Footer from "./templates/mackenzies-mind/footer/Footer";
-import WebDevFooter from "./templates/web-dev-site/dev-footer/WebDevFooter";
+import SanityContext from "../common/sanityIo/sanity-context/SanityContext";
 
 export type FooterBlockContentLayoutContainerProps = {
     content?: any,
@@ -15,6 +13,7 @@ export type FooterBlockContentLayoutContainerProps = {
 
 const FooterBlockContentLayoutContainer: FunctionComponent<FooterBlockContentLayoutContainerProps> = (props) => {
     const classes = useThwCommonStyles()
+    const sanityContext = useContext(SanityContext)
 
     return (
         <Grid container item>
@@ -30,8 +29,8 @@ const FooterBlockContentLayoutContainer: FunctionComponent<FooterBlockContentLay
                                             <BlockContent
                                                 blocks={columnLayoutContainer.content}
                                                 serializers={blockSerializers}
-                                                projectId={sanityClient.config().projectId}
-                                                dataset={sanityClient.config().dataset}
+                                                projectId={sanityContext.theSanityClient.config().projectId}
+                                                dataset={sanityContext.theSanityClient.config().dataset}
                                             />
                                         </Grid>
                                     </Grid>
@@ -48,16 +47,16 @@ const FooterBlockContentLayoutContainer: FunctionComponent<FooterBlockContentLay
                                             <BlockContent
                                                 blocks={columnLayoutContainer.column1.content}
                                                 serializers={blockSerializers}
-                                                projectId={sanityClient.config().projectId}
-                                                dataset={sanityClient.config().dataset}
+                                                projectId={sanityContext.theSanityClient.config().projectId}
+                                                dataset={sanityContext.theSanityClient.config().dataset}
                                             />
                                         </Grid>
                                         <Grid item xs={6}>
                                             <BlockContent
                                                 blocks={columnLayoutContainer.column2.content}
                                                 serializers={blockSerializers}
-                                                projectId={sanityClient.config().projectId}
-                                                dataset={sanityClient.config().dataset}
+                                                projectId={sanityContext.theSanityClient.config().projectId}
+                                                dataset={sanityContext.theSanityClient.config().dataset}
                                             />
                                         </Grid>
                                     </Grid>

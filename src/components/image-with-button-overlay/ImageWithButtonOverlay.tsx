@@ -1,18 +1,17 @@
 import React, {FunctionComponent, useContext} from 'react'
-import { Theme } from '@mui/material/styles';
 import makeStyles from '@mui/styles/makeStyles';
-import {Button, Grid, PropTypes, Tooltip, Typography} from '@mui/material'
+import {Button, Grid, Tooltip, Typography} from '@mui/material'
 import CssFadeToColor from "../css-fade-to-color/CssFadeToColor";
-import {urlFor} from "../block-content-ui/static-pages/cmsStaticPagesClient";
 import {SanityImageSource} from "@sanity/asset-utils";
 import {CssFadeToColorDirectionEnum} from "../css-fade-to-color/CssFadeToColorDirectionEnum";
 import {ImageWithButtonOverlayAligmentEnum} from "./ImageWithButtonOverlayAligmentEnum";
-import firebaseAnalyticsClient from "../../common/firebase/FirebaseAnalyticsClient";
 import PageContext from "../page-context/PageContext";
 import {OverridableStringUnion} from "@mui/types";
 import {ButtonPropsColorOverrides} from "@mui/material/Button/Button";
+import FirebaseContext from "../../common/firebase/firebase-context/FirebaseContext";
+import SanityContext from "../../common/sanityIo/sanity-context/SanityContext";
 
-export const useStyles = makeStyles((theme: Theme) => ({
+export const useStyles = makeStyles(() => ({
     contentBullets: {
         marginBottom: "40px"
     }
@@ -55,6 +54,7 @@ const ImageWIthButtonOverlay: FunctionComponent<IProps> = (props) => {
                 return 'center'
         }
     }
+    const sanityContext = useContext(SanityContext)
 
     const [displayImageUrl, setDisplayImageUrl] = React.useState<string>()
 
@@ -63,7 +63,7 @@ const ImageWIthButtonOverlay: FunctionComponent<IProps> = (props) => {
             setDisplayImageUrl(props.imageUrl)
         }
         if (props.imageSrc) {
-            setDisplayImageUrl(urlFor(props.imageSrc ?? "").height(props.height).url() ?? '')
+            setDisplayImageUrl(sanityContext.urlFor(props.imageSrc ?? "").height(props.height).url() ?? '')
         } else {
             setDisplayImageUrl(`https://placehold.co/${props.placeholderWidth ?? props.height}x${props.height}`)
         }
@@ -71,11 +71,12 @@ const ImageWIthButtonOverlay: FunctionComponent<IProps> = (props) => {
     }, [])
 
     const pageContext = useContext(PageContext)
+    const firebaseContext = useContext(FirebaseContext)
 
     return (
         <Button fullWidth
-                onClick={(e) => {
-                    props.source && firebaseAnalyticsClient.ctaClick(props.source, 'image-button', pageContext.analyticsId,)
+                onClick={() => {
+                    props.source && firebaseContext.analytics.ctaClick(props.source, 'image-button', pageContext.analyticsId,)
                 }}
                 variant='text'
                 href={props.learnMoreLink}
@@ -89,18 +90,10 @@ const ImageWIthButtonOverlay: FunctionComponent<IProps> = (props) => {
                                     direction={props.direction}
                                     isResponsive={props.isResponsive}/>}
                 {
-                        props.tooltip ? <Tooltip
-                            title={<Typography variant='subtitle1'
-                                               style={{fontWeight: "normal"}}>{props.tooltip}</Typography>}>
-                            <Grid item container style={{
-                                backgroundImage: `url(${displayImageUrl})`,
-                                backgroundSize: "cover",
-                                backgroundPosition: "center",
-                                backgroundRepeat: "no-repeat",
-                                height: props.height
-                            }}>
-                            </Grid>
-                        </Tooltip> : <Grid item container style={{
+                    props.tooltip ? <Tooltip
+                        title={<Typography variant='subtitle1'
+                                           style={{fontWeight: "normal"}}>{props.tooltip}</Typography>}>
+                        <Grid item container style={{
                             backgroundImage: `url(${displayImageUrl})`,
                             backgroundSize: "cover",
                             backgroundPosition: "center",
@@ -108,6 +101,14 @@ const ImageWIthButtonOverlay: FunctionComponent<IProps> = (props) => {
                             height: props.height
                         }}>
                         </Grid>
+                    </Tooltip> : <Grid item container style={{
+                        backgroundImage: `url(${displayImageUrl})`,
+                        backgroundSize: "cover",
+                        backgroundPosition: "center",
+                        backgroundRepeat: "no-repeat",
+                        height: props.height
+                    }}>
+                    </Grid>
                 }
                 <Grid container
                       item
@@ -120,9 +121,9 @@ const ImageWIthButtonOverlay: FunctionComponent<IProps> = (props) => {
                       justifyContent={getButtonAlignment()}>
                     {props.ctaButtonLink &&
                         <Button
-                            onClick={(e: any) => {
+                            onClick={() => {
                                 props.source && props.ctaButtonText &&
-                                firebaseAnalyticsClient.ctaClick(props.source, props.ctaButtonText, pageContext.analyticsId,)
+                                firebaseContext.analytics.ctaClick(props.source, props.ctaButtonText, pageContext.analyticsId,)
                             }}
                             component='div'
                             variant={props.variant ? props.variant : 'outlined'}

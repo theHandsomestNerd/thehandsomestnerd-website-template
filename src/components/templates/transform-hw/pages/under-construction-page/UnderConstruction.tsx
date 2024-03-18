@@ -1,17 +1,16 @@
 import React, {FunctionComponent, useContext, useEffect, useState} from 'react'
-import {Grid, Typography, useMediaQuery, useTheme} from '@mui/material'
+import {Grid, Typography, useMediaQuery} from '@mui/material'
 import useCustomStyles from "../../../mackenzies-mind/pages/Styles";
 import CountdownToLaunch from "./CountdownToLaunch";
 import clsx from "clsx";
 import CssFadeToColor from "../../../../css-fade-to-color/CssFadeToColor";
 import {SanityRef, SanityUnderConstructionPageType} from "../../../../../common/sanityIo/Types";
-import cmsClient from "../../../../block-content-ui/cmsClient";
 import Logo from "../../../../logo/Logo";
-import {urlFor} from "../../../../block-content-ui/static-pages/cmsStaticPagesClient";
 import MailTo from "../../../../mail-to/MailTo";
 import {COLORS} from "../../../../../theme/common/ColorPalette";
 import CustomizedThemeContext from "../../../../customized-theme-provider/CustomizedThemeContext";
 import BusinessCardSubmitEmail from "../BusinessCardSubmitEmail";
+import SanityContext from "../../../../../common/sanityIo/sanity-context/SanityContext";
 
 interface IProps {
     email?: string
@@ -19,18 +18,18 @@ interface IProps {
 }
 
 const UnderConstruction: FunctionComponent<IProps> = (props) => {
+    const sanityContext = useContext(SanityContext)
     const [cmsPageData, setCmsPageData] = useState<SanityUnderConstructionPageType>()
-    const classes = useCustomStyles({bgImage: urlFor(cmsPageData?.bgImage ?? "").url()})
+    const classes = useCustomStyles({bgImage: sanityContext.urlFor(cmsPageData?.bgImage ?? "").url()})
     const customizedThemeContext = useContext(CustomizedThemeContext);
     const smDown = useMediaQuery(customizedThemeContext.customizedTheme.breakpoints.down('lg'))
     const xsDown = useMediaQuery(customizedThemeContext.customizedTheme.breakpoints.down('md'))
-
 
     const [releaseDate, setReleaseDate] = useState<Date>()
 
     React.useEffect(() => {
         const getPage = async () => {
-            return cmsClient.fetchRef(props.underConstructionPageRef).then((pageResponse) => {
+            return sanityContext.fetchRef(props.underConstructionPageRef).then((pageResponse:any) => {
                 return pageResponse
             })
         }

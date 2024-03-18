@@ -1,23 +1,20 @@
-import React, {FunctionComponent} from 'react'
-import {Box, Button, ButtonGroup, Chip, Grid, IconButton, Modal, Typography, useTheme} from '@mui/material'
-import {ArrowRightAlt, Close} from "@mui/icons-material";
+import React, {FunctionComponent, useContext} from 'react'
+import {Button, ButtonGroup, Chip, Grid, IconButton, Modal, Typography, useTheme} from '@mui/material'
+import {Close} from "@mui/icons-material";
 import {AnimatedPortfolioItemType, AnimatedPortfolioSectionType} from "../BlockContentTypes";
-import {urlFor} from "../block-content-ui/static-pages/cmsStaticPagesClient";
 import BulletedHeader from "./BulletedHeader";
 import makeStyles from "@mui/styles/makeStyles";
 import {Theme} from "@mui/material/styles";
 import AnimatedPortfolioItem from "./AnimatedPortfolioItem";
+import SanityContext from "../../common/sanityIo/sanity-context/SanityContext";
 
 export const useStyles = makeStyles((theme: Theme) => ({
     iconButton: {
-        // root:{
         "&:hover": {
             backgroundColor: theme.palette.primary.dark
-            // }
         }
     },
 }))
-
 
 interface IProps {
     sectionData: AnimatedPortfolioSectionType
@@ -25,7 +22,7 @@ interface IProps {
 
 const AnimatedPortfolioSection: FunctionComponent<IProps> = (props: IProps) => {
     const theme = useTheme()
-    const classes = useStyles()
+    const sanityContext = useContext(SanityContext)
 
     const [isOpen, setIsOpen] = React.useState<boolean>(false)
     const [currentItem, setCurrentItem] = React.useState<AnimatedPortfolioItemType>()
@@ -55,7 +52,7 @@ const AnimatedPortfolioSection: FunctionComponent<IProps> = (props: IProps) => {
                 </Grid>
                 <Grid item container justifyContent={'center'} xs={12} justifySelf={'center'}>
                     {
-                        props.sectionData.portfolioEntries?.map((portfolioItem: AnimatedPortfolioItemType, index2: number) => {
+                        props.sectionData.portfolioEntries?.map((portfolioItem: AnimatedPortfolioItemType) => {
                             return <AnimatedPortfolioItem action={()=>sendToModal(portfolioItem)} portfolioItem={portfolioItem}/>
                         })
                     }
@@ -78,7 +75,7 @@ const AnimatedPortfolioSection: FunctionComponent<IProps> = (props: IProps) => {
                         overflowY: "scroll",
                     }} spacing={1}>
                         <Grid container item sx={{
-                            backgroundImage: `url(${urlFor(currentItem?.coverImage ?? "").url() ?? ""})`,
+                            backgroundImage: `url(${sanityContext.urlFor(currentItem?.coverImage ?? "").url() ?? ""})`,
                             backgroundSize: "cover",
                             backgroundPosition: "top center",
                             backgroundRepeat: "no-repeat",
@@ -104,7 +101,7 @@ const AnimatedPortfolioSection: FunctionComponent<IProps> = (props: IProps) => {
                                 {currentItem?.imageGallery?.map((image) => (
                                     <Grid item container xs={11} justifyContent='center'>
                                         <Grid item>
-                                            <img alt={'imageGalleryEntry'} src={urlFor(image ?? "").url() ?? ""}
+                                            <img alt={'imageGalleryEntry'} src={sanityContext.urlFor(image ?? "").url() ?? ""}
                                                  width={"100%"}/>
                                         </Grid>
                                     </Grid>))}

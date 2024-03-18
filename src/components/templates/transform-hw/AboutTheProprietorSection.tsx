@@ -1,5 +1,4 @@
 import React, {FunctionComponent, useContext} from 'react'
-import {Theme, ThemeProvider} from '@mui/material/styles';
 import makeStyles from '@mui/styles/makeStyles';
 import {Chip, Grid, Typography, useMediaQuery} from '@mui/material'
 import {ProprietorAtAGlanceType, ThwAboutProprietorSectionType} from "../../BlockContentTypes";
@@ -9,12 +8,12 @@ import LoadingButton from "../../loading-button/LoadingButton";
 import ResponsiveBullet from "../../ResponsiveBullet";
 import {FiberManualRecord} from "@mui/icons-material";
 import ColoredPng from "../../colored-png/ColoredPng";
-import firebaseAnalyticsClient from "../../../common/firebase/FirebaseAnalyticsClient";
 import PageContext from "../../page-context/PageContext";
 import ImageWithPlaceholder from "../../ImageWithPlaceholder";
 import CustomizedThemeContext from "../../customized-theme-provider/CustomizedThemeContext";
+import FirebaseContext from "../../../common/firebase/firebase-context/FirebaseContext";
 
-export const useStyles = makeStyles((theme: Theme) => ({
+export const useStyles = makeStyles(() => ({
     root: {
         minHeight: '521px',
         backgroundColor: TransformHWTheme.palette.background.paper,
@@ -33,6 +32,7 @@ interface IProps {
 
 const ProprietorAtAGlance = (props: { sectionData: ProprietorAtAGlanceType, source: string }) => {
     const pageContext = useContext(PageContext)
+    const firebaseContext = useContext(FirebaseContext)
 
 
     const customizedThemeContext = useContext(CustomizedThemeContext)
@@ -97,8 +97,8 @@ const ProprietorAtAGlance = (props: { sectionData: ProprietorAtAGlanceType, sour
             </Grid>
             <Grid item>
                 <LoadingButton
-                    clickHandler={(e: any) => {
-                        firebaseAnalyticsClient.ctaClick(props.source, props.sectionData.ctaButtonText, pageContext.analyticsId,)
+                    clickHandler={() => {
+                        firebaseContext.analytics.ctaClick(props.source, props.sectionData.ctaButtonText, pageContext.analyticsId,)
                     }}
                     href={props.sectionData.ctaButtonLink}
                     color={"primary"}

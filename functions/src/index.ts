@@ -22,7 +22,8 @@ import sendGridClient from "./sendGridClient";
 Promise.polyfill();
 
 const app = express();
-const corsOptionsDelegate = (req: any, callback: any) => {
+
+const corsOptionsDelegate = (req:any, callback:any) => {
   logClient.log("CORS", "NOTICE", "checking allowlist", {origin: req.header("Origin")});
   // let corsOptions;
   // if (allowlist.indexOf(req.header("Origin")) !== -1) {
@@ -148,8 +149,8 @@ const serveIndexFile = (req: any, res: any) => {
 
 
 app.post("/send-email-resume",
-    async (req: any, functionRes: any) => {
-      const reqBody: any = JSON.parse(req.body);
+    async (req, functionRes:any) => {
+      const reqBody = JSON.parse(req.body);
 
       logClient.log("send-email-address", "NOTICE",
           "Request to collect an email address and send them an email", reqBody.email);
@@ -182,7 +183,7 @@ app.post("/send-email-resume",
     });
 
 app.post("/collect-email-address",
-    async (req: any, functionRes: any) => {
+    async (req, functionRes:any) => {
       const reqBody = JSON.parse(req.body);
 
       logClient.log("collect-email-address", "NOTICE",
@@ -200,6 +201,27 @@ app.post("/collect-email-address",
       } catch (e) {
         logClient.log("collect-email-address", "ERROR",
             "Could not create Lead", {email: reqBody.email});
+        functionRes.error({status: "400", e});
+      }
+    });
+
+app.post("/create-contact-us",
+    async (req, functionRes:any) => {
+        logClient.log("create-contact-us", "NOTICE",
+            "Request body raw", req.body);
+    const reqBody = JSON.parse(req.body);
+
+      logClient.log("create-contact-us", "NOTICE",
+          "Request to create contact us", reqBody);
+    //
+      try {
+        const response = await cmsClient.createContactUs({
+          ...reqBody
+        });
+        functionRes.send({status: "200", response, email: reqBody.email});
+      } catch (e) {
+        logClient.log("create-contact-us", "ERROR",
+            "Could not create Contact Us", {email: reqBody.email});
         functionRes.error({status: "400", e});
       }
     });

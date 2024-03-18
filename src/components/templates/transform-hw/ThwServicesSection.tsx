@@ -1,12 +1,12 @@
 import React, {FunctionComponent} from 'react'
-import {Theme, ThemeProvider} from '@mui/material/styles';
+import {ThemeProvider} from '@mui/material/styles';
 import makeStyles from '@mui/styles/makeStyles';
 import {Grid, Typography} from '@mui/material'
 import {ThwServiceItemNoRefType, ThwServicesSectionType} from "../../BlockContentTypes";
 import ThwServiceItem from "./ThwServiceItem";
 import TransformHWTheme from "../../../theme/TransformHWTheme";
 
-export const useStyles = makeStyles((theme: Theme) => ({
+export const useStyles = makeStyles(() => ({
     root: {
         padding: TransformHWTheme.spacing(6),
         [TransformHWTheme.breakpoints.down('md')]: {

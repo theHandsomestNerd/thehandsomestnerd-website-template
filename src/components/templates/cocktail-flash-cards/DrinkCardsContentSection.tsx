@@ -18,11 +18,6 @@ interface IProps {
     sectionData: FlashCardSectionType
 }
 
-interface CSSProps {
-    heroBaseImageUrl: string,
-    heroOverlay?: string | null
-}
-
 export const useStyles = makeStyles((theme: Theme) => ({
     contentSection: {
         // height: '500px',

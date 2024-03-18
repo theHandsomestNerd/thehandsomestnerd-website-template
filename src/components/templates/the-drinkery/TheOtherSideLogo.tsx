@@ -1,9 +1,8 @@
 import React, {FunctionComponent} from 'react'
-import { Theme } from "@mui/material/styles";
 import makeStyles from '@mui/styles/makeStyles';
 import {Grid} from '@mui/material'
 import {SanityImageSource} from "@sanity/asset-utils";
-import logoImg from './dont-need/drinkery-logo.png'
+import logoImg from '../../../assets/drinkery-logo.png'
 
 
 interface CssProps {
@@ -11,7 +10,7 @@ interface CssProps {
     height?: number
 }
 
-export const useStyles = makeStyles((theme: Theme) => ({
+export const useStyles = makeStyles(() => ({
     root: (props: CssProps) => ({
         backgroundImage: `url(${logoImg})`,
         backgroundSize: "contain",

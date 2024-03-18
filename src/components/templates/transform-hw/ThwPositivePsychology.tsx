@@ -1,15 +1,14 @@
 import React, {FunctionComponent, useContext} from 'react'
-import {Theme, ThemeProvider} from '@mui/material/styles';
 import makeStyles from '@mui/styles/makeStyles';
 import {Button, Grid, Typography, useMediaQuery} from '@mui/material'
-import {urlFor} from '../../block-content-ui/static-pages/cmsStaticPagesClient'
 import {ThwPositivePsychologySectionType} from "../../BlockContentTypes";
 import {v4 as uuidv4} from 'uuid'
 import ResponsiveBullet from "../../ResponsiveBullet";
 import TransformHWTheme from "../../../theme/TransformHWTheme";
 import CustomizedThemeContext from "../../customized-theme-provider/CustomizedThemeContext";
+import SanityContext from "../../../common/sanityIo/sanity-context/SanityContext";
 
-export const useStyles = makeStyles((theme: Theme) => ({
+export const useStyles = makeStyles(() => ({
     root: {
         minHeight: '521px',
         backgroundColor: TransformHWTheme.palette.background.paper,
@@ -29,6 +28,7 @@ interface IProps {
 
 const PositivePsychologySection: FunctionComponent<IProps> = (props) => {
     const classes = useStyles(TransformHWTheme)
+    const sanityContext = useContext(SanityContext)
 
     const customizedThemeContext = useContext(CustomizedThemeContext)
 
@@ -82,7 +82,7 @@ const PositivePsychologySection: FunctionComponent<IProps> = (props) => {
                         {!props.sectionData.imageSrc ?
                             <img src={`https://placehold.co/465x${mdUp ? 370 : 900}`} alt={'placeholder'}/> :
                             <img alt={props.sectionData.imageSrcAltText}
-                                 src={urlFor(props.sectionData.imageSrc ?? "").width(mdUp ? 370 : 900).height(465).url() ?? ''}/>
+                                 src={sanityContext.urlFor(props.sectionData.imageSrc ?? "").width(mdUp ? 370 : 900).height(465).url() ?? ''}/>
                         }
                     </Grid>
                 </Grid>

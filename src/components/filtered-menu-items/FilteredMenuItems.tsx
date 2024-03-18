@@ -40,7 +40,7 @@ const FilteredMenuItems: FunctionComponent<FilteredMenuItemsProps> = ({
                   alignItems='stretch' alignContent='center'>
             {
                 subMenus?.reduce(
-                    (accumulated: JSX.Element[], menuButton: any, index) => {
+                    (accumulated: JSX.Element[], menuButton: any) => {
                         if (menuButton?._type === "menuItem" && (includeMenuItems || (onlyButtons && (menuButton.isOutlinedButton || menuButton.isContainedButton || menuButton.isModalButton)))) {
                             return accumulated.concat([<Grid item key={uuidv4()}>
                                 <HeaderMenuItemButton textStyle={textStyle} menuItem={menuButton}/>

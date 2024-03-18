@@ -1,8 +1,7 @@
 import React, {FunctionComponent} from 'react'
-import {Chip, Grid, Typography, useMediaQuery, useTheme} from '@mui/material'
+import {Grid, Typography, useMediaQuery, useTheme} from '@mui/material'
 import {ResumeExperience, ResumeExperienceSectionType} from "../../../BlockContentTypes";
 import useThwCommonStyles from "../../../../common/sanityIo/ThwCommonStyles";
-import {COLORS} from "../../../../theme/common/ColorPalette";
 import ResumeExperienceItem from "./ResumeExperienceItem";
 
 interface IProps {

@@ -17,7 +17,7 @@ import {ListRender, UtmLinkRender} from '../../src/common/sanityIo/BlockContentA
 import MixedFeelingsByTTheme from "../../src/theme/MixedFeelingsByTTheme";
 
 const highlightIcon = color => {
-    console.log("highlightIcon color", color)
+    // console.log("highlightIcon color", color)
 
     return (<Grid style={{
         width: '24px',
@@ -93,7 +93,7 @@ const underlineIcon = color => {
 // }
 
 const internalLinkRender = props => {
-    console.log('lik props', props)
+    // console.log('lik props', props)
 
     return <Link href={props.href}>
         <Typography

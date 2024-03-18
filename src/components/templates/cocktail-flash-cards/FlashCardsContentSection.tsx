@@ -4,9 +4,7 @@ import SearchBox from "./search-box/SearchBox";
 import FlashCardNav from "./FlashCardNav";
 import CocktailDbResults from "./CocktailDbResults";
 import FiltersMenu from "./FiltersMenu";
-import makeStyles from "@mui/styles/makeStyles";
 import {FlashCardSectionType} from "../../BlockContentTypes";
-import {Theme} from "@mui/material/styles";
 import {Grid} from "@mui/material";
 import SearchProvider from "./search-context/SearchProvider";
 import DrinkCard from "./flash-card/DrinkCard";
@@ -14,23 +12,6 @@ import DrinkCard from "./flash-card/DrinkCard";
 interface IProps {
     sectionData: FlashCardSectionType
 }
-
-interface CSSProps {
-    heroBaseImageUrl: string,
-    heroOverlay?: string | null
-}
-
-export const useStyles = makeStyles((theme: Theme) => ({
-    contentSection: {
-        // height: '500px',
-        // marginTop: '16px',
-        backgroundColor: 'transparent',
-    },
-    contentBullets: {
-        borderLeft: `4px solid ${theme.palette.primary.main}`,
-        paddingLeft: '26px',
-    }
-}))
 
 const FlashCardsContentSection: FunctionComponent<IProps & PropsWithChildren> = (props) => {
     return (

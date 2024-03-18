@@ -1,4 +1,4 @@
-import React, {FunctionComponent} from 'react'
+import React, {FunctionComponent, useContext} from 'react'
 import {Theme} from '@mui/material/styles';
 import makeStyles from '@mui/styles/makeStyles';
 import {Grid, useMediaQuery, useTheme} from '@mui/material'
@@ -6,8 +6,8 @@ import FooterMenuContainer from './FooterMenuContainer'
 import {SanityMenuContainer} from "../../../../common/sanityIo/Types";
 import {COLORS, convertToHexCode} from "../../../../theme/common/ColorPalette";
 import {SanityImageAsset} from "../../../BlockContentTypes";
-import {urlFor} from "../../../block-content-ui/static-pages/cmsStaticPagesClient";
 import useCustomStyles from "../pages/Styles";
+import SanityContext from "../../../../common/sanityIo/sanity-context/SanityContext";
 
 export const useStyles = makeStyles((theme: Theme) => ({
     root: {
@@ -59,6 +59,8 @@ const Footer: FunctionComponent<IProps> = (props: IProps) => {
     const theme = useTheme()
 
     const mdDown = useMediaQuery(theme.breakpoints.down('md'))
+    const sanityContext = useContext(SanityContext)
+
     return (
         <Grid container
               sx={{
@@ -68,7 +70,7 @@ const Footer: FunctionComponent<IProps> = (props: IProps) => {
               }}
         >
             <Grid container className={classes.root}  sx={{
-                    backgroundImage: `url(${urlFor(props.backgroundImgSrc ?? "").url()})`,
+                    backgroundImage: `url(${sanityContext.urlFor(props.backgroundImgSrc ?? "")?.url()})`,
                     backgroundSize: "cover",}}>
             <Grid container justifyContent="flex-start" sx={{paddingTop: mdDown ? 0 : (props.topPadding ?? "0px")}}>
                 <Grid item xs={12}>

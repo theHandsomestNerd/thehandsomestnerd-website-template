@@ -1,6 +1,6 @@
 import React from 'react';
 import {SanityMenuContainer, SanityTransformHwHomePage} from "../../common/sanityIo/Types";
-import {ServiceAmenityType, ThwServiceItemNoRefType} from "../BlockContentTypes";
+import {ThwServiceItemNoRefType} from "../BlockContentTypes";
 
 export type PageContextType = {
     page?: SanityTransformHwHomePage
@@ -14,6 +14,14 @@ export type PageContextType = {
     allServices?: ThwServiceItemNoRefType[]
     getOtherServices?: (slug:string)=>ThwServiceItemNoRefType[]
     fetchPage?: (slug:string)=>void
+    fetchDocument?: (documentType: string, documentSlug:string) => void
+    documentData?: any
+    updateBaseRoute?: (baseRoute:string) => void
+    baseRoute?: string
+    updateGoogleApiKey?: (apiKey:string) => void
+    googleMapsApiKey?: string
+
+    // setBaseRoute?: any
 };
 
 const PageContext = React.createContext<PageContextType>({});

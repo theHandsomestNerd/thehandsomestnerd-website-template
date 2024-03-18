@@ -1,5 +1,4 @@
 import React, {FunctionComponent, useContext, useState} from 'react'
-import {Theme} from "@mui/material/styles";
 import makeStyles from '@mui/styles/makeStyles';
 import {
     Avatar,
@@ -17,19 +16,19 @@ import {
 import createStyles from '@mui/styles/createStyles';
 import {Close, FileCopy} from "@mui/icons-material";
 import SocialMediaBlock from "./templates/my-digital-resume/social-media-block/SocialMediaBlock";
-import {urlFor} from "./block-content-ui/static-pages/cmsStaticPagesClient";
 import {MainMenuAnchorType, SanityTransformHwHomePage} from "../common/sanityIo/Types";
 import {ResumeBioSectionType} from "./BlockContentTypes";
 import MailTo from "./mail-to/MailTo";
 import QrCodeContext from "./qr-code-context/QrCodeContext";
 import SnackbarContext from "./modal-context/SnackbarContext";
 import BusinessCardSubmitEmail from "./templates/transform-hw/pages/BusinessCardSubmitEmail";
-import firebaseAnalyticsClient from "../common/firebase/FirebaseAnalyticsClient";
 import {useLocation} from "react-router";
 import {COLORS} from "../theme/common/ColorPalette";
+import FirebaseContext from "../common/firebase/firebase-context/FirebaseContext";
+import SanityContext from "../common/sanityIo/sanity-context/SanityContext";
 
 
-const useStyles = makeStyles((theme: Theme) =>
+const useStyles = makeStyles(() =>
     createStyles({
         drawer: {
             "& .MuiDrawer-paper": {
@@ -54,20 +53,22 @@ interface MainMenuProps {
 }
 
 const BusinessCard: FunctionComponent<MainMenuProps> = ({anchor, homePage}) => {
+    const firebaseContext = useContext(FirebaseContext)
     const [isDrawerOpen, setIsDrawerOpen] = useState<boolean>()
-
+    const sanityContext = useContext(SanityContext)
     const location = useLocation()
-    const toggleDrawer = (anchor: MainMenuAnchorType, open: boolean) => (event: any) => {
+    const toggleDrawer = (_anchor: MainMenuAnchorType, open: boolean) => (event: any) => {
         if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
             return;
         }
 
         if (open) {
-            firebaseAnalyticsClient.ctaClick(location.pathname ?? "", "Open Business Card")
+            firebaseContext.analytics?.ctaClick && firebaseContext.analytics?.ctaClick(location.pathname ?? "", "Open Business Card")
         }
 
         setIsDrawerOpen(open);
     };
+
 
     const snackbarContext = useContext(SnackbarContext)
     const classes = useStyles()
@@ -96,7 +97,7 @@ const BusinessCard: FunctionComponent<MainMenuProps> = ({anchor, homePage}) => {
 
     const qrCodeContext = useContext(QrCodeContext)
     const share = async (url: string) => {
-        console.log("share")
+        // console.log("share")
         //
         qrCodeContext.openSnackbar && qrCodeContext.openSnackbar(url)
         // qrCodeContext.init && await qrCodeContext.init(url)
@@ -107,7 +108,7 @@ const BusinessCard: FunctionComponent<MainMenuProps> = ({anchor, homePage}) => {
     //
     // }, [qrCodeContext.qr_code_value])
 
-    const list = (anchor: MainMenuAnchorType) => (
+    const list = () => (
         <Grid xs={12} md={6} container item
               role="presentation"
             // onClick={toggleDrawer(anchor, false)}
@@ -122,7 +123,7 @@ const BusinessCard: FunctionComponent<MainMenuProps> = ({anchor, homePage}) => {
                     backgroundSize: "cover",
                     overflow: "visible",
                     position: "relative",
-                    backgroundImage: `url(${urlFor(homePage.businessCardImageSrc ?? "").url()})`
+                    backgroundImage: `url(${sanityContext.urlFor(homePage.businessCardImageSrc ?? "")?.url() ??""})`
                 }} justifyContent='center' alignContent='flex-end'>
                     <Grid container item style={{
                         position: "relative",
@@ -216,7 +217,7 @@ const BusinessCard: FunctionComponent<MainMenuProps> = ({anchor, homePage}) => {
                                                 onClick={() => share(homePage.website ?? "")}>
                                             <Grid item>
                                                 <img alt='website QR code' height={42}
-                                                     src={urlFor(homePage.websiteQrCode ?? "").url() ?? ""}/>
+                                                     src={sanityContext.urlFor(homePage.websiteQrCode ?? "")?.url() ?? ""}/>
                                                 <Typography variant='subtitle1'>Qr</Typography>
                                             </Grid>
                                         </Button>
@@ -266,7 +267,7 @@ const BusinessCard: FunctionComponent<MainMenuProps> = ({anchor, homePage}) => {
                                                 onClick={() => share(homePage.bookAppointmentLink ?? "")}>
                                             <Grid item>
                                                 <img alt={'make apppointment qr code'} height={42}
-                                                     src={urlFor(homePage.bookAppointmentQrCode ?? "").url() ?? ""}/>
+                                                     src={sanityContext.urlFor(homePage.bookAppointmentQrCode ?? "")?.url() ?? ""}/>
                                                 <Typography variant='subtitle1'>Qr</Typography>
                                             </Grid>
                                         </Button>
@@ -336,7 +337,7 @@ const BusinessCard: FunctionComponent<MainMenuProps> = ({anchor, homePage}) => {
             >
                 <Avatar style={{backgroundColor: "whitesmoke"}}
 
-                        src={urlFor(homePage.headerContent.content[0].headerMenuRef.logoImageSrc ?? "").url() ?? ""}/>
+                        src={sanityContext.urlFor(homePage.headerContent.content[0].headerMenuRef.logoImageSrc ?? "")?.url() ?? ""}/>
             </Fab>
 
 
@@ -362,7 +363,7 @@ const BusinessCard: FunctionComponent<MainMenuProps> = ({anchor, homePage}) => {
                     }}><Close color='primary' fontSize='large'/></Button></Grid>
                 </Grid>
                 <Grid container item justifyContent='center'>
-                    {list(anchor)}
+                    {list()}
                 </Grid>
             </Drawer>
         </Grid>

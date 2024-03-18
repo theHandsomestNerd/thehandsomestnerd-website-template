@@ -1,14 +1,13 @@
-import React, {FunctionComponent} from 'react'
+import React, {FunctionComponent, useContext} from 'react'
 import {Theme} from '@mui/material/styles';
 import makeStyles from '@mui/styles/makeStyles';
 import {Divider, Grid, Typography, useMediaQuery, useTheme} from '@mui/material'
 import {ServiceAmenityType, ThwServiceItemType} from "../../../BlockContentTypes";
-import {urlFor} from "../../../block-content-ui/static-pages/cmsStaticPagesClient";
 import ResponsiveBullet from "../../../ResponsiveBullet";
 import LoadingButton from "../../../loading-button/LoadingButton";
 import OtherServices from "./OtherServices";
 import {v4 as uuidv4} from 'uuid'
-import imagePlaceholderClient from "../../../../utils/imagePlaceholderClient";
+import SanityContext from "../../../../common/sanityIo/sanity-context/SanityContext";
 
 export const useStyles = makeStyles((theme: Theme) => ({
     root: {
@@ -34,8 +33,7 @@ interface IProps {
 
 const ThwServiceEducationPage: FunctionComponent<IProps> = (props) => {
     const classes = useStyles()
-
-    // const {data} = thwClient.useFetchRefsQuery(props.serviceData.serviceAmenities)
+    const sanityContext = useContext(SanityContext)
 
     const customizedThemeContext = useTheme()
 
@@ -58,7 +56,7 @@ const ThwServiceEducationPage: FunctionComponent<IProps> = (props) => {
                     top: 0,
                     backgroundRepeat: "no-repeat",
                     backgroundPosition: "center",
-                    backgroundImage: `url(${urlFor(props.serviceData.imageSrc).url()})`
+                    backgroundImage: `url(${sanityContext.urlFor(props.serviceData.imageSrc).url()})`
                 }}>
                     <Grid container item style={{
                         top: 0,
@@ -102,7 +100,7 @@ const ThwServiceEducationPage: FunctionComponent<IProps> = (props) => {
                                 display='inline'>{props.serviceData.contentTitle}</Typography>
                 </Grid>
                 {
-                    props.serviceData.extendedDescriptions?.map((descriptionSegment: string, index: number) => (
+                    props.serviceData.extendedDescriptions?.map((descriptionSegment: string) => (
                         <Grid item container key={uuidv4()}>
                             <Typography variant='body1'>{descriptionSegment}</Typography>
                         </Grid>
@@ -113,7 +111,7 @@ const ThwServiceEducationPage: FunctionComponent<IProps> = (props) => {
                                 display='inline'>{props.serviceData.benefitsOfServiceTitle}</Typography>
                 </Grid>
                 {
-                    props.serviceData.benefitsOfServiceContents?.map((descriptionSegment: string, index: number) => (
+                    props.serviceData.benefitsOfServiceContents?.map((descriptionSegment: string) => (
                         <Grid item container key={uuidv4()}>
                             <Typography variant='body1'>{descriptionSegment}</Typography>
                         </Grid>
@@ -158,7 +156,7 @@ const ThwServiceEducationPage: FunctionComponent<IProps> = (props) => {
                                                 // backgroundColor: "red",
                                                 backgroundRepeat: "no-repeat",
                                                 backgroundPosition: "center",
-                                                backgroundImage: `url(${imagePlaceholderClient.placeholderOrImage(serviceAmenity.imageSrc)})`
+                                                backgroundImage: `url(${sanityContext.placeholderOrImage(serviceAmenity.imageSrc)})`
                                             }}
                                             container>
 

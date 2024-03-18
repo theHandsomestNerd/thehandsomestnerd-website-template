@@ -11,6 +11,118 @@ export declare type SanityRef = {
 };
 
 
+export type SanityHomePage = {
+    slug?: SanitySlug,
+    heroImage?: SanityHeroImageWithText,
+    businessContact?: SanityBusinessContact,
+    introduction?: string
+    specializationsMenuGroup?: SanityMenuGroup,
+    weWorkWithSection?: SanityWeWorkWith,
+    ourServicesSection?: SanityOurServices,
+    solutions?: SanitySolutions
+}
+
+export type SanitySolutions = {
+    sectionHeader?: string,
+    solutionList?: ListItemType[]
+}
+
+export type SanityWeWorkWith = {
+    title?: string,
+    sectionHeader?: string,
+    description?: string,
+    companyPartnerLogos?: SanityImageAssetProj[]
+}
+
+export type ListItemType = {
+    title?: string,
+    description?: string
+}
+
+export type SanityOurServices = {
+    title?: string,
+    sectionHeader?: string,
+    serviceList?: ListItemType[]
+}
+
+export type SanityGradient = {
+    color1?: { title: string, value: string }
+    color2?: { title: string, value: string }
+}
+
+export type SanityHeroImageWithText = {
+    slug?: SanitySlug
+    mainImage?: SanityImageAsset
+    gradient?: SanityGradient
+}
+
+export type SanitySimpleHeroImage = {
+    slug?: SanitySlug
+    text?: string
+    mainImage?: SanityImageAsset
+    gradient?: SanityGradient
+}
+
+export type SanityBrandQuoteItem = {
+    title?: string
+    description?: string
+    image?: SanityImageAsset
+}
+
+export type SanityOurStoryPage = {
+    slug?: SanitySlug
+    titleText?: string
+    mainImage?: SanityImageAsset
+    gradient?: SanityGradient
+    introduction?: string
+    storyStartTitle?: string
+    storyStartLeft1?: string
+    storyStartLeft2?: string
+    storyStartLeft3?: string
+    storyStartRightImage?: SanityImageAsset
+    brandQuotesTitle?: string
+    brandQuotesList?: SanityBrandQuoteItem[]
+    howWeGrowBrandsTitle?: string
+    howWeGrowBrandsContent?: string
+}
+
+export type SanityCommunityPage = {
+    slug?: SanitySlug
+    titleText?: string
+    mainImage?: SanityImageAsset
+    gradient?: SanityGradient
+    introduction?: string
+    howWeGrowBrandsTitle?: string
+    howWeGrowBrandsContent?: string
+    weWorkWithSection?: SanityWeWorkWith,
+    callToAction?: string
+}
+
+export type SanityImageAssetProj = {
+    title?: string
+    slug?: SanitySlug
+    mainImage?: SanityImageSource
+    caption?: string
+}
+
+export type SanityImageCarousel = {
+    title?: string
+    slug?: SanitySlug
+    images?: SanityImageAssetProj[]
+}
+
+export type SanityStaticPage = {
+    title?: string
+    slug?: SanitySlug
+    body?: string
+}
+
+export type SanityEvergreenPage = {
+    mainImage?: SanityImageAsset
+    title?: string
+    pageContent?: any
+}
+
 export declare type SanityColdLead = {
     email: string,
     leadName?: string,

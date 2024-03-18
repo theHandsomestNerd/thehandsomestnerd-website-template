@@ -1,5 +1,4 @@
 import React, {FunctionComponent, useContext, useEffect, useState} from 'react'
-import {Theme} from "@mui/material/styles";
 import makeStyles from '@mui/styles/makeStyles';
 import {Grid, IconButton, InputAdornment, Link, TextField, Typography, useMediaQuery} from "@mui/material";
 import withStyles from '@mui/styles/withStyles';
@@ -12,14 +11,14 @@ import LoadingButton from "../../loading-button/LoadingButton";
 import {useQuery} from "@tanstack/react-query";
 import leadClient from "./pages/under-construction-page/leadClient";
 import {Parallax} from "react-parallax";
-import firebaseAnalyticsClient from "../../../common/firebase/FirebaseAnalyticsClient";
 import PageContext from "../../page-context/PageContext";
 import TransformHWTheme from "../../../theme/TransformHWTheme";
-import imagePlaceholderClient from "../../../utils/imagePlaceholderClient";
 import CustomizedThemeContext from "../../customized-theme-provider/CustomizedThemeContext";
+import FirebaseContext from "../../../common/firebase/firebase-context/FirebaseContext";
+import SanityContext from "../../../common/sanityIo/sanity-context/SanityContext";
 
 
-export const useStyles = makeStyles((theme: Theme) => ({
+export const useStyles = makeStyles(() => ({
     root: {
         width: '100vw',
         // minHeight: '100vh',
@@ -120,8 +119,10 @@ export type ContactUsProps = {
 
 const ContactUs: FunctionComponent<ContactUsProps> = (props) => {
     const classes = useStyles(TransformHWTheme)
+    const sanityContext = useContext(SanityContext)
 
     const globalClasses = useCustomStyles({})
+    const firebaseContext = useContext(FirebaseContext)
 
     const [leadName, setleadName] = useState<string>()
     const [email, setEmail] = useState<string>()
@@ -160,9 +161,6 @@ const ContactUs: FunctionComponent<ContactUsProps> = (props) => {
         }
     );
 
-    useEffect(() => {
-        // console.log("data", data)
-    }, [data])
 
     const getHelperText = () => {
         if (data) {
@@ -180,15 +178,15 @@ const ContactUs: FunctionComponent<ContactUsProps> = (props) => {
     }
 
     const pageContext = useContext(PageContext)
-    const createLead = async (e: any): Promise<any> => {
-        firebaseAnalyticsClient.ctaClick('contact-us', 'send-message', pageContext.analyticsId,)
+    const createLead = async (): Promise<any> => {
+        firebaseContext.analytics.ctaClick('contact-us', 'send-message', pageContext.analyticsId,)
         return refetch()
     }
 
 
     return (
         <Parallax blur={1}
-                  bgImage={imagePlaceholderClient.placeholderOrImage(props.sectionData.bgImageSrc, 1000, 500)}
+                  bgImage={sanityContext.placeholderOrImage(props.sectionData.bgImageSrc, 1000, 500)}
                   bgImageAlt="the cat"
                   strength={600}
         >

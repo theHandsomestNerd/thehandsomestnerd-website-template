@@ -767,3 +767,4 @@ export type HolidayHeadlineSectionType = {
     holidayIconLeft?: SanityImageAsset
     holidayIconRight?: SanityImageAsset
 }
+

@@ -1,0 +1,35 @@
+{
+  "name": "example",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "start": "npm run build:clean && parcel src/index.html",
+    "install-start": "npm run build:clean && npm install && npm start",
+    "build:clean": "rimraf ./.parcel-cache ./dist",
+    "build": "npm run build:clean && parcel build src/index.html --dist-dir docs --public-url .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "@parcel/resolver-default": {
+    "packageExports": true
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/react": "^18.2.63",
+    "@types/react-dom": "^18.2.20",
+    "dotenv": "^16.4.5",
+    "parcel": "^2.12.0",
+    "parcel-cli": "^1.1.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "the-handsomestnerd-internal": "^0.9.223",
+    "typescript": "^5.4.2"
+  },
+  "devDependencies": {
+    "@babel/preset-env": "^7.24.0",
+    "@parcel/packager-raw-url": "^2.12.0",
+    "@parcel/transformer-webmanifest": "^2.12.0",
+    "parcel-transformer-fonts": "^1.1.3"
+  }
+}

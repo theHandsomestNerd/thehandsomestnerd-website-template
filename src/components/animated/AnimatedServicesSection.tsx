@@ -1,20 +1,17 @@
 import React, {FunctionComponent, useContext} from 'react'
-import {Theme, ThemeProvider} from '@mui/material/styles';
 import makeStyles from '@mui/styles/makeStyles';
 import {Box, Button, Grid, IconButton, Typography, useMediaQuery, useTheme} from '@mui/material'
-import CustomizedThemeContext from "../customized-theme-provider/CustomizedThemeContext";
 import {AnimatedServiceItemNoRefType, AnimatedServicesSectionType} from "../BlockContentTypes";
-import firebaseAnalyticsClient from "../../common/firebase/FirebaseAnalyticsClient";
 import PageContext from "../page-context/PageContext";
 import AnimatedServiceItem from "./AnimatedServiceItem";
 import BulletedHeader from "./BulletedHeader";
 import AbstractShapesBackground from "./abstract-shapes-background/AbstractShapesBackground";
-import {urlFor} from "../block-content-ui/static-pages/cmsStaticPagesClient";
 import {PlayArrow} from "@mui/icons-material";
 import {motion} from 'framer-motion';
-import imagePlaceholderClient from "../../utils/imagePlaceholderClient";
+import FirebaseContext from "../../common/firebase/firebase-context/FirebaseContext";
+import SanityContext from "../../common/sanityIo/sanity-context/SanityContext";
 
-export const useStyles = makeStyles((theme: Theme) => ({
+export const useStyles = makeStyles(() => ({
     root: {
         paddingTop: '56px',
         paddingBottom: '64px',
@@ -31,10 +28,12 @@ interface IProps {
 const AnimatedServicesSection: FunctionComponent<IProps> = (props) => {
     const classes = useStyles()
     const theme= useTheme()
+    const sanityContext = useContext(SanityContext)
 
     const pageContext = useContext(PageContext)
     const smDown = useMediaQuery(theme.breakpoints.down('sm'))
 
+    const firebaseContext = useContext(FirebaseContext)
 
     return (
         <Grid container item>
@@ -92,9 +91,9 @@ const AnimatedServicesSection: FunctionComponent<IProps> = (props) => {
                         </Grid>
                         <Grid item container justifyContent='center'>
                             <Button
-                                onClick={(e: any) => {
+                                onClick={() => {
                                     props.sectionData.ctaButtonText &&
-                                    firebaseAnalyticsClient.ctaClick("animated-services-section", props.sectionData.ctaButtonText, pageContext.analyticsId,)
+                                    firebaseContext.analytics.ctaClick("animated-services-section", props.sectionData.ctaButtonText, pageContext.analyticsId,)
                                 }}
                                 component='div'
                                 variant={'contained'}
@@ -120,14 +119,14 @@ const AnimatedServicesSection: FunctionComponent<IProps> = (props) => {
                 position: "relative",
                 backgroundRepeat: "repeat-x",
                 backgroundSize: "256px",
-                backgroundImage: `url(${urlFor(props.sectionData?.videoPreviewSectionBackgroundImageSrc ?? "").url() ?? imagePlaceholderClient.placeholderOrImage(props.sectionData?.videoPreviewSectionBackgroundImageSrc, 230, 265)})`
+                backgroundImage: `url(${sanityContext.urlFor(props.sectionData?.videoPreviewSectionBackgroundImageSrc ?? "").url() ?? sanityContext.placeholderOrImage(props.sectionData?.videoPreviewSectionBackgroundImageSrc, 230, 265)})`
             }} justifyContent='center' alignContent='center'>
                 <Grid item container xs={12} justifyContent='center' style={{top: -64, position: "relative"}}>
                     <Grid item xs={12} sm={10} sx={{height: "100%", position: "relative"}}
                     >
                         <img height="100%" width="100%"
 
-                             src={urlFor(props.sectionData?.videoPreviewImageSrc ?? "").url() ?? imagePlaceholderClient.placeholderOrImage(props.sectionData?.videoPreviewImageSrc, 300, 500)}/>
+                             src={sanityContext.urlFor(props.sectionData?.videoPreviewImageSrc ?? "").url() ?? sanityContext.placeholderOrImage(props.sectionData?.videoPreviewImageSrc, 300, 500)}/>
 
                     </Grid>
                 </Grid>

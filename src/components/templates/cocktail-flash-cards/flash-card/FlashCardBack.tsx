@@ -1,6 +1,5 @@
 import React, {FunctionComponent} from 'react'
 import {Chip, Grid, Typography} from "@mui/material";
-import {Theme} from "@mui/material/styles";
 import {
     SanityCocktailType,
     SanityGarnish,
@@ -8,12 +7,7 @@ import {
     SanityMixingInstruction
 } from "../../../../common/sanityIo/Types";
 import {Close} from "@mui/icons-material";
-import makeStyles from "@mui/styles/makeStyles";
 
-
-export const useStyles = makeStyles((theme: Theme) => ({
-    root: {},
-}))
 
 interface IProps {
     currentCard?: SanityCocktailType
@@ -81,6 +75,7 @@ const FlashCardBack: FunctionComponent<IProps> = ({currentCard}: IProps) => {
                 <Grid container item>
                     <Grid container item style={{paddingLeft: "48px"}}>
                         {
+                            // @ts-ignore
                             currentCard?.mixingGlass?.map((mixin: (SanityMixingGlass | SanityGarnish), index) => {
                                 if (mixin?._type === "MixingGlass") {
                                     return <Grid container item spacing={1} key={"mixin" + index}>
@@ -98,6 +93,7 @@ const FlashCardBack: FunctionComponent<IProps> = ({currentCard}: IProps) => {
                     </Grid>
                     <Grid container item>
                         {
+                            // @ts-ignore
                             currentCard?.mixingGlassGarnishes?.map((mixin: (SanityGarnish), index) => {
                                 if (mixin) {
                                     return <Grid container item spacing={1} key={index}>
@@ -156,6 +152,7 @@ const FlashCardBack: FunctionComponent<IProps> = ({currentCard}: IProps) => {
                                 </Grid>
                                 <Grid item container style={{paddingLeft: "8px"}}>
                                     {
+                                        // @ts-ignore
                                         mixin?.mixingGlass?.map((mixin: (SanityMixingGlass | SanityGarnish), index) => {
                                             if (mixin?._type === "MixingGlass") {
                                                 return <Grid container item spacing={1} key={"mixingglass" + index}>
@@ -170,6 +167,7 @@ const FlashCardBack: FunctionComponent<IProps> = ({currentCard}: IProps) => {
                                         })
                                     }
                                     {
+                                        // @ts-ignore
                                         mixin?.mixingGlassGarnishes?.map((mixin: (SanityGarnish), index) => {
                                             if (mixin) {
                                                 return <Grid container item key={"garnish" + index}>

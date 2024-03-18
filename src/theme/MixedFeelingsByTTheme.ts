@@ -1,7 +1,5 @@
-import { createTheme, adaptV4Theme } from '@mui/material';
+import {adaptV4Theme, createTheme} from '@mui/material';
 import Poppins from '../fonts/Poppins/Poppins-Medium.ttf'
-import MontserratBold from '../fonts/Montserrat/Montserrat-Bold.ttf'
-import MontserratBold2 from '../fonts/Montserrat/Montserrat-Bold.otf'
 import PoppinsXBold from '../fonts/Poppins/Poppins-ExtraBold.ttf'
 import {COLORS} from "./common/ColorPalette";
 

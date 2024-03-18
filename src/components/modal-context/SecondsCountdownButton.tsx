@@ -1,13 +1,7 @@
 import React, {FunctionComponent, useContext} from 'react'
-import { Theme } from "@mui/material/styles";
-import makeStyles from '@mui/styles/makeStyles';
-import {CircularProgress, Grid, IconButton, Typography} from '@mui/material'
+import {CircularProgress, Grid, IconButton} from '@mui/material'
 import {Close} from "@mui/icons-material";
 import SnackbarContext from "./SnackbarContext";
-
-export const useStyles = makeStyles((theme: Theme) => ({
-    root: {},
-}))
 
 interface IProps {
     totalTimeSeconds?:number | null

@@ -1,11 +1,10 @@
 import React, {FunctionComponent} from 'react'
 import {Grid, Typography, useTheme} from "@mui/material";
 import makeStyles from "@mui/styles/makeStyles";
-import {Theme} from "@mui/material/styles";
 import {SanityImageAsset} from "../BlockContentTypes";
 import ColoredPng from "../colored-png/ColoredPng";
 
-export const useStyles = makeStyles((theme: Theme) => ({
+export const useStyles = makeStyles(() => ({
     root: {},
 }))
 
@@ -17,7 +16,6 @@ interface IProps {
 }
 
 const BulletedHeader: FunctionComponent<IProps> = (props: IProps) => {
-    const classes = useStyles()
 
     React.useEffect(() => {
     }, [])

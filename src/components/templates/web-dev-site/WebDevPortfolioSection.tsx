@@ -4,11 +4,11 @@ import makeStyles from '@mui/styles/makeStyles';
 import {Button, ButtonGroup, Chip, Grid, IconButton, Modal, Typography, useMediaQuery, useTheme} from '@mui/material'
 import {ResumePortfolioItem, ResumePortfolioSectionType} from "../../BlockContentTypes";
 import {COLORS} from "../../../theme/common/ColorPalette";
-import {urlFor} from "../../block-content-ui/static-pages/cmsStaticPagesClient";
 import {Close} from "@mui/icons-material";
-import firebaseAnalyticsClient from "../../../common/firebase/FirebaseAnalyticsClient";
 import PageContext from "../../page-context/PageContext";
 import CustomizedThemeContext from "../../customized-theme-provider/CustomizedThemeContext";
+import FirebaseContext from "../../../common/firebase/firebase-context/FirebaseContext";
+import SanityContext from "../../../common/sanityIo/sanity-context/SanityContext";
 
 export const useStyles = makeStyles((theme: Theme) => ({
     root: {
@@ -29,8 +29,11 @@ const COLOR_ROTATION_FONT: any[] = ["textSecondary", "textPrimary",]
 const WebDevPortfolioSection: FunctionComponent<IProps> = (props: IProps) => {
     const theme = useTheme()
     const classes = useStyles()
+    const sanityContext = useContext(SanityContext)
 
     const customizedThemeContext = useContext(CustomizedThemeContext)
+
+    const firebaseContext = useContext(FirebaseContext)
 
     const xsOnly = useMediaQuery(customizedThemeContext.customizedTheme.breakpoints.only('xs'))
     const [isOpen, setIsOpen] = React.useState<boolean>(false)
@@ -50,7 +53,7 @@ const WebDevPortfolioSection: FunctionComponent<IProps> = (props: IProps) => {
                         onClick={() => {
 
                             sendToModal(props.portfolioItem)
-                            return firebaseAnalyticsClient.ctaClick(props.service.slug?.current ?? "", props.service.learnMoreText, pageContext.analyticsId,)
+                            return firebaseContext.analytics.ctaClick(props.service.slug?.current ?? "", props.service.learnMoreText, pageContext.analyticsId,)
                         }
                         } color={props.index % 2 === 0 ? 'primary' : 'secondary'} href={props.portfolioItem.prodLink}
                         variant='outlined'><Typography variant='button'
@@ -90,7 +93,7 @@ const WebDevPortfolioSection: FunctionComponent<IProps> = (props: IProps) => {
                                     return <Grid container item key={index2}>
                                         <Grid container item direction={index2%2 == 0?"row":"row-reverse"}>
                                             <Grid container item md={6} style={{
-                                                backgroundImage: `url('${urlFor(portfolioItem.coverImage ?? "").url()}')`,
+                                                backgroundImage: `url('${sanityContext.urlFor(portfolioItem.coverImage ?? "").url()}')`,
                                                 backgroundSize: "cover",
                                                 backgroundRepeat: "no-repeat",
                                                 minHeight: "400px"
@@ -219,7 +222,7 @@ const WebDevPortfolioSection: FunctionComponent<IProps> = (props: IProps) => {
                                         {currentItem?.imageGallery?.map((image) => (
                                             <Grid item container xs={11} justifyContent='center'>
                                                 <Grid item>
-                                                    <img src={urlFor(image ?? "").url() ?? ""} width={"100%"}/>
+                                                    <img src={sanityContext.urlFor(image ?? "").url() ?? ""} width={"100%"}/>
                                                 </Grid>
                                             </Grid>))}
                                     </Grid>

@@ -1,16 +1,11 @@
 import React, {FunctionComponent, useContext} from 'react'
 import {v4 as uuidv4} from 'uuid'
-import {Theme} from "@mui/material/styles";
-import makeStyles from '@mui/styles/makeStyles';
 import {Button, Grid, Popover, Typography, useMediaQuery, useTheme} from '@mui/material'
 import {ArrowDropDown} from "@mui/icons-material";
 import SubMenu from "./SubMenu";
 import {SanityMenuGroup, SanityMenuItem} from "../../../../common/sanityIo/Types";
 import {COLORS} from "../../../../theme/common/ColorPalette";
 import CustomizedThemeContext from "../../../customized-theme-provider/CustomizedThemeContext";
-
-
-export const useStyles = makeStyles((theme: Theme) => ({}))
 
 interface FilteredMenuProps {
     subMenus: any[]
@@ -43,7 +38,8 @@ const FilteredMenuItems: FunctionComponent<FilteredMenuProps> = ({
 
     return (<Grid item container justifyContent={mdDown ? 'flex-start' : 'flex-end'}>{
             subMenus?.map(
-                (menuLink: any, index) => {
+                // @ts-ignore
+                (menuLink: any) => {
                     // console.log(menuLink._type)
                     if (menuLink["_type"] === "menuItem" && (includeMenuItems || (onlyButtons && (menuLink.isOutlinedButton || menuLink.isContainedButton || menuLink.isModalButton)))) {
                         const menuItem: SanityMenuItem = menuLink

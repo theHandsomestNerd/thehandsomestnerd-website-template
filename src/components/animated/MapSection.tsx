@@ -1,17 +1,15 @@
-import React, {FunctionComponent} from 'react'
+import React, {FunctionComponent, useContext} from 'react'
 
 import makeStyles from "@mui/styles/makeStyles";
-import {Theme} from "@mui/material/styles";
 import {Card, CircularProgress, Grid, Typography, useMediaQuery, useTheme} from "@mui/material";
 import {MapSectionType, ServiceAmenityType} from "../BlockContentTypes";
 import {Email, LocationOn, Phone} from "@mui/icons-material";
-import {urlFor} from "../block-content-ui/static-pages/cmsStaticPagesClient";
 import {COLORS} from "../../theme/common/ColorPalette";
 import {GoogleMap, Marker, useJsApiLoader} from '@react-google-maps/api';
+import SanityContext from "../../common/sanityIo/sanity-context/SanityContext";
 
 
-export const useStyles = makeStyles((theme: Theme) => ({
-    root: {},
+export const useStyles = makeStyles(() => ({
     markerClass: {
         paddingTop: "70px",
     },
@@ -41,18 +39,12 @@ const center = {
     lng: -76.760486
 };
 
-
-const divStyle = {
-    background: `white`,
-    border: `1px solid #ccc`,
-    padding: 15
-}
-
 const MapSection: FunctionComponent<IProps> = (props: IProps) => {
     const classes = useStyles()
 
     const theme = useTheme()
     const mdDown = useMediaQuery(theme.breakpoints.down('md'))
+    const sanityContext = useContext(SanityContext)
 
     const {isLoaded} = useJsApiLoader({
         id: 'google-map-script',
@@ -138,7 +130,7 @@ const MapSection: FunctionComponent<IProps> = (props: IProps) => {
                                             <Grid item style={{paddingTop: "6px"}}>
                                                 {
                                                     detail.imageSrc ?
-                                                        <img width={24} src={urlFor(detail.imageSrc ?? "").url() ?? ""}
+                                                        <img width={24} src={sanityContext.urlFor(detail.imageSrc ?? "").url() ?? ""}
                                                         /> : getIcon(detail.muiIcon)
                                                 }
                                             </Grid>

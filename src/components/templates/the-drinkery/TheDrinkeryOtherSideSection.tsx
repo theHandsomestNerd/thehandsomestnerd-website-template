@@ -2,9 +2,9 @@ import React, {FunctionComponent} from 'react'
 import {Button, Grid, Typography, useTheme} from '@mui/material'
 import clsx from "clsx";
 import useCustomStyles from "../mackenzies-mind/pages/Styles";
-import bgImage from "./dont-need/drinkery-background.jpg"
+import bgImage from "../../../assets/drinkery-background.jpg"
 import TheOtherSideLogo from "./TheOtherSideLogo";
-import openDoorSign from './dont-need/Shutterstock_1025370412.png'
+import openDoorSign from '../../../assets/Shutterstock_1025370412.png'
 import {DrinkeryOtherSideSectionType} from "../../BlockContentTypes";
 import {Theme} from "@mui/material/styles";
 import makeStyles from '@mui/styles/makeStyles';
@@ -86,8 +86,8 @@ const TheDrinkeryOtherSideSection: FunctionComponent<IProps> = (props) => {
                                             Spirit Menu
                                         </Typography>
                                     </Grid>}
-                                    {props.sectionData.isShowMenu && props.sectionData.theLiquors?.map((aLiquor) => <Grid
-                                        container item justifyContent='center' xs={4} sm={3}>
+                                    {props.sectionData.isShowMenu && props.sectionData.theLiquors?.map((aLiquor,index:number) => <Grid
+                                        container key={index} item justifyContent='center' xs={4} sm={3}>
                                         <Typography variant='body1'
                                                     style={{color: "white", width: "340px"}} align='center'>
                                             {aLiquor}

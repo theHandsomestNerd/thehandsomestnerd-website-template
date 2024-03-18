@@ -6,7 +6,7 @@ import {Close} from "@mui/icons-material";
 interface IProps {
 }
 
-const SearchBox: FunctionComponent<IProps> = (props) => {
+const SearchBox: FunctionComponent<IProps> = () => {
     // const classes = useStyles();
     const [searchTerms, setSearchTerms] = React.useState<string>('');
     const searchContext = useContext(SearchContext)

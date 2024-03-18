@@ -1,20 +1,10 @@
 import React, {FunctionComponent} from 'react'
-import { Theme, ThemeProvider, StyledEngineProvider } from '@mui/material/styles';
+import {Theme} from '@mui/material/styles';
 import makeStyles from '@mui/styles/makeStyles';
 import {Grid, Typography} from '@mui/material'
-import {
-    HowItWorksSectionType,
-    HowItWorksStepNoRefType,
-    PricingPlanNoRefType,
-    PricingSectionType
-} from "../../BlockContentTypes";
-import WebDevSiteTheme from "../../../theme/WebDevSiteTheme";
+import {PricingPlanNoRefType, PricingSectionType} from "../../BlockContentTypes";
 import {COLORS} from "../../../theme/common/ColorPalette";
-import WebDevHowItWorksStep from "./WebDevHowItWorksStep";
 import WebDevPricingPlan from "./WebDevPricingPlan";
-
-
-
 
 
 export const useStyles = makeStyles((theme: Theme) => ({

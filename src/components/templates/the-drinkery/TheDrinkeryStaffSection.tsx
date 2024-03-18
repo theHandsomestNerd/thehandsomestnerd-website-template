@@ -1,18 +1,18 @@
-import React, {FunctionComponent} from 'react'
-import {Avatar, Grid, Theme, Typography, useTheme} from '@mui/material'
+import React, {FunctionComponent, useContext} from 'react'
+import {Avatar, Grid, Typography, useTheme} from '@mui/material'
 import clsx from "clsx";
 import useCustomStyles from "../mackenzies-mind/pages/Styles";
 // import bgImage from "./drinkery-background.jpg"
 import {TeamSectionType} from "../../BlockContentTypes";
 import makeStyles from "@mui/styles/makeStyles";
-import imagePlaceholderClient from "../../../utils/imagePlaceholderClient";
+import SanityContext from "../../../common/sanityIo/sanity-context/SanityContext";
 
 interface IProps {
     email?: string
     sectionData: TeamSectionType
 }
 
-export const useStyles = makeStyles((theme: Theme) => ({
+export const useStyles = makeStyles(() => ({
     preroot: {
         minHeight: '321px',
         // backgroundColor: "black",
@@ -27,6 +27,7 @@ const TheDrinkeryStaffSection: FunctionComponent<IProps> = (props) => {
     const classes = useCustomStyles({bgImage: undefined})
     const theClasses = useStyles()
     const theme = useTheme()
+    const sanityContext = useContext(SanityContext)
 
     return (
         <Grid container className={theClasses.preroot}
@@ -51,7 +52,7 @@ const TheDrinkeryStaffSection: FunctionComponent<IProps> = (props) => {
                         {props.sectionData.teamList.map((teamMember, index)=><Grid key={index} item justifyContent='center' xs={6} sm={4} alignItems={'center'}
                                alignContent='center'>
                             <Grid container item justifyContent='center'>
-                                <Avatar src={imagePlaceholderClient.placeholderOrImage(teamMember.image, 40,40)} variant='rounded' style={{
+                                <Avatar src={sanityContext.placeholderOrImage(teamMember.image, 40,40)} variant='rounded' style={{
                                     width: theme.spacing(18),
                                     height: theme.spacing(18),
                                 }}/>

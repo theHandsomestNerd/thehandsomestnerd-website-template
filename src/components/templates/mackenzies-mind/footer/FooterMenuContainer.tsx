@@ -1,7 +1,6 @@
 import React, {FunctionComponent, useContext} from 'react'
 import {Divider, Grid, Typography, useMediaQuery, useTheme} from '@mui/material'
 import FooterMenuGroup from './FooterMenuGroup'
-import makeStyles from '@mui/styles/makeStyles';
 import {SanityMenuContainer} from "../../../../common/sanityIo/Types";
 import PageContext from "../../../page-context/PageContext";
 import MailTo from "../../../mail-to/MailTo";
@@ -18,23 +17,18 @@ interface IProps {
 }
 
 const FooterMenuContainer: FunctionComponent<IProps> = (props: IProps) => {
-
     const theme = useTheme()
 
     const pageContext = useContext(PageContext)
-    const useStyles = makeStyles(({
-        root: {
-            color: theme.palette.getContrastText(convertToHexCode(props.backgroundColor)),
-            backgroundColor: props.backgroundColor
-        }
-    }))
-    const classes = useStyles(theme)
 
     const mdDown = useMediaQuery(theme.breakpoints.down('md'))
     const mdUp = useMediaQuery(theme.breakpoints.up('md'))
     return (
-        <Grid container item className={classes.root}
-
+        <Grid container item
+              style={{
+                  color: theme.palette.getContrastText(convertToHexCode(props.backgroundColor)),
+                  backgroundColor: props.backgroundColor
+              }}
         >
             <Grid container item xs={12} md={4}
                   sx={mdDown ? {
@@ -116,13 +110,14 @@ const FooterMenuContainer: FunctionComponent<IProps> = (props: IProps) => {
                         <Grid item><Typography variant='h6'>Hours</Typography></Grid>
                     </Grid>
                     {
-                        pageContext.page?.businessContact?.hoursOfOperation?.map((location) => {
-                            return <Grid container item>
+                        pageContext.page?.businessContact?.hoursOfOperation?.map((location, index: number) => {
+                            return <Grid container item key={index}>
                                 <Grid item container><Typography
                                     color='primary'><b>{location.name}</b></Typography></Grid>
                                 {
-                                    location.hoursOfOperation.map((hours) => {
-                                        return <Grid item container><Typography><b>{hours.dayName}: &nbsp;</b>
+                                    location.hoursOfOperation.map((hours, index2: number) => {
+                                        return <Grid item container
+                                                     key={index2}><Typography><b>{hours.dayName}: &nbsp;</b>
                                             {
                                                 hours.isClosed ? "closed" :
                                                     `${hours.startTime}-${hours.endTime}`

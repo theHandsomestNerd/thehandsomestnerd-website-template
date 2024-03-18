@@ -2,12 +2,9 @@ import React, {FunctionComponent, useContext} from 'react'
 import {Theme} from '@mui/material/styles';
 import makeStyles from '@mui/styles/makeStyles';
 import {Grid, Typography, useMediaQuery} from '@mui/material'
-import {MfbtAboutProprietorSectionType, ProprietorAtAGlanceType} from "../../BlockContentTypes";
+import {MfbtAboutProprietorSectionType} from "../../BlockContentTypes";
 import MixedFeelingsByTTheme from "../../../theme/MixedFeelingsByTTheme";
 import ImageWIthButtonOverlay from "../../image-with-button-overlay/ImageWithButtonOverlay";
-import LoadingButton from "../../loading-button/LoadingButton";
-import firebaseAnalyticsClient from "../../../common/firebase/FirebaseAnalyticsClient";
-import PageContext from "../../page-context/PageContext";
 import CustomizedThemeContext from "../../customized-theme-provider/CustomizedThemeContext";
 
 export const useStyles = makeStyles((theme: Theme) => ({
@@ -26,78 +23,6 @@ export const useStyles = makeStyles((theme: Theme) => ({
 interface IProps {
     sectionData: MfbtAboutProprietorSectionType
 }
-
-const ProprietorAtAGlance = (props: { sectionData: ProprietorAtAGlanceType, source: string }) => {
-    const customizedThemeContext = useContext(CustomizedThemeContext)
-
-    const smDown = useMediaQuery(customizedThemeContext.customizedTheme.breakpoints.down('sm'))
-    const pageContext = useContext(PageContext)
-    return <Grid item container
-                 justifyContent='center'
-                 style={{
-                     backgroundColor: MixedFeelingsByTTheme.palette.secondary.dark,
-                     border: smDown ? "0px solid transparent" : "1px solid white",
-                     margin: smDown ? MixedFeelingsByTTheme.spacing(0, 0, 0, 0) : MixedFeelingsByTTheme.spacing(2, 0, 0, 0),
-                     padding: MixedFeelingsByTTheme.spacing(2, 0, smDown ? 6 : 2, 0)
-                 }}
-                 spacing={6}
-                 xs={12}
-    >
-        {/*<Grid container item xs={11}>*/}
-        {/*    <Grid item container justifyContent='center'>*/}
-        {/*        <Typography variant='body1' color='primary' gutterBottom>{props.sectionData.serviceName}</Typography>*/}
-        {/*    </Grid>*/}
-        {/*    <Grid item container>*/}
-        {/*        <Typography variant='h6' color='primary' gutterBottom>{props.sectionData.serviceTitle}</Typography>*/}
-        {/*    </Grid>*/}
-        {/*    <Grid item container alignItems='flex-start' alignContent='flex-start'>*/}
-
-        {/*        {props.sectionData.sessionList.map((term:string, index:number) =>*/}
-        {/*                <ResponsiveBullet*/}
-        {/*                    key={index}*/}
-        {/*                    notResponsive*/}
-        {/*                    bullet={<FiberManualRecord color='primary' style={{fontSize: "8px"}}/>}*/}
-        {/*                    condensed*/}
-        {/*                    fontVariant={'subtitle1'}*/}
-        {/*                    text={term}*/}
-        {/*                    textColor={'textSecondary'}*/}
-        {/*                />*/}
-        {/*            )}*/}
-        {/*    </Grid>*/}
-        {/*</Grid>*/}
-
-        {/*<Grid item container xs={11} justifyContent='center' style={{*/}
-        {/*    // marginBottom: TransformHWTheme.spacing(5)*/}
-        {/*}}>*/}
-        {/*    <ColoredPng maskUrl={urlFor(props.sectionData.dividerImage).url()??""} color={"white"} />*/}
-        {/*    <Grid item container justifyContent='center'>*/}
-
-        {/*        <Typography variant='h6' color='primary' gutterBottom align='center'>{props.sectionData.amenitiesSectionTitle}</Typography>*/}
-        {/*    </Grid>*/}
-        {/*    <Grid item container spacing={1} justifyContent='center'>*/}
-
-        {/*        {props.sectionData.amenities.map((modality,index) =>*/}
-        {/*            <Grid item key={index}>*/}
-        {/*                <Chip variant={'default'} color='primary'*/}
-        {/*                      label={<Typography variant='inherit' color='secondary'>{modality}</Typography>}/>*/}
-        {/*            </Grid>*/}
-        {/*        )}*/}
-        {/*    </Grid>*/}
-        {/*</Grid>*/}
-        <Grid item>
-            <LoadingButton
-                clickHandler={(e: any) => {
-                    firebaseAnalyticsClient.ctaClick(props.source, props.sectionData.ctaButtonText, pageContext.analyticsId,)
-                }}
-                href={props.sectionData.ctaButtonLink}
-                color={"primary"}
-                variant='outlined'>
-                {props.sectionData.ctaButtonText}
-            </LoadingButton>
-        </Grid>
-    </Grid>
-}
-
 
 const MFBTAboutTheProprietor: FunctionComponent<IProps> = (props) => {
     const classes = useStyles(MixedFeelingsByTTheme)

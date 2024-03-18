@@ -1,5 +1,4 @@
 import React, {FunctionComponent, useContext, useState} from 'react'
-import {Theme} from "@mui/material/styles";
 import makeStyles from '@mui/styles/makeStyles';
 import {Button, Divider, Drawer, Grid, List, ListItem, ListItemText, Typography, useTheme} from '@mui/material';
 import createStyles from '@mui/styles/createStyles';
@@ -15,7 +14,7 @@ import ModalContext from "../../../snackbar-context/ModalContext";
 import Logo from "../../../logo/Logo";
 
 
-const useStyles = makeStyles((theme: Theme) =>
+const useStyles = makeStyles(() =>
     createStyles({
         listItem: {
             "&.MuiListItem-gutters": {
@@ -35,7 +34,7 @@ interface MainMenuProps {
 
 const MainMenu: FunctionComponent<MainMenuProps> = ({menu, anchor}) => {
     const [isDrawerOpen, setIsDrawerOpen] = useState<boolean>()
-    const toggleDrawer = (anchor: MainMenuAnchorType, open: boolean) => (event: any) => {
+    const toggleDrawer = (_anchor: MainMenuAnchorType, open: boolean) => (event: any) => {
         if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
             return;
         }

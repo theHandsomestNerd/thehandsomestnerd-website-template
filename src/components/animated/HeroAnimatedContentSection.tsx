@@ -1,28 +1,19 @@
 import React, {FunctionComponent, useContext} from 'react'
-import {Theme, ThemeProvider} from "@mui/material/styles";
 import {Button, Grid, IconButton, Typography, useMediaQuery, useTheme} from "@mui/material";
 import makeStyles from "@mui/styles/makeStyles";
 import {HeroAnimatedContentSectionType, SanityHeroContentSlide} from "../BlockContentTypes";
-import {urlFor} from "../block-content-ui/static-pages/cmsStaticPagesClient";
 import PageContext, {PageContextType} from "../page-context/PageContext";
 import useCustomStyles from "../templates/mackenzies-mind/pages/Styles";
 import clsx from "clsx";
-import firebaseAnalyticsClient from "../../common/firebase/FirebaseAnalyticsClient";
-import CustomizedThemeContext from "../customized-theme-provider/CustomizedThemeContext";
-import {ArrowBack, ArrowForward, ChevronLeft, ChevronRight} from "@mui/icons-material";
+import {ChevronLeft, ChevronRight} from "@mui/icons-material";
 import {motion} from "framer-motion"
-import imagePlaceholderClient from "../../utils/imagePlaceholderClient";
+import FirebaseContext from "../../common/firebase/firebase-context/FirebaseContext";
+import SanityContext from "../../common/sanityIo/sanity-context/SanityContext";
 
 interface IProps {
     sectionData: HeroAnimatedContentSectionType
 }
-
-interface CSSProps {
-    heroBaseImageUrl?: string,
-    heroOverlay?: string | null
-}
-
-export const useStyles = makeStyles((theme: Theme) => ({
+export const useStyles = makeStyles(() => ({
     contentSection: {
         height: '700px',
         // marginTop: '16px',
@@ -48,13 +39,12 @@ const HeroAnimatedContentSection: FunctionComponent<IProps> = (props) => {
 
     const [pageNumber, setPageNumber] = React.useState<number>(0)
     const [contentSlide, setContentSlide] = React.useState<SanityHeroContentSlide | undefined>()
+    const sanityContext = useContext(SanityContext)
 
     const theme = useTheme()
     const pageContext: PageContextType = useContext(PageContext)
+    const firebaseContext = useContext(FirebaseContext)
 
-    React.useEffect(() => {
-        console.log('image placeholder url',)
-        }, [contentSlide])
     React.useEffect(() => {
         if (props.sectionData.contentSlides[pageNumber])
             setContentSlide(props.sectionData.contentSlides[pageNumber])
@@ -63,175 +53,175 @@ const HeroAnimatedContentSection: FunctionComponent<IProps> = (props) => {
     const mdDown = useMediaQuery(theme.breakpoints.down('md'))
 
     return (
-            <Grid container item style={{overflow: "hidden", paddingTop: mdDown?theme.mixins.toolbar.height:"148px"}}>
+        <Grid container item style={{overflow: "hidden", paddingTop: mdDown ? theme.mixins.toolbar.height : "148px"}}>
 
-                    <Grid container item style={{
-                        backgroundRepeat: 'no-repeat',
-                        backgroundImage: contentSlide?.heroImage ? `url('${urlFor(contentSlide?.heroImage).url() ?? imagePlaceholderClient.placeholderOrImage(contentSlide?.heroImage, 200, 100)}'), url('${urlFor(contentSlide?.heroImageBackground ?? "").url()?? imagePlaceholderClient.placeholderOrImage(contentSlide?.heroImageBackground, 200, 100)}')` : `url('${imagePlaceholderClient.placeholderOrImage(contentSlide?.heroImage, 500, 700)}')`,
-                        backgroundSize: 'cover, contain',
-                        backgroundPosition: "center",
-                        minHeight: '700px',
-                        backgroundColor: 'transparent',
-                        position: "relative"
-                    }}>
-                        <Grid container item
-                              className={clsx(globalClasses.fullSection, globalClasses.fullSectionOverlay)}>
-                        </Grid>
-                        <Grid container item wrap='nowrap' justifyContent='space-between' style={{zIndex: 2}}
-                              alignItems={'center'}>
+            <Grid container item style={{
+                backgroundRepeat: 'no-repeat',
+                backgroundImage: contentSlide?.heroImage ? `url('${sanityContext.urlFor(contentSlide?.heroImage).url() ?? sanityContext.placeholderOrImage(contentSlide?.heroImage, 200, 100)}'), url('${sanityContext.urlFor(contentSlide?.heroImageBackground ?? "").url() ?? sanityContext.placeholderOrImage(contentSlide?.heroImageBackground, 200, 100)}')` : `url('${sanityContext.placeholderOrImage(contentSlide?.heroImage, 500, 700)}')`,
+                backgroundSize: 'cover, contain',
+                backgroundPosition: "center",
+                minHeight: '700px',
+                backgroundColor: 'transparent',
+                position: "relative"
+            }}>
+                <Grid container item
+                      className={clsx(globalClasses.fullSection, globalClasses.fullSectionOverlay)}>
+                </Grid>
+                <Grid container item wrap='nowrap' justifyContent='space-between' style={{zIndex: 2}}
+                      alignItems={'center'}>
+                    <Grid item>
+
+                        <IconButton
+                            color='secondary'
+                            onClick={() => {
+                                if (pageNumber === 0) {
+                                    setPageNumber(props.sectionData.contentSlides.length - 1)
+                                } else {
+
+                                    setPageNumber((state) => (state - 1))
+                                }
+                                firebaseContext.analytics.ctaClick("hero-section-slider", "back slide", pageContext.analyticsId,)
+                            }}
+                        >
+                            <ChevronLeft fontSize={'large'}/>
+                        </IconButton>
+                    </Grid>
+                    <Grid item xs={10}>
+                        <motion.div
+                            animate={{scale: 1}}
+                            initial={{scale: 1.1}}
+                            transition={{
+                                // ease: "linear",
+                                duration: 2,
+                                // scale: {duration: 3},
+                                // opacity: {duration: .5}
+                            }}
+                        >
                             <Grid item>
-
-                                <IconButton
-                                        color='secondary'
-                                        onClick={() => {
-                                            if (pageNumber === 0) {
-                                                setPageNumber(props.sectionData.contentSlides.length - 1)
-                                            } else {
-
-                                                setPageNumber((state) => (state - 1))
-                                            }
-                                            firebaseAnalyticsClient.ctaClick("hero-section-slider", "back slide", pageContext.analyticsId,)
-                                        }}
-                                >
-                                    <ChevronLeft fontSize={'large'}/>
-                                </IconButton>
-                            </Grid>
-                            <Grid item xs={10}>
-                                <motion.div
-                                    animate={{scale: 1}}
-                                    initial={{scale: 1.1}}
-                                    transition={{
-                                        // ease: "linear",
-                                        duration: 2,
-                                        // scale: {duration: 3},
-                                        // opacity: {duration: .5}
-                                    }}
-                                >
-                                <Grid item>
-                                    <Grid container className={classes.contentSection} item>
-                                        <Grid container justifyContent='center' alignContent={'center'}>
-                                            <Grid item container justifyContent='center'>
+                                <Grid container className={classes.contentSection} item>
+                                    <Grid container justifyContent='center' alignContent={'center'}>
+                                        <Grid item container justifyContent='center'>
 
 
-                                            </Grid>
+                                        </Grid>
 
 
-                                            <Grid item>
-                                                <motion.div
-                                                    key={pageNumber}
-                                                    animate={{y: 0, opacity: 1}}
-                                                    initial={{y: -400, opacity: 0}}
-                                                    transition={{
-                                                        // ease: "linear",
-                                                        duration: 2,
-                                                        y: {duration: 1},
-                                                        // opacity: {duration: .5}
+                                        <Grid item>
+                                            <motion.div
+                                                key={pageNumber}
+                                                animate={{y: 0, opacity: 1}}
+                                                initial={{y: -400, opacity: 0}}
+                                                transition={{
+                                                    // ease: "linear",
+                                                    duration: 2,
+                                                    y: {duration: 1},
+                                                    // opacity: {duration: .5}
 
-                                                    }}
+                                                }}
 
-                                                >
-                                                    <Grid container item justifyContent='center'>
-                                                        <Grid item container justifyContent='center' spacing={1}
-                                                              wrap='nowrap'>
-                                                            <Grid item>
-                                                                 <img width={12}
-                                                                                                  src={imagePlaceholderClient.placeholderOrImage(contentSlide?.heroBullet, 100, 200)}/>
-                                                            </Grid>
-                                                            <Grid item>
-                                                                <Typography variant='body1' alignContent='center'
-                                                                            noWrap
-                                                                            style={{
-                                                                                textTransform: "uppercase",
-                                                                                color: theme.palette.text.secondary,
-                                                                                fontWeight: "700",
-                                                                                letterSpacing: 4.3
-                                                                            }}>{contentSlide?.contentWelcomeMessage}</Typography>
-                                                            </Grid>
+                                            >
+                                                <Grid container item justifyContent='center'>
+                                                    <Grid item container justifyContent='center' spacing={1}
+                                                          wrap='nowrap'>
+                                                        <Grid item>
+                                                            <img width={12}
+                                                                 src={sanityContext.placeholderOrImage(contentSlide?.heroBullet, 100, 200)}/>
                                                         </Grid>
-                                                        <Grid item container justifyContent='center'>
-
-                                                            <Typography variant='h1' align={'center'}
+                                                        <Grid item>
+                                                            <Typography variant='body1' alignContent='center'
+                                                                        noWrap
                                                                         style={{
-                                                                            // marginBottom: "32px",
+                                                                            textTransform: "uppercase",
+                                                                            color: theme.palette.text.secondary,
                                                                             fontWeight: "700",
-                                                                            lineHeight: ".98em",
-                                                                            maxWidth: "350px",
-                                                                            // fontFamily: themeContext.customizedTheme.typography.fontFamily.split(',')[1]
-                                                                        }}
-                                                                        color={'textSecondary'}>{contentSlide?.contentTitle}</Typography>
+                                                                            letterSpacing: 4.3
+                                                                        }}>{contentSlide?.contentWelcomeMessage}</Typography>
                                                         </Grid>
+                                                    </Grid>
+                                                    <Grid item container justifyContent='center'>
 
-                                                    </Grid>
-                                                </motion.div>
-                                            </Grid>
-                                            <Grid item style={{marginTop: "32px"}}>
-                                                <motion.div
-                                                    key={pageNumber}
-                                                    animate={{y: 0, opacity: 1}}
-                                                    initial={{y: 400, opacity: 0}}
-                                                    transition={{
-                                                        // ease: "linear",
-                                                        duration: 2,
-                                                        y: {duration: 1},
-                                                        // opacity: {duration: .5}
-                                                    }}
-                                                    // className="card-container"
-                                                    // initial="offscreen"
-                                                    // while="onscreen"
-                                                    // viewport={{ once: true, amount: 0.8 }}
-                                                >
-                                                    <Grid container item justifyContent='center' spacing={4}>
-                                                        <Grid container item
-                                                              justifyContent='center'>
-                                                            <Typography variant='body2' align={'center'}
-                                                                        color='textSecondary'>{contentSlide?.contentText}</Typography>
-                                                        </Grid>
-                                                        <Grid item container justifyContent='center'>
-                                                            <Button color='primary' variant='contained'
+                                                        <Typography variant='h1' align={'center'}
                                                                     style={{
-                                                                        height: "48px",
-                                                                        border: "0",
-                                                                        padding: theme.spacing(3.5, 8)
+                                                                        // marginBottom: "32px",
+                                                                        fontWeight: "700",
+                                                                        lineHeight: ".98em",
+                                                                        maxWidth: "350px",
+                                                                        // fontFamily: themeContext.customizedTheme.typography.fontFamily.split(',')[1]
                                                                     }}
-                                                                    onClick={() => {
-                                                                        firebaseAnalyticsClient.ctaClick("hero-section", contentSlide?.ctaButtonTitle ?? "", pageContext.analyticsId,)
-                                                                    }}
-                                                                    href={contentSlide?.ctaButtonLink ?? ""}>
-                                                                <Typography variant='button' alignContent='center'
-                                                                            align='center'
-                                                                            color='textSecondary'>{contentSlide?.ctaButtonTitle}</Typography>
-                                                            </Button>
-                                                        </Grid>
+                                                                    color={'textSecondary'}>{contentSlide?.contentTitle}</Typography>
                                                     </Grid>
-                                                </motion.div>
-                                            </Grid>
+
+                                                </Grid>
+                                            </motion.div>
+                                        </Grid>
+                                        <Grid item style={{marginTop: "32px"}}>
+                                            <motion.div
+                                                key={pageNumber}
+                                                animate={{y: 0, opacity: 1}}
+                                                initial={{y: 400, opacity: 0}}
+                                                transition={{
+                                                    // ease: "linear",
+                                                    duration: 2,
+                                                    y: {duration: 1},
+                                                    // opacity: {duration: .5}
+                                                }}
+                                                // className="card-container"
+                                                // initial="offscreen"
+                                                // while="onscreen"
+                                                // viewport={{ once: true, amount: 0.8 }}
+                                            >
+                                                <Grid container item justifyContent='center' spacing={4}>
+                                                    <Grid container item
+                                                          justifyContent='center'>
+                                                        <Typography variant='body2' align={'center'}
+                                                                    color='textSecondary'>{contentSlide?.contentText}</Typography>
+                                                    </Grid>
+                                                    <Grid item container justifyContent='center'>
+                                                        <Button color='primary' variant='contained'
+                                                                style={{
+                                                                    height: "48px",
+                                                                    border: "0",
+                                                                    padding: theme.spacing(3.5, 8)
+                                                                }}
+                                                                onClick={() => {
+                                                                    firebaseContext.analytics.ctaClick("hero-section", contentSlide?.ctaButtonTitle ?? "", pageContext.analyticsId,)
+                                                                }}
+                                                                href={contentSlide?.ctaButtonLink ?? ""}>
+                                                            <Typography variant='button' alignContent='center'
+                                                                        align='center'
+                                                                        color='textSecondary'>{contentSlide?.ctaButtonTitle}</Typography>
+                                                        </Button>
+                                                    </Grid>
+                                                </Grid>
+                                            </motion.div>
                                         </Grid>
                                     </Grid>
                                 </Grid>
-                                </motion.div>
                             </Grid>
-                            <Grid item>
-                                <Grid item >
-                                    <IconButton color='secondary'
-                                            onClick={() => {
-                                                if (pageNumber === props.sectionData.contentSlides.length - 1) {
-                                                    setPageNumber(0)
-                                                } else {
+                        </motion.div>
+                    </Grid>
+                    <Grid item>
+                        <Grid item>
+                            <IconButton color='secondary'
+                                        onClick={() => {
+                                            if (pageNumber === props.sectionData.contentSlides.length - 1) {
+                                                setPageNumber(0)
+                                            } else {
 
-                                                    setPageNumber((state) => (state + 1))
-                                                }
-                                                firebaseAnalyticsClient.ctaClick("hero-section-slider", "next slide", pageContext.analyticsId,)
-                                            }}
-                                    >
-                                        <ChevronRight fontSize='large'/>
-                                    </IconButton>
+                                                setPageNumber((state) => (state + 1))
+                                            }
+                                            firebaseContext.analytics.ctaClick("hero-section-slider", "next slide", pageContext.analyticsId,)
+                                        }}
+                            >
+                                <ChevronRight fontSize='large'/>
+                            </IconButton>
 
-                                </Grid>
-                            </Grid>
                         </Grid>
                     </Grid>
-
+                </Grid>
             </Grid>
+
+        </Grid>
     )
 }
 

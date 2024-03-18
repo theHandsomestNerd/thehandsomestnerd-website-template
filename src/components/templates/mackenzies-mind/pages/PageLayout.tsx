@@ -1,15 +1,15 @@
-import React, {FunctionComponent} from 'react'
+import React, {FunctionComponent, useContext} from 'react'
 import {Grid, Link, useMediaQuery, useTheme} from '@mui/material'
 import {SanityTransformHwHomePage} from "../../../../common/sanityIo/Types";
 import BlockContentLayoutContainer from "../../../BlockContentLayoutContainer";
-import firebaseAnalyticsClient from "../../../../common/firebase/FirebaseAnalyticsClient";
 import {useLocation} from "react-router";
 import HeaderBlockContentLayoutContainer from "../../../HeaderBlockContentLayoutContainer";
 import FooterBlockContentLayoutContainer from "../../../FooterBlockContentLayoutContainer";
 import BusinessCard from "../../../BusinessCard";
 import useCustomStyles from "./Styles";
 import clsx from "clsx";
-import {urlFor} from "../../../block-content-ui/static-pages/cmsStaticPagesClient";
+import FirebaseContext from "../../../../common/firebase/firebase-context/FirebaseContext";
+import SanityContext from "../../../../common/sanityIo/sanity-context/SanityContext";
 
 interface IProps {
     homePage: SanityTransformHwHomePage
@@ -18,11 +18,15 @@ interface IProps {
 const PageLayout: FunctionComponent<IProps> = (props: IProps) => {
     const location = useLocation();
     const theme = useTheme()
-    const classes = useCustomStyles({bgImage: urlFor(props.homePage.backgroundImageSrc ?? "")})
+    const firebaseContext = useContext(FirebaseContext)
+    const sanityContext = useContext(SanityContext)
+
+
+    const classes = useCustomStyles({bgImage: sanityContext.urlFor(props.homePage.backgroundImageSrc ?? "")})
 
     const xsDown  = useMediaQuery(theme.breakpoints.down('xs'))
     React.useEffect(() => {
-        props.homePage.title && firebaseAnalyticsClient.analyticsPageView(
+        props.homePage.title && firebaseContext.analytics?.analyticsPageView && firebaseContext.analytics?.analyticsPageView(
             location.pathname,
             location.search,
             `${props.homePage.title} | James Terrell Singleton`,
@@ -44,7 +48,7 @@ const PageLayout: FunctionComponent<IProps> = (props: IProps) => {
                         content={props.homePage.headerContent.content}/>
                 </Grid>}
             </Grid>
-            <Grid item container style={{position:"relative",backgroundSize:"cover",backgroundImage: `url(${urlFor(props.homePage.backgroundImageSrc??"")})`}}>
+            <Grid item container style={{position:"relative",backgroundSize:"cover",backgroundImage: `url(${sanityContext.urlFor(props.homePage.backgroundImageSrc??"")})`}}>
 
                 {
                     props.homePage.pageContent && <Grid container item style={{zIndex: 1000}}>

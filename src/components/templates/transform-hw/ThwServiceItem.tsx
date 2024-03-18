@@ -1,22 +1,16 @@
 import React, {FunctionComponent, useContext} from 'react'
-import {Theme} from "@mui/material/styles";
-import makeStyles from '@mui/styles/makeStyles';
 import {Button, Grid, Tooltip, Typography, useMediaQuery} from '@mui/material'
 import ImageWIthButtonOverlay from "../../image-with-button-overlay/ImageWithButtonOverlay";
 import {ImageWithButtonOverlayAligmentEnum} from "../../image-with-button-overlay/ImageWithButtonOverlayAligmentEnum";
 import LoadingButton from "../../loading-button/LoadingButton";
 import {v4 as uuidv4} from 'uuid'
-import amenitiesIcon from "./amenitiesIcon.png";
+import amenitiesIcon from "../../../assets/amenitiesIcon.png";
 import AmenitiesSection from "./AmenitiesSection";
 import PageContext from "../../page-context/PageContext";
 import {ThwServiceItemNoRefType} from "../../BlockContentTypes";
-import firebaseAnalyticsClient from "../../../common/firebase/FirebaseAnalyticsClient";
 import TransformHWTheme from "../../../theme/TransformHWTheme";
 import CustomizedThemeContext from "../../customized-theme-provider/CustomizedThemeContext";
-
-export const useStyles = makeStyles((theme: Theme) => ({
-    root: {},
-}))
+import FirebaseContext from "../../../common/firebase/firebase-context/FirebaseContext";
 
 interface IProps {
     service: ThwServiceItemNoRefType
@@ -29,6 +23,7 @@ interface IProps {
 const ThwServiceItem: FunctionComponent<IProps> = (props: IProps) => {
     const pageContext = useContext(PageContext)
     const customizedThemeContext = useContext(CustomizedThemeContext)
+    const firebaseContext = useContext(FirebaseContext)
 
     const mdDown = useMediaQuery(customizedThemeContext.customizedTheme.breakpoints.down('md'))
     const LearnMoreButton = () => {
@@ -36,7 +31,7 @@ const ThwServiceItem: FunctionComponent<IProps> = (props: IProps) => {
             {props.service.learnMoreText && props.service?.learnMoreText.length > 0 &&
                 <LoadingButton
                     clickHandler={()=>
-                    firebaseAnalyticsClient.ctaClick(props.service.slug?.current ?? "", props.service.learnMoreText, pageContext.analyticsId,)
+                    firebaseContext.analytics.ctaClick(props.service.slug?.current ?? "", props.service.learnMoreText, pageContext.analyticsId,)
 
                 } color='secondary' href={props.service.learnMoreLink}
                                variant='outlined'><Typography variant='button'

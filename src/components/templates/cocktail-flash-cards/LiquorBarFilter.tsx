@@ -1,10 +1,9 @@
 import React, {FunctionComponent, useContext} from 'react'
 import FilteredIngredients from "./FilteredIngredients";
-import apiClient from "./apiClient";
 import {Button, Grid, Typography} from "@mui/material";
 import {SanityCocktailIngredient, SanityGarnish, SanityLiquorType} from "../../../common/sanityIo/Types";
 import SearchContext from "./search-context/SearchContext";
-import {cocktailUrlFor} from "../../block-content-ui/static-pages/cmsStaticPagesClient";
+import SanityContext from "../../../common/sanityIo/sanity-context/SanityContext";
 
 
 interface IProps {
@@ -12,11 +11,10 @@ interface IProps {
 }
 
 const LiquorBarFilter: FunctionComponent<IProps> = (props: IProps) => {
-
-    const [theLiquor, setTheLiquor] = React.useState<SanityCocktailIngredient[]>([])
     const [liquorTypes, setLiquorTypes] = React.useState<SanityLiquorType[]>([])
 
-    const {data} = apiClient.useFetchAllLiquorTypes()
+    const sanityContext = useContext(SanityContext)
+    const {data} = sanityContext.useFetchAllLiquorTypes()
 
     React.useEffect(() => {
         if (data) {
@@ -76,7 +74,7 @@ const LiquorBarFilter: FunctionComponent<IProps> = (props: IProps) => {
                             onClick={() => processFilter(liquorTypes._id ?? "")}>
                             <Grid container>
                                 <Grid container item justifyContent='center'>
-                                    <img height={100} src={cocktailUrlFor(liquorTypes.imageSrc ?? "").url() ?? ""}/>
+                                    <img height={100} src={sanityContext.cocktailUrlFor(liquorTypes.imageSrc ?? "").url() ?? ""}/>
                                 </Grid>
                                 <Grid container item justifyContent='center'>
                                     <Typography align='center'>{liquorTypes.title}</Typography>

@@ -1,14 +1,7 @@
-import React, {FunctionComponent} from 'react'
-import { Theme } from "@mui/material/styles";
-import makeStyles from '@mui/styles/makeStyles';
+import React, {FunctionComponent, useContext} from 'react'
 import {Grid} from '@mui/material'
 import {SanityImageAsset} from "../BlockContentTypes";
-import {urlFor} from "../block-content-ui/static-pages/cmsStaticPagesClient";
-import imagePlaceholderClient from "../../utils/imagePlaceholderClient";
-
-export const useStyles = makeStyles((theme: Theme) => ({
-    root: {},
-}))
+import SanityContext from "../../common/sanityIo/sanity-context/SanityContext";
 
 interface IProps {
     maskUrl?: string,
@@ -21,6 +14,7 @@ const ColoredPng: FunctionComponent<IProps> = (props: IProps) => {
 
     const [imageUrl, setImageUrl] = React.useState<string>()
     const [imageSize, setImageSize] = React.useState<number>(100)
+    const sanityContext = useContext(SanityContext)
 
     React.useEffect(() => {
         if(props.size){
@@ -30,9 +24,9 @@ const ColoredPng: FunctionComponent<IProps> = (props: IProps) => {
             setImageUrl(props.maskUrl)
         }
         if (props.maskAsset) {
-            setImageUrl(urlFor(props.maskAsset).url() ?? imagePlaceholderClient.placeholderOrImage(props.maskAsset, props.size, props.size))
+            setImageUrl(sanityContext.urlFor(props.maskAsset).url() ?? sanityContext.placeholderOrImage(props.maskAsset, props.size, props.size))
         }else {
-            setImageUrl(imagePlaceholderClient.placeholderOrImage(props.maskAsset, props.size, props.size))
+            setImageUrl(sanityContext.placeholderOrImage(props.maskAsset, props.size, props.size))
         }
     }, [])
 

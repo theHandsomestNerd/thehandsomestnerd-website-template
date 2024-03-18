@@ -1,14 +1,14 @@
 import React, {FunctionComponent, useContext} from 'react'
-import { Theme } from '@mui/material/styles';
+import {Theme} from '@mui/material/styles';
 import makeStyles from '@mui/styles/makeStyles';
 import {Button, Grid, Typography} from '@mui/material'
-import {urlFor} from '../../block-content-ui/static-pages/cmsStaticPagesClient'
-import {MfbtHeroContentSectionType, ThwHeroContentSectionType} from "../../BlockContentTypes";
+import {MfbtHeroContentSectionType} from "../../BlockContentTypes";
 import clsx from "clsx";
 import PageContext from "../../page-context/PageContext";
 import useCustomStyles from "../mackenzies-mind/pages/Styles";
 import MixedFeelingsByTTheme from "../../../theme/MixedFeelingsByTTheme";
-import firebaseAnalyticsClient from "../../../common/firebase/FirebaseAnalyticsClient";
+import FirebaseContext from "../../../common/firebase/firebase-context/FirebaseContext";
+import SanityContext from "../../../common/sanityIo/sanity-context/SanityContext";
 
 interface IProps {
     sectionData: MfbtHeroContentSectionType
@@ -41,18 +41,21 @@ export const useStyles = makeStyles((theme: Theme) => ({
 }))
 
 const MfbtHeroContentSection: FunctionComponent<IProps> = (props) => {
+    const sanityContext = useContext(SanityContext)
+
     let classParameters: CSSProps = {
-        heroBaseImageUrl: urlFor(props.sectionData.heroImage).url() ?? '',
+        heroBaseImageUrl: sanityContext.urlFor(props.sectionData.heroImage).url() ?? '',
     }
 
     if (props.sectionData.heroImageBackground) {
         classParameters = {
             ...classParameters,
-            heroOverlay: urlFor(props.sectionData.heroImageBackground).url()
+            heroOverlay: sanityContext.urlFor(props.sectionData.heroImageBackground).url()
         }
     }
 
     const pageContext = useContext(PageContext)
+    const firebaseContext = useContext(FirebaseContext)
 
     const classes = useStyles(classParameters)
     const globalClasses = useCustomStyles({})
@@ -81,7 +84,7 @@ const MfbtHeroContentSection: FunctionComponent<IProps> = (props) => {
             <Grid container item>
                 <Button color='secondary' variant='contained'
                         onClick={() => {
-                            firebaseAnalyticsClient.ctaClick("hero-section", props.sectionData.ctaButtonTitle, pageContext.analyticsId,)
+                            firebaseContext.analytics.ctaClick("hero-section", props.sectionData.ctaButtonTitle, pageContext.analyticsId,)
                         }}
                         href={props.sectionData.ctaButtonLink ?? ""}>
                     <Typography variant='button'

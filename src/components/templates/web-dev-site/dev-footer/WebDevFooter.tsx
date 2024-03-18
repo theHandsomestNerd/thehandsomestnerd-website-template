@@ -1,5 +1,4 @@
 import React, {FunctionComponent} from 'react'
-import {Theme} from '@mui/material/styles';
 import makeStyles from '@mui/styles/makeStyles';
 import {Grid, useTheme} from '@mui/material'
 import WebDevFooterMenuContainer from './WebDevFooterMenuContainer'
@@ -14,7 +13,7 @@ interface IProps {
 const WebDevFooter: FunctionComponent<IProps> = (props: IProps) => {
 
     const theTheme = useTheme()
-    const useStyles = makeStyles((theme: Theme) => ({
+    const useStyles = makeStyles(() => ({
         root: {
             backgroundColor: theTheme.palette.secondary.main,
             // color: '#FDF3EB',

@@ -1,15 +1,10 @@
 import React, {FunctionComponent} from 'react'
-import {Theme, useTheme} from "@mui/material/styles";
-import makeStyles from '@mui/styles/makeStyles';
+import {useTheme} from "@mui/material/styles";
 import {Grid, Typography, useMediaQuery} from '@mui/material'
 import {ResumeSkillSectionType, ResumeSkillSet} from "../../../BlockContentTypes";
 import useThwCommonStyles from "../../../../common/sanityIo/ThwCommonStyles";
 import ResumeSkillSetItem from "./ResumeSkillSetItem";
 
-
-export const useStyles = makeStyles((theme: Theme) => ({
-    root: {},
-}))
 
 interface IProps {
     sectionData: ResumeSkillSectionType

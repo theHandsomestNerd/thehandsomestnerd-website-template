@@ -27,6 +27,7 @@ yarn-error.log*
 /sanityIo/node_modules/
 /node_modules/
 /build/
+/dist/
 .firebase/hosting.YnVpbGQ.cache
 yarn*
 yarn.*

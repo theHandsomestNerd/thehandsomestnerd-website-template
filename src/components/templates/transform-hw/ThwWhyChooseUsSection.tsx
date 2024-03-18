@@ -3,9 +3,9 @@ import {Theme} from '@mui/material/styles';
 import makeStyles from '@mui/styles/makeStyles';
 import {Divider, Grid, Typography, useMediaQuery} from '@mui/material'
 import {ThwWhyChooseUsSectionType} from "../../BlockContentTypes";
-import imagePlaceholderClient from "../../../utils/imagePlaceholderClient";
 import TransformHWTheme from "../../../theme/TransformHWTheme";
 import CustomizedThemeContext from "../../customized-theme-provider/CustomizedThemeContext";
+import SanityContext from "../../../common/sanityIo/sanity-context/SanityContext";
 
 
 export const useStyles = makeStyles((theme: Theme) => ({
@@ -28,6 +28,7 @@ const ThwServicesSection: FunctionComponent<IProps> = (props) => {
     const classes = useStyles()
 
     const customizedThemeContext = useContext(CustomizedThemeContext)
+    const sanityContext = useContext(SanityContext)
 
     const xsOnly = useMediaQuery(customizedThemeContext.customizedTheme.breakpoints.only('xs'))
 
@@ -38,7 +39,7 @@ const ThwServicesSection: FunctionComponent<IProps> = (props) => {
                     backgroundSize: "cover",
                     backgroundPosition: "center",
                     minHeight: "600px",
-                    backgroundImage: `url(${imagePlaceholderClient.placeholderOrImage(props.sectionData.imageSrc, 600, 600)})`
+                    backgroundImage: `url(${sanityContext.placeholderOrImage(props.sectionData.imageSrc, 600, 600)})`
                 }}>
                 </Grid>}
                 <Grid item container alignItems='center' alignContent='center' justifyContent='center' xs={12}
@@ -60,7 +61,7 @@ const ThwServicesSection: FunctionComponent<IProps> = (props) => {
                                         minHeight: "145px",
                                         backgroundPosition: 'center',
                                         backgroundRepeat: 'no-repeat',
-                                        backgroundImage: `url(${imagePlaceholderClient.placeholderOrImage(pro.imageSrc, 145, 145)})`
+                                        backgroundImage: `url(${sanityContext.placeholderOrImage(pro.imageSrc, 145, 145)})`
                                     }}>
 
                                     </Grid>

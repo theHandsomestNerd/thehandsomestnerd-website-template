@@ -1,4 +1,4 @@
-import React, {FunctionComponent, PropsWithChildren, useMemo, useRef,} from 'react';
+import React, {FunctionComponent, PropsWithChildren, useContext, useMemo, useRef,} from 'react';
 import {
     Grid,
     IconButton,
@@ -12,10 +12,10 @@ import {
 } from "@mui/material";
 import ModalContext from './ModalContext';
 import {SanityModalType, TextElementType} from "../../common/sanityIo/Types";
-import ColoredPng from "../colored-png/ColoredPng";
-import {urlFor} from "../block-content-ui/static-pages/cmsStaticPagesClient";
 import {Close} from "@mui/icons-material";
 import LoadingButton from "../loading-button/LoadingButton";
+import ColoredPng from '../colored-png/ColoredPng';
+import SanityContext from "../../common/sanityIo/sanity-context/SanityContext";
 
 type IProps = {};
 
@@ -27,12 +27,13 @@ const ModalProvider: FunctionComponent<IProps & PropsWithChildren> = (
     const ref: any = useRef(null)
 
     const xsDown = useMediaQuery(theme.breakpoints.down('xs'))
+    const sanityContext = useContext(SanityContext)
 
     const [modalContent, setModalContent] = React.useState<SanityModalType | undefined>(
         undefined,
     );
 
-    const handleModalClose = (event: React.SyntheticEvent | Event) => {
+    const handleModalClose = () => {
         setModalOpen(false)
     }
 
@@ -92,9 +93,9 @@ const ModalProvider: FunctionComponent<IProps & PropsWithChildren> = (
 
                             <Grid container item justifyContent='center' alignItems='center' alignContent='center'
                                   style={{position: "absolute", height: "100%", zIndex: 1}}>
-                                <ColoredPng color={'rgba(16, 43, 136, .3)'}
-                                            maskUrl={urlFor(modalContent?.iconOverlayImageSrc ?? "").url() ?? ""}
-                                            size={400}/>
+                                {<ColoredPng color={'rgba(16, 43, 136, .3)'}
+                                             maskUrl={sanityContext.urlFor(modalContent?.iconOverlayImageSrc)?.url() ?? ""}
+                                             size={400}/>}
                             </Grid>
                             <Grid container item justifyContent='center' alignItems='center' alignContent='center'
                                   xs={12}

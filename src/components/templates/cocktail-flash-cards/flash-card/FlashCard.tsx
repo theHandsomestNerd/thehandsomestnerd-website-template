@@ -21,7 +21,7 @@ interface IProps {
     // cocktail: SanityCocktailType
 }
 
-const FlashCard: FunctionComponent<IProps> = (props: IProps) => {
+const FlashCard: FunctionComponent<IProps> = () => {
     const classes = useStyles()
 
     const searchContext = useContext(SearchContext)

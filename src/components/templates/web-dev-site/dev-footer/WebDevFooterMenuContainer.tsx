@@ -7,9 +7,9 @@ import {SanityMenuContainer} from "../../../../common/sanityIo/Types";
 import PageContext from "../../../page-context/PageContext";
 import MailTo from "../../../mail-to/MailTo";
 import FullWidthColoredPng from "../../../fullwidth-colored-png/FullWidthColoredPng";
-import {urlFor} from "../../../block-content-ui/static-pages/cmsStaticPagesClient";
 import WebDevSiteTheme from "../../../../theme/WebDevSiteTheme";
 import CustomizedThemeContext from "../../../customized-theme-provider/CustomizedThemeContext";
+import SanityContext from "../../../../common/sanityIo/sanity-context/SanityContext";
 
 
 export const useStyles = makeStyles((theme: Theme) => ({
@@ -29,6 +29,7 @@ const WebDevFooterMenuContainer: FunctionComponent<IProps> = (props: IProps) => 
 
     const theme = useTheme()
     const pageContext = useContext(PageContext)
+    const sanityContext = useContext(SanityContext)
 
     const customizedThemeContext = useContext(CustomizedThemeContext)
 
@@ -41,7 +42,7 @@ const WebDevFooterMenuContainer: FunctionComponent<IProps> = (props: IProps) => 
                     <Grid item container style={{paddingTop: smDown ? "4px" : "4px"}}>
                         <Grid item xs={12}><FullWidthColoredPng color='white' height={108}
                                                                 isCenter={smDown}
-                                                                maskUrl={urlFor(props.pageFooterMenu.logoImageSrc).url() ?? ""}/></Grid>
+                                                                maskUrl={sanityContext.urlFor(props.pageFooterMenu.logoImageSrc).url() ?? ""}/></Grid>
                     </Grid> :
                     <Grid container item>
                         <Typography component='div' variant='h2'

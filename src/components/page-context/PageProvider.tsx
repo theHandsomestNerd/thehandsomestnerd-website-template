@@ -4,10 +4,11 @@ import {ThwServiceItemNoRefType} from "../BlockContentTypes";
 import PageContext from './PageContext';
 import SnackbarContext from "../modal-context/SnackbarContext";
 import {v4 as uuidv4} from 'uuid'
-import cmsClient from "../block-content-ui/cmsClient";
+import SanityContext from "../../common/sanityIo/sanity-context/SanityContext";
+
 type IProps = {
     page?: SanityTransformHwHomePage
-
+    googleApiKey?: string
 };
 
 type PageProviderState = {
@@ -21,6 +22,10 @@ type PageProviderState = {
     pageHeader?: SanityMenuContainer,
     pageFooter?: SanityMenuContainer,
     analyticsId: string
+    documentType?: string
+    documentSlug?: string
+    baseRoute?: string
+    googleMapsApiKey?: string
 }
 
 const initialState: PageProviderState = {
@@ -34,6 +39,8 @@ const initialState: PageProviderState = {
     pageHeader: undefined,
     pageFooter: undefined,
     analyticsId: uuidv4().toString(),
+    baseRoute: "",
+    googleMapsApiKey: ""
 };
 
 const reducer = (state: PageProviderState, action: any) => {
@@ -41,11 +48,30 @@ const reducer = (state: PageProviderState, action: any) => {
         case 'INITIAL':
             return initialState;
         case 'START_PAGE_LOAD':
-            console.log("in page load switch", action.payload.pageSlug)
+            // console.log("in page load switch", action.payload.pageSlug)
             return {
                 ...state,
                 loading: true,
                 pageSlug: action.payload.pageSlug,
+            };
+        case 'FETCH_DOCUMENT':
+            // console.log(`in page context fetch document fetching document type`)
+            return {
+                ...state,
+                documentType: action.payload.documentType,
+                documentSlug: action.payload.documentSlug,
+            };
+        case 'SET_BASE_ROUTE':
+            // console.log(`in page context update the base Route ${action.payload.baseRoute}`)
+            return {
+                ...state,
+                baseRoute: action.payload.baseRoute,
+            };
+        case 'SET_GOOGLE_MAPS_API_KEY':
+            console.log(`in page context provider/reducer update the google maps key ${action.payload.googleMapsApiKey}`)
+            return {
+                ...state,
+                googleMapsApiKey: action.payload.googleMapsApiKey,
             };
         case 'LOAD_PAGE_COMPONENTS':
             return {
@@ -82,19 +108,50 @@ const reducer = (state: PageProviderState, action: any) => {
 const PageProvider: FunctionComponent<IProps & PropsWithChildren> = (
     props: PropsWithChildren<IProps>,
 ) => {
+    const sanityContext = useContext(SanityContext)
+
     const [state, dispatch] = useReducer(reducer, initialState)
 
-
-    const loadedPageQuery = cmsClient.useFetchPageBySlugQuery(state.pageSlug)
+    const [pageData, setPageData] = React.useState<any>()
+    const [documentData, setDocumentData] = React.useState<any>()
+    const [isLoading] = React.useState<boolean>(true)
+    // const loadedPageQuery = sanityContext.useFetchPageBySlugQuery(state.pageSlug)
 
     React.useEffect(() => {
+        sanityContext.fetchDocumentByTypeAndSlugQuery(state.documentType, state.documentSlug)
+            .then((result: any) => {
+                // console.log(`in page context fetch document fetching document type: ${state.documentType} with slug: ${state.documentSlug}`)
+
+                setDocumentData(result)
+            })
+            .catch((e: any) => {
+                console.log(`ERROR: in page context fetch document fetching document type: ${state.documentType} with slug: ${state.documentSlug} `, e)
+
+            })
+
+    }, [state.documentType, state.documentSlug, sanityContext.theSanityClient])
+
+    React.useEffect(() => {
+
         if (!props.page && (state.pageSlug && state.pageSlug.length > 0)) {
-            // console.log("states pageslug changd", state.pageSlug)
-            loadedPageQuery.refetch().then((resp) => {
-                // console.log("reftecth?", resp)
+            sanityContext.fetchPageBySlugQuery(state.pageSlug).then((result: any) => {
+                setPageData(result)
+            }).catch((e: any) => {
+                console.log("ERROR: ", e)
             })
         }
-    }, [state.pageSlug])
+    }, [state.pageSlug, sanityContext.theSanityClient])
+
+    React.useEffect(() => {
+        if (props.googleApiKey) {
+            dispatch({
+                type: "SET_GOOGLE_MAPS_API_KEY",
+                payload: {
+                    googleMapsApiKey: props.googleApiKey,
+                }
+            })
+        }
+    }, [props.googleApiKey])
 
     React.useEffect(() => {
         if (props.page && !state.page) {
@@ -109,46 +166,35 @@ const PageProvider: FunctionComponent<IProps & PropsWithChildren> = (
     }, [props.page, state.page])
 
     React.useEffect(() => {
-        if (!props.page && loadedPageQuery.data) {
-            console.log("context homepage data", loadedPageQuery.data)
+        if (!props.page && pageData) {
             dispatch({
                 type: "LOAD_PAGE_COMPONENTS",
                 payload: {
-                    page: loadedPageQuery.data,
+                    page: pageData,
                 }
             })
         }
-    }, [loadedPageQuery.data])
+    }, [pageData])
     React.useEffect(() => {
         dispatch({
             type: "PAGE_LOADING",
             payload: {
-                loading: loadedPageQuery.isLoading
+                loading: isLoading
             }
         })
-    }, [loadedPageQuery.isLoading])
+    }, [isLoading])
+
     React.useEffect(() => {
         dispatch({
             type: "PAGE_LOADING",
             payload: {
-                loading: loadedPageQuery.isRefetching
+                loading: isLoading
             }
         })
-    }, [loadedPageQuery.isRefetching])
-    React.useEffect(() => {
-        if (loadedPageQuery.isError) {
-            dispatch({
-                type: "ERROR",
-                payload: {
-                    isError: loadedPageQuery.isError,
-                    pageError: loadedPageQuery.error
-                }
-            })
-        }
-    }, [loadedPageQuery.isError])
+    }, [isLoading])
 
     const fetchPage = async (pageSlug: string) => {
-        console.log("Fetching the page", pageSlug)
+        // console.log("Fetching the page", pageSlug)
         dispatch({
             type: "START_PAGE_LOAD",
             payload: {
@@ -156,6 +202,38 @@ const PageProvider: FunctionComponent<IProps & PropsWithChildren> = (
             }
         })
     }
+
+    const updateBaseRoute = (baseRoute: string) => {
+        // console.log(`updating baseRoute to ${baseRoute} in pageProvider`)
+
+        dispatch({
+            type: "SET_BASE_ROUTE",
+            payload: {
+                baseRoute: baseRoute,
+            }
+        })
+    }
+
+    const updateGoogleApiKey = (apiKey: string) => {
+        dispatch({
+            type: "SET_GOOGLE_MAPS_API_KEY",
+            payload: {
+                googleMapsApiKey: apiKey,
+            }
+        })
+    }
+
+    const fetchDocument = async (documentType: string, documentSlug: string) => {
+        // console.log(`"Fetching the document type:${documentType} that has slug:${documentSlug} `)
+        dispatch({
+            type: "FETCH_DOCUMENT",
+            payload: {
+                documentType: documentType,
+                documentSlug: documentSlug
+            }
+        })
+    }
+
 
     // React.useEffect(() => {
     //     if (allServicesQuery.data) {
@@ -293,7 +371,7 @@ const PageProvider: FunctionComponent<IProps & PropsWithChildren> = (
                 loading: !!state.page
             }
         })
-    }, [loadedPageQuery.isLoading])
+    }, [isLoading])
 
 
     const getOtherServices = (pageSlug: string) => {
@@ -318,7 +396,14 @@ const PageProvider: FunctionComponent<IProps & PropsWithChildren> = (
             allServices: state.allServices,
 
             getOtherServices,
-            analyticsId: state.analyticsId
+            analyticsId: state.analyticsId,
+
+            fetchDocument,
+            documentData,
+            updateBaseRoute,
+            baseRoute: state.baseRoute,
+            updateGoogleApiKey,
+            googleMapsApiKey: state.googleMapsApiKey
         }),
         [
             state.page,
@@ -332,6 +417,8 @@ const PageProvider: FunctionComponent<IProps & PropsWithChildren> = (
             state.allServices,
             getOtherServices,
             state.analyticsId,
+            state.baseRoute,
+            state.googleMapsApiKey
         ]
     );
 

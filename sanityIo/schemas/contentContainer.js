@@ -33,6 +33,42 @@ export default {
                     type: 'reference',
                     to: [{type: 'FlashCardSection'}]
                 },
+                {
+                    name: 'AWBallSection',
+                    title: 'AW Ball Section',
+                    type: 'reference',
+                    to: [{type: 'AWBallSection'}]
+                },
+                {
+                    name: 'AWBallToolsSection',
+                    title: 'AW Ball Tools Section',
+                    type: 'reference',
+                    to: [{type: 'AWBallToolsSection'}]
+                },
+                {
+                    name: 'AWBallToolsSection',
+                    title: 'AW Ball Tools Section',
+                    type: 'reference',
+                    to: [{type: 'AWBallToolsSection'}]
+                },
+                {
+                    name: 'AWBallSummarySection',
+                    title: 'AW Ball Summary Section',
+                    type: 'reference',
+                    to: [{type: 'AWBallSummarySection'}]
+                },
+                {
+                    name: 'AWSingleBallPageSection',
+                    title: 'AW Single Ball Page Section',
+                    type: 'reference',
+                    to: [{type: 'AWSingleBallPageSection'}]
+                },
+                {
+                    name: 'ContactUs Section',
+                    title: 'ContactUs Section',
+                    type: 'reference',
+                    to: [{type: 'ContactUs'}]
+                },
                 {name: 'header', title: 'Header Menu', type: 'reference', to: [{type: 'menuContainer',}]},
                 {name: 'footer', title: 'Footer Menu', type: 'reference', to: [{type: 'menuContainer',}]},
                 {

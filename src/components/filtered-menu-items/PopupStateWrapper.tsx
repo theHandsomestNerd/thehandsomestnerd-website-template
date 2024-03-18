@@ -4,12 +4,11 @@ import {Button, Grid, Popover, Typography, useTheme} from '@mui/material'
 import PopupState, {bindPopover, bindTrigger} from "material-ui-popup-state";
 import {ArrowDropDown} from "@mui/icons-material";
 import {SanityMenuGroup} from "../../common/sanityIo/Types";
-import { Theme } from "@mui/material/styles";
 import makeStyles from '@mui/styles/makeStyles';
 import SubMenu from "../templates/mackenzies-mind/header/SubMenu";
 
 
-const useStyles = makeStyles((theme: Theme) => ({
+const useStyles = makeStyles(() => ({
     hover: {
         "&:hover": {
             backgroundColor: 'rgba(16,43,136, 0.04)',
@@ -29,7 +28,7 @@ const PopupStateWrapper: FunctionComponent<FilteredMenuItemsPopupProps> = ({menu
     const theme = useTheme()
     return (<PopupState variant="popover" popupId={menuGroup.menuGroupTitle?.toLowerCase().replace(" ", "-")}>
         {(popupState) => {
-            const handleClose = (e: any) => {
+            const handleClose = () => {
                 // e.stopPropagation()
                 popupState.close()
             }

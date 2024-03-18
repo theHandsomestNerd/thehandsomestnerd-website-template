@@ -1,0 +1,161 @@
+export default {
+  name: 'location',
+  title: 'Location',
+  type: 'document',
+  fields: [
+    {
+      name: 'locationName',
+      title: 'Name',
+      type: 'string',
+    },
+    {
+      name: 'street1',
+      title: 'Street 1',
+      type: 'string',
+    },
+    {
+      name: 'street2',
+      title: 'Street 2',
+      type: 'string',
+    },
+    {
+      name: 'city',
+      title: 'City',
+      type: 'string',
+    },
+    {
+      name: 'zip',
+      title: 'Zipcode',
+      type: 'string',
+    },
+    {
+      name: 'country',
+      title: 'Country',
+      type: 'string',
+    },
+    {
+      name: 'url',
+      title: 'URL',
+      type: 'url',
+    },
+    {
+      name: 'state',
+      title: 'State',
+      type: 'string',
+      options: {
+        list: [
+          { title: 'ALABAMA', value: 'AL' },
+          { title: 'ALASKA', value: 'AK' },
+          { title: 'AMERICAN SAMOA', value: 'AS' },
+          { title: 'ARIZONA', value: 'AZ' },
+          { title: 'ARKANSAS', value: 'AR' },
+          {
+            title: 'CALIFORNIA',
+            value: 'CA',
+          },
+          { title: 'COLORADO', value: 'CO' },
+          { title: 'CONNECTICUT', value: 'CT' },
+          {
+            title: 'DELAWARE',
+            value: 'DE',
+          },
+          { title: 'DISTRICT OF COLUMBIA', value: 'DC' },
+          {
+            title: 'FLORIDA',
+            value: 'FL',
+          },
+          { title: 'GEORGIA', value: 'GA' },
+          { title: 'GUAM', value: 'GU' },
+          {
+            title: 'HAWAII',
+            value: 'HI',
+          },
+          { title: 'IDAHO', value: 'ID' },
+          { title: 'ILLINOIS', value: 'IL' },
+          {
+            title: 'INDIANA',
+            value: 'IN',
+          },
+          { title: 'IOWA', value: 'IA' },
+          { title: 'KANSAS', value: 'KS' },
+          {
+            title: 'KENTUCKY',
+            value: 'KY',
+          },
+          { title: 'LOUISIANA', value: 'LA' },
+          { title: 'MAINE', value: 'ME' },
+          {
+            title: 'MARYLAND',
+            value: 'MD',
+          },
+          { title: 'MASSACHUSETTS', value: 'MA' },
+          { title: 'MICHIGAN', value: 'MI' },
+          {
+            title: 'MINNESOTA',
+            value: 'MN',
+          },
+          { title: 'MISSISSIPPI', value: 'MS' },
+          { title: 'MISSOURI', value: 'MO' },
+          {
+            title: 'MONTANA',
+            value: 'MT',
+          },
+          { title: 'NEBRASKA', value: 'NE' },
+          { title: 'NEVADA', value: 'NV' },
+          {
+            title: 'NEW HAMPSHIRE',
+            value: 'NH',
+          },
+          { title: 'NEW JERSEY', value: 'NJ' },
+          { title: 'NEW MEXICO', value: 'NM' },
+          {
+            title: 'NEW YORK',
+            value: 'NY',
+          },
+          { title: 'NORTH CAROLINA', value: 'NC' },
+          {
+            title: 'NORTH DAKOTA',
+            value: 'ND',
+          },
+          { title: 'NORTHERN MARIANA IS', value: 'MP' },
+          {
+            title: 'OHIO',
+            value: 'OH',
+          },
+          { title: 'OKLAHOMA', value: 'OK' },
+          { title: 'OREGON', value: 'OR' },
+          {
+            title: 'PENNSYLVANIA',
+            value: 'PA',
+          },
+          { title: 'PUERTO RICO', value: 'PR' },
+          {
+            title: 'RHODE ISLAND',
+            value: 'RI',
+          },
+          { title: 'SOUTH CAROLINA', value: 'SC' },
+          {
+            title: 'SOUTH DAKOTA',
+            value: 'SD',
+          },
+          { title: 'TENNESSEE', value: 'TN' },
+          { title: 'TEXAS', value: 'TX' },
+          {
+            title: 'UTAH',
+            value: 'UT',
+          },
+          { title: 'VERMONT', value: 'VT' },
+          { title: 'VIRGINIA', value: 'VA' },
+          {
+            title: 'VIRGIN ISLANDS',
+            value: 'VI',
+          },
+          { title: 'WASHINGTON', value: 'WA' },
+          { title: 'WEST VIRGINIA', value: 'WV' },
+          { title: 'WISCONSIN', value: 'WI' },
+          { title: 'WYOMING', value: 'WY' },
+        ],
+      },
+    },
+  ],
+};

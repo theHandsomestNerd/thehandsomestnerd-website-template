@@ -1,11 +1,9 @@
 import React, {FunctionComponent} from 'react'
-import shape4 from "./services-v1-shape4-cyan.png";
 import {motion, useAnimation, Variants} from "framer-motion";
 import {useInView} from "react-intersection-observer";
 import makeStyles from "@mui/styles/makeStyles";
-import {Theme} from "@mui/material/styles";
 
-export const useStyles = makeStyles((theme: Theme) => ({
+export const useStyles = makeStyles(() => ({
     root: {
     },
 }))

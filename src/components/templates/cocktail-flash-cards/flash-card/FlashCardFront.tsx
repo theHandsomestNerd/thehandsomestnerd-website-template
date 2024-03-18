@@ -1,19 +1,15 @@
-import React, {FunctionComponent} from 'react'
+import React, {FunctionComponent, useContext} from 'react'
 import {Grid, Typography,} from "@mui/material";
-import {Theme} from "@mui/material/styles";
-import {makeStyles} from "@mui/styles";
 import {SanityCocktailType} from "../../../../common/sanityIo/Types";
-import {cocktailUrlFor} from "../../../block-content-ui/static-pages/cmsStaticPagesClient";
+import SanityContext from "../../../../common/sanityIo/sanity-context/SanityContext";
 
-export const useStyles = makeStyles((theme: Theme) => ({
-    root: {},
-}))
 
 interface IProps {
     currentCard?: SanityCocktailType
 }
 
 const FlashCardFront: FunctionComponent<IProps> = ({currentCard}: IProps) => {
+    const sanityContext = useContext(SanityContext)
 
     return (<Grid container item direction='column' justifyContent='center' alignItems='center' alignContent='center'
                   spacing={1}>
@@ -26,7 +22,7 @@ const FlashCardFront: FunctionComponent<IProps> = ({currentCard}: IProps) => {
         <Grid item>
 
             {currentCard?.imageSrc &&
-                <img style={{zIndex: 900, position: "relative"}} src={cocktailUrlFor(currentCard?.imageSrc).url() ?? ""}
+                <img style={{zIndex: 900, position: "relative"}} src={sanityContext.cocktailUrlFor(currentCard?.imageSrc).url() ?? ""}
                      width={350} height={350}/>}
         </Grid>
 

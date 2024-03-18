@@ -5,15 +5,14 @@ import useCustomStyles from "../mackenzies-mind/pages/Styles";
 import isEmail from "validator/lib/isEmail";
 import LoadingButton from "../../loading-button/LoadingButton";
 import {useQuery} from "@tanstack/react-query";
-import firebaseAnalyticsClient from "../../../common/firebase/FirebaseAnalyticsClient";
 import PageContext from "../../page-context/PageContext";
 import leadClient from "../transform-hw/pages/under-construction-page/leadClient";
 import SnackbarContext from "../../modal-context/SnackbarContext";
-import {Theme} from "@mui/material/styles";
 import withStyles from "@mui/styles/withStyles";
 import {Grid, TextField, Typography, useMediaQuery, useTheme} from "@mui/material";
+import FirebaseContext from "../../../common/firebase/firebase-context/FirebaseContext";
 
-export const useStyles = makeStyles((theme: Theme) => ({
+export const useStyles = makeStyles(() => ({
     root: {
         width: '100vw',
         // minHeight: '100vh',
@@ -119,10 +118,10 @@ const ResumeContactUsSection: FunctionComponent<ContactUsProps> = (props) => {
     const snackbarContext = useContext(SnackbarContext)
 
     const globalClasses = useCustomStyles({})
+    const firebaseContext = useContext(FirebaseContext)
 
     const [leadName, setleadName] = useState<string>()
     const [email, setEmail] = useState<string>()
-    const [leadPhone, setLeadPhone] = useState<string>()
     const [leadMessage, setLeadMessage] = useState<string>()
 
     const {isLoading, isError, data, refetch, isRefetching} = useQuery(
@@ -133,7 +132,6 @@ const ResumeContactUsSection: FunctionComponent<ContactUsProps> = (props) => {
                     email,
                     leadName,
                     leadMessage,
-                    leadPhone,
                     source: "Contact Us"
                 }).then((response) => {
                     snackbarContext.openSnackbar && snackbarContext.openSnackbar(response.message)
@@ -144,30 +142,10 @@ const ResumeContactUsSection: FunctionComponent<ContactUsProps> = (props) => {
         }
     );
 
-    const getHelperText = () => {
-        if (data) {
-            return <Typography style={{
-                color: theme
-                    .palette.success.main
-            }} variant='subtitle1'>Thank you
-                for
-                your submission!</Typography>
-        }
-        if (isError) {
-            return <Typography style={{
-                color: theme
-                    .palette.error.main
-            }} variant='subtitle1'>Please Try
-                your
-                submission again later or contact jgreene@transformHW.org.</Typography>
-        }
-
-        return <Typography variant='subtitle1'>&nbsp;</Typography>
-    }
 
     const pageContext = useContext(PageContext)
-    const createLead = async (e: any): Promise<any> => {
-        firebaseAnalyticsClient.ctaClick('contact-us', 'send-message', pageContext.analyticsId,)
+    const createLead = async (): Promise<any> => {
+        firebaseContext.analytics.ctaClick('contact-us', 'send-message', pageContext.analyticsId,)
         return refetch()
     }
 

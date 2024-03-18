@@ -1,13 +1,13 @@
-import React, {FunctionComponent} from 'react'
+import React, {FunctionComponent, useContext} from 'react'
 import {Button, ButtonGroup, Grid, Typography, useMediaQuery, useTheme,} from '@mui/material';
 import {ResumeBioSectionType} from "../../../BlockContentTypes";
-import {urlFor} from "../../../block-content-ui/static-pages/cmsStaticPagesClient";
 import {SanityTransformHwHomePage} from "../../../../common/sanityIo/Types";
 import useThwCommonStyles from "../../../../common/sanityIo/ThwCommonStyles";
 import SocialMediaBlock from "../social-media-block/SocialMediaBlock";
 import BusinessCardSubmitEmail from "../../transform-hw/pages/BusinessCardSubmitEmail";
 import {PDFDownloadLink} from "@react-pdf/renderer";
 import ResumeDocumentPDF from "../../../pdf-renderer/ResumeDocumentPDF";
+import SanityContext from "../../../../common/sanityIo/sanity-context/SanityContext";
 
 
 interface IProps {
@@ -19,9 +19,10 @@ interface IProps {
 
 const ResumeBioSection: FunctionComponent<IProps> = (props: IProps) => {
     const classes = useThwCommonStyles()
+    const sanityContext = useContext(SanityContext)
 
     const theme = useTheme()
-    const [isPDFResumeOpen, setIsPDFResumeOpen] = React.useState<boolean>(false)
+    // const [isPDFResumeOpen, setIsPDFResumeOpen] = React.useState<boolean>(false)
 
     const smDown = useMediaQuery(theme.breakpoints.down('sm'))
 
@@ -78,7 +79,7 @@ const ResumeBioSection: FunctionComponent<IProps> = (props: IProps) => {
             </Grid>
             <Grid item container md={6}>
                 <Grid data-testid='bio-image' container item style={{
-                    backgroundImage: `url(${urlFor(props.sectionData.mainImage ?? "").url()})`,
+                    backgroundImage: `url(${sanityContext.urlFor(props.sectionData.mainImage ?? "")?.url()})`,
                     backgroundSize: "cover",
                     backgroundPosition: "top right",
                     backgroundRepeat: "no-repeat",

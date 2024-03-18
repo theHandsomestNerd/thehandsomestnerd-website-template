@@ -1,5 +1,5 @@
 import React from 'react';
-import {SanityModalType, TextElementType} from "../../common/sanityIo/Types";
+import {SanityModalType} from "../../common/sanityIo/Types";
 
 export type ModalContextType = {
     openModal?: (contents?: SanityModalType) => void,

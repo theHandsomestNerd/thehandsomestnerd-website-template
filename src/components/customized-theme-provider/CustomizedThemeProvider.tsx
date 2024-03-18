@@ -1,15 +1,12 @@
 import React, {FunctionComponent, PropsWithChildren, useContext, useMemo,} from 'react';
 import CustomizedThemeContext from './CustomizedThemeContext';
 import {CssBaseline} from "@mui/material";
-import {createTheme, ThemeProvider} from "@mui/material/styles";
-import {COLORS, convertToHexCode} from "../../theme/common/ColorPalette";
-import {grey} from "@mui/material/colors";
-import {SanityMuiFontFace, SanityMuiTheme} from "../../common/sanityIo/Types";
+import {ThemeProvider} from "@mui/material/styles";
+import {SanityMuiTheme} from "../../common/sanityIo/Types";
 import PageContext from "../page-context/PageContext";
 import TheWebsiteTheme from "../../theme/Theme";
-import cmsClient from "../block-content-ui/cmsClient";
-import capitalizeArray from "../../utils/textProcessingUtils";
 import getThemeFromSanity from "./getThemeFromSanity";
+import SanityContext from "../../common/sanityIo/sanity-context/SanityContext";
 
 type IProps = {
     pageTheme?: SanityMuiTheme
@@ -21,7 +18,7 @@ const CustomizedThemeProvider: FunctionComponent<IProps & PropsWithChildren> = (
 ) => {
 
     const [customizedTheme, setCustomizedTheme] = React.useState<any>(TheWebsiteTheme)
-    const fonts = `"Raleway", "Oswald"`
+    // const fonts = `"Raleway", "Oswald"`
 
     const pageContext = useContext(PageContext);
     React.useEffect(() => {
@@ -36,16 +33,17 @@ const CustomizedThemeProvider: FunctionComponent<IProps & PropsWithChildren> = (
         // eslint-disable-next-line
     }, [pageContext.page?.theme])
 
-    React.useEffect(() => {
-        console.log("customized theme change",customizedTheme)
-    }, [customizedTheme])
+    // React.useEffect(() => {
+    //     console.log("customized theme change",customizedTheme)
+    // }, [customizedTheme])
 
 
 
 
+    const sanityContext = useContext(SanityContext)
 
     const getThemeBySlug = async (slug: string) => {
-        const theRetrievedTheme = await cmsClient.fetchMuiTheme(slug)
+        const theRetrievedTheme = await sanityContext.fetchMuiTheme(slug)
 
         return getThemeFromSanity(theRetrievedTheme)
     }

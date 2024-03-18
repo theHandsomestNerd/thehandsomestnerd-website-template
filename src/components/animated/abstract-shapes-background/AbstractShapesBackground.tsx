@@ -1,27 +1,23 @@
 import React, {FunctionComponent} from 'react'
-import shape3 from "./services-v1-shape3-dark-blue.png";
-import shape9 from "./services-v1-shape9-dark-blue.png";
-import shape11 from "./services-v1-shape11-dark-blue.png";
-import shape4 from "./services-v1-shape4-cyan.png";
-import shape7 from "./services-v1-shape7-dark-blue.png";
-import shape8 from "./services-v1-shape8-cyan.png";
-import shape5 from "./services-v1-shape5-dark-blue.png";
-import shape2 from "./services-v1-shape2-dark-blue.png";
-import shape6 from "./services-v1-shape6-dark-blue.png";
-import shape10 from "./services-v1-shape10-dark-blue.png";
+import shape3 from "../../../assets/animated-shapes/services-v1-shape3-dark-blue.png";
+import shape9 from "../../../assets/animated-shapes/services-v1-shape9-dark-blue.png";
+import shape11 from "../../../assets/animated-shapes/services-v1-shape11-dark-blue.png";
+import shape4 from "../../../assets/animated-shapes/services-v1-shape4-cyan.png";
+import shape7 from "../../../assets/animated-shapes/services-v1-shape7-dark-blue.png";
+import shape8 from "../../../assets/animated-shapes/services-v1-shape8-cyan.png";
+import shape5 from "../../../assets/animated-shapes/services-v1-shape5-dark-blue.png";
+import shape2 from "../../../assets/animated-shapes/services-v1-shape2-dark-blue.png";
+import shape6 from "../../../assets/animated-shapes/services-v1-shape6-dark-blue.png";
+import shape10 from "../../../assets/animated-shapes/services-v1-shape10-dark-blue.png";
 import {Grid, useTheme} from "@mui/material";
 import makeStyles from "@mui/styles/makeStyles";
-import {Theme} from "@mui/material/styles";
 import AnimatedAbstractShape from "./AnimatedAbstractShape";
 
-export const useStyles = makeStyles((theme: Theme) => ({
+export const useStyles = makeStyles(() => ({
     root: {},
 }))
 
-interface IProps {
-}
-
-const AbstractShapesBackground: FunctionComponent<IProps> = (props: IProps) => {
+const AbstractShapesBackground: FunctionComponent = () => {
     const theme = useTheme()
     const shape2Variants = {
         onScreen: {top: 0, transition: {duration: .65}},

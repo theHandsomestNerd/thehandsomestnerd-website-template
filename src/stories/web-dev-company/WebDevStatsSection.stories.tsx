@@ -3,14 +3,12 @@ import React from "react";
 import {ThemeProvider} from "@mui/material/styles";
 import getThemeFromSanity from "../../components/customized-theme-provider/getThemeFromSanity";
 import WebDevThemeData from "../data/WebDevThemeData";
-import WebDevAboutUsSection from "../../components/templates/web-dev-site/WebDevAboutUsSection";
-import WebDevAboutUsSectionData from "../data/WebDevAboutUsSectionData";
 import WebDevStatsCounterSection from "../../components/templates/web-dev-site/WebDevStatsCounterSection";
 import WebDevStatsSectionData from "../data/WebDevStatsSectionData";
 
 
 const meta: Meta<typeof WebDevStatsCounterSection> = {
-    title:"Web Development/Section/Web Dev Stats Section",
+    title: "Web Development/Section/Web Dev Stats Section",
     component: WebDevStatsCounterSection,
 };
 
@@ -25,10 +23,10 @@ type Story = StoryObj<typeof WebDevStatsCounterSection>;
  */
 
 export const Primary: Story = {
-    args:{
+    args: {
         sectionData: WebDevStatsSectionData,
     },
-    render: ({sectionData}) =>  <ThemeProvider theme={getThemeFromSanity(WebDevThemeData)}>
-    <WebDevStatsCounterSection sectionData={sectionData}></WebDevStatsCounterSection>
+    render: ({sectionData}) => <ThemeProvider theme={getThemeFromSanity(WebDevThemeData)}>
+        <WebDevStatsCounterSection sectionData={sectionData}></WebDevStatsCounterSection>
     </ThemeProvider>,
 };

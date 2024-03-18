@@ -1,12 +1,7 @@
-import React, {FunctionComponent, useContext} from 'react'
-import makeStyles from '@mui/styles/makeStyles';
-import {Grid, IconButton, PropTypes, ThemeProvider, useTheme} from '@mui/material';
+import React, {FunctionComponent} from 'react'
+import {Grid, IconButton, PropTypes, useTheme} from '@mui/material';
 import {Facebook, GitHub, Instagram, LinkedIn, Twitter} from "@mui/icons-material";
-import clsx from "clsx";
 import {GridSpacing} from "@mui/material/Grid/Grid";
-import CustomizedThemeContext from "../../../customized-theme-provider/CustomizedThemeContext";
-
-
 
 
 interface IProps {
@@ -26,7 +21,6 @@ interface IProps {
 }
 
 const SocialMediaBlock: FunctionComponent<IProps> = (props: IProps) => {
-    const customizedThemeContext = useContext(CustomizedThemeContext)
     const theme = useTheme()
 
 

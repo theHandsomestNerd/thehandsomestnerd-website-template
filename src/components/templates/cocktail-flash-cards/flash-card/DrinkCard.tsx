@@ -20,7 +20,7 @@ interface IProps {
     // cocktail: SanityCocktailType
 }
 
-const DrinkCard: FunctionComponent<IProps> = (props: IProps) => {
+const DrinkCard: FunctionComponent<IProps> = () => {
     const classes = useStyles()
 
     const searchContext = useContext(SearchContext)

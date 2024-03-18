@@ -1,23 +1,16 @@
-import React, {FunctionComponent} from 'react'
+import React, {FunctionComponent, useContext} from 'react'
 import {Box, Button, Grid, IconButton, Typography, useTheme} from "@mui/material";
-import {urlFor} from "../block-content-ui/static-pages/cmsStaticPagesClient";
 import {ArrowRightAlt} from "@mui/icons-material";
-import makeStyles from "@mui/styles/makeStyles";
-import {Theme} from "@mui/material/styles";
 import {AnimatedPortfolioItemType} from "../BlockContentTypes";
 import {motion, useAnimationControls} from 'framer-motion';
-import imagePlaceholderClient from "../../utils/imagePlaceholderClient";
+import SanityContext from "../../common/sanityIo/sanity-context/SanityContext";
 
-export const useStyles = makeStyles((theme: Theme) => ({
-    root: {
-    },
-}))
 
 interface IProps { portfolioItem?:AnimatedPortfolioItemType, action:(item:AnimatedPortfolioItemType|undefined)=>void }
 
 const AnimatedPortfolioItem: FunctionComponent<IProps> = (props:IProps) => {
-    const classes = useStyles()
     const theme = useTheme()
+    const sanityContext = useContext(SanityContext)
 
     const controls = useAnimationControls()
 
@@ -38,19 +31,17 @@ const AnimatedPortfolioItem: FunctionComponent<IProps> = (props:IProps) => {
                   justifyContent='center' overflow='hidden' borderRadius={theme.shape.borderRadius}>
         <motion.div initial={{scale:1}} animate={controls} style={{width: "100%"}} onHoverStart={async () => {
             animateServiceHover()
-            console.log("hovering")
         }} onHoverEnd={async () => {
-            console.log("not hovering")
             animateServiceNoHover()
         }}><Button style={{
-            backgroundImage: `url(${urlFor(props.portfolioItem?.coverImage ?? "").url() ?? imagePlaceholderClient.placeholderOrImage(props.portfolioItem?.coverImage,300, 250)})`,
+            backgroundImage: `url(${sanityContext.urlFor(props.portfolioItem?.coverImage ?? "").url() ?? sanityContext.placeholderOrImage(props.portfolioItem?.coverImage,300, 250)})`,
             backgroundSize: "cover",
             backgroundPosition: "top center",
             backgroundRepeat: "no-repeat",
             width: "100%",
             margin: "8px",
             height: "500px"
-        }} fullWidth onClick={(e) => props.action(props.portfolioItem)}>
+        }} fullWidth onClick={() => props.action(props.portfolioItem)}>
             <Grid item container style={{position: "relative", height: "100%"}}>
                 {/*{portfolioItem?.inceptionDate && <Grid container item justifyContent='center'>*/}
                 {/*    <Typography display='inline'*/}

@@ -8,7 +8,7 @@ interface IProps {
     thisServiceSlug?: string
 }
 
-const OtherServices: FunctionComponent<IProps> = (props: IProps) => {
+const OtherServices: FunctionComponent<IProps> = () => {
     const pageContext = useContext(PageContext)
     const theme = useTheme()
 

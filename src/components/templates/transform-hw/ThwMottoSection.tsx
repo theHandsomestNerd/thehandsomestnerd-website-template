@@ -1,5 +1,4 @@
 import React, {FunctionComponent, useContext} from 'react'
-import {urlFor} from '../../block-content-ui/static-pages/cmsStaticPagesClient'
 import {ThwMottoSectionType} from "../../BlockContentTypes";
 import {Parallax} from 'react-parallax';
 import clsx from "clsx";
@@ -8,6 +7,7 @@ import {Theme} from "@mui/material/styles";
 import makeStyles from "@mui/styles/makeStyles";
 import {Grid, Typography, useMediaQuery} from "@mui/material";
 import CustomizedThemeContext from "../../customized-theme-provider/CustomizedThemeContext";
+import SanityContext from "../../../common/sanityIo/sanity-context/SanityContext";
 
 export const useStyles = makeStyles((theme: Theme) => ({
     root: {
@@ -30,11 +30,12 @@ const ThwMottoSection: FunctionComponent<IProps> = (props) => {
     const globalClasses = useCustomStyles({})
     const classes = useStyles()
     const customizedThemeContext = useContext(CustomizedThemeContext)
+    const sanityContext = useContext(SanityContext)
 
     const smDown = useMediaQuery(customizedThemeContext.customizedTheme.breakpoints.down('sm'))
     return (
         <Parallax blur={1}
-                                                          bgImage={urlFor(props.sectionData.parallaxImage).url() ?? undefined}
+                                                          bgImage={sanityContext.urlFor(props.sectionData.parallaxImage).url() ?? undefined}
                                                           bgImageAlt="the cat"
                                                           strength={600}>
             <Grid container item

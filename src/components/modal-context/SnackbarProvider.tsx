@@ -37,7 +37,7 @@ const SnackbarProvider: FunctionComponent<IProps & PropsWithChildren> = (
         }
     }, [snackPack, messageInfo, snackbarOpen]);
 
-    const handleSnackbarClose = (event: React.SyntheticEvent | Event, reason?: string) => {
+    const handleSnackbarClose = (_event: React.SyntheticEvent | Event, reason?: string) => {
         if (reason === 'clickaway') {
 
             return;

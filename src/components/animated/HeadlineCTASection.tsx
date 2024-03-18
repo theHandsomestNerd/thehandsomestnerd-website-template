@@ -1,32 +1,28 @@
 import React, {FunctionComponent, useContext} from 'react'
 import {Button, Grid, Typography, useMediaQuery, useTheme} from "@mui/material";
-import firebaseAnalyticsClient from "../../common/firebase/FirebaseAnalyticsClient";
-import makeStyles from "@mui/styles/makeStyles";
-import {Theme} from "@mui/material/styles";
 import {HeadlineCTASectionType} from "../BlockContentTypes";
 import PageContext from "../page-context/PageContext";
-import {urlFor} from "../block-content-ui/static-pages/cmsStaticPagesClient";
+import FirebaseContext from "../../common/firebase/firebase-context/FirebaseContext";
+import SanityContext from "../../common/sanityIo/sanity-context/SanityContext";
 
-export const useStyles = makeStyles((theme: Theme) => ({
-    root: {
-    },
-}))
 
 interface IProps { sectionData: HeadlineCTASectionType,  }
 
 const HeadlineCTASection: FunctionComponent<IProps> = (props:IProps) => {
     const theme = useTheme()
     const pageContext = useContext(PageContext)
+    const firebaseContext = useContext(FirebaseContext)
 
     const smDown = useMediaQuery(theme.breakpoints.down('sm'))
     const mdDown = useMediaQuery(theme.breakpoints.down('md'))
+    const sanityContext = useContext(SanityContext)
 
     React.useEffect(()=>{
     }, [])
 
     return (<Grid container item sx={{
         backgroundColor: theme.palette.secondary.main,
-        backgroundImage: `url(${urlFor(props.sectionData.backgroundImgSrc).url()})`,
+        backgroundImage: `url(${sanityContext.urlFor(props.sectionData.backgroundImgSrc).url()})`,
         backgroundSize: "40%, 40%",
         // backgroundRepeat: "no-repeat",
         // borderRadius: mdDown?0:1,
@@ -45,7 +41,7 @@ const HeadlineCTASection: FunctionComponent<IProps> = (props:IProps) => {
         <Grid style={{padding: theme.spacing(!smDown?5:0,5,5,5)}} container item justifyContent={smDown?'center':'flex-end'} alignItems='center' alignContent='center' sm={4} >
             <Button color='primary' variant='contained'
                     onClick={() => {
-                        firebaseAnalyticsClient.ctaClick("hero-section", props.sectionData.ctaButtonText, pageContext.analyticsId,)
+                        firebaseContext.analytics.ctaClick("hero-section", props.sectionData.ctaButtonText, pageContext.analyticsId,)
                     }}
                     href={props.sectionData.ctaButtonLink ?? ""}>
                 <Typography variant='button'

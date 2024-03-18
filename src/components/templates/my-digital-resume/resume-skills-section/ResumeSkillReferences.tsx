@@ -1,11 +1,11 @@
 import React, {FunctionComponent, useContext} from 'react'
 import {Grid, Typography} from "@mui/material";
-import {ResumePortfolioItem, ResumeSkill} from "../../../BlockContentTypes";
-import cmsClient from "../../../block-content-ui/cmsClient";
+import {ResumeSkill} from "../../../BlockContentTypes";
 import ResumeExperienceItem from "../resume-experience-section/ResumeExperienceItem";
 import ResumePortfolioEntry from "../resume-portfolio-section/ResumePortfolioEntry";
 import ResumeSkillSetItem from "./ResumeSkillSetItem";
 import PageContext from "../../../page-context/PageContext";
+import SanityContext from "../../../../common/sanityIo/sanity-context/SanityContext";
 
 interface IProps {
     skill?: ResumeSkill
@@ -13,13 +13,14 @@ interface IProps {
 
 const ResumeSkillReferences: FunctionComponent<IProps> = (props: IProps) => {
     const [referenceResults, setReferenceResults] = React.useState<[]>()
+    const sanityContext = useContext(SanityContext)
 
     const pageContext = useContext(PageContext)
 
     const searchCMS = async () => {
         // console.log("about to search full text")
         if (props.skill) {
-            const cmsResponse = await cmsClient.skillReferenceSearch(props.skill, pageContext.page?._id ?? "")
+            const cmsResponse = await sanityContext.skillReferenceSearch(props.skill, pageContext.page?._id ?? "")
 
             setReferenceResults(cmsResponse)
         }
@@ -33,7 +34,7 @@ const ResumeSkillReferences: FunctionComponent<IProps> = (props: IProps) => {
 
     return (<Grid container item spacing={2}>
         {
-            referenceResults?.map((searchResult: any, index) => {
+            referenceResults?.map((searchResult: any) => {
 
 
                 switch (searchResult?._type) {

@@ -1,13 +1,7 @@
-import React, {FunctionComponent} from 'react'
-import { Theme } from "@mui/material/styles";
-import makeStyles from '@mui/styles/makeStyles';
+import React, {FunctionComponent, useContext} from 'react'
 import {Grid} from '@mui/material'
-import {urlFor} from "./block-content-ui/static-pages/cmsStaticPagesClient";
 import {SanityImageAsset} from "./BlockContentTypes";
-
-export const useStyles = makeStyles((theme: Theme) => ({
-    root: {},
-}))
+import SanityContext from "../common/sanityIo/sanity-context/SanityContext";
 
 interface IProps {
     image?: SanityImageAsset
@@ -20,10 +14,11 @@ interface IProps {
 const ImageWithPlaceholder: FunctionComponent<IProps> = (props: IProps) => {
     const [imageUrl, setImageUrl] = React.useState<string>()
     const [placeHolderUrl, setPlaceHolderUrl] = React.useState<string>()
+    const sanityContext = useContext(SanityContext)
 
     React.useEffect(() => {
         if (props.image) {
-            const theUrl = urlFor(props.image)
+            const theUrl = sanityContext.urlFor(props.image)
 
             if (props.width) {
                 theUrl.width(props.width)

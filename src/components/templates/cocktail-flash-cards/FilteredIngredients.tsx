@@ -2,17 +2,19 @@ import React, {FunctionComponent, useContext} from 'react'
 import SearchContext from "./search-context/SearchContext";
 import {Button, Chip, Grid, Typography} from "@mui/material";
 import {SanityCocktailIngredient} from "../../../common/sanityIo/Types";
-import apiClient from "./apiClient";
+import SanityContext from "../../../common/sanityIo/sanity-context/SanityContext";
 
 
 interface IProps {
     // liquorType: SanityLiquorType
 }
 
-const FilteredIngredients: FunctionComponent<IProps> = (props: IProps) => {
+const FilteredIngredients: FunctionComponent<IProps> = () => {
     const searchContext = useContext(SearchContext)
+    const sanityContext = useContext(SanityContext)
+
     const [filteredBarIngredients, setFilteredBarIngredients] = React.useState<(any)[]>([])
-    const {data, refetch} = apiClient.useFetchMyFilteredIngredients()
+    const {data, refetch} = sanityContext.useFetchMyFilteredIngredients()
 
     React.useEffect(() => {
         if (data) {

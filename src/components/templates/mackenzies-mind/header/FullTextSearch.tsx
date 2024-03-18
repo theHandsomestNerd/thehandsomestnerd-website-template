@@ -3,7 +3,6 @@ import {Grid, TextField, Typography} from "@mui/material";
 import LoadingButton from "../../../loading-button/LoadingButton";
 import {ButtonGroupMemberEnum} from "../../../loading-button/ButtonGroupMemberEnum";
 import {Search} from "@mui/icons-material";
-import cmsClient from "../../../block-content-ui/cmsClient";
 import CustomizedThemeContext from "../../../customized-theme-provider/CustomizedThemeContext";
 import makeStyles from "@mui/styles/makeStyles";
 import {Theme} from "@mui/material/styles";
@@ -20,6 +19,7 @@ import {COLORS} from "../../../../theme/common/ColorPalette";
 import ResumeSkillReferences from "../../my-digital-resume/resume-skills-section/ResumeSkillReferences";
 import PageContext from "../../../page-context/PageContext";
 import ResumeBioSection from "../../my-digital-resume/resume-bio-section/ResumeBioSection";
+import SanityContext from "../../../../common/sanityIo/sanity-context/SanityContext";
 
 export const useStyles = makeStyles((theme: Theme) => ({
     endAdornedInput: {
@@ -52,17 +52,19 @@ interface IProps {
     searchText?:string
 }
 
-const FullTextSearch: FunctionComponent<IProps> = (props: IProps) => {
+const FullTextSearch: FunctionComponent<IProps> = () => {
     const customizedTheme = useContext(CustomizedThemeContext)
     const [searchText, setSearchText] = React.useState<string>()
     const myClasses = useStyles(customizedTheme)
     const [results, setResults] = React.useState<any[]>()
     const pageContext = useContext(PageContext)
+    const sanityContext = useContext(SanityContext)
+
     const searchCMS = async () => {
-        console.log("about to search full text")
+        // console.log("about to search full text")
         if (searchText) {
-            const cmsResponse = await cmsClient.fullTextSearch(searchText, pageContext.page?._id??"")
-            console.log("results", cmsResponse)
+            const cmsResponse = await sanityContext.fullTextSearch(searchText, pageContext.page?._id??"")
+            // console.log("results", cmsResponse)
             setResults(cmsResponse)
         }
     }
