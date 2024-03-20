@@ -1,0 +1,22 @@
+{
+  "short_name": "Software Engineer Portfolio",
+  "name": "Software Engineer Portfolio - James Terrell Singleton",
+  "description": "Digital Portfolio of James Terrell Singleton, software engineer and web developer",
+  "icons": [
+    {
+      "src": "favicon.7155ca86.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "favicon.c0d5dc22.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    }
+  ],
+  "start_url": "../home",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff",
+  "homepage_url": "https://terrellsingleton.com/go/home"
+}
