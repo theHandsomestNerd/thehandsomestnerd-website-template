@@ -37,6 +37,13 @@ export default {
             },
         },
         {
+            name: 'categories',
+            title: 'Categories',
+            type: 'array',
+            of: [{type: 'reference', to: {type: 'category'}}],
+            options: { layout: 'tags' }
+        },
+        {
             name: 'skillsHighlighted',
             title: 'Skill Used',
             type: 'array',
@@ -62,6 +69,11 @@ export default {
             name: 'linkToDev',
             title: 'Dev Link',
             type: 'string',
+        },
+        {
+            name: 'isDisabled',
+            title: 'Is this Disabled from all UIs',
+            type: 'boolean'
         },
         {
             name: 'imageGallery',

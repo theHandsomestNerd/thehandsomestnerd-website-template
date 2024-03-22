@@ -722,7 +722,7 @@ export type DrinkeryOtherSideSectionType = {
     // contentTexts: string[],
     // teamList: TeamMember[],
 }
-export type DrinkeryPhotoType = {
+export type MasonryPhotoItem = {
     imageSrc?: SanityImageAsset
     cols?: string
     title: string
@@ -736,7 +736,7 @@ export type DrinkeryAlbumSectionType = {
     hashtags:string[]
     contentTitle: string
     contentText: string
-    imageList: DrinkeryPhotoType[]
+    imageList: MasonryPhotoItem[]
     // contentTexts: string[],
     // teamList: TeamMember[],
 }

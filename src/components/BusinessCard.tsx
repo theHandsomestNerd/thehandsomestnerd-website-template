@@ -1,18 +1,6 @@
 import React, {FunctionComponent, useContext, useState} from 'react'
 import makeStyles from '@mui/styles/makeStyles';
-import {
-    Avatar,
-    Button,
-    Divider,
-    Drawer,
-    Fab,
-    Grid,
-    List,
-    ListItem,
-    Typography,
-    useMediaQuery,
-    useTheme,
-} from '@mui/material';
+import {Avatar, Button, Divider, Drawer, Fab, Grid, List, ListItem, Typography, useTheme,} from '@mui/material';
 import createStyles from '@mui/styles/createStyles';
 import {Close, FileCopy} from "@mui/icons-material";
 import SocialMediaBlock from "./templates/my-digital-resume/social-media-block/SocialMediaBlock";
@@ -75,7 +63,7 @@ const BusinessCard: FunctionComponent<MainMenuProps> = ({anchor, homePage}) => {
 
     const theme = useTheme()
 
-    const smDown = useMediaQuery(theme.breakpoints.down('sm'))
+    // const smDown = useMediaQuery(theme.breakpoints.down('sm'))
 
     // const pageContext = useContext(PageContext)
 
@@ -113,17 +101,18 @@ const BusinessCard: FunctionComponent<MainMenuProps> = ({anchor, homePage}) => {
               role="presentation"
             // onClick={toggleDrawer(anchor, false)}
             // onKeyDown={toggleDrawer(anchor, false)}
-              style={{backgroundColor: COLORS.LIGHTGRAY}}
+              style={{backgroundColor: COLORS.LIGHTGRAY, maxWidth: 350}}
         >
-            <Grid container item alignContent='flex-end'>
+            <Grid container item alignContent='flex-end' justifyContent='center'>
                 <Grid item container style={{
                     marginBottom: theme.spacing(4),
                     backgroundRepeat: "none",
-                    minHeight: smDown ? 350 : 450,
+                    minHeight: 500,
+                    maxWidth: 350,
                     backgroundSize: "cover",
                     overflow: "visible",
                     position: "relative",
-                    backgroundImage: `url(${sanityContext.urlFor(homePage.businessCardImageSrc ?? "")?.url() ??""})`
+                    backgroundImage: `url(${sanityContext.placeholderOrImage(homePage.businessCardImageSrc, 350, 500)})`
                 }} justifyContent='center' alignContent='flex-end'>
                     <Grid container item style={{
                         position: "relative",
@@ -180,7 +169,7 @@ const BusinessCard: FunctionComponent<MainMenuProps> = ({anchor, homePage}) => {
                     <Divider/>
                     <ListItem>
                         <Grid container>
-                            <Grid item xs={8} container alignContent='flex-end'>
+                            <Grid item xs={12} container alignContent='flex-end'>
                                 <Typography variant='h6' gutterBottom>Website</Typography>
                                 <Button variant='outlined' size='small' fullWidth color='primary'
                                         href={homePage.website}><Grid style={{height: "48px"}} container
@@ -192,8 +181,8 @@ const BusinessCard: FunctionComponent<MainMenuProps> = ({anchor, homePage}) => {
                                     variant='subtitle1'
                                     align='center'>{homePage.website}</Typography></Grid></Grid></Button>
                             </Grid>
-                            <Grid item xs={3} container>
-                                <Grid container item justifyContent='flex-end'>
+                            <Grid item xs={12} container>
+                                <Grid container item justifyContent='center'>
 
                                     <Grid item xs={2} container justifyContent='flex-end'>
                                         <Button style={{height: "80px"}} variant='contained' color='primary' fullWidth
@@ -207,7 +196,7 @@ const BusinessCard: FunctionComponent<MainMenuProps> = ({anchor, homePage}) => {
                                                 }}>
                                             <Grid item>
                                                 <FileCopy style={{height: "42px"}}/>
-                                                <Typography variant='subtitle1'>Copy</Typography>
+                                                <Typography variant='subtitle1'>Copy URL</Typography>
                                             </Grid>
                                         </Button>
                                     </Grid>
@@ -217,7 +206,7 @@ const BusinessCard: FunctionComponent<MainMenuProps> = ({anchor, homePage}) => {
                                                 onClick={() => share(homePage.website ?? "")}>
                                             <Grid item>
                                                 <img alt='website QR code' height={42}
-                                                     src={sanityContext.urlFor(homePage.websiteQrCode ?? "")?.url() ?? ""}/>
+                                                     src={sanityContext.placeholderOrImage(homePage.websiteQrCode, 42, 42)}/>
                                                 <Typography variant='subtitle1'>Qr</Typography>
                                             </Grid>
                                         </Button>
@@ -229,7 +218,7 @@ const BusinessCard: FunctionComponent<MainMenuProps> = ({anchor, homePage}) => {
                     <Divider/>
                     <ListItem>
                         <Grid container>
-                            <Grid item xs={8} container alignContent='flex-end'>
+                            <Grid item xs={12} container alignContent='flex-end'>
                                 <Typography variant='h6' gutterBottom>Virtual Meeting</Typography>
                                 <Button variant='outlined' size='small' fullWidth color='primary'
                                         href={homePage.bookAppointmentLink}><Grid style={{height: "48px"}}
@@ -242,8 +231,8 @@ const BusinessCard: FunctionComponent<MainMenuProps> = ({anchor, homePage}) => {
                                     variant='subtitle1'
                                     align='center'>{homePage.bookAppointmentLink}</Typography></Grid></Grid></Button>
                             </Grid>
-                            <Grid item xs={3} container>
-                                <Grid container item justifyContent='flex-end'>
+                            <Grid item xs={12} container>
+                                <Grid container item justifyContent='center'>
 
                                     <Grid item xs={2} container justifyContent='flex-end'>
                                         <Button style={{height: "80px"}} variant='contained' color='primary' fullWidth
@@ -258,7 +247,7 @@ const BusinessCard: FunctionComponent<MainMenuProps> = ({anchor, homePage}) => {
                                         >
                                             <Grid item>
                                                 <FileCopy style={{height: "42px"}}/>
-                                                <Typography variant='subtitle1'>Copy</Typography>
+                                                <Typography variant='subtitle1'>Copy URL</Typography>
                                             </Grid>
                                         </Button>
                                     </Grid>
@@ -267,7 +256,7 @@ const BusinessCard: FunctionComponent<MainMenuProps> = ({anchor, homePage}) => {
                                                 onClick={() => share(homePage.bookAppointmentLink ?? "")}>
                                             <Grid item>
                                                 <img alt={'make apppointment qr code'} height={42}
-                                                     src={sanityContext.urlFor(homePage.bookAppointmentQrCode ?? "")?.url() ?? ""}/>
+                                                     src={sanityContext.placeholderOrImage(homePage.bookAppointmentQrCode,42,42)}/>
                                                 <Typography variant='subtitle1'>Qr</Typography>
                                             </Grid>
                                         </Button>
@@ -337,7 +326,7 @@ const BusinessCard: FunctionComponent<MainMenuProps> = ({anchor, homePage}) => {
             >
                 <Avatar style={{backgroundColor: "whitesmoke"}}
 
-                        src={sanityContext.urlFor(homePage.headerContent.content[0].headerMenuRef.logoImageSrc ?? "")?.url() ?? ""}/>
+                        src={sanityContext.placeholderOrImage(homePage.headerContent.content[0].headerMenuRef.logoImageSrc)}/>
             </Fab>
 
 

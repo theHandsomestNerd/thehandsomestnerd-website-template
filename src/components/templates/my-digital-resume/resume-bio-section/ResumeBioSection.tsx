@@ -22,7 +22,6 @@ const ResumeBioSection: FunctionComponent<IProps> = (props: IProps) => {
     const sanityContext = useContext(SanityContext)
 
     const theme = useTheme()
-    // const [isPDFResumeOpen, setIsPDFResumeOpen] = React.useState<boolean>(false)
 
     const smDown = useMediaQuery(theme.breakpoints.down('sm'))
 
@@ -36,7 +35,7 @@ const ResumeBioSection: FunctionComponent<IProps> = (props: IProps) => {
                     emailButtonText={'Submit'}
                     subscribeText={'Want a copy of my resume emailed to you?'}/>
             </Grid>}
-            <Grid item md={6} justifyContent='center'>
+            <Grid item sm={12} md={7} lg={12} justifyContent='center'>
                 <Grid item container>
                     <Typography component='div' display='inline' variant='h5' gutterBottom>{props.sectionData.title}
                         <Typography variant='h5'
@@ -77,13 +76,14 @@ const ResumeBioSection: FunctionComponent<IProps> = (props: IProps) => {
                     />
                 </Grid>
             </Grid>
-            <Grid item container md={6}>
+            <Grid item container sm={12} md={5} lg={12} justifyContent='center'>
                 <Grid data-testid='bio-image' container item style={{
-                    backgroundImage: `url(${sanityContext.urlFor(props.sectionData.mainImage ?? "")?.url()})`,
+                    backgroundImage: `url(${sanityContext.placeholderOrImage(props.sectionData.mainImage, 350, 500)})`,
                     backgroundSize: "cover",
                     backgroundPosition: "top right",
                     backgroundRepeat: "no-repeat",
-                    minHeight: smDown ? "500px" : "450px"
+                    minHeight: "500px",
+                    maxWidth: "350px",
                 }}>
                 </Grid>
             </Grid>
@@ -109,10 +109,14 @@ const ResumeBioSection: FunctionComponent<IProps> = (props: IProps) => {
                                 //     }
                                 // }
                                 // href={props.sectionData.resumeFile?.url + "?dl=James Terrell Singleton - Software Engineer - Resume.pdf"}
-                                variant='contained' fullWidth color='primary'><Typography variant="button"
-                                                                                          align='center'
-                                                                                          noWrap>
-                                {props.sectionData.resumeFileDownloadText}</Typography></Button></PDFDownloadLink>
+                                variant='contained' fullWidth color='primary'>
+                                <Typography variant="button"
+                                            align='center'
+                                            noWrap>
+                                    {props.sectionData.resumeFileDownloadText}
+                                </Typography>
+                            </Button>
+                            </PDFDownloadLink>
                             {/*{props.sectionData.cvFile && props.sectionData.cvFile.url.length > 0 && <Button*/}
                             {/*    href={props.sectionData.cvFile?.url + "?dl=James Terrell Singleton - Software Engineer - CV.pdf"}*/}
                             {/*    variant='contained' fullWidth color='primary'><CloudDownload*/}

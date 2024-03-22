@@ -51,13 +51,6 @@ const ResumeBioSectionData:ResumeBioSectionType = {
     // "_updatedAt": "2022-12-10T15:57:58Z",
     "resumeFileDownloadText": "Download Resume",
     // "skillsets": null,
-    "mainImage": {
-        // "_type": "image",
-        "asset": {
-            "_ref": "image-23de0e9fc21cb77dfc7b1c9ce8b684310a9d99a0-3007x2979-jpg",
-            "_type": "reference"
-        }
-    },
     // "_createdAt": "2022-11-30T13:45:52Z"
 }
 

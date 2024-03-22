@@ -1,5 +1,5 @@
 import React, {FunctionComponent, useContext} from 'react'
-import {Button, Card, Grid, Typography, useTheme} from "@mui/material";
+import {Box, Button, Card, Grid, Typography, useTheme} from "@mui/material";
 import dateUtils from "../../../../utils/dateUtils";
 import {ResumePortfolioItem} from "../../../BlockContentTypes";
 import PortfolioItemModal from "./PortfolioItemModal";
@@ -30,9 +30,10 @@ const ResumePortfolioEntry: FunctionComponent<IProps> = (props: IProps) => {
             }}>
                 <Grid item container justifyContent='center' alignContent={'space-between'} direction='column'>
                     <Grid container item justifyContent='center' xs={2}>
+
                         <Grid item xs={12}
                               style={{
-                                  backgroundImage: `url(${sanityContext.urlFor(props.portfolioItem?.coverImage ?? "")?.url() ?? ""})`,
+                                  backgroundImage: `url(${sanityContext.placeholderOrImage(props.portfolioItem?.coverImage, 200, 200)})`,
                                   backgroundSize: "cover",
                                   backgroundPosition: "top center",
                                   backgroundRepeat: "no-repeat",
@@ -41,6 +42,9 @@ const ResumePortfolioEntry: FunctionComponent<IProps> = (props: IProps) => {
 
                               }}
                         >
+                            <Box sx={{width: "100%", height:"100%", opacity: .2, backgroundColor: "rgba(0,0,0, .5)", zIndex:9999}}>
+
+                            </Box>
                         </Grid>
                     </Grid>
                     <Grid container item alignContent='center' alignItems='center' xs={10}>

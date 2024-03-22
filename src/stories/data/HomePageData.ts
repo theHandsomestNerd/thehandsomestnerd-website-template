@@ -2377,12 +2377,6 @@ const homePageResumeData:SanityTransformHwHomePage = {
         "current": "home",
         "_type": "slug"
     },
-    "businessCardImageSrc": {
-        "_type": "image",
-        "asset": {
-            "_ref": "image-4bb7c114dc8fd33f70df76fe3fff2791f0f0eb0c-3007x2979-jpg",
-        }
-    },
     "website": "https://terrellsingleton.com"
 }
 
