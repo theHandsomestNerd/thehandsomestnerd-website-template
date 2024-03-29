@@ -1,5 +1,5 @@
 import cmsClient from "./cmsClient";
-// import ResumeDocumentPDF from "the-handsomestnerd-internal";
+import {ResumeDocumentPDF} from "the-handsomestnerd-internal";
 import * as logger from "firebase-functions/logger";
 const ReactPDF = require('@react-pdf/renderer');
 
@@ -13,10 +13,8 @@ export default async () => {
 
         logger.log("server-side", "NOTICE",
             "Page from Sanity", pageFromSanity)
-        logger.log("server-side", "NOTICE",
-            "reactpdf", ReactPDF.renderToStream)
-return ""
-//         return ReactPDF.renderToStream(<ResumeDocumentPDF homePage={pageFromSanity}/>);
+
+        return ReactPDF.renderToStream(<ResumeDocumentPDF homePage={pageFromSanity}/>);
     } catch (e:any){
         logger.log("server-side", "ERROR",
             "Error loading pdf" + e);

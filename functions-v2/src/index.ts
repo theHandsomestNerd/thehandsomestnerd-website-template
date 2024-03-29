@@ -157,7 +157,7 @@ const serveIndexFile = (req: any, res: any) => {
 
 app.post("/get-resume-pdf", async (req, res) => {
     // Calling the template render func with dynamic data
-    const result:any = await createTemplate();
+    const result:any = await createTedtmplate();
 
     // Setting up the response headers
     res.setHeader("Content-Type", "application/pdf");
@@ -167,8 +167,10 @@ app.post("/get-resume-pdf", async (req, res) => {
     if (typeof result !== "string" && result.length !== 0) {
 
         result.pipe(res);
-    }
+    }else {
+
     res.send("error")
+    }
 })
 
 
