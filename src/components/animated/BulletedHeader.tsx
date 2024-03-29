@@ -1,4 +1,4 @@
-import React, {FunctionComponent} from 'react'
+import {FunctionComponent} from 'react'
 import {Grid, Typography, useTheme} from "@mui/material";
 import makeStyles from "@mui/styles/makeStyles";
 import {SanityImageAsset} from "../BlockContentTypes";
@@ -16,9 +16,6 @@ interface IProps {
 }
 
 const BulletedHeader: FunctionComponent<IProps> = (props: IProps) => {
-
-    React.useEffect(() => {
-    }, [])
     const theme = useTheme()
 
     return (<Grid item container justifyContent={props.isCenter ? 'center' : 'flex-start'} alignItems='center'>

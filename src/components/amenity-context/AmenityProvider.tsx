@@ -1,4 +1,4 @@
-import React, {FunctionComponent, PropsWithChildren, useContext, useMemo, useReducer,} from 'react';
+import {FunctionComponent, PropsWithChildren, useContext, useEffect, useMemo, useReducer,} from 'react';
 import {ServiceAmenityType} from "../BlockContentTypes";
 import AmenityContext from './AmenityContext';
 import {Grid, ListItem, ListItemIcon, ListItemText, Typography} from "@mui/material";
@@ -69,7 +69,7 @@ const AmenityProvider: FunctionComponent<IProps & PropsWithChildren> = (
     const pageContext = useContext(PageContext)
     const sanityContext = useContext(SanityContext)
 
-    React.useEffect(() => {
+    useEffect(() => {
         pageContext.page?.servicesAvailable?.map((service) => {
             const serviceElements = generateAmenitiesElement(service.serviceAmenities, service.slug.current, service.contentTitle)
             // console.log("Generated amenties", serviceElements, service.slug.current)

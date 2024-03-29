@@ -1,4 +1,4 @@
-import React, {FunctionComponent, PropsWithChildren} from 'react'
+import{FunctionComponent, PropsWithChildren} from 'react'
 import FlashCard from "./flash-card/FlashCard";
 import SearchBox from "./search-box/SearchBox";
 import FlashCardNav from "./FlashCardNav";

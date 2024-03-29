@@ -1,4 +1,4 @@
-import React, {FunctionComponent, PropsWithChildren, useContext} from 'react'
+import{FunctionComponent, PropsWithChildren, useContext} from 'react'
 import SearchContext from "./search-context/SearchContext";
 import {Grid, IconButton, Typography} from "@mui/material";
 import {ArrowLeft, ArrowRight} from "@mui/icons-material";

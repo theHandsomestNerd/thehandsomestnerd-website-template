@@ -1,4 +1,4 @@
-import React, {FunctionComponent, PropsWithChildren, ReactElement, useContext} from 'react'
+import{FunctionComponent, PropsWithChildren, ReactElement, useContext} from 'react'
 import {Grid, Tooltip, Typography, useMediaQuery} from '@mui/material'
 import {ServiceAmenityType} from "../../BlockContentTypes";
 import AmenityContext from "../../amenity-context/AmenityContext";

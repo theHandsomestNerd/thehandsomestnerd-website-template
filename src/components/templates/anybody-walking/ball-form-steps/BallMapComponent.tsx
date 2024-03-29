@@ -1,4 +1,4 @@
-import React, {FunctionComponent, useContext} from 'react'
+import{FunctionComponent, useContext} from 'react'
 import { Grid } from '@mui/material'
 import { SanityLocation } from '../ballroomTypes'
 import PageContext from "../../../page-context/PageContext";

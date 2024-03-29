@@ -1,4 +1,4 @@
-import React, {FunctionComponent, PropsWithChildren, useContext} from 'react'
+import{FunctionComponent, PropsWithChildren, useContext} from 'react'
 import {AppBar} from "@mui/material";
 import CustomizedThemeContext from "../../../customized-theme-provider/CustomizedThemeContext";
 import makeStyles from "@mui/styles/makeStyles";

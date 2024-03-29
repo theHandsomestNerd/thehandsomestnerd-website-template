@@ -1,4 +1,4 @@
-import React, {FunctionComponent, useContext} from 'react'
+import{FunctionComponent, useContext, useState} from 'react'
 import {Theme} from "@mui/material/styles";
 import makeStyles from '@mui/styles/makeStyles';
 import {AppBar, Grid, Hidden, useMediaQuery, useTheme} from '@mui/material'
@@ -44,13 +44,10 @@ const DevelopmentHeader: FunctionComponent<DevelopmentHeaderProps> = (props) => 
 
     const mdDown = useMediaQuery(customizedThemeContext.customizedTheme.breakpoints.down('md'))
     const theme = useTheme()
-    // React.useEffect(() => {
-    //     console.log("Page header in the header", props.pageHeader)
-    // }, [props.pageHeader])
 
     const pageContext = useContext(PageContext)
 
-    const [opaqueOnScroll, setOpaqueOnScroll] = React.useState<boolean>()
+    const [opaqueOnScroll, setOpaqueOnScroll] = useState<boolean>()
 
     useScrollPosition(({currPos}: any) => {
         const isShow = currPos.y === 0

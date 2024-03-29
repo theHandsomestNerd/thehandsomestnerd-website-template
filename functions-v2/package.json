@@ -1,0 +1,45 @@
+{
+  "name": "functions",
+  "scripts": {
+    "build": "tsc",
+    "build:watch": "tsc --watch",
+    "html": "mv ../webclient/dist/index.html ./lib",
+    "serve": "npm run build && firebase emulators:start --only functions",
+    "shell": "npm run build && firebase functions:shell",
+    "start-firebase-shell": "npm run shell",
+    "start": "nodemon --exec npx babel-node --extensions \".ts\"  --extensions \".tsx\"  src/index.ts",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log"
+  },
+  "engines": {
+    "node": "18"
+  },
+  "main": "lib/index.js",
+  "dependencies": {
+    "@react-pdf/renderer": "^3.4.2",
+    "@sanity/client": "^6.15.7",
+    "@sanity/image-url": "^1.0.2",
+    "@sanity/types": "^3.36.1",
+    "babel-plugin-file-loader": "^2.0.0",
+    "dotenv": "^16.4.5",
+    "firebase-admin": "^11.8.0",
+    "firebase-functions": "^4.3.1",
+    "the-handsomestnerd-internal": "^0.1.29"
+  },
+  "alias": {
+    "react/jsx-runtime": "react/jsx-runtime.js",
+    "react-dom/client": "react-dom/client.js"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.24.1",
+    "@babel/core": "^7.24.3",
+    "@babel/preset-env": "^7.24.3",
+    "@types/react": "^18.2.73",
+    "@types/react-dom": "^18.2.22",
+    "firebase-functions-test": "^3.1.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "typescript": "^4.9.0"
+  },
+  "private": true
+}

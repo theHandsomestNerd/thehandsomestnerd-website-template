@@ -1,4 +1,4 @@
-import React, {FunctionComponent, useContext, useEffect, useState} from 'react'
+import{FunctionComponent, useContext, useEffect, useState} from 'react'
 import makeStyles from '@mui/styles/makeStyles';
 import {Grid, IconButton, InputAdornment, Link, TextField, Typography, useMediaQuery} from "@mui/material";
 import withStyles from '@mui/styles/withStyles';
@@ -143,9 +143,9 @@ const ContactUs: FunctionComponent<ContactUsProps> = (props) => {
         }
     }, [smDown])
 
-    const {isLoading, isError, data, refetch, isRefetching} = useQuery(
-        ['submitContactUsForm'],
-        () => {
+    const {isLoading, isError, data, refetch, isRefetching} = useQuery({
+        queryKey: ['submitContactUsForm'],
+        queryFn: () => {
             if (email && email.length > 0 && (!data && !isError)) {
                 return leadClient.createLead({
                     email,
@@ -159,7 +159,7 @@ const ContactUs: FunctionComponent<ContactUsProps> = (props) => {
             }
             return undefined
         }
-    );
+    });
 
 
     const getHelperText = () => {

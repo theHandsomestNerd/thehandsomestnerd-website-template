@@ -1,4 +1,4 @@
-import React, {FunctionComponent, useContext, useState} from 'react'
+import {FunctionComponent, useContext, useEffect, useState} from 'react'
 import makeStyles from '@mui/styles/makeStyles';
 import {Avatar, Button, Divider, Drawer, Fab, Grid, List, ListItem, Typography, useTheme,} from '@mui/material';
 import createStyles from '@mui/styles/createStyles';
@@ -67,9 +67,9 @@ const BusinessCard: FunctionComponent<MainMenuProps> = ({anchor, homePage}) => {
 
     // const pageContext = useContext(PageContext)
 
-    const [userBio, setUserBio] = React.useState<ResumeBioSectionType>()
+    const [userBio, setUserBio] = useState<ResumeBioSectionType>()
 
-    React.useEffect(() => {
+    useEffect(() => {
         //find the bio in pagecontent
         const bioSection = homePage.pageContent.content.filter((content: any) => {
             if (content._type === "ResumeBioSection") {
@@ -91,7 +91,7 @@ const BusinessCard: FunctionComponent<MainMenuProps> = ({anchor, homePage}) => {
         // qrCodeContext.init && await qrCodeContext.init(url)
     }
 
-    // React.useEffect(() => {
+    // useEffect(() => {
     //     qrCodeContext.qr_code_value && qrCodeContext.openSnackbar && qrCodeContext.openSnackbar(['email'])
     //
     // }, [qrCodeContext.qr_code_value])
@@ -120,7 +120,7 @@ const BusinessCard: FunctionComponent<MainMenuProps> = ({anchor, homePage}) => {
                         height: "max-content",
                         padding: theme.spacing(2, 3)
                     }}>
-                        <SocialMediaBlock isCentered spacing={1} iconColor='white' bgColor
+                        <SocialMediaBlock isHoverColor isCentered spacing={1} iconColor='white' bgColor
                                           theBackgroundColor={theme.palette.primary.main}  {...homePage.businessContact}/>
                     </Grid>
                 </Grid>

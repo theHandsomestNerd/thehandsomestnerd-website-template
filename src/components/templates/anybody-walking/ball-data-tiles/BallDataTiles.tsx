@@ -1,5 +1,5 @@
 import {makeStyles} from '@mui/styles'
-import React, {FunctionComponent, useContext} from 'react'
+import {FunctionComponent, useContext, useEffect, useState} from 'react'
 import {SanityBallType} from '../ballroomTypes'
 import {Grid, GridSize, Typography} from "@mui/material";
 import BallSearchContext from "../ball-search-context/BallSearchContext";
@@ -25,9 +25,9 @@ const BallDataTiles: FunctionComponent<DataTilesProps> = (props: DataTilesProps)
     const classes = useStyles()
     const searchContext = useContext(BallSearchContext)
 
-    const [state, setState] = React.useState<DataTilesStateType>({displayTiles: [], page: 0, rowsPerPage: 9})
+    const [state, setState] = useState<DataTilesStateType>({displayTiles: [], page: 0, rowsPerPage: 9})
 
-    React.useEffect(() => {
+    useEffect(() => {
         if(props.tiles){
             setState((newState:DataTilesStateType)=> ({
                 ...newState,
@@ -48,7 +48,7 @@ const BallDataTiles: FunctionComponent<DataTilesProps> = (props: DataTilesProps)
             }))
     }
 
-    // React.useEffect(() => {
+    // useEffect(() => {
     //     console.log('dataTiles mout', props, searchContext)
     //     if (searchContext.setDisplayResults && props.tiles)
     //         setDisplayedResults(props.tiles)
@@ -61,7 +61,7 @@ const BallDataTiles: FunctionComponent<DataTilesProps> = (props: DataTilesProps)
         return undefined
     }
 
-    // React.useEffect(() => {
+    // useEffect(() => {
     //     console.log('page is ', state)
     // }, [state.page])
 

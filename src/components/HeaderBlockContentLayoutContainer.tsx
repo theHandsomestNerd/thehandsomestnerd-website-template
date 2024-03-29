@@ -1,4 +1,4 @@
-import React, {FunctionComponent, useContext} from 'react'
+import {FunctionComponent, useContext, useEffect, useState} from 'react'
 import BlockContent from '@sanity/block-content-to-react'
 import {Card, Grid, Link} from '@mui/material';
 import {blockSerializers} from '../common/sanityIo/BlockContentRenderer'
@@ -20,10 +20,10 @@ const HeaderBlockContentLayoutContainer: FunctionComponent<HeaderBlockContentLay
     const customizedTheme = useContext(CustomizedThemeContext)
 
     const page = useContext(PageContext)
-    const [showBasicHeader, setShowBasicHeader] = React.useState<boolean>(false)
+    const [showBasicHeader, setShowBasicHeader] = useState<boolean>(false)
     const sanityContext = useContext(SanityContext)
 
-    React.useEffect(() => {
+    useEffect(() => {
         const handResize = () => {
             if (window.innerWidth < customizedTheme.customizedTheme.breakpoints.values['md']) {
                 setShowBasicHeader(true)

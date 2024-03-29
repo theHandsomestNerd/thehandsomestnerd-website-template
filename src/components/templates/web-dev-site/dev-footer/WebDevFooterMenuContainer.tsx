@@ -1,4 +1,4 @@
-import React, {FunctionComponent, useContext} from 'react'
+import{FunctionComponent, useContext} from 'react'
 import {Grid, Typography, useMediaQuery, useTheme} from '@mui/material'
 import WebDevFooterMenuGroup from './WebDevFooterMenuGroup'
 import {Theme} from '@mui/material/styles';

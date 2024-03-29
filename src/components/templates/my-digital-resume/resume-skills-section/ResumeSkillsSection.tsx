@@ -1,4 +1,4 @@
-import React, {FunctionComponent} from 'react'
+import{FunctionComponent} from 'react'
 import {useTheme} from "@mui/material/styles";
 import {Grid, Typography, useMediaQuery} from '@mui/material'
 import {ResumeSkillSectionType, ResumeSkillSet} from "../../../BlockContentTypes";

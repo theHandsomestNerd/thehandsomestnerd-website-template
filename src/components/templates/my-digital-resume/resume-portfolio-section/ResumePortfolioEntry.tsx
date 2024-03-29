@@ -1,4 +1,4 @@
-import React, {FunctionComponent, useContext} from 'react'
+import {FunctionComponent, useContext, useState} from 'react'
 import {Box, Button, Card, Grid, Typography, useTheme} from "@mui/material";
 import dateUtils from "../../../../utils/dateUtils";
 import {ResumePortfolioItem} from "../../../BlockContentTypes";
@@ -14,9 +14,9 @@ const ResumePortfolioEntry: FunctionComponent<IProps> = (props: IProps) => {
     const theme = useTheme()
     const sanityContext = useContext(SanityContext)
 
-    const [isOpen, setIsOpen] = React.useState<boolean>(false)
+    const [isOpen, setIsOpen] = useState<boolean>(false)
 
-    const [currentItem, setCurrentItem] = React.useState<ResumePortfolioItem>()
+    const [currentItem, setCurrentItem] = useState<ResumePortfolioItem>()
 
     return (<Grid
         role='portfoliobutton'

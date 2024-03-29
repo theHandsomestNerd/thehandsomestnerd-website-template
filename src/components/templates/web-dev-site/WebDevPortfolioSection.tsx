@@ -1,4 +1,4 @@
-import React, {FunctionComponent, useContext} from 'react'
+import{FunctionComponent, useContext, useState} from 'react'
 import {Theme} from "@mui/material/styles";
 import makeStyles from '@mui/styles/makeStyles';
 import {Button, ButtonGroup, Chip, Grid, IconButton, Modal, Typography, useMediaQuery, useTheme} from '@mui/material'
@@ -36,8 +36,8 @@ const WebDevPortfolioSection: FunctionComponent<IProps> = (props: IProps) => {
     const firebaseContext = useContext(FirebaseContext)
 
     const xsOnly = useMediaQuery(customizedThemeContext.customizedTheme.breakpoints.only('xs'))
-    const [isOpen, setIsOpen] = React.useState<boolean>(false)
-    const [currentItem, setCurrentItem] = React.useState<ResumePortfolioItem>()
+    const [isOpen, setIsOpen] = useState<boolean>(false)
+    const [currentItem, setCurrentItem] = useState<ResumePortfolioItem>()
 
     const sendToModal = (portfolioItem: ResumePortfolioItem) => {
         setCurrentItem(portfolioItem)

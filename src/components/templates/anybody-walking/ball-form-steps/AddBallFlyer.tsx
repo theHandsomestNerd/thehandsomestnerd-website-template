@@ -1,4 +1,4 @@
-import React, {FunctionComponent, useRef} from 'react'
+import {FunctionComponent, useEffect, useRef, useState} from 'react'
 import {FormControlLabel, FormGroup, Grid, Typography, useTheme} from '@mui/material'
 import {AddBallFlyerState, AddBallState} from '../ballroomTypes'
 import {renderBallType} from "../enums/BallType.enum";
@@ -14,15 +14,15 @@ export type AddBallFlyerProps = {
 const AddBallFlyer: FunctionComponent<AddBallFlyerProps> = (props: AddBallFlyerProps) => {
 
   const flyerInputRef = useRef()
-  const [addBallFlyerState, setAddBallFlyerState] = React.useState<AddBallFlyerState>({})
+  const [addBallFlyerState, setAddBallFlyerState] = useState<AddBallFlyerState>({})
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (addBallFlyerState.flyer) {
       props.stepComplete(addBallFlyerState)
     }
   }, [addBallFlyerState.flyer])
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (props.newBallToAdd?.fileUploaded && !props.newBallToAdd?.flyer) {
       console.log('FileUploaded', props.newBallToAdd?.fileUploaded)
       // uploadFile(null, props.newBallToAdd?.fileUploaded)
@@ -38,7 +38,7 @@ const AddBallFlyer: FunctionComponent<AddBallFlyerProps> = (props: AddBallFlyerP
     }
   }, [props.newBallToAdd.fileUploaded])
 
-  React.useEffect(() => {
+  useEffect(() => {
     setAddBallFlyerState((state) => ({
       ...state,
       flyer: props.newBallToAdd.flyer

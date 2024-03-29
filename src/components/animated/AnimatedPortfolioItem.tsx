@@ -1,4 +1,4 @@
-import React, {FunctionComponent, useContext} from 'react'
+import{FunctionComponent, useContext} from 'react'
 import {Box, Button, Grid, IconButton, Typography, useTheme} from "@mui/material";
 import {ArrowRightAlt} from "@mui/icons-material";
 import {AnimatedPortfolioItemType} from "../BlockContentTypes";
@@ -22,9 +22,6 @@ const AnimatedPortfolioItem: FunctionComponent<IProps> = (props:IProps) => {
     const animateServiceNoHover = async () => {
         controls.start({scale: 1, opacity:.9}, {duration: .25})
     }
-
-    React.useEffect(()=>{
-    }, [])
 
     return (<Grid
                   role='portfoliobutton'

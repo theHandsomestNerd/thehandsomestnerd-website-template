@@ -1,4 +1,4 @@
-import React, {FunctionComponent} from 'react'
+import {FunctionComponent, useEffect, useState} from 'react'
 import {FormControlLabel, FormGroup, Grid, Typography, useTheme} from '@mui/material'
 import {LocationOn} from '@mui/icons-material'
 import {SanityLocation} from '../ballroomTypes'
@@ -29,9 +29,9 @@ const locationObjectToString = (sourceLocation?: SanityLocation) => {
 export type GooglePlacesAddressComponentType = { long_name: string, short_name: string, types: string[] }
 
 const GooglePlacesAutoComplete: FunctionComponent<GooglePlacesAutoCompletePropsType> = (props: GooglePlacesAutoCompletePropsType) => {
-    const [address, setAddress] = React.useState<any>('')
-    const [placeId, setPlaceId] = React.useState<any>('')
-    const [googlePlace, setGooglePlace] = React.useState<google.maps.places.PlaceResult|null>(null)
+    const [address, setAddress] = useState<any>('')
+    const [placeId, setPlaceId] = useState<any>('')
+    const [googlePlace, setGooglePlace] = useState<google.maps.places.PlaceResult|null>(null)
 
     const handleChange: ((value: string) => void) | undefined = newAddress => {
         setAddress(newAddress)
@@ -71,7 +71,7 @@ const GooglePlacesAutoComplete: FunctionComponent<GooglePlacesAutoCompletePropsT
         return isShort ? requestedComponent.short_name : requestedComponent.long_name
     }
 
-    React.useEffect(() => {
+    useEffect(() => {
         console.log('constructing location from place', googlePlace)
         if (googlePlace) {
 
@@ -89,7 +89,7 @@ const GooglePlacesAutoComplete: FunctionComponent<GooglePlacesAutoCompletePropsT
         }
     }, [googlePlace])
 
-    React.useEffect(() => {
+    useEffect(() => {
         if (placeId) {
             fetchPlaceDetails()
         }
@@ -99,7 +99,7 @@ const GooglePlacesAutoComplete: FunctionComponent<GooglePlacesAutoCompletePropsT
     // const locationObjectToString = (sourceLocation: SanityLocation) => sourceLocation && sourceLocation.locationName ? `${sourceLocation.locationName  } ${  sourceLocation.street1  } ${  sourceLocation.street2  } ${  sourceLocation.city  } ${  sourceLocation.state  } ${  sourceLocation.zip}`:''
 
 
-    React.useEffect(() => {
+    useEffect(() => {
         console.log('GoogleAPI', props.google)
         if (!address.locationName) {
             if (props.locationValue) {

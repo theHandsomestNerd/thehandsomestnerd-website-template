@@ -1,4 +1,4 @@
-import React, {FunctionComponent, useContext} from 'react'
+import {FunctionComponent, useContext, useState} from 'react'
 import {v4 as uuidv4} from 'uuid'
 import {Button, Grid, Popover, Typography, useMediaQuery, useTheme} from '@mui/material'
 import {ArrowDropDown} from "@mui/icons-material";
@@ -20,8 +20,8 @@ const FilteredMenuItems: FunctionComponent<FilteredMenuProps> = ({
                                                                      includeMenuItems,
                                                                      includeMenuGroups
                                                                  }) => {
-    const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>();
-    const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>();
+    const handleClick = (event: any) => {
         setAnchorEl(event.currentTarget);
     };
 

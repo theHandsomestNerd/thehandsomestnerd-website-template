@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useContext } from 'react'
+import {FunctionComponent, useContext, useEffect, useState} from 'react'
 import { makeStyles } from '@mui/styles'
 import { Button, LinearProgress, Modal, Typography, Grid, Theme, useTheme } from '@mui/material'
 import { ArrowLeft, ArrowRightAlt, Close } from '@mui/icons-material'
@@ -57,14 +57,14 @@ export const ADD_BALL_NUM_STEPS = 9
 
 const AddBallModal: FunctionComponent<AddBallModalProps> = (props: AddBallModalProps) => {
   const classes = useStyles()
-  const [stepCounter, setStepCounter] = React.useState<AddBallStepsEnum>(0)
-  const [newBallToAdd, setNewBallToAdd] = React.useState<AddBallState>({ categories: [] })
-  const [isOpen, setIsOpen] = React.useState<boolean>(false)
-  const [stepValidation, setStepValidation] = React.useState<StepValidationTableType>({})
-const [submitStatus, setSubmitStatus] = React.useState<ValidationResponse>({ value: null })
+  const [stepCounter, setStepCounter] = useState<AddBallStepsEnum>(0)
+  const [newBallToAdd, setNewBallToAdd] = useState<AddBallState>({ categories: [] })
+  const [isOpen, setIsOpen] = useState<boolean>(false)
+  const [stepValidation, setStepValidation] = useState<StepValidationTableType>({})
+const [submitStatus, setSubmitStatus] = useState<ValidationResponse>({ value: null })
 
 const sanityContext = useContext(SanityContext)
-  React.useEffect(() => {
+  useEffect(() => {
     if (props.ballToAdd) {
       setNewBallToAdd(props.ballToAdd)
     }
@@ -77,7 +77,7 @@ const sanityContext = useContext(SanityContext)
     }))
   }
 
-  React.useEffect(() => {
+  useEffect(() => {
     setIsOpen(props.open)
   }, [props.open])
 

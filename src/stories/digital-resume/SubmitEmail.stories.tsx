@@ -1,5 +1,5 @@
 import type {Meta, StoryObj} from '@storybook/react';
-import React, {PropsWithChildren} from "react";
+import{PropsWithChildren} from "react";
 import SubmitEmail, {SubmitEmailIProps} from "../../components/templates/transform-hw/pages/BusinessCardSubmitEmail";
 
 

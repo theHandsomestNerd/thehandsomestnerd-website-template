@@ -1,4 +1,4 @@
-import React, {FunctionComponent, useContext} from 'react';
+import {FunctionComponent, useContext, useState} from 'react';
 import SearchContext from "../search-context/SearchContext";
 import {Button, Grid, TextField} from "@mui/material";
 import {Close} from "@mui/icons-material";
@@ -8,7 +8,7 @@ interface IProps {
 
 const SearchBox: FunctionComponent<IProps> = () => {
     // const classes = useStyles();
-    const [searchTerms, setSearchTerms] = React.useState<string>('');
+    const [searchTerms, setSearchTerms] = useState<string>('');
     const searchContext = useContext(SearchContext)
 
     const onSearchTermsChange = (newTerms: string) => {

@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "website-client/dist",
+    "public": "webclient/dist",
     "ignore": [
       "firebase.json",
       "**/.*",
@@ -14,9 +14,17 @@
       }
     ]
   },
-  "functions": {
-    "source": "functions"
-  },
+  "functions": [
+    {
+      "source": "functions-v2",
+      "ignore": [
+        "node_modules",
+        ".git",
+        "firebase-debug.log",
+        "firebase-debug.*.log"
+      ]
+    }
+  ],
   "emulators": {
     "functions": {
       "port": 5001

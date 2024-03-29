@@ -1,4 +1,4 @@
-import React, {FunctionComponent, useContext} from 'react'
+import{FunctionComponent, useContext} from 'react'
 import BallSearchContext from '../ball-search-context/BallSearchContext'
 import {Button, Grid,} from '@mui/material'
 import {Close} from '@mui/icons-material'

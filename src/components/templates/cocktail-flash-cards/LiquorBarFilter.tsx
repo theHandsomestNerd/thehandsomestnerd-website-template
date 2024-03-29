@@ -1,4 +1,4 @@
-import React, {FunctionComponent, useContext} from 'react'
+import {FunctionComponent, useContext, useEffect, useState} from 'react'
 import FilteredIngredients from "./FilteredIngredients";
 import {Button, Grid, Typography} from "@mui/material";
 import {SanityBarInventoryType, SanityLiquorType} from "../../../common/sanityIo/Types";
@@ -11,19 +11,19 @@ interface IProps {
 }
 
 const LiquorBarFilter: FunctionComponent<IProps> = (props: IProps) => {
-    const [liquorTypes, setLiquorTypes] = React.useState<SanityLiquorType[]>([])
+    const [liquorTypes, setLiquorTypes] = useState<SanityLiquorType[]>([])
 
     const sanityContext = useContext(SanityContext)
     const {data} = sanityContext.useFetchAllLiquorTypes()
 
-    React.useEffect(() => {
+    useEffect(() => {
         if (data) {
             setLiquorTypes(data)
         }
     }, [data])
 
 
-    // React.useEffect(() => {
+    // useEffect(() => {
     //     if (props.entireBar) {
     //         const justLiquorFromTheBar = props.entireBar.filter((ingredient: SanityCocktailIngredient) => {
     //             return ingredient.isLiquor

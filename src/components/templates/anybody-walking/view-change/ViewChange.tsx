@@ -1,5 +1,5 @@
 import {Button, Typography, useTheme} from '@mui/material'
-import React, { FunctionComponent, useContext } from 'react'
+import{ FunctionComponent, useContext } from 'react'
 import BallSearchContext from '../ball-search-context/BallSearchContext'
 import { TableChart, ViewModule } from '@mui/icons-material'
 

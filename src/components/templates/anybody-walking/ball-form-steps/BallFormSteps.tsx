@@ -1,5 +1,5 @@
 import {Fab, Typography } from '@mui/material'
-import React, { FunctionComponent } from 'react'
+import {FunctionComponent, useState} from 'react'
 import {AddBallState} from "../ballroomTypes";
 import AddBallModal from '../modal-add-ball/AddBallModal';
 
@@ -10,7 +10,7 @@ export type BallFormStepsProps = {
 
 
 const BallFormSteps: FunctionComponent<BallFormStepsProps> = (props: BallFormStepsProps) => {
-    const [isModalOpen, setIsModalOpen] = React.useState<boolean>(false)
+    const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
 
     return (
         <>

@@ -1,4 +1,4 @@
-import React, {FunctionComponent} from 'react'
+import {FunctionComponent, useEffect, useState} from 'react'
 import {Button, Grid, Typography, useTheme} from '@mui/material'
 import {AddBallState, BallSourceState} from '../ballroomTypes'
 import {makeStyles} from '@mui/styles'
@@ -19,7 +19,7 @@ export type BallSourceProps = {
 
 const BallSource: FunctionComponent<BallSourceProps> = (props: BallSourceProps) => {
   const classes = useStyles()
-  const [activeBallSource, setActiveBallSource] = React.useState<BallSourceEnum>()
+  const [activeBallSource, setActiveBallSource] = useState<BallSourceEnum>()
 
   function renderBallSourceChoice(ballSourceChoice?: BallSourceEnum) {
     if(!ballSourceChoice) return ''
@@ -38,13 +38,13 @@ const BallSource: FunctionComponent<BallSourceProps> = (props: BallSourceProps) 
     return renderBallSourceChoice(activeBallSource)
   }
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (activeBallSource != null) {
       props.stepComplete({source: activeBallSource})
     }
   }, [activeBallSource])
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (props.newBallToAdd?.source) {
       setActiveBallSource(props.newBallToAdd.source)
     }

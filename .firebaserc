@@ -1,6 +1,7 @@
 {
   "projects": {
-    "the-handsomest-nerd-internal": "the-handsomest-nerd-internal"
+    "the-handsomest-nerd-internal": "the-handsomest-nerd-internal",
+    "default": "the-handsomest-nerd-internal"
   },
   "targets": {},
   "etags": {}

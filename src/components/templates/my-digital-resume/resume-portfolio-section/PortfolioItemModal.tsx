@@ -1,4 +1,4 @@
-import React, {FunctionComponent, useContext} from 'react'
+import {FunctionComponent, useContext, useEffect, useState} from 'react'
 
 import makeStyles from "@mui/styles/makeStyles";
 import {
@@ -45,14 +45,14 @@ const PortfolioItemModal: FunctionComponent<IProps> = (props: IProps) => {
     const classes = useStyles()
     const sanityContext = useContext(SanityContext)
     const mdDown = useMediaQuery(theme.breakpoints.only('md'))
-    const [isOpen, setIsOpen] = React.useState<boolean>(false)
-    const [isPhotoModalOpen, setIsPhotoModalOpen] = React.useState<boolean>(false)
+    const [isOpen, setIsOpen] = useState<boolean>(false)
+    const [isPhotoModalOpen, setIsPhotoModalOpen] = useState<boolean>(false)
     const setOpenWrapper = (theValue: boolean) => {
         setIsOpen(theValue)
         // props.setIsOpen(theValue)
     }
 
-    React.useEffect(() => {
+    useEffect(() => {
         // if (props.isOpen) {
         setIsOpen(!!props.isOpen)
         // }
@@ -66,7 +66,7 @@ const PortfolioItemModal: FunctionComponent<IProps> = (props: IProps) => {
         setIsPhotoModalOpen(state => !state);
     };
 
-    const [selectedItem, setSelectedItem] = React.useState<SanityImageAsset>()
+    const [selectedItem, setSelectedItem] = useState<SanityImageAsset>()
 
     return (<Modal open={isOpen} sx={{paddingBottom: 4, overflow: "scroll"}}>
         <Grid container item justifyContent='center' alignContent='center' alignItems='center'

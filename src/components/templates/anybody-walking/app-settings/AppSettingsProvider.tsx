@@ -1,4 +1,4 @@
-import React, {FunctionComponent, PropsWithChildren, useContext} from 'react'
+import {FunctionComponent, PropsWithChildren, useContext, useEffect, useState} from 'react'
 import {AppSettingsType} from '../ballroomTypes'
 import AppSettingsContext from './AppSettingsContext'
 import SanityContext from "../../../../common/sanityIo/sanity-context/SanityContext";
@@ -14,12 +14,12 @@ const AppSettingsProvider: FunctionComponent<PropsWithChildren<AppSettingsProvid
         newAddBallStepsFlow: undefined,
     }
 
-    React.useEffect(() => {
+    useEffect(() => {
         if (props.settings)
             setAppSettings(props.settings)
     }, [props.settings])
 
-    const [appSettings, setAppSettings] = React.useState<AppSettingsType>(initialState)
+    const [appSettings, setAppSettings] = useState<AppSettingsType>(initialState)
 
     const sanityContext = useContext(SanityContext)
     const getAppSettings = async () => {
@@ -31,7 +31,7 @@ const AppSettingsProvider: FunctionComponent<PropsWithChildren<AppSettingsProvid
     }
 
 
-    React.useEffect(() => {
+    useEffect(() => {
         if(sanityContext.theSanityClient)
         getAppSettings().then()
     }, [sanityContext.theSanityClient])

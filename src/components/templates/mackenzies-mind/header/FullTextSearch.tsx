@@ -1,4 +1,4 @@
-import React, {ChangeEvent, FunctionComponent, useContext} from 'react'
+import {ChangeEvent, FunctionComponent, useContext, useState} from 'react'
 import {Grid, TextField, Typography} from "@mui/material";
 import LoadingButton from "../../../loading-button/LoadingButton";
 import {ButtonGroupMemberEnum} from "../../../loading-button/ButtonGroupMemberEnum";
@@ -54,9 +54,9 @@ interface IProps {
 
 const FullTextSearch: FunctionComponent<IProps> = () => {
     const customizedTheme = useContext(CustomizedThemeContext)
-    const [searchText, setSearchText] = React.useState<string>()
+    const [searchText, setSearchText] = useState<string>()
     const myClasses = useStyles(customizedTheme)
-    const [results, setResults] = React.useState<any[]>()
+    const [results, setResults] = useState<any[]>()
     const pageContext = useContext(PageContext)
     const sanityContext = useContext(SanityContext)
 

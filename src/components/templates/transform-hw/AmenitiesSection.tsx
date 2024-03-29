@@ -1,4 +1,4 @@
-import React, {FunctionComponent, useContext} from 'react'
+import {FunctionComponent, useContext, useEffect, useRef, useState} from 'react'
 import {Grid, List, useTheme} from '@mui/material'
 import {ArrowLeft, ArrowRight} from "@mui/icons-material";
 import {ThwServiceItemNoRefType} from "../../BlockContentTypes";
@@ -10,15 +10,15 @@ interface IProps {
 }
 
 const AmenitiesSection: FunctionComponent<IProps> = (props: IProps) => {
-    const ref = React.useRef(null);
+    const ref = useRef(null);
     const isOverflow = useIsHorizontalOverflow(ref, () => {
     })
 
     const amenityContext = useContext(AmenityContext)
-    const [elements, setElements] = React.useState<JSX.Element>()
+    const [elements, setElements] = useState<JSX.Element>()
     const theme = useTheme()
 
-    React.useEffect(() => {
+    useEffect(() => {
         const newElements = amenityContext.getElements && amenityContext.getElements(props.service.slug.current)
         if (newElements) {
             setElements(newElements)

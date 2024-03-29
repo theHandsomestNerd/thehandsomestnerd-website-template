@@ -1,4 +1,4 @@
-import React, {FunctionComponent, useContext} from 'react'
+import{FunctionComponent, useContext} from 'react'
 import {HolidayHeadlineSectionType} from "../BlockContentTypes";
 import makeStyles from "@mui/styles/makeStyles";
 import {Theme} from '@mui/material/styles';

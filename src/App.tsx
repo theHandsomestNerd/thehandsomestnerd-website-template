@@ -1,6 +1,6 @@
 import {Grid, useTheme} from '@mui/material';
 import {BrowserRouter, Navigate, Route, Routes} from 'react-router-dom'
-import React, {FunctionComponent, PropsWithChildren, useContext} from 'react'
+import {FunctionComponent, PropsWithChildren, useContext, useEffect} from 'react'
 import {QueryClientProvider} from '@tanstack/react-query';
 import FourOhFour from "./components/templates/transform-hw/pages/error-page/FourOhFour";
 import PageProvider from "./components/page-context/PageProvider";
@@ -13,6 +13,7 @@ import {queryClient} from "./queryClient";
 import FirebaseContext from "./common/firebase/firebase-context/FirebaseContext";
 import SanityContext from "./common/sanityIo/sanity-context/SanityContext";
 import AppSettingsProvider from "./components/templates/anybody-walking/app-settings/AppSettingsProvider";
+import "core-js/stable";
 
 interface IProps {
     react_app_api_url: string
@@ -43,7 +44,7 @@ const App: FunctionComponent<IProps & PropsWithChildren> = (props) => {
     const theme = useTheme()
     const firebaseContext = useContext(FirebaseContext)
     const sanityContext = useContext(SanityContext)
-    React.useEffect(() => {
+    useEffect(() => {
         const windowUrl = window.location.search;
         const params: any = new URLSearchParams(windowUrl);
 
@@ -54,7 +55,7 @@ const App: FunctionComponent<IProps & PropsWithChildren> = (props) => {
         // console.log("Props passed to APp", props)
     }, [])
 
-    React.useEffect(() => {
+    useEffect(() => {
 
         if (firebaseContext.initFirebase) {
             // console.log("Initializing firebase")

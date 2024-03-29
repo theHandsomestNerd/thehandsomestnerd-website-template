@@ -1,4 +1,4 @@
-import React, {FunctionComponent, useContext} from 'react'
+import{FunctionComponent, useContext} from 'react'
 import {Card, Grid, Typography, useTheme} from "@mui/material";
 import {motion, useAnimationControls} from "framer-motion";
 import {ServiceAmenityType} from "../BlockContentTypes";

@@ -1,4 +1,4 @@
-import React, {FunctionComponent, PropsWithChildren} from 'react'
+import {FunctionComponent, PropsWithChildren} from 'react'
 import FirebaseProvider from "./common/firebase/firebase-context/FirebaseProvider";
 import SanityProvider from './common/sanityIo/sanity-context/SanityProvider';
 import App from './App';

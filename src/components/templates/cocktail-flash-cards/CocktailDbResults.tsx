@@ -1,5 +1,5 @@
 import {Chip, Grid, Typography} from '@mui/material'
-import React, {FunctionComponent, useContext} from 'react'
+import{FunctionComponent, useContext} from 'react'
 import SnackbarContext from "../../modal-context/SnackbarContext";
 import {useLocation} from "react-router";
 import SearchContext from "./search-context/SearchContext";

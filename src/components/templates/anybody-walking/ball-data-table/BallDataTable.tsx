@@ -1,4 +1,4 @@
-import React, {FunctionComponent, useContext} from 'react'
+import{FunctionComponent, useContext} from 'react'
 import {Tooltip, Typography, useMediaQuery, useTheme} from '@mui/material'
 import {LocationOn} from '@mui/icons-material'
 import BallSearchContext from '../ball-search-context/BallSearchContext';

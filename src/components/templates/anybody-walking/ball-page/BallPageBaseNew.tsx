@@ -1,4 +1,4 @@
-import React, {FunctionComponent, useContext} from 'react'
+import {FunctionComponent, useContext, useEffect, useState} from 'react'
 import {Button, Grid, Hidden, Link, Typography} from '@mui/material'
 import {
     CalendarToday,
@@ -81,7 +81,7 @@ const BallPageBaseNew: FunctionComponent<BallPageBaseNewProps> = (props: BallPag
     const navigate = useNavigate()
     const sanityContext = useContext(SanityContext)
 
-    const [ball, setBall] = React.useState<SanityBallType>()
+    const [ball, setBall] = useState<SanityBallType>()
 
     const getBallBySlug =
         (slug: string) => {
@@ -92,7 +92,7 @@ const BallPageBaseNew: FunctionComponent<BallPageBaseNewProps> = (props: BallPag
                 }) : Promise.resolve({})
         }
 
-    React.useEffect(() => {
+    useEffect(() => {
         if (!props.slug) {
             getBallBySlug(urlParams.slug).then((retrievedBall: any) => {
                 console.log('retrieved from sanity', retrievedBall)
@@ -137,7 +137,7 @@ const BallPageBaseNew: FunctionComponent<BallPageBaseNewProps> = (props: BallPag
         }
     }, [props.slug])
 
-    React.useEffect(() => {
+    useEffect(() => {
         const ballToPreview = props.ball
         if (ballToPreview) {
             // translate to a Sanity Ball

@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useContext } from 'react'
+import {FunctionComponent, useContext, useState} from 'react'
 import { withStyles } from '@mui/styles'
 import {
   Button,
@@ -47,11 +47,11 @@ const StyledMenu = withStyles({
 
 const SearchFilterDropDown: FunctionComponent = () => {
 
-  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
 
   const searchContext = useContext(BallSearchContext)
 
-  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+  const handleClick = (event: any) => {
     setAnchorEl(event.currentTarget)
   }
 

@@ -1,4 +1,4 @@
-import React, {CSSProperties, FunctionComponent} from 'react'
+import{CSSProperties, FunctionComponent} from 'react'
 import {v4 as uuidv4} from 'uuid'
 import {Grid, useMediaQuery, useTheme} from '@mui/material'
 import HeaderMenuItemButton from "../templates/transform-hw/HeaderMenuItemButton";

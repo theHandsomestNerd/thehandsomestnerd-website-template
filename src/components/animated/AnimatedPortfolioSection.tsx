@@ -1,4 +1,4 @@
-import React, {FunctionComponent, useContext} from 'react'
+import {FunctionComponent, useContext, useState} from 'react'
 import {Button, ButtonGroup, Chip, Grid, IconButton, Modal, Typography, useTheme} from '@mui/material'
 import {Close} from "@mui/icons-material";
 import {AnimatedPortfolioItemType, AnimatedPortfolioSectionType} from "../BlockContentTypes";
@@ -24,8 +24,8 @@ const AnimatedPortfolioSection: FunctionComponent<IProps> = (props: IProps) => {
     const theme = useTheme()
     const sanityContext = useContext(SanityContext)
 
-    const [isOpen, setIsOpen] = React.useState<boolean>(false)
-    const [currentItem, setCurrentItem] = React.useState<AnimatedPortfolioItemType>()
+    const [isOpen, setIsOpen] = useState<boolean>(false)
+    const [currentItem, setCurrentItem] = useState<AnimatedPortfolioItemType>()
 
     const sendToModal = (portfolioItem: AnimatedPortfolioItemType|undefined) => {
         setCurrentItem(portfolioItem)

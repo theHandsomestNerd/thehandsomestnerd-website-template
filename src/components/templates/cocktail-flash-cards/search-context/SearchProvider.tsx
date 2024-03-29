@@ -1,4 +1,12 @@
-import React, {FunctionComponent, PropsWithChildren, useContext, useReducer,} from 'react';
+import {
+    ChangeEvent,
+    FunctionComponent,
+    PropsWithChildren,
+    SyntheticEvent,
+    useContext,
+    useEffect,
+    useReducer,
+} from 'react';
 import SearchContext from "./SearchContext";
 import {useLocation} from "react-router-dom";
 import {CocktailDbResultType, SanityCocktailIngredient, SanityCocktailType} from "../../../../common/sanityIo/Types";
@@ -47,7 +55,7 @@ const SearchProvider: FunctionComponent<IProps & PropsWithChildren> = (
     props: PropsWithChildren<IProps>,
 ) => {
 
-    // React.useEffect(() => {
+    // useEffect(() => {
     //     if(props.allCocktails){
     //         dispatch({type:'INITIAL', payload: {allCocktails: props.allCocktails, searchString: props.searchString}})
     //     }
@@ -224,7 +232,7 @@ const SearchProvider: FunctionComponent<IProps & PropsWithChildren> = (
     //
     //
     //
-    // React.useEffect(() => {
+    // useEffect(() => {
     //     console.log("Fetched searched and filtered cocktails", data, state)
     //     if (data) {
     //         dispatch({type: "INITIAL", payload: {allCocktails: data}})
@@ -272,7 +280,7 @@ const SearchProvider: FunctionComponent<IProps & PropsWithChildren> = (
     const sanityContext = useContext(SanityContext)
 
     //update the search when the user changes the string
-    React.useEffect(() => {
+    useEffect(() => {
         sanityContext.getMyProduct(state.searchString, state.searchFilters ?? [], state.ingredientFilters ?? [], state.isAndSearch).then((results:any) => {
             dispatch({type: "UPDATE_SEARCH_RESULTS", payload: {cocktails: results}})
         })
@@ -322,11 +330,11 @@ const SearchProvider: FunctionComponent<IProps & PropsWithChildren> = (
             })
     }
 
-    // const [filteredCocktails, setFilteredCocktails] = React.useState<SanityCocktailType[] | undefined>([])
+    // const [filteredCocktails, setFilteredCocktails] = useState<SanityCocktailType[] | undefined>([])
 
     // const newlyFilteredResults = apiClient.useFetchFilteredCocktails()
 
-    // React.useEffect(() => {
+    // useEffect(() => {
     //     if (newlyFilteredResults.data) {
     //
     //         const remainingCocktails = state.cocktails?.filter((cocktail: SanityCocktailType) => {
@@ -352,13 +360,13 @@ const SearchProvider: FunctionComponent<IProps & PropsWithChildren> = (
     // }, [newlyFilteredResults.data])
 
 
-    // React.useEffect(() => {
+    // useEffect(() => {
     //     console.log("Search filters changed", state.searchFilters)
     //     refetch()
     // }, [state.searchFilters])
     const firebaseContext = useContext(FirebaseContext)
 
-    React.useEffect(() => {
+    useEffect(() => {
         if (state.cardCounter && state.cocktails && state.cocktails[state.cardCounter])
             state.cardCounter && firebaseContext.analytics.analyticsPageView && firebaseContext.analytics.analyticsPageView(
                 location.pathname,
@@ -375,7 +383,7 @@ const SearchProvider: FunctionComponent<IProps & PropsWithChildren> = (
         return dispatch({type: "PREV_CARD"})
     }
 
-    const handleFlip = (e: React.SyntheticEvent) => {
+    const handleFlip = (e: SyntheticEvent) => {
         e.preventDefault()
         dispatch({type: "FLIP_CARD"})
     }
@@ -405,7 +413,7 @@ const SearchProvider: FunctionComponent<IProps & PropsWithChildren> = (
         return false
     }
 
-    const handleIsAndSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const handleIsAndSearchChange = (event: ChangeEvent<HTMLInputElement>) => {
         dispatch({type: "HANDLE_AND_SEARCH_CHANGE", payload: {checked: event.target.checked}})
     }
 

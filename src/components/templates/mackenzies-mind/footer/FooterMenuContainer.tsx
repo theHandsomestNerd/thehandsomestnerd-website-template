@@ -1,4 +1,4 @@
-import React, {FunctionComponent, useContext} from 'react'
+import{FunctionComponent, useContext} from 'react'
 import {Divider, Grid, Typography, useMediaQuery, useTheme} from '@mui/material'
 import FooterMenuGroup from './FooterMenuGroup'
 import {SanityMenuContainer} from "../../../../common/sanityIo/Types";

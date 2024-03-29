@@ -1,4 +1,4 @@
-import React, {FunctionComponent} from 'react'
+import {FunctionComponent} from 'react'
 import {Category, CategoryGenderType, CategoryNameType, CategoryPrizeType, CategoryTypeType} from '../../ballroomTypes'
 import {Button, Grid, Typography, useMediaQuery, useTheme} from '@mui/material'
 import {Delete, Edit} from '@mui/icons-material'
@@ -24,11 +24,6 @@ const ClosedCategory: FunctionComponent<ClosedCategoryProps> = ({
     const theme = useTheme()
     const smDown = useMediaQuery(theme.breakpoints.down('sm'))
 
-    React.useEffect(() => {
-
-    }, [])
-
-    // @ts-ignore
     return (
         <Grid
             container

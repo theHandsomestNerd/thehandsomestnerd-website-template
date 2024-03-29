@@ -5,7 +5,7 @@
  */
 
 import {Grid, Hidden} from '@mui/material'
-import React, {FunctionComponent} from 'react'
+import{FunctionComponent} from 'react'
 import {AddBallState} from "../ballroomTypes";
 import BallPageBaseNew from './BallPageBaseNew';
 

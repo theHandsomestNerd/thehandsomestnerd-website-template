@@ -1,5 +1,5 @@
 import {Typography} from '@mui/material';
-import React, {FunctionComponent} from 'react'
+import {FunctionComponent, useEffect, useState} from 'react'
 import {COLORS} from "../../theme/common/ColorPalette";
 
 interface IProps {
@@ -11,9 +11,9 @@ interface IProps {
 
 const AlternatingText: FunctionComponent<IProps> = (props: IProps) => {
 
-    const [textArray, setTextArray] = React.useState<string []>([])
+    const [textArray, setTextArray] = useState<string []>([])
 
-    React.useEffect(() => {
+    useEffect(() => {
         if (props.logoText) {
             setTextArray(props.logoText.split(' '))
         }

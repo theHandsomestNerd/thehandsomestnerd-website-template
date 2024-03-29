@@ -1,4 +1,4 @@
-import React, {FunctionComponent, useContext, useState} from 'react'
+import{FunctionComponent, useContext, useState} from 'react'
 import {makeStyles} from "@mui/styles"
 import {ResumeContactUsSectionType} from "../../BlockContentTypes";
 import useCustomStyles from "../mackenzies-mind/pages/Styles";
@@ -124,9 +124,9 @@ const ResumeContactUsSection: FunctionComponent<ContactUsProps> = (props) => {
     const [email, setEmail] = useState<string>()
     const [leadMessage, setLeadMessage] = useState<string>()
 
-    const {isLoading, isError, data, refetch, isRefetching} = useQuery(
-        ['submitContactUsForm'],
-        () => {
+    const {isLoading, isError, data, refetch, isRefetching} = useQuery({
+        queryKey: ['submitContactUsForm'],
+        queryFn: () => {
             if (email && email.length > 0 && (!data && !isError)) {
                 return leadClient.createLead({
                     email,
@@ -140,7 +140,7 @@ const ResumeContactUsSection: FunctionComponent<ContactUsProps> = (props) => {
             }
             return null
         }
-    );
+    });
 
 
     const pageContext = useContext(PageContext)
@@ -157,7 +157,7 @@ const ResumeContactUsSection: FunctionComponent<ContactUsProps> = (props) => {
         <Grid
             container
             item
-            style={{padding: theme.spacing(4,smDown?1:4)}}
+            style={{padding: theme.spacing(4, smDown ? 1 : 4)}}
 
             className={globalClasses.resumeSection}
         >
@@ -252,17 +252,17 @@ const ResumeContactUsSection: FunctionComponent<ContactUsProps> = (props) => {
                             />
                         </Grid>
                     </Grid>
-                        <Grid container item justifyContent='flex-end' style={{paddingRight:"16px"}}>
-                            <LoadingButton
-                                width={200}
-                                isLoading={isLoading || isRefetching}
-                                disabled={!!(data || isError || (email && (email.length > 0) && !isEmail(email)))}
-                                clickHandler={createLead}
-                                color="primary" variant="contained">
-                                <Typography>Send
+                    <Grid container item justifyContent='flex-end' style={{paddingRight: "16px"}}>
+                        <LoadingButton
+                            width={200}
+                            isLoading={isLoading || isRefetching}
+                            disabled={!!(data || isError || (email && (email.length > 0) && !isEmail(email)))}
+                            clickHandler={createLead}
+                            color="primary" variant="contained">
+                            <Typography>Send
                                 Message</Typography>
-                            </LoadingButton>
-                        </Grid>
+                        </LoadingButton>
+                    </Grid>
 
 
                 </Grid>

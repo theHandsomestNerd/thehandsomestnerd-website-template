@@ -1,4 +1,4 @@
-import React, {FunctionComponent, useContext} from 'react'
+import {FunctionComponent, useContext, useEffect, useState} from 'react'
 import {Grid, Typography} from "@mui/material";
 import {ResumeSkill} from "../../../BlockContentTypes";
 import ResumeExperienceItem from "../resume-experience-section/ResumeExperienceItem";
@@ -12,7 +12,7 @@ interface IProps {
 }
 
 const ResumeSkillReferences: FunctionComponent<IProps> = (props: IProps) => {
-    const [referenceResults, setReferenceResults] = React.useState<[]>()
+    const [referenceResults, setReferenceResults] = useState<[]>()
     const sanityContext = useContext(SanityContext)
 
     const pageContext = useContext(PageContext)
@@ -26,7 +26,7 @@ const ResumeSkillReferences: FunctionComponent<IProps> = (props: IProps) => {
         }
     }
 
-    React.useEffect(() => {
+    useEffect(() => {
         // find the rerences of this skill
         searchCMS().then()
     }, [])

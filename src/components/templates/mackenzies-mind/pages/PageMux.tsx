@@ -1,4 +1,4 @@
-import React, {FunctionComponent, useContext} from 'react'
+import {FunctionComponent, useContext, useEffect} from 'react'
 import {SanityTransformHwHomePage} from "../../../../common/sanityIo/Types";
 import PageContext from "../../../page-context/PageContext";
 import {useParams} from 'react-router';
@@ -19,7 +19,7 @@ const PageMux: FunctionComponent<IProps> = (props:IProps) => {
 
     const urlParams = useParams()
 
-    React.useEffect(() => {
+    useEffect(() => {
         if(urlParams.documentSlug && urlParams.documentType) {
             // console.log("Page Mux reading URL Params", urlParams)
 
@@ -31,7 +31,7 @@ const PageMux: FunctionComponent<IProps> = (props:IProps) => {
         }
     }, [])
 
-    React.useEffect(() => {
+    useEffect(() => {
         if(props.baseRoute && pageContext.updateBaseRoute)
             pageContext.updateBaseRoute(props.baseRoute)
         }, [props.baseRoute])

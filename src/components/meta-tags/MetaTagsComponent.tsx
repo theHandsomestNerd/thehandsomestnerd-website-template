@@ -1,4 +1,4 @@
-import React, {FunctionComponent, useContext} from 'react'
+import {FunctionComponent, useContext, useEffect, useState} from 'react'
 import MetaTags from 'react-meta-tags'
 import {SanityImageSource} from "@sanity/asset-utils";
 import SanityContext from "../../common/sanityIo/sanity-context/SanityContext";
@@ -12,10 +12,10 @@ interface IProps {
 
 
 const MetaTagsComponent: FunctionComponent<IProps> = (props) => {
-  const [structuredJSONObj, setStructuredJSONObj] = React.useState<any>()
+  const [structuredJSONObj, setStructuredJSONObj] = useState<any>()
   const sanityContext = useContext(SanityContext)
 
-  React.useEffect(() => {
+  useEffect(() => {
     // console.log("Structured data", props.structuredData)
     if (props.structuredData) {
       // let data={}

@@ -1,4 +1,4 @@
-import React, {FunctionComponent, useContext} from 'react'
+import {FunctionComponent, useContext, useState} from 'react'
 
 import makeStyles from "@mui/styles/makeStyles";
 import {Theme, useTheme} from "@mui/material/styles";
@@ -72,11 +72,11 @@ interface IProps {
 const AWContactUs: FunctionComponent<IProps> = (props:IProps) => {
     const classes = useStyles()
     const theme = useTheme()
-    const [contactUsFormState, setContactUsFormState] = React.useState<ContactUsFormState>({ ...(props.contactUsPrefill ? props.contactUsPrefill : {}) })
-    const [loading, setLoading] = React.useState<boolean>(false)
-    const [status, setStatus] = React.useState<boolean | undefined>(undefined)
+    const [contactUsFormState, setContactUsFormState] = useState<ContactUsFormState>({ ...(props.contactUsPrefill ? props.contactUsPrefill : {}) })
+    const [loading, setLoading] = useState<boolean>(false)
+    const [status, setStatus] = useState<boolean | undefined>(undefined)
 
-    const [checkBoxes, setCheckBoxes] = React.useState<CheckBoxesType>(props.contactUsPrefill ? props.contactUsPrefill : {
+    const [checkBoxes, setCheckBoxes] = useState<CheckBoxesType>(props.contactUsPrefill ? props.contactUsPrefill : {
         general: false,
         press: false,
         publicEvents: false,

@@ -1,4 +1,4 @@
-import React, {FunctionComponent, PropsWithChildren, useContext, useMemo,} from 'react';
+import {FunctionComponent, PropsWithChildren, useContext, useEffect, useMemo, useState,} from 'react';
 import CustomizedThemeContext from './CustomizedThemeContext';
 import {CssBaseline} from "@mui/material";
 import {ThemeProvider} from "@mui/material/styles";
@@ -17,11 +17,11 @@ const CustomizedThemeProvider: FunctionComponent<IProps & PropsWithChildren> = (
     props: PropsWithChildren<IProps>,
 ) => {
 
-    const [customizedTheme, setCustomizedTheme] = React.useState<any>(TheWebsiteTheme)
+    const [customizedTheme, setCustomizedTheme] = useState<any>(TheWebsiteTheme)
     // const fonts = `"Raleway", "Oswald"`
 
     const pageContext = useContext(PageContext);
-    React.useEffect(() => {
+    useEffect(() => {
         // console.log('Theme ', pageContext.page?.theme)
         if (pageContext.page?.theme) {
             const theCustomizedTheme = getThemeFromSanity(pageContext.page?.theme)
@@ -33,7 +33,7 @@ const CustomizedThemeProvider: FunctionComponent<IProps & PropsWithChildren> = (
         // eslint-disable-next-line
     }, [pageContext.page?.theme])
 
-    // React.useEffect(() => {
+    // useEffect(() => {
     //     console.log("customized theme change",customizedTheme)
     // }, [customizedTheme])
 

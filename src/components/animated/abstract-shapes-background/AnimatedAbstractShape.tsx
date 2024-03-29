@@ -1,4 +1,4 @@
-import React, {FunctionComponent} from 'react'
+import {FunctionComponent, useEffect} from 'react'
 import {motion, useAnimation, Variants} from "framer-motion";
 import {useInView} from "react-intersection-observer";
 import makeStyles from "@mui/styles/makeStyles";
@@ -14,7 +14,7 @@ const AnimatedAbstractShape: FunctionComponent<IProps> = (props:IProps) => {
     const shapeControls = useAnimation();
     const [shapeRef, shapeInView] = useInView();
 
-    React.useEffect(() => {
+    useEffect(() => {
         if (shapeInView) {
             shapeControls.start("onScreen");
         }

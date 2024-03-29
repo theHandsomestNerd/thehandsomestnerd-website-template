@@ -1,4 +1,4 @@
-import React, {FunctionComponent, PropsWithChildren, useContext, useMemo,} from 'react';
+import {FunctionComponent, PropsWithChildren, useContext, useMemo, useState,} from 'react';
 import {Grid} from "@mui/material";
 import PageContext from "../page-context/PageContext";
 import SnackbarContext from "../modal-context/SnackbarContext";
@@ -13,7 +13,7 @@ const QrCodeProvider: FunctionComponent<IProps & PropsWithChildren> = (
     props: PropsWithChildren<IProps>,
 ) => {
     const pageContext = useContext(PageContext)
-    const [qrCodeValue, setQrCodeValue] = React.useState<string>("")
+    const [qrCodeValue, setQrCodeValue] = useState<string>("")
     const firebaseContext = useContext(FirebaseContext)
 
     const snackbarContext = useContext(SnackbarContext)

@@ -1,4 +1,4 @@
-import React, {FunctionComponent, useContext} from 'react'
+import{FunctionComponent, useContext} from 'react'
 import {Grid, useTheme} from "@mui/material";
 import AnimatedAbstractShape from "./AnimatedAbstractShape";
 import {SanityImageAsset} from '../../BlockContentTypes';

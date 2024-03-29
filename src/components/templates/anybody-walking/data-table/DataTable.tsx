@@ -1,4 +1,4 @@
-import React, {PropsWithChildren} from 'react'
+import {PropsWithChildren, useEffect, useState} from 'react'
 import makeStyles from "@mui/styles/makeStyles";
 import {DataTableColumnType, SortType} from "../ballroomTypes";
 import {
@@ -16,7 +16,7 @@ import {
 } from "@mui/material";
 import {v4 as uuidv4} from 'uuid';
 import {KeyboardArrowDown, KeyboardArrowUp, TableChart} from "@mui/icons-material";
-import TablePaginationActions from '@mui/material/TablePagination/TablePaginationActions';
+// import TablePaginationActions from '@mui/material/TablePagination/TablePaginationActions';
 
 
 export const useStyles = makeStyles(() => ({
@@ -65,11 +65,11 @@ function DataTable<ObjectType>(
 ) {
     const classes = useStyles()
 
-    const [page, setPage] = React.useState<number>(0)
-    const [columnStates, setColumnStates] = React.useState({})
-    const [rowsPerPage, setRowsPerPage] = React.useState<number>(10)
+    const [page, setPage] = useState<number>(0)
+    const [columnStates, setColumnStates] = useState({})
+    const [rowsPerPage, setRowsPerPage] = useState<number>(10)
 
-    React.useEffect(() => {
+    useEffect(() => {
         const reducer = (accumulator: any, currentValue: any) => ({
             ...accumulator,
             [currentValue.id]: 'asc',
@@ -266,7 +266,7 @@ function DataTable<ObjectType>(
                                                 }}
                                                 onPageChange={handleChangePage}
                                                 onRowsPerPageChange={handleChangeRowsPerPage}
-                                                ActionsComponent={TablePaginationActions}
+                                                // ActionsComponent={TablePaginationActions}
                                             />
                                         </TableRow>
                                     </TableFooter>

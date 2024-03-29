@@ -1,5 +1,5 @@
 import {Grid, Typography, useMediaQuery, useTheme} from '@mui/material'
-import React, {FunctionComponent, useContext} from 'react'
+import{FunctionComponent, useContext} from 'react'
 import clsx from "clsx";
 import LoadingButton from "../../../../loading-button/LoadingButton";
 import useCustomStyles from "../../../mackenzies-mind/pages/Styles";

@@ -1,4 +1,4 @@
-import React, {FunctionComponent, useContext} from 'react'
+import{FunctionComponent, useContext} from 'react'
 import {Grid, Typography,} from "@mui/material";
 import {SanityCocktailType} from "../../../../common/sanityIo/Types";
 import SanityContext from "../../../../common/sanityIo/sanity-context/SanityContext";

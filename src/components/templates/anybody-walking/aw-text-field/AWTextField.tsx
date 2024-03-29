@@ -1,4 +1,4 @@
-import React, {FunctionComponent} from 'react'
+import {FunctionComponent, useEffect, useState} from 'react'
 import {FormControl, FormControlLabel, FormGroup, FormHelperText, Typography} from '@mui/material'
 import {ValidationResponse} from '../ballroomTypes'
 import {makeStyles} from '@mui/styles'
@@ -41,10 +41,10 @@ export type AwTextFieldProps = {
 
 const AwTextField: FunctionComponent<AwTextFieldProps> = (props: AwTextFieldProps) => {
     const classes = useStyles()
-    const [isError, setIsError] = React.useState<boolean>(false)
-    const [errorMessageText, setErrorMessageText] = React.useState<string | undefined>()
+    const [isError, setIsError] = useState<boolean>(false)
+    const [errorMessageText, setErrorMessageText] = useState<string | undefined>()
 
-    React.useEffect(() => {
+    useEffect(() => {
         validateField(props.value)
     }, [props.dependendentFieldValue])
 
@@ -62,11 +62,11 @@ const AwTextField: FunctionComponent<AwTextFieldProps> = (props: AwTextFieldProp
         }
     }
 
-    React.useEffect(() => {
+    useEffect(() => {
         validateField(props.value)
     }, [props.value])
 
-    React.useEffect(() => {
+    useEffect(() => {
         validateField(props.value)
     })
 

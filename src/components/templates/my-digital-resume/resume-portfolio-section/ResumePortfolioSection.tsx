@@ -1,4 +1,4 @@
-import React, {FunctionComponent} from 'react'
+import{FunctionComponent} from 'react'
 import {Grid, Typography, useMediaQuery, useTheme} from '@mui/material'
 import {ResumePortfolioItem, ResumePortfolioSectionType} from "../../../BlockContentTypes";
 import useThwCommonStyles from "../../../../common/sanityIo/ThwCommonStyles";

@@ -1,4 +1,4 @@
-import React, {FunctionComponent, useContext} from 'react'
+import {FunctionComponent, useContext, useEffect, useState} from 'react'
 
 import makeStyles from "@mui/styles/makeStyles";
 import {Grid, Toolbar, Typography, useTheme} from "@mui/material";
@@ -28,13 +28,13 @@ const AWBallSummarySection: FunctionComponent<IProps> = (props: IProps) => {
     const classes = useStyles()
     const sanityContext = useContext(SanityContext)
 
-    const [featuredSetOfBalls, setFeaturedSetOfBalls] = React.useState<SanityBallType[]>([])
-    const [upcomingSetOfBalls, setUpcomingSetOfBalls] = React.useState<SanityBallType[]>([])
-    const [remainingSetOfBalls, setRemainingSetOfBalls] = React.useState<SanityBallType[]>([])
+    const [featuredSetOfBalls, setFeaturedSetOfBalls] = useState<SanityBallType[]>([])
+    const [upcomingSetOfBalls, setUpcomingSetOfBalls] = useState<SanityBallType[]>([])
+    const [remainingSetOfBalls, setRemainingSetOfBalls] = useState<SanityBallType[]>([])
 
-    const [featuredLoading, setFeaturedLoading] = React.useState<boolean>(false)
-    const [upcomingLoading, setUpcomingLoading] = React.useState<boolean>(false)
-    const [remainingLoading, setRemainingLoading] = React.useState<boolean>(false)
+    const [featuredLoading, setFeaturedLoading] = useState<boolean>(false)
+    const [upcomingLoading, setUpcomingLoading] = useState<boolean>(false)
+    const [remainingLoading, setRemainingLoading] = useState<boolean>(false)
 
     const getBallData = async () => {
         // Filter featured
@@ -82,7 +82,7 @@ const AWBallSummarySection: FunctionComponent<IProps> = (props: IProps) => {
     //   history.push(`${RoutesEnum.BALL}/${slug}`)
     // }
 
-    React.useEffect(() => {
+    useEffect(() => {
         refreshSearchResults().then()
     }, [])
     const theme = useTheme()

@@ -2,7 +2,7 @@
 // ex: if you add a typography tag here then the variant by default is body1
 // if a header mark was included on the same block this would overwrite the variant.
 // it would also block other html elements causing that mark to line break
-import React, {PropsWithChildren} from 'react'
+import{PropsWithChildren} from 'react'
 import {useCommonStyles} from './CommonStyles'
 import {Grid, Typography} from '@mui/material'
 import TheWebsiteTheme from "../../../../theme/Theme";

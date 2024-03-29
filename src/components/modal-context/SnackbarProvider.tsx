@@ -1,4 +1,4 @@
-import React, {FunctionComponent, PropsWithChildren, useMemo,} from 'react';
+import {FunctionComponent, PropsWithChildren, SyntheticEvent, useEffect, useMemo, useState,} from 'react';
 import SnackbarContext from './SnackbarContext';
 import {Grid, Snackbar} from "@mui/material";
 import Countdown from "react-countdown";
@@ -17,14 +17,14 @@ export interface SnackbarMessage {
 const SnackbarProvider: FunctionComponent<IProps & PropsWithChildren> = (
     props: PropsWithChildren<IProps>,
 ) => {
-    const [snackbarOpen, setSnackbarOpen] = React.useState<boolean>(false)
-    const [snackPack, setSnackPack] = React.useState<readonly SnackbarMessage[]>([]);
-    const [autoCloseTime, setAutoCloseTime] = React.useState<number | undefined>(15)
-    const [messageInfo, setMessageInfo] = React.useState<SnackbarMessage | undefined>(
+    const [snackbarOpen, setSnackbarOpen] = useState<boolean>(false)
+    const [snackPack, setSnackPack] = useState<readonly SnackbarMessage[]>([]);
+    const [autoCloseTime, setAutoCloseTime] = useState<number | undefined>(15)
+    const [messageInfo, setMessageInfo] = useState<SnackbarMessage | undefined>(
         undefined,
     );
 
-    React.useEffect(() => {
+    useEffect(() => {
         if (snackPack.length && !messageInfo) {
             // Set a new snack when we don't have an active one
             setMessageInfo({...snackPack[0]});
@@ -37,7 +37,7 @@ const SnackbarProvider: FunctionComponent<IProps & PropsWithChildren> = (
         }
     }, [snackPack, messageInfo, snackbarOpen]);
 
-    const handleSnackbarClose = (_event: React.SyntheticEvent | Event, reason?: string) => {
+    const handleSnackbarClose = (_event: SyntheticEvent | Event, reason?: string) => {
         if (reason === 'clickaway') {
 
             return;

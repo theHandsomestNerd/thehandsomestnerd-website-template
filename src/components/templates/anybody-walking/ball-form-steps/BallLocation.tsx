@@ -1,4 +1,4 @@
-import React, {FunctionComponent, useContext} from 'react'
+import {FunctionComponent, useContext, useEffect, useState} from 'react'
 import { Grid, Typography } from '@mui/material'
 import { AddBallState, BallLocationState, SanityLocation } from '../ballroomTypes'
 import { renderBallType } from '../enums/BallType.enum'
@@ -11,9 +11,9 @@ export type BallLocationProps = {
 }
 
 const BallLocation: FunctionComponent<BallLocationProps> = (props: BallLocationProps) => {
-  const [location, setLocation] = React.useState<SanityLocation>({})
+  const [location, setLocation] = useState<SanityLocation>({})
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (location.locationName) {
       props.stepComplete({ location })
     }
@@ -35,7 +35,7 @@ const BallLocation: FunctionComponent<BallLocationProps> = (props: BallLocationP
 
   const pageContext = useContext(PageContext)
 
-  React.useEffect(() => {
+  useEffect(() => {
     console.log("Page context from ball location", pageContext, pageContext.googleMapsApiKey)
       }, [pageContext])
 

@@ -1,7 +1,6 @@
-import React from 'react'
 import ReactDOM from 'react-dom/client'
 import {AppWrapper} from 'the-handsomestnerd-internal'
-// import MyPrivateComponent from "./MyPrivateComponent";
+// import MyPrivateComponent from "./MxyPrivateComponent";
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 root.render(

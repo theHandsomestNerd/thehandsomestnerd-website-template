@@ -1,4 +1,4 @@
-import React, {FunctionComponent, useContext} from 'react'
+import {FunctionComponent, useContext, useEffect} from 'react'
 import {Grid, Link, useMediaQuery, useTheme} from '@mui/material'
 import {SanityTransformHwHomePage} from "../../../../common/sanityIo/Types";
 import BlockContentLayoutContainer from "../../../BlockContentLayoutContainer";
@@ -25,7 +25,7 @@ const PageLayout: FunctionComponent<IProps> = (props: IProps) => {
     const classes = useCustomStyles({bgImage: sanityContext.urlFor(props.homePage.backgroundImageSrc ?? "")})
 
     const xsDown  = useMediaQuery(theme.breakpoints.down('xs'))
-    React.useEffect(() => {
+    useEffect(() => {
         props.homePage.title && firebaseContext.analytics?.analyticsPageView && firebaseContext.analytics?.analyticsPageView(
             location.pathname,
             location.search,

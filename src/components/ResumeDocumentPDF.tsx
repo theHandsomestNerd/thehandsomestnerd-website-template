@@ -1,21 +1,21 @@
-// @ts-ignore
-import React, {FunctionComponent, useContext} from "react";
-import {Document, Font, Link, Page, StyleSheet, Text, View} from '@react-pdf/renderer';
+import{FunctionComponent} from "react";
+import {Document, Page, Link, StyleSheet, Text, View} from '@react-pdf/renderer';
+
+import {v4 as uuidv4} from 'uuid'
+import {SanityTransformHwHomePage} from "../common/sanityIo/Types";
 import {
     ResumeBioSectionType,
     ResumeEducationSectionType,
-    ResumeExperienceSectionType,
-    ResumePortfolioSectionType,
+    ResumeExperienceSectionType, ResumePortfolioSectionType,
     ResumeSkillSectionType
-} from "../BlockContentTypes";
-import RalewayFont from "../../fonts/raleway/static/Raleway-Regular.ttf"
-import CustomizedThemeContext from "../customized-theme-provider/CustomizedThemeContext";
-import dateUtils from "../../utils/dateUtils";
-import {COLORS} from "../../theme/common/ColorPalette";
-import {SanityTransformHwHomePage} from "../../common/sanityIo/Types";
+} from "./BlockContentTypes";
+import dateUtils from "../utils/dateUtils";
+// import {pdfjs} from 'react-pdf'
+
+// pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`
 
 
-Font.register({family: 'Raleway', src: RalewayFont, fontStyle: 'normal', fontWeight: 'normal'});
+// Font.register({family: 'Raleway', src: RalewayFont, fontStyle: 'normal', fontWeight: 'normal'});
 
 
 // Create Document Component
@@ -31,13 +31,12 @@ interface IProps {
 
 const ResumeDocumentPDF: FunctionComponent<IProps> = (props: IProps) => {
 
-    const theme = useContext(CustomizedThemeContext)
     // Create styles
     const styles = StyleSheet.create({
         page: {
             // flexDirection: 'row',
             // backgroundColor: '#E4E4E4'
-            fontFamily: "Raleway",
+            // fontFamily: "Raleway",
             padding: "16px"
         },
         section: {
@@ -86,7 +85,7 @@ const ResumeDocumentPDF: FunctionComponent<IProps> = (props: IProps) => {
             // flex: "1 "
         },
         chip: {
-            backgroundColor: COLORS.ALMOST_BLACK,
+            backgroundColor: "#1D1D1D",
             borderRadius: "32px",
             color: "white",
             marginRight: "4px",
@@ -98,12 +97,12 @@ const ResumeDocumentPDF: FunctionComponent<IProps> = (props: IProps) => {
     });
 
 
-    return (<Document>
-        <Page size="A4" style={styles.page} key={'page'}>
+    return (<Document key={uuidv4()}>
+        <Page size="A4" style={styles.page} key={uuidv4()}>
             {props?.homePage?.pageContent.content?.map((columnLayoutContainer: any, pageIdx: number) => {
                 switch (columnLayoutContainer._type) {
                     case 'ResumeBioSection':
-                        const resumeBioSection: ResumeBioSectionType = columnLayoutContainer
+                        const resumeBioSection:ResumeBioSectionType = columnLayoutContainer
 
                         return (
                             <View key={'resume-bio-section-' + pageIdx}>
@@ -130,14 +129,14 @@ const ResumeDocumentPDF: FunctionComponent<IProps> = (props: IProps) => {
                             </View>
                         );
                     case 'ResumeSkillSection':
-                        const resumeSkillSection: ResumeSkillSectionType = columnLayoutContainer
+                        const resumeSkillSection:ResumeSkillSectionType = columnLayoutContainer
                         // console.log(resumeSkillSection)
                         return (
                             <View style={styles.section}>
                                 <View><Text>{resumeSkillSection.title}</Text></View>
                                 <View><Text style={styles.body}>{resumeSkillSection.introduction}</Text></View>
                                 <View style={styles.container}>{
-                                    resumeSkillSection.skillsets?.map((skillset, skillsetIndx) => {
+                                    resumeSkillSection.skillsets?.map((skillset, skillsetIndx:number) => {
                                         return <View key={skillsetIndx} style={styles.resumeSkillset}>
                                             <Text style={styles.body2}>{skillset.title}</Text>
                                             <View style={styles.container}>
@@ -154,7 +153,7 @@ const ResumeDocumentPDF: FunctionComponent<IProps> = (props: IProps) => {
                             </View>
                         );
                     case 'ResumeExperienceSection':
-                        const resumeExperienceSection: ResumeExperienceSectionType = columnLayoutContainer
+                        const resumeExperienceSection:ResumeExperienceSectionType = columnLayoutContainer
 
                         return (
                             <View style={styles.section}>
@@ -181,7 +180,7 @@ const ResumeDocumentPDF: FunctionComponent<IProps> = (props: IProps) => {
                                                 {
                                                     experience.skillsUsed?.map((theSkill, index) => {
                                                         return <View key={index}
-                                                                     style={styles.chip}>{theme.customizedTheme?.palette.primary.main}<Text
+                                                                     style={styles.chip}><Text
                                                             style={styles.subtitle}>{theSkill.title}</Text></View>
                                                     })
                                                 }
@@ -192,7 +191,7 @@ const ResumeDocumentPDF: FunctionComponent<IProps> = (props: IProps) => {
                             </View>
                         );
                     case 'ResumeEducationSection':
-                        const resumeEducationSection: ResumeEducationSectionType = columnLayoutContainer
+                        const resumeEducationSection:ResumeEducationSectionType = columnLayoutContainer
 
                         return (
                             <View style={styles.section}>
@@ -229,7 +228,7 @@ const ResumeDocumentPDF: FunctionComponent<IProps> = (props: IProps) => {
                     //         </Grid>
                     //     );
                     case 'ResumePortfolioSection':
-                        const resumePortfolioSection: ResumePortfolioSectionType = columnLayoutContainer
+                        const resumePortfolioSection:ResumePortfolioSectionType = columnLayoutContainer
 
                         return (
                             <View style={styles.section}>

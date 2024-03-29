@@ -1,4 +1,4 @@
-import React, {FunctionComponent, useContext} from 'react'
+import {FunctionComponent, useContext, useEffect, useState} from 'react'
 import {Grid} from '@mui/material'
 import {SanityImageAsset} from "../BlockContentTypes";
 import SanityContext from "../../common/sanityIo/sanity-context/SanityContext";
@@ -12,11 +12,11 @@ interface IProps {
 
 const ColoredPng: FunctionComponent<IProps> = (props: IProps) => {
 
-    const [imageUrl, setImageUrl] = React.useState<string>()
-    const [imageSize, setImageSize] = React.useState<number>(100)
+    const [imageUrl, setImageUrl] = useState<string>()
+    const [imageSize, setImageSize] = useState<number>(100)
     const sanityContext = useContext(SanityContext)
 
-    React.useEffect(() => {
+    useEffect(() => {
         if(props.size){
             setImageSize(props.size)
         }

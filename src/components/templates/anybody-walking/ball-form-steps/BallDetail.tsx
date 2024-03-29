@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react'
+import {FunctionComponent, useEffect, useState} from 'react'
 import { Grid, Typography } from '@mui/material'
 import { AddBallState, BallDetailState, StepValidationTableType, ValidationResponse } from '../ballroomTypes'
 import STEP_BALL_FORM_VALIDATION_STATUS_CODES from '../enums/StepFormValidationCodes.enum'
@@ -14,9 +14,9 @@ export type BallDetailProps = {
 
 
 const BallDetail: FunctionComponent<BallDetailProps> = (props: BallDetailProps) => {
-  const [ballDetailState, setBallDetailState] = React.useState<BallDetailState>({})
+  const [ballDetailState, setBallDetailState] = useState<BallDetailState>({})
 
-  React.useEffect(() => {
+  useEffect(() => {
     const isDetailValid = (ballDetailState.ballTitle && ballDetailState.ballTitle.length > 0) &&
       (ballDetailState.description && ballDetailState.description.length > 0) &&
       (ballDetailState.host && ballDetailState.host.length > 0) &&
@@ -48,28 +48,28 @@ const BallDetail: FunctionComponent<BallDetailProps> = (props: BallDetailProps) 
     ballDetailState.website
   ])
 
-  React.useEffect(() => {
+  useEffect(() => {
     setBallDetailState((state:any) => ({
       ...state,
       description: props.newBallToAdd.description
     }))
   }, [props.newBallToAdd.description])
 
-  React.useEffect(() => {
+  useEffect(() => {
     setBallDetailState((state:any) => ({
       ...state,
       host: props.newBallToAdd.host
     }))
   }, [props.newBallToAdd.host])
 
-  React.useEffect(() => {
+  useEffect(() => {
     setBallDetailState((state:any) => ({
       ...state,
       website: props.newBallToAdd.website
     }))
   }, [props.newBallToAdd.website])
 
-  React.useEffect(() => {
+  useEffect(() => {
     setBallDetailState((state:any) => ({
       ...state,
       ballTitle: props.newBallToAdd.ballTitle

@@ -1,4 +1,4 @@
-import React, {FunctionComponent, useContext} from 'react'
+import {FunctionComponent, useContext, useEffect, useState} from 'react'
 import {Button, Grid, IconButton, Typography, useMediaQuery, useTheme} from "@mui/material";
 import makeStyles from "@mui/styles/makeStyles";
 import {HeroAnimatedContentSectionType, SanityHeroContentSlide} from "../BlockContentTypes";
@@ -37,15 +37,15 @@ const HeroAnimatedContentSection: FunctionComponent<IProps> = (props) => {
     const classes = useStyles()
     const globalClasses = useCustomStyles({})
 
-    const [pageNumber, setPageNumber] = React.useState<number>(0)
-    const [contentSlide, setContentSlide] = React.useState<SanityHeroContentSlide | undefined>()
+    const [pageNumber, setPageNumber] = useState<number>(0)
+    const [contentSlide, setContentSlide] = useState<SanityHeroContentSlide | undefined>()
     const sanityContext = useContext(SanityContext)
 
     const theme = useTheme()
     const pageContext: PageContextType = useContext(PageContext)
     const firebaseContext = useContext(FirebaseContext)
 
-    React.useEffect(() => {
+    useEffect(() => {
         if (props.sectionData.contentSlides[pageNumber])
             setContentSlide(props.sectionData.contentSlides[pageNumber])
     }, [props.sectionData.contentSlides, pageNumber])

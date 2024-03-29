@@ -10,6 +10,7 @@ import * as path from "path";
 import * as fs from "fs";
 import imageUrlBuilder from "@sanity/image-url";
 import sanityClient from "./sanityClient";
+// import createTemplate from "./create-pdf-template";
 
 // import {SanityColdLead, SanityTransformHwHomePage}
 //   from "../../src/common/sanityIo/Types";
@@ -242,6 +243,19 @@ app.post("/create-contact-us",
             functionRes.error({status: "400", e});
         }
     });
+app.post("/get-resume-pdf", async (req, res) => {
+    // Calling the template render func with dynamic data
+    // const result = await createTemplate();
+
+    // Setting up the response headers
+    res.setHeader("Content-Type", "application/pdf");
+    res.setHeader("Content-Disposition", `attachment; filename=export.pdf`);
+
+    // Streaming our resulting pdf back to the user
+    if (typeof result !== "string") {
+        result.pipe(res);
+    }
+})
 
 // app.use(express.static(
 //     path.resolve(__dirname, "../../", "dist/cjs"),

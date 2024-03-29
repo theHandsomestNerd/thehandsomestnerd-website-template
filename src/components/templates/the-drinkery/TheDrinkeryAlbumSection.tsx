@@ -1,4 +1,4 @@
-import React, {FunctionComponent, useContext} from 'react'
+import {FunctionComponent, useContext, useState} from 'react'
 import {
     Dialog,
     DialogTitle,
@@ -52,8 +52,8 @@ const TheDrinkeryAlbumSection: FunctionComponent<IProps> = (props) => {
     const theme = useTheme()
     const xsDown = useMediaQuery(theme.breakpoints.only('xs'))
 
-    const [open, setOpen] = React.useState(false);
-    const [selectedItem, setSelectedItem] = React.useState<any>(null)
+    const [open, setOpen] = useState(false);
+    const [selectedItem, setSelectedItem] = useState<any>(null)
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -85,10 +85,10 @@ const TheDrinkeryAlbumSection: FunctionComponent<IProps> = (props) => {
                     </Grid>
                     <Grid container item >
                         <Grid container item justifyContent='center'>
-                            <Link href={`http://instagram.com/${pageContext.page?.businessContact?.instagram}`}><Grid container alignItems='center'> <Instagram style={{marginRight:theme.spacing(1)}} /> <Typography variant="body2">{pageContext.page?.businessContact?.instagram}</Typography></Grid></Link>
+                            <Link href={`https://instagram.com/${pageContext.page?.businessContact?.instagram}`}><Grid container alignItems='center'> <Instagram style={{marginRight:theme.spacing(1)}} /> <Typography variant="body2">{pageContext.page?.businessContact?.instagram}</Typography></Grid></Link>
                         </Grid>
                         <Grid container item justifyContent='center'>
-                            <Link href={`http://facebook.com/${pageContext.page?.businessContact?.facebook}`}><Grid container alignItems='center'> <Facebook style={{marginRight:theme.spacing(1)}} /> <Typography variant="body2">{pageContext.page?.businessContact?.facebook}</Typography></Grid></Link>
+                            <Link href={`https://facebook.com/${pageContext.page?.businessContact?.facebook}`}><Grid container alignItems='center'> <Facebook style={{marginRight:theme.spacing(1)}} /> <Typography variant="body2">{pageContext.page?.businessContact?.facebook}</Typography></Grid></Link>
                         </Grid>
                     </Grid>
                     <Grid container item justifyContent='center'>

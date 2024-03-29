@@ -1,4 +1,4 @@
-import React, {FunctionComponent, useContext} from 'react'
+import{FunctionComponent, useContext} from 'react'
 import {Grid, Typography, useTheme} from '@mui/material'
 import {v4 as uuidv4} from 'uuid'
 import ThwServiceItem from "../ThwServiceItem";

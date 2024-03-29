@@ -1,4 +1,4 @@
-import React, {FunctionComponent, useContext} from 'react'
+import {FunctionComponent, useContext, useEffect, useState} from 'react'
 import makeStyles from '@mui/styles/makeStyles';
 import {Button, Grid, Tooltip, Typography} from '@mui/material'
 import CssFadeToColor from "../css-fade-to-color/CssFadeToColor";
@@ -56,9 +56,9 @@ const ImageWIthButtonOverlay: FunctionComponent<IProps> = (props) => {
     }
     const sanityContext = useContext(SanityContext)
 
-    const [displayImageUrl, setDisplayImageUrl] = React.useState<string>()
+    const [displayImageUrl, setDisplayImageUrl] = useState<string>()
 
-    React.useEffect(() => {
+    useEffect(() => {
         if (props.imageUrl) {
             setDisplayImageUrl(props.imageUrl)
         }

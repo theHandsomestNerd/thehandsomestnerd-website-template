@@ -1,4 +1,4 @@
-import React, {FunctionComponent, PropsWithChildren, useContext, useMemo, useReducer,} from 'react';
+import {FunctionComponent, PropsWithChildren, useContext, useEffect, useMemo, useReducer, useState,} from 'react';
 import {SanityMenuContainer, SanityTransformHwHomePage} from "../../common/sanityIo/Types";
 import {ThwServiceItemNoRefType} from "../BlockContentTypes";
 import PageContext from './PageContext';
@@ -121,12 +121,12 @@ const PageProvider: FunctionComponent<IProps & PropsWithChildren> = (
 
     const [state, dispatch] = useReducer(reducer, initialState)
 
-    const [pageData, setPageData] = React.useState<any>()
-    const [documentData, setDocumentData] = React.useState<any>()
-    const [isLoading] = React.useState<boolean>(true)
+    const [pageData, setPageData] = useState<any>()
+    const [documentData, setDocumentData] = useState<any>()
+    const [isLoading] = useState<boolean>(true)
     // const loadedPageQuery = sanityContext.useFetchPageBySlugQuery(state.pageSlug)
 
-    React.useEffect(() => {
+    useEffect(() => {
         sanityContext.fetchDocumentByTypeAndSlugQuery(state.documentType, state.documentSlug)
             .then((result: any) => {
                 // console.log(`in page context fetch document fetching document type: ${state.documentType} with slug: ${state.documentSlug}`)
@@ -140,7 +140,7 @@ const PageProvider: FunctionComponent<IProps & PropsWithChildren> = (
 
     }, [state.documentType, state.documentSlug, sanityContext.theSanityClient])
 
-    React.useEffect(() => {
+    useEffect(() => {
 
         if (!props.page && (state.pageSlug && state.pageSlug.length > 0)) {
             sanityContext.fetchPageBySlugQuery(state.pageSlug).then((result: any) => {
@@ -151,7 +151,7 @@ const PageProvider: FunctionComponent<IProps & PropsWithChildren> = (
         }
     }, [state.pageSlug, sanityContext.theSanityClient])
 
-    React.useEffect(() => {
+    useEffect(() => {
         if (props.googleApiKey) {
             updateGoogleApiKey(props.googleApiKey)
             // dispatch({
@@ -163,7 +163,7 @@ const PageProvider: FunctionComponent<IProps & PropsWithChildren> = (
         }
     }, [props.googleApiKey])
 
-    React.useEffect(() => {
+    useEffect(() => {
         if (props.barInventorySlug) {
             updateBarInventorySlug(props.barInventorySlug)
             // dispatch({
@@ -175,7 +175,7 @@ const PageProvider: FunctionComponent<IProps & PropsWithChildren> = (
         }
     }, [props.barInventorySlug])
 
-    React.useEffect(() => {
+    useEffect(() => {
         if (props.page && !state.page) {
             console.log("page came in from storybook or test", props.page)
             dispatch({
@@ -187,7 +187,7 @@ const PageProvider: FunctionComponent<IProps & PropsWithChildren> = (
         }
     }, [props.page, state.page])
 
-    React.useEffect(() => {
+    useEffect(() => {
         if (!props.page && pageData) {
             dispatch({
                 type: "LOAD_PAGE_COMPONENTS",
@@ -197,7 +197,7 @@ const PageProvider: FunctionComponent<IProps & PropsWithChildren> = (
             })
         }
     }, [pageData])
-    React.useEffect(() => {
+    useEffect(() => {
         dispatch({
             type: "PAGE_LOADING",
             payload: {
@@ -206,7 +206,7 @@ const PageProvider: FunctionComponent<IProps & PropsWithChildren> = (
         })
     }, [isLoading])
 
-    React.useEffect(() => {
+    useEffect(() => {
         dispatch({
             type: "PAGE_LOADING",
             payload: {
@@ -266,7 +266,7 @@ const PageProvider: FunctionComponent<IProps & PropsWithChildren> = (
     }
 
 
-    // React.useEffect(() => {
+    // useEffect(() => {
     //     if (allServicesQuery.data) {
     //         console.log("context services data", allServicesQuery.data)
     //         dispatch({
@@ -277,7 +277,7 @@ const PageProvider: FunctionComponent<IProps & PropsWithChildren> = (
     //         })
     //     }
     // }, [allServicesQuery.data])
-    // React.useEffect(() => {
+    // useEffect(() => {
     //     dispatch({
     //         type: "PAGE_LOADING",
     //         payload: {
@@ -285,7 +285,7 @@ const PageProvider: FunctionComponent<IProps & PropsWithChildren> = (
     //         }
     //     })
     // }, [allServicesQuery.isLoading])
-    // React.useEffect(() => {
+    // useEffect(() => {
     //     dispatch({
     //         type: "PAGE_LOADING",
     //         payload: {
@@ -293,7 +293,7 @@ const PageProvider: FunctionComponent<IProps & PropsWithChildren> = (
     //         }
     //     })
     // }, [allServicesQuery.isRefetching])
-    // React.useEffect(() => {
+    // useEffect(() => {
     //     if (allServicesQuery.isError) {
     //         dispatch({
     //             type: "ERROR",
@@ -306,7 +306,7 @@ const PageProvider: FunctionComponent<IProps & PropsWithChildren> = (
     // }, [allServicesQuery.isError])
 
 
-    // React.useEffect(() => {
+    // useEffect(() => {
     //     if (!headerMenuQuery.isPreviousData && headerMenuQuery.data) {
     //         console.log("context header data", headerMenuQuery.data)
     //         dispatch({
@@ -317,7 +317,7 @@ const PageProvider: FunctionComponent<IProps & PropsWithChildren> = (
     //         })
     //     }
     // }, [headerMenuQuery.data])
-    // React.useEffect(() => {
+    // useEffect(() => {
     //     dispatch({
     //         type: "PAGE_LOADING",
     //         payload: {
@@ -325,7 +325,7 @@ const PageProvider: FunctionComponent<IProps & PropsWithChildren> = (
     //         }
     //     })
     // }, [headerMenuQuery.isLoading])
-    // React.useEffect(() => {
+    // useEffect(() => {
     //     dispatch({
     //         type: "PAGE_LOADING",
     //         payload: {
@@ -333,7 +333,7 @@ const PageProvider: FunctionComponent<IProps & PropsWithChildren> = (
     //         }
     //     })
     // }, [headerMenuQuery.isRefetching])
-    // React.useEffect(() => {
+    // useEffect(() => {
     //     if (headerMenuQuery.isError) {
     //         dispatch({
     //             type: "ERROR",
@@ -346,7 +346,7 @@ const PageProvider: FunctionComponent<IProps & PropsWithChildren> = (
     // }, [headerMenuQuery.isError])
     //
     //
-    // React.useEffect(() => {
+    // useEffect(() => {
     //     if (!footerMenuQuery.isPreviousData && footerMenuQuery.data) {
     //         console.log("context footer data", footerMenuQuery.data)
     //         dispatch({
@@ -357,7 +357,7 @@ const PageProvider: FunctionComponent<IProps & PropsWithChildren> = (
     //         })
     //     }
     // }, [footerMenuQuery.data])
-    // React.useEffect(() => {
+    // useEffect(() => {
     //     dispatch({
     //         type: "PAGE_LOADING",
     //         payload: {
@@ -365,7 +365,7 @@ const PageProvider: FunctionComponent<IProps & PropsWithChildren> = (
     //         }
     //     })
     // }, [footerMenuQuery.isLoading])
-    // React.useEffect(() => {
+    // useEffect(() => {
     //     dispatch({
     //         type: "PAGE_LOADING",
     //         payload: {
@@ -373,7 +373,7 @@ const PageProvider: FunctionComponent<IProps & PropsWithChildren> = (
     //         }
     //     })
     // }, [footerMenuQuery.isRefetching])
-    // React.useEffect(() => {
+    // useEffect(() => {
     //     if (footerMenuQuery.isError) {
     //         dispatch({
     //             type: "ERROR",
@@ -388,14 +388,14 @@ const PageProvider: FunctionComponent<IProps & PropsWithChildren> = (
     const snackbarContext = useContext(SnackbarContext)
 
 
-    React.useEffect(() => {
+    useEffect(() => {
         if (state.error) {
             snackbarContext.openSnackbar && snackbarContext.openSnackbar(state.error)
         }
     }, [state.error, state.isPageError])
 
 
-    React.useEffect(() => {
+    useEffect(() => {
         dispatch({
             type: "PAGE_LOADING",
             payload: {

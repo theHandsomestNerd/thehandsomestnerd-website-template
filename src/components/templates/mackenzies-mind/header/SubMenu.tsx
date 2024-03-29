@@ -1,4 +1,4 @@
-import React, {FunctionComponent, useContext} from 'react'
+import{FunctionComponent, useContext} from 'react'
 import {Button, Grid, List, ListItem, Typography, useTheme} from '@mui/material'
 import {v4 as uuidv4} from 'uuid'
 import {SanityMenuGroup, SanityMenuItem} from "../../../../common/sanityIo/Types";

@@ -1,4 +1,4 @@
-import React, {FunctionComponent, PropsWithChildren} from 'react'
+import{FunctionComponent, PropsWithChildren} from 'react'
 import {Button, Typography} from '@mui/material'
 
 interface IProps {

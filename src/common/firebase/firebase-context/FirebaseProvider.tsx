@@ -1,4 +1,4 @@
-import React, {FunctionComponent, PropsWithChildren, useMemo,} from 'react';
+import {FunctionComponent, PropsWithChildren, useEffect, useMemo, useState,} from 'react';
 import FirebaseContext from './FirebaseContext';
 import {v4 as uuidv4} from 'uuid'
 import {FirebaseOptions, initializeApp} from "firebase/app";
@@ -27,19 +27,18 @@ type IProps = {
 const FirebaseProvider: FunctionComponent<IProps & PropsWithChildren> = (
     props: PropsWithChildren<IProps>,
 ) => {
-    const [app, setApp] = React.useState<any>()
-    const [analytics, setAnalytics] = React.useState<any>()
-    const [firebaseConfig, setFirebaseConfig] = React.useState<FirebaseOptions | undefined>()
+    const [app, setApp] = useState<any>()
+    const [analytics, setAnalytics] = useState<any>()
+    const [firebaseConfig, setFirebaseConfig] = useState<FirebaseOptions | undefined>()
 
-
-    React.useEffect(() => {
+    useEffect(() => {
         if (firebaseConfig) {
             // console.log("firebaseconfig", firebaseConfig)
             setApp(initializeApp(firebaseConfig))
         }
     }, [firebaseConfig])
 
-    React.useEffect(() => {
+    useEffect(() => {
         isSupported().then((result) => {
             if (result && app) {
                 // console.log("Using really analytics", app)
@@ -51,11 +50,6 @@ const FirebaseProvider: FunctionComponent<IProps & PropsWithChildren> = (
         })
     }, [app])
 
-    // React.useEffect(() => {
-    //     console.log("Analytics done", analytics)
-    // }, [analytics])
-
-
     const initFirebase = (apiKey?: string,
                           authDomain?: string,
                           databaseURL?: string,
@@ -64,7 +58,7 @@ const FirebaseProvider: FunctionComponent<IProps & PropsWithChildren> = (
                           messagingSenderId?: string,
                           appId?: string,
                           measurementId?: string) => {
-        // console.log("initializing firebase in provider")
+
         setFirebaseConfig({
             apiKey: apiKey,
             authDomain: authDomain,

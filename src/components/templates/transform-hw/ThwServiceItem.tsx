@@ -1,4 +1,4 @@
-import React, {FunctionComponent, useContext} from 'react'
+import{FunctionComponent, useContext} from 'react'
 import {Button, Grid, Tooltip, Typography, useMediaQuery} from '@mui/material'
 import ImageWIthButtonOverlay from "../../image-with-button-overlay/ImageWithButtonOverlay";
 import {ImageWithButtonOverlayAligmentEnum} from "../../image-with-button-overlay/ImageWithButtonOverlayAligmentEnum";

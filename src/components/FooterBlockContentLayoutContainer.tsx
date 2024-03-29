@@ -1,4 +1,4 @@
-import React, {FunctionComponent, useContext} from 'react'
+import {FunctionComponent, useContext} from 'react'
 import BlockContent from '@sanity/block-content-to-react'
 import {Card, Grid, Link} from '@mui/material';
 import {blockSerializers} from '../common/sanityIo/BlockContentRenderer'

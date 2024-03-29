@@ -1,4 +1,4 @@
-import React, {FunctionComponent} from 'react'
+import{FunctionComponent} from 'react'
 import {Chip, Grid, Typography, useTheme} from "@mui/material";
 import {ResumeExperience} from "../../../BlockContentTypes";
 import dateUtils from "../../../../utils/dateUtils";

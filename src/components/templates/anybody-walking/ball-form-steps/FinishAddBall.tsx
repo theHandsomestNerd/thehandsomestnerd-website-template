@@ -1,4 +1,4 @@
-import React, {FunctionComponent} from 'react'
+import{FunctionComponent} from 'react'
 import {Box, Grid, Typography, useTheme} from '@mui/material'
 import {CheckCircle, CloseOutlined} from '@mui/icons-material'
 import {AddBallState, ValidationResponse} from '../ballroomTypes'
@@ -10,11 +10,6 @@ export type FinishAddBallProps = {
 }
 
 const FinishAddBall: FunctionComponent<FinishAddBallProps> = (props: FinishAddBallProps) => {
-
-    React.useEffect(() => {
-        console.log('Error message in finish step', props.status?.value)
-    }, [])
-
     const theme = useTheme()
 
     return <Grid container item data-testid='add-ball-finish-step' direction='column'>

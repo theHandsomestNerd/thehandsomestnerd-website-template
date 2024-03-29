@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="TypeScriptCompiler">
+    <option name="nodeInterpreterTextField" value="/opt/homebrew/opt/node@18/bin/node" />
+    <option name="showSuggestions" value="false" />
+    <option name="typeScriptServiceDirectory" value="$PROJECT_DIR$/functions-v2/node_modules/typescript" />
+    <option name="versionType" value="SERVICE_DIRECTORY" />
+  </component>
+</project>

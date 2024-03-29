@@ -1,4 +1,4 @@
-import React, {FunctionComponent, useContext, useEffect, useState} from 'react'
+import{FunctionComponent, useContext, useEffect, useState} from 'react'
 import {Grid, Typography, useMediaQuery} from '@mui/material'
 import useCustomStyles from "../../../mackenzies-mind/pages/Styles";
 import CountdownToLaunch from "./CountdownToLaunch";
@@ -27,7 +27,7 @@ const UnderConstruction: FunctionComponent<IProps> = (props) => {
 
     const [releaseDate, setReleaseDate] = useState<Date>()
 
-    React.useEffect(() => {
+    useEffect(() => {
         const getPage = async () => {
             return sanityContext.fetchRef(props.underConstructionPageRef).then((pageResponse:any) => {
                 return pageResponse

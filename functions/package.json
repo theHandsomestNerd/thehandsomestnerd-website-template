@@ -10,11 +10,11 @@
     "start": "npm run shell",
     "deploy": "npm run build && npm run html && firebase deploy",
     "logs": "firebase functions:log",
-    "html": "mv ../website-client/dist/index.html ./lib",
+    "html": "mv ../webclient/dist/index.html ./lib",
     "cp-storybook": "cp -Rf ../storybook-static ../build/sb"
   },
   "engines": {
-    "node": "14"
+    "node": "18"
   },
   "main": "lib/index.js",
   "dependencies": {
@@ -25,12 +25,12 @@
     "axios": "^1.6.2",
     "dotenv": "^16.3.1",
     "es6-promise": "^4.2.8",
-    "express": "^4.18.2",
+    "express": "^4.19.2",
     "firebase-admin": "^11.11.0",
-    "firebase-functions": "^4.5.0",
+    "firebase-functions": "^4.8.1",
     "json-bigint": "^1.0.0",
     "node-fetch": "^3.3.2",
-    "prerender-node": "^3.7.0",
+    "the-handsomestnerd-internal": "^0.1.19",
     "uuid": "^9.0.1"
   },
   "devDependencies": {
@@ -44,7 +44,6 @@
     "eslint-config-google": "^0.14.0",
     "eslint-plugin-import": "^2.29.0",
     "firebase-functions-test": "^3.1.0",
-    "typescript": "^5.1.3"
-  },
-  "private": true
+    "typescript": "^5.4.3"
+  }
 }

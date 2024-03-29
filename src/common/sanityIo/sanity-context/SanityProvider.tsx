@@ -1,4 +1,4 @@
-import React, {FunctionComponent, PropsWithChildren, useContext, useMemo,} from 'react';
+import {FunctionComponent, PropsWithChildren, useContext, useEffect, useMemo, useState,} from 'react';
 import SanityContext from './SanityContext';
 import createClient from "@sanity/client";
 import {v4 as uuidv4} from 'uuid';
@@ -118,17 +118,17 @@ const PLACEHOLDER_URL = "https://placehold.co/"
 const SanityProvider: FunctionComponent<IProps & PropsWithChildren> = (
     props: PropsWithChildren<IProps>,
 ) => {
-    const [theSanityClient, setTheSanityClient] = React.useState<any>(undefined)
-    const [theSanityBartenderClient, setTheSanityBartenderClient] = React.useState<any>(undefined)
-    const [sanityConfig, setSanityConfig] = React.useState<any>()
-    const [sanityBartenderConfig, setSanityBartenderConfig] = React.useState<any>()
+    const [theSanityClient, setTheSanityClient] = useState<any>(undefined)
+    const [theSanityBartenderClient, setTheSanityBartenderClient] = useState<any>(undefined)
+    const [sanityConfig, setSanityConfig] = useState<any>()
+    const [sanityBartenderConfig, setSanityBartenderConfig] = useState<any>()
 
 
-    const [builder, setBuilder] = React.useState<ImageUrlBuilder>()
-    const [cocktailBuilder, setCocktailBuilder] = React.useState<any>()
+    const [builder, setBuilder] = useState<ImageUrlBuilder>()
+    const [cocktailBuilder, setCocktailBuilder] = useState<any>()
 
 
-    React.useEffect(() => {
+    useEffect(() => {
         if (sanityConfig) {
             console.log("sanityConfig initialized properly", sanityConfig)
             setTheSanityClient(createClient({
@@ -143,7 +143,7 @@ const SanityProvider: FunctionComponent<IProps & PropsWithChildren> = (
         }
     }, [sanityConfig])
 
-    React.useEffect(() => {
+    useEffect(() => {
         if (sanityBartenderConfig) {
             // console.log("sanityConfig initialized properly", sanityConfig)
             setTheSanityBartenderClient(createClient({
@@ -158,14 +158,14 @@ const SanityProvider: FunctionComponent<IProps & PropsWithChildren> = (
         }
     }, [sanityBartenderConfig])
 
-    React.useEffect(() => {
+    useEffect(() => {
         if (theSanityClient !== undefined) {
             console.log("getting image builders for", theSanityClient)
             setBuilder(imageUrlBuilder(theSanityClient))
         }
     }, [theSanityClient])
 
-    React.useEffect(() => {
+    useEffect(() => {
         if (theSanityBartenderClient !== undefined) {
             console.log("getting image builders for bartender", theSanityBartenderClient)
             setCocktailBuilder(imageUrlBuilder(theSanityBartenderClient))
@@ -570,22 +570,19 @@ const SanityProvider: FunctionComponent<IProps & PropsWithChildren> = (
     const useFetchMenuBySlugQuery = (menuSlug: string) => {
         console.log("fetching menu with slug", menuSlug)
         return useQuery(
-            [menuSlug],
-            () => {
-                return theSanityClient
-                    .fetch(
-                        `*[slug.current == $menuSlug]{
+            {
+                queryKey: [menuSlug],
+                queryFn: () => {
+                    return theSanityClient
+                        .fetch(
+                            `*[slug.current == $menuSlug]{
           ${GroqQueries.MENUGROUPCONTAINER}
        }`, {menuSlug: menuSlug ?? 'header-menu'}
-                    )
-                    .then((data: SanityMenuContainer[]) => {
-                        return data[0]
-                    })
-            },
-            {
-                staleTime: Infinity,
-                refetchInterval: false,
-                refetchOnWindowFocus: false
+                        )
+                        .then((data: SanityMenuContainer[]) => {
+                            return data[0]
+                        })
+                },
             }
         );
     }
@@ -596,31 +593,27 @@ const SanityProvider: FunctionComponent<IProps & PropsWithChildren> = (
         const menuId = headerMenuRef?._ref ?? ['no-id']
 
         return useQuery(
-            // @ts-ignore
-            [...menuId],
-            () => {
-                return theSanityClient
-                    .fetch(
-                        `*[_id == $menuId && _type == "menuContainer"]{
-          ${groqQueries.MENUGROUPCONTAINER}
-        }`, {menuId})
-                    .then((result: any) => {
-                        if (result.length === 0) {
-
-                            return Promise.reject(Error("No results returned"))
-                        }
-                        return result[0]
-                    }).catch(() => {
-                        return Promise.reject(Error("Sanity Error getting pageSlug " + menuId))
-                    })
-            },
             {
-                staleTime: Infinity,
-                refetchInterval: false,
-                refetchOnWindowFocus: false,
-                refetchOnMount: false,
-            }
-        );
+                queryKey: [...menuId],
+                queryFn: () => {
+                    return theSanityClient
+                        .fetch(
+                            `*[_id == $menuId && _type == "menuContainer"]{
+                          ${groqQueries.MENUGROUPCONTAINER}
+                        }`,
+                            {menuId}
+                        )
+                        .then((result: any) => {
+                            if (result.length === 0) {
+
+                                return Promise.reject(Error("No results returned"))
+                            }
+                            return result[0]
+                        }).catch(() => {
+                            return Promise.reject(Error("Sanity Error getting pageSlug " + menuId))
+                        })
+                },
+            });
 
     }
 
@@ -641,62 +634,54 @@ const SanityProvider: FunctionComponent<IProps & PropsWithChildren> = (
 
     const useFetchRefsQuery = (refs: SanityRef[]) => {
         return useQuery(
-            ['fetchRefs'],
-            async () => {
-                return fetchRefs(refs)
-                    .then((results: any[]) => {
-                        if (results.length === 0) {
-                            console.log("whew! after fetching a bunch of refs ", results)
-                        }
-                        return results
-                    }).catch((e: any) => {
-                        console.log("error getting services", e)
-                        return []
-                    })
-            },
             {
-                staleTime: Infinity,
-                refetchInterval: false,
-                refetchOnWindowFocus: false
-            }
-        );
+                queryKey: ['fetchRefs'],
+                queryFn: async () => {
+                    return fetchRefs(refs)
+                        .then((results: any[]) => {
+                            if (results.length === 0) {
+                                console.log("whew! after fetching a bunch of refs ", results)
+                            }
+                            return results
+                        }).catch((e: any) => {
+                            console.log("error getting services", e)
+                            return []
+                        })
+                },
+            });
     }
 
 
     const useFetchServicesQuery = (pageSlug?: string) => {
         return useQuery(
-            ['fetchServices'],
-            async () => {
-                console.log("fetchings services", pageSlug)
-                const serviceSlug = pageSlug
+            {
+                queryKey: ['fetchServices'],
+                queryFn: async () => {
+                    console.log("fetchings services", pageSlug)
+                    const serviceSlug = pageSlug
 
-                let serviceSlugClause: string = ''
-                if (serviceSlug) {
-                    serviceSlugClause = " && slug.current != $serviceSlug"
+                    let serviceSlugClause: string = ''
+                    if (serviceSlug) {
+                        serviceSlugClause = " && slug.current != $serviceSlug"
+                    }
+
+                    const query = `*[_type == "transformServiceItem"${serviceSlugClause}]{
+                     ${groqQueries.SERVICE}
+                    }`
+                    const params = serviceSlug ? {serviceSlug: serviceSlug} : {}
+
+                    return theSanityClient
+                        .fetch(query, params)
+                        .then((results: ThwServiceItemType[]) => {
+                            if (results.length === 0) {
+                                console.log("No Services present")
+                            }
+                            return results
+                        }).catch((e: any) => {
+                            console.log("error getting services", e)
+                            return []
+                        })
                 }
-
-                const query = `*[_type == "transformServiceItem"${serviceSlugClause}]{
-             ${groqQueries.SERVICE}
-            }`
-
-                const params = serviceSlug ? {serviceSlug: serviceSlug} : {}
-
-                return theSanityClient
-                    .fetch(query, params)
-                    .then((results: ThwServiceItemType[]) => {
-                        if (results.length === 0) {
-                            console.log("No Services present")
-                        }
-                        return results
-                    }).catch((e: any) => {
-                        console.log("error getting services", e)
-                        return []
-                    })
-            }
-            , {
-                staleTime: Infinity,
-                refetchInterval: false,
-                refetchOnWindowFocus: false
             });
     }
 
@@ -964,25 +949,26 @@ const SanityProvider: FunctionComponent<IProps & PropsWithChildren> = (
     const useFetchAllFlashCards = () => {
         console.log("fetching cocktails",)
         return useQuery(
-            ["all-cocktails"],
-            () => {
-                return theSanityBartenderClient
-                    .fetch(
-                        `*[_type == "Cocktail" && isDisabled != true]{
+            {
+                queryKey: ["all-cocktails"],
+                queryFn: () => {
+                    return theSanityBartenderClient
+                        .fetch(
+                            `*[_type == "Cocktail" && isDisabled != true]{
           ${groqQueries.COCKTAIL}
        }`,)
-                    .then((data: SanityCocktailType[]) => {
-                        return data
-                    })
-            }
-        );
+                        .then((data: SanityCocktailType[]) => {
+                            return data
+                        })
+                }
+            });
     }
 
     const useFetchMyCocktails = () => {
         console.log("fetching my cocktails ingredient breakdown",)
-        return useQuery(
-            ["cocktails-ingredient-breakdown"],
-            () => {
+        return useQuery({
+            queryKey: ["cocktails-ingredient-breakdown"],
+            queryFn: () => {
                 return theSanityBartenderClient
                     .fetch(
                         `{
@@ -1027,14 +1013,14 @@ const SanityProvider: FunctionComponent<IProps & PropsWithChildren> = (
                         return theResults
                     })
             }
-        );
+        });
     }
 
 
     const useFetchAllBarIngredients = () => {
-        return useQuery(
-            ["all-bar-ingredients"],
-            () => {
+        return useQuery({
+            queryKey: ["all-bar-ingredients"],
+            queryFn: () => {
                 return theSanityBartenderClient
                     .fetch(
                         `*[_type == "Ingredient"]{
@@ -1044,7 +1030,7 @@ const SanityProvider: FunctionComponent<IProps & PropsWithChildren> = (
                         return data
                     })
             }
-        );
+        });
     }
 
     // const useFetchMyBarIngredients = () => {
@@ -1067,7 +1053,7 @@ const SanityProvider: FunctionComponent<IProps & PropsWithChildren> = (
                     ...,
                     "theBar": theBar[]->
        }`,)
-                .then((data:SanityBarInventoryType[]) => {
+                .then((data: SanityBarInventoryType[]) => {
                     console.log("the ingredients and garnishes from my bar", barInventorySlug, data)
                     if (data !== undefined && data[0] !== undefined && data[0].theBar !== undefined)
                         return data[0].theBar
@@ -1076,9 +1062,9 @@ const SanityProvider: FunctionComponent<IProps & PropsWithChildren> = (
     }
 
     const useFetchAllLiquorTypes = () => {
-        return useQuery(
-            ["all-liquor-types"],
-            () => {
+        return useQuery({
+            queryKey: ["all-liquor-types"],
+            queryFn: () => {
                 return theSanityBartenderClient
                     .fetch(
                         `*[_type == "LiquorType"]{
@@ -1088,7 +1074,7 @@ const SanityProvider: FunctionComponent<IProps & PropsWithChildren> = (
                         return data
                     })
             }
-        );
+        });
     }
 
 
@@ -1098,30 +1084,31 @@ const SanityProvider: FunctionComponent<IProps & PropsWithChildren> = (
         const liquorTypes = searchContext.searchFilters
 
         return useQuery(
-            ["filter-bar-ingredients-by-liq-type"],
-            () => {
-                if (liquorTypes !== undefined && liquorTypes.length > 0)
-                    return theSanityBartenderClient
-                        .fetch(
-                            `*[_type == "Ingredient" && references($liquorTypeId)]{
+            {
+                queryKey: ["filter-bar-ingredients-by-liq-type"],
+                queryFn: () => {
+                    if (liquorTypes !== undefined && liquorTypes.length > 0)
+                        return theSanityBartenderClient
+                            .fetch(
+                                `*[_type == "Ingredient" && references($liquorTypeId)]{
               ${groqQueries.INGREDIENT}
            }`, {
-                                liquorTypeId: liquorTypes
+                                    liquorTypeId: liquorTypes
+                                })
+                            .then((data: SanityCocktailIngredient[]) => {
+                                return data
                             })
+
+                    return theSanityBartenderClient
+                        .fetch(
+                            `*[_type == "Ingredient"]{
+              ${groqQueries.INGREDIENT}
+           }`)
                         .then((data: SanityCocktailIngredient[]) => {
                             return data
                         })
-
-                return theSanityBartenderClient
-                    .fetch(
-                        `*[_type == "Ingredient"]{
-              ${groqQueries.INGREDIENT}
-           }`)
-                    .then((data: SanityCocktailIngredient[]) => {
-                        return data
-                    })
-            }
-        );
+                }
+            });
     }
 
     const useFetchMyFilteredIngredients = () => {
@@ -1129,59 +1116,59 @@ const SanityProvider: FunctionComponent<IProps & PropsWithChildren> = (
 
         const liquorTypes = searchContext.searchFilters
 
-        return useQuery(
-            ["filter-my-bar-ingredients-by-liq-type"],
-            // @ts-ignore
-            () => {
-                if (liquorTypes !== undefined && liquorTypes.length > 0)
-                    return theSanityBartenderClient
-                        .fetch(
-                            `*[ _type == "BarInventory"]{
+        return useQuery({
+            queryKey: ["filter-my-bar-ingredients-by-liq-type"],
+            queryFn:// @ts-ignore
+                () => {
+                    if (liquorTypes !== undefined && liquorTypes.length > 0)
+                        return theSanityBartenderClient
+                            .fetch(
+                                `*[ _type == "BarInventory"]{
                                   ...,
                                   "theBarLiquorTypes": *[ _type == "Ingredient" && _id in ^.theBar[]._ref && references($liquorTypeId)]{
                                     liquorType->,
                                     ...
                                   }
                                 }`, {
-                                liquorTypeId: liquorTypes,
+                                    liquorTypeId: liquorTypes,
+                                })
+                            .then((data: SanityBarInventoryType[]) => {
+                                console.log("Supposed to be response", data[0]?.theBarLiquorTypes)
+
+                                // const response = data[0].theBarLiquorTypes.reduce((accumulated:SanityLiquorType[], value)=>{
+                                //     const findType = accumulated.find((findingValue:SanityLiquorType)=>{
+                                //         console.log("checking id", findingValue?._id, value?.liquorType?._id)
+                                //         if(value.liquorType && (findingValue._id === value?.liquorType?._id)){
+                                //             return findingValue
+                                //         }
+                                //         return undefined
+                                //     })
+                                //
+                                //     if(!findType && value.liquorType) {
+                                //         console.log("pushing",value.liquorType)
+                                //         accumulated.push(value.liquorType)
+                                //
+                                //     }
+                                //     console.log("acc", accumulated)
+                                //
+                                //     return accumulated
+                                // },[])
+                                console.log("Supposed to be response", data[0].theBarLiquorTypes)
+
+                                return data[0].theBarLiquorTypes
                             })
-                        .then((data: SanityBarInventoryType[]) => {
-                            console.log("Supposed to be response", data[0]?.theBarLiquorTypes)
 
-                            // const response = data[0].theBarLiquorTypes.reduce((accumulated:SanityLiquorType[], value)=>{
-                            //     const findType = accumulated.find((findingValue:SanityLiquorType)=>{
-                            //         console.log("checking id", findingValue?._id, value?.liquorType?._id)
-                            //         if(value.liquorType && (findingValue._id === value?.liquorType?._id)){
-                            //             return findingValue
-                            //         }
-                            //         return undefined
-                            //     })
-                            //
-                            //     if(!findType && value.liquorType) {
-                            //         console.log("pushing",value.liquorType)
-                            //         accumulated.push(value.liquorType)
-                            //
-                            //     }
-                            //     console.log("acc", accumulated)
-                            //
-                            //     return accumulated
-                            // },[])
-                            console.log("Supposed to be response", data[0].theBarLiquorTypes)
-
-                            return data[0].theBarLiquorTypes
-                        })
-
-                return theSanityBartenderClient
-                    .fetch(
-                        `*[_type == "BarInventory" && slug.current=='${process.env.REACT_APP_BAR_INVENTORY_SLUG}']{
+                    return theSanityBartenderClient
+                        .fetch(
+                            `*[_type == "BarInventory" && slug.current=='${process.env.REACT_APP_BAR_INVENTORY_SLUG}']{
               ...,
               "theBar":theBar[]->
            }`)
-                    .then((data: any[]) => {
-                        return data[0]?.theBar
-                    })
-            }
-        );
+                        .then((data: any[]) => {
+                            return data[0]?.theBar
+                        })
+                }
+        });
     }
     const useFetchFilteredCocktails = () => {
         const searchContext: SearchContextType = useContext(SearchContext)
@@ -1190,9 +1177,9 @@ const SanityProvider: FunctionComponent<IProps & PropsWithChildren> = (
 
         // include the search string in the search
 
-        return useQuery(
-            ["filter-bar-ingredients-by-liq-type"],
-            () => {
+        return useQuery({
+            queryKey: ["filter-bar-ingredients-by-liq-type"],
+            queryFn: () => {
                 if (liquorTypes !== undefined && liquorTypes.length > 0)
                     return theSanityBartenderClient
                         .fetch(
@@ -1214,7 +1201,7 @@ const SanityProvider: FunctionComponent<IProps & PropsWithChildren> = (
                         return data
                     })
             }
-        );
+        });
     }
 
     const useFetchSearchedCocktails = () => {
@@ -1226,48 +1213,49 @@ const SanityProvider: FunctionComponent<IProps & PropsWithChildren> = (
         // const liquorTypes = searchContext.searchFilters
 
         return useQuery(
-            ["search-cocktails-by-criteria"],
-            () => {
-                const searchString = searchContext.searchString
-                //  if(liquorTypes && liquorTypes.length > 0 )
-                //      return sanityClient
-                //          .fetch(
-                //              `*[_type == "Ingredient" && references($liquorTypeId)]{
-                //    ${groqQueries.INGREDIENT}
-                // }`,{
-                //                  liquorTypeId:liquorTypes
-                //              })
-                //          .then((data: SanityCocktailIngredient[]) => {
-                //              return data
-                //          })
-                if (searchString === undefined)
-                    return theSanityBartenderClient
-                        .fetch(
-                            `*[_type == "Cocktail" && isDisabled != true]{
+            {
+                queryKey: ["search-cocktails-by-criteria"],
+                queryFn: () => {
+                    const searchString = searchContext.searchString
+                    //  if(liquorTypes && liquorTypes.length > 0 )
+                    //      return sanityClient
+                    //          .fetch(
+                    //              `*[_type == "Ingredient" && references($liquorTypeId)]{
+                    //    ${groqQueries.INGREDIENT}
+                    // }`,{
+                    //                  liquorTypeId:liquorTypes
+                    //              })
+                    //          .then((data: SanityCocktailIngredient[]) => {
+                    //              return data
+                    //          })
+                    if (searchString === undefined)
+                        return theSanityBartenderClient
+                            .fetch(
+                                `*[_type == "Cocktail" && isDisabled != true]{
               ${groqQueries.COCKTAIL}
            }`)
-                        .then((data: SanityCocktailType[]) => {
-                            return data
-                        })
+                            .then((data: SanityCocktailType[]) => {
+                                return data
+                            })
 
-                if (searchString.length > 0)
-                    return theSanityBartenderClient
-                        .fetch(
-                            `*[_type == "Cocktail" && 
+                    if (searchString.length > 0)
+                        return theSanityBartenderClient
+                            .fetch(
+                                `*[_type == "Cocktail" && 
                                 title match "*$searchString*" 
                                 && isDisabled != true
                              ]{
               ${groqQueries.COCKTAIL}
            }`, {
-                                searchString
+                                    searchString
+                                })
+                            .then((data: SanityCocktailType[]) => {
+                                return data
                             })
-                        .then((data: SanityCocktailType[]) => {
-                            return data
-                        })
-                return undefined;
+                    return undefined;
 
-            }
-        );
+                }
+            });
     }
 
     const getProduct = async (searchString?: string, searchFilters?: string[], ingredientFilters?: string[], isAndSearch?: boolean) => {

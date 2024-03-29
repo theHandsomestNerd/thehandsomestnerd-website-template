@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react'
+import {FunctionComponent, useEffect, useState} from 'react'
 import { Button, Grid, Typography, useTheme } from '@mui/material'
 import {
   AddBallState,
@@ -18,14 +18,14 @@ export type NotifyOnApprovalProps = {
 }
 
 const NotifyOnApproval: FunctionComponent<NotifyOnApprovalProps> = (props: NotifyOnApprovalProps) => {
-  const [notifyOnApprovalState, setNotifyOnApprovalState] = React.useState<NotifyOnApprovalState>({})
+  const [notifyOnApprovalState, setNotifyOnApprovalState] = useState<NotifyOnApprovalState>({})
 
   const isNotifyOnApprovalFormValid = ():boolean => {
     return !!((notifyOnApprovalState.notifyOnApproval && (!notifyOnApprovalState.notifyName && !notifyOnApprovalState.notifyEmail)) ||
     (notifyOnApprovalState.notifyOnApproval && (notifyOnApprovalState.notifyName && !!notifyOnApprovalState.notifyEmail)))
   }
 
-  React.useEffect(() => {
+  useEffect(() => {
     props.validateStep({ isNotifyOnApprovalValid: isNotifyOnApprovalFormValid() })
 
     if (notifyOnApprovalState.notifyOnApproval && (!notifyOnApprovalState.notifyName && !notifyOnApprovalState.notifyEmail)) {
@@ -35,21 +35,21 @@ const NotifyOnApproval: FunctionComponent<NotifyOnApprovalProps> = (props: Notif
     }
   }, [notifyOnApprovalState, notifyOnApprovalState.notifyName, notifyOnApprovalState.notifyEmail])
 
-  React.useEffect(() => {
+  useEffect(() => {
     setNotifyOnApprovalState((state) => ({
       ...state,
       notifyEmail: props.newBallToAdd?.notifyEmail,
     }))
   }, [props.newBallToAdd?.notifyEmail])
 
-  React.useEffect(() => {
+  useEffect(() => {
     setNotifyOnApprovalState((state) => ({
       ...state,
       notifyName: props.newBallToAdd?.notifyName,
     }))
   }, [props.newBallToAdd?.notifyName])
 
-  React.useEffect(() => {
+  useEffect(() => {
     setNotifyOnApprovalState((state) => ({
       ...state,
       notifyOnApproval: props.newBallToAdd?.notifyOnApproval,

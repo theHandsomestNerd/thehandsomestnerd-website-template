@@ -1,4 +1,4 @@
-import React, {CSSProperties, FunctionComponent, useContext} from 'react'
+import{CSSProperties, FunctionComponent, useContext} from 'react'
 import {Button, Typography, useTheme} from '@mui/material'
 import {SanityMenuItem} from "../../../common/sanityIo/Types";
 import { Theme } from "@mui/material/styles";

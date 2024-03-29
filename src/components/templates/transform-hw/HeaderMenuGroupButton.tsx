@@ -1,4 +1,4 @@
-import React, {FunctionComponent} from 'react'
+import{FunctionComponent} from 'react'
 import {Button, Typography, useTheme} from '@mui/material'
 import {ArrowDropDown} from "@mui/icons-material";
 import {bindTrigger} from "material-ui-popup-state";

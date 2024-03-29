@@ -1,4 +1,4 @@
-import React, {FunctionComponent, PropsWithChildren, useContext, useMemo, useRef,} from 'react';
+import {FunctionComponent, PropsWithChildren, useContext, useMemo, useRef, useState,} from 'react';
 import {
     Grid,
     IconButton,
@@ -22,14 +22,14 @@ type IProps = {};
 const ModalProvider: FunctionComponent<IProps & PropsWithChildren> = (
     props: PropsWithChildren<IProps>,
 ) => {
-    const [modalOpen, setModalOpen] = React.useState<boolean>(false)
+    const [modalOpen, setModalOpen] = useState<boolean>(false)
     const theme = useTheme()
     const ref: any = useRef(null)
 
     const xsDown = useMediaQuery(theme.breakpoints.down('xs'))
     const sanityContext = useContext(SanityContext)
 
-    const [modalContent, setModalContent] = React.useState<SanityModalType | undefined>(
+    const [modalContent, setModalContent] = useState<SanityModalType | undefined>(
         undefined,
     );
 
@@ -37,7 +37,7 @@ const ModalProvider: FunctionComponent<IProps & PropsWithChildren> = (
         setModalOpen(false)
     }
 
-    // React.useEffect(() => {
+    // useEffect(() => {
     //     console.log("height", ref?.current?.scrollHeight, ref?.current?.clientHeight)
     // }, [ref.current])
 
@@ -94,7 +94,7 @@ const ModalProvider: FunctionComponent<IProps & PropsWithChildren> = (
                             <Grid container item justifyContent='center' alignItems='center' alignContent='center'
                                   style={{position: "absolute", height: "100%", zIndex: 1}}>
                                 {<ColoredPng color={'rgba(16, 43, 136, .3)'}
-                                             maskUrl={sanityContext.urlFor(modalContent?.iconOverlayImageSrc)?.url() ?? ""}
+                                             maskUrl={sanityContext.placeholderOrImage(modalContent?.iconOverlayImageSrc, 100, 100)}
                                              size={400}/>}
                             </Grid>
                             <Grid container item justifyContent='center' alignItems='center' alignContent='center'

@@ -1,4 +1,4 @@
-import React, {FunctionComponent, PropsWithChildren, useContext} from 'react'
+import {FunctionComponent, PropsWithChildren, useContext, useEffect, useState} from 'react'
 
 import makeStyles from "@mui/styles/makeStyles";
 import {Fab, Grid, Typography} from "@mui/material";
@@ -53,9 +53,9 @@ const AWBallSearchSection: FunctionComponent<IProps> = (props: IProps) => {
     // const theme = useTheme()
     const searchContext = useContext(BallSearchContext)
     // const sanityContext = useContext(SanityContext)
-    const [displayedResults, setDisplayedResults] = React.useState<SanityBallType[]>()
+    const [displayedResults, setDisplayedResults] = useState<SanityBallType[]>()
 
-    React.useEffect(() => {
+    useEffect(() => {
         console.log("The sanity context before setting balls", searchContext)
         // if (props.balls) {
         //     setDisplayedResults(props.balls)
@@ -63,7 +63,7 @@ const AWBallSearchSection: FunctionComponent<IProps> = (props: IProps) => {
         setDisplayedResults(searchContext.displayResults)
     }, [searchContext.displayResults])
 
-    React.useEffect(() => {
+    useEffect(() => {
         if (props.balls) {
             setDisplayedResults(props.balls)
         }
@@ -76,7 +76,7 @@ const AWBallSearchSection: FunctionComponent<IProps> = (props: IProps) => {
         console.log('the balls found', remainingBalls)
     }
 
-    React.useEffect(() => {
+    useEffect(() => {
         getNewData().then()
     }, [])
 

@@ -1,4 +1,4 @@
-import React, {FunctionComponent} from 'react'
+import {FunctionComponent, useEffect} from 'react'
 import {Card, Grid, Typography, useTheme} from '@mui/material'
 import {AnimatedServiceItemNoRefType} from "../BlockContentTypes";
 import ColoredPng from "../colored-png/ColoredPng";
@@ -27,7 +27,7 @@ const AnimatedServiceItem: FunctionComponent<IProps> = (props: IProps) => {
     const shapeControls = useAnimation();
     const [shapeRef, shapeInView] = useInView();
 
-    React.useEffect(() => {
+    useEffect(() => {
         if (shapeInView) {
             shapeControls.start("onScreen");
         } else {

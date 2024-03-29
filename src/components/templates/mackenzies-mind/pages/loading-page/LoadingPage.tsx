@@ -1,6 +1,6 @@
 import {CircularProgress, Grid, Typography, useTheme} from '@mui/material';
 import makeStyles from '@mui/styles/makeStyles';
-import React, {FunctionComponent} from 'react'
+import{FunctionComponent} from 'react'
 import useCustomStyles from "../Styles";
 import Logo from "../../../../logo/Logo";
 

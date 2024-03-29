@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react'
+import {FunctionComponent, useEffect, useState} from 'react'
 import { Grid, Typography, useTheme } from '@mui/material'
 import { AddBallState, BallDateState, StepValidationTableType, ValidationResponse } from '../ballroomTypes'
 import { combineDateAndTime } from '../HTMLUtils'
@@ -13,41 +13,41 @@ export type BallDateProps = {
 }
 
 const BallDate: FunctionComponent<BallDateProps> = (props: BallDateProps) => {
-  const [ballDateState, setBallDateState] = React.useState<BallDateState>({...props.newBallToAdd})
+  const [ballDateState, setBallDateState] = useState<BallDateState>({...props.newBallToAdd})
 
   const updateBallFormParams = (event:any) => {
     setBallDateState((state:any) => ({...state, [event.target.name]: event.target.value}))
   }
 
-  React.useEffect(() => {
+  useEffect(() => {
     setBallDateState((state:any) => ({
       ...state,
       functionStartTime: props.newBallToAdd?.functionStartTime
     }))
   }, [props.newBallToAdd?.functionStartTime])
 
-  React.useEffect(() => {
+  useEffect(() => {
     setBallDateState((state:any) => ({
       ...state,
       functionStartDate: props.newBallToAdd?.functionStartDate
     }))
   }, [props.newBallToAdd?.functionStartDate])
 
-  React.useEffect(() => {
+  useEffect(() => {
     setBallDateState((state:any) => ({
       ...state,
       functionEndDate: props.newBallToAdd?.functionEndDate
     }))
   }, [props.newBallToAdd?.functionEndDate])
 
-  React.useEffect(() => {
+  useEffect(() => {
     setBallDateState((state:any) => ({
       ...state,
       functionEndTime: props.newBallToAdd?.functionEndTime
     }))
   }, [props.newBallToAdd?.functionEndTime])
 
-  React.useEffect(() => {
+  useEffect(() => {
     const areDatesValidResponse = ballDateState?.functionEndTime ? areDatesValid() : false
 
     const stepCompleteArg = {

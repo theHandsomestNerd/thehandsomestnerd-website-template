@@ -1,4 +1,4 @@
-import React, {FunctionComponent} from 'react'
+import {FunctionComponent, useEffect, useState} from 'react'
 import {Button, FormControlLabel, FormGroup, Grid, InputAdornment, Switch, Typography, useTheme} from '@mui/material'
 import {Category, CategoryGenderType, CategoryNameType, CategoryPrizeType, CategoryTypeType} from '../../ballroomTypes'
 import {enumCreateSelectOptionsFromType} from '../../HTMLUtils'
@@ -22,49 +22,49 @@ const CategoryStepComponent: FunctionComponent<CategoryStepComponentProps> = (pr
         category: {...props.category},
     }
 
-    const [categoryState, setCategoryState] = React.useState(initialState)
-    const [categoryStep, setCategoryStep] = React.useState<number>(0)
-    const [canFinalize, setCanFinalize] = React.useState<boolean>(false)
-    const [isCategoryClosed, setIsCategoryClosed] = React.useState<boolean>(false)
-    const [isEditMode, setIsEditMode] = React.useState<boolean>(false)
+    const [categoryState, setCategoryState] = useState(initialState)
+    const [categoryStep, setCategoryStep] = useState<number>(0)
+    const [canFinalize, setCanFinalize] = useState<boolean>(false)
+    const [isCategoryClosed, setIsCategoryClosed] = useState<boolean>(false)
+    const [isEditMode, setIsEditMode] = useState<boolean>(false)
 
-    React.useEffect(() => {
+    useEffect(() => {
         setCategoryState({category: props.category})
     }, [props.category])
 
-    React.useEffect(() => {
+    useEffect(() => {
         setIsEditMode(!props.isEditMode)
     }, [props.isEditMode])
 
-    React.useEffect(() => {
+    useEffect(() => {
         setIsCategoryClosed(!props.isCategoryClosed)
     }, [props.isCategoryClosed])
 
-    React.useEffect(() => {
+    useEffect(() => {
         if (categoryState.category.catGender && categoryStep < 1) {
             setCategoryStep(1)
         }
     }, [categoryState.category.catGender])
 
-    React.useEffect(() => {
+    useEffect(() => {
         if (categoryState.category.catType && categoryStep < 2) {
             setCategoryStep(2)
         }
     }, [categoryState.category.catType])
 
-    React.useEffect(() => {
+    useEffect(() => {
         if (categoryState.category.catName && categoryStep < 3) {
             setCategoryStep(3)
         }
     }, [categoryState.category.catName])
 
-    React.useEffect(() => {
+    useEffect(() => {
         if (categoryState.category.catDescription && categoryState.category.catDescription.length > 1 && categoryStep < 4) {
             setCategoryStep(4)
         }
     }, [categoryState.category.catDescription])
 
-    React.useEffect(() => {
+    useEffect(() => {
         if (categoryState.category.catPrize && categoryStep < 5 &&
             //@ts-ignore
             (CategoryPrizeType[categoryState.category.catPrize] !== CategoryPrizeType.MONETARY)) {
@@ -77,7 +77,7 @@ const CategoryStepComponent: FunctionComponent<CategoryStepComponentProps> = (pr
         }
     }, [categoryState.category.catPrize])
 
-    React.useEffect(() => {
+    useEffect(() => {
         if (categoryState.category.monetaryPrize && categoryStep < 6 && categoryState.category.monetaryPrize > 0) {
             setCategoryStep(6)
             setCanFinalize(true)

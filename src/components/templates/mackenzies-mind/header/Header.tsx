@@ -1,4 +1,4 @@
-import React, {FunctionComponent} from 'react'
+import {FunctionComponent, useState} from 'react'
 import {Box, Grid, IconButton, Modal, useMediaQuery, useTheme} from '@mui/material'
 import MainMenu from "./MainMenu";
 import FilteredMenuItems from "../../../filtered-menu-items/FilteredMenuItems";
@@ -43,7 +43,7 @@ const Header: FunctionComponent<HeaderProps> = (props) => {
 
     const xsDown = useMediaQuery(theme.breakpoints.down('xs'))
     const mdDown = useMediaQuery(theme.breakpoints.down('md'))
-    const [isSearchOpen, setIsSearchOpen] = React.useState<boolean>(false)
+    const [isSearchOpen, setIsSearchOpen] = useState<boolean>(false)
 
     return (
         <AppBarWrapper backgroundColor={props.backgroundColor} isAppBar={props.isAppBar} isEnhanced={props.isEnhanced}>

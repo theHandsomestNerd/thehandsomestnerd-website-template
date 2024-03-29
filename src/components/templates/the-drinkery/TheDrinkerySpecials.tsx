@@ -1,4 +1,4 @@
-import React, {FunctionComponent, useContext} from 'react'
+import{FunctionComponent, useContext} from 'react'
 import clsx from "clsx";
 import useCustomStyles from "../mackenzies-mind/pages/Styles";
 import TheOtherSideLogo from "./TheOtherSideLogo";

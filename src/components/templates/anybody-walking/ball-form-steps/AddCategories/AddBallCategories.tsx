@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react'
+import {FunctionComponent, useEffect, useState} from 'react'
 import { Button, Grid, Modal, Typography } from '@mui/material'
 import { Add, Close } from '@mui/icons-material'
 import CategoryStepComponent from './CategoryStepComponent'
@@ -11,13 +11,13 @@ export type AddBallCategoriesProps = {
 }
 
 const AddBallCategories: FunctionComponent<AddBallCategoriesProps> = (props: AddBallCategoriesProps) => {
-  const [addBallCategoriesState, setAddBallCategoriesState] = React.useState<AddBallCategoriesState>({})
-  const [isAddCategoryOpen, setIsAddCategoryOpen] = React.useState<boolean>(false)
+  const [addBallCategoriesState, setAddBallCategoriesState] = useState<AddBallCategoriesState>({})
+  const [isAddCategoryOpen, setIsAddCategoryOpen] = useState<boolean>(false)
 
-  const [currentCategoryIndex, setCurrentCategoryIndex] = React.useState<number>(-1)
+  const [currentCategoryIndex, setCurrentCategoryIndex] = useState<number>(-1)
 
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (addBallCategoriesState.categories && addBallCategoriesState.categories.length > 0) {
 
       props.stepComplete(addBallCategoriesState)
@@ -25,7 +25,7 @@ const AddBallCategories: FunctionComponent<AddBallCategoriesProps> = (props: Add
 
   }, [addBallCategoriesState.categories])
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (props.newBallToAdd?.categories) {
       setAddBallCategoriesState((state) => ({
         ...state,

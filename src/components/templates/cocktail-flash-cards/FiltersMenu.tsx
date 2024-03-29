@@ -1,4 +1,4 @@
-import React, {FunctionComponent, useContext, useState} from 'react'
+import {FunctionComponent, useContext, useEffect, useState} from 'react'
 import {Button, CircularProgress, Divider, Drawer, Grid, List, ListItem,} from "@mui/material";
 import {makeStyles} from "@mui/styles";
 import {MainMenuAnchorType, SanityBarInventoryType} from "../../../common/sanityIo/Types";
@@ -34,8 +34,8 @@ const FiltersMenu: FunctionComponent<MainMenuProps> = ({anchor}) => {
     const [isDrawerOpen, setIsDrawerOpen] = useState<boolean>()
     const sanityContext = useContext(SanityContext)
 
-    const [isBarIngredientsLoading, setIsBarIngredientsLoading] = React.useState<boolean>(false)
-    const [myBarIngredients, setMyBarIngredients] = React.useState<SanityBarInventoryType[]>([])
+    const [isBarIngredientsLoading, setIsBarIngredientsLoading] = useState<boolean>(false)
+    const [myBarIngredients, setMyBarIngredients] = useState<SanityBarInventoryType[]>([])
 
 
     const toggleDrawer = (_anchor: MainMenuAnchorType, open: boolean) => (event: any) => {
@@ -47,7 +47,7 @@ const FiltersMenu: FunctionComponent<MainMenuProps> = ({anchor}) => {
     };
     const pageContext = useContext(PageContext)
 
-    React.useEffect(() => {
+    useEffect(() => {
         setIsBarIngredientsLoading(true)
 
         sanityContext.fetchMyBarIngredients(pageContext.barInventorySlug)

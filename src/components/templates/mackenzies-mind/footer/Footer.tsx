@@ -1,4 +1,4 @@
-import React, {FunctionComponent, useContext} from 'react'
+import{FunctionComponent, useContext} from 'react'
 import makeStyles from '@mui/styles/makeStyles';
 import {Grid, useMediaQuery, useTheme} from '@mui/material'
 import FooterMenuContainer from './FooterMenuContainer'

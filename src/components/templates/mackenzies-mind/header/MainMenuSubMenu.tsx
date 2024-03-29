@@ -1,4 +1,4 @@
-import React, {FunctionComponent, useContext} from 'react'
+import {FunctionComponent, useContext, useState} from 'react'
 import {Button, Collapse, Divider, List, ListItem, ListItemText, Typography, useTheme,} from '@mui/material';
 import createStyles from '@mui/styles/createStyles';
 import {Theme} from "@mui/material/styles";
@@ -33,7 +33,7 @@ interface MainMenuSubMenuProps {
 
 const MainMenuSubMenu: FunctionComponent<MainMenuSubMenuProps> = ({menuGroup}) => {
     const classes = useStyles();
-    const [open, setOpen] = React.useState(false);
+    const [open, setOpen] = useState(false);
 
     const handleClick = (e: any) => {
         e.stopPropagation()

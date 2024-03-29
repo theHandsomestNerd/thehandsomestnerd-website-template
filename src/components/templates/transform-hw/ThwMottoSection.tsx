@@ -1,4 +1,4 @@
-import React, {FunctionComponent, useContext} from 'react'
+import{FunctionComponent, useContext} from 'react'
 import {ThwMottoSectionType} from "../../BlockContentTypes";
 import {Parallax} from 'react-parallax';
 import clsx from "clsx";

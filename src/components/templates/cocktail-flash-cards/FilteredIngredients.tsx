@@ -1,4 +1,4 @@
-import React, {FunctionComponent, useContext} from 'react'
+import {FunctionComponent, useContext, useEffect, useState} from 'react'
 import SearchContext from "./search-context/SearchContext";
 import {Button, Chip, Grid, Typography} from "@mui/material";
 import {SanityCocktailIngredient} from "../../../common/sanityIo/Types";
@@ -13,16 +13,16 @@ const FilteredIngredients: FunctionComponent<IProps> = () => {
     const searchContext = useContext(SearchContext)
     const sanityContext = useContext(SanityContext)
 
-    const [filteredBarIngredients, setFilteredBarIngredients] = React.useState<(any)[]>([])
+    const [filteredBarIngredients, setFilteredBarIngredients] = useState<(any)[]>([])
     const {data, refetch} = sanityContext.useFetchMyFilteredIngredients()
 
-    React.useEffect(() => {
+    useEffect(() => {
         if (data) {
             setFilteredBarIngredients(data)
         }
     }, [data])
 
-    React.useEffect(() => {
+    useEffect(() => {
         refetch()
     }, [searchContext.searchFilters, searchContext.ingredientFilters])
 

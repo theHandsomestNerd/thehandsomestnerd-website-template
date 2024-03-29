@@ -1,4 +1,4 @@
-import React, {FunctionComponent, useContext} from 'react'
+import {FunctionComponent, useContext} from 'react'
 import {Grid, Typography, useTheme} from '@mui/material'
 import {WebDevTestimonialsSectionType, WebDevTestimonialsType} from "../../BlockContentTypes";
 import {COLORS} from "../../../theme/common/ColorPalette";

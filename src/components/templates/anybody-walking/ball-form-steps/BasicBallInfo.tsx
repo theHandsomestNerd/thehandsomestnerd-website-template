@@ -1,5 +1,5 @@
 import {makeStyles} from '@mui/styles'
-import React, {FunctionComponent} from 'react'
+import {FunctionComponent, useEffect, useState} from 'react'
 import {AddBallState, BasicBallInfoState } from '../ballroomTypes'
 import BallTypeEnum, {renderBallTypeChoice} from '../enums/BallType.enum'
 import {Button, Grid, Typography, useTheme} from "@mui/material";
@@ -19,19 +19,19 @@ export type BasicBallInfoProps = {
 
 const BasicBallInfo: FunctionComponent<BasicBallInfoProps> = (props: BasicBallInfoProps) => {
   const classes = useStyles()
-  const [activeBallType, setActiveBallType] = React.useState<BallTypeEnum>()
+  const [activeBallType, setActiveBallType] = useState<BallTypeEnum>()
 
   function renderBallType() {
     return renderBallTypeChoice(activeBallType)
   }
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (activeBallType != null) {
       props.stepComplete({ballType: activeBallType})
     }
   }, [activeBallType])
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (props.newBallToAdd?.ballType) {
       setActiveBallType(props.newBallToAdd.ballType)
     }

@@ -1,4 +1,4 @@
-import React, {FunctionComponent} from 'react'
+import{FunctionComponent} from 'react'
 import {Grid, Typography} from "@mui/material";
 import {ResumeSkillSet} from "../../../BlockContentTypes";
 
@@ -8,10 +8,6 @@ interface IProps {
 }
 
 const ResumeSkillSetItem: FunctionComponent<IProps> = (props:IProps) => {
-
-    React.useEffect(()=>{
-    }, [])
-
     return (<Grid item container xs={11} sm={6} md={6} alignContent='flex-start'
                   role='skilldivider'
                   style={{

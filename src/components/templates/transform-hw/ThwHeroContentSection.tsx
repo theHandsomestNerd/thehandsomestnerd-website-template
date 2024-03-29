@@ -1,4 +1,4 @@
-import React, {FunctionComponent, useContext} from 'react'
+import{FunctionComponent, useContext} from 'react'
 import {ThwHeroContentSectionType} from "../../BlockContentTypes";
 import clsx from "clsx";
 import PageContext from "../../page-context/PageContext";

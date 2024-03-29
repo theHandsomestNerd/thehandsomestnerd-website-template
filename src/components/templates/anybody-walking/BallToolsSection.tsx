@@ -1,4 +1,4 @@
-import React, {FunctionComponent, useContext} from 'react'
+import {FunctionComponent, useContext, useEffect, useState} from 'react'
 
 import makeStyles from "@mui/styles/makeStyles";
 import {Theme} from "@mui/material/styles";
@@ -28,12 +28,12 @@ interface IProps {
 const BallToolsSection: FunctionComponent<IProps> = (props: IProps) => {
     const classes = useStyles(theme)
     const pageContext = useContext(PageContext)
-React.useEffect(() => {
+useEffect(() => {
 console.log(pageContext)
     }, [pageContext])
     // const navigate = useNavigate()
 
-    const [isModalOpen, setIsModalOpen] = React.useState<boolean>(false)
+    const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
     return <Grid container spacing={3} justifyContent='center' style={{minHeight:"700px", paddingTop:"128px", paddingLeft:"32px",paddingRight:"32px"}}>
         <Grid container item xs={12} md={10} justifyContent='center'>
             <Typography variant='h4' color='textSecondary'>Ball Info</Typography>

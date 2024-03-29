@@ -1,4 +1,4 @@
-import React, {FunctionComponent, useContext} from 'react'
+import {FunctionComponent, useContext, useState} from 'react'
 import {Button, Grid, Typography} from "@mui/material";
 import {useNavigate} from "react-router-dom";
 import {RoutesEnum} from "./enums/Routes.enum";
@@ -26,7 +26,7 @@ interface IProps {
 }
 
 const AWNewHouseFormSection: FunctionComponent<IProps> = () => {
-    const [state, setState] = React.useState<NewHouseFormState>(initialState)
+    const [state, setState] = useState<NewHouseFormState>(initialState)
 const navigate = useNavigate()
     const sanityContext = useContext(SanityContext)
     const addHouse = async () => {

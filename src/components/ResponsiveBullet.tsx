@@ -1,4 +1,4 @@
-import React, {FunctionComponent, ReactNode} from 'react'
+import{FunctionComponent, ReactNode} from 'react'
 import {Grid, Typography} from '@mui/material'
 import {Check} from "@mui/icons-material";
 import {v4 as uuidv4} from 'uuid'

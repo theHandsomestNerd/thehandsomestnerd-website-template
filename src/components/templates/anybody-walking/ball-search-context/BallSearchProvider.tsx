@@ -1,4 +1,4 @@
-import React, {FunctionComponent, PropsWithChildren, useContext} from 'react'
+import {FunctionComponent, PropsWithChildren, useContext, useEffect, useState} from 'react'
 import BallSearchContext, {BallSearchContextType} from "./BallSearchContext";
 import {useNavigate} from 'react-router-dom';
 import {BallSearchParamsType, SanityBallType, SearchParams} from "../ballroomTypes";
@@ -16,10 +16,10 @@ export type BallSearchProviderProps = {
 const BallSearchProvider: FunctionComponent<BallSearchProviderProps & PropsWithChildren> = (props: PropsWithChildren<BallSearchProviderProps>) => {
     const navigate = useNavigate();
     const sanityContext = useContext(SanityContext)
-    const [viewType, setViewType] = React.useState<boolean>(true)
-    const [searchParams, setSearchParams] = React.useState<BallSearchParamsType>({})
-    const [displayResults, setDisplayResults] = React.useState<SanityBallType[]|undefined>(undefined)
-    const [loading, setLoading] = React.useState<boolean>(false)
+    const [viewType, setViewType] = useState<boolean>(true)
+    const [searchParams, setSearchParams] = useState<BallSearchParamsType>({})
+    const [displayResults, setDisplayResults] = useState<SanityBallType[]|undefined>(undefined)
+    const [loading, setLoading] = useState<boolean>(false)
 
     const initialState: SearchParams = {
         keywords: '',
@@ -56,7 +56,7 @@ const BallSearchProvider: FunctionComponent<BallSearchProviderProps & PropsWithC
         await refreshSearchResults(initialState)
     }
 
-    // React.useEffect(() => {
+    // useEffect(() => {
     //     if(!props.balls) {
     //         resetSearchResults().then()
     //     }
@@ -154,7 +154,7 @@ const BallSearchProvider: FunctionComponent<BallSearchProviderProps & PropsWithC
         return queryString
     }
 
-    React.useEffect(() => {
+    useEffect(() => {
         console.log('updated Search params', searchParams)
         setLoading(true)
 
@@ -163,7 +163,7 @@ const BallSearchProvider: FunctionComponent<BallSearchProviderProps & PropsWithC
         refreshSearchResults(searchParams ?? {}).then()
     }, [searchParams])
 
-    React.useEffect(() => {
+    useEffect(() => {
         refreshSearchResults(searchParams ?? {}).then()
     }, [])
 
