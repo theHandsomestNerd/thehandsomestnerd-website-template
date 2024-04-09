@@ -1,4 +1,4 @@
-import{FunctionComponent, useContext} from 'react'
+import {FunctionComponent, useContext} from 'react'
 import makeStyles from '@mui/styles/makeStyles';
 import {AppBar, Button, Card, Grid, Typography} from '@mui/material'
 import clsx from "clsx";
@@ -41,7 +41,8 @@ const EnhancedHeader: FunctionComponent<EnhancedHeaderProps> = (props) => {
                                                                                    noWrap>{props.pageHeader?.ctaButtonText}</Typography></Button>
                     </Grid>
                     {
-                        props.pageHeader.highlightedDetails?.map((detail, index) => <Grid key={index} xs={3} item container
+                        props.pageHeader.highlightedDetails?.map((detail, index) => <Grid key={index} xs={3} item
+                                                                                          container
                                                                                           justifyContent='flex-end'
                                                                                           alignItems='flex-end'
                                                                                           alignContent='flex-end'>
@@ -56,10 +57,13 @@ const EnhancedHeader: FunctionComponent<EnhancedHeaderProps> = (props) => {
                                         borderRadius: "50%"
                                     }}>
                                         <Grid container justifyContent='center' alignContent='center'
-                                              alignItems='center' style={{height: "100%", width: "100%"}}><Grid item>
-                                            <img width={24} src={sanityContext.placeholderOrImage(detail.imageSrc,24,24)}
-                                                 style={{paddingTop: "6px"}}/>
-                                        </Grid></Grid>
+                                              alignItems='center' style={{height: "100%", width: "100%"}}>
+                                            <Grid item>
+                                                <img width={24}
+                                                     src={sanityContext.placeholderOrImage && sanityContext.placeholderOrImage(detail.imageSrc, 24, 24)}
+                                                     style={{paddingTop: "6px"}}/>
+                                            </Grid>
+                                        </Grid>
                                     </Card>
                                     {/*<motion.div whileHover={{rotateY: 180}}*/}
                                     {/*            transition={{*/}

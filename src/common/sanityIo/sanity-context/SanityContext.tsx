@@ -1,5 +1,11 @@
 import {SanityRef} from "../Types";
 import React from "react";
+import {
+    ResumeExperienceType,
+    ResumePortfolioItemType,
+    ResumeSkillType,
+    SanityImageAsset
+} from "../../../components/BlockContentTypes";
 
 export type SanityContextType = {
     initSanity?: (
@@ -37,7 +43,7 @@ export type SanityContextType = {
     urlFor?: any
     cocktailUrlFor?:any
     getPlaceholderImageUrl?:any
-    placeholderOrImage?:any
+    placeholderOrImage?:(imageSrc?: SanityImageAsset, placeHolderWidth?: number, placeHolderHeight?: number, text?: string) => string
     useFetchAllFlashCards?: any,
     useFetchAllBarIngredients?: any,
     useFetchAllLiquorTypes?: any,
@@ -79,6 +85,8 @@ export type SanityContextType = {
 
     addBall?: any
     getSanityDocumentRef?: (sanityId: string) => SanityRef
+    fetchSkillExperiences?:(skillType:ResumeSkillType)=>Promise<ResumeExperienceType[]>
+    fetchPortfolioItems?:(skillType:ResumeSkillType)=>Promise<ResumePortfolioItemType[]>
 };
 
 const SanityContext = React.createContext<SanityContextType>({});

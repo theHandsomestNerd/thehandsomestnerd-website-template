@@ -2,14 +2,16 @@
   "name": "TheHandsomestNerdDigitalPortfolio",
   "version": "1.0.0",
   "description": "",
-  "browserslist": ["> 0.5%, last 2 versions, not dead"],
+  "browserslist": [
+    "> 0.5%, last 2 versions, not dead"
+  ],
   "scripts": {
-    "start": "parcel src/index.html",
+    "start": "npm run build:assets && parcel src/index.html",
     "build:assets": "mkdir -p dist && cp -r static/* dist/",
     "install-start": "npm run build:clean && npm install && npm start",
     "build:clean": "rimraf ./.parcel-cache ./dist",
-    "build:babel":"babel build --out-dir dist",
-    "build": "npm run build:clean && parcel build src/index.html --no-scope-hoist --dist-dir dist",
+    "build:babel": "babel build --out-dir dist",
+    "build": "npm run build:clean && npm run build:assets && parcel build src/index.html --no-scope-hoist --dist-dir dist",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "@parcel/resolver-default": {
@@ -27,7 +29,7 @@
   "dependencies": {
     "dotenv": "^16.4.5",
     "parcel": "^2.12.0",
-    "the-handsomestnerd-internal": "^0.1.29",
+    "the-handsomestnerd-internal": "^0.1.40",
     "typescript": "^5.4.3"
   },
   "devDependencies": {
@@ -36,7 +38,6 @@
     "@babel/preset-env": "^7.24.0",
     "@babel/preset-react": "^7.24.1",
     "@babel/preset-typescript": "^7.24.1",
-    "@parcel/config-default": "^2.12.0",
     "@parcel/packager-raw-url": "^2.12.0",
     "@parcel/transformer-raw": "^2.12.0",
     "@parcel/transformer-webmanifest": "^2.12.0",
@@ -44,7 +45,6 @@
     "@types/react": "^18.2.73",
     "@types/react-dom": "^18.2.22",
     "buffer": "^6.0.3",
-    "parcel-reporter-static-files-copy": "^1.5.3",
     "parcel-transformer-fonts": "^1.1.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"

@@ -51,7 +51,7 @@ const TheDrinkeryStaffSection: FunctionComponent<IProps> = (props) => {
                         {props.sectionData.teamList.map((teamMember, index)=><Grid key={index} item justifyContent='center' xs={6} sm={4} alignItems={'center'}
                                alignContent='center'>
                             <Grid container item justifyContent='center'>
-                                <Avatar src={sanityContext.placeholderOrImage(teamMember.image, 40,40)} variant='rounded' style={{
+                                <Avatar src={sanityContext.placeholderOrImage && sanityContext.placeholderOrImage(teamMember.image, 40,40)} variant='rounded' style={{
                                     width: theme.spacing(18),
                                     height: theme.spacing(18),
                                 }}/>

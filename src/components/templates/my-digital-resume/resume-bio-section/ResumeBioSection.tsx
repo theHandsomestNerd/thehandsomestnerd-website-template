@@ -6,7 +6,7 @@ import useThwCommonStyles from "../../../../common/sanityIo/ThwCommonStyles";
 import SocialMediaBlock from "../social-media-block/SocialMediaBlock";
 import BusinessCardSubmitEmail from "../../transform-hw/pages/BusinessCardSubmitEmail";
 import SanityContext from "../../../../common/sanityIo/sanity-context/SanityContext";
-import pdfUtils from "../../../../utils/pdfUtils";
+import pdfClient from "../../../../utils/pdfClient";
 
 
 interface IProps {
@@ -26,7 +26,7 @@ const ResumeBioSection: FunctionComponent<IProps> = (props: IProps) => {
     const [aLinkUrl, setALinkUrl] = useState<string | undefined>(undefined)
 
     useEffect(() => {
-        pdfUtils.getPDFLink()
+        pdfClient.getPDFLink()
             .then(async (theLink) => {
                 setALinkUrl(theLink)
             })
@@ -85,7 +85,7 @@ const ResumeBioSection: FunctionComponent<IProps> = (props: IProps) => {
             </Grid>
             <Grid item container sm={12} md={5} lg={12} justifyContent='center'>
                 <Grid data-testid='bio-image' container item style={{
-                    backgroundImage: `url(${sanityContext.placeholderOrImage(props.sectionData.mainImage, 350, 500)})`,
+                    backgroundImage: `url(${sanityContext.placeholderOrImage && sanityContext.placeholderOrImage(props.sectionData.mainImage, 350, 500)})`,
                     backgroundSize: "cover",
                     backgroundPosition: "top right",
                     backgroundRepeat: "no-repeat",

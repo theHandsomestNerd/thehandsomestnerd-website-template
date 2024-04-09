@@ -27,7 +27,7 @@ const HolidayHeadlineSection: FunctionComponent<IProps> = (props) => {
         <Grid container justifyContent='center' item alignContent='center' alignItems='center'
               style={{padding: "40px"}}>
             <Grid item xs={12} sm={2} container justifyContent='center'>
-                <img  height={156} width={156} alt={props.sectionData.slug.current + " Icon"} src={sanityContext.placeholderOrImage(props.sectionData?.holidayIconLeft, 156, 156)}/>
+                <img  height={156} width={156} alt={props.sectionData.slug.current + " Icon"} src={sanityContext.placeholderOrImage && sanityContext.placeholderOrImage(props.sectionData?.holidayIconLeft, 156, 156)}/>
             </Grid>
             <Grid item xs={12} sm={8} container justifyContent='center'>
                 <Grid item>
@@ -42,7 +42,7 @@ const HolidayHeadlineSection: FunctionComponent<IProps> = (props) => {
                 </Grid>
             </Grid>
             <Grid item xs={12} sm={2} container  justifyContent='center' >
-                <Box sx={{ display: { xs: 'none', sm: 'block' } }}><img height={156} width={156} alt={props.sectionData.slug.current + " Icon"} src={sanityContext.placeholderOrImage(props.sectionData?.holidayIconRight, 156, 156)}/></Box>
+                <Box sx={{ display: { xs: 'none', sm: 'block' } }}><img height={156} width={156} alt={props.sectionData.slug.current + " Icon"} src={sanityContext.placeholderOrImage && sanityContext.placeholderOrImage(props.sectionData?.holidayIconRight, 156, 156)}/></Box>
             </Grid>
         </Grid>
     )

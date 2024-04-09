@@ -39,7 +39,7 @@ const pageContext = useContext(PageContext)
                     </Grid>
                     <Grid container item justifyContent='center'>
                         <img
-                            src={(props.sectionData?.imageSrc ? sanityContext.urlFor(props.sectionData?.imageSrc).url() : sanityContext.placeholderOrImage(props.sectionData.imageSrc, 485, 356)) ?? ""}
+                            src={sanityContext.placeholderOrImage && sanityContext.placeholderOrImage(props.sectionData.imageSrc, 485, 356)}
                              alt={props.sectionData?.imageSrcAltText}/>
                     </Grid>
                     <Grid container item justifyContent='center'>

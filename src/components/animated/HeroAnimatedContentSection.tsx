@@ -57,7 +57,7 @@ const HeroAnimatedContentSection: FunctionComponent<IProps> = (props) => {
 
             <Grid container item style={{
                 backgroundRepeat: 'no-repeat',
-                backgroundImage: contentSlide?.heroImage ? `url('${sanityContext.placeholderOrImage(contentSlide?.heroImage, 200, 100)}'), url('${sanityContext.placeholderOrImage(contentSlide?.heroImageBackground, 200, 100)}')` : `url('${sanityContext.placeholderOrImage(contentSlide?.heroImage, 500, 700)}')`,
+                backgroundImage: contentSlide?.heroImage ? `url('${sanityContext.placeholderOrImage && sanityContext.placeholderOrImage(contentSlide?.heroImage, 200, 100)}'), url('${sanityContext.placeholderOrImage && sanityContext.placeholderOrImage(contentSlide?.heroImageBackground, 200, 100)}')` : `url('${sanityContext.placeholderOrImage && sanityContext.placeholderOrImage(contentSlide?.heroImage, 500, 700)}')`,
                 backgroundSize: 'cover, contain',
                 backgroundPosition: "center",
                 minHeight: '700px',
@@ -125,7 +125,7 @@ const HeroAnimatedContentSection: FunctionComponent<IProps> = (props) => {
                                                           wrap='nowrap'>
                                                         <Grid item>
                                                             <img width={12}
-                                                                 src={sanityContext.placeholderOrImage(contentSlide?.heroBullet, 100, 200)}/>
+                                                                 src={sanityContext.placeholderOrImage && sanityContext.placeholderOrImage(contentSlide?.heroBullet, 100, 200)}/>
                                                         </Grid>
                                                         <Grid item>
                                                             <Typography variant='body1' alignContent='center'

@@ -14,6 +14,27 @@ export default {
             type: 'string',
         },
         {
+            name: 'description',
+            title: 'Skill Description',
+            type: 'text',
+        },
+        {
+            name: 'proficiency',
+            title: 'Skill Proficiency',
+            type: 'number',
+        },
+        {
+            name: 'iconPngSrc',
+            title: 'Skill Icon',
+            type: 'image',
+        },
+        {
+            name: 'versions',
+            title: 'Versions worked with',
+            type: 'array',
+            of:[{type: "string"}]
+        },
+        {
             name: 'searchableOnPages',
             title: 'Make Searchable on pages',
             type: 'array',

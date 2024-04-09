@@ -1,11 +1,10 @@
 import type {Meta, StoryObj} from '@storybook/react';
-import ResumeSkillsSection from "../../components/templates/my-digital-resume/resume-skills-section/ResumeSkillsSection";
+import ResumeSkillsSection
+    from "../../components/templates/my-digital-resume/resume-skills-section/ResumeSkillsSection";
 import ResumeSkillSectionData from "../data/ResumeSkillSectionData";
-import ResumeBioSectionData from "../data/ResumeBioSectionData";
-import homePageResumeData from "../data/HomePageData";
 import getThemeFromSanity from "../../components/customized-theme-provider/getThemeFromSanity";
 import DigitalResumeThemeData from "../data/DigitalResumeThemeData";
-import { ThemeProvider } from '@mui/material/styles';
+import {ThemeProvider} from '@mui/material/styles';
 
 const meta: Meta<typeof ResumeSkillsSection> = {
     title:"Resume/Section/Resume Skills Section",

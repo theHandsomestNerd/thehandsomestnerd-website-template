@@ -351,7 +351,7 @@ export type ResumeBioSectionType = {
 }
 
 
-export type ResumeSkill = {
+export type ResumeSkillType = {
     _id?: string
     _createdAt?: string
     _updatedAt?: string
@@ -359,12 +359,17 @@ export type ResumeSkill = {
     _type?: "ResumeSkill"
     name?: string
     title?: string
+
+    description?:string
+    versions?: string[]
+    proficiency?: number
+    iconPngSrc?: SanityImageAsset
 }
 export type ResumeSkillSet = {
     _type?: "ResumeSkillset"
     name?: string
     title?: string
-    skills?: ResumeSkill[]
+    skills?: ResumeSkillType[]
 }
 
 export type ResumeSkillSectionType = {
@@ -375,7 +380,7 @@ export type ResumeSkillSectionType = {
 }
 
 
-export type ResumeExperience = {
+export type ResumeExperienceType = {
     name?: string
     _id?: string
     _rev?: string
@@ -390,7 +395,7 @@ export type ResumeExperience = {
     description?: string
     _createdAt?: string
     _updatedAt?: string
-    skillsUsed?: ResumeSkill[]
+    skillsUsed?: ResumeSkillType[]
 
 }
 
@@ -400,7 +405,7 @@ export type ResumeExperienceSectionType = {
 
     title?: string
     introduction?: string
-    experiences?: ResumeExperience[]
+    experiences?: ResumeExperienceType[]
 }
 
 export type ResumeEducation = {
@@ -442,14 +447,15 @@ export type ResumeFeedbackSectionType = {
     feedbackEntries?: ResumeFeedback[]
 }
 
-export type ResumePortfolioItem = {
+export type ResumePortfolioItemType = {
     _type?: "ResumePortfolioItem"
+    _id?: string
     name?: string
     title?: string
     coverImage?: SanityImageAsset
     inceptionDate?: Date | string
     slug?: SanitySlug
-    skillsHighlighted?: ResumeSkill[]
+    skillsHighlighted?: ResumeSkillType[]
     detailTitle?: string
     detailDescription?: string
     linkToProd?: string
@@ -464,7 +470,7 @@ export type AnimatedPortfolioItemType = {
     coverImage?: SanityImageAsset
     inceptionDate?: Date | string
     slug?: SanitySlug
-    skillsHighlighted?: ResumeSkill[]
+    skillsHighlighted?: ResumeSkillType[]
     detailTitle?: string
     detailDescription?: string
     linkToProd?: string
@@ -478,7 +484,7 @@ export type ResumePortfolioSectionType = {
     preTitle?: string
     title?: string
     introduction?: string
-    portfolioEntries?: ResumePortfolioItem[]
+    portfolioEntries?: ResumePortfolioItemType[]
 }
 export type AnimatedPortfolioSectionType = {
     name?: string
@@ -554,7 +560,7 @@ export type PortfolioSectionType = {
     contentPreTitle?: string
     contentText?: string
     contentTexts?: string[]
-    portfolioEntries?: ResumePortfolioItem[]
+    portfolioEntries?: ResumePortfolioItemType[]
     servicesList?: ServiceItemNoRefType[]
 }
 

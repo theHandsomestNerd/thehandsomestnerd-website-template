@@ -94,7 +94,7 @@ const ModalProvider: FunctionComponent<IProps & PropsWithChildren> = (
                             <Grid container item justifyContent='center' alignItems='center' alignContent='center'
                                   style={{position: "absolute", height: "100%", zIndex: 1}}>
                                 {<ColoredPng color={'rgba(16, 43, 136, .3)'}
-                                             maskUrl={sanityContext.placeholderOrImage(modalContent?.iconOverlayImageSrc, 100, 100)}
+                                             maskUrl={sanityContext.placeholderOrImage && sanityContext.placeholderOrImage(modalContent?.iconOverlayImageSrc, 400, 400)}
                                              size={400}/>}
                             </Grid>
                             <Grid container item justifyContent='center' alignItems='center' alignContent='center'

@@ -156,7 +156,7 @@ const ThwServiceEducationPage: FunctionComponent<IProps> = (props) => {
                                                 // backgroundColor: "red",
                                                 backgroundRepeat: "no-repeat",
                                                 backgroundPosition: "center",
-                                                backgroundImage: `url(${sanityContext.placeholderOrImage(serviceAmenity.imageSrc)})`
+                                                backgroundImage: `url(${sanityContext.placeholderOrImage && sanityContext.placeholderOrImage(serviceAmenity.imageSrc)})`
                                             }}
                                             container>
 

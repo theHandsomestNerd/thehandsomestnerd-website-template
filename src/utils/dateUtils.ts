@@ -8,13 +8,23 @@ const MonthYear = (date?: Date | string | undefined) =>{
     return new Date(date).toLocaleDateString('en-us', { month:"short", year:"numeric"})
 }
 
-const getLengthOfTime = (date1: Date, date2: Date) =>{
+const YearNumeric = (date?: Date | string | undefined) =>{
+    if(!date) return ""
+    return new Date(date).toLocaleDateString('en-us', { year:"numeric"})
+}
+const getLengthOfTime = (date1?: Date|string, date2?: Date|string) =>{
     /*
     * calcDate() : Calculates the difference between two dates
     * @date1 : "First Date in the format MM-DD-YYYY"
     * @date2 : "Second Date in the format MM-DD-YYYY"
     * return : Array
     */
+
+    if(!date1 || !date2)
+        return {
+            "total_days": 0,
+            "result": ""
+        }
     //new date instance
     const dt_date1 = new Date(date1);
     const dt_date2 = new Date(date2);
@@ -72,4 +82,4 @@ const getLengthOfTime = (date1: Date, date2: Date) =>{
     }
 }
 
-export default {YearMonth, MonthYear, getLengthOfTime}
+export default {YearMonth, MonthYear, YearNumeric, getLengthOfTime}

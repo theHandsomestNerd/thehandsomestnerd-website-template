@@ -186,7 +186,7 @@ const ContactUs: FunctionComponent<ContactUsProps> = (props) => {
 
     return (
         <Parallax blur={1}
-                  bgImage={sanityContext.placeholderOrImage(props.sectionData.bgImageSrc, 1000, 500)}
+                  bgImage={sanityContext.placeholderOrImage && sanityContext.placeholderOrImage(props.sectionData.bgImageSrc, 1000, 500)}
                   bgImageAlt="the cat"
                   strength={600}
         >

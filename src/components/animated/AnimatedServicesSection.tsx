@@ -119,14 +119,14 @@ const AnimatedServicesSection: FunctionComponent<IProps> = (props) => {
                 position: "relative",
                 backgroundRepeat: "repeat-x",
                 backgroundSize: "256px",
-                backgroundImage: `url(${sanityContext.placeholderOrImage(props.sectionData?.videoPreviewSectionBackgroundImageSrc, 230, 265)})`
+                backgroundImage: `url(${sanityContext.placeholderOrImage && sanityContext.placeholderOrImage(props.sectionData?.videoPreviewSectionBackgroundImageSrc, 230, 265)})`
             }} justifyContent='center' alignContent='center'>
                 <Grid item container xs={12} justifyContent='center' style={{top: -64, position: "relative"}}>
                     <Grid item xs={12} sm={10} sx={{height: "100%", position: "relative"}}
                     >
                         <img height="100%" width="100%"
 
-                             src={sanityContext.placeholderOrImage(props.sectionData?.videoPreviewImageSrc, 300, 500)}/>
+                             src={sanityContext.placeholderOrImage && sanityContext.placeholderOrImage(props.sectionData?.videoPreviewImageSrc, 300, 500)}/>
 
                     </Grid>
                 </Grid>

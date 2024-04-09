@@ -24,9 +24,7 @@ const ColoredPng: FunctionComponent<IProps> = (props: IProps) => {
             setImageUrl(props.maskUrl)
         }
         if (props.maskAsset) {
-            setImageUrl(sanityContext.urlFor(props.maskAsset).url() ?? sanityContext.placeholderOrImage(props.maskAsset, props.size, props.size))
-        }else {
-            setImageUrl(sanityContext.placeholderOrImage(props.maskAsset, props.size, props.size))
+            setImageUrl(sanityContext.placeholderOrImage && sanityContext.placeholderOrImage(props.maskAsset, props.size, props.size))
         }
     }, [])
 

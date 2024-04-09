@@ -25,7 +25,8 @@ import {
 import GroqQueries from "../groqQueries";
 import groqQueries from "../groqQueries";
 import {
-    ResumeSkill,
+    ResumeExperienceType, ResumePortfolioItemType,
+    ResumeSkillType,
     SanityImageAsset,
     ThwServiceItemType,
     WhySwitchSectionType
@@ -80,7 +81,7 @@ type IProps = {
     urlFor?: any
     cocktailUrlFor?: any
     getPlaceholderImageUrl?: any,
-    placeholderOrImage?: any,
+    placeholderOrImage?: (imageSrc?: SanityImageAsset, placeHolderWidth?: number, placeHolderHeight?: number, text?: string) => string,
     getCheckinBySlug?: any,
     fetchBall?: any,
     getBallBySlug?: any,
@@ -110,6 +111,9 @@ type IProps = {
 
     fetchDocumentByTypeAndSlugQuery?: any
     getSanityDocumentRef?: (sanityId: string) => SanityRef
+
+    fetchSkillExperiences?:(skill:ResumeSkillType)=>Promise<ResumeExperienceType[]>
+    fetchPortfolioItems?:(skill:ResumeSkillType)=>Promise<ResumePortfolioItemType[]>
 };
 
 const PLACEHOLDER_URL = "https://placehold.co/"
@@ -719,7 +723,7 @@ const SanityProvider: FunctionComponent<IProps & PropsWithChildren> = (
                 return data
             })
     }
-    const skillReferenceSearch = (skill: ResumeSkill, pageId: string): Promise<any> => {
+    const skillReferenceSearch = (skill: ResumeSkillType, pageId: string): Promise<any> => {
         return theSanityClient
             .fetch(
                 `*[references($searchText) && references('${pageId}')]{
@@ -1916,6 +1920,31 @@ const SanityProvider: FunctionComponent<IProps & PropsWithChildren> = (
         return newBall
     }
 
+    const fetchSkillExperiences = async (resumeSkill: ResumeSkillType):Promise<ResumeExperienceType[]> => {
+        return theSanityClient
+            .fetch(
+                `*[ _type == "ResumeExperience" && references($skillId)]| order(dateStart desc){
+                  ...
+                }`,
+                {skillId: resumeSkill._id},
+            ).then((data: ResumeExperienceType[]) => {
+                console.log("Experiences from groq", data)
+            return data
+        })
+    }
+const fetchPortfolioItems = async (resumeSkill: ResumeSkillType):Promise<ResumePortfolioItemType[]> => {
+        return theSanityClient
+            .fetch(
+                `*[ _type == "ResumePortfolioItem" && references($skillId) && isDisabled != true]| order(inceptionDate desc){
+                  ...
+                }`,
+                {skillId: resumeSkill._id},
+            ).then((data: ResumePortfolioItemType[]) => {
+                console.log("Portfolio items from groq", data)
+            return data
+        })
+    }
+
     const newValue = useMemo(
         () => ({
             initSanity,
@@ -1994,8 +2023,10 @@ const SanityProvider: FunctionComponent<IProps & PropsWithChildren> = (
             createContactUs,
 
             addBall,
-            getSanityDocumentRef
+            getSanityDocumentRef,
 
+            fetchSkillExperiences,
+            fetchPortfolioItems
         }),
         [
             sanityConfig,
@@ -2003,6 +2034,8 @@ const SanityProvider: FunctionComponent<IProps & PropsWithChildren> = (
             urlFor
         ]
     );
+
+
 
     return (
         <SanityContext.Provider value={newValue}>

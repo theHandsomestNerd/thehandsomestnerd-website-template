@@ -1,16 +1,19 @@
-import{FunctionComponent} from 'react'
+import {FunctionComponent, useState} from 'react'
 import {Chip, Grid, Typography, useTheme} from "@mui/material";
-import {ResumeExperience} from "../../../BlockContentTypes";
+import {ResumeExperienceType} from "../../../BlockContentTypes";
 import dateUtils from "../../../../utils/dateUtils";
+import ResumeSkillTooltipWrapper from "../resume-skills-section/ResumeSkillTooltipWrapper";
+import textProcessingUtils from "../../../../utils/textProcessingUtils";
 
 
 interface IProps {
-    experience: ResumeExperience
+    experience: ResumeExperienceType
 }
 
 const ResumeExperienceItem: FunctionComponent<IProps> = (props: IProps) => {
 
     const theme = useTheme()
+    const [isTooltipOpen, setIsToolTipOpen] = useState<number>()
 
     return (<Grid item container alignContent='flex-start'
                   role={'experiencedivider'}
@@ -40,13 +43,9 @@ const ResumeExperienceItem: FunctionComponent<IProps> = (props: IProps) => {
                             variant='body1'
                             fontWeight={'bold'}>{dateUtils.YearMonth(new Date(props.experience.dateStart as string))}</Typography>
 
-                {/*</Grid>*/}
-                {/*<Grid item xs={1} container justifyContent='center'>*/}
                 <Typography fontWeight={'bold'} display='inline'
                             variant='body1' style={{margin: theme.spacing(0, 1)}}>—</Typography>
 
-                {/*</Grid>*/}
-                {/*<Grid item xs={2} container>*/}
                 <Typography fontWeight={'bold'} display='inline'
                             variant='body1'>{dateUtils.YearMonth(new Date(props.experience.dateEnd as string))}</Typography>
 
@@ -65,12 +64,20 @@ const ResumeExperienceItem: FunctionComponent<IProps> = (props: IProps) => {
         <Grid container item spacing={1}
               style={{overflowX: "scroll", paddingBottom: theme.spacing(1)}} wrap='nowrap'>
             {
-                props.experience.skillsUsed?.map((skill, index) => {
-                    // console.log(skill)
-                    return <Grid item key={index}><Chip role={'experienceskill'} size='small'
-                                                        color='primary'
-                                                        label={skill.title}/></Grid>
-                })
+                props.experience
+                && props.experience.skillsUsed
+                && textProcessingUtils
+                    .sortByTitle(props.experience.skillsUsed)?.map((skill, index) => {
+                        return <Grid item key={index} onClick={() => {
+                            setIsToolTipOpen(index)
+                        }}>
+                            <ResumeSkillTooltipWrapper resumeSkill={skill} isTipOpen={index === isTooltipOpen}>
+                                <Chip role='experienceskill' size='small'
+                                      color='primary'
+                                      label={skill.title}/>
+                            </ResumeSkillTooltipWrapper>
+                        </Grid>
+                    })
             }
         </Grid>
     </Grid>)

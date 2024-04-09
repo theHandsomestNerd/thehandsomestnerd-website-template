@@ -9,8 +9,8 @@ import {Theme} from "@mui/material/styles";
 import {
     AnimatedAboutUsSectionType,
     HeroAnimatedContentSectionType, ResumeBioSectionType,
-    ResumeExperience,
-    ResumeSkill,
+    ResumeExperienceType,
+    ResumeSkillType,
     SanityHeroContentSlide,
     ServiceItemNoRefType
 } from "../../../BlockContentTypes";
@@ -176,7 +176,7 @@ const FullTextSearch: FunctionComponent<IProps> = () => {
                                 </Grid>
                             </Grid>
                         case "ResumeExperience":
-                            const convertedResumeExperience: ResumeExperience = theResult;
+                            const convertedResumeExperience: ResumeExperienceType = theResult;
 
                             return <Grid container sx={{
                                 marginBottom: "16px",
@@ -189,7 +189,7 @@ const FullTextSearch: FunctionComponent<IProps> = () => {
                                 <ResumeExperienceItem experience={convertedResumeExperience}/>
                             </Grid>
                         case "ResumeSkill":
-                            const convertedResumeSkill: ResumeSkill = theResult;
+                            const convertedResumeSkill: ResumeSkillType = theResult;
                             return <Grid container sx={{
                                 marginBottom: "16px",
                                 backgroundColor: COLORS.LIGHTGRAY,

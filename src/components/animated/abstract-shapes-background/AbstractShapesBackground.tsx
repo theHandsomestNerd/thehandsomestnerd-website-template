@@ -71,34 +71,34 @@ const AbstractShapesBackground: FunctionComponent<IProps> = (props:IProps) => {
                       position: "absolute"
                   }}>
         <Grid item>
-            <AnimatedAbstractShape shapeVariants={shape1Variants} image={sanityContext.placeholderOrImage(props.imagesArray[1])}/>
+            <AnimatedAbstractShape shapeVariants={shape1Variants} image={sanityContext.placeholderOrImage && sanityContext.placeholderOrImage(props.imagesArray[1])}/>
         </Grid>
         <Grid item>
-            <AnimatedAbstractShape shapeVariants={shape7Variants} image={sanityContext.placeholderOrImage(props.imagesArray[7])} opacity={.35}/>
+            <AnimatedAbstractShape shapeVariants={shape7Variants} image={sanityContext.placeholderOrImage && sanityContext.placeholderOrImage(props.imagesArray[7])} opacity={.35}/>
         </Grid>
         <Grid item>
-            <AnimatedAbstractShape shapeVariants={shape8Variants} image={sanityContext.placeholderOrImage(props.imagesArray[8])} opacity={.15}/>
+            <AnimatedAbstractShape shapeVariants={shape8Variants} image={sanityContext.placeholderOrImage && sanityContext.placeholderOrImage(props.imagesArray[8])} opacity={.15}/>
         </Grid>
         <Grid item>
-            <AnimatedAbstractShape shapeVariants={shape2Variants} opacity={.5} image={sanityContext.placeholderOrImage(props.imagesArray[2])}/>
+            <AnimatedAbstractShape shapeVariants={shape2Variants} opacity={.5} image={sanityContext.placeholderOrImage && sanityContext.placeholderOrImage(props.imagesArray[2])}/>
         </Grid>
         <Grid item>
-            <AnimatedAbstractShape shapeVariants={shape5Variants} image={sanityContext.placeholderOrImage(props.imagesArray[5])}/>
+            <AnimatedAbstractShape shapeVariants={shape5Variants} image={sanityContext.placeholderOrImage && sanityContext.placeholderOrImage(props.imagesArray[5])}/>
         </Grid>
         <Grid item>
-            <AnimatedAbstractShape shapeVariants={shape6Variants} image={sanityContext.placeholderOrImage(props.imagesArray[6])} opacity={.35}/>
+            <AnimatedAbstractShape shapeVariants={shape6Variants} image={sanityContext.placeholderOrImage && sanityContext.placeholderOrImage(props.imagesArray[6])} opacity={.35}/>
         </Grid>
         <Grid item>
-            <AnimatedAbstractShape shapeVariants={shape3Variants} image={sanityContext.placeholderOrImage(props.imagesArray[3])}/>
+            <AnimatedAbstractShape shapeVariants={shape3Variants} image={sanityContext.placeholderOrImage && sanityContext.placeholderOrImage(props.imagesArray[3])}/>
         </Grid>
         <Grid item>
-            <AnimatedAbstractShape shapeVariants={shape0Variants} image={sanityContext.placeholderOrImage(props.imagesArray[0])} opacity={.6}/>
+            <AnimatedAbstractShape shapeVariants={shape0Variants} image={sanityContext.placeholderOrImage && sanityContext.placeholderOrImage(props.imagesArray[0])} opacity={.6}/>
         </Grid>
         <Grid item>
-            <AnimatedAbstractShape shapeVariants={shape4Variants} image={sanityContext.placeholderOrImage(props.imagesArray[4])}/>
+            <AnimatedAbstractShape shapeVariants={shape4Variants} image={sanityContext.placeholderOrImage && sanityContext.placeholderOrImage(props.imagesArray[4])}/>
         </Grid>
         <Grid item>
-            <AnimatedAbstractShape shapeVariants={shape9Variants} image={sanityContext.placeholderOrImage(props.imagesArray[9])} opacity={.6}/>
+            <AnimatedAbstractShape shapeVariants={shape9Variants} image={sanityContext.placeholderOrImage && sanityContext.placeholderOrImage(props.imagesArray[9])} opacity={.6}/>
         </Grid>
     </Grid>)
 }

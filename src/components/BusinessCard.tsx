@@ -112,7 +112,7 @@ const BusinessCard: FunctionComponent<MainMenuProps> = ({anchor, homePage}) => {
                     backgroundSize: "cover",
                     overflow: "visible",
                     position: "relative",
-                    backgroundImage: `url(${sanityContext.placeholderOrImage(homePage.businessCardImageSrc, 350, 500)})`
+                    backgroundImage: `url(${sanityContext.placeholderOrImage && sanityContext.placeholderOrImage(homePage.businessCardImageSrc, 350, 500)})`
                 }} justifyContent='center' alignContent='flex-end'>
                     <Grid container item style={{
                         position: "relative",
@@ -131,10 +131,10 @@ const BusinessCard: FunctionComponent<MainMenuProps> = ({anchor, homePage}) => {
                         <Grid container>
 
                             <Grid container justifyContent='center'>
-                                <Typography color='primary' variant='h6'>{userBio?.name}</Typography>
+                                <Typography color='primary' variant='h6' textAlign='center'>{userBio?.name}</Typography>
                             </Grid>
                             <Grid container justifyContent='center'>
-                                <Typography variant='body2'>{userBio?.careerTitle}</Typography>
+                                <Typography variant='body2' textAlign='center'>{userBio?.careerTitle}</Typography>
                             </Grid>
                         </Grid>
                     </ListItem>
@@ -172,19 +172,24 @@ const BusinessCard: FunctionComponent<MainMenuProps> = ({anchor, homePage}) => {
                             <Grid item xs={12} container alignContent='flex-end'>
                                 <Typography variant='h6' gutterBottom>Website</Typography>
                                 <Button variant='outlined' size='small' fullWidth color='primary'
-                                        href={homePage.website}><Grid style={{height: "48px"}} container
-                                                                      justifyContent='center'
-                                                                      alignContent='center'
-                                                                      alignItems='center'><Grid
-                                    item><Typography
-
-                                    variant='subtitle1'
-                                    align='center'>{homePage.website}</Typography></Grid></Grid></Button>
+                                        href={homePage.website}>
+                                    <Grid style={{height: "48px"}}
+                                          container
+                                          justifyContent='center'
+                                          alignContent='center'
+                                          alignItems='center'>
+                                        <Grid item>
+                                            <Typography
+                                                variant='subtitle1'
+                                                align='center'>{homePage.website}</Typography>
+                                        </Grid>
+                                    </Grid>
+                                </Button>
                             </Grid>
                             <Grid item xs={12} container>
                                 <Grid container item justifyContent='center'>
 
-                                    <Grid item xs={2} container justifyContent='flex-end'>
+                                    <Grid item xs={6} container justifyContent='flex-end'>
                                         <Button style={{height: "80px"}} variant='contained' color='primary' fullWidth
                                                 onClick={() => {
                                                     navigator.clipboard.writeText(homePage.website ?? "")
@@ -200,13 +205,13 @@ const BusinessCard: FunctionComponent<MainMenuProps> = ({anchor, homePage}) => {
                                             </Grid>
                                         </Button>
                                     </Grid>
-                                    <Grid item xs={2}>
+                                    <Grid item xs={6}>
                                         <Button variant='contained' color='primary' fullWidth
                                                 style={{height: "80px"}}
                                                 onClick={() => share(homePage.website ?? "")}>
                                             <Grid item>
                                                 <img alt='website QR code' height={42}
-                                                     src={sanityContext.placeholderOrImage(homePage.websiteQrCode, 42, 42)}/>
+                                                     src={sanityContext.placeholderOrImage && sanityContext.placeholderOrImage(homePage.websiteQrCode, 42, 42)}/>
                                                 <Typography variant='subtitle1'>Qr</Typography>
                                             </Grid>
                                         </Button>
@@ -234,7 +239,7 @@ const BusinessCard: FunctionComponent<MainMenuProps> = ({anchor, homePage}) => {
                             <Grid item xs={12} container>
                                 <Grid container item justifyContent='center'>
 
-                                    <Grid item xs={2} container justifyContent='flex-end'>
+                                    <Grid item xs={6} container justifyContent='flex-end'>
                                         <Button style={{height: "80px"}} variant='contained' color='primary' fullWidth
                                                 onClick={() => {
                                                     navigator.clipboard.writeText(homePage.bookAppointmentLink ?? "")
@@ -251,12 +256,12 @@ const BusinessCard: FunctionComponent<MainMenuProps> = ({anchor, homePage}) => {
                                             </Grid>
                                         </Button>
                                     </Grid>
-                                    <Grid item xs={2}>
+                                    <Grid item xs={6}>
                                         <Button style={{height: "80px"}} variant='contained' color='primary' fullWidth
                                                 onClick={() => share(homePage.bookAppointmentLink ?? "")}>
                                             <Grid item>
                                                 <img alt={'make apppointment qr code'} height={42}
-                                                     src={sanityContext.placeholderOrImage(homePage.bookAppointmentQrCode,42,42)}/>
+                                                     src={sanityContext.placeholderOrImage && sanityContext.placeholderOrImage(homePage.bookAppointmentQrCode, 42, 42)}/>
                                                 <Typography variant='subtitle1'>Qr</Typography>
                                             </Grid>
                                         </Button>
@@ -326,7 +331,7 @@ const BusinessCard: FunctionComponent<MainMenuProps> = ({anchor, homePage}) => {
             >
                 <Avatar style={{backgroundColor: "whitesmoke"}}
 
-                        src={sanityContext.placeholderOrImage(homePage.headerContent.content[0].headerMenuRef.logoImageSrc)}/>
+                        src={sanityContext.placeholderOrImage && sanityContext.placeholderOrImage(homePage.headerContent.content[0].headerMenuRef.logoImageSrc)}/>
             </Fab>
 
 

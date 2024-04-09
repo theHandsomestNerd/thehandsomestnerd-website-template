@@ -112,7 +112,7 @@ const TheDrinkeryAlbumSection: FunctionComponent<IProps> = (props) => {
                                 setSelectedItem(item)
                                 handleClickOpen()
                             }} style={{cursor: "pointer"}}>
-                                <img src={sanityContext.placeholderOrImage(item.imageSrc,800, 500)} alt={item.title}/>
+                                <img src={sanityContext.placeholderOrImage && sanityContext.placeholderOrImage(item.imageSrc,800, 500)} alt={item.title}/>
                                 <ImageListItemBar
                                     title={item.title}
                                     subtitle={<Typography variant='subtitle1' style={{
@@ -126,7 +126,7 @@ const TheDrinkeryAlbumSection: FunctionComponent<IProps> = (props) => {
                     </ImageList>
                     <Dialog onClick={() => handleClose()} onClose={handleClose} aria-labelledby="simple-dialog-title"
                             open={open}>
-                        <img src={sanityContext.placeholderOrImage(selectedItem?.imageSrc, 480,480)} alt={selectedItem?.title}/>
+                        <img src={sanityContext.placeholderOrImage && sanityContext.placeholderOrImage(selectedItem?.imageSrc, 480,480)} alt={selectedItem?.title}/>
                         <DialogTitle id="simple-dialog-title"
                                      style={{
                                          backgroundColor: 'black'

@@ -17,11 +17,13 @@ import {
     useTheme
 } from "@mui/material";
 import {Close} from "@mui/icons-material";
-import {ResumePortfolioItem, SanityImageAsset} from "../../../BlockContentTypes";
+import {ResumePortfolioItemType, SanityImageAsset} from "../../../BlockContentTypes";
 import SanityContext from "../../../../common/sanityIo/sanity-context/SanityContext";
 import dateUtils from "../../../../utils/dateUtils";
+import ResumeSkillTooltipWrapper from "../resume-skills-section/ResumeSkillTooltipWrapper";
+import textProcessingUtils from "../../../../utils/textProcessingUtils";
 
-export const useStyles = makeStyles(() => ({
+const useStyles = makeStyles(() => ({
     hover: {
         "&:hover": {
             backgroundColor: "whitesmoke"
@@ -30,12 +32,11 @@ export const useStyles = makeStyles(() => ({
     imageList: {
         maxWidth: "800px",
         minWidth: "300px",
-        // height: 2000,
     },
 }))
 
 interface IProps {
-    currentItem?: ResumePortfolioItem,
+    currentItem?: ResumePortfolioItemType,
     isOpen?: boolean
     setIsOpen: (open: boolean) => void
 }
@@ -53,9 +54,7 @@ const PortfolioItemModal: FunctionComponent<IProps> = (props: IProps) => {
     }
 
     useEffect(() => {
-        // if (props.isOpen) {
         setIsOpen(!!props.isOpen)
-        // }
     }, [props.isOpen])
 
     const handleClickOpen = () => {
@@ -65,6 +64,8 @@ const PortfolioItemModal: FunctionComponent<IProps> = (props: IProps) => {
     const handleClose = () => {
         setIsPhotoModalOpen(state => !state);
     };
+
+    const [isTooltipOpen, setIsToolTipOpen] = useState<number>()
 
     const [selectedItem, setSelectedItem] = useState<SanityImageAsset>()
 
@@ -102,44 +103,65 @@ const PortfolioItemModal: FunctionComponent<IProps> = (props: IProps) => {
                         variant='body1'>{props.currentItem?.detailDescription}</Typography>
                 </Grid>
                 <Grid item container spacing={1}>
-                    {props.currentItem?.skillsHighlighted?.map((skill, index) => (<Grid item key={index}>
-                        <Chip color='primary' label={skill.title}/>
-                    </Grid>))}
+                    {
+                        props.currentItem
+                        && props.currentItem.skillsHighlighted
+                        && textProcessingUtils
+                            .sortByTitle(props.currentItem.skillsHighlighted)?.map((skill, index) => (
+                                <Grid item key={index} onClick={() => {
+                                    setIsToolTipOpen(index)
+                                }}>
+                                    <ResumeSkillTooltipWrapper resumeSkill={skill} isTipOpen={index === isTooltipOpen}>
+                                        <Chip
+                                            color='primary' label={skill.title}/>
+                                    </ResumeSkillTooltipWrapper>
+                                </Grid>))}
                 </Grid>
                 <Grid item container justifyContent='center'>
                     <Grid item container justifyContent='center'>
                         <Grid item container justifyContent='center'>
                             <ImageList rowHeight={500} className={classes.imageList} cols={mdDown ? 2 : 3}>
-                                {props.currentItem?.imageGallery ?props.currentItem.imageGallery.map((item, index) => {
-                                     return <Box sx={{
-                                         margin:"4px",
-                                         border: "1px solid #D5d5d5",
-                                         position:"relative"
-                                     }}>
-                                         <ImageListItem  key={index} style={{cursor: "pointer"}} onClick={() => {
-                                         // firebaseContext.analytics.albumImageClick(item.title, item.subtitle, pageContext.analyticsId || "no-id")
-                                         setSelectedItem(item)
-                                         handleClickOpen()
-                                     }}>
+                                {
+                                    props.currentItem?.imageGallery ? props.currentItem.imageGallery.map((item, index) => {
+                                        return <Box
+                                            margin='4px'
+                                            border='1px solid #D5d5d5'
+                                            position='relative'
+                                            key={index}
+                                        >
+                                            <ImageListItem style={{cursor: "pointer"}} onClick={() => {
+                                                // firebaseContext.analytics.albumImageClick(item.title, item.subtitle, pageContext.analyticsId || "no-id")
+                                                setSelectedItem(item)
+                                                handleClickOpen()
+                                            }}>
 
-                                        <img alt={'imageGalleryEntry'}
-                                             src={sanityContext.placeholderOrImage(item, 200, 200)}
-                                             width={"100%"}/>
-                                             <Box sx={{position:"absolute", width: "100%", height:"100%", opacity: .2, backgroundColor: "rgba(0,0,0, .5)", zIndex:9999}}>
-
-                                             </Box>
-                                     </ImageListItem>
-                                     </Box>
-                                }):<></>}
+                                                <img alt={'imageGalleryEntry'}
+                                                     src={sanityContext.placeholderOrImage && sanityContext.placeholderOrImage(item, 200, 200)}
+                                                     width={"100%"}/>
+                                                <Box
+                                                    component='div'
+                                                    position="absolute"
+                                                    width="100%"
+                                                    height="100%"
+                                                    sx={{
+                                                        opacity: .2,
+                                                        backgroundColor: "rgba(0,0,0, .5)"
+                                                    }}
+                                                    zIndex={9999}
+                                                />
+                                            </ImageListItem>
+                                        </Box>
+                                    }) : <></>}
                             </ImageList>
                             <Dialog onClick={() => handleClose()}
                                     aria-labelledby="simple-dialog-title"
                                     open={isPhotoModalOpen}>
                                 <Grid container item justifyContent='center'>
-                                <Grid container item sx={{backgroundColor:"black"}} xs={10}>
-                                <img src={sanityContext.placeholderOrImage(selectedItem, 480, 480)}
-                                     alt={""} width='100%'/>
-                                </Grid>
+                                    <Grid container item sx={{backgroundColor: "black"}} xs={10}>
+                                        <img
+                                            src={sanityContext.placeholderOrImage && sanityContext.placeholderOrImage(selectedItem, 480, 480)}
+                                            alt={""} width='100%'/>
+                                    </Grid>
                                 </Grid>
                             </Dialog>
                         </Grid>
@@ -147,11 +169,12 @@ const PortfolioItemModal: FunctionComponent<IProps> = (props: IProps) => {
                 </Grid>
                 <Grid item container justifyContent='center'>
                     <ButtonGroup fullWidth style={{marginTop: theme.spacing(4)}}>
+                        <Button style={{border: "1px solid whitesmoke"}} variant='contained' color='secondary'
+                                onClick={() => setOpenWrapper(false)}>
+                            Back to Resume
+                        </Button>
                         <Button variant='contained' color="primary" href={props.currentItem?.linkToProd}>
                             Go to this Project
-                        </Button>
-                        <Button variant='contained' color='secondary' onClick={() => setOpenWrapper(false)}>
-                            Back to Resume
                         </Button>
                     </ButtonGroup>
                 </Grid>

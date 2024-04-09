@@ -2,16 +2,17 @@ import {SanityMuiFontFace, SanityMuiTheme} from "../../common/sanityIo/Types";
 import {createTheme} from "@mui/material/styles";
 import {COLORS, convertToHexCode} from "../../theme/common/ColorPalette";
 import {grey} from "@mui/material/colors";
-import capitalizeArray from "../../utils/textProcessingUtils";
+import textProcessingUtils from "../../utils/textProcessingUtils";
+
 const fonts = `"Raleway", "Oswald"`
 
 const getThemeFromSanity = (theme: SanityMuiTheme) => {
     const createMuiFontFace = (sanityFontFace: SanityMuiFontFace) => {
-        let processedMediaQuery:any[] | undefined = [];
-        if((sanityFontFace.mediaQueries?.length?? 0) > 0){
-            processedMediaQuery = sanityFontFace.mediaQueries?.map((mediaQuery)=>{
+        let processedMediaQuery: any[] | undefined = [];
+        if ((sanityFontFace.mediaQueries?.length ?? 0) > 0) {
+            processedMediaQuery = sanityFontFace.mediaQueries?.map((mediaQuery) => {
 
-                const query:any = {}
+                const query: any = {}
                 // @ts-ignore
                 query[`@media (max-width:${theme.breakpoints[mediaQuery.breakpoint[0]]}px)`] = mediaQuery.typography;
                 return query
@@ -20,7 +21,7 @@ const getThemeFromSanity = (theme: SanityMuiTheme) => {
 
         return {
             fontSize: sanityFontFace.fontSize,
-            ...(processedMediaQuery?processedMediaQuery[0]:[]),
+            ...(processedMediaQuery ? processedMediaQuery[0] : []),
             fontStyle: sanityFontFace.fontStyle,
             fontWeight: sanityFontFace.fontWeight,
             lineHeight: sanityFontFace.lineHeight,
@@ -48,8 +49,8 @@ const getThemeFromSanity = (theme: SanityMuiTheme) => {
                 xl: parseInt(String(theme.breakpoints?.xl ?? 1320)),
             }
         },
-        shape:{
-          borderRadius: parseInt(String(theme.borderRadius ?? "4"))
+        shape: {
+            borderRadius: parseInt(String(theme.borderRadius ?? "4"))
         },
         palette: {
             background: {
@@ -89,7 +90,7 @@ const getThemeFromSanity = (theme: SanityMuiTheme) => {
             }
         },
         typography: {
-            fontFamily: theme.typography?.fontFamily ? capitalizeArray(theme.typography.fontFamily).join(',') : fonts,
+            fontFamily: theme.typography?.fontFamily ? textProcessingUtils.capitalizeArray(theme.typography.fontFamily).join(',') : fonts,
             h1: extractSanityFontFace('h1'),
             h2: extractSanityFontFace('h2'),
             h3: extractSanityFontFace('h3'),
@@ -141,7 +142,7 @@ const getThemeFromSanity = (theme: SanityMuiTheme) => {
                         boxShadow: "none",
                     },
                     containedPrimary: {
-                        border: `1px solid ${theme.colorPalette?.buttonOutlineColor ? convertToHexCode(theme.colorPalette.buttonOutlineColor):"transparent"}`,
+                        border: `1px solid ${theme.colorPalette?.buttonOutlineColor ? convertToHexCode(theme.colorPalette.buttonOutlineColor) : "transparent"}`,
                         '&.Mui-disabled': {
                             color: '#969284'
                         },

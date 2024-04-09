@@ -50,7 +50,7 @@ const TheDrinkeryOtherSideSection: FunctionComponent<IProps> = (props) => {
                                                 marginTop: theme.spacing(2),
                                                 width: "200px",
                                                 height: "200px",
-                                                backgroundImage: `url(${sanityContext.placeholderOrImage(props.sectionData.imageSrc, 200, 200)})`,
+                                                backgroundImage: `url(${sanityContext.placeholderOrImage && sanityContext.placeholderOrImage(props.sectionData.imageSrc, 200, 200)})`,
                                                 backgroundSize: "contain",
                                                 backgroundPosition: "center",
                                                 backgroundRepeat: "no-repeat"

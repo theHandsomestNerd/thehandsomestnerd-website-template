@@ -47,7 +47,7 @@ const AnimatedAboutUsSection: FunctionComponent<IProps> = (props) => {
                 <img
                     width={256}
                     height={256}
-                    src={sanityContext.urlFor(props.sectionData?.servicesMasonryAccentImageSrc ?? "").width(256).height(256).url() ?? sanityContext.placeholderOrImage(props.sectionData?.servicesMasonryAccentImageSrc, 256, 256)}
+                    src={sanityContext.placeholderOrImage && sanityContext.placeholderOrImage(props.sectionData?.servicesMasonryAccentImageSrc, 256, 256)}
                 />
             </motion.div>}
             <Grid item container justifyContent='center' spacing={2} px={4}>
@@ -136,7 +136,7 @@ const AnimatedAboutUsSection: FunctionComponent<IProps> = (props) => {
                                         <img
                                             width={64}
                                             height={64}
-                                            src={sanityContext.urlFor(props.sectionData?.servicesMasonryAccentImageSrc ?? "").width(64).height(64).url() ?? sanityContext.placeholderOrImage(props.sectionData?.servicesMasonryAccentImageSrc, 64, 64)}
+                                            src={sanityContext.urlFor(props.sectionData?.servicesMasonryAccentImageSrc ?? "").width(64).height(64).url() ?? (sanityContext.placeholderOrImage && sanityContext.placeholderOrImage(props.sectionData?.servicesMasonryAccentImageSrc, 64, 64))}
                                         />
                                     </motion.div>
                                 </Grid>
@@ -148,7 +148,7 @@ const AnimatedAboutUsSection: FunctionComponent<IProps> = (props) => {
                             <Grid item container justifyContent='center' alignContent='flex-end' alignItems='flex-end'>
                                 <Grid item>
                                     <img
-                                        src={(props.sectionData?.servicesImageSrcArr[0] ? sanityContext.urlFor(props.sectionData?.servicesImageSrcArr[0]).url() : sanityContext.placeholderOrImage(props.sectionData?.servicesImageSrcArr[0], 485, 356)) ?? ""}/>
+                                        src={(props.sectionData?.servicesImageSrcArr[0] ? sanityContext.urlFor(props.sectionData?.servicesImageSrcArr[0]).url() : (sanityContext.placeholderOrImage && sanityContext.placeholderOrImage(props.sectionData?.servicesImageSrcArr[0], 485, 356)))}/>
                                 </Grid>
                             </Grid>
                         }
@@ -157,13 +157,13 @@ const AnimatedAboutUsSection: FunctionComponent<IProps> = (props) => {
                             <Grid item container justifyContent='center' spacing={2}>
                                 <Grid item xs={6} container justifyContent='flex-end'>
                                     <Grid item><img
-                                        src={sanityContext.urlFor(props.sectionData?.servicesImageSrcArr[1] ?? "").url() ?? sanityContext.placeholderOrImage(props.sectionData?.servicesImageSrcArr[1], 230, 265)}/></Grid>
+                                        src={sanityContext.urlFor(props.sectionData?.servicesImageSrcArr[1] ?? "").url() ?? (sanityContext.placeholderOrImage && sanityContext.placeholderOrImage(props.sectionData?.servicesImageSrcArr[1], 230, 265))}/></Grid>
                                 </Grid>
                                 <Grid item xs={6}>
                                     <Grid item>
                                         <img
                                             style={{maxWidth: "100%"}}
-                                            src={sanityContext.urlFor(props.sectionData?.servicesImageSrcArr[2] ?? "").url() ?? sanityContext.placeholderOrImage(props.sectionData?.servicesImageSrcArr[2], 260, 305)}/></Grid>
+                                            src={sanityContext.urlFor(props.sectionData?.servicesImageSrcArr[2] ?? "").url() ?? (sanityContext.placeholderOrImage && sanityContext.placeholderOrImage(props.sectionData?.servicesImageSrcArr[2], 260, 305))}/></Grid>
                                 </Grid>
                             </Grid>
                         }

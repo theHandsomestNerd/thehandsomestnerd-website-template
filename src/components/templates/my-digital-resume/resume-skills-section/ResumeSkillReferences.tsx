@@ -1,6 +1,6 @@
 import {FunctionComponent, useContext, useEffect, useState} from 'react'
 import {Grid, Typography} from "@mui/material";
-import {ResumeSkill} from "../../../BlockContentTypes";
+import {ResumeSkillType} from "../../../BlockContentTypes";
 import ResumeExperienceItem from "../resume-experience-section/ResumeExperienceItem";
 import ResumePortfolioEntry from "../resume-portfolio-section/ResumePortfolioEntry";
 import ResumeSkillSetItem from "./ResumeSkillSetItem";
@@ -8,7 +8,7 @@ import PageContext from "../../../page-context/PageContext";
 import SanityContext from "../../../../common/sanityIo/sanity-context/SanityContext";
 
 interface IProps {
-    skill?: ResumeSkill
+    skill?: ResumeSkillType
 }
 
 const ResumeSkillReferences: FunctionComponent<IProps> = (props: IProps) => {

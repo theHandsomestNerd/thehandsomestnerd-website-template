@@ -42,7 +42,7 @@ interface LogoProps {
 const Logo: FunctionComponent<LogoProps> = (props) => {
     const sanityContext = useContext(SanityContext)
 
-    const classes = useStyles({logoImageSrc: props.logoImageSrc?sanityContext.placeholderOrImage(props.logoImageSrc):"", height: props.height})
+    const classes = useStyles({logoImageSrc: sanityContext.placeholderOrImage && sanityContext.placeholderOrImage(props.logoImageSrc), height: props.height})
 
     return !props.logoText ?
         <Grid item container className={classes.imageRoot}

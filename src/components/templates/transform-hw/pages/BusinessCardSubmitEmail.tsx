@@ -1,6 +1,6 @@
 import {FunctionComponent, useEffect, useState} from 'react'
 import {CircularProgress, Grid, Link, Typography} from '@mui/material'
-import pdfUtils from "../../../../utils/pdfUtils";
+import pdfClient from "../../../../utils/pdfClient";
 
 // const useStyles = makeStyles((theme: Theme) => ({
 //     endAdornedInput: {
@@ -49,8 +49,8 @@ const BusinessCardSubmitEmail: FunctionComponent<SubmitEmailIProps> = () => {
 
     const [aLinkUrl, setALinkUrl] = useState<string | undefined>(undefined)
     useEffect(() => {
-        pdfUtils.getPDFLink()
-            .then(async (theLink) => {
+        pdfClient.getPDFLink()
+            .then(async (theLink:string|undefined) => {
                 setALinkUrl(theLink)
             })
 

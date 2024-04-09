@@ -38,7 +38,7 @@ const HorizontalAmenity: FunctionComponent<IProps> = (props: IProps) => {
                     <motion.div
                         animate={controls}
                     >
-                        <img width={56} src={sanityContext.urlFor(props.amenity.imageSrc ?? "").url() ?? sanityContext.placeholderOrImage(props.amenity.imageSrc, 56, 56)}/>
+                        <img width={56} src={sanityContext.placeholderOrImage && sanityContext.placeholderOrImage(props.amenity.imageSrc, 56, 56)}/>
                     </motion.div>
                 </Grid>
                 <Grid item maxWidth={250}>

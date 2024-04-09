@@ -81,7 +81,7 @@ const AnimatedAboutUsItem: FunctionComponent<IProps> = (props: IProps) => {
                                   alignContent='center' style={{height: "100%"}}>
                                 <motion.div animate={controls} initial={{scale: 1.1}}>
                                     <img style={{zIndex: 2}} width={64} height={64}
-                                         src={sanityContext.urlFor(props.service.iconImageSrc ?? "").url() ?? sanityContext.placeholderOrImage(props.service.iconImageSrc, 64, 64)}/>
+                                         src={sanityContext.placeholderOrImage && sanityContext.placeholderOrImage(props.service.iconImageSrc, 64, 64)}/>
                                 </motion.div>
                             </Grid>
                         </Card>

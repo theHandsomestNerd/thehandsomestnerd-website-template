@@ -3,6 +3,7 @@
     "public": "webclient/dist",
     "ignore": [
       "firebase.json",
+      ".parcel-cache",
       "**/.*",
       "**/node_modules/**"
     ],

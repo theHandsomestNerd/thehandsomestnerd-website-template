@@ -39,7 +39,7 @@ const ThwServicesSection: FunctionComponent<IProps> = (props) => {
                     backgroundSize: "cover",
                     backgroundPosition: "center",
                     minHeight: "600px",
-                    backgroundImage: `url(${sanityContext.placeholderOrImage(props.sectionData.imageSrc, 600, 600)})`
+                    backgroundImage: `url(${sanityContext.placeholderOrImage && sanityContext.placeholderOrImage(props.sectionData.imageSrc, 600, 600)})`
                 }}>
                 </Grid>}
                 <Grid item container alignItems='center' alignContent='center' justifyContent='center' xs={12}
@@ -61,7 +61,7 @@ const ThwServicesSection: FunctionComponent<IProps> = (props) => {
                                         minHeight: "145px",
                                         backgroundPosition: 'center',
                                         backgroundRepeat: 'no-repeat',
-                                        backgroundImage: `url(${sanityContext.placeholderOrImage(pro.imageSrc, 145, 145)})`
+                                        backgroundImage: `url(${sanityContext.placeholderOrImage && sanityContext.placeholderOrImage(pro.imageSrc, 145, 145)})`
                                     }}>
 
                                     </Grid>

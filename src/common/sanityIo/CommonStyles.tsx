@@ -3,7 +3,7 @@ import { Theme } from '@mui/material/styles';
 
 import makeStyles from '@mui/styles/makeStyles';
 
-export const useCommonStyles = makeStyles((theme: Theme) => ({
+const useCommonStyles = makeStyles((theme: Theme) => ({
   layoutContainer: {
     marginBottom: '32px',
   },
@@ -35,6 +35,13 @@ export const useCommonStyles = makeStyles((theme: Theme) => ({
     width: '1050px',
     padding: '40px',
     overflow: 'visible'
+  },
+  toolTiplink: {
+    width: "100%",
+    "&:hover": {
+      color: "#FFFFFF",
+      textDecoration: "underline #FFFFFF"
+    }
   },
   homePageH3: {
     fontWeight: 300,
@@ -96,6 +103,6 @@ export const useCommonStyles = makeStyles((theme: Theme) => ({
   },
 }))
 
-export default {
+export {
   useCommonStyles,
 }

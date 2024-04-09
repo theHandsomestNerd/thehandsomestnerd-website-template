@@ -32,7 +32,7 @@ interface LogoProps {
 
 const TheOtherSideLogo: FunctionComponent<LogoProps> = (props) => {
     const sanityContext = useContext(SanityContext)
-    const classes = useStyles({logoImageSrc: sanityContext.placeholderOrImage(props.logoImageSrc, 732, 192), height: props.height})
+    const classes = useStyles({logoImageSrc: sanityContext.placeholderOrImage && sanityContext.placeholderOrImage(props.logoImageSrc, 732, 192), height: props.height})
 
     return (
         <Grid item container className={classes.root} style={{backgroundPosition: props.isCenter ? "center" : "left"}}/>

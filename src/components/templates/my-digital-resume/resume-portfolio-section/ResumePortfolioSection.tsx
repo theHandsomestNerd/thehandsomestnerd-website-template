@@ -1,6 +1,6 @@
-import{FunctionComponent} from 'react'
-import {Grid, Typography, useMediaQuery, useTheme} from '@mui/material'
-import {ResumePortfolioItem, ResumePortfolioSectionType} from "../../../BlockContentTypes";
+import {FunctionComponent} from 'react'
+import {Grid, Link, Typography, useMediaQuery, useTheme} from '@mui/material'
+import {ResumePortfolioItemType, ResumePortfolioSectionType} from "../../../BlockContentTypes";
 import useThwCommonStyles from "../../../../common/sanityIo/ThwCommonStyles";
 import ResumePortfolioEntry from "./ResumePortfolioEntry";
 
@@ -12,20 +12,10 @@ const ResumePortfolioSection: FunctionComponent<IProps> = (props: IProps) => {
     const globalClasses = useThwCommonStyles()
     const theme = useTheme()
 
-    // const [isOpen, setIsOpen] = React.useState<boolean>(false)
-    // const [currentItem, setCurrentItem] = React.useState<ResumePortfolioItem>()
-
-    // const sendToModal = (portfolioItem?: ResumePortfolioItem) => {
-    //     console.log("The current Item", portfolioItem)
-    //     setCurrentItem(portfolioItem)
-    //
-    //     setIsOpen(true)
-    // }
     const smDown = useMediaQuery(theme.breakpoints.down('sm'))
 
-
     return (
-        <Grid container item style={{padding: theme.spacing(4,smDown?1:4)}}
+        <Grid container item style={{padding: theme.spacing(4, smDown ? 1 : 4)}}
               className={globalClasses.resumeSection} justifyContent={'center'}>
             <Grid
                 container item spacing={3} justifyContent='center'>
@@ -46,8 +36,10 @@ const ResumePortfolioSection: FunctionComponent<IProps> = (props: IProps) => {
                 </Grid>
                 <Grid item container justifyContent={'center'} xs={11} justifySelf={'center'} spacing={1}>
                     {
-                        props.sectionData.portfolioEntries?.map((portfolioItem: ResumePortfolioItem, index2: number) => {
-                            return <Grid key={index2} item xs={12} sm={6} lg={4} xl={4}><ResumePortfolioEntry portfolioItem={portfolioItem} /></Grid>
+                        props.sectionData.portfolioEntries?.map((portfolioItem: ResumePortfolioItemType, index2: number) => {
+                            return <Grid key={index2} item xs={12} sm={6} lg={4} xl={4}>
+                                <Link id={portfolioItem._id} underline="hover" position='relative' top={-90}/>
+                                <ResumePortfolioEntry portfolioItem={portfolioItem}/></Grid>
                         })
                     }
                 </Grid>

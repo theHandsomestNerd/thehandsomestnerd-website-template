@@ -33,7 +33,7 @@ const AnimatedPortfolioItem: FunctionComponent<IProps> = (props:IProps) => {
         }} onHoverEnd={async () => {
             animateServiceNoHover()
         }}><Button style={{
-            backgroundImage: `url(${sanityContext.placeholderOrImage(props.portfolioItem?.coverImage,300, 250)})`,
+            backgroundImage: `url(${sanityContext.placeholderOrImage && sanityContext.placeholderOrImage(props.portfolioItem?.coverImage,300, 250)})`,
             backgroundSize: "cover",
             backgroundPosition: "top center",
             backgroundRepeat: "no-repeat",
