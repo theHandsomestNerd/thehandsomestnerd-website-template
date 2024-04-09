@@ -46,8 +46,23 @@ const ResumeExperienceItem: FunctionComponent<IProps> = (props: IProps) => {
                 <Typography fontWeight={'bold'} display='inline'
                             variant='body1' style={{margin: theme.spacing(0, 1)}}>—</Typography>
 
-                <Typography fontWeight={'bold'} display='inline'
-                            variant='body1'>{dateUtils.YearMonth(new Date(props.experience.dateEnd as string))}</Typography>
+                {
+                    !props.experience.isPresentPosition ? <Typography
+                            fontWeight='bold'
+                            display='inline'
+                            variant='body1'
+                        >
+                            {dateUtils.YearMonth(new Date(props.experience.dateEnd as string))}
+                        </Typography>
+                        : <Typography
+                            fontWeight='bold'
+                            display='inline'
+
+                            variant='body1'
+                        >
+                            present
+                        </Typography>
+                }
 
             </Grid>
 
@@ -55,7 +70,14 @@ const ResumeExperienceItem: FunctionComponent<IProps> = (props: IProps) => {
         <Grid container item>
             <Typography
                 variant='body1'
-                fontStyle={'italic'}>{dateUtils.getLengthOfTime(new Date(props.experience.dateStart ?? ""), new Date(props.experience.dateEnd ?? '')).result}</Typography>
+                fontStyle={'italic'}>
+                {
+                    dateUtils.getLengthOfTime(
+                        new Date(props.experience.dateStart ?? ""),
+                        !props.experience.isPresentPosition && props.experience.dateEnd ? new Date(props.experience.dateEnd)
+                            : new Date()).result
+                }
+            </Typography>
         </Grid>
         <Grid container item>
             <Typography
@@ -70,7 +92,8 @@ const ResumeExperienceItem: FunctionComponent<IProps> = (props: IProps) => {
                     .sortByTitle(props.experience.skillsUsed)?.map((skill, index) => {
                         return <Grid item key={index} onClick={() => {
                             setIsToolTipOpen(index)
-                        }}>
+                        }}
+                        >
                             <ResumeSkillTooltipWrapper resumeSkill={skill} isTipOpen={index === isTooltipOpen}>
                                 <Chip role='experienceskill' size='small'
                                       color='primary'

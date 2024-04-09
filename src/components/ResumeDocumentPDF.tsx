@@ -1,12 +1,13 @@
-import{FunctionComponent} from "react";
-import {Document, Page, Link, StyleSheet, Text, View} from '@react-pdf/renderer';
+import {FunctionComponent} from "react";
+import {Document, Link, Page, StyleSheet, Text, View} from '@react-pdf/renderer';
 
 import {v4 as uuidv4} from 'uuid'
 import {SanityTransformHwHomePage} from "../common/sanityIo/Types";
 import {
     ResumeBioSectionType,
     ResumeEducationSectionType,
-    ResumeExperienceSectionType, ResumePortfolioSectionType,
+    ResumeExperienceSectionType,
+    ResumePortfolioSectionType,
     ResumeSkillSectionType
 } from "./BlockContentTypes";
 import dateUtils from "../utils/dateUtils";
@@ -102,7 +103,7 @@ const ResumeDocumentPDF: FunctionComponent<IProps> = (props: IProps) => {
             {props?.homePage?.pageContent.content?.map((columnLayoutContainer: any, pageIdx: number) => {
                 switch (columnLayoutContainer._type) {
                     case 'ResumeBioSection':
-                        const resumeBioSection:ResumeBioSectionType = columnLayoutContainer
+                        const resumeBioSection: ResumeBioSectionType = columnLayoutContainer
 
                         return (
                             <View key={'resume-bio-section-' + pageIdx}>
@@ -129,14 +130,14 @@ const ResumeDocumentPDF: FunctionComponent<IProps> = (props: IProps) => {
                             </View>
                         );
                     case 'ResumeSkillSection':
-                        const resumeSkillSection:ResumeSkillSectionType = columnLayoutContainer
+                        const resumeSkillSection: ResumeSkillSectionType = columnLayoutContainer
                         // console.log(resumeSkillSection)
                         return (
                             <View style={styles.section}>
                                 <View><Text>{resumeSkillSection.title}</Text></View>
                                 <View><Text style={styles.body}>{resumeSkillSection.introduction}</Text></View>
                                 <View style={styles.container}>{
-                                    resumeSkillSection.skillsets?.map((skillset, skillsetIndx:number) => {
+                                    resumeSkillSection.skillsets?.map((skillset, skillsetIndx: number) => {
                                         return <View key={skillsetIndx} style={styles.resumeSkillset}>
                                             <Text style={styles.body2}>{skillset.title}</Text>
                                             <View style={styles.container}>
@@ -153,7 +154,7 @@ const ResumeDocumentPDF: FunctionComponent<IProps> = (props: IProps) => {
                             </View>
                         );
                     case 'ResumeExperienceSection':
-                        const resumeExperienceSection:ResumeExperienceSectionType = columnLayoutContainer
+                        const resumeExperienceSection: ResumeExperienceSectionType = columnLayoutContainer
 
                         return (
                             <View style={styles.section}>
@@ -166,9 +167,26 @@ const ResumeDocumentPDF: FunctionComponent<IProps> = (props: IProps) => {
                                             <Text style={styles.subtitle}>{experience.companySubtitle}</Text>
                                             <Text style={styles.body}>{experience.title}</Text>
                                             <Text
-                                                style={styles.body}>{dateUtils.YearMonth(new Date(experience.dateStart as string))}-{dateUtils.YearMonth(new Date(experience.dateEnd as string))} </Text>
+                                                style={styles.body}>
+                                                {
+                                                    dateUtils.YearMonth(new Date(experience.dateStart as string))
+                                                }
+                                                -
+                                                {
+                                                    !experience.isPresentPosition ?
+                                                        dateUtils.YearMonth(new Date(experience.dateEnd as string))
+                                                        : "present"
+                                                }
+                                            </Text>
                                             <Text
-                                                style={styles.body}>{dateUtils.getLengthOfTime(new Date(experience.dateStart as string), new Date(experience.dateEnd as string)).result}</Text>
+                                                style={styles.body}
+                                            >
+                                                {
+                                                    dateUtils.getLengthOfTime(new Date(experience.dateStart as string),
+                                                        !experience.isPresentPosition ? new Date(experience.dateEnd as string)
+                                                            : new Date()).result
+                                                }
+                                            </Text>
                                             <View style={{
                                                 borderLeft: "1px solid black",
                                                 paddingLeft: "8px",
@@ -191,7 +209,7 @@ const ResumeDocumentPDF: FunctionComponent<IProps> = (props: IProps) => {
                             </View>
                         );
                     case 'ResumeEducationSection':
-                        const resumeEducationSection:ResumeEducationSectionType = columnLayoutContainer
+                        const resumeEducationSection: ResumeEducationSectionType = columnLayoutContainer
 
                         return (
                             <View style={styles.section}>
@@ -228,7 +246,7 @@ const ResumeDocumentPDF: FunctionComponent<IProps> = (props: IProps) => {
                     //         </Grid>
                     //     );
                     case 'ResumePortfolioSection':
-                        const resumePortfolioSection:ResumePortfolioSectionType = columnLayoutContainer
+                        const resumePortfolioSection: ResumePortfolioSectionType = columnLayoutContainer
 
                         return (
                             <View style={styles.section}>

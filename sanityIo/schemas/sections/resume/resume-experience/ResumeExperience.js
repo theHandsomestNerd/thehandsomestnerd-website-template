@@ -49,6 +49,11 @@ export default {
             type: 'text',
         },
         {
+            name: 'isPresentPosition',
+            title: 'Is this your present position?',
+            type: 'boolean',
+        },
+        {
             name: 'skillsUsed',
             title: 'Skills Used in this position',
             type: "array",

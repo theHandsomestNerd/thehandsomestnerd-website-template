@@ -396,7 +396,7 @@ export type ResumeExperienceType = {
     _createdAt?: string
     _updatedAt?: string
     skillsUsed?: ResumeSkillType[]
-
+    isPresentPosition?: boolean
 }
 
 export type ResumeExperienceSectionType = {
