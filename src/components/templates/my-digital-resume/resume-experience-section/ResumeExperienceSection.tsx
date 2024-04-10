@@ -35,7 +35,7 @@ const ResumeExperienceSection: FunctionComponent<IProps> = (props: IProps) => {
                 <Grid item container md={8} spacing={2} justifyContent={xsOnly ? 'center' : 'flex-start'}>
                     {
                         props.sectionData.experiences?.map((experience: ResumeExperienceType, index2: number) => {
-                            return <Grid item container>
+                            return <Grid item container key={index2}>
                                 <Link id={experience._id} underline="hover" style={{position: "relative", top: -90}}>
                                     <></>
                                 </Link>

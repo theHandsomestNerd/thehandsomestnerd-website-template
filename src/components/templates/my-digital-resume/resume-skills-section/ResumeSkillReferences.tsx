@@ -34,12 +34,10 @@ const ResumeSkillReferences: FunctionComponent<IProps> = (props: IProps) => {
 
     return (<Grid container item spacing={2}>
         {
-            referenceResults?.map((searchResult: any) => {
-
-
+            referenceResults?.map((searchResult: any, index) => {
                 switch (searchResult?._type) {
                     case "ResumeExperience":
-                        return <Grid container item>
+                        return <Grid container item key={`searched-experience-${index}`}>
                             <Grid container>
                                 {<Typography color='textPrimary' variant='subtitle2'
                                              textTransform={'uppercase'} sx={{
@@ -51,7 +49,7 @@ const ResumeSkillReferences: FunctionComponent<IProps> = (props: IProps) => {
                                 experience={searchResult}/>
                         </Grid>
                     case "ResumePortfolioItem":
-                        return <Grid xs={12} sm={6} lg={4} xl={4} item>
+                        return <Grid xs={12} sm={6} lg={4} xl={4} item key={`searched-portfolio-item-${index}`}>
                             <Typography color='textPrimary'
                                         variant='subtitle2'
                                         fontWeight={'bold'}
@@ -65,7 +63,7 @@ const ResumeSkillReferences: FunctionComponent<IProps> = (props: IProps) => {
                     case "ResumeSkillSection":
                         return <></>
                     case "ResumeSkillset":
-                        return <Grid container item>
+                        return <Grid container item key={`searched-skillset-${index}`}>
                             <Grid container>
                                 {<Typography color='textPrimary' variant='subtitle2'
                                              fontWeight={'bold'}
@@ -77,8 +75,6 @@ const ResumeSkillReferences: FunctionComponent<IProps> = (props: IProps) => {
                             </Grid>
                             <ResumeSkillSetItem skillset={searchResult}/>
                         </Grid>
-                    // case "PortfolioItem":
-                    //     return <>{searchResult.title}</>
                     default:
                         return <Grid item container><Typography>{searchResult._type}</Typography></Grid>
                 }

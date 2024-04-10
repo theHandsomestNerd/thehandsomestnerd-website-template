@@ -164,14 +164,14 @@ const SanityProvider: FunctionComponent<IProps & PropsWithChildren> = (
 
     useEffect(() => {
         if (theSanityClient !== undefined) {
-            console.log("getting image builders for", theSanityClient)
+            // console.log("getting image builders for", theSanityClient)
             setBuilder(imageUrlBuilder(theSanityClient))
         }
     }, [theSanityClient])
 
     useEffect(() => {
         if (theSanityBartenderClient !== undefined) {
-            console.log("getting image builders for bartender", theSanityBartenderClient)
+            // console.log("getting image builders for bartender", theSanityBartenderClient)
             setCocktailBuilder(imageUrlBuilder(theSanityBartenderClient))
         }
     }, [theSanityBartenderClient])
@@ -520,7 +520,7 @@ const SanityProvider: FunctionComponent<IProps & PropsWithChildren> = (
     // }
 
     const fetchDocumentByTypeAndSlugQuery = async (documentType: string, documentSlug: string) => {
-        console.log(`Retrieving document type:${documentType} with slug ${documentSlug}`)
+        // console.log(`Retrieving document type:${documentType} with slug ${documentSlug}`)
         if (documentType && documentType.length > 0 && documentSlug && documentSlug.length > 0) {
             return theSanityClient?.fetch(
                 `*[slug.current == $documentSlug && _type == $documentType]{
@@ -538,7 +538,7 @@ const SanityProvider: FunctionComponent<IProps & PropsWithChildren> = (
                         return Promise.reject(Error("No document returned"))
                     }
                     if (result.length >= 1) {
-                        console.log("got document?", result[0])
+                        // console.log("got document?", result[0])
                         return result[0]
                     }
                 }).catch(() => {
@@ -549,7 +549,7 @@ const SanityProvider: FunctionComponent<IProps & PropsWithChildren> = (
     }
 
     const fetchPageBySlugQuery = async (pageSlug: string) => {
-        console.log("Retrieving page with sanityClient", theSanityClient)
+        // console.log("Retrieving page with sanityClient", theSanityClient)
         if (pageSlug && pageSlug.length > 0) {
             return theSanityClient?.fetch(
                 `*[slug.current == $pageSlug && _type == "homePage"]{

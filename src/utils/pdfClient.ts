@@ -19,7 +19,7 @@ const getDownloadLink = async (pdfDoc:any)=>{
         // Creating new object of PDF file
         const fileURL =
             window.URL.createObjectURL(blob);
-        console.log("returned from server", fileURL)
+        // console.log("returned from server", fileURL)
 
         // Setting various property values
         let alink = document.createElement("a");

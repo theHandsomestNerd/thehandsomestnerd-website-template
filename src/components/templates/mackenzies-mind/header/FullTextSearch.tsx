@@ -72,16 +72,24 @@ const FullTextSearch: FunctionComponent<IProps> = () => {
         setSearchText(event.target.value)
     }
 
+
+
     return (<Grid container item>
         <Grid container item>
 
             <TextField fullWidth
+                       autoFocus
                        key={'full-text-search-field'}
                        label={<Typography>Search</Typography>}
                        variant='outlined'
                        style={{paddingRight: "0", height: "60px"}}
                        type='search'
-                       value={searchText}
+                       onKeyDown={async (e)=>{
+                               if(e.key === "Enter"){
+                                   await searchCMS()
+                               }
+                       }}
+                       value={searchText ?? ""}
                        onChange={updateSearchText}
                        className={myClasses.endAdornedInput}
                        InputProps={{
@@ -107,11 +115,11 @@ const FullTextSearch: FunctionComponent<IProps> = () => {
                     color='textSecondary'>{results?.length} {(results?.length ?? 1) > 1 ? "results" : "result"}</Typography>}
             </Grid>
             <Grid item container sx={{paddingX: "16px",}}>
-                {results?.map((theResult: any) => {
+                {results?.map((theResult: any, resultIndex) => {
                     switch (theResult?._type) {
                         case "ServiceItem":
                             const convertedServiceItem: ServiceItemNoRefType = theResult;
-                            return <Grid container sx={{marginBottom: "16px"}}>
+                            return <Grid container sx={{marginBottom: "16px"}} key={resultIndex}>
                                 <Grid container item><Typography color='textSecondary'>Service We
                                     Provide:</Typography></Grid>
                                 <Grid item sx={{paddingLeft: "16px"}}>
@@ -124,7 +132,7 @@ const FullTextSearch: FunctionComponent<IProps> = () => {
                         case "HeroAnimatedContentSection":
                             const convertedAnimatedHeroSection: HeroAnimatedContentSectionType = theResult;
 
-                            return <Grid container sx={{marginBottom: "16px"}}>
+                            return <Grid container sx={{marginBottom: "16px"}} key={"hero-animated-content-section-"+resultIndex}>
                                 <Grid container item><Typography color='textSecondary'>Animated Slide
                                     Show:</Typography></Grid>
                                 <Grid item sx={{paddingLeft: "16px"}} container>
@@ -154,7 +162,7 @@ const FullTextSearch: FunctionComponent<IProps> = () => {
                         case "AnimatedServicesSection":
                             const convertedAnimatedServicesSection: AnimatedAboutUsSectionType = theResult;
 
-                            return <Grid container sx={{marginBottom: "16px"}}>
+                            return <Grid container sx={{marginBottom: "16px"}} key={"animated-services-section-"+resultIndex}>
                                 <Grid container item><Typography color='textSecondary'>Services:</Typography></Grid>
                                 <Grid item sx={{paddingLeft: "16px"}} container>
                                     <Grid container item><Typography
@@ -182,7 +190,7 @@ const FullTextSearch: FunctionComponent<IProps> = () => {
                                 marginBottom: "16px",
                                 backgroundColor: COLORS.LIGHTGRAY,
                                 padding: "16px"
-                            }}>
+                            }} key={"resume-experience-"+resultIndex}>
                                 <Grid container>
                                     <Typography variant='h6' gutterBottom color='primary'>{convertedResumeExperience.title} Experience</Typography>
                                 </Grid>
@@ -194,7 +202,7 @@ const FullTextSearch: FunctionComponent<IProps> = () => {
                                 marginBottom: "16px",
                                 backgroundColor: COLORS.LIGHTGRAY,
                                 padding: "16px"
-                            }}>
+                            }} key={"resume-skill-"+resultIndex}>
                                 <Grid container>
                                     <Typography variant='h6' gutterBottom color='primary'>Experience with {convertedResumeSkill.title}</Typography>
                                 </Grid>
@@ -207,7 +215,7 @@ const FullTextSearch: FunctionComponent<IProps> = () => {
                                 marginBottom: "16px",
                                 backgroundColor: COLORS.LIGHTGRAY,
                                 padding: "16px"
-                            }}>
+                            }} key={"resume-bio-section-"+resultIndex}>
                                 <Grid container>
                                     <Typography variant='h6' gutterBottom color='primary'>My Bio
                                         - {resumeBioSectionObj.title}</Typography>
@@ -215,7 +223,7 @@ const FullTextSearch: FunctionComponent<IProps> = () => {
                                 <ResumeBioSection isHideButtons={true} isHideEmail={true} sectionData={resumeBioSectionObj} homePage={pageContext.page}/>
                             </Grid>
                         default:
-                            return <Grid container sx={{marginBottom: "16px"}}><Typography
+                            return <Grid container sx={{marginBottom: "16px"}} key={theResult?._type+resultIndex}><Typography
                                 color='textSecondary'>{theResult?._type}</Typography></Grid>
                     }
                 })}
