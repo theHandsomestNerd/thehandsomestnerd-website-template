@@ -6,6 +6,7 @@ import BallDataTiles from './ball-data-tiles/BallDataTiles';
 import {AWBallSectionType, SanityBallType} from "./ballroomTypes";
 import {Theme} from "@mui/material/styles";
 import SanityContext from "../../../common/sanityIo/sanity-context/SanityContext";
+import BallSearchProviderWrapper from "./BallSearchProviderWrapper";
 
 export const useStyles = makeStyles((theme: Theme) => ({
     ballSection: {
@@ -87,7 +88,7 @@ const AWBallSummarySection: FunctionComponent<IProps> = (props: IProps) => {
     }, [])
     const theme = useTheme()
     return (
-        <Grid container justifyContent='center'>
+        <BallSearchProviderWrapper results={props.balls}><Grid container justifyContent='center'>
             <Toolbar style={{marginBottom: '48px'}}/>
             <Grid container item spacing={2}
                   style={{borderBottom: "1px solid #333333", padding: theme.spacing(0, 0, 3, 2)}}>
@@ -132,7 +133,7 @@ const AWBallSummarySection: FunctionComponent<IProps> = (props: IProps) => {
                     </Grid>
                 </Grid>
             </Grid>
-        </Grid>
+        </Grid></BallSearchProviderWrapper>
     )
 }
 

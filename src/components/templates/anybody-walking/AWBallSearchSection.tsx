@@ -1,4 +1,4 @@
-import {FunctionComponent, PropsWithChildren, useContext, useEffect, useState} from 'react'
+import {FunctionComponent, useContext, useEffect, useState} from 'react'
 
 import makeStyles from "@mui/styles/makeStyles";
 import {Fab, Grid, Typography} from "@mui/material";
@@ -15,8 +15,8 @@ import BallSearchBox from './ball-search-box/BallSearchBox';
 import SearchFilterDropDown from "./search-filter-dropdown/SearchFilterDropDown";
 import BallDataTiles from './ball-data-tiles/BallDataTiles';
 import {AWBallSectionType, SanityBallType} from "./ballroomTypes";
-import BallSearchProvider from "./ball-search-context/BallSearchProvider";
 import SanityContext from "../../../common/sanityIo/sanity-context/SanityContext";
+import BallSearchProviderWrapper from "./BallSearchProviderWrapper";
 
 export const useStyles = makeStyles(() => ({
     preroot: {
@@ -33,16 +33,7 @@ interface IProps {
     balls?: SanityBallType[]
 }
 
-const BallSearchProviderWrapper: FunctionComponent<PropsWithChildren<{
-    results?: SanityBallType[]
-}>> = (props: any) => {
-    return props.results ? <BallSearchProvider balls={props.results}>
-            <Typography variant='h1' color='textSecondary'>WRAPPED</Typography>
-            {props.children}
-        </BallSearchProvider> :
-        <BallSearchProvider><Typography variant='h1' color='textSecondary'>UNWRAPPED</Typography>{props.children}
-        </BallSearchProvider>
-}
+
 
 const AWBallSearchSection: FunctionComponent<IProps> = (props: IProps) => {
     const classes = useCustomStyles({bgImage: undefined})
