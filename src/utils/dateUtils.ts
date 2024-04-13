@@ -8,6 +8,11 @@ const MonthYear = (date?: Date | string | undefined) =>{
     return new Date(date).toLocaleDateString('en-us', { month:"short", year:"numeric"})
 }
 
+const MonthDateYear = (date?: Date | string | undefined) =>{
+    if(!date) return ""
+    return new Date(date).toLocaleDateString('en-us', { month:"numeric", day:"2-digit", year:"numeric"})
+}
+
 const YearNumeric = (date?: Date | string | undefined) =>{
     if(!date) return ""
     return new Date(date).toLocaleDateString('en-us', { year:"numeric"})
@@ -82,4 +87,4 @@ const getLengthOfTime = (date1?: Date|string, date2?: Date|string) =>{
     }
 }
 
-export default {YearMonth, MonthYear, YearNumeric, getLengthOfTime}
+export default {YearMonth, MonthYear, YearNumeric, getLengthOfTime, MonthDateYear}

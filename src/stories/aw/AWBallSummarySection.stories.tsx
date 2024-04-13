@@ -37,7 +37,7 @@ export const AWBallSummarySectionComplete: Story = {
             <Grid container alignItems='center' justifyContent='center'
                   style={{
                       width: "100%",
-                      height: "120px",
+                      height: "90px",
                       top: 0,
                       left: 0,
                       position: "fixed",

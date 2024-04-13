@@ -5,8 +5,8 @@ import {BallSearchParamsType, SanityBallType, SearchParams} from "../ballroomTyp
 import SanityContext from "../../../../common/sanityIo/sanity-context/SanityContext";
 import {RoutesEnum} from "../enums/Routes.enum";
 import {getUrlSearchParamsStr} from '../urlUtils';
-import {RegionEnum, RegionTitleEnum} from "../enums/Region.enum";
 import PageContext from '../../../page-context/PageContext';
+import {RegionEnum, RegionTitleEnum} from "../enums/Region.enum";
 
 export type BallSearchProviderProps = {
     value?: BallSearchContextType
@@ -80,10 +80,10 @@ const BallSearchProvider: FunctionComponent<BallSearchProviderProps & PropsWithC
     }
 
     const updateSearchParams = (event: any) => {
-        setSearchParams({
-            ...searchParams,
+        setSearchParams((currentState)=>({
+            ...currentState,
             [event.target.name]: event.target.value,
-        })
+        }))
     }
 
     const isSearchParamsEmpty = () => (!searchParams?.region || searchParams?.region === '') &&
@@ -171,7 +171,7 @@ const BallSearchProvider: FunctionComponent<BallSearchProviderProps & PropsWithC
         <BallSearchContext.Provider
             value={{
                 searchParams,
-                displayResults: displayResults,
+                displayResults,
                 setSearchParams,
                 setLoading,
                 setDisplayResults,

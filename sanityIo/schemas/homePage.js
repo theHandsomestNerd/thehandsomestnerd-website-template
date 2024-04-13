@@ -1,3 +1,5 @@
+import {ColorListing} from "./mui/ColorListing";
+
 export default {
     name: 'homePage',
     title: 'Home Page',
@@ -128,6 +130,18 @@ export default {
             title: 'Under Construction Page',
             type: 'reference',
             to:[{type: 'transformUnderConstructionPage'}]
+        },
+        {
+            name: 'copyRightTextColor',
+            title: 'Copyright text Color',
+            type: 'string',
+            options: {list: ColorListing}
+        },
+        {
+            name: 'copyRightTextBackgroundColor',
+            title: 'Copyright text background Color',
+            type: 'string',
+            options: {list: ColorListing}
         },
         {
             name: 'theme',

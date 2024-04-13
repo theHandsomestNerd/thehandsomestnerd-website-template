@@ -1660,7 +1660,6 @@ const SanityProvider: FunctionComponent<IProps & PropsWithChildren> = (
 
         // let queryString = const generateBallQueryString(queryStringObj)
 
-        console.log('aw - query string to filter by', queryString)
         console.log('aw - sanity client in sanityProvider', theSanityClient)
 
         const response = theSanityClient ? await theSanityClient

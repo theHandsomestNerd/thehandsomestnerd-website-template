@@ -1,19 +1,19 @@
 import {FunctionComponent, useContext, useEffect, useState} from 'react'
 
 import makeStyles from "@mui/styles/makeStyles";
-import {Grid, Toolbar, Typography, useTheme} from "@mui/material";
+import {Grid, Typography} from "@mui/material";
 import BallDataTiles from './ball-data-tiles/BallDataTiles';
 import {AWBallSectionType, SanityBallType} from "./ballroomTypes";
-import {Theme} from "@mui/material/styles";
 import SanityContext from "../../../common/sanityIo/sanity-context/SanityContext";
 import BallSearchProviderWrapper from "./BallSearchProviderWrapper";
+import {Theme} from "@mui/material/styles";
 
-export const useStyles = makeStyles((theme: Theme) => ({
+export const useStyles = makeStyles((theme:Theme) => ({
     ballSection: {
         border: '2px solid ' +
             '#e8e8e8',
         // width: '100vw',
-        padding: theme.spacing(4, 4, 6, 4),
+        padding: theme.spacing(0, 4, 6, 4),
 
         margin: theme.spacing(4, 6),
     },
@@ -37,6 +37,9 @@ const AWBallSummarySection: FunctionComponent<IProps> = (props: IProps) => {
     const [upcomingLoading, setUpcomingLoading] = useState<boolean>(false)
     const [remainingLoading, setRemainingLoading] = useState<boolean>(false)
 
+    useEffect(() => {
+        console.log(featuredLoading, upcomingLoading, remainingLoading)
+        }, [featuredLoading, upcomingLoading, remainingLoading])
     const getBallData = async () => {
         // Filter featured
         const featured: SanityBallType[] = props.balls ? props.balls.slice(0, 3) : await sanityContext.fetchAllApprovedBalls(' && featured == true')
@@ -70,8 +73,7 @@ const AWBallSummarySection: FunctionComponent<IProps> = (props: IProps) => {
         setFeaturedLoading(true)
         setUpcomingLoading(true)
         setRemainingLoading(true)
-        console.log(featuredLoading, upcomingLoading, remainingLoading)
-        // setSearchParams(queryObject)
+
         return getBallData().then(() => {
             setFeaturedLoading(false)
             setUpcomingLoading(false)
@@ -79,22 +81,22 @@ const AWBallSummarySection: FunctionComponent<IProps> = (props: IProps) => {
         })
     }
 
-    // const getBall = (slug) => {
-    //   history.push(`${RoutesEnum.BALL}/${slug}`)
-    // }
-
     useEffect(() => {
         refreshSearchResults().then()
     }, [])
-    const theme = useTheme()
+
     return (
-        <BallSearchProviderWrapper results={props.balls}><Grid container justifyContent='center'>
-            <Toolbar style={{marginBottom: '48px'}}/>
-            <Grid container item spacing={2}
-                  style={{borderBottom: "1px solid #333333", padding: theme.spacing(0, 0, 3, 2)}}>
-                <Grid item container><Typography variant='h4' color='textSecondary' fontWeight={500}>Featured
-                    Balls</Typography></Grid>
+        <BallSearchProviderWrapper results={props.balls}>
+            <Grid container justifyContent='center'>
+            {/*<Toolbar sx={{height: 55}}/>*/}
+            <Grid container item
+                  style={{borderBottom: "1px solid #333333", paddingTop:"16px",paddingLeft:"16px", paddingBottom:"16px"}}>
                 <Grid item container>
+                    <Typography variant='h4' color='textSecondary' fontWeight={500}>
+                        Featured Balls
+                    </Typography>
+                </Grid>
+                <Grid item container style={{paddingTop:"16px"}}>
                     <BallDataTiles
                         // parentRef={scrollParentRef}
                         // sortFunction={sortBalls}

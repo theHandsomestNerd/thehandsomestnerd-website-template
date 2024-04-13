@@ -18,4 +18,3 @@ export enum RegionTitleEnum {
   NONE = ''
 }
 
-export default {RegionEnum, RegionTitleEnum}

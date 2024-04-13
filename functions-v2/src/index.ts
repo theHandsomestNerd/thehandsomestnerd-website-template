@@ -9,7 +9,7 @@
 
 import {onRequest} from "firebase-functions/v2/https";
 import * as logger from "firebase-functions/logger";
-import { initializeApp } from 'firebase/app';
+import {initializeApp} from 'firebase/app';
 import express from "express";
 import fs from "fs";
 import path from "path";
@@ -52,7 +52,7 @@ initializeApp({
     // credential: admin.credential.cert(serviceAccount),
 });
 
-app.get("/*", (req, res, next) => {
+app.get("/*", (req, res) => {
     logger.log("server-side", "NOTICE",
         "Hello from the Server Siiiiiide", req.params);
 
@@ -62,21 +62,21 @@ app.get("/*", (req, res, next) => {
     serveIndexFile(req, res);
 });
 
-app.get("/", (req, res, next) => {
+app.get("/", (req, res) => {
     logger.log("server-side", "NOTICE",
         "Serving Index instead of hosting", req.params);
 
     serveIndexFile(req, res);
 });
 
-app.get("/index.html", (req, res, next) => {
+app.get("/index.html", (req, res) => {
     logger.log("server-side", "NOTICE",
         "Serving Index instead of hosting", req.params);
 
     serveIndexFile(req, res);
 });
 
-console.log(__dirname + " " + "../../../../" + "build");
+// console.log(__dirname + " " + "../../../../" + "build");
 
 const devIndexPath: string[] = [];
 const prodIndexPath: string[] = [];

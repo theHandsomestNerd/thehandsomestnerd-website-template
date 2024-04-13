@@ -34,7 +34,7 @@ console.log(pageContext)
     // const navigate = useNavigate()
 
     const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
-    return <Grid container spacing={3} justifyContent='center' style={{minHeight:"700px", paddingTop:"128px", paddingLeft:"32px",paddingRight:"32px"}}>
+    return <Grid container spacing={3} justifyContent='center' style={{minHeight:"800px", paddingTop:"128px", paddingLeft:"32px",paddingRight:"32px"}}>
         <Grid container item xs={12} md={10} justifyContent='center'>
             <Typography variant='h4' color='textSecondary'>Ball Info</Typography>
         </Grid>

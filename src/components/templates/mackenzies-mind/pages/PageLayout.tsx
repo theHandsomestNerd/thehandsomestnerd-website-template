@@ -10,6 +10,7 @@ import useCustomStyles from "./Styles";
 import clsx from "clsx";
 import FirebaseContext from "../../../../common/firebase/firebase-context/FirebaseContext";
 import SanityContext from "../../../../common/sanityIo/sanity-context/SanityContext";
+import {convertToHexCode} from "../../../../theme/common/ColorPalette";
 
 interface IProps {
     homePage: SanityTransformHwHomePage
@@ -34,7 +35,7 @@ const PageLayout: FunctionComponent<IProps> = (props: IProps) => {
     }, []);
 
     return (
-        <Grid container item style={{width: "100vw"}}>
+        <Grid container item style={{width: "100vw", minHeight: "100vh"}}>
             {/*<Grid container item>*/}
             {/*    <Header pageHeader={props.homePage.headerMenuRef}/>*/}
             {/*</Grid>*/}
@@ -71,7 +72,7 @@ const PageLayout: FunctionComponent<IProps> = (props: IProps) => {
                   alignContent='center'
                   alignItems='center'
                   style={{
-                      backgroundColor: "white",
+                      backgroundColor: props.homePage.copyRightBackgroundColor? convertToHexCode(props.homePage.copyRightBackgroundColor):"whitesmoke",
                       position: "sticky",
                       bottom: 0,
                       zIndex: 10,
@@ -82,7 +83,7 @@ const PageLayout: FunctionComponent<IProps> = (props: IProps) => {
                 <Link
                     gutterBottom
                     href='https://thehandsomestnerd.com'
-                    color='textPrimary'
+                    color={props.homePage.copyRightTextColor?convertToHexCode(props.homePage.copyRightTextColor):"black"}
                     variant='subtitle2'
                     underline="hover">
                     © Copyright 2023

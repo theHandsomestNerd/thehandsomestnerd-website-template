@@ -6,6 +6,9 @@ import BallSearchContext from "../ball-search-context/BallSearchContext";
 import InfiniteScroll from 'react-infinite-scroll-component'
 import SingleBallSmallView from '../single-ball-small-view/SingleBallSmallView';
 
+import TimeAgo from 'react-timeago'
+import {COLORS} from "../../../../theme/common/ColorPalette";
+
 export const useStyles = makeStyles(() => ({
     root: {
         // position: 'relative',
@@ -16,10 +19,10 @@ export const useStyles = makeStyles(() => ({
 type DataTilesProps = {
     tiles?: SanityBallType[],
     numColumns?: GridSize,
-    isAgoOn?:boolean
+    isAgoOn?: boolean
 }
 
-type DataTilesStateType = {displayTiles?: SanityBallType[], page: number, rowsPerPage: number}
+type DataTilesStateType = { displayTiles?: SanityBallType[], page: number, rowsPerPage: number }
 
 const BallDataTiles: FunctionComponent<DataTilesProps> = (props: DataTilesProps) => {
     const classes = useStyles()
@@ -28,10 +31,10 @@ const BallDataTiles: FunctionComponent<DataTilesProps> = (props: DataTilesProps)
     const [state, setState] = useState<DataTilesStateType>({displayTiles: [], page: 0, rowsPerPage: 9})
 
     useEffect(() => {
-        if(props.tiles){
-            setState((newState:DataTilesStateType)=> ({
+        if (props.tiles) {
+            setState((newState: DataTilesStateType) => ({
                 ...newState,
-                displayTiles:props.tiles,
+                displayTiles: props.tiles,
             }))
         }
     }, [props.tiles])
@@ -134,6 +137,7 @@ const BallDataTiles: FunctionComponent<DataTilesProps> = (props: DataTilesProps)
                                                         <Grid
                                                             key={index}
                                                             item
+                                                            style={{position: "relative"}}
                                                             onClick={() => {
                                                                 console.log('click this tile', tile)
                                                                 tileClick(tile)
@@ -145,7 +149,22 @@ const BallDataTiles: FunctionComponent<DataTilesProps> = (props: DataTilesProps)
                                                             <Grid item style={{padding: '8px'}}>
                                                                 <SingleBallSmallView key={index} ball={tile}/>
                                                             </Grid>
-                                                            {props.isAgoOn ? <Grid item>ago</Grid>:<></>}
+                                                            {
+                                                                props.isAgoOn && tile.functionStartDate &&
+                                                                <Grid item justifyContent='flex-end'
+                                                                      style={{
+                                                                          margin: "8px",
+                                                                          backgroundColor: COLORS.TRANSPARENTDARKGRAY,
+                                                                          padding: '8px',
+                                                                          position: "absolute",
+                                                                          right: 0,
+                                                                          top: 0
+                                                                      }}>
+                                                                    <Typography color='white'>
+                                                                        <TimeAgo date={tile.functionStartDate}/>
+                                                                    </Typography>
+                                                                </Grid>
+                                                            }
                                                         </Grid>
                                                     ))
                                             }

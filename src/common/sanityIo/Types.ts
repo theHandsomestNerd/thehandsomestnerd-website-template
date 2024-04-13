@@ -191,6 +191,8 @@ export type SanityTransformHwHomePage = {
     isUnderConstruction?: boolean
     underConstructionPageRef?: SanityRef
     isFabActivated?: boolean
+    copyRightTextColor?: string
+    copyRightBackgroundColor?: string
 }
 
 export type SanityUnderConstructionPageType = {

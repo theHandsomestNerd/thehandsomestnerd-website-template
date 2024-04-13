@@ -34,25 +34,19 @@ interface IProps {
 }
 
 
-
 const AWBallSearchSection: FunctionComponent<IProps> = (props: IProps) => {
-    const classes = useCustomStyles({bgImage: undefined})
+    const sanityContext = useContext(SanityContext)
+    const searchContext = useContext(BallSearchContext)
 
     const navigate = useNavigate()
+    const classes = useCustomStyles({bgImage: undefined})
     const theClasses = useStyles()
 
-    // const theme = useTheme()
-    const searchContext = useContext(BallSearchContext)
-    // const sanityContext = useContext(SanityContext)
     const [displayedResults, setDisplayedResults] = useState<SanityBallType[]>()
 
     useEffect(() => {
-        console.log("The sanity context before setting balls", searchContext)
-        // if (props.balls) {
-        //     setDisplayedResults(props.balls)
-        // } else
-        setDisplayedResults(searchContext.displayResults)
-    }, [searchContext.displayResults])
+        searchContext.setDisplayResults && searchContext.setDisplayResults(displayedResults)
+    }, [displayedResults])
 
     useEffect(() => {
         if (props.balls) {
@@ -62,95 +56,93 @@ const AWBallSearchSection: FunctionComponent<IProps> = (props: IProps) => {
 
     const getNewData = async () => {
         const remainingBalls: SanityBallType[] = props.balls ? props.balls : await sanityContext.fetchAllApprovedBalls('')
-
         setDisplayedResults(remainingBalls)
-        console.log('the balls found', remainingBalls)
     }
 
     useEffect(() => {
         getNewData().then()
     }, [])
 
-    const sanityContext = useContext(SanityContext)
-
 
     return (
-        <BallSearchProviderWrapper results={props.balls}><Grid container item className={theClasses.preroot}>
-            <Grid item container className={clsx(classes.fullSection)}
-                  justifyContent='center' alignItems='center'>
-                <Grid item alignContent='center' container direction='column'
-                      style={{ overflow: 'hidden', position: "relative",}}>
-                    <Grid
-                        item
-                        container
-                        style={{
-                            zIndex: 1,
-                            position: "fixed",
-                            left: 0,
-                            backgroundColor: "whitesmoke",
-                            padding: "16px"
-                        }}
-                    >
-                        <Grid item container justifyContent='center' paddingLeft="32px">
-                            <BallSearchBox/>
-                        </Grid>
-                        <Grid container justifyContent='space-between'
-                              marginTop={1}
-                              alignItems='center'
-                            // paddingX={1.5}
-                              style={{backgroundColor: "white"}}
+        <BallSearchProviderWrapper results={props.balls}>
+            <Grid container item className={theClasses.preroot}>
+                <Grid item container className={clsx(classes.fullSection)}
+                      justifyContent='center' alignItems='center'>
+                    <Grid item alignContent='center' container direction='column'
+                          style={{overflow: 'hidden', position: "relative",}}>
+                        <Grid
+                            item
+                            container
+                            style={{
+                                zIndex: 1,
+                                position: "fixed",
+                                left: 0,
+                                backgroundColor: "whitesmoke",
+                                padding: "16px"
+                            }}
                         >
-                            <Grid item>
-                                <SearchFilterDropDown/>
+                            <Grid item container justifyContent='center' paddingLeft="32px">
+                                <BallSearchBox/>
                             </Grid>
-                            <Grid
-
-                                item
-                                justifyContent='flex-end'
+                            <Grid container justifyContent='space-between'
+                                  marginTop={1}
+                                  alignItems='center'
+                                // paddingX={1.5}
+                                  style={{backgroundColor: "white"}}
                             >
-                                <ViewChange/>
+                                <Grid item>
+                                    <SearchFilterDropDown/>
+                                </Grid>
+                                <Grid
+                                    item
+                                    justifyContent='flex-end'
+                                >
+                                    <ViewChange/>
+                                </Grid>
                             </Grid>
+
+                        </Grid>
+                        <Grid container item spacing={3} style={{paddingTop: "150px", paddingLeft: "8px", minHeight: "700px"}}>
+                            {/*{sectionDataarchContext.loading && <Grid item>*/}
+                            {/*    <LinearProgress color='primary' style={{height: '1px'}}/>*/}
+                            {/*</Grid>}*/}
+                            <AppSettingsContext.Consumer>
+                                {appSettings => <Grid container item>
+                                    <BallSearchContext.Consumer>{
+                                        searchValue => searchValue.viewType ? <Grid item container>
+                                                {
+                                                    <BallDataTiles tiles={searchValue.displayResults}/>
+                                                }
+                                            </Grid>
+                                            : <Grid item container justifyContent="center">
+                                                <Grid item>
+                                                    <BallDataTable/>
+                                                </Grid>
+                                            </Grid>
+                                    }</BallSearchContext.Consumer>
+                                    {appSettings.newAddBallStepsFlow ? <BallFormSteps/> : <Fab
+                                        style={{
+                                            position: 'fixed',
+                                            bottom: '32px',
+                                            right: '32px',
+                                            width: '200px',
+                                            height: '40px',
+                                            borderRadius: '3px',
+                                        }}
+                                        onClick={() => navigate(RoutesEnum.ADD_BALL)}
+                                        color='primary'
+                                    >
+                                        <Typography noWrap>Add a new Ball</Typography>
+                                    </Fab>}
+                                </Grid>}
+                            </AppSettingsContext.Consumer>
                         </Grid>
 
                     </Grid>
-                    <Grid container item spacing={3} style={{paddingTop: "150px", paddingLeft: "8px"}}>
-                        {/*{sectionDataarchContext.loading && <Grid item>*/}
-                        {/*    <LinearProgress color='primary' style={{height: '1px'}}/>*/}
-                        {/*</Grid>}*/}
-                        <AppSettingsContext.Consumer>
-                            {appSettings => <Grid container item>
-                                <BallSearchContext.Consumer>{
-                                    searchValue => searchValue.viewType ? <Grid item container>
-                                            {
-                                                <BallDataTiles tiles={displayedResults}/>
-                                            }
-                                        </Grid>
-                                        : <Grid item container justifyContent="center"><Grid item>
-                                            <BallDataTable/>
-                                        </Grid>
-                                        </Grid>
-                                }</BallSearchContext.Consumer>
-                                {appSettings.newAddBallStepsFlow ? <BallFormSteps/> : <Fab
-                                    style={{
-                                        position: 'fixed',
-                                        bottom: '32px',
-                                        right: '32px',
-                                        width: '200px',
-                                        height: '40px',
-                                        borderRadius: '3px',
-                                    }}
-                                    onClick={() => navigate(RoutesEnum.ADD_BALL)}
-                                    color='primary'
-                                >
-                                    <Typography noWrap>Add a new Ball</Typography>
-                                </Fab>}
-                            </Grid>}
-                        </AppSettingsContext.Consumer>
-                    </Grid>
-
                 </Grid>
             </Grid>
-        </Grid></BallSearchProviderWrapper>
+        </BallSearchProviderWrapper>
     )
 }
 
