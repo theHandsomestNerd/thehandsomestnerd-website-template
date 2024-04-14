@@ -41,7 +41,7 @@ const HeadlineCTASection: FunctionComponent<IProps> = (props: IProps) => {
               justifyContent={smDown ? 'center' : 'flex-end'} alignItems='center' alignContent='center' sm={4}>
             <Button color='primary' variant='contained'
                     onClick={() => {
-                        firebaseContext.analytics.ctaClick("hero-section", props.sectionData.ctaButtonText, pageContext.analyticsId,)
+                        firebaseContext.ctaClick && firebaseContext.ctaClick("hero-section", props.sectionData.ctaButtonText, pageContext.analyticsId,)
                     }}
                     href={props.sectionData.ctaButtonLink ?? ""}>
                 <Typography variant='button'

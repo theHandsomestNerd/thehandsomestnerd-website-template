@@ -1,7 +1,9 @@
 import {Fab, Typography } from '@mui/material'
-import {FunctionComponent, useState} from 'react'
+import {FunctionComponent, useContext, useState} from 'react'
 import {AddBallState} from "../ballroomTypes";
 import AddBallModal from '../modal-add-ball/AddBallModal';
+import FirebaseContext from "../../../../common/firebase/firebase-context/FirebaseContext";
+import PageContext from "../../../page-context/PageContext";
 
 export type BallFormStepsProps = {
     ballToAdd?: AddBallState,
@@ -11,7 +13,9 @@ export type BallFormStepsProps = {
 
 const BallFormSteps: FunctionComponent<BallFormStepsProps> = (props: BallFormStepsProps) => {
     const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
-
+    const firebaseContext= useContext(FirebaseContext)
+    const pageContext = useContext(PageContext)
+    const buttonText = "Add a new Ball"
     return (
         <>
             <Fab
@@ -24,10 +28,13 @@ const BallFormSteps: FunctionComponent<BallFormStepsProps> = (props: BallFormSte
                     height: '40px',
                     borderRadius: '3px',
                 }}
-                onClick={() => setIsModalOpen(state=>!state)}
+                onClick={() => {
+                    setIsModalOpen(state => !state)
+                    firebaseContext.ctaClick && firebaseContext.ctaClick('ball-form-steps', buttonText,pageContext.analyticsId)
+                }}
                 color='primary'
             >
-                <Typography noWrap>Add a new Ball</Typography>
+                <Typography noWrap>{buttonText}</Typography>
             </Fab>
             <AddBallModal open={isModalOpen} ballToAdd={props.ballToAdd ? { ...props.ballToAdd, fileUploaded: props.ballFlyerFile } : { categories: [] }}></AddBallModal>
         </>

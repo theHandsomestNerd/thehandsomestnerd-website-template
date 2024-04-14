@@ -145,7 +145,7 @@ const ResumeContactUsSection: FunctionComponent<ContactUsProps> = (props) => {
 
     const pageContext = useContext(PageContext)
     const createLead = async (): Promise<any> => {
-        firebaseContext.analytics.ctaClick('contact-us', 'send-message', pageContext.analyticsId,)
+        firebaseContext.ctaClick && firebaseContext.ctaClick('contact-us', 'send-message', pageContext.analyticsId,)
         return refetch()
     }
 

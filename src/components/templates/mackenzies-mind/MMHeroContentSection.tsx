@@ -75,7 +75,7 @@ const MMHeroContentSection: FunctionComponent<IProps> = (props) => {
                             <Grid container item>
                                 <Button color='primary' variant='text'
                                         onClick={() => {
-                                            firebaseContext.analytics.ctaClick("hero-section", props.sectionData.ctaButtonTitle, pageContext.analyticsId,)
+                                            firebaseContext.ctaClick && firebaseContext.ctaClick("hero-section", props.sectionData.ctaButtonTitle, pageContext.analyticsId,)
                                         }}
                                         href={props.sectionData.ctaButtonLink ?? ""}>
                                     <Typography variant='button'

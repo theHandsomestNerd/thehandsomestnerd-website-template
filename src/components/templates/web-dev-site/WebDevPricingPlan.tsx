@@ -36,7 +36,7 @@ const WebDevPricingPlan: FunctionComponent<IProps> = (props: IProps) => {
                 <Button fullWidth
                         sx={{borderRadius:"32px"}}
                         onClick={() =>
-                            firebaseContext.analytics.ctaClick(props.step.slug?.current ?? "", props.step.learnMoreText ?? "", pageContext.analyticsId,)
+                            firebaseContext.ctaClick && firebaseContext.ctaClick(props.step.slug?.current ?? "", props.step.learnMoreText ?? "", pageContext.analyticsId,)
 
                         } color='primary' href={props.step.learnMoreLink}
                         variant='outlined'><Typography variant='button'

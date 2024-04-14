@@ -173,5 +173,45 @@ app.post("/get-resume-pdf", async (req, res) => {
     }
 })
 
+app.post("/create-new-house",
+    async (req, functionRes:any) => {
+        logger.log("create-new-house", "NOTICE",
+            "Request body raw", req.body);
+        const reqBody = JSON.parse(req.body);
 
-exports.app = onRequest({cors:false}, app);
+        logger.log("create-new-house", "NOTICE",
+            "Request to create new house", reqBody);
+        //
+        try {
+            const response = await cmsClient.createNewHouse({
+                ...reqBody
+            });
+            functionRes.send({status: "200", response, email: reqBody.email});
+        } catch (e) {
+            logger.log("create-new-house", "ERROR",
+                "Could not create New House", {email: reqBody.email});
+            functionRes.error({status: "400", e});
+        }
+    });
+app.post("/create-ball",
+    async (req, functionRes:any) => {
+        logger.log("create-ball", "NOTICE",
+            "Request body raw", req.body);
+        const reqBody = JSON.parse(req.body);
+
+        logger.log("create-ball", "NOTICE",
+            "Request to create ball", reqBody);
+        //
+        try {
+            const response = await cmsClient.createBall({
+                ...reqBody
+            });
+            functionRes.send({status: "200", response, email: reqBody.email});
+        } catch (e) {
+            logger.log("create-ball", "ERROR",
+                "Could not create Ball", {email: reqBody.email});
+            functionRes.error({status: "400", e});
+        }
+    });
+
+exports.app = onRequest({}, app);

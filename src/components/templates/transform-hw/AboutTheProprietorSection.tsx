@@ -98,7 +98,7 @@ const ProprietorAtAGlance = (props: { sectionData: ProprietorAtAGlanceType, sour
             <Grid item>
                 <LoadingButton
                     clickHandler={() => {
-                        firebaseContext.analytics.ctaClick(props.source, props.sectionData.ctaButtonText, pageContext.analyticsId,)
+                        firebaseContext.ctaClick && firebaseContext.ctaClick(props.source, props.sectionData.ctaButtonText, pageContext.analyticsId,)
                     }}
                     href={props.sectionData.ctaButtonLink}
                     color={"primary"}

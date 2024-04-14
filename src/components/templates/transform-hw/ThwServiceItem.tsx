@@ -30,7 +30,7 @@ const ThwServiceItem: FunctionComponent<IProps> = (props: IProps) => {
             {props.service.learnMoreText && props.service?.learnMoreText.length > 0 &&
                 <LoadingButton
                     clickHandler={()=>
-                    firebaseContext.analytics.ctaClick(props.service.slug?.current ?? "", props.service.learnMoreText, pageContext.analyticsId,)
+                        firebaseContext.ctaClick && firebaseContext.ctaClick(props.service.slug?.current ?? "", props.service.learnMoreText, pageContext.analyticsId,)
 
                 } color='secondary' href={props.service.learnMoreLink}
                                variant='outlined'><Typography variant='button'

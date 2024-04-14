@@ -76,7 +76,7 @@ const ImageWIthButtonOverlay: FunctionComponent<IProps> = (props) => {
     return (
         <Button fullWidth
                 onClick={() => {
-                    props.source && firebaseContext.analytics.ctaClick(props.source, 'image-button', pageContext.analyticsId,)
+                    props.source && firebaseContext.ctaClick && firebaseContext.ctaClick(props.source, 'image-button', pageContext.analyticsId,)
                 }}
                 variant='text'
                 href={props.learnMoreLink}
@@ -123,7 +123,7 @@ const ImageWIthButtonOverlay: FunctionComponent<IProps> = (props) => {
                         <Button
                             onClick={() => {
                                 props.source && props.ctaButtonText &&
-                                firebaseContext.analytics.ctaClick(props.source, props.ctaButtonText, pageContext.analyticsId,)
+                                firebaseContext.ctaClick && firebaseContext.ctaClick(props.source, props.ctaButtonText, pageContext.analyticsId,)
                             }}
                             component='div'
                             variant={props.variant ? props.variant : 'outlined'}

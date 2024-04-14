@@ -55,5 +55,49 @@ const fetchPage = async (pageSlug:string)=>{
       });
 };
 
+const createNewHouse = async (aNewHouse: any) => {
+    logger.log("createSanityNewHouse", "INFO", "creating new house ", aNewHouse);
 
-export default {createColdLead, fetchPage, createContactUs};
+    const newHouse: any = {
+        ...aNewHouse,
+    };
+
+    logger.log("createSanityNewHouse", "INFO", "potential new house ", newHouse);
+
+    return sanityClient.create({
+        _type: "house",
+        ...newHouse,
+    }).catch((e:any)=>{
+        logger.log("createSanityNewHouse", "ERROR", "creating new house ", {newHouse: newHouse, e});
+        return Promise.reject(e.message);
+    });
+};
+
+const createBall = async (ball: any) => {
+    logger.log("createSanityBall", "INFO", "creating ball ", ball);
+
+    const newBall: any = {
+        ...ball,
+    };
+
+    logger.log("createSanityBall", "INFO", "potential ball ", newBall);
+
+    return sanityClient.create({
+        _type: "ball",
+        ...newBall,
+    }).then((ballCreated:any)=>{
+        logger.log("createSanityBall", "NOTICE", " ball created ", {newBall: ballCreated});
+        return Promise.resolve(ballCreated);
+    }).catch((e:any)=>{
+        logger.log("createSanityBall", "ERROR", "creating ball ", {newBall: newBall, e});
+        return Promise.reject(e.message);
+    });
+};
+
+export default {
+    createColdLead,
+    fetchPage,
+    createContactUs,
+    createNewHouse,
+    createBall
+};

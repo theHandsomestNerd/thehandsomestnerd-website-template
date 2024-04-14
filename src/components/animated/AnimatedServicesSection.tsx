@@ -93,7 +93,7 @@ const AnimatedServicesSection: FunctionComponent<IProps> = (props) => {
                             <Button
                                 onClick={() => {
                                     props.sectionData.ctaButtonText &&
-                                    firebaseContext.analytics.ctaClick("animated-services-section", props.sectionData.ctaButtonText, pageContext.analyticsId,)
+                                    firebaseContext.ctaClick && firebaseContext.ctaClick("animated-services-section", props.sectionData.ctaButtonText, pageContext.analyticsId,)
                                 }}
                                 component='div'
                                 variant={'contained'}

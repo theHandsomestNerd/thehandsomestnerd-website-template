@@ -144,7 +144,7 @@ const AmenityProvider: FunctionComponent<IProps & PropsWithChildren> = (
     const snackbarContext = useContext(SnackbarContext)
 
     const openSnackbar = (serviceTitle: string, amenity: ServiceAmenityType) => {
-        pageContext.analyticsId && firebaseContext.analytics.amenityTooltipShown && firebaseContext.analytics.amenityTooltipShown(serviceTitle, amenity.title, pageContext.analyticsId)
+        pageContext.analyticsId && firebaseContext.amenityTooltipShown && firebaseContext.amenityTooltipShown(serviceTitle, amenity.title, pageContext.analyticsId)
         const snack = <Grid
             container
             style={{minWidth: "200px"}}

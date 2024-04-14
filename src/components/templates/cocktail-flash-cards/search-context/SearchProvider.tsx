@@ -368,7 +368,7 @@ const SearchProvider: FunctionComponent<IProps & PropsWithChildren> = (
 
     useEffect(() => {
         if (state.cardCounter && state.cocktails && state.cocktails[state.cardCounter])
-            state.cardCounter && firebaseContext.analytics.analyticsPageView && firebaseContext.analytics.analyticsPageView(
+            state.cardCounter && firebaseContext.analyticsPageView && firebaseContext.analyticsPageView(
                 location.pathname,
                 location.search,
                 `${state.cocktails[state.cardCounter].title} | Cocktail`,

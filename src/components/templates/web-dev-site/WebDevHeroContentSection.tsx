@@ -73,7 +73,7 @@ const WebDevHeroContentSection: FunctionComponent<IProps> = (props) => {
                             <Grid item container>
                                 <Button color='primary' variant='outlined'
                                         onClick={() => {
-                                            firebaseContext.analytics.ctaClick("hero-section", props.sectionData.ctaButtonTitle, pageContext.analyticsId,)
+                                            firebaseContext.ctaClick && firebaseContext.ctaClick("hero-section", props.sectionData.ctaButtonTitle, pageContext.analyticsId,)
                                         }}
                                         href={props.sectionData.ctaButtonLink ?? ""}>
                                     <Grid container alignItems='center' spacing={1}>

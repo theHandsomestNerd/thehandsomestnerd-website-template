@@ -49,7 +49,7 @@ const App: FunctionComponent<IProps & PropsWithChildren> = (props) => {
         const params: any = new URLSearchParams(windowUrl);
 
         if (params.has('utm_source') || params.has('utm_medium') || params.has('utm_campaign') || params.has('utm_id')) {
-            firebaseContext.analytics.utmCodes(params.get('utm_source'), params.get('utm_medium'), params.get('utm_campaign'), params.get('utm_id'))
+            firebaseContext.utmCodes && firebaseContext.utmCodes(params.get('utm_source'), params.get('utm_medium'), params.get('utm_campaign'), params.get('utm_id'))
         }
 
         // console.log("Props passed to APp", props)

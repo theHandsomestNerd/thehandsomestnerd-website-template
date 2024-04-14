@@ -9,6 +9,7 @@ import {RoutesEnum} from "./enums/Routes.enum";
 import {AddBallState, AWBallToolsType} from "./ballroomTypes";
 import PageContext from "../../page-context/PageContext";
 import AddBallModal from "./modal-add-ball/AddBallModal";
+import FirebaseContext from "../../../common/firebase/firebase-context/FirebaseContext";
 
 export const useStyles = makeStyles((theme: Theme) => ({
     ballInfoButton: {
@@ -28,13 +29,17 @@ interface IProps {
 const BallToolsSection: FunctionComponent<IProps> = (props: IProps) => {
     const classes = useStyles(theme)
     const pageContext = useContext(PageContext)
-useEffect(() => {
-console.log(pageContext)
-    }, [pageContext])
-    // const navigate = useNavigate()
+    const firebaseContext = useContext(FirebaseContext)
 
+    // const navigate = useNavigate()
     const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
-    return <Grid container spacing={3} justifyContent='center' style={{minHeight:"800px", paddingTop:"128px", paddingLeft:"32px",paddingRight:"32px"}}>
+
+    useEffect(() => {
+        console.log(pageContext)
+    }, [pageContext])
+
+    return <Grid container spacing={3} justifyContent='center'
+                 style={{minHeight: "800px", paddingTop: "128px", paddingLeft: "32px", paddingRight: "32px"}}>
         <Grid container item xs={12} md={10} justifyContent='center'>
             <Typography variant='h4' color='textSecondary'>Ball Info</Typography>
         </Grid>
@@ -48,19 +53,23 @@ console.log(pageContext)
                     style={{height: '266px'}}
                     className={classes.ballInfoButton}
                     onClick={() => {
-                        setIsModalOpen(state=>!state)
+                        setIsModalOpen(state => !state)
+                        firebaseContext.ctaClick && firebaseContext.ctaClick('ball-tools', 'ball-submission', pageContext.analyticsId)
                     }}
                 >
                     <Grid container direction='column'>
                         <Grid item>
-                            <Add style={{fontSize:"86px"}}/>
+                            <Add style={{fontSize: "86px"}}/>
                         </Grid>
                         <Grid item>
                             Ball Submission
                         </Grid>
                     </Grid>
                 </Button>
-                <AddBallModal open={isModalOpen} ballToAdd={props.ballToAdd ? { ...props.ballToAdd, fileUploaded: props.ballFlyerFile } : { categories: [] }}></AddBallModal>
+                <AddBallModal open={isModalOpen} ballToAdd={props.ballToAdd ? {
+                    ...props.ballToAdd,
+                    fileUploaded: props.ballFlyerFile
+                } : {categories: []}}></AddBallModal>
             </Grid>
             <Grid container direction='column' alignItems='center' item sm={12} md={4}>
                 <Button
@@ -71,11 +80,16 @@ console.log(pageContext)
                     style={{height: '266px'}}
                     className={classes.ballInfoButton}
                     href={`${RoutesEnum.SEARCH}`}
+                    onClick={() => {
+                        firebaseContext.ctaClick && firebaseContext.ctaClick('ball-tools', 'ball-search', pageContext.analyticsId)
+                        // navigate("/"+RoutesEnum.SEARCH)
+                        // navigate(0)
+                    }}
                     // onClick={() => navigate()}
                 >
                     <Grid container direction='column' alignItems='center'>
                         <Grid item>
-                            <Search style={{fontSize:"86px"}}/>
+                            <Search style={{fontSize: "86px"}}/>
                         </Grid>
                         <Grid item>
                             Search for a Ball
@@ -92,10 +106,19 @@ console.log(pageContext)
                     color='primary'
                     className={classes.ballInfoButton}
                     href={`${RoutesEnum.NEW_HOUSE}`}
+                    onClick={() => {
+                        firebaseContext.ctaClick && firebaseContext.ctaClick(
+                            'ball-tools',
+                            'new-house',
+                            pageContext.analyticsId
+                        )
+                        // navigate("/"+RoutesEnum.NEW_HOUSE)
+                        // navigate(0)
+                    }}
                 >
                     <Grid container direction='column' alignItems='center'>
                         <Grid item>
-                            <Add style={{fontSize:"86px"}}/>
+                            <Add style={{fontSize: "86px"}}/>
                         </Grid>
                         <Grid item>
                             New House
@@ -104,7 +127,7 @@ console.log(pageContext)
                 </Button>
             </Grid>
         </Grid>
-     </Grid>
+    </Grid>
 }
 
 export default BallToolsSection

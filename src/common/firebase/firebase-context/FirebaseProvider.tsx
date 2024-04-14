@@ -3,6 +3,9 @@ import FirebaseContext from './FirebaseContext';
 import {v4 as uuidv4} from 'uuid'
 import {FirebaseOptions, initializeApp} from "firebase/app";
 import {getAnalytics, isSupported, logEvent, setUserId, setUserProperties} from "firebase/analytics";
+import {SanityBallType} from "../../../components/templates/anybody-walking/ballroomTypes";
+// import firebase from "firebase/compat";
+// import Analytics = firebase.analytics.Analytics;
 
 const analyticsMock = {
     logEvent: () => {
@@ -13,15 +16,23 @@ const analyticsMock = {
     },
 }
 type IProps = {
-    initFirebase?: () => {}
-    analyticsPageView?: any,
-    ctaClick?: any,
-    reportVital?: any,
-    setAppUserId?: any,
-    amenityTooltipShown?: any,
-    qrCodeShown?: any,
-    albumImageClick?: any,
-    utmCodes?: any
+    initFirebase?: (apiKey?: string,
+                    authDomain?: string,
+                    databaseURL?: string,
+                    projectId?: string,
+                    storageBucket?: string,
+                    messagingSenderId?: string,
+                    appId?: string,
+                    measurementId?: string)=>void
+    analyticsPageView?: (pathname: string, search: string, title: string) => void,
+    ctaClick?: (location: string, ctaText: string, userId?: string,) => void,
+    reportVital?: (vitalName: string, vitalMetric: string) => void,
+    setAppUserId?: (userId: string) => void,
+    amenityTooltipShown?: (serviceName: string, amenityName: string, analyticsId: string) => void,
+    qrCodeShown?: (qrCodeValue: string, analyticsId: string) => void,
+    albumImageClick?: (imageName: string, imageCaption: string, analyticsId: string) => void,
+    utmCodes?: (source: string, medium: string, campaign: string, id: string) => void,
+    analyticsViewBall?: (ball: SanityBallType) => void
 };
 
 const FirebaseProvider: FunctionComponent<IProps & PropsWithChildren> = (
@@ -42,7 +53,8 @@ const FirebaseProvider: FunctionComponent<IProps & PropsWithChildren> = (
         isSupported().then((result) => {
             if (result && app) {
                 // console.log("Using really analytics", app)
-                setAnalytics(getAnalytics(app))
+                const theAnalytics = getAnalytics(app)
+                setAnalytics(theAnalytics)
             } else {
                 // console.log("Using mocked analytics", app)
                 setAnalytics(analyticsMock)
@@ -71,13 +83,17 @@ const FirebaseProvider: FunctionComponent<IProps & PropsWithChildren> = (
         });
     }
 
-
     const analyticsPageView = (pathname: string, search: string, title: string) => {
         if (analytics) {
+            try{
+
             logEvent(analytics, 'page_view', {
                 page_path: pathname + search,
                 page_title: title,
             });
+            } catch (e){
+                console.error('error with page view event');
+            }
         } else {
             // console.error('This better be an automated test');
         }
@@ -148,10 +164,17 @@ const FirebaseProvider: FunctionComponent<IProps & PropsWithChildren> = (
         });
     }
 
+    const analyticsViewBall = (ball: SanityBallType) => {
+        console.log('GA ballView ', ball)
+
+        utils.logEventWithData('ball_view', {
+            ...ball,
+        })
+    }
+
     const newValue = useMemo(
         () => ({
             initFirebase,
-            analytics,
             analyticsPageView,
             ctaClick,
             reportVital,
@@ -159,7 +182,8 @@ const FirebaseProvider: FunctionComponent<IProps & PropsWithChildren> = (
             amenityTooltipShown,
             qrCodeShown,
             albumImageClick,
-            utmCodes
+            utmCodes,
+            analyticsViewBall
         }),
         [
             firebaseConfig, app, analytics

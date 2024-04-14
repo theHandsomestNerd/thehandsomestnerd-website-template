@@ -19,7 +19,8 @@ export const useStyles = makeStyles(() => ({
 type DataTilesProps = {
     tiles?: SanityBallType[],
     numColumns?: GridSize,
-    isAgoOn?: boolean
+    isAgoOn?: boolean,
+    tileClickAnalytics?: (tileSlug:string)=>void
 }
 
 type DataTilesStateType = { displayTiles?: SanityBallType[], page: number, rowsPerPage: number }
@@ -59,7 +60,10 @@ const BallDataTiles: FunctionComponent<DataTilesProps> = (props: DataTilesProps)
 
     const tileClick = (tile: SanityBallType) => {
         console.log('tileCLick', tile)
-        if (searchContext.getBall)
+        if(props.tileClickAnalytics && tile.slug?.current){
+            props.tileClickAnalytics(tile.slug.current)
+        }
+        if (searchContext.getBall && tile.slug?.current)
             return searchContext.getBall(tile.slug?.current)
         return undefined
     }

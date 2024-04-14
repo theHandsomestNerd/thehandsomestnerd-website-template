@@ -108,7 +108,7 @@ const TheDrinkeryAlbumSection: FunctionComponent<IProps> = (props) => {
                     <ImageList rowHeight={500} className={theClasses.imageList} cols={xsDown ? 2 : 3}>
                         {props.sectionData.imageList.map((item, index) => (
                             <ImageListItem key={index} cols={parseInt(item.cols ?? "1")} onClick={() => {
-                                firebaseContext.analytics.albumImageClick(item.title, item.subtitle, pageContext.analyticsId || "no-id")
+                                firebaseContext.albumImageClick && firebaseContext.albumImageClick(item.title, item.subtitle, pageContext.analyticsId || "no-id")
                                 setSelectedItem(item)
                                 handleClickOpen()
                             }} style={{cursor: "pointer"}}>

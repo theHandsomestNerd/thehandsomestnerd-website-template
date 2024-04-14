@@ -84,7 +84,7 @@ const ThwHeroContentSection: FunctionComponent<IProps> = (props) => {
                                     <Button color='primary' variant='contained'
                                             style={{paddingTop: "16px", paddingBottom : "16px"}}
                                             onClick={() => {
-                                                firebaseContext.analytics.ctaClick("hero-section", props.sectionData.ctaButtonTitle, pageContext.analyticsId,)
+                                                firebaseContext.ctaClick && firebaseContext.ctaClick("hero-section", props.sectionData.ctaButtonTitle, pageContext.analyticsId,)
                                             }}
                                             href={props.sectionData.ctaButtonLink ?? ""}>
                                         <Typography variant='button'

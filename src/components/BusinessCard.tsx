@@ -51,7 +51,7 @@ const BusinessCard: FunctionComponent<MainMenuProps> = ({anchor, homePage}) => {
         }
 
         if (open) {
-            firebaseContext.analytics?.ctaClick && firebaseContext.analytics?.ctaClick(location.pathname ?? "", "Open Business Card")
+            firebaseContext.ctaClick && firebaseContext.ctaClick(location.pathname ?? "", "Open Business Card")
         }
 
         setIsDrawerOpen(open);

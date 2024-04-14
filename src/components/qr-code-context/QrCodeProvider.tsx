@@ -19,7 +19,7 @@ const QrCodeProvider: FunctionComponent<IProps & PropsWithChildren> = (
     const snackbarContext = useContext(SnackbarContext)
 
     const openSnackbar = async (url: string) => {
-        pageContext.analyticsId && firebaseContext.analytics.qrCodeShown && firebaseContext.analytics.qrCodeShown(url ?? "", pageContext.analyticsId)
+        pageContext.analyticsId && firebaseContext.qrCodeShown && firebaseContext.qrCodeShown(url ?? "", pageContext.analyticsId)
         // await dispatch({type: "LOAD_QR_CODE", payload: {qr_code_value: qr_code_value}})
         setQrCodeValue(url)
         const snack = <Grid
@@ -36,7 +36,7 @@ const QrCodeProvider: FunctionComponent<IProps & PropsWithChildren> = (
             </div>
         </Grid>
 
-        snackbarContext.openSnackbar && (await snackbarContext.openSnackbar(snack))
+        snackbarContext.openSnackbar && snackbarContext.openSnackbar(snack)
     }
 
     const newValue = useMemo(

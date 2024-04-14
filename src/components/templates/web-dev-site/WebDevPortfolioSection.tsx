@@ -53,7 +53,7 @@ const WebDevPortfolioSection: FunctionComponent<IProps> = (props: IProps) => {
                         onClick={() => {
 
                             sendToModal(props.portfolioItem)
-                            return firebaseContext.analytics.ctaClick(props.service.slug?.current ?? "", props.service.learnMoreText, pageContext.analyticsId,)
+                            return firebaseContext.ctaClick && firebaseContext.ctaClick(props.service.slug?.current ?? "", props.service.learnMoreText, pageContext.analyticsId,)
                         }
                         } color={props.index % 2 === 0 ? 'primary' : 'secondary'} href={props.portfolioItem.prodLink}
                         variant='outlined'><Typography variant='button'

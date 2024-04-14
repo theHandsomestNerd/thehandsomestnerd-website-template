@@ -80,7 +80,7 @@ const HeroAnimatedContentSection: FunctionComponent<IProps> = (props) => {
 
                                     setPageNumber((state) => (state - 1))
                                 }
-                                firebaseContext.analytics.ctaClick("hero-section-slider", "back slide", pageContext.analyticsId,)
+                                firebaseContext.ctaClick && firebaseContext.ctaClick("hero-section-slider", "back slide", pageContext.analyticsId,)
                             }}
                         >
                             <ChevronLeft fontSize={'large'}/>
@@ -184,7 +184,7 @@ const HeroAnimatedContentSection: FunctionComponent<IProps> = (props) => {
                                                                     padding: theme.spacing(3.5, 8)
                                                                 }}
                                                                 onClick={() => {
-                                                                    firebaseContext.analytics.ctaClick("hero-section", contentSlide?.ctaButtonTitle ?? "", pageContext.analyticsId,)
+                                                                    firebaseContext.ctaClick && firebaseContext.ctaClick("hero-section", contentSlide?.ctaButtonTitle ?? "", pageContext.analyticsId,)
                                                                 }}
                                                                 href={contentSlide?.ctaButtonLink ?? ""}>
                                                             <Typography variant='button' alignContent='center'
@@ -210,7 +210,7 @@ const HeroAnimatedContentSection: FunctionComponent<IProps> = (props) => {
 
                                                 setPageNumber((state) => (state + 1))
                                             }
-                                            firebaseContext.analytics.ctaClick("hero-section-slider", "next slide", pageContext.analyticsId,)
+                                            firebaseContext.ctaClick && firebaseContext.ctaClick("hero-section-slider", "next slide", pageContext.analyticsId,)
                                         }}
                             >
                                 <ChevronRight fontSize='large'/>

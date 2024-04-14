@@ -25,12 +25,12 @@ const PageLayout: FunctionComponent<IProps> = (props: IProps) => {
 
     const classes = useCustomStyles({bgImage: sanityContext.urlFor(props.homePage.backgroundImageSrc ?? "")})
 
-    const xsDown  = useMediaQuery(theme.breakpoints.down('xs'))
+    const xsDown = useMediaQuery(theme.breakpoints.down('xs'))
     useEffect(() => {
-        props.homePage.title && firebaseContext.analytics?.analyticsPageView && firebaseContext.analytics?.analyticsPageView(
+        props.homePage.title && firebaseContext.analyticsPageView && firebaseContext.analyticsPageView(
             location.pathname,
             location.search,
-            `${props.homePage.title} | James Terrell Singleton`,
+            `${props.homePage.title}`,
         );
     }, []);
 
@@ -49,7 +49,12 @@ const PageLayout: FunctionComponent<IProps> = (props: IProps) => {
                         content={props.homePage.headerContent.content}/>
                 </Grid>}
             </Grid>
-            <Grid item container style={{position:"relative",backgroundSize:"cover",backgroundImage: `url(${sanityContext.urlFor(props.homePage.backgroundImageSrc??"")})`}}>
+            <Grid item container style={{
+                position: "relative",
+                backgroundSize: "cover",
+                backgroundImage: `url(${sanityContext.urlFor(props.homePage.backgroundImageSrc ?? "")})`
+            }}
+            >
 
                 {
                     props.homePage.pageContent && <Grid container item style={{zIndex: 1000}}>
@@ -58,9 +63,9 @@ const PageLayout: FunctionComponent<IProps> = (props: IProps) => {
                             content={props.homePage.pageContent.content}/>
                     </Grid>
                 }
-                {props.homePage.backgroundImageSrc ?<Grid container item
-                       className={clsx(xsDown ? classes.fullSection : classes.fullSection, classes.fullSectionOverlay)}>
-                </Grid>:<></>}
+                {props.homePage.backgroundImageSrc ? <Grid container item
+                                                           className={clsx(xsDown ? classes.fullSection : classes.fullSection, classes.fullSectionOverlay)}>
+                </Grid> : <></>}
             </Grid>
             <Grid container item>
                 {props.homePage.footerContent && <Grid container item>
@@ -72,7 +77,7 @@ const PageLayout: FunctionComponent<IProps> = (props: IProps) => {
                   alignContent='center'
                   alignItems='center'
                   style={{
-                      backgroundColor: props.homePage.copyRightBackgroundColor? convertToHexCode(props.homePage.copyRightBackgroundColor):"whitesmoke",
+                      backgroundColor: props.homePage.copyRightBackgroundColor ? convertToHexCode(props.homePage.copyRightBackgroundColor) : "whitesmoke",
                       position: "sticky",
                       bottom: 0,
                       zIndex: 10,
@@ -83,7 +88,7 @@ const PageLayout: FunctionComponent<IProps> = (props: IProps) => {
                 <Link
                     gutterBottom
                     href='https://thehandsomestnerd.com'
-                    color={props.homePage.copyRightTextColor?convertToHexCode(props.homePage.copyRightTextColor):"black"}
+                    color={props.homePage.copyRightTextColor ? convertToHexCode(props.homePage.copyRightTextColor) : "black"}
                     variant='subtitle2'
                     underline="hover">
                     © Copyright 2023

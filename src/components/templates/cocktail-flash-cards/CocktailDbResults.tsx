@@ -1,5 +1,5 @@
 import {Chip, Grid, Typography} from '@mui/material'
-import{FunctionComponent, useContext} from 'react'
+import {FunctionComponent, useContext} from 'react'
 import SnackbarContext from "../../modal-context/SnackbarContext";
 import {useLocation} from "react-router";
 import SearchContext from "./search-context/SearchContext";
@@ -75,7 +75,7 @@ const CocktailDbResults: FunctionComponent<IProps> = () => {
         </Grid>
 
         snackBar.openSnackbar && snackBar.openSnackbar(snack)
-        cocktailDbResult && firebaseContext.analytics.analyticsPageView(
+        cocktailDbResult && firebaseContext.analyticsPageView && firebaseContext.analyticsPageView(
             location.pathname,
             location.search,
             `${cocktailDbResult.strDrink} | Cocktail from cocktailDb`)

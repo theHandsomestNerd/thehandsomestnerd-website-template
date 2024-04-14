@@ -23,6 +23,7 @@ import SanityContext from '../../../../common/sanityIo/sanity-context/SanityCont
 import {getMonthFromDate, getPrettyDateStr, getPrettyTimeStr} from "../HTMLUtils";
 import BallMapComponent from "../ball-form-steps/BallMapComponent";
 import ClosedCategory from "../ball-form-steps/AddCategories/ClosedCategory";
+import FirebaseContext from "../../../../common/firebase/firebase-context/FirebaseContext";
 
 
 export const useStyles = makeStyles((awTheme: Theme) => ({
@@ -80,6 +81,7 @@ const BallPageBaseNew: FunctionComponent<BallPageBaseNewProps> = (props: BallPag
     const urlParams: any = useParams()
     const navigate = useNavigate()
     const sanityContext = useContext(SanityContext)
+    const firebaseContext = useContext(FirebaseContext)
 
     const [ball, setBall] = useState<SanityBallType>()
 
@@ -91,6 +93,12 @@ const BallPageBaseNew: FunctionComponent<BallPageBaseNewProps> = (props: BallPag
                     return returnedBall
                 }) : Promise.resolve({})
         }
+
+    useEffect(() => {
+        if (ball && firebaseContext.analyticsViewBall) {
+            firebaseContext.analyticsViewBall(ball)
+        }
+    }, [ball])
 
     useEffect(() => {
         if (!props.slug) {

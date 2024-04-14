@@ -17,6 +17,8 @@ import BallDataTiles from './ball-data-tiles/BallDataTiles';
 import {AWBallSectionType, SanityBallType} from "./ballroomTypes";
 import SanityContext from "../../../common/sanityIo/sanity-context/SanityContext";
 import BallSearchProviderWrapper from "./BallSearchProviderWrapper";
+import FirebaseContext from "../../../common/firebase/firebase-context/FirebaseContext";
+import PageContext from "../../page-context/PageContext";
 
 export const useStyles = makeStyles(() => ({
     preroot: {
@@ -41,6 +43,10 @@ const AWBallSearchSection: FunctionComponent<IProps> = (props: IProps) => {
     const navigate = useNavigate()
     const classes = useCustomStyles({bgImage: undefined})
     const theClasses = useStyles()
+
+    const firebaseContext = useContext(FirebaseContext)
+    const pageContext = useContext(PageContext)
+    const buttonText = "Add a new Ball"
 
     const [displayedResults, setDisplayedResults] = useState<SanityBallType[]>()
 
@@ -103,7 +109,8 @@ const AWBallSearchSection: FunctionComponent<IProps> = (props: IProps) => {
                             </Grid>
 
                         </Grid>
-                        <Grid container item spacing={3} style={{paddingTop: "150px", paddingLeft: "8px", minHeight: "700px"}}>
+                        <Grid container item spacing={3}
+                              style={{paddingTop: "150px", paddingLeft: "8px", minHeight: "700px"}}>
                             {/*{sectionDataarchContext.loading && <Grid item>*/}
                             {/*    <LinearProgress color='primary' style={{height: '1px'}}/>*/}
                             {/*</Grid>}*/}
@@ -112,7 +119,17 @@ const AWBallSearchSection: FunctionComponent<IProps> = (props: IProps) => {
                                     <BallSearchContext.Consumer>{
                                         searchValue => searchValue.viewType ? <Grid item container>
                                                 {
-                                                    <BallDataTiles tiles={searchValue.displayResults}/>
+                                                    <BallDataTiles
+                                                        tileClickAnalytics={(tileSlug: string) => {
+                                                            firebaseContext.ctaClick
+                                                            && firebaseContext.ctaClick(
+                                                                'searched-ball-tile-click',
+                                                                tileSlug,
+                                                                pageContext.analyticsId
+                                                            )
+                                                        }}
+                                                        tiles={searchValue.displayResults}
+                                                    />
                                                 }
                                             </Grid>
                                             : <Grid item container justifyContent="center">
@@ -130,7 +147,10 @@ const AWBallSearchSection: FunctionComponent<IProps> = (props: IProps) => {
                                             height: '40px',
                                             borderRadius: '3px',
                                         }}
-                                        onClick={() => navigate(RoutesEnum.ADD_BALL)}
+                                        onClick={() => {
+                                            firebaseContext.ctaClick && firebaseContext.ctaClick('search-page', buttonText, pageContext.analyticsId)
+                                            navigate(RoutesEnum.ADD_BALL)
+                                        }}
                                         color='primary'
                                     >
                                         <Typography noWrap>Add a new Ball</Typography>
