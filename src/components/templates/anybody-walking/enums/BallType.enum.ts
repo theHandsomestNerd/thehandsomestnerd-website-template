@@ -28,5 +28,3 @@ export const renderBallType = (ballType?: BallTypeEnum) => {
     return ballType === BallTypeEnum.NONE ? 'ball':BallTypeTitleEnum[ballType]
   return 'ball'
 }
-
-export default BallTypeEnum;

@@ -4,7 +4,7 @@ import { Button, LinearProgress, Modal, Typography, Grid, Theme, useTheme } from
 import { ArrowLeft, ArrowRightAlt, Close } from '@mui/icons-material'
 import {AddBallState, SanityBallType, StepValidationTableType, ValidationResponse} from '../ballroomTypes'
 import BallSource from '../ball-form-steps/BallSource'
-import BallTypeEnum, {renderBallTypeChoice} from "../enums/BallType.enum";
+import {BallTypeEnum, renderBallTypeChoice} from "../enums/BallType.enum";
 import BasicBallInfo from '../ball-form-steps/BasicBallInfo'
 import BallLocation from "../ball-form-steps/BallLocation";
 import BallDate from "../ball-form-steps/BallDate";

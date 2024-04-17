@@ -14,10 +14,11 @@ import {
     useTheme
 } from '@mui/material'
 import BallSearchContext from '../ball-search-context/BallSearchContext'
-import {CalendarToday, FilterList, LocationOn} from '@mui/icons-material'
+import {CalendarToday, FilterList, LocationOn, Web} from '@mui/icons-material'
 import StyledTextField from "../styled-text-field/StyledTextField";
 import {RegionEnum, RegionTitleEnum} from "../enums/Region.enum";
 import dateUtils from "../../../../utils/dateUtils";
+import {BallTypeEnum, renderBallType} from "../enums/BallType.enum";
 
 const StyledMenu = withStyles({
     paper: {
@@ -103,6 +104,19 @@ const SearchFilterDropDown: FunctionComponent = () => {
             <Grid container item alignItems='center' alignContent='center' justifyContent='flex-start'
                   paddingLeft="16px" paddingBottom="8px">
                 {
+                    searchContext.searchParams?.ballType && <Grid item>
+                        <Chip onDelete={() => {
+                            if (searchContext.updateSearchParams) {
+
+                                searchContext.updateSearchParams({target: {name: "ballType", value: undefined}})
+
+                            }
+                        }
+                        } color="primary"
+                              label={`ball type: ${renderBallType(searchContext.searchParams.ballType as BallTypeEnum)}`}></Chip>
+                    </Grid>
+                }
+                {
                     searchContext.searchParams?.region && <Grid item>
                         <Chip onDelete={() => {
                             if (searchContext.updateSearchParams) {
@@ -136,6 +150,64 @@ const SearchFilterDropDown: FunctionComponent = () => {
                 onClose={handleClose}
             >
                 <Grid container direction="column">
+                    <MenuItem>
+                        <Grid
+                            container
+                            alignItems="center"
+                            style={{
+                                borderBottom: "1px solid #ece7e7",
+                                paddingBottom: theme.spacing(2)
+                            }}
+                        >
+                            <Grid item xs={1}>
+                                <ListItemIcon>
+                                    <Web fontSize="small"/>
+                                </ListItemIcon>
+                            </Grid>
+                            <Grid item xs={4}>
+                                <ListItemText primary={<Typography color='textSecondary'>Ball Type</Typography>}/>
+                            </Grid>
+                            <Grid item container xs={7} justifyContent='flex-end'>
+                                <Grid item xs={12}>
+                                    <Select
+                                        sx={style}
+                                        fullWidth
+                                        value={searchContext.searchParams?.ballType ?? BallTypeEnum.NONE}
+                                        onChange={(e) => {
+                                            if (searchContext.updateSearchParams) {
+                                                setAnchorEl(null)
+                                                searchContext.updateSearchParams(e)
+                                            }
+                                        }}
+                                        name="ballType"
+                                        displayEmpty
+                                        inputProps={{'aria-label': 'Without label',}}
+                                    >
+                                        <MenuItem value={BallTypeEnum.NONE}>
+                                            <Typography color='textSecondary'><em>None</em></Typography>
+                                        </MenuItem>
+
+                                        <MenuItem value={
+                                            BallTypeEnum.BALL}>
+                                            <Typography color='textSecondary'>{renderBallType(BallTypeEnum.BALL)}</Typography>
+                                        </MenuItem>
+                                        <MenuItem value={
+                                            BallTypeEnum.MINI_BALL}>
+                                            <Typography color='textSecondary'>{renderBallType(BallTypeEnum.MINI_BALL)}</Typography>
+                                        </MenuItem>
+                                        <MenuItem value={
+                                            BallTypeEnum.MINI_BALL_DELUXE}>
+                                            <Typography color='textSecondary'>{renderBallType(BallTypeEnum.MINI_BALL_DELUXE)}</Typography>
+                                        </MenuItem>
+                                        <MenuItem value={
+                                            BallTypeEnum.KIKI_BALL}>
+                                            <Typography color='textSecondary'>{renderBallType(BallTypeEnum.KIKI_BALL)}</Typography>
+                                        </MenuItem>
+                                    </Select>
+                                </Grid>
+                            </Grid>
+                        </Grid>
+                    </MenuItem>
                     <MenuItem>
                         <Grid
                             container

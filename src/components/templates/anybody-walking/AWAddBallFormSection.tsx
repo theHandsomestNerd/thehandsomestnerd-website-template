@@ -26,7 +26,7 @@ import {useNavigate} from "react-router-dom";
 import {SanityLocation} from "./ballroomTypes";
 import SanityContext from "../../../common/sanityIo/sanity-context/SanityContext";
 import ImageUtils from "./imageUtils";
-import BallTypeEnum, {BallTypeTitleEnum} from "./enums/BallType.enum";
+import {BallTypeEnum, BallTypeTitleEnum} from "./enums/BallType.enum";
 import BallSourceEnum, {BallSourceTitleEnum} from "./enums/BallSource.enum";
 import {enumCreateSelectOptions} from "./HTMLUtils";
 import {Add} from "@mui/icons-material";

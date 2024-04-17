@@ -1,7 +1,7 @@
 import {makeStyles} from '@mui/styles'
 import {FunctionComponent, useEffect, useState} from 'react'
 import {AddBallState, BasicBallInfoState } from '../ballroomTypes'
-import BallTypeEnum, {renderBallTypeChoice} from '../enums/BallType.enum'
+import {BallTypeEnum, renderBallTypeChoice} from '../enums/BallType.enum'
 import {Button, Grid, Typography, useTheme} from "@mui/material";
 
 export const useStyles = makeStyles(() => ({

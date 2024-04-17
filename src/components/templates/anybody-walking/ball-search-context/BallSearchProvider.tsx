@@ -102,11 +102,11 @@ const BallSearchProvider: FunctionComponent<BallSearchProviderProps & PropsWithC
             // queryString += `  || location.state matches "${normalizedKeywords}")`
         }
 
-        // if (queryStringObj?.ballType && queryStringObj?.ballType !== '') {
-        //   queryString += queryString && queryString.length > 0 ? ' && ' : ''
-        //
-        //   queryString += `ballType match "${queryStringObj.ballType}"`
-        // }
+        if (queryStringObj?.ballType && queryStringObj?.ballType !== '') {
+          queryString += queryString && queryString.length > 0 ? ' && ' : ''
+
+          queryString += `ballType match "${queryStringObj.ballType}"`
+        }
 
         if (queryStringObj?.region && queryStringObj?.region !== '') {
             queryString += queryString && queryString.length > 0 ? ' && ' : ''

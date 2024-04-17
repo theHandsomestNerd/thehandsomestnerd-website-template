@@ -1,4 +1,4 @@
-import BallTypeEnum from './enums/BallType.enum'
+import {BallTypeEnum} from './enums/BallType.enum'
 import { AddBallState, Category, FirebaseBallType, OldBallType, SanityBallType } from './ballroomTypes'
 import { combineDateAndTime, combineDateTime, getDateInputValue } from './HTMLUtils'
 import { SanityRef } from '../../../common/sanityIo/Types'
