@@ -124,7 +124,7 @@ const ClosedCategory: FunctionComponent<ClosedCategoryProps> = ({
                                 <Typography
                                     data-testid={`category-${keyValue}-closed-catDescription`}
                                     color='textSecondary'
-                                    variant='body2'
+                                    variant='body1'
                                     style={{textTransform: 'capitalize'}}
                                 >{category.catDescription}</Typography>
                             </Grid>

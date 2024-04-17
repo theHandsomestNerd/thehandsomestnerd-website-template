@@ -338,7 +338,7 @@ const BallPageBaseNew: FunctionComponent<BallPageBaseNewProps> = (props: BallPag
                         </Grid>
                         {ball?.categories?.length > 0 &&
                             <Grid container item style={{margin: theme.spacing(2, 0)}}>
-                                <Typography variant='h6'>Categories</Typography>
+                                <Typography color='textSecondary' variant='h6'>Categories</Typography>
                             </Grid>}
                         {ball?.categories.map((category: Category, index: number) => <Grid container item key={index}>
                             <ClosedCategory showDescription category={category} keyValue={index}/>

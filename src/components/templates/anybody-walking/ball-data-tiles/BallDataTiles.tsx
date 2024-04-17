@@ -105,7 +105,7 @@ const BallDataTiles: FunctionComponent<DataTilesProps> = (props: DataTilesProps)
                                 {
                                     (state.displayTiles).length > 3 ?
                                         <Grid item><InfiniteScroll
-                                            style={{width: '100%'}}
+                                            style={{width: '100%',paddingTop:"56px",paddingLeft:"8px"}}
                                             dataLength={state.displayTiles.length}
                                             next={fetchMoreData}
                                             hasMore
