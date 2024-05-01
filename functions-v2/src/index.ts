@@ -101,6 +101,7 @@ const serveIndexFile = (req: any, res: any) => {
             const tokenizedParams = params["0"].split("/");
 
             pageSlug = tokenizedParams[tokenizedParams.length - 1];
+            pageSlug = pageSlug.toLowerCase()
 
             if (!pageSlug || pageSlug === undefined || pageSlug === "undefined" || tokenizedParams === undefined || params["0"] === "undefined" || params["0"] === undefined || tokenizedParams.length === 0 || tokenizedParams[tokenizedParams.length - 1] === "undefined" || tokenizedParams[tokenizedParams.length - 1] === undefined) {
                 pageSlug = "home";

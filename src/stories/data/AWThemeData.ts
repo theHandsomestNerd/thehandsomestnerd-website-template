@@ -4,8 +4,8 @@ const AWThemeData:SanityMuiTheme ={
     "appBarHeight": 94,
     "typography": {
         "fontFamily": [
-            "Poppins",
             "Cantarell",
+            "Poppins",
         ],
         "_type": "MuiTypography",
         "fontFaces": [

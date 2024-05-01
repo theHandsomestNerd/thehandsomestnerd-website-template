@@ -91,12 +91,30 @@ const getThemeFromSanity = (theme: SanityMuiTheme) => {
         },
         typography: {
             fontFamily: theme.typography?.fontFamily ? textProcessingUtils.capitalizeArray(theme.typography.fontFamily).join(',') : fonts,
-            h1: extractSanityFontFace('h1'),
-            h2: extractSanityFontFace('h2'),
-            h3: extractSanityFontFace('h3'),
-            h4: extractSanityFontFace('h4'),
-            h5: extractSanityFontFace('h5'),
-            h6: extractSanityFontFace('h6'),
+            h1: {
+                ...extractSanityFontFace('h1'),
+                fontFamily: theme.typography?.fontFamily[1]
+            },
+            h2: {
+                ...extractSanityFontFace('h2'),
+                fontFamily: theme.typography?.fontFamily[1]
+            },
+            h3: {
+                ...extractSanityFontFace('h3'),
+                fontFamily: theme.typography?.fontFamily[1]
+            },
+            h4: {
+                ...extractSanityFontFace('h4'),
+                fontFamily: theme.typography?.fontFamily[1]
+            },
+            h5: {
+                ...extractSanityFontFace('h5'),
+                fontFamily: theme.typography?.fontFamily[1]
+            },
+            h6: {
+                ...extractSanityFontFace('h6'),
+                fontFamily: theme.typography?.fontFamily[1]
+            },
             body1: extractSanityFontFace('body1'),
             body2: extractSanityFontFace('body2'),
             button: extractSanityFontFace('button'),

@@ -98,7 +98,7 @@ const SearchFilterDropDown: FunctionComponent = () => {
                     color='secondary'
                     sx={{padding: theme.spacing(1, 2)}}
                 >
-                    <Typography variant='body2' fontWeight={800}>Filters:</Typography> <FilterList fontSize='medium'/>
+                    <Typography variant='h6' fontWeight={800}>Filters:</Typography> <FilterList fontSize='medium'/>
                 </Button>
             </Grid>
             <Grid container item alignItems='center' alignContent='center' justifyContent='flex-start'

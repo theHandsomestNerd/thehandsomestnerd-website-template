@@ -21,7 +21,7 @@ const ViewChange: FunctionComponent<ViewChangeProps> = () => {
             searchContext.setViewType(!searchContext.viewType)
       }}
     >
-        <Typography  variant='body2'  fontWeight={800}>View:</Typography>{searchContext.viewType ? <TableChart></TableChart>
+        <Typography  variant='h6'  fontWeight={800}>View:</Typography>{searchContext.viewType ? <TableChart></TableChart>
       : <ViewModule></ViewModule>}
     </Button>
   )
