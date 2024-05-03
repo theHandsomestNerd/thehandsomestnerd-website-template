@@ -150,7 +150,7 @@ const WebDevSiteTheme = createTheme({
             lineHeight: 1
         },
         h6: {
-            fontWeight: 'bold',
+            fontWeight: 'normal',
             fontStyle: 'normal',
             fontSize: '24px',
             lineHeight: 1

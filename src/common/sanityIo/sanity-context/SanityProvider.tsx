@@ -129,7 +129,7 @@ const SanityProvider: FunctionComponent<IProps & PropsWithChildren> = (
 
 
     const [builder, setBuilder] = useState<ImageUrlBuilder>()
-    const [cocktailBuilder, setCocktailBuilder] = useState<any>()
+    const [cocktailBuilder, setCocktailBuilder] = useState<ImageUrlBuilder>()
 
 
     useEffect(() => {
@@ -1049,7 +1049,7 @@ const SanityProvider: FunctionComponent<IProps & PropsWithChildren> = (
 
     const fetchMyBarIngredients = (barInventorySlug?: string) => {
         if (barInventorySlug === undefined || barInventorySlug === null)
-            return []
+            return Promise.resolve([])
         else
             return theSanityBartenderClient
                 .fetch(
@@ -1060,8 +1060,8 @@ const SanityProvider: FunctionComponent<IProps & PropsWithChildren> = (
                 .then((data: SanityBarInventoryType[]) => {
                     console.log("the ingredients and garnishes from my bar", barInventorySlug, data)
                     if (data !== undefined && data[0] !== undefined && data[0].theBar !== undefined)
-                        return data[0].theBar
-                    else return []
+                        return Promise.resolve(data[0].theBar)
+                    else return Promise.resolve([])
                 })
     }
 
@@ -1308,8 +1308,7 @@ const SanityProvider: FunctionComponent<IProps & PropsWithChildren> = (
             ingredientsClause = ` && (${ingredientsClause})`
         }
 
-        return theSanityBartenderClient
-            .fetch(
+        return theSanityBartenderClient.fetch(
                 `*[_type == "Cocktail"  && isDisabled != true${searchStringClause}${ingredientsClause ? ingredientsClause : liquorTypesClause}]{
               ${groqQueries.COCKTAIL}
            }`, queryParams)
@@ -1364,8 +1363,7 @@ const SanityProvider: FunctionComponent<IProps & PropsWithChildren> = (
             ingredientsClause = ` && (${ingredientsClause})`
         }
 
-        return theSanityBartenderClient
-            .fetch(
+        return theSanityBartenderClient.fetch(
                 `{
                               "barInventory": *[_type == "BarInventory" && slug.current=='the-drinkery']{
                               "theBar":theBar[]->

@@ -92,7 +92,7 @@ const FirebaseProvider: FunctionComponent<IProps & PropsWithChildren> = (
                 page_title: title,
             });
             } catch (e){
-                console.error('error with page view event');
+                console.error('error with page view event', e);
             }
         } else {
             // console.error('This better be an automated test');

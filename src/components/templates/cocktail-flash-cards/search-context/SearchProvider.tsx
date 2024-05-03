@@ -281,6 +281,7 @@ const SearchProvider: FunctionComponent<IProps & PropsWithChildren> = (
 
     //update the search when the user changes the string
     useEffect(() => {
+        if(sanityContext.getMyProduct)
         sanityContext.getMyProduct(state.searchString, state.searchFilters ?? [], state.ingredientFilters ?? [], state.isAndSearch).then((results:any) => {
             dispatch({type: "UPDATE_SEARCH_RESULTS", payload: {cocktails: results}})
         })

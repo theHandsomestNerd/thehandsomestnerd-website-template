@@ -6,6 +6,7 @@ import DigitalResumeThemeData from "../data/DigitalResumeThemeData";
 import flashcardSectionData from "../data/FlashcardSectionData";
 import {QueryClientProvider} from "@tanstack/react-query";
 import {queryClient} from "../../queryClient";
+import SanityProvider from "../../common/sanityIo/sanity-context/SanityProvider";
 
 const meta: Meta<typeof FlashCardsContentSection> = {
     title: "Bartending/Flashcards Section",
@@ -30,9 +31,10 @@ export const FlashCardSectionComplete: Story = {
         <QueryClientProvider client={queryClient}>
             <ThemeProvider
                 theme={getThemeFromSanity(DigitalResumeThemeData)}>
-                <FlashCardsContentSection searchString={searchString} sectionData={sectionData}
+                <SanityProvider><FlashCardsContentSection searchString={searchString} sectionData={sectionData}
                                           allCocktails={allCocktails}>
                 </FlashCardsContentSection>
+                </SanityProvider>
             </ThemeProvider>
         </QueryClientProvider>
 };
@@ -44,9 +46,9 @@ export const DrinkCardSectionComplete: Story = {
         <QueryClientProvider client={queryClient}>
             <ThemeProvider
                 theme={getThemeFromSanity(DigitalResumeThemeData)}>
-                <FlashCardsContentSection searchString={searchString} sectionData={sectionData}
+                <SanityProvider><FlashCardsContentSection searchString={searchString} sectionData={sectionData}
                                           allCocktails={allCocktails}>
-                </FlashCardsContentSection>
+                </FlashCardsContentSection></SanityProvider>
             </ThemeProvider>
         </QueryClientProvider>
 };

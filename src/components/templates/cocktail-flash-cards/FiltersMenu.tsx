@@ -49,17 +49,16 @@ const FiltersMenu: FunctionComponent<MainMenuProps> = ({anchor}) => {
 
     useEffect(() => {
         setIsBarIngredientsLoading(true)
-
-        sanityContext.fetchMyBarIngredients(pageContext.barInventorySlug)
-            .then((barIngredientResponse: SanityBarInventoryType[]) => {
-                setMyBarIngredients(barIngredientResponse)
-            })
-            .catch((e: any) => {
-                console.log(`ERROR loading bar ingredients: config - barInventorySlug: ${pageContext.barInventorySlug}`, e)
-            })
-            .finally(() => {
-                setIsBarIngredientsLoading(false)
-            })
+            sanityContext.fetchMyBarIngredients(pageContext.barInventorySlug)
+                .then((barIngredientResponse: SanityBarInventoryType[]) => {
+                    setMyBarIngredients(barIngredientResponse)
+                })
+                .catch((e: any) => {
+                    console.log(`ERROR loading bar ingredients: config - barInventorySlug: ${pageContext.barInventorySlug}`, e)
+                })
+                .finally(() => {
+                    setIsBarIngredientsLoading(false)
+                })
     }, [])
 
     const list = () => (

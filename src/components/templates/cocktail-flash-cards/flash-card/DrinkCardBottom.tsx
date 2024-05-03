@@ -1,4 +1,4 @@
-import{FunctionComponent, useContext} from 'react'
+import {FunctionComponent, useContext} from 'react'
 import {Grid, Typography} from "@mui/material";
 import {
     SanityCocktailType,
@@ -81,7 +81,7 @@ const DrinkCardBottom: FunctionComponent<IProps> = ({currentCard}: IProps) => {
                 {
                     currentCard?.mixingGlass?.map((mixin: (SanityMixingGlass | SanityGarnish), index) => {
                         if (mixin?._type === "MixingGlass") {
-                            return <Grid container key={"mixin" + index} item justifyContent='center'>
+                            return <Grid container key={"mixin-" + index} item justifyContent='center'>
                                 <Grid container item spacing={1} justifyContent={'center'}>
                                     <Grid item>
                                         <Typography variant='subtitle2'>{`${mixin?.amount}oz`}</Typography>
@@ -92,7 +92,7 @@ const DrinkCardBottom: FunctionComponent<IProps> = ({currentCard}: IProps) => {
                                 </Grid>
                             </Grid>
                         } else {
-                            return <></>
+                            return <div key={"blank-mixin-" + index}></div>
                         }
 
                     })
@@ -113,7 +113,7 @@ const DrinkCardBottom: FunctionComponent<IProps> = ({currentCard}: IProps) => {
                                     <Grid item><Typography>{mixin?.title.toLowerCase()}</Typography></Grid>
                                 </Grid>
                             } else {
-                                return <></>
+                                return <div key={"blank-mixin-garnish-" + index}></div>
                             }
 
                         })
@@ -135,7 +135,7 @@ const DrinkCardBottom: FunctionComponent<IProps> = ({currentCard}: IProps) => {
                     }
                     {
                         currentCard?.instructions?.map((mixin: SanityMixingInstruction, index) => {
-                            return <Grid container item key={'mixin' + index}>
+                            return <Grid container item key={'mixin-instruction-' + index}>
                                 <Grid item container>
                                     <Typography
                                         variant='subtitle2'>{`${mixin?.action} ${mixin?.instruction ? mixin?.instruction : ""}`}</Typography>
@@ -154,7 +154,7 @@ const DrinkCardBottom: FunctionComponent<IProps> = ({currentCard}: IProps) => {
                                                     </Grid>
                                                 </Grid>
                                             }
-                                            return null
+                                            return <div key={"blank-mixing-glass-entry-" + index}></div>
 
                                         })
                                     }
@@ -166,7 +166,7 @@ const DrinkCardBottom: FunctionComponent<IProps> = ({currentCard}: IProps) => {
                                                         variant='subtitle2'>{mixin.title}</Typography></Grid>
                                                 </Grid>
                                             } else {
-                                                return <></>
+                                                return <div key={"blank-mixing-glass-garnish-" + index}></div>
                                             }
                                         })
                                     }
