@@ -12,15 +12,11 @@ import PageContext from "../../page-context/PageContext";
 
 export const useStyles = makeStyles((theme: Theme) => ({
     ballSection: {
-        border: '2px solid ' +
-            '#e8e8e8',
-        // width: '100vw',
+        border: '2px solid #e8e8e8',
         padding: theme.spacing(0, 4, 6, 4),
-
         margin: theme.spacing(4, 6),
     },
 }))
-
 
 interface IProps {
     sectionData?: AWBallSectionType
@@ -44,6 +40,7 @@ const AWBallSummarySection: FunctionComponent<IProps> = (props: IProps) => {
     useEffect(() => {
         console.log(featuredLoading, upcomingLoading, remainingLoading)
     }, [featuredLoading, upcomingLoading, remainingLoading])
+
     const getBallData = async () => {
         // Filter featured
         const featured: SanityBallType[] = props.balls ? props.balls.slice(0, 3) : await sanityContext.fetchAllApprovedBalls(' && featured == true')
@@ -115,10 +112,7 @@ const AWBallSummarySection: FunctionComponent<IProps> = (props: IProps) => {
                                     pageContext.analyticsId
                                 )
                             }}
-                            // parentRef={scrollParentRef}
-                            // sortFunction={sortBalls}
                             tiles={featuredSetOfBalls}
-                            // columns={ballTableColumns}
                         />
                     </Grid>
                 </Grid>
@@ -137,11 +131,7 @@ const AWBallSummarySection: FunctionComponent<IProps> = (props: IProps) => {
                                     pageContext.analyticsId
                                 )
                             }}
-                            numColumns={4}
-                            // parentRef={scrollParentRef}
-                            // sortFunction={sortBalls}
                             tiles={upcomingSetOfBalls}
-                            // columns={ballTableColumns}
                         />
                     </Grid>
                 </Grid>
@@ -159,11 +149,7 @@ const AWBallSummarySection: FunctionComponent<IProps> = (props: IProps) => {
                                         pageContext.analyticsId
                                     )
                                 }}
-                                numColumns={4}
-                                // parentRef={scrollParentRef}
-                                // sortFunction={sortBalls}
                                 tiles={remainingSetOfBalls}
-                                // columns={ballTableColumns}
                             />
                         </Grid>
                     </Grid>
