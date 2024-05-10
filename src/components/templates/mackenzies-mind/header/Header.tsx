@@ -51,8 +51,8 @@ const Header: FunctionComponent<HeaderProps> = (props) => {
             {props.pageHeader?.title ?
                 <Grid item container
                       alignContent='center' alignItems='center' style={{height: "100%"}}>
-                    <Grid container item xs={4}>
-                        <Grid item xs={12} sm={7} container sx={{minWidth: smDown ? "190px" : "100px",}}>
+                    <Grid container item xs={8} md={4} wrap='nowrap'>
+                        <Grid item xs={8} sm={7} container sx={{minWidth: "190px"}}>
                             <Logo logoImageSrc={props.pageHeader?.logoImageSrc} noWrap
                                   logoText={props.pageHeader?.logoText}
                                   logoAccentText={props.pageHeader?.logoAccentText}/>
@@ -67,7 +67,7 @@ const Header: FunctionComponent<HeaderProps> = (props) => {
                                         color='primary'><Twitter/></IconButton>
                         </Grid>:<></>}
                     </Grid>
-                    <Grid item container xs={8}  justifyContent='flex-end'>
+                    <Grid item container xs={4} md={8}  justifyContent='flex-end' wrap='nowrap'>
 
                         {
                             !mdDown && <Grid xs={4} md={10} lg={10} container item justifyContent='flex-end'
