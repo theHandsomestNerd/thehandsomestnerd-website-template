@@ -777,6 +777,8 @@ export type HolidayHeadlineSectionType = {
 }
 
 export type ListSectionType = {
+    title: string
+    backgroundColor: string
     textListItems: string[]
 }
 

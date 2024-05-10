@@ -26,7 +26,9 @@ export enum COLORS {
     DARKORANGE = '#462600',
     LIGHT_GRAY2 = '#E3E3E3',
     ALMOST_BLACK='#131313',
+    SIGMA_BLUE='#19468D',
     PURPLE='#333784',
+    LUXURY_PURPLE='#4B0082',
     LIGHT_WHITE='#404040',
     DISABLED_GRAY='#949495'
 }
@@ -103,8 +105,14 @@ export const convertToHexCode = (value?: string) => {
         case 'ALMOST_BLACK':
             defaultBg = COLORS.ALMOST_BLACK
             break;
+        case 'SIGMA_BLUE':
+            defaultBg = COLORS.SIGMA_BLUE
+            break;
         case 'PURPLE':
             defaultBg = COLORS.PURPLE
+            break;
+        case 'LUXURY_PURPLE':
+            defaultBg = COLORS.LUXURY_PURPLE
             break;
         case 'LIGHT_WHITE':
             defaultBg = COLORS.LIGHT_WHITE

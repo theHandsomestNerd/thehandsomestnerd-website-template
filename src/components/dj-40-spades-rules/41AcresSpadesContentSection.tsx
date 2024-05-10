@@ -5,6 +5,7 @@ import {Grid, List, ListItem, ListItemText, Typography} from "@mui/material";
 import {ListSectionType} from "../BlockContentTypes";
 import SanityContext from '../../common/sanityIo/sanity-context/SanityContext';
 import PageContext from '../page-context/PageContext';
+import {convertToHexCode} from "../../theme/common/ColorPalette";
 
 
 export const useStyles = makeStyles((theme: Theme) => ({
@@ -29,7 +30,8 @@ const DJSpadesRulesContentSection: FunctionComponent<IProps> = (props: IProps) =
 
     return (
         <Grid container item
-              style={{ width: "100vw", backgroundColor: "#19468D", color: "white", position: "relative", zIndex: 2, border:"3px solid white", padding: "16px"}}>
+              style={{ width: "100vw", backgroundColor: convertToHexCode(props.sectionData.backgroundColor), color: "white", position: "relative", zIndex: 2, border:"3px solid white", padding: "16px"}}>
+              {/*style={{ width: "100vw", backgroundColor: "#19468D", color: "white", position: "relative", zIndex: 2, border:"3px solid white", padding: "16px"}}>*/}
             <Grid container item
                   style={{height: "100%", width: "100%", backgroundSize: "cover", backgroundImage: `url('${sanityContext.urlFor(pageContext.page?.backgroundImageSrc).url() ?? ""}')`, opacity: .1, position: "absolute", zIndex: 1}}>
 
@@ -37,7 +39,8 @@ const DJSpadesRulesContentSection: FunctionComponent<IProps> = (props: IProps) =
             <Grid container item style={{zIndex: 2}} justifyContent='center'>
 
                 <Grid item container justifyContent='center' alignContent='center'>
-                    <Typography variant='h3'>Spades Rules - DJ's 40th edition</Typography>
+                    <Typography variant='h3'>{props.sectionData.title}</Typography>
+                    {/*<Typography variant='h3'>Spades Rules - DJ's 40th edition</Typography>*/}
                 </Grid>
                 <Grid container item spacing={1} justifyContent='center' sx={{maxWidth:"550px"}}>
                     <List sx={{ listStyle: "decimal", paddingLeft: 4 }}>
