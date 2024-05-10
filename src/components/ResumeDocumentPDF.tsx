@@ -123,6 +123,9 @@ const ResumeDocumentPDF: FunctionComponent<IProps> = (props: IProps) => {
                                     <View style={styles.body}>
                                         <Text>Github: {props.homePage?.businessContact?.github}</Text>
                                     </View>
+                                    <View style={styles.body}>
+                                        <Text>Portfolio: {props.homePage?.website}</Text>
+                                    </View>
                                 </View>
                                 <View>
                                     <Text style={styles.body}>{resumeBioSection.introduction}</Text>
