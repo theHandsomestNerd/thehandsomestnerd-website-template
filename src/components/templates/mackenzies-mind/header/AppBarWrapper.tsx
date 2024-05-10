@@ -28,7 +28,7 @@ const AppBarWrapper: FunctionComponent<PropsWithChildren<IProps>> = (props: IPro
 
     const customizedTheme = useContext(CustomizedThemeContext)
     const classes = useStyles({
-        paddingLeft: customizedTheme.customizedTheme.spacing(4),
+        paddingLeft: customizedTheme.customizedTheme.spacing(1.5),
         appBarHeight: customizedTheme.customizedTheme.mixins.toolbar.height
     })
 

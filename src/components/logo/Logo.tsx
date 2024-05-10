@@ -16,7 +16,6 @@ export const useStyles = makeStyles(() => ({
         backgroundImage: `url('${props.logoImageSrc ?? logoImg}')`,
         backgroundSize: "contain",
         backgroundRepeat: "no-repeat",
-        minWidth: "100px",
         height: `${props.height ?? 68}px`,
         // marginTop: theme.spacing(2),
         // marginBottom: theme.spacing(2)
@@ -41,11 +40,20 @@ interface LogoProps {
 
 const Logo: FunctionComponent<LogoProps> = (props) => {
     const sanityContext = useContext(SanityContext)
+    // const theme = useTheme()
 
-    const classes = useStyles({logoImageSrc: props.logoImageSrc?sanityContext.placeholderOrImage && sanityContext.placeholderOrImage(props.logoImageSrc):logoImg, height: props.height})
+    // const smDown = useMediaQuery(theme.breakpoints.down('md'))
+
+    const classes = useStyles({
+        logoImageSrc: props.logoImageSrc ? sanityContext.placeholderOrImage && sanityContext.placeholderOrImage(props.logoImageSrc) : logoImg,
+        height: props.height
+    })
 
     return !props.logoText ?
         <Grid item container className={classes.imageRoot}
+              sx={{
+                  // minWidth: smDown ? "190px" : "100px",
+              }}
               style={{backgroundPosition: props.isCenter ? "center" : "left"}}/>
         : <Grid container item className={classes.root}
                 alignItems='center'

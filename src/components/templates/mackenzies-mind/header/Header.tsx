@@ -42,6 +42,7 @@ const Header: FunctionComponent<HeaderProps> = (props) => {
     const theme = useTheme()
 
     const xsDown = useMediaQuery(theme.breakpoints.down('xs'))
+    const smDown = useMediaQuery(theme.breakpoints.down('sm'))
     const mdDown = useMediaQuery(theme.breakpoints.down('md'))
     const [isSearchOpen, setIsSearchOpen] = useState<boolean>(false)
 
@@ -49,14 +50,14 @@ const Header: FunctionComponent<HeaderProps> = (props) => {
         <AppBarWrapper backgroundColor={props.backgroundColor} isAppBar={props.isAppBar} isEnhanced={props.isEnhanced}>
             {props.pageHeader?.title ?
                 <Grid item container
-                      alignContent='center' alignItems='center' style={{height: "100%", paddingLeft: "8px"}}>
-                    <Grid container item xs={4} sm={3} md={3}>
-                        <Grid item xs={8} sm={7} container>
+                      alignContent='center' alignItems='center' style={{height: "100%"}}>
+                    <Grid container item xs={4}>
+                        <Grid item xs={12} sm={7} container sx={{minWidth: smDown ? "190px" : "100px",}}>
                             <Logo logoImageSrc={props.pageHeader?.logoImageSrc} noWrap
                                   logoText={props.pageHeader?.logoText}
                                   logoAccentText={props.pageHeader?.logoAccentText}/>
                         </Grid>
-                        {props.pageHeader.isShowSocialMedia ?<Grid xs={4} sm={5} container item alignContent='center' alignItems='center'
+                        {props.pageHeader.isShowSocialMedia && !smDown ? <Grid xs={4} sm={5} container item alignContent='center' alignItems='center'
                                justifyContent={xsDown ? 'center' : "flex-start"} wrap='nowrap'>
                             <IconButton href={`https://facebook.com/${props.businessContact?.facebook}`}
                                         color='primary'><Facebook/></IconButton>
@@ -66,7 +67,7 @@ const Header: FunctionComponent<HeaderProps> = (props) => {
                                         color='primary'><Twitter/></IconButton>
                         </Grid>:<></>}
                     </Grid>
-                    <Grid item container xs={8} sm={9} md={9} justifyContent='flex-end'>
+                    <Grid item container xs={8}  justifyContent='flex-end'>
 
                         {
                             !mdDown && <Grid xs={4} md={10} lg={10} container item justifyContent='flex-end'
