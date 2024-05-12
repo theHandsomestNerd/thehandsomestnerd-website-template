@@ -10,6 +10,7 @@ import SanityContext from "../../common/sanityIo/sanity-context/SanityContext";
 
 type IProps = {
     pageTheme?: SanityMuiTheme
+    logoSrc?: any
 };
 
 
@@ -22,7 +23,6 @@ const CustomizedThemeProvider: FunctionComponent<IProps & PropsWithChildren> = (
 
     const pageContext = useContext(PageContext);
     useEffect(() => {
-        // console.log('Theme ', pageContext.page?.theme)
         if (pageContext.page?.theme) {
             const theCustomizedTheme = getThemeFromSanity(pageContext.page?.theme)
 
@@ -33,12 +33,9 @@ const CustomizedThemeProvider: FunctionComponent<IProps & PropsWithChildren> = (
         // eslint-disable-next-line
     }, [pageContext.page?.theme])
 
-    // useEffect(() => {
-    //     console.log("customized theme change",customizedTheme)
-    // }, [customizedTheme])
-
-
-
+    useEffect(() => {
+        setLogoSrc(props.logoSrc)
+    }, [props.logoSrc])
 
     const sanityContext = useContext(SanityContext)
 
@@ -47,13 +44,15 @@ const CustomizedThemeProvider: FunctionComponent<IProps & PropsWithChildren> = (
 
         return getThemeFromSanity(theRetrievedTheme)
     }
+    const [logoSrc, setLogoSrc] = useState<any>()
 
     const newValue = useMemo(
         () => ({
             customizedTheme,
-            getThemeBySlug
+            getThemeBySlug,
+            logoSrc
         }),
-        [customizedTheme, getThemeBySlug]
+        [customizedTheme, getThemeBySlug, logoSrc]
     );
 
     return (

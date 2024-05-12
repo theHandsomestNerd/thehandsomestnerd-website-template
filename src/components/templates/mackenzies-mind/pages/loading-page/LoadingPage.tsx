@@ -1,8 +1,9 @@
 import {CircularProgress, Grid, Typography, useTheme} from '@mui/material';
 import makeStyles from '@mui/styles/makeStyles';
-import{FunctionComponent} from 'react'
+import {FunctionComponent, useContext} from 'react'
 import useCustomStyles from "../Styles";
 import Logo from "../../../../logo/Logo";
+import CustomizedThemeContext from "../../../../customized-theme-provider/CustomizedThemeContext";
 
 
 export const useStyles = makeStyles(() => ({
@@ -18,13 +19,19 @@ const LoadingPage: FunctionComponent = () => {
 
     const globalClasses = useCustomStyles(theme)
 
+    const customTheme = useContext(CustomizedThemeContext)
+
     return (
         <Grid container item justifyContent='center' alignItems='center'
               alignContent='center' className={globalClasses.fullscreen}>
-            <Logo isCenter height={200} />
+            {customTheme.logoSrc ? <Grid item>{
+                <img src={customTheme.logoSrc} width={400}/>
+            }</Grid>:
+                <Logo isCenter height={200} />
+}
             <Grid item container justifyContent='center' spacing={3}>
                 <Grid item container justifyContent='center'>
-                    <Typography align='center' variant='h6' style={{fontFamily: "Raleway"}}>Loading...</Typography>
+                    <Typography color='primary' align='center' variant='h6' style={{fontFamily: "Raleway"}}>Loading...</Typography>
                 </Grid>
                 <Grid item>
                     <CircularProgress size={40}/>

@@ -2,10 +2,12 @@ import ReactDOM from 'react-dom';
 import {AppWrapper} from 'the-handsomestnerd-internal'
 // import MyPrivateComponent from "./MyPrivateComponent";
 import React from 'react'
+import notDefault from '../static/not-default-logo.png'
 
 const root = (document.getElementById('root') as HTMLElement)
 ReactDOM.render(
                 <React.StrictMode><AppWrapper
+                    logo={notDefault}
                     react_app_api_url = ""
                     react_app_sanity_projectid = {process.env.REACT_APP_SANITY_PROJECTID??""}
                     react_app_sanity_db = {process.env.REACT_APP_SANITY_DB??""}

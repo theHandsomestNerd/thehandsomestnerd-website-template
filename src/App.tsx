@@ -36,6 +36,7 @@ interface IProps {
     react_app_base_route: string
     react_app_bar_inventory_slug: string
     react_app_googlemaps_embed_api_key: string
+    logo: any
 }
 
 
@@ -76,11 +77,15 @@ const App: FunctionComponent<IProps & PropsWithChildren> = (props) => {
 
     }, [])
 
+    useEffect(() => {
+            console.log("The logo before storage", props.logo)
+        }, [props.logo])
+
     return (
         <BrowserRouter>
             <QueryClientProvider client={queryClient}>
                 <PageProvider googleApiKey={props.react_app_googlemaps_embed_api_key} barInventorySlug={props.react_app_bar_inventory_slug}>
-                    <CustomizedThemeProvider>
+                    <CustomizedThemeProvider logoSrc={props.logo}>
                         <SnackbarProvider>
                             <ModalProvider>
                                 <AmenityProvider>
