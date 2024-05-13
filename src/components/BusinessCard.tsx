@@ -53,19 +53,14 @@ const BusinessCard: FunctionComponent<MainMenuProps> = ({anchor, homePage}) => {
         if (open) {
             firebaseContext.ctaClick && firebaseContext.ctaClick(location.pathname ?? "", "Open Business Card")
         }
-
+        
         setIsDrawerOpen(open);
     };
-
 
     const snackbarContext = useContext(SnackbarContext)
     const classes = useStyles()
 
     const theme = useTheme()
-
-    // const smDown = useMediaQuery(theme.breakpoints.down('sm'))
-
-    // const pageContext = useContext(PageContext)
 
     const [userBio, setUserBio] = useState<ResumeBioSectionType>()
 
@@ -85,24 +80,30 @@ const BusinessCard: FunctionComponent<MainMenuProps> = ({anchor, homePage}) => {
 
     const qrCodeContext = useContext(QrCodeContext)
     const share = async (url: string) => {
-        // console.log("share")
-        //
         qrCodeContext.openSnackbar && qrCodeContext.openSnackbar(url)
-        // qrCodeContext.init && await qrCodeContext.init(url)
     }
-
-    // useEffect(() => {
-    //     qrCodeContext.qr_code_value && qrCodeContext.openSnackbar && qrCodeContext.openSnackbar(['email'])
-    //
-    // }, [qrCodeContext.qr_code_value])
 
     const list = () => (
         <Grid xs={12} md={6} container item
               role="presentation"
-            // onClick={toggleDrawer(anchor, false)}
-            // onKeyDown={toggleDrawer(anchor, false)}
               style={{backgroundColor: COLORS.LIGHTGRAY, maxWidth: 350}}
         >
+            <Grid container alignItems='center' justifyContent='space-between'
+                  style={{
+
+                      position: "absolute",
+                      zIndex: 1000,
+                      // paddingLeft: theme.spacing(4),
+                      // paddingRight: theme.spacing(6),
+                  }}>
+
+                {/*<Grid item xs={3}>*/}
+                {/*    {menu.logoImageSrc && <Logo logoImageSrc={homePage.imgSrc}/>}*/}
+                {/*</Grid>*/}
+                <Grid item xs={1} ><Button style={{color:"white"}} onClick={() => {
+                    setIsDrawerOpen(false)
+                }}><Close color='inherit' fontSize='large'/></Button></Grid>
+            </Grid>
             <Grid container item alignContent='flex-end' justifyContent='center'>
                 <Grid item container style={{
                     marginBottom: theme.spacing(4),
@@ -324,7 +325,7 @@ const BusinessCard: FunctionComponent<MainMenuProps> = ({anchor, homePage}) => {
     return (
         <Grid item>
 
-            <Fab
+            {!isDrawerOpen && <Fab
                 sx={{position: "absolute", right: 32, bottom: 32}}
                 color='primary'
                 onClick={toggleDrawer(anchor, true)}
@@ -332,30 +333,18 @@ const BusinessCard: FunctionComponent<MainMenuProps> = ({anchor, homePage}) => {
                 <Avatar style={{backgroundColor: "whitesmoke"}}
 
                         src={sanityContext.placeholderOrImage && sanityContext.placeholderOrImage(homePage.headerContent.content[0].headerMenuRef.logoImageSrc)}/>
-            </Fab>
+            </Fab>}
 
 
             <Drawer
                 className={classes.drawer}
                 anchor={anchor} open={isDrawerOpen}
-                onClose={toggleDrawer(anchor, false)}
+
+                onClose={()=>{
+                    // setIsDrawerOpen(false)
+                    toggleDrawer(anchor, false)
+                }}
             >
-                <Grid container alignItems='center' justifyContent='space-between'
-                      style={{
-
-                          position: "absolute",
-                          zIndex: 1000,
-                          paddingLeft: theme.spacing(4),
-                          paddingRight: theme.spacing(6),
-                      }}>
-
-                    {/*<Grid item xs={3}>*/}
-                    {/*    {menu.logoImageSrc && <Logo logoImageSrc={homePage.imgSrc}/>}*/}
-                    {/*</Grid>*/}
-                    <Grid item xs={1}><Button onClick={() => {
-                        setIsDrawerOpen(false)
-                    }}><Close color='primary' fontSize='large'/></Button></Grid>
-                </Grid>
                 <Grid container item justifyContent='center'>
                     {list()}
                 </Grid>
