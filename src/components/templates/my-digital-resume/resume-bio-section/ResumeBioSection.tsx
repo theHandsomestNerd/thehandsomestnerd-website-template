@@ -20,6 +20,7 @@ const ResumeBioSection: FunctionComponent<IProps> = (props: IProps) => {
     const theme = useTheme()
     const classes = useThwCommonStyles()
     const smDown = useMediaQuery(theme.breakpoints.down('sm'))
+    const mdOnly = useMediaQuery(theme.breakpoints.only('md'))
 
     const sanityContext = useContext(SanityContext)
 
@@ -83,7 +84,7 @@ const ResumeBioSection: FunctionComponent<IProps> = (props: IProps) => {
                     />
                 </Grid>
             </Grid>
-            <Grid item container sm={12} md={5} lg={12} justifyContent='center'>
+            <Grid item container sm={12} md={5} justifyContent='center'>
                 <Grid data-testid='bio-image' container item style={{
                     backgroundImage: `url(${sanityContext.placeholderOrImage && sanityContext.placeholderOrImage(props.sectionData.mainImage, 350, 500)})`,
                     backgroundSize: "cover",
@@ -95,9 +96,9 @@ const ResumeBioSection: FunctionComponent<IProps> = (props: IProps) => {
                 </Grid>
             </Grid>
             {!props.isHideButtons &&
-                <Grid container item xs={12} sm={10} spacing={1} style={{marginTop: theme.spacing(2)}}>
-                    <Grid item container>
-                        <ButtonGroup fullWidth orientation={smDown ? 'vertical' : "horizontal"}>
+                <Grid container item xs={12} sm={10} md={12} lg={6} spacing={1} style={{marginTop: theme.spacing(2)}}>
+                    <Grid item container alignItems='center'>
+                        <ButtonGroup fullWidth orientation={smDown || !mdOnly  ? 'vertical' : "horizontal"}>
                             <Button name={'appointment'} variant='contained' fullWidth color='primary'
                                     href={props.homePage?.bookAppointmentLink}><Typography variant="button"
                                                                                            align='center'>Meet
