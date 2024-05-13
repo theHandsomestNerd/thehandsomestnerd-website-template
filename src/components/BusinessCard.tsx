@@ -1,6 +1,18 @@
 import {FunctionComponent, useContext, useEffect, useState} from 'react'
 import makeStyles from '@mui/styles/makeStyles';
-import {Avatar, Button, Divider, Drawer, Fab, Grid, List, ListItem, Typography, useTheme,} from '@mui/material';
+import {
+    Avatar,
+    Button,
+    Divider,
+    Drawer,
+    Fab,
+    Grid,
+    IconButton,
+    List,
+    ListItem,
+    Typography,
+    useTheme,
+} from '@mui/material';
 import createStyles from '@mui/styles/createStyles';
 import {Close, FileCopy} from "@mui/icons-material";
 import SocialMediaBlock from "./templates/my-digital-resume/social-media-block/SocialMediaBlock";
@@ -53,7 +65,7 @@ const BusinessCard: FunctionComponent<MainMenuProps> = ({anchor, homePage}) => {
         if (open) {
             firebaseContext.ctaClick && firebaseContext.ctaClick(location.pathname ?? "", "Open Business Card")
         }
-        
+
         setIsDrawerOpen(open);
     };
 
@@ -93,16 +105,17 @@ const BusinessCard: FunctionComponent<MainMenuProps> = ({anchor, homePage}) => {
 
                       position: "absolute",
                       zIndex: 1000,
-                      // paddingLeft: theme.spacing(4),
-                      // paddingRight: theme.spacing(6),
+                      paddingLeft: theme.spacing(1),
+                      paddingTop: theme.spacing(.5),
                   }}>
 
-                {/*<Grid item xs={3}>*/}
-                {/*    {menu.logoImageSrc && <Logo logoImageSrc={homePage.imgSrc}/>}*/}
-                {/*</Grid>*/}
-                <Grid item xs={1} ><Button style={{color:"white"}} onClick={() => {
-                    setIsDrawerOpen(false)
-                }}><Close color='inherit' fontSize='large'/></Button></Grid>
+                <Grid item xs={1}>
+                    <IconButton style={{color: "white"}} onClick={() => {
+                        setIsDrawerOpen(false)
+                    }}>
+                        <Close color='inherit' fontSize='medium'/>
+                    </IconButton>
+                </Grid>
             </Grid>
             <Grid container item alignContent='flex-end' justifyContent='center'>
                 <Grid item container style={{
@@ -121,8 +134,14 @@ const BusinessCard: FunctionComponent<MainMenuProps> = ({anchor, homePage}) => {
                         height: "max-content",
                         padding: theme.spacing(2, 3)
                     }}>
-                        <SocialMediaBlock isHoverColor isCentered spacing={1} iconColor='white' bgColor
-                                          theBackgroundColor={theme.palette.primary.main}  {...homePage.businessContact}/>
+                        <SocialMediaBlock
+                            isHoverColor
+                            isCentered
+                            spacing={1}
+                            iconColor='white'
+                            bgColor
+                            theBackgroundColor={theme.palette.primary.main}
+                            {...homePage.businessContact} />
                     </Grid>
                 </Grid>
             </Grid>
@@ -194,11 +213,13 @@ const BusinessCard: FunctionComponent<MainMenuProps> = ({anchor, homePage}) => {
                                         <Button style={{height: "80px"}} variant='contained' color='primary' fullWidth
                                                 onClick={() => {
                                                     navigator.clipboard.writeText(homePage.website ?? "")
-                                                    const snack = <Grid container item>
-                                                        Copied!
-                                                    </Grid>
+                                                        .then(()=>{
+                                                        const snack = <Grid container item>
+                                                            Copied!
+                                                        </Grid>
 
-                                                    snackbarContext.openSnackbar && snackbarContext.openSnackbar(snack, 15000)
+                                                        snackbarContext.openSnackbar && snackbarContext.openSnackbar(snack, 15000)
+                                                    })
                                                 }}>
                                             <Grid item>
                                                 <FileCopy style={{height: "42px"}}/>
@@ -244,11 +265,13 @@ const BusinessCard: FunctionComponent<MainMenuProps> = ({anchor, homePage}) => {
                                         <Button style={{height: "80px"}} variant='contained' color='primary' fullWidth
                                                 onClick={() => {
                                                     navigator.clipboard.writeText(homePage.bookAppointmentLink ?? "")
-                                                    const snack = <Grid container item>
-                                                        Copied!
-                                                    </Grid>
+                                                        .then(()=>{
+                                                        const snack = <Grid container item>
+                                                            Copied!
+                                                        </Grid>
 
-                                                    snackbarContext.openSnackbar && snackbarContext.openSnackbar(snack, 15000)
+                                                        snackbarContext.openSnackbar && snackbarContext.openSnackbar(snack, 15000)
+                                                    })
                                                 }}
                                         >
                                             <Grid item>
@@ -340,7 +363,7 @@ const BusinessCard: FunctionComponent<MainMenuProps> = ({anchor, homePage}) => {
                 className={classes.drawer}
                 anchor={anchor} open={isDrawerOpen}
 
-                onClose={()=>{
+                onClose={() => {
                     // setIsDrawerOpen(false)
                     toggleDrawer(anchor, false)
                 }}
