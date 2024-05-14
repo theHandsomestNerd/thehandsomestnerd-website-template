@@ -1,9 +1,10 @@
 import {FunctionComponent, useState} from 'react'
-import {Chip, Grid, Typography, useTheme} from "@mui/material";
+import {Chip, Grid, List, ListItem, Switch, Typography, useTheme} from "@mui/material";
 import {ResumeExperienceType} from "../../../BlockContentTypes";
 import dateUtils from "../../../../utils/dateUtils";
 import ResumeSkillTooltipWrapper from "../resume-skills-section/ResumeSkillTooltipWrapper";
 import textProcessingUtils from "../../../../utils/textProcessingUtils";
+import {FormatListBulleted, Notes} from "@mui/icons-material";
 
 
 interface IProps {
@@ -15,13 +16,18 @@ const ResumeExperienceItem: FunctionComponent<IProps> = (props: IProps) => {
     const theme = useTheme()
     const [isTooltipOpen, setIsToolTipOpen] = useState<number>()
 
-    return (<Grid item container alignContent='flex-start'
-                  role={'experiencedivider'}
-        // style={{
-        //     borderBottom: `1px solid ${index2 >= (props.sectionData.experiences?.length ?? 0) - 1 ? "transparent" : COLORS.LIGHTGRAY}`,
-        //     // padding: theme.spacing(1.75, 0)
-        // }}
-                  xs={12}>
+    const [checked, setChecked] = useState(true);
+
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setChecked(event.target.checked);
+    };
+    return (<Grid
+        item
+        container
+        alignContent='flex-start'
+        role={'experiencedivider'}
+        xs={12}
+    >
         <Grid container item role={'experienceheader'} alignContent='center' alignItems='center'>
             <Grid item xs={12} md={4}>
                 <Typography display='inline'
@@ -36,55 +42,79 @@ const ResumeExperienceItem: FunctionComponent<IProps> = (props: IProps) => {
             </Grid>
         </Grid>
         <Grid container item>
+            <Grid container item xs={6}>
+                <Grid item>
+                    <Typography display='inline'
+                                variant='body1'
+                                fontWeight={'bold'}>{dateUtils.YearMonth(new Date(props.experience.dateStart as string))}</Typography>
 
+                    <Typography fontWeight={'bold'} display='inline'
+                                variant='body1' style={{margin: theme.spacing(0, 1)}}>—</Typography>
 
-            <Grid item sm={4}>
-                <Typography display='inline'
-                            variant='body1'
-                            fontWeight={'bold'}>{dateUtils.YearMonth(new Date(props.experience.dateStart as string))}</Typography>
+                    {
+                        !props.experience.isPresentPosition ? <Typography
+                                fontWeight='bold'
+                                display='inline'
+                                variant='body1'
+                            >
+                                {dateUtils.YearMonth(new Date(props.experience.dateEnd as string))}
+                            </Typography>
+                            : <Typography
+                                fontWeight='bold'
+                                display='inline'
 
-                <Typography fontWeight={'bold'} display='inline'
-                            variant='body1' style={{margin: theme.spacing(0, 1)}}>—</Typography>
+                                variant='body1'
+                            >
+                                present
+                            </Typography>
+                    }
 
-                {
-                    !props.experience.isPresentPosition ? <Typography
-                            fontWeight='bold'
-                            display='inline'
-                            variant='body1'
-                        >
-                            {dateUtils.YearMonth(new Date(props.experience.dateEnd as string))}
-                        </Typography>
-                        : <Typography
-                            fontWeight='bold'
-                            display='inline'
-
-                            variant='body1'
-                        >
-                            present
-                        </Typography>
-                }
-
+                </Grid>
             </Grid>
-
+            <Grid container item xs={6} justifyContent='flex-end' alignItems='center'>
+                <FormatListBulleted
+                    fontSize={'small'}
+                    color={!checked ? "primary" : "secondary"}/>
+                <Switch checked={checked}
+                        onChange={handleChange} size='small'/>
+                <Notes color={checked ? "primary" : "secondary"}
+                       fontSize={'small'}/>
+            </Grid>
+            <Grid container item>
+                <Typography
+                    variant='body1'
+                    fontStyle={'italic'}>
+                    {
+                        dateUtils.getLengthOfTime(
+                            new Date(props.experience.dateStart ?? ""),
+                            !props.experience.isPresentPosition && props.experience.dateEnd ? new Date(props.experience.dateEnd)
+                                : new Date()).result
+                    }
+                </Typography>
+            </Grid>
         </Grid>
-        <Grid container item>
-            <Typography
-                variant='body1'
-                fontStyle={'italic'}>
-                {
-                    dateUtils.getLengthOfTime(
-                        new Date(props.experience.dateStart ?? ""),
-                        !props.experience.isPresentPosition && props.experience.dateEnd ? new Date(props.experience.dateEnd)
-                            : new Date()).result
-                }
-            </Typography>
-        </Grid>
-        <Grid container item>
-            <Typography
-                variant='body1' gutterBottom>{props.experience.description}</Typography>
-        </Grid>
-        <Grid container item spacing={1}
-              style={{overflowX: "scroll", paddingBottom: theme.spacing(1)}} wrap='nowrap'>
+        {
+            checked ? <Grid container item>
+                    <Typography
+                        variant='body1' gutterBottom>{props.experience.description}</Typography>
+                </Grid>
+                : <Grid container item paddingLeft="16px">
+                    <List sx={{listStyleType: 'disc'}}>
+                        {
+                            props.experience.bulletedDescription?.map((aBullet, index) => {
+                                return <ListItem key={"bulleted-description"+index} sx={{display: 'list-item'}}>{aBullet}</ListItem>
+                            })
+                        }
+                    </List>
+                </Grid>
+        }
+        <Grid container
+              item
+              spacing={1}
+              style={{
+                  overflowX: "scroll",
+                  paddingBottom: theme.spacing(1)
+              }} wrap='nowrap'>
             {
                 props.experience
                 && props.experience.skillsUsed

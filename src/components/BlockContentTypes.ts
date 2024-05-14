@@ -393,6 +393,7 @@ export type ResumeExperienceType = {
     dateStart?: Date | string
     dateEnd?: Date | string
     description?: string
+    bulletedDescription?:string[]
     _createdAt?: string
     _updatedAt?: string
     skillsUsed?: ResumeSkillType[]

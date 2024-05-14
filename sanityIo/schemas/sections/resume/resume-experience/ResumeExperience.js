@@ -49,6 +49,15 @@ export default {
             type: 'text',
         },
         {
+            name: 'bulletedDescription',
+            title: 'Bulleted Job Description',
+            type: "array",
+            of: [{
+                type: "text",
+                // to: [{type: "ResumeSkill"}]
+            }]
+        },
+        {
             name: 'isPresentPosition',
             title: 'Is this your present position?',
             type: 'boolean',
