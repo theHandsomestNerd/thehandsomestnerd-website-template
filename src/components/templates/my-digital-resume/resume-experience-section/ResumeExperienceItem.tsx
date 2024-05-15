@@ -42,7 +42,7 @@ const ResumeExperienceItem: FunctionComponent<IProps> = (props: IProps) => {
             </Grid>
         </Grid>
         <Grid container item>
-            <Grid container item xs={6}>
+            <Grid container item>
                 <Grid item>
                     <Typography display='inline'
                                 variant='body1'
@@ -71,16 +71,7 @@ const ResumeExperienceItem: FunctionComponent<IProps> = (props: IProps) => {
 
                 </Grid>
             </Grid>
-            <Grid container item xs={6} justifyContent='flex-end' alignItems='center'>
-                <FormatListBulleted
-                    fontSize={'small'}
-                    color={!checked ? "primary" : "secondary"}/>
-                <Switch checked={checked}
-                        onChange={handleChange} size='small'/>
-                <Notes color={checked ? "primary" : "secondary"}
-                       fontSize={'small'}/>
-            </Grid>
-            <Grid container item>
+            <Grid container item  xs={6}>
                 <Typography
                     variant='body1'
                     fontStyle={'italic'}>
@@ -91,6 +82,15 @@ const ResumeExperienceItem: FunctionComponent<IProps> = (props: IProps) => {
                                 : new Date()).result
                     }
                 </Typography>
+            </Grid>
+            <Grid container item xs={6} justifyContent='flex-end' alignContent='flex-end'>
+                <FormatListBulleted
+                    fontSize={'small'}
+                    color={!checked ? "primary" : "secondary"}/>
+                <Switch checked={checked}
+                        onChange={handleChange} size='small'/>
+                <Notes color={checked ? "primary" : "secondary"}
+                       fontSize={'small'}/>
             </Grid>
         </Grid>
         {

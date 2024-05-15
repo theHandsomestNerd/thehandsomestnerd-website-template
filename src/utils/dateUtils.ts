@@ -57,7 +57,7 @@ const getLengthOfTime = (date1?: Date|string, date2?: Date|string) =>{
 
     if(days_passed > 15){
         months_passed+=1;
-        if(months_passed >= 13) {
+        if(months_passed >= 12) {
             years_passed += 1;
             months_passed -= 1;
         }

@@ -45,7 +45,8 @@ const PortfolioItemModal: FunctionComponent<IProps> = (props: IProps) => {
     const theme = useTheme()
     const classes = useStyles()
     const sanityContext = useContext(SanityContext)
-    const mdDown = useMediaQuery(theme.breakpoints.only('md'))
+    const mdDown = useMediaQuery(theme.breakpoints.down('md'))
+    const xsDown = useMediaQuery(theme.breakpoints.down('sm'))
     const [isOpen, setIsOpen] = useState<boolean>(false)
     const [isPhotoModalOpen, setIsPhotoModalOpen] = useState<boolean>(false)
     const setOpenWrapper = (theValue: boolean) => {
@@ -69,6 +70,15 @@ const PortfolioItemModal: FunctionComponent<IProps> = (props: IProps) => {
 
     const [selectedItem, setSelectedItem] = useState<SanityImageAsset>()
 
+    const [imageColumn, setImageColumn] = useState<number>()
+    useEffect(() => {
+        if(xsDown)
+            setImageColumn(1)
+        else if(mdDown)
+            setImageColumn(2)
+        else
+        setImageColumn(3)
+    }, [mdDown, xsDown])
     return (<Modal open={isOpen} sx={{paddingBottom: 4, overflow: "scroll"}}>
         <Grid container item justifyContent='center' alignContent='center' alignItems='center'
               style={{position: "relative"}}>
@@ -120,12 +130,12 @@ const PortfolioItemModal: FunctionComponent<IProps> = (props: IProps) => {
                 <Grid item container justifyContent='center'>
                     <Grid item container justifyContent='center'>
                         <Grid item container justifyContent='center'>
-                            <ImageList rowHeight={500} className={classes.imageList} cols={mdDown ? 2 : 3}>
+                            <ImageList rowHeight={500} className={classes.imageList} cols={imageColumn}>
                                 {
                                     props.currentItem?.imageGallery ? props.currentItem.imageGallery.map((item, index) => {
                                         return <Box
                                             margin='4px'
-                                            border='1px solid #D5d5d5'
+                                            border='1px solid #d5d5d5'
                                             position='relative'
                                             key={index}
                                         >
