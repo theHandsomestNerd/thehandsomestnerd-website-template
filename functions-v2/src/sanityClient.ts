@@ -1,5 +1,4 @@
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-import {createClient} from '@sanity/client'
+import createClient from '@sanity/client'
 
 const { defineString } = require('firebase-functions/params');
 require('dotenv').config()
