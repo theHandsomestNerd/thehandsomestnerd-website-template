@@ -125,6 +125,7 @@ import AWBallSummarySection from "./sections/aw/AWBallSummarySection";
 import AWBallToolsSection from "./sections/aw/AWBallToolsSection";
 import SimpleStringListSection from "./sections/41-acres/SimpleStringListSection";
 import BartenderHeroSection from "./bartender/BartenderHeroSection";
+import BartenderExperienceSection from "./bartender/BartenderExperienceSection";
 // Then we give our schema to the builder and provide the result to Sanity
 export default [
     // The following are document types which will appear
@@ -258,5 +259,6 @@ export default [
 
     SimpleStringListSection,
 
-    BartenderHeroSection
+    BartenderHeroSection,
+    BartenderExperienceSection
 ]

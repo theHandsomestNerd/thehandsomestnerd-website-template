@@ -40,7 +40,7 @@ const BartenderHeroSection: FunctionComponent<IProps> = (props: IProps) => {
                   alignItems={mdDown ? 'flex-end' : 'center'} alignContent={mdDown ? 'flex-end' : 'center'}
                   sx={{
                       position: "absolute",
-                      right: 64,
+                      right: mdDown?16:64,
                       // backgroundColor:"red",
                       paddingBottom: "8px",
                       top: 0,

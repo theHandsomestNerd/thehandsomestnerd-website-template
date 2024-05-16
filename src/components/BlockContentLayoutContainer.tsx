@@ -5,7 +5,7 @@ import {blockSerializers} from '../common/sanityIo/BlockContentRenderer'
 import {
     AnimatedAboutUsSectionType,
     AnimatedPortfolioSectionType,
-    AnimatedServicesSectionType,
+    AnimatedServicesSectionType, BartenderExperienceSectionType,
     BartenderHeroSectionType,
     DrinkeryAlbumSectionType,
     DrinkeryOtherSideSectionType,
@@ -91,6 +91,7 @@ import AWNewHouseFormSection from "./templates/anybody-walking/AWNewHouseFormSec
 import AWContactUs from "./templates/anybody-walking/AWContactUs";
 import DJSpadesRulesContentSection from "./dj-40-spades-rules/41AcresSpadesContentSection";
 import BartenderHeroSection from "./templates/my-digital-resume/the-bartender/BartenderHeroSection";
+import BartenderExperienceSection from "./templates/my-digital-resume/the-bartender/BartenderExperienceSection";
 
 export type BlockContentLayoutContainerProps = {
     content?: any,
@@ -528,6 +529,14 @@ const BlockContentLayoutContainer: FunctionComponent<BlockContentLayoutContainer
                         return <Grid key={index} container item xs={12} style={{paddingTop:"68px"}}>
                             <BartenderHeroSection
                                 sectionData={bartenderHeroSection}
+                            />
+                        </Grid>
+                    case 'BartenderExperienceSection':
+                        const bartenderExperienceSection: BartenderExperienceSectionType = columnLayoutContainer
+
+                        return <Grid key={index} container item xs={12}>
+                            <BartenderExperienceSection
+                                sectionData={bartenderExperienceSection}
                             />
                         </Grid>
                     case 'DrinkerySpecialsSection':

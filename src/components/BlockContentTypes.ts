@@ -417,6 +417,15 @@ export type ResumeExperienceSectionType = {
     experiences?: ResumeExperienceType[]
 }
 
+export type BartenderExperienceSectionType = {
+    name?: string
+    _type?: "BartenderExperienceSection"
+
+    title?: string
+    introduction?: string
+    experiences?: ResumeExperienceType[]
+}
+
 export type ResumeEducation = {
     name?: string
     institutionName?: string
