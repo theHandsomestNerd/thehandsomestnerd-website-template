@@ -17,7 +17,7 @@ const FlashCardsContentSection: FunctionComponent<IProps & PropsWithChildren> = 
     return (
         <SearchProvider>
             <Grid container item alignItems='center' alignContent='center' direction='column'
-                  style={{overflow: 'hidden', paddingTop: "96px"}}>
+                  style={{overflow: 'hidden', paddingTop: "68px"}}>
                 <Grid container justifyContent='center' style={{minWidth: "423px"}}>
                     <Grid item container xs={2} justifyContent='flex-end'>
                         <FiltersMenu anchor={'bottom'}/>

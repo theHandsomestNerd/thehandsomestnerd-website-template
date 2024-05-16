@@ -282,6 +282,12 @@ export default {
                     type: 'reference',
                     to: [{type: 'cryptoInYourPocketSection'}]
                 },
+                {
+                    name: 'BartenderHeroSection',
+                    title: 'Bartender Hero Image + Content Overlay',
+                    type: 'reference',
+                    to: [{type: 'BartenderHeroSection'}]
+                },
                 {name: 'drinkerySpecialsSection', title: 'Drinkery Specials Section', type: 'reference', to: [{type: 'DrinkerySpecialsSection'}]},
                 {name: 'drinkeryTeamSection', title: 'Drinkery Staff Section', type: 'reference', to: [{type: 'DrinkeryTeamSection'}]},
                 {name: 'drinkeryOtherSideSection', title: 'Drinkery Other Side Section', type: 'reference', to: [{type: 'DrinkeryOtherSideSection'}]},

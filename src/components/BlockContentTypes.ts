@@ -1,5 +1,5 @@
 import {SanityImageSource} from "@sanity/asset-utils";
-import {SanityMenuContainer, SanityRef, SanitySlug} from "../common/sanityIo/Types";
+import {SanityBusinessContact, SanityMenuContainer, SanityRef, SanitySlug} from "../common/sanityIo/Types";
 import {FileAsset} from "@sanity/types";
 
 export type HeroContentSectionType = {
@@ -350,6 +350,14 @@ export type ResumeBioSectionType = {
     mainImage?: SanityImageAsset
 }
 
+export type BartenderHeroSectionType = {
+    name?: string
+    title?: string
+    imageSrc?: SanityImageAsset
+    bartender?: SanityBusinessContact
+    careerTitle?: string
+    textContent?: string
+}
 
 export type ResumeSkillType = {
     _id?: string

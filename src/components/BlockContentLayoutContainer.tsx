@@ -5,11 +5,17 @@ import {blockSerializers} from '../common/sanityIo/BlockContentRenderer'
 import {
     AnimatedAboutUsSectionType,
     AnimatedPortfolioSectionType,
-    AnimatedServicesSectionType, DrinkeryAlbumSectionType, DrinkeryOtherSideSectionType, DrinkerySpecialsSectionType,
+    AnimatedServicesSectionType,
+    BartenderHeroSectionType,
+    DrinkeryAlbumSectionType,
+    DrinkeryOtherSideSectionType,
+    DrinkerySpecialsSectionType,
     FlashCardSectionType,
     HeadlineCTASectionType,
-    HeroAnimatedContentSectionType, HolidayHeadlineSectionType,
-    HowItWorksSectionType, ListSectionType,
+    HeroAnimatedContentSectionType,
+    HolidayHeadlineSectionType,
+    HowItWorksSectionType,
+    ListSectionType,
     MapSectionType,
     PortfolioSectionType,
     PricingSectionType,
@@ -19,7 +25,8 @@ import {
     ResumeExperienceSectionType,
     ResumeFeedbackSectionType,
     ResumePortfolioSectionType,
-    ResumeSkillSectionType, TeamSectionType,
+    ResumeSkillSectionType,
+    TeamSectionType,
     ThwAboutProprietorSectionType,
     ThwContactUsSectionType,
     ThwHeroContentSectionType,
@@ -83,6 +90,7 @@ import BallToolsSection from "./templates/anybody-walking/BallToolsSection";
 import AWNewHouseFormSection from "./templates/anybody-walking/AWNewHouseFormSection";
 import AWContactUs from "./templates/anybody-walking/AWContactUs";
 import DJSpadesRulesContentSection from "./dj-40-spades-rules/41AcresSpadesContentSection";
+import BartenderHeroSection from "./templates/my-digital-resume/the-bartender/BartenderHeroSection";
 
 export type BlockContentLayoutContainerProps = {
     content?: any,
@@ -512,6 +520,14 @@ const BlockContentLayoutContainer: FunctionComponent<BlockContentLayoutContainer
                         return <Grid key={index} container item xs={12}>
                             <FlashCardsContentSection
                                 sectionData={flashCardSection}
+                            />
+                        </Grid>
+                    case 'BartenderHeroSection':
+                        const bartenderHeroSection: BartenderHeroSectionType = columnLayoutContainer
+
+                        return <Grid key={index} container item xs={12} style={{paddingTop:"68px"}}>
+                            <BartenderHeroSection
+                                sectionData={bartenderHeroSection}
                             />
                         </Grid>
                     case 'DrinkerySpecialsSection':

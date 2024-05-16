@@ -46,6 +46,8 @@ const preview: Preview = {
             </FirebaseProvider>
         ),
     ],
+
+    tags: ["autodocs"]
 };
 
 export default preview;
