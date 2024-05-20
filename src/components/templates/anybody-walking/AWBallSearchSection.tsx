@@ -1,7 +1,7 @@
 import {FunctionComponent, useContext, useEffect, useState} from 'react'
 
 import makeStyles from "@mui/styles/makeStyles";
-import {Fab, Grid, Typography} from "@mui/material";
+import {Fab, Grid, Typography, useTheme} from "@mui/material";
 import clsx from "clsx";
 import useCustomStyles from "../mackenzies-mind/pages/Styles";
 import BallSearchContext from "./ball-search-context/BallSearchContext";
@@ -68,11 +68,14 @@ const AWBallSearchSection: FunctionComponent<IProps> = (props: IProps) => {
     useEffect(() => {
         getNewData().then()
     }, [])
+    const theme=useTheme()
 
 
     return (
         <BallSearchProviderWrapper results={props.balls}>
-            <Grid container item className={theClasses.preroot}>
+            <Grid container item className={theClasses.preroot}
+                  sx={{                      padding: theme.spacing(((pageContext.page?.theme?.appBarHeight ?? 8)/8) ??  8.5, 0)
+                  }}>
                 <Grid item container className={clsx(classes.fullSection)}
                       justifyContent='center' alignItems='center'>
                     <Grid item alignContent='center' container direction='column'
