@@ -19,6 +19,11 @@ export default {
             type: 'boolean',
         },
         {
+            name: 'isDarkMode',
+            title: 'Is dark mode?',
+            type: 'boolean',
+        },
+        {
             name: 'slug',
             title: 'Slug',
             type: 'slug',

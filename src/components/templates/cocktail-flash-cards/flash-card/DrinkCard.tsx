@@ -17,10 +17,10 @@ export const useStyles = makeStyles((theme: Theme) => ({
 }))
 
 interface IProps {
-    // cocktail: SanityCocktailType
+    isDarkMode?: boolean
 }
 
-const DrinkCard: FunctionComponent<IProps> = () => {
+const DrinkCard: FunctionComponent<IProps> = (props: IProps) => {
     const classes = useStyles()
 
     const searchContext = useContext(SearchContext)
@@ -32,10 +32,10 @@ const DrinkCard: FunctionComponent<IProps> = () => {
     >
         <Grid container item className={classes.root}>
             <Grid container item alignContent='center'>
-                <FlashCardFront currentCard={searchContext.currentCard}/>
+                <FlashCardFront isDarkMode={props.isDarkMode} currentCard={searchContext.currentCard}/>
             </Grid>
             <Grid container item alignContent='center'>
-                <DrinkCardBottom currentCard={searchContext.currentCard}/>
+                <DrinkCardBottom isDarkMode={props.isDarkMode} currentCard={searchContext.currentCard}/>
             </Grid>
         </Grid>
     </Grid>)

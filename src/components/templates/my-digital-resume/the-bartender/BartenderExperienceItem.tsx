@@ -11,15 +11,9 @@ interface IProps {
 }
 
 const BartenderExperienceItem: FunctionComponent<IProps> = (props: IProps) => {
-
     const theme = useTheme()
     const [isTooltipOpen, setIsToolTipOpen] = useState<number>()
 
-    // const [checked, setChecked] = useState(true);
-
-    // const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    //     setChecked(event.target.checked);
-    // };
     return (<Grid
         item
         container
@@ -29,14 +23,11 @@ const BartenderExperienceItem: FunctionComponent<IProps> = (props: IProps) => {
         sx={{color: "white"}}
     >
         <Grid container item role={'experienceheader'} alignContent='center' alignItems='center'>
-            <Grid item xs={12} md={4}>
+            <Grid item xs={12}  container>
                 <Typography display='inline'
                             variant='body2' color='primary'>{props.experience.companyName}</Typography>
             </Grid>
-            {/*<Grid item xs={12} sm={6} md={4} container >*/}
-            {/*    <Typography variant='subtitle1'>{props.experience.companySubtitle}</Typography>*/}
-            {/*</Grid>*/}
-            <Grid item xs={12} sm={6} md={4}>
+            <Grid item xs={12}  container>
                 <Typography
                     variant='body1'>{props.experience.title}</Typography>
             </Grid>

@@ -37,7 +37,7 @@ import {
     ThwWhyChooseUsSectionType,
     WebDevAboutUsSectionType,
     WebDevHeroContentSectionType,
-    WebDevStatsCounterSectionType,
+    StatsCounterSectionType,
     WebDevTestimonialsSectionType,
 } from "./BlockContentTypes";
 import useThwCommonStyles from "../common/sanityIo/ThwCommonStyles";
@@ -92,6 +92,7 @@ import AWContactUs from "./templates/anybody-walking/AWContactUs";
 import DJSpadesRulesContentSection from "./dj-40-spades-rules/41AcresSpadesContentSection";
 import BartenderHeroSection from "./templates/my-digital-resume/the-bartender/BartenderHeroSection";
 import BartenderExperienceSection from "./templates/my-digital-resume/the-bartender/BartenderExperienceSection";
+import BartenderStatsCounterSection from "./templates/my-digital-resume/the-bartender/BartenderStatsCounterSection";
 
 export type BlockContentLayoutContainerProps = {
     content?: any,
@@ -373,11 +374,19 @@ const BlockContentLayoutContainer: FunctionComponent<BlockContentLayoutContainer
                             </Grid>
                         );
                     case 'WebDevStatsCounterSection':
-                        const webDevStatsCounterSection: WebDevStatsCounterSectionType = columnLayoutContainer
+                        const webDevStatsCounterSection: StatsCounterSectionType = columnLayoutContainer
 
                         return <Grid key={'webDevStatsCounterSection'} container item xs={12}>
                             <WebDevStatsCounterSection
                                 sectionData={webDevStatsCounterSection}
+                            />
+                        </Grid>
+                    case 'BartenderStatsCounterSection':
+                        const bartenderStatsCounterSection: StatsCounterSectionType = columnLayoutContainer
+
+                        return <Grid key={'bartenderStatsCounterSection'} container item xs={12}>
+                            <BartenderStatsCounterSection
+                                sectionData={bartenderStatsCounterSection}
                             />
                         </Grid>
                     case 'WebDevAboutUsSection':
@@ -518,7 +527,9 @@ const BlockContentLayoutContainer: FunctionComponent<BlockContentLayoutContainer
                     case 'FlashCardSection':
                         const flashCardSection: FlashCardSectionType = columnLayoutContainer
 
-                        return <Grid key={index} container item xs={12}>
+                        return <Grid key={index} container item xs={12} style={{ position:"relative"}}>
+                            <Link id={"FLASHCARD_SECTION"} sx={{position:"absolute", top:-90}} ><></></Link>
+
                             <FlashCardsContentSection
                                 sectionData={flashCardSection}
                             />
@@ -526,7 +537,9 @@ const BlockContentLayoutContainer: FunctionComponent<BlockContentLayoutContainer
                     case 'BartenderHeroSection':
                         const bartenderHeroSection: BartenderHeroSectionType = columnLayoutContainer
 
-                        return <Grid key={index} container item xs={12} style={{paddingTop:"68px"}}>
+                        return <Grid key={index} container item xs={12} style={{paddingTop:"68px", position:"relative"}}>
+                            <Link sx={{position:"absolute", top:-160}} id={"HERO_SECTION"}><></></Link>
+
                             <BartenderHeroSection
                                 sectionData={bartenderHeroSection}
                             />
@@ -534,7 +547,9 @@ const BlockContentLayoutContainer: FunctionComponent<BlockContentLayoutContainer
                     case 'BartenderExperienceSection':
                         const bartenderExperienceSection: BartenderExperienceSectionType = columnLayoutContainer
 
-                        return <Grid key={index} container item xs={12}>
+                        return <Grid key={index} container item xs={12} style={{position:"relative"}}>
+                            <Link id={"EXPERIENCE_SECTION"} style={{position:"absolute", top:-90}}><></></Link>
+
                             <BartenderExperienceSection
                                 sectionData={bartenderExperienceSection}
                             />

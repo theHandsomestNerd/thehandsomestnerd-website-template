@@ -1,5 +1,5 @@
 import {FunctionComponent, useContext} from 'react'
-import {Grid, Typography} from "@mui/material";
+import {Grid, Typography, useTheme} from "@mui/material";
 import {
     SanityCocktailType,
     SanityGarnish,
@@ -12,9 +12,10 @@ import SanityContext from "../../../../common/sanityIo/sanity-context/SanityCont
 
 interface IProps {
     currentCard?: SanityCocktailType
+    isDarkMode?: boolean
 }
 
-const DrinkCardBottom: FunctionComponent<IProps> = ({currentCard}: IProps) => {
+const DrinkCardBottom: FunctionComponent<IProps> = ({currentCard, isDarkMode}: IProps) => {
 
     const getGlassPrep = (prepString: string) => {
         switch (prepString) {
@@ -45,20 +46,14 @@ const DrinkCardBottom: FunctionComponent<IProps> = ({currentCard}: IProps) => {
     }
 
     const sanityContext = useContext(SanityContext)
+    const theme = useTheme()
 
-
-    return (<Grid container item>
-        {/*<Grid item>*/}
-        {/*    <Typography variant='h2' align='center' fontFamily='Covered By Your Grace'>*/}
-        {/*        {currentCard?.title}*/}
-        {/*    </Typography>*/}
-        {/*</Grid>*/}
-        {/*<Grid item container justifyContent='center'>*/}
-        {/*    <Typography variant='subtitle1' align='center'>*/}
-        {/*        {currentCard?.glass.sizeOz}oz {currentCard?.glass?.title}*/}
-        {/*    </Typography>*/}
-        {/*</Grid>*/}
-
+    return (<Grid container item
+                  sx={{
+                      color: isDarkMode ?
+                          "#dddddd"
+                          : theme.palette.text.primary
+                  }}>
         <Grid container item justifyContent='center'>
             <Grid item xs={2}>
                 {currentCard?.mixingGlass[0]._type === "MixingGlass" && <Grid container item>
@@ -68,11 +63,13 @@ const DrinkCardBottom: FunctionComponent<IProps> = ({currentCard}: IProps) => {
                     </Grid>
                     <Grid item container justifyContent='center'>
                         <Typography
+                            color='inherit'
                             variant='subtitle1'
                             textAlign='center'>{currentCard.mixingGlass[0].ingredient.title}</Typography>
                     </Grid>
                     <Grid item container justifyContent='center'>
                         <Typography
+                            color='inherit'
                             variant='subtitle2'>{currentCard.mixingGlass[0].ingredient.liquorType?.name}</Typography>
                     </Grid>
                 </Grid>}

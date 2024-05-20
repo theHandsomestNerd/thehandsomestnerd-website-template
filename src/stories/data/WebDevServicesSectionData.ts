@@ -1,9 +1,4 @@
-import {
-    AnimatedAboutUsSectionType,
-    HeroAnimatedContentSectionType, PortfolioSectionType,
-    ResumeBioSectionType, WebDevAboutUsSectionType, WebDevStatsCounterSectionType
-} from "../../components/BlockContentTypes";
-import HeroAnimatedContentSection from "../../components/animated/HeroAnimatedContentSection";
+import {PortfolioSectionType} from "../../components/BlockContentTypes";
 
 const webDevStatsSectionType:PortfolioSectionType = {
     "servicesList": [

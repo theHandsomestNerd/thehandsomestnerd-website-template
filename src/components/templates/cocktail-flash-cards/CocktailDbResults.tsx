@@ -8,6 +8,7 @@ import FirebaseContext from "../../../common/firebase/firebase-context/FirebaseC
 
 
 interface IProps {
+    isDarkMode?: boolean
 }
 
 
@@ -37,12 +38,12 @@ const CocktailDbResults: FunctionComponent<IProps> = () => {
     }
 
     const openNotification = (cocktailDbResult: CocktailDbResultType) => {
-        const snack = <Grid container spacing={2}>
+        const snack = <Grid container spacing={2} sx={{color: "white"}}>
             <Grid item container xs={12}>
-                <img src={cocktailDbResult.strDrinkThumb} height={200}/>
+                <img alt={cocktailDbResult.strDrink} src={cocktailDbResult.strDrinkThumb} height={200}/>
             </Grid>
             <Grid item container xs={12}>
-                <Typography variant={"body2"}>{cocktailDbResult.strDrink}</Typography>
+                <Typography variant={"body2"} color='inherit'>{cocktailDbResult.strDrink}</Typography>
             </Grid>
             <Grid item container xs={12}>
                 <Typography variant={"subtitle2"}>{
@@ -61,13 +62,16 @@ const CocktailDbResults: FunctionComponent<IProps> = () => {
             </Grid>
             <Grid item container xs={12}>
                 {
-                    <Chip size='small' label={cocktailDbResult.strCategory}/>
+                    <Chip size='medium' color='secondary' label={cocktailDbResult.strCategory}/>
                 }
             </Grid>
             <Grid item container xs={12}>
+                <Grid container item>
+                    <Typography variant='caption'>Tags</Typography>
+                </Grid>
                 {
                     cocktailDbResult.strTags?.split(',')?.map((tag, index) => {
-                        return <Chip size='small' label={tag} key={index}></Chip>
+                        return <Chip size='small' color={'secondary'} label={tag} key={index}></Chip>
                     })
                 }
             </Grid>
@@ -84,8 +88,12 @@ const CocktailDbResults: FunctionComponent<IProps> = () => {
     return (<Grid item container spacing={1}>
         {
             searchContext.additionalResults?.map((cocktailDbResult: CocktailDbResultType, index2) => {
-                return <Grid item key={index2}><Chip onClick={() => openNotification(cocktailDbResult)}
-                                                     label={cocktailDbResult.strDrink}></Chip></Grid>
+                return <Grid item key={index2}>
+                    <Chip color='secondary'
+                          onClick={() => openNotification(cocktailDbResult)}
+
+                          label={cocktailDbResult.strDrink}></Chip>
+                </Grid>
             })
         }
     </Grid>)

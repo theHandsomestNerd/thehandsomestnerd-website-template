@@ -144,8 +144,8 @@ const getThemeFromSanity = (theme: SanityMuiTheme) => {
             MuiFormLabel: {
                 styleOverrides: {
                     root: {
-                        color: "#383838 !important",
-                        paddingTop: "4px !important",
+                        // color: "#383838 !important",
+                        // paddingTop: "4px !important",
                     }
                 }
             },

@@ -2,12 +2,30 @@ import {FunctionComponent, useContext, useState} from 'react';
 import SearchContext from "../search-context/SearchContext";
 import {Button, Grid, TextField} from "@mui/material";
 import {Close} from "@mui/icons-material";
+import makeStyles from "@mui/styles/makeStyles";
 
 interface IProps {
+    isDarkMode?: boolean
 }
 
-const SearchBox: FunctionComponent<IProps> = () => {
-    // const classes = useStyles();
+const useStyles = makeStyles(() => ({
+    textField: (props:IProps) => ({
+        "& .MuiFilledInput-input": {
+            color: props.isDarkMode?"whitesmoke":"black"
+        },
+        "& .MuiInputLabel-root":
+            {
+                "& :hover":{
+                    color: props.isDarkMode?"whitesmoke":"black"
+                },
+
+                color: props.isDarkMode?"whitesmoke":"black"
+            }
+    })
+}))
+
+const SearchBox: FunctionComponent<IProps> = (props: IProps) => {
+    const classes = useStyles(props);
     const [searchTerms, setSearchTerms] = useState<string>('');
     const searchContext = useContext(SearchContext)
 
@@ -19,15 +37,18 @@ const SearchBox: FunctionComponent<IProps> = () => {
             searchContext?.submitSearch && searchContext?.submitSearch(searchTerms)
         }
     };
+
     const clearSearch = () => {
         setSearchTerms('');
         searchContext?.submitSearch && searchContext?.submitSearch(undefined);
     };
+
     return (
-        <Grid container item spacing={1}>
-            <Grid item xs={10} lg={8}>
+        <Grid container item spacing={1} justifyContent='center'>
+            <Grid item >
                 <TextField
-                    color="secondary"
+                    className={classes.textField}
+                    variant='filled'
                     fullWidth
                     helperText="Enter Search Terms here"
                     label="Search"
@@ -38,16 +59,11 @@ const SearchBox: FunctionComponent<IProps> = () => {
                     onChange={(e): void => onSearchTermsChange(e.target.value)}
                 />
             </Grid>
-            <Grid item xs={2}>
+            <Grid item>
                 <Button onClick={clearSearch}>
                     <Close/>
                 </Button>
             </Grid>
-            {/*<Grid item xs={12} lg={2} container justifyContent='center'>*/}
-            {/*    <Button fullWidth onClick={submitSearch} variant="contained" color="secondary">*/}
-            {/*        Search*/}
-            {/*    </Button>*/}
-            {/*</Grid>*/}
         </Grid>
     );
 };

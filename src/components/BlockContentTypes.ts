@@ -533,10 +533,10 @@ export type WebDevHeroContentSectionType = {
     ctaButtonLink: string
 }
 
-export type WebDevStatsCounterSectionType = {
+export type StatsCounterSectionType = {
     name: string
     title: string
-    stats: { statValue: string, statContent: string, isEnabled: boolean, "_type": "WebDevStatistic" }[]
+    stats: { statValue: string, statContent: string, isEnabled: boolean, }[]
 }
 
 
@@ -711,6 +711,7 @@ export type FlashCardSectionType = {
     name: string
     title: string
     isFlashCard?: boolean
+    isDarkMode?:boolean
     slug: SanitySlug
 }
 

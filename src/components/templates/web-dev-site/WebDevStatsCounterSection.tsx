@@ -2,12 +2,12 @@ import{FunctionComponent} from 'react'
 import {Theme} from '@mui/material/styles';
 import makeStyles from '@mui/styles/makeStyles';
 import {Grid, Typography} from '@mui/material'
-import {WebDevStatsCounterSectionType} from "../../BlockContentTypes";
+import {StatsCounterSectionType} from "../../BlockContentTypes";
 import {COLORS} from "../../../theme/common/ColorPalette";
 
 
 interface IProps {
-    sectionData: WebDevStatsCounterSectionType
+    sectionData: StatsCounterSectionType
 }
 
 export const useStyles = makeStyles((theme: Theme) => ({
@@ -22,10 +22,6 @@ export const useStyles = makeStyles((theme: Theme) => ({
         padding: theme.spacing(8),
         backgroundColor: 'transparent',
     },
-    contentBullets: {
-        // borderLeft: `4px solid ${theme.palette.primary.main}`,
-        // paddingLeft: '26px',
-    }
 }))
 
 const WebDevStatsCounterSection: FunctionComponent<IProps> = (props) => {
