@@ -5,10 +5,10 @@ import moment from 'moment-timezone'
 // This was a direct import into the db from the old one
 const firebaseDateFormatStr = 'YYYY-MM-DD';
 const firebaseTimeFormatStrLong = 'hh:mm a';
-const firebaseTimeFormatStr = 'hh:mm';
+const firebaseTimeFormatStr = 'hh:mm a';
 
 const prettyDateFormatStr = 'MMMM DD, YYYY';
-const prettyDateFormatStrLong = 'dddd MMMM DD, YYYY';
+const prettyDateFormatStrLong = 'MMMM DD';
 const prettyDateFormatStrShort = 'M/DD/YYYY';
 
 /**
@@ -24,6 +24,22 @@ export function getFirebaseTimeFormatString() {
  */
 export function getMonthFromDate(date: string): string {
   return new Date(date).toLocaleString('default', { month: 'short' });
+}
+
+/**
+ * Get the Month from Date String
+ * @param date
+ */
+export function getDayFromDate(date: string): string {
+  return new Date(date).toLocaleString('default', { weekday: 'long' });
+}
+
+/**
+ * Get the Month from Date String
+ * @param date
+ */
+export function getYearFromDate(date: string): string {
+  return new Date(date).toLocaleString('default', { year: 'numeric' });
 }
 
 /**

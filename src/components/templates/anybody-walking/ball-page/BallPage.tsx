@@ -27,7 +27,7 @@ import {
     Share,
     Twitter
 } from "@mui/icons-material";
-import {getMonthFromDate, getPrettyDateStr, getPrettyTimeStr} from "../HTMLUtils";
+import {getDayFromDate, getMonthFromDate, getPrettyDateStr, getPrettyTimeStr, getYearFromDate} from "../HTMLUtils";
 import ClosedCategory from "../ball-form-steps/AddCategories/ClosedCategory";
 import BallMapComponent from "../ball-form-steps/BallMapComponent";
 
@@ -108,8 +108,8 @@ const BallPage: FunctionComponent<BallPageProps> = (props: BallPageProps): any =
         if (!props.slug) {
             getBallBySlug(urlParams.slug).then((retrievedBall: any) => {
                 console.log('retrieved from sanity', retrievedBall)
+                if (location.state) {
                     const {ballToPreview} = location.state
-
                     if (ballToPreview) {
                         // translate to a Sanity Ball
                         const sanityBall: SanityBallType = {
@@ -140,6 +140,7 @@ const BallPage: FunctionComponent<BallPageProps> = (props: BallPageProps): any =
 
                         setBall(sanityBall)
                     }
+                }
             })
         }
     }, [props.slug])
@@ -177,6 +178,21 @@ const BallPage: FunctionComponent<BallPageProps> = (props: BallPageProps): any =
             setBall(sanityBall)
         }
     }, [props.ball])
+
+    useEffect(() => {
+        console.log("this is the ball", ball)
+    }, [ball])
+
+
+    const displayDateRange = (startDate: string, endDate?: string) => {
+        let dateRangeString = `${getPrettyDateStr(startDate, true)}, ${getPrettyTimeStr(startDate)}`
+
+        if(endDate) {
+            dateRangeString += `- ${getPrettyDateStr(endDate, true)}, ${getPrettyTimeStr(endDate)}`
+        }
+
+        return dateRangeString
+    }
 
     return <Grid
         container
@@ -240,9 +256,16 @@ const BallPage: FunctionComponent<BallPageProps> = (props: BallPageProps): any =
                             xs={12}
                             md={4}
                             // spacing={2}
-                            padding={2}
+                            paddingTop={2}
+                            paddingLeft={2}
+                            paddingBottom={2}
                         >
                             <Grid container item direction='column'>
+                                <Grid item>
+                                    <Typography color='#c1bebe' variant='subtitle2'>
+                                        {getDayFromDate(ball?.functionStartDate).toUpperCase()} &bull; {getYearFromDate(ball?.functionStartDate).toUpperCase()}
+                                    </Typography>
+                                </Grid>
                                 <Grid item>
                                     <Typography color='textSecondary' variant='h6'>
                                         {getMonthFromDate(ball?.functionStartDate).toUpperCase()}
@@ -290,28 +313,25 @@ const BallPage: FunctionComponent<BallPageProps> = (props: BallPageProps): any =
                     <Hidden mdUp>
                         <Grid
                             container
-                            direction='column'
                             item
-                            spacing={3}
-                            paddingTop={2}
-                            paddingBottom={1.5}
-                            paddingX={2}
+                            paddingBottom={2}
                             style={{
                                 borderBottom: '1px solid #DBDAE3'
                             }}
                         >
-                            <Grid container item wrap='nowrap' zeroMinWidth spacing={2}>
+                            <Grid container item wrap='nowrap' style={{paddingLeft: "16px", paddingBottom: "8px"}}
+                                  spacing={2}>
                                 <Grid item><CalendarToday color='primary'/></Grid>
                                 <Grid container direction='column' item>
                                     <Grid item><Typography color='textSecondary' variant='body2'>Date and
                                         time</Typography></Grid>
                                     <Grid item>
                                         <Typography
-                                            color='textSecondary'>{getPrettyDateStr(ball?.functionStartDate, true)}, {getPrettyTimeStr(ball?.functionStartDate)}</Typography>
+                                            color='textSecondary'>{displayDateRange(ball?.functionStartDate, ball?.functionEndDate)}</Typography>
                                     </Grid>
                                 </Grid>
                             </Grid>
-                            <Grid container item wrap='nowrap' zeroMinWidth spacing={2}>
+                            <Grid container item wrap='nowrap' style={{paddingLeft: "16px"}} spacing={2}>
                                 <Grid item><GpsFixed color='primary'/></Grid>
                                 <Grid container direction='column' item>
                                     <Grid container item>
@@ -362,20 +382,9 @@ const BallPage: FunctionComponent<BallPageProps> = (props: BallPageProps): any =
                                         <Typography color='textSecondary' variant='body2' fontWeight={600}>Date and
                                             time</Typography>
                                     </Grid>
-                                    <Grid item>
+                                    <Grid item container>
                                         <Typography color='textSecondary'>
-                                            {getPrettyDateStr(ball?.functionStartDate, true)},
-                                            {getPrettyTimeStr(ball?.functionStartDate)}
-                                        </Typography>
-                                        <Typography color='textSecondary' component='div'>
-                                            {ball?.functionEndDate !== '' && (
-                                                <div>
-                                                    <div className={classes.dateText}>-</div>
-                                                    <div className={classes.dateText}>
-                                                        {getPrettyTimeStr(ball?.functionEndDate)}
-                                                    </div>
-                                                </div>
-                                            )}
+                                            {displayDateRange(ball?.functionStartDate, ball?.functionEndDate)}
                                         </Typography>
                                     </Grid>
                                 </Grid>
