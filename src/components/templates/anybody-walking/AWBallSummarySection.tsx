@@ -1,6 +1,6 @@
 import {FunctionComponent, useContext, useEffect, useState} from 'react'
 
-import {Grid, Typography} from "@mui/material";
+import {Grid, Toolbar, Typography} from "@mui/material";
 import BallDataTiles from './ball-data-tiles/BallDataTiles';
 import {AWBallSectionType, SanityBallType} from "./ballroomTypes";
 import SanityContext from "../../../common/sanityIo/sanity-context/SanityContext";
@@ -89,7 +89,9 @@ const AWBallSummarySection: FunctionComponent<IProps> = (props: IProps) => {
     return (
         <BallSearchProviderWrapper results={props.balls}>
             <Grid container justifyContent='center'>
-                {/*<Toolbar sx={{height: 55}}/>*/}
+                <Toolbar sx={{
+                    height: pageContext.page?.theme?.appBarHeight
+                }}/>
                 <Grid container item
                       style={{
                           borderBottom: "1px solid #333333",
