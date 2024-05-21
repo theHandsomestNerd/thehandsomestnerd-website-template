@@ -1,5 +1,12 @@
 import {FunctionComponent} from 'react'
-import {Category, CategoryGenderType, CategoryNameType, CategoryPrizeType, CategoryTypeType} from '../../ballroomTypes'
+import {
+    Category,
+    CategoryGenderSubtitlesType,
+    CategoryGenderType,
+    CategoryNameType,
+    CategoryPrizeType,
+    CategoryTypeType
+} from '../../ballroomTypes'
 import {Button, Grid, Typography, useMediaQuery, useTheme} from '@mui/material'
 import {Delete, Edit} from '@mui/icons-material'
 
@@ -29,15 +36,15 @@ const ClosedCategory: FunctionComponent<ClosedCategoryProps> = ({
             container
             item
             spacing={1}
-            alignItems='stretch'
+            // alignItems='stretch'
             style={{
                 backgroundColor: '#FAFAFA',
                 border: `2px solid ${theme.palette.text.secondary}`,
                 marginBottom: theme.spacing(1),
             }}
         >
-            <Grid container item xs={3} alignItems='center' justifyContent='center'>
-                <Grid container direction='column' alignItems='center' spacing={1}>
+            <Grid container item style={{paddingRight: theme.spacing(3)}}>
+                <Grid container direction='column' alignContent='space-between' justifyContent='space-between'>
                     <Grid item>
                         <Typography
                             data-testid={`category-${keyValue}-closed-catGender`}
@@ -52,6 +59,16 @@ const ClosedCategory: FunctionComponent<ClosedCategoryProps> = ({
                                 //@ts-ignore
                                 CategoryGenderType[category.catGender]
                             }
+                        </Typography>
+                        <Typography align='center'
+                                    color='textSecondary'
+                                    variant={'body1'}
+                                    noWrap
+                                    style={{textTransform: 'capitalize'}}
+                                    display='inline'>{
+                            //@ts-ignore
+                            "(" + CategoryGenderSubtitlesType[category.catGender] + ")"
+                        }
                         </Typography>
                     </Grid>
                     {
@@ -85,72 +102,67 @@ const ClosedCategory: FunctionComponent<ClosedCategoryProps> = ({
                         </Grid>
                     }
                 </Grid>
+                <Grid container item justifyContent='space-between'>
+                    <Grid item xs={6}><Typography
+                        data-testid={`category-${keyValue}-closed-catType`}
+                        color='textSecondary'
+                        variant='h6'
+                        noWrap
+                        style={{textTransform: 'capitalize'}}
+                        display='inline'
+                    >{
+                        //@ts-ignore
 
-            </Grid>
-            <Grid container item xs={smDown || !showMenu ? 9 : 7} style={{paddingRight: theme.spacing(3)}}>
-                <Grid container direction='column' alignContent='space-between' justifyContent='space-between'>
-                    <Grid container item justifyContent='space-between'>
-                        <Grid item xs={6}><Typography
-                            data-testid={`category-${keyValue}-closed-catType`}
-                            color='textSecondary'
-                            variant='h6'
-                            noWrap
-                            style={{textTransform: 'capitalize'}}
-                            display='inline'
-                        >{
-                            //@ts-ignore
-
-                            CategoryTypeType[category.catType]}</Typography></Grid>
-                        <Grid container item xs={6} justifyContent='flex-end'><Typography
-                            color='textSecondary'
-                            variant='h6'
-                            noWrap
-                            data-testid={`category-${keyValue}-closed-catName`}
-                            style={{textTransform: 'capitalize'}}
-                            display='inline'
-                        >{                                    //@ts-ignore
-                            CategoryNameType[category.catName]}</Typography></Grid>
-                    </Grid>
-                    {
-                        showDescription && <Grid container item data-testid={`category-${keyValue}-description`}>
-                            <Grid
-                                item
-                                xs={12}
-                                style={{
-                                    paddingBottom: theme.spacing(1),
-                                    paddingTop: theme.spacing(1),
-                                }}
-                            >
-                                <Typography
-                                    data-testid={`category-${keyValue}-closed-catDescription`}
-                                    color='textSecondary'
-                                    variant='body1'
-                                    style={{textTransform: 'capitalize'}}
-                                >{category.catDescription}</Typography>
-                            </Grid>
-                        </Grid>
-                    }
-                    <Grid container item justifyContent='space-between'>
-                        <Grid item xs={6}><Typography
-                            color='textSecondary'
-                            variant='h6'
-                            noWrap
-                            style={{textTransform: 'capitalize'}}
-                            data-testid={`category-${keyValue}-closed-catPrize`}
-                            display='inline'
-                        >{`Prize: ${
-                            //@ts-ignore
-                            CategoryPrizeType[category.catPrize]}`}</Typography></Grid>
-                        {category.monetaryPrize > 0 && <Grid container item xs={6} justifyContent='flex-end'><Typography
-                            color='textSecondary'
-                            variant='h6'
-                            noWrap
-                            data-testid={`category-${keyValue}-closed-monetaryPrize`}
-                            style={{textTransform: 'capitalize'}}
-                            display='inline'
-                        >{`$ ${category.monetaryPrize}`}</Typography></Grid>}
-                    </Grid>
+                        CategoryTypeType[category.catType]}</Typography></Grid>
+                    <Grid container item xs={6} justifyContent='flex-end'><Typography
+                        color='textSecondary'
+                        variant='h6'
+                        noWrap
+                        data-testid={`category-${keyValue}-closed-catName`}
+                        style={{textTransform: 'capitalize'}}
+                        display='inline'
+                    >{                                    //@ts-ignore
+                        CategoryNameType[category.catName]}</Typography></Grid>
                 </Grid>
+                <Grid container item justifyContent='space-between'>
+                    <Grid item xs={6}><Typography
+                        color='textSecondary'
+                        variant='h6'
+                        noWrap
+                        style={{textTransform: 'capitalize'}}
+                        data-testid={`category-${keyValue}-closed-catPrize`}
+                        display='inline'
+                    >{`Prize: ${
+                        //@ts-ignore
+                        CategoryPrizeType[category.catPrize]}`}</Typography></Grid>
+                    {category.monetaryPrize > 0 && <Grid container item xs={6} justifyContent='flex-end'><Typography
+                        color='textSecondary'
+                        variant='h6'
+                        noWrap
+                        data-testid={`category-${keyValue}-closed-monetaryPrize`}
+                        style={{textTransform: 'capitalize'}}
+                        display='inline'
+                    >{`$ ${category.monetaryPrize}`}</Typography></Grid>}
+                </Grid>
+                {
+                    showDescription && <Grid container item data-testid={`category-${keyValue}-description`}>
+                        <Grid
+                            item
+                            xs={12}
+                            style={{
+                                paddingBottom: theme.spacing(1),
+                                paddingTop: theme.spacing(1),
+                            }}
+                        >
+                            <Typography
+                                data-testid={`category-${keyValue}-closed-catDescription`}
+                                color='textSecondary'
+                                variant='body1'
+                                style={{textTransform: 'capitalize'}}
+                            >{category.catDescription}</Typography>
+                        </Grid>
+                    </Grid>
+                }
             </Grid>
             {showMenu && <Grid
                 data-testid='category-1-menu'

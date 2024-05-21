@@ -201,7 +201,7 @@ const BallPage: FunctionComponent<BallPageProps> = (props: BallPageProps): any =
         <Hidden mdDown>
             <Grid item lg={4} xl={4}/>
         </Hidden>
-        {props.ball && <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
+        {props.ball && <Grid item xs={12}>
             <>
                 {ball && <Grid container item spacing={2}>
                     <Grid container item>
@@ -371,7 +371,7 @@ const BallPage: FunctionComponent<BallPageProps> = (props: BallPageProps): any =
                                     <Typography color='textSecondary' variant='h6'>Categories</Typography>
                                 </Grid>}
                             {ball?.categories.map((category: Category, index: number) => <Grid container item
-                                                                                               key={index}>
+                                                                                               key={index} padding={.5}>
                                 <ClosedCategory showDescription category={category} keyValue={index}/>
                             </Grid>)}
                         </Grid>

@@ -205,14 +205,25 @@ export type CheckBoxesType = {
 }
 
 export enum CategoryGenderType {
-    OTA = 'OTA',
-    FQ = 'FQ',
-    BQ = 'BQ',
+    "OTA" = 'OTA',
+    "FQ" = 'FQ',
+    "BQ" = 'BQ',
+    "DRAGS" = 'Drags',
+    "TRANSMAN" = 'Transman',
+    "WOMAN" = 'Women',
+    "FF" = 'FF',
+    "MF" = 'MF',
+}
+
+export enum CategoryGenderSubtitlesType {
+    OTA = 'Open to All',
+    FQ = 'Fem Queen',
+    BQ = 'Butch Queen',
     DRAGS = 'Drags',
     TRANSMAN = 'Transman',
     WOMAN = 'Women',
-    FF = 'FF',
-    MF = 'MF',
+    FF = 'Female Figure',
+    MF = 'Male Figure',
 }
 
 export enum CategoryTypeType {
