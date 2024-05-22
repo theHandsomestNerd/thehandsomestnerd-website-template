@@ -7,7 +7,7 @@ import {
     CategoryPrizeType,
     CategoryTypeType
 } from '../../ballroomTypes'
-import {Button, Grid, Typography, useMediaQuery, useTheme} from '@mui/material'
+import {Button, Grid, Typography, useTheme} from '@mui/material'
 import {Delete, Edit} from '@mui/icons-material'
 
 
@@ -29,7 +29,6 @@ const ClosedCategory: FunctionComponent<ClosedCategoryProps> = ({
                                                                     showMenu,
                                                                 }: ClosedCategoryProps) => {
     const theme = useTheme()
-    const smDown = useMediaQuery(theme.breakpoints.down('sm'))
 
     return (
         <Grid
@@ -168,14 +167,13 @@ const ClosedCategory: FunctionComponent<ClosedCategoryProps> = ({
                 data-testid='category-1-menu'
                 container
                 item
-                xs={smDown ? 12 : 2}
+                xs={12}
                 justifyContent='space-around'
                 alignItems='center'
-                wrap='nowrap'
-                style={smDown ? {
+                style={{
                     borderTop: `2px solid ${theme.palette.text.secondary}`,
                     backgroundColor: '#c7c7c7',
-                } : {borderLeft: `2px solid ${theme.palette.text.secondary}`, backgroundColor: '#c7c7c7'}}
+                }}
             >
                 <Button>
                     <Edit

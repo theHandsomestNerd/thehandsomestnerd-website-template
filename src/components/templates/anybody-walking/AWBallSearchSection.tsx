@@ -113,6 +113,7 @@ const AWBallSearchSection: FunctionComponent<IProps> = (props: IProps) => {
 
                         </Grid>
                         <Grid container item spacing={3}
+                              justifyContent='center'
                               style={{paddingTop: "150px", paddingLeft: "8px", minHeight: "700px"}}>
                             {/*{sectionDataarchContext.loading && <Grid item>*/}
                             {/*    <LinearProgress color='primary' style={{height: '1px'}}/>*/}
@@ -135,7 +136,7 @@ const AWBallSearchSection: FunctionComponent<IProps> = (props: IProps) => {
                                                     />
                                                 }
                                             </Grid>
-                                            : <Grid item container justifyContent="center">
+                                            : <Grid item container justifyContent="center" paddingTop={'2em'}>
                                                 <Grid item>
                                                     <BallDataTable/>
                                                 </Grid>

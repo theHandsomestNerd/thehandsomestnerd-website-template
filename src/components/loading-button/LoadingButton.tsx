@@ -104,7 +104,7 @@ const theme = useTheme()
     }
 
     return (
-        <Grid item style={{minHeight: props.isSlim?"40px":"60px", height: "100%", marginRight: "-16px"}}>
+        <Grid item style={{minHeight: props.isSlim?"40px":"60px", height: "100%",}}>
             <Button
                 sx={props.isSlim?{width: '120px',
                     }:{}}
@@ -123,7 +123,7 @@ const theme = useTheme()
                             width: "22px",
                             height: "22px"
                         }}/>
-                        : props.children
+                        : <Grid container justifyContent='center'>{props.children}</Grid>
                 }</Button>
         </Grid>
 

@@ -90,6 +90,7 @@ const AddBallCategories: FunctionComponent<AddBallCategoriesProps> = (props: Add
               container
             >
               <ClosedCategory
+                  showDescription
                 showMenu deleteCategory={deleteCategory} editCategory={editCategory} category={category}
                 keyValue={index}/>
             </Grid>
@@ -114,7 +115,7 @@ const AddBallCategories: FunctionComponent<AddBallCategoriesProps> = (props: Add
         data-testid='add-ball-modal'
         aria-labelledby='add-ball-modal-title'
         aria-describedby='add-ball-modal-desc'
-        style={{height: 'max-content', maxWidth: '800px', minWidth: '300px', margin: 'auto'}}
+        style={{ maxWidth: '800px', minWidth: '300px', overflow:"scroll" }}
       >
         <Grid container key='categoryName-edit' style={{display: 'relative'}}>
           <Grid item style={{display: 'absolute', right: 32, top: 32}}>

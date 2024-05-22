@@ -447,7 +447,7 @@ const [state, setState] = useState(initialState)
     }, [])
 
     return (
-        <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
+        <Grid item container>
             <Grid container item xs={12} md={10} justifyContent='center'>
                 <Typography variant='h4' color='textSecondary'>Add Ball</Typography>
             </Grid>
