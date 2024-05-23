@@ -54,14 +54,13 @@ const BallSource: FunctionComponent<BallSourceProps> = (props: BallSourceProps) 
 
   return (
     <Grid container data-testid='add-ball-source-step' direction='column' spacing={2}>
-      <Grid container item>
+      <Grid container item alignItems={'flex-end'}>
         <Grid item>
 
-          <Typography variant='h5' color='textSecondary'>Tell us who you are...</Typography>
+          <Typography gutterBottom variant='h5' color='textSecondary'>Tell us who you are...</Typography>
         </Grid>
-        <Grid item>
+        <Grid item container>
           <Typography
-            style={{paddingLeft: theme.spacing(2)}}
             variant='h5' data-testid='ball-source-choice' align='center'
             color='primary'>{renderBallSource()}</Typography>
         </Grid>

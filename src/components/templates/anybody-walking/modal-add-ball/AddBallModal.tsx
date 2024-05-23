@@ -271,6 +271,12 @@ const AddBallModal: FunctionComponent<AddBallModalProps> = (props: AddBallModalP
                                 >
                                     <ArrowLeft fontSize='large' style={{color: 'whitesmoke'}}
                                     />
+                                    <Typography
+                                        style={{color: 'whitesmoke'}}
+                                        variant='body1'
+                                        aria-label='add-ball-modal-previous-text'
+                                        data-testid='add-ball-modal-previous-text'
+                                    >prev</Typography>
                                 </Button>
                             }</Grid>
                             <Grid item>
@@ -302,7 +308,7 @@ const AddBallModal: FunctionComponent<AddBallModalProps> = (props: AddBallModalP
                         <Grid container item style={{minHeight: '600px', padding: theme.spacing(2, 2)}}>
                             {renderStep()}
                         </Grid>
-                        <Grid container item justifyContent='center'>
+                        <Grid container item justifyContent='center' paddingBottom={2}>
                             {stepCounter !== AddBallStepsEnum.FINISH &&
 
                                 <LoadingButton
