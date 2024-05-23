@@ -6,7 +6,6 @@ import {GoogleApiWrapper} from 'google-maps-react'
 import PlacesAutocomplete from 'react-places-autocomplete'
 import BallMapComponent from './BallMapComponent'
 import StyledTextField from "../styled-text-field/StyledTextField";
-import {v4 as uuidv4} from 'uuid'
 
 
 export type GooglePlacesAutoCompletePropsType = {
@@ -120,7 +119,7 @@ const GooglePlacesAutoComplete: FunctionComponent<GooglePlacesAutoCompletePropsT
                     onSelect={handleSelect}
                 >
                     {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
-                        <Grid container style={{ position: 'relative' }} key={uuidv4()}>
+                        <Grid container style={{ position: 'relative' }}>
                             <Grid container item>
                                 <FormGroup
                                     style={{ width: '100%', marginBottom: theme.spacing(1.5) }}
@@ -145,7 +144,7 @@ const GooglePlacesAutoComplete: FunctionComponent<GooglePlacesAutoCompletePropsT
 
                                 </FormGroup>
                             </Grid>
-                            {suggestions.length > 0 && <Grid key={uuidv4()}
+                            {suggestions.length > 0 && <Grid
                                 container
                                 direction='column'
                                 item
@@ -154,7 +153,7 @@ const GooglePlacesAutoComplete: FunctionComponent<GooglePlacesAutoCompletePropsT
                             >
                                 {loading &&
                                     <Grid container item justifyContent='center'><Typography>Loading...</Typography></Grid>}
-                                {!loading && suggestions.map(suggestion => {
+                                {!loading && suggestions.map((suggestion, suggestionIndex) => {
                                     const className = suggestion.active
                                         ? 'suggestion-item--active'
                                         : 'suggestion-item'
@@ -168,7 +167,7 @@ const GooglePlacesAutoComplete: FunctionComponent<GooglePlacesAutoCompletePropsT
                                             container
                                             item
                                             {...getSuggestionItemProps(suggestion, {
-                                                key: uuidv4(),
+                                                key: suggestionIndex,
                                                 className,
                                                 style,
                                             })}
@@ -197,7 +196,6 @@ const GooglePlacesAutoComplete: FunctionComponent<GooglePlacesAutoCompletePropsT
             >
                 {address !== '' ? <BallMapComponent height={props.mapHeight} locationString={address} />
                     : <Grid
-                        key={uuidv4()}
                         data-testid='emptyLocation'
                         container
                         item
