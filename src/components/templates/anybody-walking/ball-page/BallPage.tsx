@@ -7,34 +7,22 @@
 import {Button, Grid, Hidden, Link, Typography} from '@mui/material'
 import {FunctionComponent, useContext, useEffect, useState} from 'react'
 import {AddBallState, Category, SanityBallType} from "../ballroomTypes";
-import {useLocation, useNavigate, useParams} from "react-router-dom";
+import {useLocation, useParams} from "react-router-dom";
 import SanityContext from "../../../../common/sanityIo/sanity-context/SanityContext";
 import FirebaseContext from "../../../../common/firebase/firebase-context/FirebaseContext";
 import {Theme, useTheme} from "@mui/material/styles";
 import makeStyles from "@mui/styles/makeStyles";
 import {RoutesEnum} from "../enums/Routes.enum";
-import {
-    CalendarToday,
-    ChevronLeft,
-    DirectionsBike,
-    DirectionsBus,
-    DirectionsWalk,
-    DriveEta,
-    Email,
-    Facebook,
-    GpsFixed,
-    LinkedIn,
-    Share,
-    Twitter
-} from "@mui/icons-material";
+import {CalendarToday, ChevronLeft, GpsFixed} from "@mui/icons-material";
 import {getDayFromDate, getMonthFromDate, getPrettyDateStr, getPrettyTimeStr, getYearFromDate} from "../HTMLUtils";
 import ClosedCategory from "../ball-form-steps/AddCategories/ClosedCategory";
 import BallMapComponent from "../ball-form-steps/BallMapComponent";
+import PageContext from "../../../page-context/PageContext";
 
 export type BallPageProps = {
     ball?: AddBallState
     slug?: string;
-
+    isHideBackButton?: boolean;
 }
 
 
@@ -76,18 +64,14 @@ const useStyles = makeStyles((awTheme: Theme) => ({
 }))
 
 const BallPage: FunctionComponent<BallPageProps> = (props: BallPageProps): any => {
-    // const theme = useTheme()
     const theme = useTheme()
     const classes = useStyles()
     const location = useLocation()
     const urlParams: any = useParams()
-    const navigate = useNavigate()
     const sanityContext = useContext(SanityContext)
     const firebaseContext = useContext(FirebaseContext)
 
     const [ball, setBall] = useState<SanityBallType>()
-
-    const getUrlParams = () => location.search
 
     const getBallBySlug =
         (slug: string) => {
@@ -179,10 +163,11 @@ const BallPage: FunctionComponent<BallPageProps> = (props: BallPageProps): any =
         }
     }, [props.ball])
 
-    useEffect(() => {
-        console.log("this is the ball", ball)
-    }, [ball])
+    // useEffect(() => {
+    //     console.log("this is the ball", ball)
+    // }, [ball])
 
+    const pageContext = useContext(PageContext)
 
     const displayDateRange = (startDate: string, endDate?: string) => {
         let dateRangeString = `${getPrettyDateStr(startDate, true)}, ${getPrettyTimeStr(startDate)}`
@@ -218,17 +203,20 @@ const BallPage: FunctionComponent<BallPageProps> = (props: BallPageProps): any =
                                 backgroundSize: 'cover'
                             }}
                         >
-                            <Grid container justifyContent='space-between'>
+                            {!props.isHideBackButton && <Grid container justifyContent='space-between'>
                                 <Grid item container>
                                     <Button
-                                        sx={{paddingX: theme.spacing(4)}}
-                                        style={{backgroundColor: 'rgba(0,0,0,.5)'}}
-                                        onClick={() => navigate(`${RoutesEnum.HOME}${getUrlParams()}`)}
+                                        sx={{paddingX: theme.spacing(4), backgroundColor: 'rgba(0,0,0,.5)'}}
+                                        href={`/${pageContext.baseRoute}/${RoutesEnum.SEARCH + "/" + location.search}`}
                                     >
                                         <Grid container item>
-                                            <Grid item><ChevronLeft style={{color: "whitesmoke"}}/></Grid><Grid
-                                            item><Typography color='white' variant='h6' style={{paddingTop: "3px"}}>Back
-                                            to Results</Typography></Grid>
+                                            <Grid item>
+                                                <ChevronLeft style={{color: "whitesmoke"}}/>
+                                            </Grid>
+                                            <Grid item>
+                                                <Typography color='white' variant='h6' sx={{paddingTop: "3px"}}>
+                                                    Goto Search</Typography>
+                                            </Grid>
                                         </Grid>
                                     </Button>
                                 </Grid>
@@ -246,7 +234,7 @@ const BallPage: FunctionComponent<BallPageProps> = (props: BallPageProps): any =
                                 {/*    </Grid>*/}
                                 {/*  }*/}
                                 {/*</Hidden>*/}
-                            </Grid>
+                            </Grid>}
                         </Grid>
                         <Grid
                             container
@@ -291,25 +279,25 @@ const BallPage: FunctionComponent<BallPageProps> = (props: BallPageProps): any =
                             </Grid>
                         </Grid>
                     </Grid>
-                    <Hidden smDown>
-                        <Grid container item className={classes.favoritesShareContainer} alignItems='center'
-                              paddingBottom={1} paddingTop={2}>
-                            <Grid item style={{paddingLeft: "16px"}}>
-                                <Typography color='textSecondary'>
-                                    <Share style={{fontSize: '38px'}}/>
-                                </Typography>
-                            </Grid>
-                            <Grid item>
-                                <Typography color='textSecondary' component='div'>
-                                    {/*{typeof firebaseClient.app.auth === 'function' && firebaseClient.app.auth().currentUser &&*/}
-                                    {/*  <BallFavoriteButton*/}
-                                    {/*    ballId={ball._id}*/}
-                                    {/*    favorites={props.authentication.awUserDetails.favorites}*/}
-                                    {/*  />}*/}
-                                </Typography>
-                            </Grid>
-                        </Grid>
-                    </Hidden>
+                    {/*<Hidden smDown>*/}
+                    {/*    <Grid container item className={classes.favoritesShareContainer} alignItems='center'*/}
+                    {/*          paddingBottom={1} paddingTop={2}>*/}
+                    {/*        <Grid item style={{paddingLeft: "16px"}}>*/}
+                    {/*            <Typography color='textSecondary'>*/}
+                    {/*                <Share style={{fontSize: '38px'}}/>*/}
+                    {/*            </Typography>*/}
+                    {/*        </Grid>*/}
+                    {/*        <Grid item>*/}
+                    {/*            <Typography color='textSecondary' component='div'>*/}
+                    {/*                /!*{typeof firebaseClient.app.auth === 'function' && firebaseClient.app.auth().currentUser &&*!/*/}
+                    {/*                /!*  <BallFavoriteButton*!/*/}
+                    {/*                /!*    ballId={ball._id}*!/*/}
+                    {/*                /!*    favorites={props.authentication.awUserDetails.favorites}*!/*/}
+                    {/*                /!*  />}*!/*/}
+                    {/*            </Typography>*/}
+                    {/*        </Grid>*/}
+                    {/*    </Grid>*/}
+                    {/*</Hidden>*/}
                     <Hidden mdUp>
                         <Grid
                             container
@@ -402,18 +390,18 @@ const BallPage: FunctionComponent<BallPageProps> = (props: BallPageProps): any =
                                         </Typography>
                                     </Grid>
                                 </Grid>
-                                <Grid container direction='column' item>
-                                    <Grid container item>
-                                        <Typography color='textSecondary' variant='body2' fontWeight={600}>Share with
-                                            friends</Typography>
-                                    </Grid>
-                                    <Grid container item spacing={2}>
-                                        <Grid item><Typography color='textSecondary'><Facebook/></Typography></Grid>
-                                        <Grid item><Typography color='textSecondary'><LinkedIn/></Typography></Grid>
-                                        <Grid item><Typography color='textSecondary'><Twitter/></Typography></Grid>
-                                        <Grid item><Typography color='textSecondary'><Email/></Typography></Grid>
-                                    </Grid>
-                                </Grid>
+                                {/*<Grid container direction='column' item>*/}
+                                {/*    <Grid container item>*/}
+                                {/*        <Typography color='textSecondary' variant='body2' fontWeight={600}>Share with*/}
+                                {/*            friends</Typography>*/}
+                                {/*    </Grid>*/}
+                                {/*    <Grid container item spacing={2}>*/}
+                                {/*        <Grid item><Typography color='textSecondary'><Facebook/></Typography></Grid>*/}
+                                {/*        <Grid item><Typography color='textSecondary'><LinkedIn/></Typography></Grid>*/}
+                                {/*        <Grid item><Typography color='textSecondary'><Twitter/></Typography></Grid>*/}
+                                {/*        <Grid item><Typography color='textSecondary'><Email/></Typography></Grid>*/}
+                                {/*    </Grid>*/}
+                                {/*</Grid>*/}
                                 <Hidden mdDown>
                                     <Grid container justifyContent='center' item>
                                         {/*{ball.slug?.current && <Grid item><BallCheckinList slug={ball.slug?.current}/></Grid>}*/}
@@ -445,16 +433,16 @@ const BallPage: FunctionComponent<BallPageProps> = (props: BallPageProps): any =
                                 {`${ball?.location?.street1} ${ball?.location?.city}, ${ball?.location?.state}`}
                             </Typography>
                         </Grid>
-                        <Grid container item justifyContent='center' paddingTop={2}>
-                            <Grid item>
-                                <Grid container item columnSpacing={3}>
-                                    <Grid item><DriveEta color='primary'/></Grid>
-                                    <Grid item><DirectionsWalk color='primary'/></Grid>
-                                    <Grid item><DirectionsBus color='primary'/></Grid>
-                                    <Grid item><DirectionsBike color='primary'/></Grid>
-                                </Grid>
-                            </Grid>
-                        </Grid>
+                        {/*<Grid container item justifyContent='center' paddingTop={2}>*/}
+                        {/*    <Grid item>*/}
+                        {/*        <Grid container item columnSpacing={3}>*/}
+                        {/*            <Grid item><DriveEta color='primary'/></Grid>*/}
+                        {/*            <Grid item><DirectionsWalk color='primary'/></Grid>*/}
+                        {/*            <Grid item><DirectionsBus color='primary'/></Grid>*/}
+                        {/*            <Grid item><DirectionsBike color='primary'/></Grid>*/}
+                        {/*        </Grid>*/}
+                        {/*    </Grid>*/}
+                        {/*</Grid>*/}
                     </Grid>
                     <Hidden lgUp>
                         <Grid container justifyContent='center' item style={{padding: theme.spacing(3)}}>

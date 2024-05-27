@@ -11,7 +11,7 @@ export type PreviewBallProps = {
 const PreviewBall: FunctionComponent<PreviewBallProps> = (props: PreviewBallProps) =>
 
   (
-    <Grid container item data-testid='add-ball-preview-step' direction='column' spacing={3}>
+    <Grid container item data-testid='add-ball-preview-step' direction='column' spacing={3} overflow='hidden'>
       <Grid container item>
         <Typography variant='h5' color='primary' gutterBottom>
           {`Preview your ${renderBallTypeChoice(props.newBallToAdd.ballType)} below...`}
@@ -20,8 +20,8 @@ const PreviewBall: FunctionComponent<PreviewBallProps> = (props: PreviewBallProp
           {`When the ${renderBallTypeChoice(props.newBallToAdd.ballType)} is approved by Anybody Walking it will appear as shown below.`}
         </Typography>
       </Grid>
-      <Grid container item direction='column'>
-        <BallPage ball={props.newBallToAdd}/>
+      <Grid container item>
+        <BallPage isHideBackButton={true} ball={props.newBallToAdd}/>
       </Grid>
     </Grid>
   )

@@ -99,7 +99,7 @@ const GooglePlacesAutoComplete: FunctionComponent<GooglePlacesAutoCompletePropsT
 
 
     useEffect(() => {
-        console.log('GoogleAPI', props.google)
+        // console.log('GoogleAPI', props.google)
         if (!address.locationName) {
             if (props.locationValue) {
                 setAddress(locationObjectToString(props.locationValue))

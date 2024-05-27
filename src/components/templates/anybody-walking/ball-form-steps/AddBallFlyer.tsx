@@ -127,7 +127,7 @@ const AddBallFlyer: FunctionComponent<AddBallFlyerProps> = (props: AddBallFlyerP
               data-testid='flyer-image-preview'
               alt='Flyer for the Event'
               src={addBallFlyerState.flyer?.asset.url}
-              width='100%'
+              width='350'
             />
           </Grid>
         ) : <Grid container item justifyContent='center'>

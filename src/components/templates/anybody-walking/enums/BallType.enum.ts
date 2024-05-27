@@ -25,6 +25,6 @@ export function renderBallTypeChoice(ballTypeChoice?: BallTypeEnum) {
 
 export const renderBallType = (ballType?: BallTypeEnum) => {
   if(ballType)
-    return ballType === BallTypeEnum.NONE ? 'ball':BallTypeTitleEnum[ballType]
+    return (ballType === BallTypeEnum.NONE) || !BallTypeTitleEnum ? 'ball':BallTypeTitleEnum[ballType]
   return 'ball'
 }

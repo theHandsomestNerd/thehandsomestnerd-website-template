@@ -1675,7 +1675,7 @@ const SanityProvider: FunctionComponent<IProps & PropsWithChildren> = (
        }`,
             ) : []
 
-        console.log("aw - result from fetchAllBalls", response)
+        // console.log("aw - result from fetchAllBalls", response)
         return response
     }
 

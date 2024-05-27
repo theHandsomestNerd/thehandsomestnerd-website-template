@@ -1,6 +1,6 @@
 import {FunctionComponent, PropsWithChildren, useContext, useEffect, useState} from 'react'
 import BallSearchContext, {BallSearchContextType} from "./BallSearchContext";
-import {useNavigate} from 'react-router-dom';
+import {useNavigate, useSearchParams} from 'react-router-dom';
 import {BallSearchParamsType, SanityBallType, SearchParams} from "../ballroomTypes";
 import SanityContext from "../../../../common/sanityIo/sanity-context/SanityContext";
 import {RoutesEnum} from "../enums/Routes.enum";
@@ -18,7 +18,7 @@ const BallSearchProvider: FunctionComponent<BallSearchProviderProps & PropsWithC
     const sanityContext = useContext(SanityContext)
     const [viewType, setViewType] = useState<boolean>(true)
     const [searchParams, setSearchParams] = useState<BallSearchParamsType>({})
-    const [displayResults, setDisplayResults] = useState<SanityBallType[]|undefined>(undefined)
+    const [displayResults, setDisplayResults] = useState<SanityBallType[] | undefined>(undefined)
     const [loading, setLoading] = useState<boolean>(false)
 
     const initialState: SearchParams = {
@@ -29,14 +29,56 @@ const BallSearchProvider: FunctionComponent<BallSearchProviderProps & PropsWithC
         region: '',
     }
 
+    let [searchQueryParams] = useSearchParams();
 
+    const initializeSearchParams = () => {
+        // console.log("the search query form url", searchQueryParams)
+
+        let processedQuery:SearchParams = {}
+
+        if (searchQueryParams.get("keywords")) {
+            processedQuery = {
+                ...processedQuery,
+                keywords: searchQueryParams.get("keywords") ?? ""
+            }
+        }
+
+        if (searchQueryParams.get("ballType")) {
+            processedQuery = {
+                ...processedQuery,
+                ballType: searchQueryParams.get("ballType") ?? ""
+            }
+        }
+
+        if (searchQueryParams.get("endDate")) {
+            processedQuery = {
+                ...processedQuery,
+                endDate: searchQueryParams.get("endDate") ?? ""
+            }
+        }
+
+        if (searchQueryParams.get("startDate")) {
+            processedQuery = {
+                ...processedQuery,
+                startDate: searchQueryParams.get("startDate") ?? ""
+            }
+        }
+
+        if (searchQueryParams.get("region")) {
+            processedQuery = {
+                ...processedQuery,
+                region: searchQueryParams.get("region") ?? ""
+            }
+        }
+        console.log("Found these query params from prev search", processedQuery)
+
+        setSearchParams(processedQuery)
+    }
 
     const getBallData = async (queryStringObj: BallSearchParamsType) => {
         const queryString = generateBallQueryString(queryStringObj)
 
-        console.log("The Sanity Context in the Ball Search Provider", sanityContext)
         return sanityContext.fetchAllApprovedBalls(queryString).then((sanitySearchResults: any) => {
-            console.log('the ball dATA IS', sanitySearchResults)
             setDisplayResults(sanitySearchResults)
 
             return sanitySearchResults
@@ -56,14 +98,6 @@ const BallSearchProvider: FunctionComponent<BallSearchProviderProps & PropsWithC
         await refreshSearchResults(initialState)
     }
 
-    // useEffect(() => {
-    //     if(!props.balls) {
-    //         resetSearchResults().then()
-    //     }
-    //         else
-    //         setDisplayResults(props.balls)
-    //     }, [ props.balls])
-
     const pageContext = useContext(PageContext)
 
     const getBall = (slug: string) => {
@@ -80,7 +114,7 @@ const BallSearchProvider: FunctionComponent<BallSearchProviderProps & PropsWithC
     }
 
     const updateSearchParams = (event: any) => {
-        setSearchParams((currentState)=>({
+        setSearchParams((currentState) => ({
             ...currentState,
             [event.target.name]: event.target.value,
         }))
@@ -103,9 +137,9 @@ const BallSearchProvider: FunctionComponent<BallSearchProviderProps & PropsWithC
         }
 
         if (queryStringObj?.ballType && queryStringObj?.ballType !== '') {
-          queryString += queryString && queryString.length > 0 ? ' && ' : ''
+            queryString += queryString && queryString.length > 0 ? ' && ' : ''
 
-          queryString += `ballType match "${queryStringObj.ballType}"`
+            queryString += `ballType match "${queryStringObj.ballType}"`
         }
 
         if (queryStringObj?.region && queryStringObj?.region !== '') {
@@ -164,7 +198,9 @@ const BallSearchProvider: FunctionComponent<BallSearchProviderProps & PropsWithC
     }, [searchParams])
 
     useEffect(() => {
-        refreshSearchResults(searchParams ?? {}).then()
+        refreshSearchResults(searchParams ?? {}).then(()=>{
+            initializeSearchParams()
+        })
     }, [])
 
     return (
@@ -182,7 +218,6 @@ const BallSearchProvider: FunctionComponent<BallSearchProviderProps & PropsWithC
                 isSearchParamsEmpty,
                 viewType,
                 setViewType,
-                // updateViewType,
                 loading,
                 getBall,
                 ...props.value,

@@ -79,6 +79,7 @@ const AddBallModal: FunctionComponent<AddBallModalProps> = (props: AddBallModalP
 
     useEffect(() => {
         setIsOpen(props.open)
+        setStepCounter(AddBallStepsEnum.BASIC_INFO)
     }, [props.open])
 
     // const authenticatedUserContext = useContext(AuthenticatedUserContext)
@@ -250,7 +251,7 @@ const AddBallModal: FunctionComponent<AddBallModalProps> = (props: AddBallModalP
             data-testid='add-ball-modal'
             aria-labelledby='add-ball-modal-title'
             aria-describedby='add-ball-modal-desc'
-            style={{maxWidth: '900px', minWidth: '300px', overflowX: "scroll"}}
+            style={{maxWidth: '900px', minWidth: '300px', overflowX: "hidden", overflowY:"scroll"}}
         >
             <Grid
                 container
@@ -271,12 +272,6 @@ const AddBallModal: FunctionComponent<AddBallModalProps> = (props: AddBallModalP
                                 >
                                     <ArrowLeft fontSize='large' style={{color: 'whitesmoke'}}
                                     />
-                                    <Typography
-                                        style={{color: 'whitesmoke'}}
-                                        variant='body1'
-                                        aria-label='add-ball-modal-previous-text'
-                                        data-testid='add-ball-modal-previous-text'
-                                    >prev</Typography>
                                 </Button>
                             }</Grid>
                             <Grid item>
@@ -325,8 +320,11 @@ const AddBallModal: FunctionComponent<AddBallModalProps> = (props: AddBallModalP
                                         return moveToNextStep()
                                     }}
                                     width={300}
-                                ><Grid container justifyContent='center'><Grid
-                                    item> {renderCtaButtonText()}</Grid></Grid></LoadingButton>
+                                >
+                                    <Grid container justifyContent='center'>
+                                        <Grid item> {renderCtaButtonText()}</Grid>
+                                    </Grid>
+                                </LoadingButton>
                             }
                         </Grid>
                     </Grid>
