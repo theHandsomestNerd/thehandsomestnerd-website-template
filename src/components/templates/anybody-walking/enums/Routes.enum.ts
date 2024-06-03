@@ -14,6 +14,7 @@ export enum RoutesEnum {
   PASSWORD_RESET = '/passwordReset',
   BALL_INFO = '/ballInfo',
   NEW_HOUSE = 'new-house',
+  HOUSE_INFO = 'house-info',
   EDIT_BALL = '/editBall/:ballId',
   IMPORT = '/import',
   FAVORITES = '/favorites',

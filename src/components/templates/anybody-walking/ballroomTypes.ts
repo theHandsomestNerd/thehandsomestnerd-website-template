@@ -147,7 +147,13 @@ export declare type SanityHouse = {
     firstname?: string,
     lastname?: string,
     submittedByFirebaseUUID?: SanityRef,
-    submittedByEmail?: string
+    submittedByEmail?: string,
+    houseFather?: string,
+    houseFatherStatus?: string,
+    houseFatherContact?: string
+    houseMother?: string,
+    houseMotherStatus?: string,
+    houseMotherContact?: string
 }
 
 export declare type SanityCheckinType = {
@@ -341,7 +347,7 @@ export type BallDetailState = {
     host?: string,
     description?: string
     website?: string
-    ballDetailValid?:boolean
+    ballDetailValid?: boolean
 }
 
 export type BallLocationState = {
@@ -353,7 +359,7 @@ export type BallDateState = {
     functionStartTime?: string,
     functionEndDate?: string,
     functionEndTime?: string,
-    ballDateValid?:boolean
+    ballDateValid?: boolean
 }
 
 export type AddBallFlyerState = {
@@ -397,7 +403,7 @@ export type AppSettingsType = {
 
 export type DataTableColumnType<T> = {
     id: string;
-    label: (string | (()=> any)| undefined);
+    label: (string | (() => any) | undefined);
     hidden?: Breakpoint[];
     minWidth: number;
     maxWidth?: number;

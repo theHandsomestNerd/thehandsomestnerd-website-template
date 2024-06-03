@@ -3,7 +3,7 @@ import {FunctionComponent, useContext, useEffect, useState} from 'react'
 import makeStyles from "@mui/styles/makeStyles";
 import {Theme} from "@mui/material/styles";
 import {Button, Grid, Typography} from "@mui/material";
-import {Add, Search} from "@mui/icons-material";
+import {Add, Home, Search} from "@mui/icons-material";
 import theme from "../../../theme/Theme";
 import {RoutesEnum} from "./enums/Routes.enum";
 import {AddBallState, AWBallToolsType} from "./ballroomTypes";
@@ -64,6 +64,9 @@ const BallToolsSection: FunctionComponent<IProps> = (props: IProps) => {
                         <Grid item>
                             Ball Submission
                         </Grid>
+                        <Grid item>
+                            <Typography variant='caption'>(best on desktop)</Typography>
+                        </Grid>
                     </Grid>
                 </Button>
                 <AddBallModal open={isModalOpen} ballToAdd={props.ballToAdd ? {
@@ -122,6 +125,35 @@ const BallToolsSection: FunctionComponent<IProps> = (props: IProps) => {
                         </Grid>
                         <Grid item>
                             New House
+                        </Grid>
+                    </Grid>
+                </Button>
+            </Grid>
+            <Grid container direction='column' alignItems='center' item sm={12} md={4}>
+                <Button
+                    data-testid='house-info-button'
+                    style={{height: '266px'}}
+                    fullWidth
+                    variant='outlined'
+                    color='primary'
+                    className={classes.ballInfoButton}
+                    href={`${RoutesEnum.HOUSE_INFO}`}
+                    onClick={() => {
+                        firebaseContext.ctaClick && firebaseContext.ctaClick(
+                            'ball-tools',
+                            'house_info',
+                            pageContext.analyticsId
+                        )
+                        // navigate("/"+RoutesEnum.NEW_HOUSE)
+                        // navigate(0)
+                    }}
+                >
+                    <Grid container direction='column' alignItems='center'>
+                        <Grid item>
+                            <Home style={{fontSize: "86px"}}/>
+                        </Grid>
+                        <Grid item>
+                            House Info
                         </Grid>
                     </Grid>
                 </Button>

@@ -1,6 +1,6 @@
 {
   "name": "the-handsomestnerd-internal",
-  "version": "0.1.239",
+  "version": "0.1.240",
   "files": [
     "dist/esm",
     "dist/cjs",
