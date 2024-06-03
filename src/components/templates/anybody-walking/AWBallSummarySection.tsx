@@ -60,10 +60,16 @@ const AWBallSummarySection: FunctionComponent<IProps> = (props: IProps) => {
         setUpcomingSetOfBalls(upcoming?.slice(0, 3))
 
         // Filter rest
-        const remainingBalls: SanityBallType[] = props.balls ? props.balls : await sanityContext.fetchAllApprovedBalls('')
+        const remaingBallsQueryString = ` && functionStartDate >= "${today.toISOString()}"`
+
+        const remainingBalls: SanityBallType[] = props.balls ? props.balls : await sanityContext.fetchAllApprovedBalls(remaingBallsQueryString)
 
         const slugs = featured.concat(upcoming).map((ball: SanityBallType) => ball.slug?.current)
-        const theRest = remainingBalls.filter((ball: SanityBallType) => !slugs.includes(ball.slug?.current))
+        const theRest = remainingBalls.filter(
+            (ball: SanityBallType) => !slugs.includes(ball.slug?.current)
+                // && (new Date(ball.functionStartDate ?? '') > new Date())
+                )
+            .sort(()=>.5-Math.random())
         setRemainingSetOfBalls(theRest)
         console.log('the balls remaining', slugs, theRest)
 
