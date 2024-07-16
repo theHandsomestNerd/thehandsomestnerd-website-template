@@ -1,5 +1,5 @@
 import {FunctionComponent, useContext, useEffect} from 'react'
-import {Grid, Link, useMediaQuery, useTheme} from '@mui/material'
+import {Grid, useMediaQuery, useTheme} from '@mui/material'
 import {SanityTransformHwHomePage} from "../../../../common/sanityIo/Types";
 import BlockContentLayoutContainer from "../../../BlockContentLayoutContainer";
 import {useLocation} from "react-router";
@@ -85,15 +85,15 @@ const PageLayout: FunctionComponent<IProps> = (props: IProps) => {
                   }}
                 // xs={11}
             >
-                <Link
-                    gutterBottom
-                    href='https://thehandsomestnerd.com'
-                    color={props.homePage.copyRightTextColor ? convertToHexCode(props.homePage.copyRightTextColor) : "black"}
-                    variant='subtitle2'
-                    underline="hover">
-                    © Copyright 2023
-                    TheHandsomestNerd, LLC. All Rights Reserved.
-                </Link>
+                {/*<Link*/}
+                {/*    gutterBottom*/}
+                {/*    href='https://thehandsomestnerd.com'*/}
+                {/*    color={props.homePage.copyRightTextColor ? convertToHexCode(props.homePage.copyRightTextColor) : "black"}*/}
+                {/*    variant='subtitle2'*/}
+                {/*    underline="hover">*/}
+                {/*    © Copyright 2023*/}
+                {/*    TheHandsomestNerd, LLC. All Rights Reserved.*/}
+                {/*</Link>*/}
             </Grid>
         </Grid>
     );
