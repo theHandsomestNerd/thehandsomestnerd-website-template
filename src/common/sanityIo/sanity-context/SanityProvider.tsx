@@ -175,6 +175,8 @@ const SanityProvider: FunctionComponent<IProps & PropsWithChildren> = (
         }
     }, [theSanityBartenderClient])
 
+
+
     const initSanity = (projectId?: string,
                         dataset?: string,
                         apiVersion?: string,
@@ -1910,7 +1912,7 @@ const SanityProvider: FunctionComponent<IProps & PropsWithChildren> = (
     }
 
     const fetchSkillExperiences = async (resumeSkill: ResumeSkillType): Promise<ResumeExperienceType[]> => {
-        return theSanityClient
+        return props.fetchSkillExperiences ? props.fetchSkillExperiences(resumeSkill):theSanityClient
             .fetch(
                 `*[ _type == "ResumeExperience" && references($skillId)]| order(dateStart desc){
                   ...
@@ -1922,7 +1924,7 @@ const SanityProvider: FunctionComponent<IProps & PropsWithChildren> = (
             })
     }
     const fetchPortfolioItems = async (resumeSkill: ResumeSkillType): Promise<ResumePortfolioItemType[]> => {
-        return theSanityClient
+        return props.fetchPortfolioItems ? props.fetchPortfolioItems(resumeSkill) :theSanityClient
             .fetch(
                 `*[ _type == "ResumePortfolioItem" && references($skillId) && isDisabled != true]| order(inceptionDate desc){
                   ...
