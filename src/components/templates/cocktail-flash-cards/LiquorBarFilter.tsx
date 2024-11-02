@@ -14,13 +14,15 @@ const LiquorBarFilter: FunctionComponent<IProps> = (props: IProps) => {
     const [liquorTypes, setLiquorTypes] = useState<SanityLiquorType[]>([])
 
     const sanityContext = useContext(SanityContext)
-    const {data} = sanityContext.useFetchAllLiquorTypes()
 
     useEffect(() => {
+
+        const data = sanityContext.useFetchAllLiquorTypes()
+
         if (data) {
             setLiquorTypes(data)
         }
-    }, [data])
+    }, [])
 
 
     // useEffect(() => {
@@ -74,7 +76,8 @@ const LiquorBarFilter: FunctionComponent<IProps> = (props: IProps) => {
                             onClick={() => processFilter(liquorTypes._id ?? "")}>
                             <Grid container>
                                 <Grid container item justifyContent='center'>
-                                    <img height={100} src={sanityContext.cocktailUrlFor(liquorTypes.imageSrc ?? "").url() ?? ""}/>
+                                    <img height={100}
+                                         src={sanityContext.cocktailUrlFor(liquorTypes.imageSrc ?? "").url() ?? ""}/>
                                 </Grid>
                                 <Grid container item justifyContent='center'>
                                     <Typography align='center'>{liquorTypes.title}</Typography>

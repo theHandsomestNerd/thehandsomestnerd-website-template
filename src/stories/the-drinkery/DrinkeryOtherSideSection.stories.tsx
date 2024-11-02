@@ -1,8 +1,6 @@
 import type {Meta, StoryObj} from '@storybook/react';
 import {ThemeProvider} from "@mui/material/styles";
 import getThemeFromSanity from "../../components/customized-theme-provider/getThemeFromSanity";
-import {QueryClientProvider} from "@tanstack/react-query";
-import {queryClient} from "../../queryClient";
 import DrinkeryThemeData from "../data/DrinkeryThemeData";
 import TheDrinkeryOtherSideSection from "../../components/templates/the-drinkery/TheDrinkeryOtherSideSection";
 import drinkeryTheOtherSideSectionData from "../data/DrinkeryTheOtherSideSectionData";
@@ -27,10 +25,10 @@ export const DrinkeryTheOtherSideSectionComplete: Story = {
         sectionData: drinkeryTheOtherSideSectionData,
     },
     render: ({sectionData}) =>
-        <div style={{backgroundColor:"black"}}><QueryClientProvider client={queryClient}>
+        <div style={{backgroundColor: "black"}}>
             <ThemeProvider
                 theme={getThemeFromSanity(DrinkeryThemeData)}>
                 <TheDrinkeryOtherSideSection sectionData={sectionData}/>
             </ThemeProvider>
-        </QueryClientProvider></div>
+        </div>
 };

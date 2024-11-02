@@ -1,7 +1,7 @@
 import clientUtils from "../../transform-hw/pages/under-construction-page/clientUtils";
 
 const search = async (searchTerm: string) => {
-    return fetch("https://www.thecocktaildb.com/api/json/v1/1/search.php?s=" + searchTerm ?? "")
+    return fetch("https://www.thecocktaildb.com/api/json/v1/1/search.php?s=" + searchTerm)
         .then((response: any) => {
             return clientUtils.processResponse(response, 'cocktaildbresponse');
         })

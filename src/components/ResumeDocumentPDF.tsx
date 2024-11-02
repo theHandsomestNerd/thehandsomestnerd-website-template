@@ -22,7 +22,7 @@ import dateUtils from "../utils/dateUtils";
 // Create Document Component
 
 
-interface IProps {
+export interface ResumeDocumentPDFIProps {
     homePage?: SanityTransformHwHomePage
 }
 
@@ -30,7 +30,7 @@ interface IProps {
 //     primary: "#d20027"
 // }
 
-const ResumeDocumentPDF: FunctionComponent<IProps> = (props: IProps) => {
+const ResumeDocumentPDF: FunctionComponent<ResumeDocumentPDFIProps> = (props: ResumeDocumentPDFIProps) => {
 
     // Create styles
     const styles = StyleSheet.create({

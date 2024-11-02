@@ -80,7 +80,7 @@ import SanityContext from "../common/sanityIo/sanity-context/SanityContext";
 import {SanityHomePage} from "../common/sanityIo/Types";
 import {
     AWBallSectionType,
-    AWBallSummarySectionType,
+    AWBallSummarySectionType, AWHouseInfoSectionType,
     AWSingleBallSectionType, SanityContactUs
 } from './templates/anybody-walking/ballroomTypes';
 import AWBallSearchSection from './templates/anybody-walking/AWBallSearchSection';
@@ -93,6 +93,7 @@ import DJSpadesRulesContentSection from "./dj-40-spades-rules/41AcresSpadesConte
 import BartenderHeroSection from "./templates/my-digital-resume/the-bartender/BartenderHeroSection";
 import BartenderExperienceSection from "./templates/my-digital-resume/the-bartender/BartenderExperienceSection";
 import BartenderStatsCounterSection from "./templates/my-digital-resume/the-bartender/BartenderStatsCounterSection";
+import AWHouseInfoSection from "./templates/anybody-walking/AWHouseInfoSection";
 
 export type BlockContentLayoutContainerProps = {
     content?: any,
@@ -609,6 +610,12 @@ const BlockContentLayoutContainer: FunctionComponent<BlockContentLayoutContainer
 
                         return <Grid key={'aw-new-house-form-section'} container item xs={12} justifyContent='center'>
                             <AWNewHouseFormSection sectionData={awNewHouseFormSection}/>
+                        </Grid>
+                    case 'AWHouseInfoSection':
+                        const awHouseInfoSection: AWHouseInfoSectionType = columnLayoutContainer
+
+                        return <Grid key={'aw-house-info-section'} container item xs={12} justifyContent='center'>
+                            <AWHouseInfoSection sectionData={awHouseInfoSection}/>
                         </Grid>
                     case 'AWBallToolsSection':
                         const awBallToolsSection: AWBallSectionType = columnLayoutContainer

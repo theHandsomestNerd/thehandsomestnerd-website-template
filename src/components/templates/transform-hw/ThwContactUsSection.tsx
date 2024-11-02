@@ -1,4 +1,4 @@
-import{FunctionComponent, useContext, useEffect, useState} from 'react'
+import {FunctionComponent, useContext, useEffect, useState} from 'react'
 import makeStyles from '@mui/styles/makeStyles';
 import {Grid, IconButton, InputAdornment, Link, TextField, Typography, useMediaQuery} from "@mui/material";
 import withStyles from '@mui/styles/withStyles';
@@ -8,7 +8,6 @@ import clsx from "clsx";
 import useCustomStyles from "../mackenzies-mind/pages/Styles";
 import isEmail from "validator/lib/isEmail";
 import LoadingButton from "../../loading-button/LoadingButton";
-import {useQuery} from "@tanstack/react-query";
 import leadClient from "./pages/under-construction-page/leadClient";
 import {Parallax} from "react-parallax";
 import PageContext from "../../page-context/PageContext";
@@ -143,23 +142,9 @@ const ContactUs: FunctionComponent<ContactUsProps> = (props) => {
         }
     }, [smDown])
 
-    const {isLoading, isError, data, refetch, isRefetching} = useQuery({
-        queryKey: ['submitContactUsForm'],
-        queryFn: () => {
-            if (email && email.length > 0 && (!data && !isError)) {
-                return leadClient.createLead({
-                    email,
-                    leadName,
-                    leadMessage,
-                    leadPhone,
-                    source: "Contact Us"
-                }).then((response) => {
-                    return response.response
-                });
-            }
-            return undefined
-        }
-    });
+    const [isLoading, setIsLoading] = useState<boolean>(false)
+    const [isError, setIsError] = useState<boolean>(false)
+    const [data, setData] = useState<any>(undefined)
 
 
     const getHelperText = () => {
@@ -178,11 +163,29 @@ const ContactUs: FunctionComponent<ContactUsProps> = (props) => {
     }
 
     const pageContext = useContext(PageContext)
-    const createLead = async (): Promise<any> => {
-        firebaseContext.ctaClick && firebaseContext.ctaClick('contact-us', 'send-message', pageContext.analyticsId,)
-        return refetch()
-    }
 
+    const createLead = async (): Promise<void> => {
+        setIsLoading(true)
+        setIsError(false)
+
+        firebaseContext.ctaClick && firebaseContext.ctaClick('contact-us', 'send-message', pageContext.analyticsId,)
+        if (email && email.length > 0 && (!data && !isError)) {
+            await leadClient.createLead({
+                email,
+                leadName,
+                leadMessage,
+                leadPhone,
+                source: "Contact Us"
+            }).then((response) => {
+                setData(response.response)
+            }).catch(e => {
+                setIsError(e)
+                setData(undefined)
+            }).finally(() => {
+                setIsLoading(false)
+            });
+        }
+    }
 
     return (
         <Parallax blur={1}
@@ -373,7 +376,7 @@ const ContactUs: FunctionComponent<ContactUsProps> = (props) => {
                                 {/*    Button</Typography></Button>*/}
                                 <LoadingButton
                                     width={200}
-                                    isLoading={isLoading || isRefetching}
+                                    isLoading={isLoading}
                                     disabled={!!(data || isError || (email && (email.length > 0) && !isEmail(email)))}
                                     clickHandler={createLead}
                                     color="secondary" variant="contained">Send Message</LoadingButton>

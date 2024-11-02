@@ -195,7 +195,7 @@ const BallDetail: FunctionComponent<BallDetailProps> = (props: BallDetailProps) 
             onChange={updateBallFormParams}
             value={ballDetailState.ballTitle}
             testId='ball-title'
-            fieldLabel={`${renderBallType(props.newBallToAdd.ballType)} Title`}
+            fieldLabel={`Ball Title`}
             fieldName='ballTitle'
             validate={validateBallDetail}
           />
@@ -207,7 +207,7 @@ const BallDetail: FunctionComponent<BallDetailProps> = (props: BallDetailProps) 
             testId='ball-host'
             fieldLabel={
               <>
-                <>{`${renderBallType(props.newBallToAdd.ballType)} Organizer`}</>
+                <>{`Ball Organizer`}</>
                 <Typography variant='h6' display='inline' style={{textTransform: 'lowercase'}}>(s)</Typography>
               </>
             }

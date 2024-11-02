@@ -1,10 +1,9 @@
-import{FunctionComponent, useContext, useState} from 'react'
+import {FunctionComponent, useContext, useState} from 'react'
 import {makeStyles} from "@mui/styles"
 import {ResumeContactUsSectionType} from "../../BlockContentTypes";
 import useCustomStyles from "../mackenzies-mind/pages/Styles";
 import isEmail from "validator/lib/isEmail";
 import LoadingButton from "../../loading-button/LoadingButton";
-import {useQuery} from "@tanstack/react-query";
 import PageContext from "../../page-context/PageContext";
 import leadClient from "../transform-hw/pages/under-construction-page/leadClient";
 import SnackbarContext from "../../modal-context/SnackbarContext";
@@ -121,33 +120,39 @@ const ResumeContactUsSection: FunctionComponent<ContactUsProps> = (props) => {
     const firebaseContext = useContext(FirebaseContext)
 
     const [leadName, setleadName] = useState<string>()
+    const [isLoading, setIsLoading] = useState<boolean>(false)
     const [email, setEmail] = useState<string>()
     const [leadMessage, setLeadMessage] = useState<string>()
 
-    const {isLoading, isError, data, refetch, isRefetching} = useQuery({
-        queryKey: ['submitContactUsForm'],
-        queryFn: () => {
-            if (email && email.length > 0 && (!data && !isError)) {
-                return leadClient.createLead({
-                    email,
-                    leadName,
-                    leadMessage,
-                    source: "Contact Us"
-                }).then((response) => {
-                    snackbarContext.openSnackbar && snackbarContext.openSnackbar(response.message)
-                    return response.response
-                });
-            }
-            return null
-        }
-    });
+    const [isError, setIsError] = useState<boolean>(false)
+    const [data, setData] = useState<any>(null)
 
+    const createLead = async () => {
+        setIsLoading(true)
+        setIsError(false)
+
+        firebaseContext.ctaClick && firebaseContext.ctaClick('contact-us', 'send-message', pageContext.analyticsId,)
+
+        if (email && email.length > 0) {
+            await leadClient.createLead({
+                email,
+                leadName,
+                leadMessage,
+                source: "Contact Us"
+            }).then((response) => {
+                snackbarContext.openSnackbar && snackbarContext.openSnackbar(response.message)
+
+                setData(response.response)
+            }).catch(e => {
+                setIsError(e)
+                setData(null)
+            }).finally(() => {
+                setIsLoading(false)
+            });
+        }
+    }
 
     const pageContext = useContext(PageContext)
-    const createLead = async (): Promise<any> => {
-        firebaseContext.ctaClick && firebaseContext.ctaClick('contact-us', 'send-message', pageContext.analyticsId,)
-        return refetch()
-    }
 
     const theme = useTheme()
     const smDown = useMediaQuery(theme.breakpoints.down('sm'))
@@ -205,7 +210,7 @@ const ResumeContactUsSection: FunctionComponent<ContactUsProps> = (props) => {
                             <StyledTextField
                                 fullWidth
                                 value={email}
-                                onChange={(e: any) => {
+                                onChange={(e) => {
                                     setEmail(e.target.value)
                                 }}
                                 id="contact-email-input"
@@ -255,7 +260,7 @@ const ResumeContactUsSection: FunctionComponent<ContactUsProps> = (props) => {
                     <Grid container item justifyContent='flex-end' style={{paddingRight: "16px"}}>
                         <LoadingButton
                             width={200}
-                            isLoading={isLoading || isRefetching}
+                            isLoading={isLoading}
                             disabled={!!(data || isError || (email && (email.length > 0) && !isEmail(email)))}
                             clickHandler={createLead}
                             color="primary" variant="contained">

@@ -430,3 +430,16 @@ export type AWSingleBallSectionType = {
     name: string
     slug: SanitySlug
 }
+
+export type  AWHouseInfoSectionType = {
+    name: string
+}
+export type  AWFAQSectionType = {
+    name: string
+    faqContent: {question:string, answer:string,}[]
+}
+export type  AWAboutSectionType = {
+    name: string
+    contentText: string[]
+    contentTitle: string
+}

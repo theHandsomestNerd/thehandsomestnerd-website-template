@@ -5,7 +5,7 @@ import {GridSpacing} from "@mui/material/Grid/Grid";
 import SocialMediaBlockButton from "./SocialMediaBlockButton";
 
 
-interface IProps {
+export interface SocialMediaBlockIProps {
     // homePage?: SanityTransformHwHomePage
     facebook?: string
     twitter?: string
@@ -22,7 +22,7 @@ interface IProps {
     isHoverColor?: boolean
 }
 
-const SocialMediaBlock: FunctionComponent<IProps> = (props: IProps) => {
+const SocialMediaBlock: FunctionComponent<SocialMediaBlockIProps> = (props: SocialMediaBlockIProps) => {
     const theme = useTheme()
 
     return (

@@ -3,7 +3,7 @@ import FirebaseProvider from "./common/firebase/firebase-context/FirebaseProvide
 import SanityProvider from './common/sanityIo/sanity-context/SanityProvider';
 import App from './App';
 
-interface IProps {
+export interface AppWrapperProps {
     contentAppend: any
     react_app_releaseDate: string
     react_app_api_url: string
@@ -31,7 +31,7 @@ interface IProps {
 }
 
 
-const AppWrapper: FunctionComponent<IProps & PropsWithChildren> = (props) => {
+const AppWrapper: FunctionComponent<PropsWithChildren<AppWrapperProps>> = (props) => {
     console.log("config The raw environment variables in app wrapper...", process.env, props.logo)
     return (
 

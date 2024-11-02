@@ -21,7 +21,7 @@ const AWSingleBallPageSection: FunctionComponent<IProps> = (props: IProps) => {
     return (<Grid container item
                   minHeight={521}
                   sx={{
-                      padding: theme.spacing(((pageContext.page?.theme?.appBarHeight ?? 8)/8) ??  8.5, 0)
+                      padding: theme.spacing(((pageContext.page?.theme?.appBarHeight ?? 8)/8), 0)
                   }}>
         <Grid item container className={clsx(classes.fullSection)}
               justifyContent='center' alignItems='center'>

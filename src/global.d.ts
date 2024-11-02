@@ -25,7 +25,6 @@ declare module '*.png' {
 //
 declare module '*.mp4'
 declare module 'react-meta-tags';
-declare module '@sanity/block-content-to-react'
 declare module 'core-js/stable'
 declare module "react/jsx-runtime" {
     export default any;

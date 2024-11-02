@@ -103,7 +103,7 @@ const WebDevPortfolioSection: FunctionComponent<IProps> = (props: IProps) => {
                                     <Grid container item md={6}
                                           style={{
                                               padding: theme.spacing(mdDown ? 4 : 6),
-                                              backgroundColor: COLOR_ROTATION[(index2 + 1 ?? 1) % 2]
+                                              backgroundColor: COLOR_ROTATION[(index2 + 1) % 2]
                                           }}>
                                         <Grid item container>
                                             {
@@ -142,12 +142,12 @@ const WebDevPortfolioSection: FunctionComponent<IProps> = (props: IProps) => {
                                             <Grid item xs={6}><Typography
                                                 gutterBottom
                                                 variant='h3' style={{fontFamily: "Elaine Sans"}}
-                                                color={COLOR_ROTATION_FONT[(index2 + 1 ?? 1) % 2]}>{portfolioItem?.title}</Typography></Grid>
+                                                color={COLOR_ROTATION_FONT[(index2 + 1) % 2]}>{portfolioItem?.title}</Typography></Grid>
                                             <Grid container item>
                                                 <Typography variant='body1'
                                                             gutterBottom
                                                             style={{fontFamily: "Raleway", marginBottom: "16px"}}
-                                                            color={COLOR_ROTATION_FONT[(index2 + 1 ?? 1) % 2]}
+                                                            color={COLOR_ROTATION_FONT[(index2 + 1) % 2]}
                                                 >{portfolioItem.detailDescription}</Typography>
                                             </Grid>
                                             <Grid container item>

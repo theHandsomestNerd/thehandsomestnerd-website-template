@@ -15,8 +15,6 @@ import AmenityProvider from "./components/amenity-context/AmenityProvider";
 import {BrowserRouter} from "react-router-dom";
 import HomePageResumeData from "./stories/data/HomePageData";
 import DigitalResumeThemeData from "./stories/data/DigitalResumeThemeData";
-import {QueryClient, QueryClientProvider} from "@tanstack/react-query";
-import {queryClient} from "./queryClient";
 
 
 // import {setImmediate} from 'timers'
@@ -34,32 +32,23 @@ global.setImmediate = jest.useRealTimers;
 const AllTheProviders = ({children}) => {
     return (
         <BrowserRouter>
-            <QueryClientProvider client={queryClient}>
-                <PageProvider page={HomePageResumeData}>
-                    <CustomizedThemeProvider pageTheme={DigitalResumeThemeData}>
-                        <SnackbarProvider>
-                            <ModalProvider>
-                                <AmenityProvider>
-                                    {children}
-                                </AmenityProvider>
-                            </ModalProvider>
-                        </SnackbarProvider>
-                    </CustomizedThemeProvider>
-                </PageProvider>
-            </QueryClientProvider>
+            <PageProvider page={HomePageResumeData}>
+                <CustomizedThemeProvider pageTheme={DigitalResumeThemeData}>
+                    <SnackbarProvider>
+                        <ModalProvider>
+                            <AmenityProvider>
+                                {children}
+                            </AmenityProvider>
+                        </ModalProvider>
+                    </SnackbarProvider>
+                </CustomizedThemeProvider>
+            </PageProvider>
         </BrowserRouter>
     )
 }
 
-// jest.mock('@tanstack/react-query', () => ({
-//     useQuery: jest.fn().mockReturnValue(({ data: {first: "one"}, isLoading: false,error:{}, refetch: jest.fn() })),
-//     QueryClient: jest.fn(),
-//     isLoading: false
-// }));
-
 const customRender = (ui, options) =>
     render(ui, {wrapper: AllTheProviders, ...options})
-
 
 
 // For PDF renderer

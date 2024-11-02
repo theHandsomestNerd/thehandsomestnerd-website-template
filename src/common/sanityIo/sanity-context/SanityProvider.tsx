@@ -25,13 +25,12 @@ import {
 import GroqQueries from "../groqQueries";
 import groqQueries from "../groqQueries";
 import {
-    ResumeExperienceType, ResumePortfolioItemType,
+    ResumeExperienceType,
+    ResumePortfolioItemType,
     ResumeSkillType,
     SanityImageAsset,
-    ThwServiceItemType,
     WhySwitchSectionType
 } from "../../../components/BlockContentTypes";
-import {useQuery} from "@tanstack/react-query";
 import {SanityImageSource} from "@sanity/asset-utils";
 import imageUrlBuilder from "@sanity/image-url";
 import SearchContext, {
@@ -112,8 +111,8 @@ type IProps = {
     fetchDocumentByTypeAndSlugQuery?: any
     getSanityDocumentRef?: (sanityId: string) => SanityRef
 
-    fetchSkillExperiences?:(skill:ResumeSkillType)=>Promise<ResumeExperienceType[]>
-    fetchPortfolioItems?:(skill:ResumeSkillType)=>Promise<ResumePortfolioItemType[]>
+    fetchSkillExperiences?: (skill: ResumeSkillType) => Promise<ResumeExperienceType[]>
+    fetchPortfolioItems?: (skill: ResumeSkillType) => Promise<ResumePortfolioItemType[]>
 };
 
 const PLACEHOLDER_URL = "https://placehold.co/"
@@ -571,55 +570,42 @@ const SanityProvider: FunctionComponent<IProps & PropsWithChildren> = (
             return Promise.reject(Error("No page slug passed"))
         }
     }
-    const useFetchMenuBySlugQuery = (menuSlug: string) => {
-        console.log("fetching menu with slug", menuSlug)
-        return useQuery(
-            {
-                queryKey: [menuSlug],
-                queryFn: () => {
-                    return theSanityClient
-                        .fetch(
-                            `*[slug.current == $menuSlug]{
-          ${GroqQueries.MENUGROUPCONTAINER}
-       }`, {menuSlug: menuSlug ?? 'header-menu'}
-                        )
-                        .then((data: SanityMenuContainer[]) => {
-                            return data[0]
-                        })
-                },
-            }
-        );
-    }
+    // const useFetchMenuBySlugQuery = (menuSlug: string) => {
+    //     console.log("fetching menu with slug", menuSlug)
+    //     return theSanityClient
+    //         .fetch(
+    //             `*[slug.current == $menuSlug]{
+    //       ${GroqQueries.MENUGROUPCONTAINER}
+    //    }`, {menuSlug: menuSlug ?? 'header-menu'}
+    //         )
+    //         .then((data: SanityMenuContainer[]) => {
+    //             return data[0]
+    //         });
+    // }
 
-    const useFetchMenuByRefQuery = (headerMenuRef?: SanityRef) => {
-        console.log("fetching menu with ref", headerMenuRef)
-
-        const menuId = headerMenuRef?._ref ?? ['no-id']
-
-        return useQuery(
-            {
-                queryKey: [...menuId],
-                queryFn: () => {
-                    return theSanityClient
-                        .fetch(
-                            `*[_id == $menuId && _type == "menuContainer"]{
-                          ${groqQueries.MENUGROUPCONTAINER}
-                        }`,
-                            {menuId}
-                        )
-                        .then((result: any) => {
-                            if (result.length === 0) {
-
-                                return Promise.reject(Error("No results returned"))
-                            }
-                            return result[0]
-                        }).catch(() => {
-                            return Promise.reject(Error("Sanity Error getting pageSlug " + menuId))
-                        })
-                },
-            });
-
-    }
+    // const useFetchMenuByRefQuery = (headerMenuRef?: SanityRef) => {
+    //     console.log("fetching menu with ref", headerMenuRef)
+    //
+    //     const menuId = headerMenuRef?._ref ?? ['no-id']
+    //
+    //     return theSanityClient
+    //         .fetch(
+    //             `*[_id == $menuId && _type == "menuContainer"]{
+    //                       ${groqQueries.MENUGROUPCONTAINER}
+    //                     }`,
+    //             {menuId}
+    //         )
+    //         .then((result: any) => {
+    //             if (result.length === 0) {
+    //
+    //                 return Promise.reject(Error("No results returned"))
+    //             }
+    //             return result[0]
+    //         }).catch(() => {
+    //             return Promise.reject(Error("Sanity Error getting pageSlug " + menuId))
+    //         });
+    //
+    // }
 
 //
 // const fetchLandingPageFooterMenu = (footerSlug?: string): Promise<SanityMenuContainer> => {
@@ -636,58 +622,58 @@ const SanityProvider: FunctionComponent<IProps & PropsWithChildren> = (
 //         })
 // }
 
-    const useFetchRefsQuery = (refs: SanityRef[]) => {
-        return useQuery(
-            {
-                queryKey: ['fetchRefs'],
-                queryFn: async () => {
-                    return fetchRefs(refs)
-                        .then((results: any[]) => {
-                            if (results.length === 0) {
-                                console.log("whew! after fetching a bunch of refs ", results)
-                            }
-                            return results
-                        }).catch((e: any) => {
-                            console.log("error getting services", e)
-                            return []
-                        })
-                },
-            });
-    }
+    // const useFetchRefsQuery = (refs: SanityRef[]) => {
+    //     return useQuery(
+    //         {
+    //             queryKey: ['fetchRefs'],
+    //             queryFn: async () => {
+    //                 return fetchRefs(refs)
+    //                     .then((results: any[]) => {
+    //                         if (results.length === 0) {
+    //                             console.log("whew! after fetching a bunch of refs ", results)
+    //                         }
+    //                         return results
+    //                     }).catch((e: any) => {
+    //                         console.log("error getting services", e)
+    //                         return []
+    //                     })
+    //             },
+    //         });
+    // }
 
 
-    const useFetchServicesQuery = (pageSlug?: string) => {
-        return useQuery(
-            {
-                queryKey: ['fetchServices'],
-                queryFn: async () => {
-                    console.log("fetchings services", pageSlug)
-                    const serviceSlug = pageSlug
-
-                    let serviceSlugClause: string = ''
-                    if (serviceSlug) {
-                        serviceSlugClause = " && slug.current != $serviceSlug"
-                    }
-
-                    const query = `*[_type == "transformServiceItem"${serviceSlugClause}]{
-                     ${groqQueries.SERVICE}
-                    }`
-                    const params = serviceSlug ? {serviceSlug: serviceSlug} : {}
-
-                    return theSanityClient
-                        .fetch(query, params)
-                        .then((results: ThwServiceItemType[]) => {
-                            if (results.length === 0) {
-                                console.log("No Services present")
-                            }
-                            return results
-                        }).catch((e: any) => {
-                            console.log("error getting services", e)
-                            return []
-                        })
-                }
-            });
-    }
+    // const useFetchServicesQuery = (pageSlug?: string) => {
+    //     return useQuery(
+    //         {
+    //             queryKey: ['fetchServices'],
+    //             queryFn: async () => {
+    //                 console.log("fetchings services", pageSlug)
+    //                 const serviceSlug = pageSlug
+    //
+    //                 let serviceSlugClause: string = ''
+    //                 if (serviceSlug) {
+    //                     serviceSlugClause = " && slug.current != $serviceSlug"
+    //                 }
+    //
+    //                 const query = `*[_type == "transformServiceItem"${serviceSlugClause}]{
+    //                  ${groqQueries.SERVICE}
+    //                 }`
+    //                 const params = serviceSlug ? {serviceSlug: serviceSlug} : {}
+    //
+    //                 return theSanityClient
+    //                     .fetch(query, params)
+    //                     .then((results: ThwServiceItemType[]) => {
+    //                         if (results.length === 0) {
+    //                             console.log("No Services present")
+    //                         }
+    //                         return results
+    //                     }).catch((e: any) => {
+    //                         console.log("error getting services", e)
+    //                         return []
+    //                     })
+    //             }
+    //         });
+    // }
 
     const fullTextSearch = (textToSearch: string, pageId: string): Promise<any> => {
 
@@ -950,92 +936,92 @@ const SanityProvider: FunctionComponent<IProps & PropsWithChildren> = (
         return cocktailBuilder?.image(source)
     }
 
-    const useFetchAllFlashCards = () => {
-        console.log("fetching cocktails",)
-        return useQuery(
-            {
-                queryKey: ["all-cocktails"],
-                queryFn: () => {
-                    return theSanityBartenderClient
-                        .fetch(
-                            `*[_type == "Cocktail" && isDisabled != true]{
-          ${groqQueries.COCKTAIL}
-       }`,)
-                        .then((data: SanityCocktailType[]) => {
-                            return data
-                        })
-                }
-            });
-    }
+    // const useFetchAllFlashCards = () => {
+    //     console.log("fetching cocktails",)
+    //     return useQuery(
+    //         {
+    //             queryKey: ["all-cocktails"],
+    //             queryFn: () => {
+    //                 return theSanityBartenderClient
+    //                     .fetch(
+    //                         `*[_type == "Cocktail" && isDisabled != true]{
+    //       ${groqQueries.COCKTAIL}
+    //    }`,)
+    //                     .then((data: SanityCocktailType[]) => {
+    //                         return data
+    //                     })
+    //             }
+    //         });
+    // }
 
-    const useFetchMyCocktails = () => {
-        console.log("fetching my cocktails ingredient breakdown",)
-        return useQuery({
-            queryKey: ["cocktails-ingredient-breakdown"],
-            queryFn: () => {
-                return theSanityBartenderClient
-                    .fetch(
-                        `{
-                              "barInventory": *[_type == "BarInventory" && slug.current=='the-drinkery']{
-                              "theBar":theBar[]->
-                              },
-                                      "cocktailWithIngredients":*[_type == "Cocktail" && isDisabled != true]{
-                                       ${groqQueries.COCKTAIL},
-                                      "cocktailIngredientIds": 
-                                         array::compact(
-                                           [
-                                             ...garnish[]->,
-                                             ...mixingGlass[]->, 
-                                             ...mixingGlass[].ingredient->
-                                           ]._id
-                                        )
-                                    
-                                
-                                      }  
-                              
-                                  
-                            }`,)
-                    .then((data: any[]) => {
-                        const theBarInventoryIngredientIds: SanityCocktailIngredient[] = data[0].barInventory?.theBar.map((val: SanityCocktailIngredient) => {
-                            return val._id
-                        });
-                        const theResults = data[0].cocktailWithIngredients.reduce((acc: any[], val: SanityCocktailType) => {
-                            let isAvailable = true
-                            val.cocktailIngredientIds.forEach((ingredientId: string) => {
-                                if (!(ingredientId in theBarInventoryIngredientIds)) {
-                                    isAvailable = false
-                                }
-                            })
+    // const useFetchMyCocktails = () => {
+    //     console.log("fetching my cocktails ingredient breakdown",)
+    //     return useQuery({
+    //         queryKey: ["cocktails-ingredient-breakdown"],
+    //         queryFn: () => {
+    //             return theSanityBartenderClient
+    //                 .fetch(
+    //                     `{
+    //                           "barInventory": *[_type == "BarInventory" && slug.current=='the-drinkery']{
+    //                           "theBar":theBar[]->
+    //                           },
+    //                                   "cocktailWithIngredients":*[_type == "Cocktail" && isDisabled != true]{
+    //                                    ${groqQueries.COCKTAIL},
+    //                                   "cocktailIngredientIds":
+    //                                      array::compact(
+    //                                        [
+    //                                          ...garnish[]->,
+    //                                          ...mixingGlass[]->,
+    //                                          ...mixingGlass[].ingredient->
+    //                                        ]._id
+    //                                     )
+    //
+    //
+    //                                   }
+    //
+    //
+    //                         }`,)
+    //                 .then((data: any[]) => {
+    //                     const theBarInventoryIngredientIds: SanityCocktailIngredient[] = data[0].barInventory?.theBar.map((val: SanityCocktailIngredient) => {
+    //                         return val._id
+    //                     });
+    //                     const theResults = data[0].cocktailWithIngredients.reduce((acc: any[], val: SanityCocktailType) => {
+    //                         let isAvailable = true
+    //                         val.cocktailIngredientIds.forEach((ingredientId: string) => {
+    //                             if (!(ingredientId in theBarInventoryIngredientIds)) {
+    //                                 isAvailable = false
+    //                             }
+    //                         })
+    //
+    //                         if (isAvailable) {
+    //                             acc.push(val)
+    //                         }
+    //
+    //                     }, [])
+    //
+    //
+    //                     return theResults
+    //                 })
+    //         }
+    //     });
+    // }
 
-                            if (isAvailable) {
-                                acc.push(val)
-                            }
 
-                        }, [])
-
-
-                        return theResults
-                    })
-            }
-        });
-    }
-
-
-    const useFetchAllBarIngredients = () => {
-        return useQuery({
-            queryKey: ["all-bar-ingredients"],
-            queryFn: () => {
-                return theSanityBartenderClient
-                    .fetch(
-                        `*[_type == "Ingredient"]{
-          ${groqQueries.INGREDIENT}
-       }`,)
-                    .then((data: SanityCocktailIngredient[]) => {
-                        return data
-                    })
-            }
-        });
-    }
+    // const useFetchAllBarIngredients = () => {
+    //     return useQuery({
+    //         queryKey: ["all-bar-ingredients"],
+    //         queryFn: () => {
+    //             return theSanityBartenderClient
+    //                 .fetch(
+    //                     `*[_type == "Ingredient"]{
+    //       ${groqQueries.INGREDIENT}
+    //    }`,)
+    //                 .then((data: SanityCocktailIngredient[]) => {
+    //                     return data
+    //                 })
+    //         }
+    //     });
+    // }
 
     // const useFetchMyBarIngredients = () => {
     //     const pageContext = useContext(PageContext)
@@ -1066,201 +1052,190 @@ const SanityProvider: FunctionComponent<IProps & PropsWithChildren> = (
     }
 
     const useFetchAllLiquorTypes = () => {
-        return useQuery({
-            queryKey: ["all-liquor-types"],
-            queryFn: () => {
-                return theSanityBartenderClient
-                    .fetch(
-                        `*[_type == "LiquorType"]{
+        return theSanityBartenderClient
+            .fetch(
+                `*[_type == "LiquorType"]{
           ${groqQueries.INGREDIENT}
        }`,)
-                    .then((data: SanityLiquorType[]) => {
-                        return data
-                    })
-            }
-        });
-    }
-
-
-    const useFetchFilteredIngredients = () => {
-        const searchContext: SearchContextType = useContext(SearchContext)
-
-        const liquorTypes = searchContext.searchFilters
-
-        return useQuery(
-            {
-                queryKey: ["filter-bar-ingredients-by-liq-type"],
-                queryFn: () => {
-                    if (liquorTypes !== undefined && liquorTypes.length > 0)
-                        return theSanityBartenderClient
-                            .fetch(
-                                `*[_type == "Ingredient" && references($liquorTypeId)]{
-              ${groqQueries.INGREDIENT}
-           }`, {
-                                    liquorTypeId: liquorTypes
-                                })
-                            .then((data: SanityCocktailIngredient[]) => {
-                                return data
-                            })
-
-                    return theSanityBartenderClient
-                        .fetch(
-                            `*[_type == "Ingredient"]{
-              ${groqQueries.INGREDIENT}
-           }`)
-                        .then((data: SanityCocktailIngredient[]) => {
-                            return data
-                        })
-                }
+            .then((data: SanityLiquorType[]) => {
+                return data
             });
     }
+
+
+    // const useFetchFilteredIngredients = () => {
+    //     const searchContext: SearchContextType = useContext(SearchContext)
+    //
+    //     const liquorTypes = searchContext.searchFilters
+    //
+    //     return useQuery(
+    //         {
+    //             queryKey: ["filter-bar-ingredients-by-liq-type"],
+    //             queryFn: () => {
+    //                 if (liquorTypes !== undefined && liquorTypes.length > 0)
+    //                     return theSanityBartenderClient
+    //                         .fetch(
+    //                             `*[_type == "Ingredient" && references($liquorTypeId)]{
+    //           ${groqQueries.INGREDIENT}
+    //        }`, {
+    //                                 liquorTypeId: liquorTypes
+    //                             })
+    //                         .then((data: SanityCocktailIngredient[]) => {
+    //                             return data
+    //                         })
+    //
+    //                 return theSanityBartenderClient
+    //                     .fetch(
+    //                         `*[_type == "Ingredient"]{
+    //           ${groqQueries.INGREDIENT}
+    //        }`)
+    //                     .then((data: SanityCocktailIngredient[]) => {
+    //                         return data
+    //                     })
+    //             }
+    //         });
+    // }
 
     const useFetchMyFilteredIngredients = () => {
         const searchContext: SearchContextType = useContext(SearchContext)
 
         const liquorTypes = searchContext.searchFilters
 
-        return useQuery({
-            queryKey: ["filter-my-bar-ingredients-by-liq-type"],
-            queryFn:// @ts-ignore
-                () => {
-                    if (liquorTypes !== undefined && liquorTypes.length > 0)
-                        return theSanityBartenderClient
-                            .fetch(
-                                `*[ _type == "BarInventory"]{
+        if (liquorTypes !== undefined && liquorTypes.length > 0)
+            return theSanityBartenderClient
+                .fetch(
+                    `*[ _type == "BarInventory"]{
                                   ...,
                                   "theBarLiquorTypes": *[ _type == "Ingredient" && _id in ^.theBar[]._ref && references($liquorTypeId)]{
                                     liquorType->,
                                     ...
                                   }
                                 }`, {
-                                    liquorTypeId: liquorTypes,
-                                })
-                            .then((data: SanityBarInventoryType[]) => {
-                                console.log("Supposed to be response", data[0]?.theBarLiquorTypes)
+                        liquorTypeId: liquorTypes,
+                    })
+                .then((data: SanityBarInventoryType[]) => {
+                    console.log("Supposed to be response", data[0]?.theBarLiquorTypes)
 
-                                // const response = data[0].theBarLiquorTypes.reduce((accumulated:SanityLiquorType[], value)=>{
-                                //     const findType = accumulated.find((findingValue:SanityLiquorType)=>{
-                                //         console.log("checking id", findingValue?._id, value?.liquorType?._id)
-                                //         if(value.liquorType && (findingValue._id === value?.liquorType?._id)){
-                                //             return findingValue
-                                //         }
-                                //         return undefined
-                                //     })
-                                //
-                                //     if(!findType && value.liquorType) {
-                                //         console.log("pushing",value.liquorType)
-                                //         accumulated.push(value.liquorType)
-                                //
-                                //     }
-                                //     console.log("acc", accumulated)
-                                //
-                                //     return accumulated
-                                // },[])
-                                console.log("Supposed to be response", data[0].theBarLiquorTypes)
+                    // const response = data[0].theBarLiquorTypes.reduce((accumulated:SanityLiquorType[], value)=>{
+                    //     const findType = accumulated.find((findingValue:SanityLiquorType)=>{
+                    //         console.log("checking id", findingValue?._id, value?.liquorType?._id)
+                    //         if(value.liquorType && (findingValue._id === value?.liquorType?._id)){
+                    //             return findingValue
+                    //         }
+                    //         return undefined
+                    //     })
+                    //
+                    //     if(!findType && value.liquorType) {
+                    //         console.log("pushing",value.liquorType)
+                    //         accumulated.push(value.liquorType)
+                    //
+                    //     }
+                    //     console.log("acc", accumulated)
+                    //
+                    //     return accumulated
+                    // },[])
+                    console.log("Supposed to be response", data[0].theBarLiquorTypes)
 
-                                return data[0].theBarLiquorTypes
-                            })
+                    return data[0].theBarLiquorTypes
+                })
 
-                    return theSanityBartenderClient
-                        .fetch(
-                            `*[_type == "BarInventory" && slug.current=='${process.env.REACT_APP_BAR_INVENTORY_SLUG}']{
+        return theSanityBartenderClient
+            .fetch(
+                `*[_type == "BarInventory" && slug.current=='${process.env.REACT_APP_BAR_INVENTORY_SLUG}']{
               ...,
               "theBar":theBar[]->
            }`)
-                        .then((data: any[]) => {
-                            return data[0]?.theBar
-                        })
-                }
-        });
+            .then((data: any[]) => {
+                return data[0]?.theBar
+            })
     }
-    const useFetchFilteredCocktails = () => {
-        const searchContext: SearchContextType = useContext(SearchContext)
+    // const useFetchFilteredCocktails = () => {
+    //     const searchContext: SearchContextType = useContext(SearchContext)
+    //
+    //     const liquorTypes = searchContext.searchFilters
+    //
+    //     // include the search string in the search
+    //
+    //     return useQuery({
+    //         queryKey: ["filter-bar-ingredients-by-liq-type"],
+    //         queryFn: () => {
+    //             if (liquorTypes !== undefined && liquorTypes.length > 0)
+    //                 return theSanityBartenderClient
+    //                     .fetch(
+    //                         `*[_type == "Cocktail" && references($liquorTypeId) && isDisabled != true]{
+    //           ${groqQueries.COCKTAIL}
+    //        }`, {
+    //                             liquorTypeId: liquorTypes
+    //                         })
+    //                     .then((data: SanityCocktailType[]) => {
+    //                         return data
+    //                     })
+    //
+    //             return theSanityBartenderClient
+    //                 .fetch(
+    //                     `*[_type == "Cocktail" && isDisabled != true]{
+    //           ${groqQueries.COCKTAIL}
+    //        }`)
+    //                 .then((data: SanityCocktailType[]) => {
+    //                     return data
+    //                 })
+    //         }
+    //     });
+    // }
 
-        const liquorTypes = searchContext.searchFilters
-
-        // include the search string in the search
-
-        return useQuery({
-            queryKey: ["filter-bar-ingredients-by-liq-type"],
-            queryFn: () => {
-                if (liquorTypes !== undefined && liquorTypes.length > 0)
-                    return theSanityBartenderClient
-                        .fetch(
-                            `*[_type == "Cocktail" && references($liquorTypeId) && isDisabled != true]{
-              ${groqQueries.COCKTAIL}
-           }`, {
-                                liquorTypeId: liquorTypes
-                            })
-                        .then((data: SanityCocktailType[]) => {
-                            return data
-                        })
-
-                return theSanityBartenderClient
-                    .fetch(
-                        `*[_type == "Cocktail" && isDisabled != true]{
-              ${groqQueries.COCKTAIL}
-           }`)
-                    .then((data: SanityCocktailType[]) => {
-                        return data
-                    })
-            }
-        });
-    }
-
-    const useFetchSearchedCocktails = () => {
-
-        // const liquorTypes = searchContext.searchFilters
-        // console.log("fetching cocktails filtered by liquor type ", liquorTypes)
-
-        const searchContext: any = useContext(SearchContext)
-        // const liquorTypes = searchContext.searchFilters
-
-        return useQuery(
-            {
-                queryKey: ["search-cocktails-by-criteria"],
-                queryFn: () => {
-                    const searchString = searchContext.searchString
-                    //  if(liquorTypes && liquorTypes.length > 0 )
-                    //      return sanityClient
-                    //          .fetch(
-                    //              `*[_type == "Ingredient" && references($liquorTypeId)]{
-                    //    ${groqQueries.INGREDIENT}
-                    // }`,{
-                    //                  liquorTypeId:liquorTypes
-                    //              })
-                    //          .then((data: SanityCocktailIngredient[]) => {
-                    //              return data
-                    //          })
-                    if (searchString === undefined)
-                        return theSanityBartenderClient
-                            .fetch(
-                                `*[_type == "Cocktail" && isDisabled != true]{
-              ${groqQueries.COCKTAIL}
-           }`)
-                            .then((data: SanityCocktailType[]) => {
-                                return data
-                            })
-
-                    if (searchString.length > 0)
-                        return theSanityBartenderClient
-                            .fetch(
-                                `*[_type == "Cocktail" && 
-                                title match "*$searchString*" 
-                                && isDisabled != true
-                             ]{
-              ${groqQueries.COCKTAIL}
-           }`, {
-                                    searchString
-                                })
-                            .then((data: SanityCocktailType[]) => {
-                                return data
-                            })
-                    return undefined;
-
-                }
-            });
-    }
+    // const useFetchSearchedCocktails = () => {
+    //
+    //     // const liquorTypes = searchContext.searchFilters
+    //     // console.log("fetching cocktails filtered by liquor type ", liquorTypes)
+    //
+    //     const searchContext: any = useContext(SearchContext)
+    //     // const liquorTypes = searchContext.searchFilters
+    //
+    //     return useQuery(
+    //         {
+    //             queryKey: ["search-cocktails-by-criteria"],
+    //             queryFn: () => {
+    //                 const searchString = searchContext.searchString
+    //                 //  if(liquorTypes && liquorTypes.length > 0 )
+    //                 //      return sanityClient
+    //                 //          .fetch(
+    //                 //              `*[_type == "Ingredient" && references($liquorTypeId)]{
+    //                 //    ${groqQueries.INGREDIENT}
+    //                 // }`,{
+    //                 //                  liquorTypeId:liquorTypes
+    //                 //              })
+    //                 //          .then((data: SanityCocktailIngredient[]) => {
+    //                 //              return data
+    //                 //          })
+    //                 if (searchString === undefined)
+    //                     return theSanityBartenderClient
+    //                         .fetch(
+    //                             `*[_type == "Cocktail" && isDisabled != true]{
+    //           ${groqQueries.COCKTAIL}
+    //        }`)
+    //                         .then((data: SanityCocktailType[]) => {
+    //                             return data
+    //                         })
+    //
+    //                 if (searchString.length > 0)
+    //                     return theSanityBartenderClient
+    //                         .fetch(
+    //                             `*[_type == "Cocktail" &&
+    //                             title match "*$searchString*"
+    //                             && isDisabled != true
+    //                          ]{
+    //           ${groqQueries.COCKTAIL}
+    //        }`, {
+    //                                 searchString
+    //                             })
+    //                         .then((data: SanityCocktailType[]) => {
+    //                             return data
+    //                         })
+    //                 return undefined;
+    //
+    //             }
+    //         });
+    // }
 
     const getProduct = async (searchString?: string, searchFilters?: string[], ingredientFilters?: string[], isAndSearch?: boolean) => {
         // const [_, searchString, searchFilters] = queryKey
@@ -1309,7 +1284,7 @@ const SanityProvider: FunctionComponent<IProps & PropsWithChildren> = (
         }
 
         return theSanityBartenderClient.fetch(
-                `*[_type == "Cocktail"  && isDisabled != true${searchStringClause}${ingredientsClause ? ingredientsClause : liquorTypesClause}]{
+            `*[_type == "Cocktail"  && isDisabled != true${searchStringClause}${ingredientsClause ? ingredientsClause : liquorTypesClause}]{
               ${groqQueries.COCKTAIL}
            }`, queryParams)
             .then((data: SanityCocktailType[]) => {
@@ -1364,7 +1339,7 @@ const SanityProvider: FunctionComponent<IProps & PropsWithChildren> = (
         }
 
         return theSanityBartenderClient.fetch(
-                `{
+            `{
                               "barInventory": *[_type == "BarInventory" && slug.current=='the-drinkery']{
                               "theBar":theBar[]->
                               },
@@ -1653,16 +1628,20 @@ const SanityProvider: FunctionComponent<IProps & PropsWithChildren> = (
             .commit()
     }
 
-    const fetchAllApprovedBalls = async (queryString: any): Promise<SanityBallType[]> => {
+    const fetchAllApprovedBalls = async (queryString: any, limit?: number): Promise<SanityBallType[]> => {
         console.log('aw - FetchingApprovedBalls with queryObj', queryString)
+        console.log('aw - limiting by ', limit)
 
+        let limitString = ''
         // let queryString = const generateBallQueryString(queryStringObj)
 
-        console.log('aw - sanity client in sanityProvider', theSanityClient)
+        if (limit)
+            limitString = `[0...${limit}]`
+        // console.log('aw - sanity client in sanityProvider', theSanityClient)
 
         const response = theSanityClient ? await theSanityClient
             .fetch(
-                `*[_type=="ball" && approval == true${queryString}] | order(_createdAt desc){
+                `*[_type=="ball" && approval == true${queryString}] | order(functionStartDate desc){
           _id,
          _createdAt,
           ...,
@@ -1672,7 +1651,7 @@ const SanityProvider: FunctionComponent<IProps & PropsWithChildren> = (
               url
              }
            },
-       }`,
+       }${limitString}`,
             ) : []
 
         // console.log("aw - result from fetchAllBalls", response)
@@ -1826,6 +1805,19 @@ const SanityProvider: FunctionComponent<IProps & PropsWithChildren> = (
                 query,
             ).then((data: any[]) => data)
     }
+    const fetchVerifiedHouses = (): Promise<SanityHouse[]> => {
+        const query =
+            `*[_type=="house" && isVerified == true]{
+          _id,
+          slug,
+          houseName
+       }`
+
+        return theSanityClient
+            .fetch(
+                query,
+            ).then((data: SanityHouse[]) => data)
+    }
 
     const fetchUserBySsoId = (ssoUserId: string): Promise<SanityUser> => theSanityClient
         .fetch(
@@ -1892,7 +1884,7 @@ const SanityProvider: FunctionComponent<IProps & PropsWithChildren> = (
     const getSanityUserRef = async (firebaseUUID: string): Promise<SanityRef> => getSanityIdFromFirebaseUUID(firebaseUUID).then((sanityUserId) => getSanityDocumentRef(sanityUserId ?? ""))
 
     const createContactUs = (contactUs: SanityContactUs): Promise<SanityContactUs> => {
-        return fetch("/create-contact-us" ?? "",
+        return fetch("/create-contact-us",
             {
                 method: 'POST',
                 body: JSON.stringify(contactUs),
@@ -1917,7 +1909,7 @@ const SanityProvider: FunctionComponent<IProps & PropsWithChildren> = (
         return newBall
     }
 
-    const fetchSkillExperiences = async (resumeSkill: ResumeSkillType):Promise<ResumeExperienceType[]> => {
+    const fetchSkillExperiences = async (resumeSkill: ResumeSkillType): Promise<ResumeExperienceType[]> => {
         return theSanityClient
             .fetch(
                 `*[ _type == "ResumeExperience" && references($skillId)]| order(dateStart desc){
@@ -1926,10 +1918,10 @@ const SanityProvider: FunctionComponent<IProps & PropsWithChildren> = (
                 {skillId: resumeSkill._id},
             ).then((data: ResumeExperienceType[]) => {
                 console.log("Experiences from groq", data)
-            return data
-        })
+                return data
+            })
     }
-const fetchPortfolioItems = async (resumeSkill: ResumeSkillType):Promise<ResumePortfolioItemType[]> => {
+    const fetchPortfolioItems = async (resumeSkill: ResumeSkillType): Promise<ResumePortfolioItemType[]> => {
         return theSanityClient
             .fetch(
                 `*[ _type == "ResumePortfolioItem" && references($skillId) && isDisabled != true]| order(inceptionDate desc){
@@ -1938,8 +1930,8 @@ const fetchPortfolioItems = async (resumeSkill: ResumeSkillType):Promise<ResumeP
                 {skillId: resumeSkill._id},
             ).then((data: ResumePortfolioItemType[]) => {
                 console.log("Portfolio items from groq", data)
-            return data
-        })
+                return data
+            })
     }
 
     const newValue = useMemo(
@@ -1965,10 +1957,10 @@ const fetchPortfolioItems = async (resumeSkill: ResumeSkillType):Promise<ResumeP
             // useFetchPageBySlugQuery,
             fetchPageBySlugQuery,
             fetchDocumentByTypeAndSlugQuery,
-            useFetchMenuBySlugQuery,
-            useFetchServicesQuery,
-            useFetchRefsQuery,
-            useFetchMenuByRefQuery,
+            // useFetchMenuBySlugQuery,
+            // useFetchServicesQuery,
+            // useFetchRefsQuery,
+            // useFetchMenuByRefQuery,
             fetchMuiTheme,
             fullTextSearch,
             fetchHomePage,
@@ -1979,17 +1971,17 @@ const fetchPortfolioItems = async (resumeSkill: ResumeSkillType):Promise<ResumeP
             fetchEvergreenPage,
             getPlaceholderImageUrl,
             placeholderOrImage,
-            useFetchAllFlashCards,
-            useFetchAllBarIngredients,
+            // useFetchAllFlashCards,
+            // useFetchAllBarIngredients,
             fetchMyBarIngredients,
             useFetchAllLiquorTypes,
-            useFetchFilteredIngredients,
-            useFetchFilteredCocktails,
-            useFetchSearchedCocktails,
+            // useFetchFilteredIngredients,
+            // useFetchFilteredCocktails,
+            // useFetchSearchedCocktails,
             getProduct,
             // useFetchMyBarIngredients,
             useFetchMyFilteredIngredients,
-            useFetchMyCocktails,
+            // useFetchMyCocktails,
             getMyProduct,
 
             getCheckinBySlug,
@@ -2021,6 +2013,7 @@ const fetchPortfolioItems = async (resumeSkill: ResumeSkillType):Promise<ResumeP
 
             addBall,
             getSanityDocumentRef,
+            fetchVerifiedHouses,
 
             fetchSkillExperiences,
             fetchPortfolioItems
@@ -2031,7 +2024,6 @@ const fetchPortfolioItems = async (resumeSkill: ResumeSkillType):Promise<ResumeP
             urlFor
         ]
     );
-
 
 
     return (

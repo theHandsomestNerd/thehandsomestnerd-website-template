@@ -43,7 +43,7 @@ const AWBallSummarySection: FunctionComponent<IProps> = (props: IProps) => {
 
     const getBallData = async () => {
         // Filter featured
-        const featured: SanityBallType[] = props.balls ? props.balls.slice(0, 3) : await sanityContext.fetchAllApprovedBalls(' && featured == true')
+        const featured: SanityBallType[] = props.balls ? props.balls.slice(0, 3) : await sanityContext.fetchAllApprovedBalls(' && featured == true', 3)
         console.log('featured', featured)
         setFeaturedSetOfBalls(featured)
 

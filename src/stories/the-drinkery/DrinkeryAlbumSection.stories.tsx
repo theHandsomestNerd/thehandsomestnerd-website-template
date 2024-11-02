@@ -1,11 +1,6 @@
 import type {Meta, StoryObj} from '@storybook/react';
 import {ThemeProvider} from "@mui/material/styles";
 import getThemeFromSanity from "../../components/customized-theme-provider/getThemeFromSanity";
-import DigitalResumeThemeData from "../data/DigitalResumeThemeData";
-import {QueryClientProvider} from "@tanstack/react-query";
-import {queryClient} from "../../queryClient";
-import TheDrinkerySpecials from "../../components/templates/the-drinkery/TheDrinkerySpecials";
-import drinkerySpecialsSectionData from "../data/DrinkerySpecialsSectionData";
 import DrinkeryThemeData from "../data/DrinkeryThemeData";
 import TheDrinkeryAlbumSection from "../../components/templates/the-drinkery/TheDrinkeryAlbumSection";
 import drinkeryAlbumData from "../data/DrinkeryAlbumSectionData";
@@ -30,10 +25,10 @@ export const DrinkeryAlbumSectionComplete: Story = {
         sectionData: drinkeryAlbumData,
     },
     render: ({sectionData}) =>
-        <div style={{backgroundColor:"black"}}><QueryClientProvider client={queryClient}>
+        <div style={{backgroundColor: "black"}}>
             <ThemeProvider
                 theme={getThemeFromSanity(DrinkeryThemeData)}>
                 <TheDrinkeryAlbumSection sectionData={sectionData}/>
             </ThemeProvider>
-        </QueryClientProvider></div>
+        </div>
 };

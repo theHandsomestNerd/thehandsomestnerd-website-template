@@ -2,8 +2,6 @@ import type {Meta, StoryObj} from '@storybook/react';
 import {ThemeProvider} from "@mui/material/styles";
 import getThemeFromSanity from "../../components/customized-theme-provider/getThemeFromSanity";
 import DigitalResumeThemeData from "../data/DigitalResumeThemeData";
-import {QueryClientProvider} from "@tanstack/react-query";
-import {queryClient} from "../../queryClient";
 import BartenderHeroSection from "../../components/templates/my-digital-resume/the-bartender/BartenderHeroSection";
 import bartenderHeroSectionData from "../data/BartenderHeroSectionData";
 
@@ -27,13 +25,11 @@ export const BartenderHeroSectionComplete: Story = {
         sectionData: bartenderHeroSectionData,
     },
     render: ({sectionData}) =>
-        <QueryClientProvider client={queryClient}>
             <ThemeProvider
                 theme={getThemeFromSanity(DigitalResumeThemeData)}>
                 <BartenderHeroSection sectionData={sectionData}>
                 </BartenderHeroSection>
             </ThemeProvider>
-        </QueryClientProvider>
 };
 // export const DrinkCardSectionComplete: Story = {
 //     args: {

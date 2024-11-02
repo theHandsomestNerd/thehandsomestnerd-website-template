@@ -6,6 +6,7 @@ import {
     ResumeSkillType,
     SanityImageAsset
 } from "../../../components/BlockContentTypes";
+import {SanityHouse} from "../../../components/templates/anybody-walking/ballroomTypes";
 
 export type SanityContextType = {
     initSanity?: (
@@ -34,22 +35,22 @@ export type SanityContextType = {
     // useFetchPageBySlugQuery?:any,
     fetchPageBySlugQuery?:any,
     fetchDocumentByTypeAndSlugQuery?:any,
-    useFetchMenuBySlugQuery?:any,
-    useFetchServicesQuery?:any,
-    useFetchRefsQuery?:any,
-    useFetchMenuByRefQuery?:any,
+    // useFetchMenuBySlugQuery?:any,
+    // useFetchServicesQuery?:any,
+    // useFetchRefsQuery?:any,
+    // useFetchMenuByRefQuery?:any,
     fetchMuiTheme?:any,
     fullTextSearch?:any
     urlFor?: any
     cocktailUrlFor?:any
     getPlaceholderImageUrl?:any
     placeholderOrImage?:(imageSrc?: SanityImageAsset, placeHolderWidth?: number, placeHolderHeight?: number, text?: string) => string
-    useFetchAllFlashCards?: any,
+    // useFetchAllFlashCards?: any,
     useFetchAllBarIngredients?: any,
     useFetchAllLiquorTypes?: any,
-    useFetchFilteredIngredients?: any,
-    useFetchFilteredCocktails?: any,
-    useFetchSearchedCocktails?: any,
+    // useFetchFilteredIngredients?: any,
+    // useFetchFilteredCocktails?: any,
+    // useFetchSearchedCocktails?: any,
     getProduct?: any,
     // useFetchMyBarIngredients?: any,
     fetchMyBarIngredients?: any,
@@ -84,6 +85,7 @@ export type SanityContextType = {
     createContactUs?: any
 
     addBall?: any
+    fetchVerifiedHouses?: ()=>Promise<SanityHouse[]>
     getSanityDocumentRef?: (sanityId: string) => SanityRef
     fetchSkillExperiences?:(skillType:ResumeSkillType)=>Promise<ResumeExperienceType[]>
     fetchPortfolioItems?:(skillType:ResumeSkillType)=>Promise<ResumePortfolioItemType[]>

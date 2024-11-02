@@ -14,17 +14,18 @@ const FilteredIngredients: FunctionComponent<IProps> = () => {
     const sanityContext = useContext(SanityContext)
 
     const [filteredBarIngredients, setFilteredBarIngredients] = useState<(any)[]>([])
-    const {data, refetch} = sanityContext.useFetchMyFilteredIngredients()
 
     useEffect(() => {
+        const data = sanityContext.useFetchMyFilteredIngredients()
+
         if (data) {
             setFilteredBarIngredients(data)
         }
-    }, [data])
-
-    useEffect(() => {
-        refetch()
     }, [searchContext.searchFilters, searchContext.ingredientFilters])
+
+    // useEffect(() => {
+    //     refetch()
+    // }, [searchContext.searchFilters, searchContext.ingredientFilters])
 
     const processIngredient = (filter: SanityCocktailIngredient) => {
         if (searchContext.isIngredientIncluded && !searchContext.isIngredientIncluded(filter))

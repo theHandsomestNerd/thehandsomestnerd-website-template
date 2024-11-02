@@ -1,7 +1,6 @@
 import {Grid, useTheme} from '@mui/material';
 import {BrowserRouter, Navigate, Route, Routes} from 'react-router-dom'
 import {FunctionComponent, PropsWithChildren, useContext, useEffect} from 'react'
-import {QueryClientProvider} from '@tanstack/react-query';
 import FourOhFour from "./components/templates/transform-hw/pages/error-page/FourOhFour";
 import PageProvider from "./components/page-context/PageProvider";
 import AmenityProvider from "./components/amenity-context/AmenityProvider";
@@ -9,13 +8,12 @@ import ModalProvider from "./components/snackbar-context/ModalProvider";
 import SnackbarProvider from "./components/modal-context/SnackbarProvider";
 import PageMux from "./components/templates/mackenzies-mind/pages/PageMux";
 import CustomizedThemeProvider from "./components/customized-theme-provider/CustomizedThemeProvider";
-import {queryClient} from "./queryClient";
 import FirebaseContext from "./common/firebase/firebase-context/FirebaseContext";
 import SanityContext from "./common/sanityIo/sanity-context/SanityContext";
 import AppSettingsProvider from "./components/templates/anybody-walking/app-settings/AppSettingsProvider";
 import "core-js/stable";
 
-interface IProps {
+export interface AppIProps {
     react_app_api_url: string
     react_app_sanity_projectid: string
     react_app_sanity_db: string
@@ -40,7 +38,7 @@ interface IProps {
 }
 
 
-const App: FunctionComponent<IProps & PropsWithChildren> = (props) => {
+const App: FunctionComponent<PropsWithChildren<AppIProps>> = (props) => {
 
     const theme = useTheme()
     const firebaseContext = useContext(FirebaseContext)
@@ -72,58 +70,57 @@ const App: FunctionComponent<IProps & PropsWithChildren> = (props) => {
             )
         }
         if (sanityContext.initSanity) {
-            sanityContext.initSanity(props.react_app_sanity_projectid, props.react_app_sanity_db, props.react_app_sanity_apiversion, true, props.react_app_sanity_projectid_cocktails,props.react_app_sanity_db_cocktails)
+            sanityContext.initSanity(props.react_app_sanity_projectid, props.react_app_sanity_db, props.react_app_sanity_apiversion, true, props.react_app_sanity_projectid_cocktails, props.react_app_sanity_db_cocktails)
         }
 
     }, [])
 
     useEffect(() => {
-            console.log("The logo before storage", props.logo)
-        }, [props.logo])
+        console.log("The logo before storage", props.logo)
+    }, [props.logo])
 
     return (
         <BrowserRouter>
-            <QueryClientProvider client={queryClient}>
-                <PageProvider googleApiKey={props.react_app_googlemaps_embed_api_key} barInventorySlug={props.react_app_bar_inventory_slug}>
-                    <CustomizedThemeProvider logoSrc={props.logo}>
-                        <SnackbarProvider>
-                            <ModalProvider>
-                                <AmenityProvider>
-                                    {/*<BallSearchProvider>*/}
-                                    <AppSettingsProvider>
-                                        <Grid container item alignItems="center"
-                                              style={{
-                                                  backgroundColor: theme.palette.background.default,
-                                                  overflow: "hidden",
-                                                  width: "100vw"
-                                              }} justifyContent='center'>
+            <PageProvider googleApiKey={props.react_app_googlemaps_embed_api_key}
+                          barInventorySlug={props.react_app_bar_inventory_slug}>
+                <CustomizedThemeProvider logoSrc={props.logo}>
+                    <SnackbarProvider>
+                        <ModalProvider>
+                            <AmenityProvider>
+                                {/*<BallSearchProvider>*/}
+                                <AppSettingsProvider>
+                                    <Grid container item alignItems="center"
+                                          style={{
+                                              backgroundColor: theme.palette.background.default,
+                                              overflow: "hidden",
+                                              width: "100vw"
+                                          }} justifyContent='center'>
 
-                                            <Grid item style={{
-                                                overflow: "hidden",
-                                            }}>
-                                                <Routes>
-                                                    {/*<Route path={"/DJs-40th-spades-rules"}*/}
-                                                    {/*       element={<DJSpadesRulesContentSection/>}/>*/}
-                                                    <Route
-                                                        path={"/" + props.react_app_base_route + "/:pageSlug/:documentType/:documentSlug"}
-                                                        element={<PageMux baseRoute={props.react_app_base_route}/>}/>
-                                                    <Route path={"/" + props.react_app_base_route + "/:pageSlug"}
-                                                           element={<PageMux baseRoute={props.react_app_base_route}/>}/>
-                                                    <Route path={'/error'} element={<FourOhFour/>}/>
-                                                    <Route path={"/*"}
-                                                           element={<Navigate
-                                                               to={"/" + props.react_app_base_route + "/home"}/>}/>
-                                                </Routes>
-                                            </Grid>
+                                        <Grid item style={{
+                                            overflow: "hidden",
+                                        }}>
+                                            <Routes>
+                                                {/*<Route path={"/DJs-40th-spades-rules"}*/}
+                                                {/*       element={<DJSpadesRulesContentSection/>}/>*/}
+                                                <Route
+                                                    path={"/" + props.react_app_base_route + "/:pageSlug/:documentType/:documentSlug"}
+                                                    element={<PageMux baseRoute={props.react_app_base_route}/>}/>
+                                                <Route path={"/" + props.react_app_base_route + "/:pageSlug"}
+                                                       element={<PageMux baseRoute={props.react_app_base_route}/>}/>
+                                                <Route path={'/error'} element={<FourOhFour/>}/>
+                                                <Route path={"/*"}
+                                                       element={<Navigate
+                                                           to={"/" + props.react_app_base_route + "/home"}/>}/>
+                                            </Routes>
                                         </Grid>
-                                    </AppSettingsProvider>
-                                    {/*</BallSearchProvider>*/}
-                                </AmenityProvider>
-                            </ModalProvider>
-                        </SnackbarProvider>
-                    </CustomizedThemeProvider>
-                </PageProvider>
-            </QueryClientProvider>
+                                    </Grid>
+                                </AppSettingsProvider>
+                                {/*</BallSearchProvider>*/}
+                            </AmenityProvider>
+                        </ModalProvider>
+                    </SnackbarProvider>
+                </CustomizedThemeProvider>
+            </PageProvider>
         </BrowserRouter>
     );
 }

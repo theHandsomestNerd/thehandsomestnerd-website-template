@@ -1,4 +1,3 @@
-import {QueryClient, QueryClientProvider} from "@tanstack/react-query";
 import {BrowserRouter} from "react-router-dom";
 import {Preview} from '@storybook/react';
 import PageProvider from "../src/components/page-context/PageProvider";
@@ -12,22 +11,13 @@ import SanityProvider from "../src/common/sanityIo/sanity-context/SanityProvider
 import FirebaseProvider from "../src/common/firebase/firebase-context/FirebaseProvider";
 import AppSettingsProvider from "../src/components/templates/anybody-walking/app-settings/AppSettingsProvider";
 
-export const mockedQueryClient = new QueryClient({
-    defaultOptions: {
-        queries: {
-            retry: false,
-        },
-    },
-});
-
 const preview: Preview = {
     decorators: [
         (Story) => (
             <FirebaseProvider>
                 <SanityProvider>
                     <BrowserRouter>
-                            <AppSettingsProvider>
-                        <QueryClientProvider client={mockedQueryClient}>
+                        <AppSettingsProvider>
                             <PageProvider page={HomePageResumeData}>
                                 <CustomizedThemeProvider pageTheme={DigitalResumeThemeData}>
                                     <SnackbarProvider>
@@ -39,8 +29,7 @@ const preview: Preview = {
                                     </SnackbarProvider>
                                 </CustomizedThemeProvider>
                             </PageProvider>
-                        </QueryClientProvider>
-                            </AppSettingsProvider>
+                        </AppSettingsProvider>
                     </BrowserRouter>
                 </SanityProvider>
             </FirebaseProvider>

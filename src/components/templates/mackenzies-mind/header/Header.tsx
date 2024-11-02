@@ -1,5 +1,5 @@
-import {FunctionComponent, useState} from 'react'
-import {Box, Grid, IconButton, Modal, useMediaQuery, useTheme} from '@mui/material'
+import {FunctionComponent, useContext, useState} from 'react'
+import {Box, Grid, IconButton, Link, Modal, useMediaQuery, useTheme} from '@mui/material'
 import MainMenu from "./MainMenu";
 import FilteredMenuItems from "../../../filtered-menu-items/FilteredMenuItems";
 import Logo from "../../../logo/Logo";
@@ -12,6 +12,7 @@ import {COLORS} from "../../../../theme/common/ColorPalette";
 
 import makeStyles from "@mui/styles/makeStyles";
 import {Theme} from "@mui/material/styles";
+import PageContext from "../../../page-context/PageContext";
 
 export const useStyles = makeStyles((theme: Theme) => ({
     hover: {
@@ -46,6 +47,7 @@ const Header: FunctionComponent<HeaderProps> = (props) => {
     const mdDown = useMediaQuery(theme.breakpoints.down('md'))
     const [isSearchOpen, setIsSearchOpen] = useState<boolean>(false)
 
+    const pageContext = useContext(PageContext)
     return (
         <AppBarWrapper backgroundColor={props.backgroundColor} isAppBar={props.isAppBar} isEnhanced={props.isEnhanced}>
             {props.pageHeader?.title ?
@@ -53,9 +55,9 @@ const Header: FunctionComponent<HeaderProps> = (props) => {
                       alignContent='center' alignItems='center' style={{height: "100%"}}>
                     <Grid container item xs={8} md={4} wrap='nowrap'>
                         <Grid item xs={8} sm={7} container sx={{minWidth: "190px"}}>
-                            <Logo logoImageSrc={props.pageHeader?.logoImageSrc} noWrap
-                                  logoText={props.pageHeader?.logoText}
-                                  logoAccentText={props.pageHeader?.logoAccentText}/>
+                            <Link sx={{width:"100%"}} href={pageContext.page?.website}><Logo logoImageSrc={props.pageHeader?.logoImageSrc} noWrap
+                                                                         logoText={props.pageHeader?.logoText}
+                                                                         logoAccentText={props.pageHeader?.logoAccentText}/></Link>
                         </Grid>
                         {props.pageHeader.isShowSocialMedia && !smDown ? <Grid xs={4} sm={5} container item alignContent='center' alignItems='center'
                                justifyContent={xsDown ? 'center' : "flex-start"} wrap='nowrap'>

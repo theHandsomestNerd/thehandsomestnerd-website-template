@@ -2,7 +2,7 @@ import clientUtils from "./clientUtils";
 import {SanityColdLead} from "../../../../../common/sanityIo/Types";
 
 const createLead = (lead: SanityColdLead) => {
-    return fetch("/collect-email-address" ?? "",
+    return fetch("/collect-email-address",
         {
             method: 'POST',
             body: JSON.stringify(lead),
@@ -18,7 +18,7 @@ const createLead = (lead: SanityColdLead) => {
         });
 };
 const sendBusinessCardEmail = (lead: SanityColdLead) => {
-    return fetch("/send-email-resume" ?? "",
+    return fetch("/send-email-resume",
         {
             method: 'POST',
             body: JSON.stringify(lead),
