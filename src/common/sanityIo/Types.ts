@@ -161,7 +161,7 @@ export type SanityBusinessContact = {
     hoursOfOperation?: SanityGroupSchedule[]
 }
 
-export interface SanityTransformHwHomePage {
+export type SanityTransformHwHomePage = {
     _type?: string
     title?: string
     _id?: string

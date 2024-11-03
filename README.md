@@ -10,14 +10,19 @@ Component Library that serves as a website builder using React Components
 * This project has Storybook which is the component library.
 * This project uses Firebase for hosting and deployment.
 * The web-client directory uses the component library to deploy a website
+* This project is type checked with Typescript and Transpiled with Babel
 
 ### Dependencies
 * npm
 * tsc
+* babel
 * storybook - component library for demos
 * firebase - hosting, functions, analytics
 * sanity - cms datastore
 * parcel - the build tool for the client
+* There are some legacy local fonts and a logo which are copied with the npm 
+  build command but have separate npm commands in package.json. Feel free to
+  copy over the logo with your web development company logo.
 
 ## Getting Started
 ### Config
@@ -74,7 +79,7 @@ Component Library that serves as a website builder using React Components
 
 ### Development & Executing program
 #### UI
-* in the top level directory
+* in the top level directory transpile cjs, esm with tsc; then copy local fonts and logo; then transpile with babel
   * ```npm build```
   * ```npm publish```
 * go to web-client directory

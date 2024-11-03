@@ -3,14 +3,14 @@ import {Grid} from '@mui/material'
 import {SanityImageAsset} from "../BlockContentTypes";
 import SanityContext from "../../common/sanityIo/sanity-context/SanityContext";
 
-interface IProps {
+export interface ColoredPngProps {
     maskUrl?: string,
     color: any,
     size?: number,
     maskAsset?: SanityImageAsset
 }
 
-const ColoredPng: FunctionComponent<IProps> = (props: IProps) => {
+const ColoredPng: FunctionComponent<ColoredPngProps> = (props: ColoredPngProps) => {
 
     const [imageUrl, setImageUrl] = useState<string>()
     const [imageSize, setImageSize] = useState<number>(100)

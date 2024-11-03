@@ -1,5 +1,5 @@
 import {SanityRef} from "../Types";
-import React from "react";
+import React, { Context } from "react";
 import {
     ResumeExperienceType,
     ResumePortfolioItemType,
@@ -91,6 +91,6 @@ export type SanityContextType = {
     fetchPortfolioItems?:(skillType:ResumeSkillType)=>Promise<ResumePortfolioItemType[]>
 };
 
-const SanityContext = React.createContext<SanityContextType>({});
+let SanityContext: Context<SanityContextType> = React.createContext<SanityContextType>({});
 
 export default SanityContext;
