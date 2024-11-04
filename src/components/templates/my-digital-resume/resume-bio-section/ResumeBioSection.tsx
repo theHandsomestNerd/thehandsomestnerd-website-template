@@ -1,22 +1,22 @@
 import {FunctionComponent, useContext, useEffect, useState} from 'react'
 import {Button, ButtonGroup, CircularProgress, Grid, Typography, useMediaQuery, useTheme,} from '@mui/material';
 import {ResumeBioSectionType} from "../../../BlockContentTypes";
-import {SanityTransformHwHomePage} from "../../../../common/sanityIo/Types";
 import useThwCommonStyles from "../../../../common/sanityIo/ThwCommonStyles";
 import SocialMediaBlock from "../social-media-block/SocialMediaBlock";
 import BusinessCardSubmitEmail from "../../transform-hw/pages/BusinessCardSubmitEmail";
 import SanityContext from "../../../../common/sanityIo/sanity-context/SanityContext";
 import pdfClient from "../../../../utils/pdfClient";
+import {SanityTransformHwHomePage} from "../../../../common/sanityIo/Types";
 
 
-interface IProps {
+interface ResumeBioSectionProps {
     sectionData: ResumeBioSectionType
     homePage?: SanityTransformHwHomePage
     isHideEmail?: boolean
     isHideButtons?: boolean
 }
 
-const ResumeBioSection: FunctionComponent<IProps> = (props: IProps) => {
+const ResumeBioSection: FunctionComponent<ResumeBioSectionProps> = (props: ResumeBioSectionProps) => {
     const theme = useTheme()
     const classes = useThwCommonStyles()
     const smDown = useMediaQuery(theme.breakpoints.down('sm'))

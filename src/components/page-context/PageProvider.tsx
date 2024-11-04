@@ -121,15 +121,13 @@ const PageProvider: FunctionComponent<IProps & PropsWithChildren> = (
 
     const [state, dispatch] = useReducer(reducer, initialState)
 
-    const [pageData, setPageData] = useState<any>()
     const [documentData, setDocumentData] = useState<any>()
     const [isLoading] = useState<boolean>(true)
-    // const loadedPageQuery = sanityContext.useFetchPageBySlugQuery(state.pageSlug)
 
     useEffect(() => {
         sanityContext.fetchDocumentByTypeAndSlugQuery(state.documentType, state.documentSlug)
             .then((result: any) => {
-                // console.log(`in page context fetch document fetching document type: ${state.documentType} with slug: ${state.documentSlug}`)
+                // console.log(`New log in page context fetch document fetching document type: ${state.documentType} with slug: ${state.documentSlug}`)
 
                 setDocumentData(result)
             })
@@ -144,9 +142,20 @@ const PageProvider: FunctionComponent<IProps & PropsWithChildren> = (
 
         if (!props.page && (state.pageSlug && state.pageSlug.length > 0)) {
             sanityContext.fetchPageBySlugQuery(state.pageSlug).then((result: any) => {
-                setPageData(result)
+                dispatch({
+                    type: "LOAD_PAGE_COMPONENTS",
+                    payload: {
+                        page: result,
+                    }
+                })
             }).catch((e: any) => {
                 console.log("ERROR: ", e)
+                dispatch({
+                    type: "LOAD_PAGE_COMPONENTS",
+                    payload: {
+                        page: undefined,
+                    }
+                })
             })
         }
     }, [state.pageSlug, sanityContext.theSanityClient])
@@ -187,16 +196,6 @@ const PageProvider: FunctionComponent<IProps & PropsWithChildren> = (
         }
     }, [props.page, state.page])
 
-    useEffect(() => {
-        if (!props.page && pageData) {
-            dispatch({
-                type: "LOAD_PAGE_COMPONENTS",
-                payload: {
-                    page: pageData,
-                }
-            })
-        }
-    }, [pageData])
     useEffect(() => {
         dispatch({
             type: "PAGE_LOADING",
@@ -265,126 +264,6 @@ const PageProvider: FunctionComponent<IProps & PropsWithChildren> = (
         })
     }
 
-
-    // useEffect(() => {
-    //     if (allServicesQuery.data) {
-    //         console.log("context services data", allServicesQuery.data)
-    //         dispatch({
-    //             type: "LOAD_SERVICES",
-    //             payload: {
-    //                 allServices: allServicesQuery.data
-    //             }
-    //         })
-    //     }
-    // }, [allServicesQuery.data])
-    // useEffect(() => {
-    //     dispatch({
-    //         type: "PAGE_LOADING",
-    //         payload: {
-    //             loading: allServicesQuery.isLoading
-    //         }
-    //     })
-    // }, [allServicesQuery.isLoading])
-    // useEffect(() => {
-    //     dispatch({
-    //         type: "PAGE_LOADING",
-    //         payload: {
-    //             loading: allServicesQuery.isRefetching
-    //         }
-    //     })
-    // }, [allServicesQuery.isRefetching])
-    // useEffect(() => {
-    //     if (allServicesQuery.isError) {
-    //         dispatch({
-    //             type: "ERROR",
-    //             payload: {
-    //                 isError: allServicesQuery.isError,
-    //                 pageError: allServicesQuery.error
-    //             }
-    //         })
-    //     }
-    // }, [allServicesQuery.isError])
-
-
-    // useEffect(() => {
-    //     if (!headerMenuQuery.isPreviousData && headerMenuQuery.data) {
-    //         console.log("context header data", headerMenuQuery.data)
-    //         dispatch({
-    //             type: "LOAD_HEADER",
-    //             payload: {
-    //                 pageHeader: headerMenuQuery.data
-    //             }
-    //         })
-    //     }
-    // }, [headerMenuQuery.data])
-    // useEffect(() => {
-    //     dispatch({
-    //         type: "PAGE_LOADING",
-    //         payload: {
-    //             loading: headerMenuQuery.isLoading
-    //         }
-    //     })
-    // }, [headerMenuQuery.isLoading])
-    // useEffect(() => {
-    //     dispatch({
-    //         type: "PAGE_LOADING",
-    //         payload: {
-    //             loading: headerMenuQuery.isRefetching
-    //         }
-    //     })
-    // }, [headerMenuQuery.isRefetching])
-    // useEffect(() => {
-    //     if (headerMenuQuery.isError) {
-    //         dispatch({
-    //             type: "ERROR",
-    //             payload: {
-    //                 isError: headerMenuQuery.isError,
-    //                 pageError: headerMenuQuery.error
-    //             }
-    //         })
-    //     }
-    // }, [headerMenuQuery.isError])
-    //
-    //
-    // useEffect(() => {
-    //     if (!footerMenuQuery.isPreviousData && footerMenuQuery.data) {
-    //         console.log("context footer data", footerMenuQuery.data)
-    //         dispatch({
-    //             type: "LOAD_FOOTER",
-    //             payload: {
-    //                 pageFooter: footerMenuQuery.data
-    //             }
-    //         })
-    //     }
-    // }, [footerMenuQuery.data])
-    // useEffect(() => {
-    //     dispatch({
-    //         type: "PAGE_LOADING",
-    //         payload: {
-    //             loading: footerMenuQuery.isLoading
-    //         }
-    //     })
-    // }, [footerMenuQuery.isLoading])
-    // useEffect(() => {
-    //     dispatch({
-    //         type: "PAGE_LOADING",
-    //         payload: {
-    //             loading: footerMenuQuery.isRefetching
-    //         }
-    //     })
-    // }, [footerMenuQuery.isRefetching])
-    // useEffect(() => {
-    //     if (footerMenuQuery.isError) {
-    //         dispatch({
-    //             type: "ERROR",
-    //             payload: {
-    //                 isError: footerMenuQuery.isError,
-    //                 pageError: footerMenuQuery.error
-    //             }
-    //         })
-    //     }
-    // }, [footerMenuQuery.isError])
-
     const snackbarContext = useContext(SnackbarContext)
 
 
@@ -394,7 +273,6 @@ const PageProvider: FunctionComponent<IProps & PropsWithChildren> = (
         }
     }, [state.error, state.isPageError])
 
-
     useEffect(() => {
         dispatch({
             type: "PAGE_LOADING",
@@ -403,7 +281,6 @@ const PageProvider: FunctionComponent<IProps & PropsWithChildren> = (
             }
         })
     }, [isLoading])
-
 
     const getOtherServices = (pageSlug: string) => {
         return state.allServices?.filter((service: ThwServiceItemNoRefType) => {

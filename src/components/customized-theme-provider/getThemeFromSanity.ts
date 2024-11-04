@@ -7,7 +7,7 @@ import textProcessingUtils from "../../utils/textProcessingUtils";
 const fonts = `"Raleway", "Oswald"`
 
 const getThemeFromSanity = (theme: SanityMuiTheme) => {
-    const createMuiFontFace = (sanityFontFace: SanityMuiFontFace) => {
+    const createMuiFontFace = (sanityFontFace: SanityMuiFontFace):SanityMuiFontFace => {
         let processedMediaQuery: any[] | undefined = [];
         if ((sanityFontFace.mediaQueries?.length ?? 0) > 0) {
             processedMediaQuery = sanityFontFace.mediaQueries?.map((mediaQuery) => {
@@ -29,7 +29,7 @@ const getThemeFromSanity = (theme: SanityMuiTheme) => {
             textTransform: sanityFontFace.textTransform
         }
     }
-    const extractSanityFontFace = (fontFaceName: string) => {
+    const extractSanityFontFace = (fontFaceName: string):SanityMuiFontFace | undefined => {
         const fontFaceFromSanity = theme.typography?.fontFaces?.find((fontFace: SanityMuiFontFace) => {
             if (fontFace.name === fontFaceName) {
                 return fontFace
@@ -117,7 +117,10 @@ const getThemeFromSanity = (theme: SanityMuiTheme) => {
             },
             body1: extractSanityFontFace('body1'),
             body2: extractSanityFontFace('body2'),
-            button: extractSanityFontFace('button'),
+            button: {
+                ...extractSanityFontFace('button'),
+                fontFamily: theme.typography?.fontFamily[0]
+            },
             subtitle1: extractSanityFontFace('subtitle1'),
             subtitle2: extractSanityFontFace('subtitle2')
         },
@@ -152,39 +155,31 @@ const getThemeFromSanity = (theme: SanityMuiTheme) => {
             MuiButton: {
                 styleOverrides: {
                     root: {
-                        borderRadius: '-64px',
+                        // borderRadius: '64px',
+                        // fontFamily:"Raleway",
+// ,                        ...extractSanityFontFace('button'),
                         paddingTop: "16px",
                         paddingBottom: "16px",
+                        boxShadow: "none",
+
                     },
                     contained: {
-                        boxShadow: "none",
-                    },
-                    containedPrimary: {
                         border: `1px solid ${theme.colorPalette?.buttonOutlineColor ? convertToHexCode(theme.colorPalette.buttonOutlineColor) : "transparent"}`,
                         '&.Mui-disabled': {
                             color: '#969284'
                         },
                     },
-                    containedSecondary: {
+                    colorSecondary: {
                         border: '1px solid transparent',
                         '&.Mui-disabled': {
                             color: 'rgba(207, 207, 207, .5)',
                         },
                     },
-                    outlinedPrimary: {
+                    outlined:{
                         borderWidth: '3px',
-                        paddingTop: "16px",
-                        paddingBottom: "16px",
                         paddingLeft: "64px",
                         paddingRight: "64px"
                     },
-                    outlinedSecondary: {
-                        borderWidth: '3px',
-                        paddingTop: "16px",
-                        paddingBottom: "16px",
-                        paddingLeft: "64px",
-                        paddingRight: "64px",
-                    }
                 }
             },
             MuiOutlinedInput: {

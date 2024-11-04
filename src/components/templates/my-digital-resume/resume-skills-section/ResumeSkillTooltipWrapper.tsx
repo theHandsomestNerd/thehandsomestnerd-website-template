@@ -10,7 +10,7 @@ import LinkedPortfolioEntries from "./LinkedPortfolioEntries";
 
 interface IProps {
     resumeSkill: ResumeSkillType
-    isTipOpen: boolean
+    isTipOpen?: boolean
 }
 
 const ResumeSkillTooltipWrapper: FunctionComponent<PropsWithChildren<IProps>> = (props: PropsWithChildren<IProps>) => {
@@ -27,7 +27,7 @@ const ResumeSkillTooltipWrapper: FunctionComponent<PropsWithChildren<IProps>> = 
 
     useEffect(() => {
         if(isTipOpen !== props.isTipOpen){
-            setIsTipOpen(props.isTipOpen)
+            setIsTipOpen(!!props.isTipOpen)
         }
 
         }, [props.isTipOpen])

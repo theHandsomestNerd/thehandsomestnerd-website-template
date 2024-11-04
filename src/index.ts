@@ -5,7 +5,9 @@ import SanityContext from "./common/sanityIo/sanity-context/SanityContext";
 import SanityProvider from "./common/sanityIo/sanity-context/SanityProvider";
 import ResumeDocumentPDF from "./components/ResumeDocumentPDF";
 import ColoredPng from "./components/colored-png/ColoredPng";
+import CustomizedThemeProvider from "./components/customized-theme-provider/CustomizedThemeProvider";
 import getThemeFromSanity from "./components/customized-theme-provider/getThemeFromSanity";
+import PageProvider from "./components/page-context/PageProvider";
 import SocialMediaBlock from "./components/templates/my-digital-resume/social-media-block/SocialMediaBlock";
 import BusinessCardSubmitEmail from "./components/templates/transform-hw/pages/BusinessCardSubmitEmail";
 import dateUtils from "./utils/dateUtils";
@@ -24,4 +26,6 @@ export {
     getThemeFromSanity,
     ColoredPng,
     dateUtils,
+    CustomizedThemeProvider,
+    PageProvider
 }
