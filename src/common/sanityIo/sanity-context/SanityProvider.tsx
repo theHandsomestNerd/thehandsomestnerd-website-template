@@ -28,10 +28,8 @@ import {
     ResumeExperienceType,
     ResumePortfolioItemType,
     ResumeSkillType,
-    SanityImageAsset,
     WhySwitchSectionType
 } from "../../../components/BlockContentTypes";
-import {SanityImageSource} from "@sanity/asset-utils";
 import imageUrlBuilder from "@sanity/image-url";
 import SearchContext, {
     SearchContextType
@@ -50,6 +48,7 @@ import {
 import imageUtils from "../../../components/templates/anybody-walking/imageUtils";
 import clientUtils from "../../../components/templates/transform-hw/pages/under-construction-page/clientUtils";
 import {ImageUrlBuilder} from "@sanity/image-url/lib/types/builder";
+import {SanityImageSource} from "@sanity/image-url/lib/types/types";
 
 type IProps = {
     projectId?: string,
@@ -79,8 +78,7 @@ type IProps = {
     fullTextSearch?: any,
     urlFor?: any
     cocktailUrlFor?: any
-    getPlaceholderImageUrl?: any,
-    placeholderOrImage?: (imageSrc?: SanityImageAsset, placeHolderWidth?: number, placeHolderHeight?: number, text?: string) => string,
+    placeholderOrImage?: (imageSrc?: SanityImageSource, placeholderWidth?: number, placeholderHeight?: number, text?: string) => string,
     getCheckinBySlug?: any,
     fetchBall?: any,
     getBallBySlug?: any,
@@ -116,7 +114,7 @@ type IProps = {
 };
 
 const PLACEHOLDER_URL = "https://placehold.co/"
-
+const PLACEHOLDER_DEFAULT_SIZE = 56
 
 const SanityProvider: FunctionComponent<IProps & PropsWithChildren> = (
     props: PropsWithChildren<IProps>,
@@ -174,7 +172,6 @@ const SanityProvider: FunctionComponent<IProps & PropsWithChildren> = (
             setCocktailBuilder(imageUrlBuilder(theSanityBartenderClient))
         }
     }, [theSanityBartenderClient])
-
 
 
     const initSanity = (projectId?: string,
@@ -927,11 +924,13 @@ const SanityProvider: FunctionComponent<IProps & PropsWithChildren> = (
             })
     }
 
-    const urlFor = (source: SanityImageSource) => {
-        if (!source) {
+    const urlFor = (source: SanityImageSource): undefined | ImageUrlBuilder => {
+        if (!source || !builder) {
             return undefined
         }
-        return builder?.image(source)
+        const imageUrlBuilder: ImageUrlBuilder = builder.image(source)
+        return imageUrlBuilder.url() ? imageUrlBuilder : undefined
+
     }
 
     const cocktailUrlFor = (source: SanityImageSource) => {
@@ -1381,32 +1380,27 @@ const SanityProvider: FunctionComponent<IProps & PropsWithChildren> = (
             })
     }
 
-    const placeholderOrImage = (imageSrc?: SanityImageAsset, placeHolderWidth?: number, placeHolderHeight?: number, text?: string) => {
-        let theUrl = ""
-
-        if (imageSrc) {
-            theUrl = urlFor(imageSrc)?.url() ?? ""
-        } else {
-            theUrl = getPlaceholderImageUrl(placeHolderWidth, placeHolderHeight, text)
-        }
-
-        return theUrl
+    const placeholderOrImage = (imageSrc?: SanityImageSource, placeholderWidth?: number, placeholderHeight?: number, text?: string):string => {
+        const imageUrlBuilder = imageSrc ? urlFor(imageSrc) : undefined;
+        return imageUrlBuilder?.url() || getPlaceholderImageUrl(placeholderWidth, placeholderHeight, text);
     }
 
-    const getPlaceholderImageUrl = (width?: number, height?: number, text?: string) => {
-        let theUrl = PLACEHOLDER_URL
-        if (width) {
-            if (height) {
-                theUrl += `${width}x${height}`
-            } else {
-                theUrl += `${height}x${height}`
-            }
+    const getPlaceholderImageUrl = (width?: number, height?: number, text?: string): string => {
+        let theUrl: string = PLACEHOLDER_URL
+
+        if (!!width && !!height) {
+            theUrl += `${width}x${height}`
+        } else if (!!width) {
+            theUrl += `${width}`
+        } else if (!!height) {
+            theUrl += `${height}`
         } else {
-            theUrl += `${height}x${height}`
+            console.log("using default image size", PLACEHOLDER_DEFAULT_SIZE)
+            theUrl += `${PLACEHOLDER_DEFAULT_SIZE}`
         }
 
         if (text) {
-            theUrl += `?text=${text.replace(" ", "+")}`
+            theUrl += `?text=${text}`
         }
 
         return theUrl
@@ -1912,7 +1906,7 @@ const SanityProvider: FunctionComponent<IProps & PropsWithChildren> = (
     }
 
     const fetchSkillExperiences = async (resumeSkill: ResumeSkillType): Promise<ResumeExperienceType[]> => {
-        return props.fetchSkillExperiences ? props.fetchSkillExperiences(resumeSkill):theSanityClient
+        return props.fetchSkillExperiences ? props.fetchSkillExperiences(resumeSkill) : theSanityClient
             .fetch(
                 `*[ _type == "ResumeExperience" && references($skillId)]| order(dateStart desc){
                   ...
@@ -1924,7 +1918,7 @@ const SanityProvider: FunctionComponent<IProps & PropsWithChildren> = (
             })
     }
     const fetchPortfolioItems = async (resumeSkill: ResumeSkillType): Promise<ResumePortfolioItemType[]> => {
-        return props.fetchPortfolioItems ? props.fetchPortfolioItems(resumeSkill) :theSanityClient
+        return props.fetchPortfolioItems ? props.fetchPortfolioItems(resumeSkill) : theSanityClient
             .fetch(
                 `*[ _type == "ResumePortfolioItem" && references($skillId) && isDisabled != true]| order(inceptionDate desc){
                   ...
@@ -1971,7 +1965,6 @@ const SanityProvider: FunctionComponent<IProps & PropsWithChildren> = (
             fetchHomePageSpecializationsMenu,
             fetchImageCarousel,
             fetchEvergreenPage,
-            getPlaceholderImageUrl,
             placeholderOrImage,
             // useFetchAllFlashCards,
             // useFetchAllBarIngredients,

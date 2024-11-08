@@ -42,13 +42,13 @@ const MMHeroContentSection: FunctionComponent<IProps> = (props) => {
     const sanityContext = useContext(SanityContext)
 
     let classParameters: CSSProps = {
-        heroBaseImageUrl: sanityContext.urlFor(props.sectionData.heroImage).url() ?? '',
+        heroBaseImageUrl: (sanityContext.placeholderOrImage && sanityContext.placeholderOrImage(props.sectionData.heroImage)) ?? "",
     }
 
     if (props.sectionData.heroImageBackground) {
         classParameters = {
             ...classParameters,
-            heroOverlay: sanityContext.urlFor(props.sectionData.heroImageBackground).url()
+            heroOverlay: (sanityContext.placeholderOrImage && sanityContext.placeholderOrImage(props.sectionData.heroImageBackground)) ?? ""
         }
     }
 

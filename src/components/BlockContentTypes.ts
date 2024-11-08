@@ -1,13 +1,13 @@
-import {SanityImageSource} from "@sanity/asset-utils";
 import {SanityBusinessContact, SanityMenuContainer, SanityRef, SanitySlug} from "../common/sanityIo/Types";
 import {FileAsset} from "@sanity/types";
+import {SanityImageSource} from "@sanity/image-url/lib/types/types";
 
 export type HeroContentSectionType = {
     name: string
     title: string
-    heroImage: SanityImageAsset
+    heroImage: SanityImageSource
     heroImageAltText: string
-    heroImageBackground: SanityImageAsset
+    heroImageBackground: SanityImageSource
     contentTitle: string
     contentBullets: string[]
     ctaButtonTitle: string
@@ -21,10 +21,10 @@ export type HeroAnimatedContentSectionType = {
 }
 
 export type SanityHeroContentSlide = {
-    heroImage?: SanityImageAsset
-    heroBullet?: SanityImageAsset
+    heroImage?: SanityImageSource
+    heroBullet?: SanityImageSource
     heroImageAltText?: string
-    heroImageBackground?: SanityImageAsset
+    heroImageBackground?: SanityImageSource
     contentTitle?: string
     contentWelcomeMessage?: string
     contentText?: string
@@ -36,9 +36,9 @@ export type SanityHeroContentSlide = {
 export type AboutAndaCardSectionType = {
     name: string
     title: string
-    cardImage: SanityImageAsset
+    cardImage: SanityImageSource
     cardImageAltText: string
-    cardImageBackground: SanityImageAsset
+    cardImageBackground: SanityImageSource
     contentTitle: string
     contentLeft: string
     contentRight: string
@@ -47,14 +47,14 @@ export type AboutAndaCardSectionType = {
 }
 
 export type WhySwitchReasonType = {
-    icon: SanityImageAsset
+    icon: SanityImageSource
     iconAlt: string
     text: string
 }
 
 export type WhySwitchSectionType = {
     _id: string
-    imageSrc: SanityImageAsset
+    imageSrc: SanityImageSource
     imageAlt: string
     reasons: WhySwitchReasonType[]
 }
@@ -62,7 +62,7 @@ export type WhySwitchSectionType = {
 export type CryptoInYourPocketSectionType = {
     name: string
     title: string
-    imageSrc: SanityImageAsset
+    imageSrc: SanityImageSource
     imageSrcAltText: string
     bullets: WhySwitchReasonType[]
     ctaHeader1: string
@@ -71,21 +71,21 @@ export type CryptoInYourPocketSectionType = {
     ctaButtonLink: string
 }
 
-export type SanityImageAsset = SanityImageSource | {
-    _type: string,
-    asset: {
-        _ref: string,
-        _type: "reference"
-    }
-}
+// export type SanityImageSource = SanityImageSource | {
+//     _type: string,
+//     asset: {
+//         _ref: string,
+//         _type: "reference"
+//     }
+// }
 
 // Transform Types
 export type ThwHeroContentSectionType = {
     name: string
     title: string
-    heroImage: SanityImageAsset
+    heroImage: SanityImageSource
     heroImageAltText: string
-    heroImageBackground?: SanityImageAsset
+    heroImageBackground?: SanityImageSource
     contentWelcomeMessage: string
     contentTitle: string
     contentText: string
@@ -97,7 +97,7 @@ export type ThwHeroContentSectionType = {
 export type ServiceAmenityTypeRef = SanityRef
 export type ServiceAmenityType = {
     name: string
-    imageSrc?: SanityImageAsset
+    imageSrc?: SanityImageSource
     title: string
     description: string
     muiIcon?: string
@@ -110,7 +110,7 @@ export type ThwPositivePsychologySectionType = {
     contentTitle?: string
     contentText?: string
     contentBullets?: string[]
-    imageSrc?: SanityImageAsset
+    imageSrc?: SanityImageSource
     imageSrcAltText?: string
     ctaButtonText?: string
     ctaButtonLink?: string
@@ -120,7 +120,7 @@ export type ProprietorAtAGlanceType = {
     serviceName: string
     serviceTitle: string
     sessionList: string[]
-    dividerImage?: SanityImageAsset
+    dividerImage?: SanityImageSource
     amenitiesSectionTitle: string
     amenities: string[]
     ctaButtonText: string
@@ -129,14 +129,14 @@ export type ProprietorAtAGlanceType = {
 
 export type ThwAboutProprietorSectionType = {
     name: string
-    proprietorImage?: SanityImageAsset
+    proprietorImage?: SanityImageSource
     proprietorName: string
     proprietorTitle: string
     proprietorServices: ProprietorAtAGlanceType
     contentTitle: string
     contentText: string[]
     proprietorImageAltText: string
-    proprietorSignatureImage?: SanityImageAsset
+    proprietorSignatureImage?: SanityImageSource
     proprietorSignatureImageAltText: string
     ctaButtonText: string
     ctaButtonLink: string
@@ -146,13 +146,13 @@ export type ThwMottoSectionType = {
     name: string
     _type?: "transformMottoSection",
     contentText: string
-    parallaxImage: SanityImageAsset
+    parallaxImage: SanityImageSource
     contentSuperTitle: string
 }
 
 export type ThwServiceItemType = {
     name: string
-    imageSrc: SanityImageAsset
+    imageSrc: SanityImageSource
     imageSrcAltText: string
     contentTitle: string
     contentText: string
@@ -161,7 +161,7 @@ export type ThwServiceItemType = {
     learnMoreLink: string
     learnMoreText: string
     educationPageTitle: string
-    educationPageSlimHeroImage: SanityImageAsset
+    educationPageSlimHeroImage: SanityImageSource
     extendedDescriptions: string[]
     benefitsOfServiceTitle: string
     benefitsOfServiceContents: string[]
@@ -172,7 +172,7 @@ export type ThwServiceItemType = {
 
 export type ThwServiceItemNoRefType = {
     name: string
-    imageSrc?: SanityImageAsset
+    imageSrc?: SanityImageSource
     imageSrcAltText: string
     contentTitle: string
     contentText: string
@@ -181,7 +181,7 @@ export type ThwServiceItemNoRefType = {
     learnMoreLink: string
     learnMoreText: string
     educationPageTitle: string
-    educationPageSlimHeroImage: SanityImageAsset
+    educationPageSlimHeroImage: SanityImageSource
     extendedDescriptions: string[]
     benefitsOfServiceTitle: string
     benefitsOfServiceContents: string[]
@@ -192,9 +192,9 @@ export type ThwServiceItemNoRefType = {
 
 export type AnimatedServiceItemNoRefType = {
     name?: string
-    imageSrc?: SanityImageAsset
-    iconImageSrc?: SanityImageAsset
-    backgroundImageSrc?: SanityImageAsset
+    imageSrc?: SanityImageSource
+    iconImageSrc?: SanityImageSource
+    backgroundImageSrc?: SanityImageSource
     imageSrcAltText?: string
     contentTitle?: string
     contentText?: string
@@ -203,7 +203,7 @@ export type AnimatedServiceItemNoRefType = {
     learnMoreLink?: string
     learnMoreText?: string
     educationPageTitle?: string
-    educationPageSlimHeroImage?: SanityImageAsset
+    educationPageSlimHeroImage?: SanityImageSource
     extendedDescriptions?: string[]
     benefitsOfServiceTitle?: string
     benefitsOfServiceContents?: string[]
@@ -214,7 +214,7 @@ export type AnimatedServiceItemNoRefType = {
 
 export type AnimatedAboutUsSectionType = {
     name: string
-    heroBullet?: SanityImageAsset
+    heroBullet?: SanityImageSource
     title: string
     contentTitle: string
     contentPreTitle: string
@@ -225,24 +225,24 @@ export type AnimatedAboutUsSectionType = {
     highlightedAmenitiesTitle?: string
     highlightedAmenitiesTexts?: string[]
     highlightedAmenitiesBullets?: string[]
-    servicesImageSrcArr: (SanityImageAsset | undefined)[]
-    servicesMasonryAccentImageSrc?: SanityImageAsset
+    servicesImageSrcArr: (SanityImageSource | undefined)[]
+    servicesMasonryAccentImageSrc?: SanityImageSource
 }
 
 export type AnimatedServicesSectionType = {
     name: string
-    heroBullet?: SanityImageAsset
+    heroBullet?: SanityImageSource
     contentTitle: string
     contentPreTitle: string
-    imagesArray: SanityImageAsset[]
+    imagesArray: SanityImageSource[]
     contentTexts: string[]
     servicesList: AnimatedServiceItemNoRefType[]
     contentSummaryTitle: string
     contentSummaryTexts: string[]
     ctaButtonText: string
     ctaButtonLink: string
-    videoPreviewImageSrc?: SanityImageAsset
-    videoPreviewSectionBackgroundImageSrc?: SanityImageAsset
+    videoPreviewImageSrc?: SanityImageSource
+    videoPreviewSectionBackgroundImageSrc?: SanityImageSource
     videoUrl?: string
     videoPreviewText: string
 }
@@ -259,7 +259,7 @@ export type ThwWhyChooseUsSectionType = {
     name?: string
     sectionTitle?: string
     prosList?: ThwWhyChooseUsItemType[]
-    imageSrc?: SanityImageAsset
+    imageSrc?: SanityImageSource
     imageSrcAltText?: string
     ctaButtonText?: string
     ctaButtonLink?: string
@@ -267,7 +267,7 @@ export type ThwWhyChooseUsSectionType = {
 
 export type ThwWhyChooseUsItemType = {
     name: string
-    imageSrc?: SanityImageAsset
+    imageSrc?: SanityImageSource
     imageSrcAltText: string
     contentTitle: string
     contentText: string
@@ -275,7 +275,7 @@ export type ThwWhyChooseUsItemType = {
 
 export type ThwContactUsSectionType = {
     name: string
-    bgImageSrc?: SanityImageAsset
+    bgImageSrc?: SanityImageSource
     lhsTitle: string
     lhsContentText: string
     phone?: string
@@ -293,9 +293,9 @@ export type ThwContactUsSectionType = {
 export type MfbtHeroContentSectionType = {
     name: string
     title: string
-    heroImage: SanityImageAsset
+    heroImage: SanityImageSource
     heroImageAltText: string
-    heroImageBackground?: SanityImageAsset
+    heroImageBackground?: SanityImageSource
     contentWelcomeMessage: string
     contentTitle: string
     contentText: string
@@ -305,19 +305,19 @@ export type MfbtHeroContentSectionType = {
 
 export type MfbtAboutProprietorSectionType = {
     name: string
-    proprietorImage: SanityImageAsset
+    proprietorImage: SanityImageSource
     proprietorName: string
     proprietorTitle: string
     // proprietorServices: ProprietorAtAGlanceType
     contentTitle: string
     favDrinkTitle: string
     favDrinkSectionTitle: string
-    favDrinkImage: SanityImageAsset
-    favDrinkImage2: SanityImageAsset
+    favDrinkImage: SanityImageSource
+    favDrinkImage2: SanityImageSource
     favDrinkDescription: string
     contentText: string[]
     proprietorImageAltText: string
-    // proprietorSignatureImage: SanityImageAsset
+    // proprietorSignatureImage: SanityImageSource
     // proprietorSignatureImageAltText: string
     ctaButtonText: string
     ctaButtonLink: string
@@ -326,13 +326,13 @@ export type MfbtAboutProprietorSectionType = {
 export type MfbtPaymentMethodSectionType = {
     name: string
     title: string
-    mainPaymentImage: SanityImageAsset,
+    mainPaymentImage: SanityImageSource,
     mainPaymentName: string,
-    paymentImage1: SanityImageAsset,
+    paymentImage1: SanityImageSource,
     paymentName1: string,
-    paymentImage2: SanityImageAsset,
+    paymentImage2: SanityImageSource,
     paymentName2: string,
-    paymentImage3: SanityImageAsset,
+    paymentImage3: SanityImageSource,
     paymentName3: string,
 }
 
@@ -347,13 +347,13 @@ export type ResumeBioSectionType = {
     resumeFile?: FileAsset
     cvFileDownloadText?: string,
     cvFile?: FileAsset
-    mainImage?: SanityImageAsset
+    mainImage?: SanityImageSource
 }
 
 export type BartenderHeroSectionType = {
     name?: string
     title?: string
-    imageSrc?: SanityImageAsset
+    imageSrc?: SanityImageSource
     bartender?: SanityBusinessContact
     careerTitle?: string
     textContent?: string
@@ -371,7 +371,7 @@ export type ResumeSkillType = {
     description?:string
     versions?: string[]
     proficiency?: number
-    iconPngSrc?: SanityImageAsset
+    iconPngSrc?: SanityImageSource
 }
 export type ResumeSkillSet = {
     _type?: "ResumeSkillset"
@@ -453,7 +453,7 @@ export type ResumeFeedback = {
     companyName?: string
     qualification?: string
     quote?: string
-    imageSrc?: SanityImageAsset
+    imageSrc?: SanityImageSource
     _type?: "ResumeFeedback"
 }
 
@@ -470,7 +470,7 @@ export type ResumePortfolioItemType = {
     _id?: string
     name?: string
     title?: string
-    coverImage?: SanityImageAsset
+    coverImage?: SanityImageSource
     inceptionDate?: Date | string
     slug?: SanitySlug
     skillsHighlighted?: ResumeSkillType[]
@@ -478,14 +478,14 @@ export type ResumePortfolioItemType = {
     detailDescription?: string
     linkToProd?: string
     linkToDev?: string
-    imageGallery?: SanityImageAsset[]
+    imageGallery?: SanityImageSource[]
 }
 export type AnimatedPortfolioItemType = {
     _type?: "AnimatedPortfolioItem"
     name?: string
     preTitle?: string
     title?: string
-    coverImage?: SanityImageAsset
+    coverImage?: SanityImageSource
     inceptionDate?: Date | string
     slug?: SanitySlug
     skillsHighlighted?: ResumeSkillType[]
@@ -493,7 +493,7 @@ export type AnimatedPortfolioItemType = {
     detailDescription?: string
     linkToProd?: string
     linkToDev?: string
-    imageGallery?: SanityImageAsset[]
+    imageGallery?: SanityImageSource[]
 }
 
 export type ResumePortfolioSectionType = {
@@ -508,7 +508,7 @@ export type AnimatedPortfolioSectionType = {
     name?: string
     _type?: "AnimatedPortfolioSection"
     preTitle?: string
-    heroBullet?: SanityImageAsset
+    heroBullet?: SanityImageSource
     title?: string
     portfolioEntries?: AnimatedPortfolioItemType[]
 }
@@ -526,7 +526,7 @@ export type ResumeContactUsSectionType = {
 export type WebDevHeroContentSectionType = {
     name: string
     title: string
-    heroImageBackground?: SanityImageAsset
+    heroImageBackground?: SanityImageSource
     contentTitle: string
     contentText: string
     ctaButtonTitle: string
@@ -542,7 +542,7 @@ export type StatsCounterSectionType = {
 
 export type WebDevAboutUsSectionType = {
     name: string
-    imageSrc: SanityImageAsset
+    imageSrc: SanityImageSource
     welcomeMessage: string
     contentTitle: string
     contentText: string[]
@@ -553,7 +553,7 @@ export type WebDevAboutUsSectionType = {
 
 export type ServiceItemNoRefType = {
     name?: string
-    imageSrc?: SanityImageAsset
+    imageSrc?: SanityImageSource
     imageSrcAltText?: string
     contentTitle?: string
     contentText?: string
@@ -562,7 +562,7 @@ export type ServiceItemNoRefType = {
     learnMoreLink?: string
     learnMoreText?: string
     educationPageTitle?: string
-    educationPageSlimHeroImage?: SanityImageAsset
+    educationPageSlimHeroImage?: SanityImageSource
     extendedDescriptions?: string[]
     benefitsOfServiceTitle?: string
     benefitsOfServiceContents?: string[]
@@ -590,13 +590,13 @@ export type WebDevTestimonialsType = {
     qualification?: string
     quoteSummary?: string
     quote?: string
-    imageSrc?: SanityImageAsset
+    imageSrc?: SanityImageSource
 }
 
 export type WebDevTestimonialsSectionType = {
     name?: string
     preTitle?: string
-    backgroundImage?: SanityImageAsset
+    backgroundImage?: SanityImageSource
     title?: string
     introduction?: string
     feedbackEntries?: WebDevTestimonialsType[]
@@ -609,7 +609,7 @@ export type HowItWorksStepNoRefType = {
     name?: string
     slug?: SanitySlug
     content?: string
-    imageSrc?: SanityImageAsset
+    imageSrc?: SanityImageSource
     isEnabled?: boolean
     contentText?: string
     contentTexts?: string[]
@@ -657,7 +657,7 @@ export type HeaderSectionType = {
     backgroundColor?: string
     ctaButtonText?: string
     ctaButtonLink?: string
-    logoImgSrc?: SanityImageAsset
+    logoImgSrc?: SanityImageSource
     highlightedDetails?: ServiceAmenityType[]
     headerMenuRef?: SanityMenuContainer
 }
@@ -668,7 +668,7 @@ export type DevelopmentFooterSectionType = {
 export type FooterSectionType = {
     _type: string
     name: string
-    backgroundImgSrc?: SanityImageAsset
+    backgroundImgSrc?: SanityImageSource
     backgroundColor?: string
     isSocialMediaBlock: boolean
     topPadding?: string
@@ -693,7 +693,7 @@ export type HeadlineCTASectionType = {
     insetBottom: string
     insetLeft: string
     insetRight: string
-    backgroundImgSrc: SanityImageAsset
+    backgroundImgSrc: SanityImageSource
 }
 
 export type MapSectionType = {
@@ -722,7 +722,7 @@ export type DrinkerySpecialsSectionType = {
     disclaimer: string
     subTitle: string
     theSpecials: DrinkerySpecialType[]
-    imageSrc?: SanityImageAsset
+    imageSrc?: SanityImageSource
     imageSrcAltText: string
 }
 
@@ -743,12 +743,12 @@ export type DrinkeryOtherSideSectionType = {
     description: string
     isLogo?: boolean
     theLiquors?: string[]
-    imageSrc?: SanityImageAsset
+    imageSrc?: SanityImageSource
     // contentTexts: string[],
     // teamList: TeamMember[],
 }
 export type MasonryPhotoItem = {
-    imageSrc?: SanityImageAsset
+    imageSrc?: SanityImageSource
     cols?: string
     title: string
     subtitle: string
@@ -767,7 +767,7 @@ export type DrinkeryAlbumSectionType = {
 }
 
 export type TeamMember =  {
-    image?: SanityImageAsset
+    image?: SanityImageSource
     title: string
     firstName: string
     lastName?: string
@@ -782,7 +782,7 @@ export type DrinkerySpecialType = {
     name: string
     title: string
     content: string
-    imageSrc?: SanityImageAsset
+    imageSrc?: SanityImageSource
 }
 
 export type HolidayHeadlineSectionType = {
@@ -791,11 +791,14 @@ export type HolidayHeadlineSectionType = {
     contentText: string
     contentSubtext: string
     holidayDate: Date | string
-    holidayIconLeft?: SanityImageAsset
-    holidayIconRight?: SanityImageAsset
+    holidayIconLeft?: SanityImageSource
+    holidayIconRight?: SanityImageSource
 }
 
 export type ListSectionType = {
+    "_type": "SimpleStringListSection",
+    "_id": string,
+    "name": string,
     title: string
     backgroundColor: string
     textListItems: string[]

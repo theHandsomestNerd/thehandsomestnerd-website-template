@@ -21,7 +21,7 @@ const HeadlineCTASection: FunctionComponent<IProps> = (props: IProps) => {
 
     return (<Grid container item sx={{
         backgroundColor: theme.palette.secondary.main,
-        backgroundImage: `url(${sanityContext.urlFor(props.sectionData.backgroundImgSrc).url()})`,
+        backgroundImage: `url(${sanityContext.placeholderOrImage && sanityContext.placeholderOrImage(props.sectionData.backgroundImgSrc)})`,
         backgroundSize: "40%, 40%",
         // backgroundRepeat: "no-repeat",
         // borderRadius: mdDown?0:1,

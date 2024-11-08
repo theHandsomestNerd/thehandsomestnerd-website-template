@@ -16,7 +16,6 @@ const SingleBallSmallView: FunctionComponent<SingleBallSmallViewProps> = (props:
 const navigate = useNavigate()
   return (
     <Grid container direction="column" item style={{ backgroundColor:'whitesmoke', border:"1px solid #111111" }} spacing={2}>
-      {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/interactive-supports-focus */}
       <Link role='button' underline={"none"} onClick={() => navigate(`${RoutesEnum.BALL}/${props.ball.slug?.current ?? "no-slug"}`)}><Grid
         container
         alignItems="stretch"

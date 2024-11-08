@@ -1,16 +1,11 @@
 import {FunctionComponent} from 'react'
 import {Grid, Typography, useTheme} from "@mui/material";
-import makeStyles from "@mui/styles/makeStyles";
-import {SanityImageAsset} from "../BlockContentTypes";
 import ColoredPng from "../colored-png/ColoredPng";
-
-export const useStyles = makeStyles(() => ({
-    root: {},
-}))
+import { SanityImageSource } from '@sanity/image-url/lib/types/types';
 
 interface IProps {
     textContent?: string
-    heroBullet?: SanityImageAsset
+    heroBullet?: SanityImageSource
     color?: string
     isCenter?: boolean
 }

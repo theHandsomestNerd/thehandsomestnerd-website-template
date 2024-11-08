@@ -1,11 +1,11 @@
 import{FunctionComponent, useContext} from 'react'
 import {Grid, useTheme} from "@mui/material";
 import AnimatedAbstractShape from "./AnimatedAbstractShape";
-import {SanityImageAsset} from '../../BlockContentTypes';
 import SanityContext from '../../../common/sanityIo/sanity-context/SanityContext';
+import { SanityImageSource } from '@sanity/image-url/lib/types/types';
 
 interface IProps {
-    imagesArray: SanityImageAsset[]
+    imagesArray: SanityImageSource[]
 }
 
 const AbstractShapesBackground: FunctionComponent<IProps> = (props:IProps) => {

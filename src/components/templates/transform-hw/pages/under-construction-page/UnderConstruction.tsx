@@ -20,7 +20,7 @@ interface IProps {
 const UnderConstruction: FunctionComponent<IProps> = (props) => {
     const sanityContext = useContext(SanityContext)
     const [cmsPageData, setCmsPageData] = useState<SanityUnderConstructionPageType>()
-    const classes = useCustomStyles({bgImage: sanityContext.urlFor(cmsPageData?.bgImage ?? "").url()})
+    const classes = useCustomStyles({bgImage: sanityContext.placeholderOrImage && sanityContext.placeholderOrImage(cmsPageData?.bgImage)})
     const customizedThemeContext = useContext(CustomizedThemeContext);
     const smDown = useMediaQuery(customizedThemeContext.customizedTheme.breakpoints.down('lg'))
     const xsDown = useMediaQuery(customizedThemeContext.customizedTheme.breakpoints.down('md'))

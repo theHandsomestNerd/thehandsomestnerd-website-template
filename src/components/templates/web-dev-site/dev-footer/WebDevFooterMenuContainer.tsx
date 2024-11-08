@@ -42,7 +42,7 @@ const WebDevFooterMenuContainer: FunctionComponent<IProps> = (props: IProps) => 
                     <Grid item container style={{paddingTop: smDown ? "4px" : "4px"}}>
                         <Grid item xs={12}><FullWidthColoredPng color='white' height={108}
                                                                 isCenter={smDown}
-                                                                maskUrl={sanityContext.urlFor(props.pageFooterMenu.logoImageSrc).url() ?? ""}/></Grid>
+                                                                maskUrl={(sanityContext.placeholderOrImage && sanityContext.placeholderOrImage(props.pageFooterMenu.logoImageSrc)) ?? ""}/></Grid>
                     </Grid> :
                     <Grid container item>
                         <Typography component='div' variant='h2'

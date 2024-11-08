@@ -14,10 +14,13 @@ import {SanityTransformHwHomePage} from "../src/common/sanityIo/Types";
 const preview: Preview = {
     decorators: [
         (Story, {parameters}) => {
-            const homepageData:SanityTransformHwHomePage = HomePageData.getHomePageResumeData(parameters.pageTheme)
+            const homepageData: SanityTransformHwHomePage = HomePageData.getHomePageResumeData(parameters.pageTheme)
             return (
                 < FirebaseProvider>
-                    < SanityProvider>
+                    < SanityProvider
+                        fetchSkillExperiences={parameters.fetchSkillExperiences}
+                        fetchPortfolioItems={parameters.fetchPortfolioItems}
+                    >
                         < BrowserRouter>
                             < AppSettingsProvider>
                                 <PageProvider page={homepageData}>

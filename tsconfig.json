@@ -6,8 +6,8 @@
     "importHelpers": true,
     "declaration": true,
     "sourceMap": true,
-    "rootDir": "./src",
-    "outDir": "./build/esm",
+//    "rootDir": "./src",
+    "outDir": "./dist/esm",
     "strict": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
@@ -21,12 +21,13 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "downlevelIteration": true,
-    "types": ["node"],
-    "typeRoots": ["node_modules/@types"]  // <-- here
+    "types": ["node", "jest", "@testing-library/jest-dom"],
+//    "typeRoots": ["node_modules/@types"]  // <-- here
   },
   "include": [
     "src",
-//    "dist"
+    "setupTests.ts"
+    //    "dist"
 //    "src/**/*.ts",
 //    "src/**/*.tsx",
 //    "src/**/*.js",

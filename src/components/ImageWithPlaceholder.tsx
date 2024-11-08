@@ -1,10 +1,10 @@
-import {FunctionComponent, useContext, useEffect, useState} from 'react'
+import {FunctionComponent, useContext} from 'react'
 import {Grid} from '@mui/material'
-import {SanityImageAsset} from "./BlockContentTypes";
 import SanityContext from "../common/sanityIo/sanity-context/SanityContext";
+import {SanityImageSource} from '@sanity/image-url/lib/types/types';
 
 interface IProps {
-    image?: SanityImageAsset
+    image?: SanityImageSource
     imageAltText?: string
     text?: string
     height?: number
@@ -12,46 +12,12 @@ interface IProps {
 }
 
 const ImageWithPlaceholder: FunctionComponent<IProps> = (props: IProps) => {
-    const [imageUrl, setImageUrl] = useState<string>()
-    const [placeHolderUrl, setPlaceHolderUrl] = useState<string>()
     const sanityContext = useContext(SanityContext)
-
-    useEffect(() => {
-        if (props.image) {
-            const theUrl = sanityContext.urlFor(props.image)
-
-            if (props.width) {
-                theUrl.width(props.width)
-            }
-            if (props.height) {
-                theUrl.width(props.height)
-            }
-            setImageUrl(theUrl.url() ?? "")
-        } else {
-            let theUrl = `https://placehold.co/`
-            if (props.width) {
-                if (props.height) {
-                    theUrl += `${props.width}x${props.height}`
-                } else {
-                    theUrl += `${props.width}x${props.width}`
-                }
-            } else {
-                theUrl += `${props.height}x${props.height}`
-            }
-
-            if(props.text){
-                theUrl += `?text=${props.text}`
-            }
-
-            setPlaceHolderUrl(theUrl)
-        }
-    }, [])
 
 
     return (<Grid container item>
-        {props.image ? <img alt={props.imageAltText}
-                            src={imageUrl}/> :
-            <img src={placeHolderUrl} alt={'placeholder'}/>}
+        <img alt={props.imageAltText}
+             src={sanityContext.placeholderOrImage && sanityContext.placeholderOrImage(props.image, props.width, props.height)}/>
     </Grid>)
 }
 

@@ -24,7 +24,7 @@ const ThwHeroContentSection: FunctionComponent<IProps> = (props) => {
 
 
     let classParameters: CSSProps = {
-        heroBaseImageUrl: sanityContext.urlFor(props.sectionData.heroImage).url() ?? '',
+        heroBaseImageUrl: (sanityContext.placeholderOrImage && sanityContext.placeholderOrImage(props.sectionData.heroImage)) ?? "",
     }
     const useStyles = makeStyles((theme: Theme) => ({
         marketingBackground: (props: CSSProps) => ({
@@ -49,7 +49,7 @@ const ThwHeroContentSection: FunctionComponent<IProps> = (props) => {
     if (props.sectionData.heroImageBackground) {
         classParameters = {
             ...classParameters,
-            heroOverlay: sanityContext.urlFor(props.sectionData.heroImageBackground).url()
+            heroOverlay: sanityContext.placeholderOrImage && sanityContext.placeholderOrImage(props.sectionData.heroImageBackground)
         }
     }
 

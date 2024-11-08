@@ -95,7 +95,7 @@ const WebDevPortfolioSection: FunctionComponent<IProps> = (props: IProps) => {
                                       direction={index2 % 2 === 0 ? "row" : "row-reverse"}
                                 >
                                     <Grid container item md={6} style={{
-                                        backgroundImage: `url('${sanityContext.urlFor(portfolioItem.coverImage ?? "").url()}')`,
+                                        backgroundImage: `url('${sanityContext.placeholderOrImage && sanityContext.placeholderOrImage(portfolioItem.coverImage)}')`,
                                         backgroundSize: "cover",
                                         backgroundRepeat: "no-repeat",
                                         minHeight: "400px"
@@ -223,7 +223,7 @@ const WebDevPortfolioSection: FunctionComponent<IProps> = (props: IProps) => {
                                 {currentItem?.imageGallery?.map((image) => (
                                     <Grid item container xs={11} justifyContent='center'>
                                         <Grid item>
-                                            <img src={sanityContext.urlFor(image ?? "").url() ?? ""} width={"100%"}/>
+                                            <img src={sanityContext.placeholderOrImage && sanityContext.placeholderOrImage(image)} width={"100%"}/>
                                         </Grid>
                                     </Grid>))}
                             </Grid>

@@ -36,3 +36,4 @@ yarn.*
 build
 storybook-static
 .parcel-cache
+*storybook.log

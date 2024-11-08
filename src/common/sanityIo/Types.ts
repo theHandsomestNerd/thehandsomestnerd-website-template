@@ -1,5 +1,5 @@
-import {SanityImageSource} from "@sanity/asset-utils";
-import {SanityImageAsset, ThwServiceItemNoRefType} from "../../components/BlockContentTypes";
+import {SanityImageAsset, SanityImageSource} from "@sanity/asset-utils";
+import { ThwServiceItemNoRefType} from "../../components/BlockContentTypes";
 import {Slug} from "@sanity/types";
 
 export type SanitySlug = Slug

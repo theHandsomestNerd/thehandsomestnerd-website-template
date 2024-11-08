@@ -2,7 +2,6 @@ import {FunctionComponent, useContext, useEffect, useState} from 'react'
 import makeStyles from '@mui/styles/makeStyles';
 import {Button, Grid, Tooltip, Typography} from '@mui/material'
 import CssFadeToColor from "../css-fade-to-color/CssFadeToColor";
-import {SanityImageSource} from "@sanity/asset-utils";
 import {CssFadeToColorDirectionEnum} from "../css-fade-to-color/CssFadeToColorDirectionEnum";
 import {ImageWithButtonOverlayAligmentEnum} from "./ImageWithButtonOverlayAligmentEnum";
 import PageContext from "../page-context/PageContext";
@@ -10,6 +9,7 @@ import {OverridableStringUnion} from "@mui/types";
 import {ButtonPropsColorOverrides} from "@mui/material/Button/Button";
 import FirebaseContext from "../../common/firebase/firebase-context/FirebaseContext";
 import SanityContext from "../../common/sanityIo/sanity-context/SanityContext";
+import { SanityImageSource } from '@sanity/image-url/lib/types/types';
 
 export const useStyles = makeStyles(() => ({
     contentBullets: {
@@ -63,7 +63,7 @@ const ImageWIthButtonOverlay: FunctionComponent<IProps> = (props) => {
             setDisplayImageUrl(props.imageUrl)
         }
         if (props.imageSrc) {
-            setDisplayImageUrl(sanityContext.urlFor(props.imageSrc ?? "").height(props.height).url() ?? '')
+            setDisplayImageUrl((sanityContext.placeholderOrImage && sanityContext.placeholderOrImage(props.imageSrc)) ?? '')
         } else {
             setDisplayImageUrl(`https://placehold.co/${props.placeholderWidth ?? props.height}x${props.height}`)
         }

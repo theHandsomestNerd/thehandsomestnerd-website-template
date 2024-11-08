@@ -23,7 +23,7 @@ const MetaTagsComponent: FunctionComponent<IProps> = (props) => {
         '@context': 'http://schema.org/',
         '@type': props.structuredData.type ? props.structuredData.type : 'Product',
         "name": `${props.structuredData.name}`,
-        "image": props.structuredData.image?.map((image:SanityImageSource) => sanityContext.urlFor(image).url()),
+        "image": props.structuredData.image?.map((image:SanityImageSource) => sanityContext.placeholderOrImage && sanityContext.placeholderOrImage(image)),
         "description": props.structuredData.description,
         "url": props.structuredData.url,
         "offers": {

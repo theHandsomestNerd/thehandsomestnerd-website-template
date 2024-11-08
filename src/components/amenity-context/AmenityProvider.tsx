@@ -109,7 +109,7 @@ const AmenityProvider: FunctionComponent<IProps & PropsWithChildren> = (
                                   minWidth: "32px",
                                   backgroundSize: 'contain',
                                   backgroundPosition: 'center',
-                                  backgroundImage: `url(${serviceAmenity.imageSrc?sanityContext.urlFor(serviceAmenity.imageSrc).width(32).height(32).url():"https://placehold.co/32x32"})`,
+                                  backgroundImage: `url(${sanityContext.placeholderOrImage && sanityContext.placeholderOrImage(serviceAmenity.imageSrc, 32,32)})`,
                                   backgroundRepeat: "no-repeat",
 
                               }}

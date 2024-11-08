@@ -96,7 +96,7 @@ const BartenderExperienceItem: FunctionComponent<IProps> = (props: IProps) => {
                             setIsToolTipOpen(index)
                         }}
                         >
-                            <ResumeSkillTooltipWrapper resumeSkill={skill} isTipOpen={index === isTooltipOpen}>
+                            <ResumeSkillTooltipWrapper resumeSkill={skill} isOpenTooltip={index === isTooltipOpen}>
                                 <Chip role='experienceskill' size='small'
                                       color='primary'
                                       label={skill.title}/>

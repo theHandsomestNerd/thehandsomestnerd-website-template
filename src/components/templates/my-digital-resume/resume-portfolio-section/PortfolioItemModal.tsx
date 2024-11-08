@@ -17,11 +17,12 @@ import {
     useTheme
 } from "@mui/material";
 import {Close} from "@mui/icons-material";
-import {ResumePortfolioItemType, SanityImageAsset} from "../../../BlockContentTypes";
+import {ResumePortfolioItemType} from "../../../BlockContentTypes";
 import SanityContext from "../../../../common/sanityIo/sanity-context/SanityContext";
 import dateUtils from "../../../../utils/dateUtils";
 import ResumeSkillTooltipWrapper from "../resume-skills-section/ResumeSkillTooltipWrapper";
 import textProcessingUtils from "../../../../utils/textProcessingUtils";
+import { SanityImageSource } from '@sanity/image-url/lib/types/types';
 
 const useStyles = makeStyles(() => ({
     hover: {
@@ -68,7 +69,7 @@ const PortfolioItemModal: FunctionComponent<IProps> = (props: IProps) => {
 
     const [isTooltipOpen, setIsToolTipOpen] = useState<number>()
 
-    const [selectedItem, setSelectedItem] = useState<SanityImageAsset>()
+    const [selectedItem, setSelectedItem] = useState<SanityImageSource>()
 
     const [imageColumn, setImageColumn] = useState<number>()
     useEffect(() => {
@@ -121,7 +122,7 @@ const PortfolioItemModal: FunctionComponent<IProps> = (props: IProps) => {
                                 <Grid item key={index} onClick={() => {
                                     setIsToolTipOpen(index)
                                 }}>
-                                    <ResumeSkillTooltipWrapper resumeSkill={skill} isTipOpen={index === isTooltipOpen}>
+                                    <ResumeSkillTooltipWrapper resumeSkill={skill} isOpenTooltip={index === isTooltipOpen}>
                                         <Chip
                                             color='primary' label={skill.title}/>
                                     </ResumeSkillTooltipWrapper>

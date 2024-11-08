@@ -33,7 +33,7 @@ const homePageResumeData:SanityTransformHwHomePage = {
     "_type": "homePage",
     // "releaseDate": undefined,
     "description": "My name is James Terrell Singleton and I am a Web developer. This is my professional resume and portfolio. React.js software Developer. Javascript seems to dominate the projects I end up working on. Node.js and Typescript win for backend. Efficient at developing one page applications & websites. Prototypes for mobile apps and digital Resumes. \n\nhello@thehandsomestnerd.com\nhttps://terrellsingleton.com",
-    "title": "James Terrell Singleton - Software Engineer & Web Developer",
+    "title": "Test Data for Storybook",
     "footerContent": {
         "content": [
             {
@@ -2339,7 +2339,7 @@ const homePageResumeData:SanityTransformHwHomePage = {
         "current": "home",
         "_type": "slug"
     },
-    "website": "https://terrellsingleton.com"
+    "website": "https://terrellsingleton.com",
 }
 
 const getHomePageResumeData = (theme?: SanityMuiTheme) => {

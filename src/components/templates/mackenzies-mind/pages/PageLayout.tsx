@@ -22,8 +22,7 @@ const PageLayout: FunctionComponent<IProps> = (props: IProps) => {
     const firebaseContext = useContext(FirebaseContext)
     const sanityContext = useContext(SanityContext)
 
-
-    const classes = useCustomStyles({bgImage: sanityContext.urlFor(props.homePage.backgroundImageSrc ?? "")})
+    const classes = useCustomStyles({bgImage: sanityContext.placeholderOrImage && sanityContext.placeholderOrImage(props.homePage.backgroundImageSrc)})
 
     const xsDown = useMediaQuery(theme.breakpoints.down('xs'))
     useEffect(() => {
@@ -52,7 +51,7 @@ const PageLayout: FunctionComponent<IProps> = (props: IProps) => {
             <Grid item container style={{
                 position: "relative",
                 backgroundSize: "cover",
-                backgroundImage: `url(${sanityContext.urlFor(props.homePage.backgroundImageSrc ?? "")})`
+                backgroundImage: `url(${sanityContext.placeholderOrImage && sanityContext.placeholderOrImage(props.homePage.backgroundImageSrc)})`
             }}
             >
 

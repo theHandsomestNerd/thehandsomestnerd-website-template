@@ -56,7 +56,7 @@ const ThwServiceEducationPage: FunctionComponent<IProps> = (props) => {
                     top: 0,
                     backgroundRepeat: "no-repeat",
                     backgroundPosition: "center",
-                    backgroundImage: `url(${sanityContext.urlFor(props.serviceData.imageSrc).url()})`
+                    backgroundImage: `url(${sanityContext.placeholderOrImage && sanityContext.placeholderOrImage(props.serviceData.imageSrc)})`
                 }}>
                     <Grid container item style={{
                         top: 0,

@@ -1,13 +1,13 @@
 import {FunctionComponent, useContext, useEffect, useState} from 'react'
 import {Grid} from '@mui/material'
-import {SanityImageAsset} from "../BlockContentTypes";
 import SanityContext from "../../common/sanityIo/sanity-context/SanityContext";
+import { SanityImageSource } from '@sanity/image-url/lib/types/types';
 
 export interface ColoredPngProps {
     maskUrl?: string,
     color: any,
     size?: number,
-    maskAsset?: SanityImageAsset
+    maskAsset?: SanityImageSource
 }
 
 const ColoredPng: FunctionComponent<ColoredPngProps> = (props: ColoredPngProps) => {
@@ -24,7 +24,7 @@ const ColoredPng: FunctionComponent<ColoredPngProps> = (props: ColoredPngProps) 
             setImageUrl(props.maskUrl)
         }
         if (props.maskAsset) {
-            setImageUrl(sanityContext.placeholderOrImage && sanityContext.placeholderOrImage(props.maskAsset, props.size, props.size))
+            setImageUrl(sanityContext.placeholderOrImage && sanityContext.placeholderOrImage(props.maskAsset, props.size))
         }
     }, [])
 

@@ -1,10 +1,13 @@
 import {render, screen} from '@testing-library/react';
-import expect from "expect";
-import {ResumePortfolioSectionStory} from "../../../../stories/digital-resume/ResumePortfolio.stories";
-
+import {composeStories} from '@storybook/react';
+// import {ResumePortfolioSectionStory} from "../../../../stories/digital-resume/ResumePortfolio.stories";
+import * as stories from "../../../../stories/digital-resume/ResumePortfolio.stories";
+const {
+    ResumePortfolioSectionStory
+} = composeStories(stories);
 describe('Resume Portfolio Section', () => {
     test('renders all components of portfolio section', async () => {
-        render(<ResumePortfolioSectionStory.render {...ResumePortfolioSectionStory.args}/>)
+        render(<ResumePortfolioSectionStory />)
 
         expect((await screen.findByText('Portfolio'))).toBeInTheDocument()
         expect((await screen.findByText('.'))).toBeInTheDocument()

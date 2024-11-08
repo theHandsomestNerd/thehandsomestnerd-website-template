@@ -99,7 +99,7 @@ const AnimatedAboutUsItem: FunctionComponent<IProps> = (props: IProps) => {
                     backgroundSize: "contain",
                     backgroundRepeat: "no-repeat",
                     backgroundPosition: "right",
-                    backgroundImage: `url(${sanityContext.urlFor(props.service.backgroundImageSrc ?? "").url() ?? ""})`,
+                    backgroundImage: `url(${sanityContext.placeholderOrImage && sanityContext.placeholderOrImage(props.service.backgroundImageSrc)})`,
                 }} justifyContent='center'>
                     <Grid item>
                         <motion.div animate={textColorControls} initial={{color: 'initial'}}>

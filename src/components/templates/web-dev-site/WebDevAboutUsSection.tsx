@@ -43,7 +43,7 @@ const WebDevAboutUsSection: FunctionComponent<IProps> = (props) => {
                     minHeight: 500,
                     position: "relative",
                     backgroundColor: "white",
-                    backgroundImage: `url(${sanityContext.urlFor(props.sectionData.imageSrc).url()})`,
+                    backgroundImage: `url(${sanityContext.placeholderOrImage && sanityContext.placeholderOrImage(props.sectionData.imageSrc)})`,
                     backgroundRepeat: 'no-repeat',
                     backgroundPosition: "center",
                     backgroundSize: "cover"

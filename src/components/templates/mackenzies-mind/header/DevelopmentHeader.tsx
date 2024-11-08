@@ -65,7 +65,7 @@ const DevelopmentHeader: FunctionComponent<DevelopmentHeaderProps> = (props) => 
                     <Grid item container justifyContent="space-between" alignItems='stretch' alignContent='center'
                           spacing={mdDown ? 3 : 0}>
                         <Grid item container xs={5} md={3} alignItems='center' alignContent='center'>
-                            <FullWidthColoredPng maskUrl={sanityContext.urlFor(pageContext.page?.metaImage ?? "").url() ?? ""}
+                            <FullWidthColoredPng maskUrl={(sanityContext.placeholderOrImage && sanityContext.placeholderOrImage(pageContext.page?.metaImage)) ?? ""}
                                                  color={'white'} height={80}/>
                             {/*<ColoredPng maskUrl={urlFor(pageContext.page?.metaImage??"").url()??""} color={'white'}/>*/}
                         </Grid>

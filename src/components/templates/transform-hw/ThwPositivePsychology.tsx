@@ -82,7 +82,7 @@ const PositivePsychologySection: FunctionComponent<IProps> = (props) => {
                         {!props.sectionData.imageSrc ?
                             <img src={`https://placehold.co/465x${mdUp ? 370 : 900}`} alt={'placeholder'}/> :
                             <img alt={props.sectionData.imageSrcAltText}
-                                 src={sanityContext.urlFor(props.sectionData.imageSrc ?? "").width(mdUp ? 370 : 900).height(465).url() ?? ''}/>
+                                 src={(sanityContext.placeholderOrImage && sanityContext.placeholderOrImage(props.sectionData.imageSrc,mdUp ? 370 : 900, 465)) ?? ""}/>
                         }
                     </Grid>
                 </Grid>

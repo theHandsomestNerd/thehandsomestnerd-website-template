@@ -131,8 +131,8 @@ const MapSection: FunctionComponent<IProps> = (props: IProps) => {
                                             <Grid item style={{paddingTop: "6px"}}>
                                                 {
                                                     detail.imageSrc ?
-                                                        <img width={24} src={sanityContext.urlFor(detail.imageSrc ?? "").url() ?? ""}
-                                                        /> : getIcon(detail.muiIcon)
+                                                        <img width={24} src={sanityContext.placeholderOrImage && sanityContext.placeholderOrImage(detail.imageSrc)}
+                                                         alt="map"/> : getIcon(detail.muiIcon)
                                                 }
                                             </Grid>
                                         </Grid>

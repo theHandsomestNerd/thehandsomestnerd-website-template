@@ -1,78 +1,59 @@
-import {FunctionComponent, PropsWithChildren, ReactElement, useContext, useEffect, useState} from 'react'
+import {FunctionComponent, PropsWithChildren, useContext, useEffect, useState} from 'react'
 import {Box, CircularProgress, Grid, IconButton, Tooltip, Typography, useTheme} from "@mui/material";
-import {ResumeSkillType} from "../../../BlockContentTypes";
-import ColoredPng from "../../../colored-png/ColoredPng";
-import SanityContext from "../../../../common/sanityIo/sanity-context/SanityContext";
 import {motion} from 'framer-motion'
 import {Close} from "@mui/icons-material";
 import LinkedExperiences from "./LinkedExperiences";
 import LinkedPortfolioEntries from "./LinkedPortfolioEntries";
+import ColoredPng from '../../../colored-png/ColoredPng';
+import { ResumeSkillType } from '../../../BlockContentTypes';
+import SanityContext from '../../../../common/sanityIo/sanity-context/SanityContext';
 
-interface IProps {
+interface TooltipProps {
     resumeSkill: ResumeSkillType
-    isTipOpen?: boolean
+    isOpenTooltip?: boolean
 }
 
-const ResumeSkillTooltipWrapper: FunctionComponent<PropsWithChildren<IProps>> = (props: PropsWithChildren<IProps>) => {
-    const customizedThemeContext = useTheme()
-    const sanityContext = useContext(SanityContext)
+const ResumeSkillTooltipWrapper: FunctionComponent<PropsWithChildren<TooltipProps>>
+    = ({resumeSkill,isOpenTooltip,children}: PropsWithChildren<TooltipProps>) => {
+    const theme = useTheme()
+    const sanityContext: any = useContext(SanityContext)
 
-    const [isTipOpen, setIsTipOpen] = useState<boolean>(false)
-    const closeTip = () => {
-        setIsTipOpen(false)
-    }
-    const openTip = () => {
-        setIsTipOpen(true)
-    }
+    const [isToolTipOpen, setIsToolTipOpen] = useState<boolean>(false)
+    const handleCloseTip = () => setIsToolTipOpen(false);
+    const handleOpenTip = () => setIsToolTipOpen(true)
 
     useEffect(() => {
-        if(isTipOpen !== props.isTipOpen){
-            setIsTipOpen(!!props.isTipOpen)
-        }
+        setIsToolTipOpen(!!isOpenTooltip)
+    }, [isOpenTooltip])
 
-        }, [props.isTipOpen])
-
-
-    // const smDown = useMediaQuery(customizedThemeContext.breakpoints.down('sm'))
-    return <Grid container item
-                 >
-        {props.resumeSkill.description ?
-            <motion.div
-                whileHover={{
-                    color: customizedThemeContext.palette.primary.main
-                }}
-                transition={{
-                    type: "spring",
-                    stiffness: 260,
-                    damping: 20
-                }}
-            ><Tooltip
-                open={isTipOpen}
-                onClose={closeTip}
-                onOpen={openTip}
+    return <Grid container item role="skillTooltip"
+    >
+        <div>
+            <Tooltip
+                open={isToolTipOpen}
+                onClose={handleCloseTip}
+                onOpen={handleOpenTip}
                 componentsProps={{
                     tooltip:
                         {
                             style:
                                 {
-                                    color: customizedThemeContext.palette.text.secondary,
-                                    backgroundColor: customizedThemeContext.palette.primary.main
+                                    color: theme.palette.text.secondary,
+                                    backgroundColor: theme.palette.primary.main
                                 }
                         }
                 }}
-                // disableHoverListener={smDown}
                 title={
                     <motion.div
                         style={{
-                            backgroundColor: customizedThemeContext.palette.primary.main,
+                            backgroundColor: theme.palette.primary.main,
+                            color: theme.palette.getContrastText(theme.palette.primary.main),
                             padding: "16px",
                             borderRadius: "2px",
                             overflow: "hidden"
                         }}
                         whileHover={{
                             scale: 1.5,
-                            padding: "16px",
-                            color: customizedThemeContext.palette.primary.main
                         }}
                         transition={{
                             type: "spring",
@@ -81,25 +62,21 @@ const ResumeSkillTooltipWrapper: FunctionComponent<PropsWithChildren<IProps>> = 
                         }}
                     >
                         <Grid container item
-                              paddingTop={"2px"}
-                              paddingBottom={"4px"}
                               position='relative'
                               spacing={1}
                         >
                             <Grid container item
-                                  color='white'
                                   position='absolute'
                                   top={-20}
                                   right={-22}
-                                  width='100%'
-                                  paddingTop={customizedThemeContext.spacing(1.5)}
-                                  paddingRight={customizedThemeContext.spacing(.75)}
+                                  paddingTop={theme.spacing(2)}
+                                  paddingRight={theme.spacing(.75)}
                                   justifyContent='flex-end'
                             >
                                 <Grid item>
                                     <IconButton size='small' color='inherit'
                                                 onClick={() => {
-                                                    closeTip()
+                                                    handleCloseTip()
                                                 }}
                                     >
                                         <Close color='inherit'/>
@@ -107,32 +84,32 @@ const ResumeSkillTooltipWrapper: FunctionComponent<PropsWithChildren<IProps>> = 
                                 </Grid>
                             </Grid>
                             {<Grid item xs={12} container justifyContent='space-between' marginTop={1}>
-                                {props.resumeSkill.iconPngSrc && <Grid item>
+                                {resumeSkill.iconPngSrc && <Grid item>
                                     <ColoredPng size={56} color='white'
                                                 maskUrl={
                                                     sanityContext.placeholderOrImage
-                                                    && sanityContext.placeholderOrImage(props.resumeSkill.iconPngSrc, 56, 56)
+                                                    && sanityContext.placeholderOrImage(resumeSkill.iconPngSrc, 56, 56)
                                                 }
                                     />
                                 </Grid>}
-                                {props.resumeSkill.proficiency &&
-                                    <Grid item justifyContent='center' justifyItems='center' alignItems='center'>
-                                        <Grid item container justifyContent='center'>
-
+                                {resumeSkill.proficiency &&
+                                    <Grid container justifyContent='left' justifyItems='center' alignItems='center'>
+                                        <Grid item container>
                                             <Typography
-                                                variant='subtitle2' color='white'>Proficiency</Typography>
+                                                variant='subtitle2' color='inherit'>Proficiency</Typography>
                                         </Grid>
-                                        <Grid item container justifyContent='center' position='relative'>
-                                            <Box position='absolute' top={"10px"} left={"16px"}>
+                                        <Grid item position='relative'>
+                                            <Grid item position='absolute' top={"10px"} left={"12px"}>
                                                 <Typography
                                                     variant='caption'
-                                                    color='white'>{(props.resumeSkill.proficiency?.valueOf() ?? 0) * 100}%</Typography>
-
-                                            </Box>
+                                                >
+                                                    {resumeSkill.proficiency * 100}%
+                                                </Typography>
+                                            </Grid>
                                             <CircularProgress
-                                                style={{color: "white"}}
+                                                style={{color: "inherit"}}
                                                 variant='determinate'
-                                                value={(props.resumeSkill.proficiency?.valueOf() ?? 0) * 100}/>
+                                                value={resumeSkill.proficiency.valueOf() * 100}/>
                                         </Grid>
                                     </Grid>
                                 }
@@ -141,44 +118,32 @@ const ResumeSkillTooltipWrapper: FunctionComponent<PropsWithChildren<IProps>> = 
                             <Grid item xs={12} container alignItems='center'>
                                 <Grid item>
                                     <Grid item>
-                                        <Grid item>
-                                            <Typography
-                                                variant='body1' color='white'
-                                                fontWeight={600}>{props.resumeSkill.title}</Typography>
-                                        </Grid>
+                                        <Typography
+                                            variant='body1'
+                                            fontWeight={600}>{resumeSkill.title}</Typography>
                                         <Grid item container>
-                                            <LinkedExperiences resumeSkill={props.resumeSkill}/>
+                                            <LinkedExperiences resumeSkill={resumeSkill}/>
                                         </Grid>
-                                        <Grid item>
-                                            <Typography
-                                                variant='subtitle1'
-                                                color='whitesmoke'>{props.resumeSkill.description}</Typography>
-                                        </Grid>
+                                        <Typography
+                                            variant='subtitle1'
+                                        >{resumeSkill.description}</Typography>
                                         <Grid item container>
-                                            <LinkedPortfolioEntries resumeSkill={props.resumeSkill}/>
+                                            <LinkedPortfolioEntries resumeSkill={resumeSkill}/>
                                         </Grid>
                                     </Grid>
                                 </Grid>
                                 {
-                                    props.resumeSkill.versions && props.resumeSkill.versions.length > 0
-                                    && props.resumeSkill.versions[0].length > 0
+                                    resumeSkill.versions && resumeSkill.versions.length > 0
                                     && <Grid container item>
                                         <Box style={{
-                                            borderTop: `1px solid #d2d2d2`,
+                                            borderTop: `1px solid ${theme.palette.getContrastText(theme.palette.primary.main)}`,
                                             marginTop: '8px',
                                             paddingTop: '8px',
                                             width: "100%"
                                         }}>
-                                            <Typography
-                                                display='inline'
-                                                variant='subtitle1' color='white'>{`Versions: `}</Typography>
-                                            {
-                                                props.resumeSkill.versions.map((versionNumber, index) => {
-                                                    return <Typography display='inline' key={index}
-                                                                       variant='subtitle1'
-                                                                       color='white'>{versionNumber}{(index <= ((props.resumeSkill.versions?.length ?? -1) - 2)) ? ' | ' : ''}</Typography>
-                                                })
-                                            }
+                                            <Typography variant='subtitle1'>
+                                                Versions: {resumeSkill.versions.filter(Boolean).join(' | ')}
+                                            </Typography>
                                         </Box>
                                     </Grid>
                                 }
@@ -186,12 +151,9 @@ const ResumeSkillTooltipWrapper: FunctionComponent<PropsWithChildren<IProps>> = 
                         </Grid>
                     </motion.div>
                 }>
-                <Grid container item onClick={openTip}>{props.children as ReactElement}</Grid>
+                <Grid container item onClick={handleOpenTip}>{children}</Grid>
             </Tooltip>
-            </motion.div>
-            :
-            <>{props.children as ReactElement}</>
-        }
+        </div>
     </Grid>
 }
 

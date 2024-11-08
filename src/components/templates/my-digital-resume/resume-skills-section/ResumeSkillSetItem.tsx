@@ -27,7 +27,7 @@ const ResumeSkillSetItem: FunctionComponent<IProps> = (props: IProps) => {
                     return <Grid item display='inline' key={index} onClick={()=>{
                         setIsToolTipOpen(index)
                     }}>
-                        <ResumeSkillTooltipWrapper isTipOpen={index === isToolTipOpen} resumeSkill={skill}>
+                        <ResumeSkillTooltipWrapper isOpenTooltip={index === isToolTipOpen} resumeSkill={skill}>
                             <Typography role='subskill'
                                         key={index}
                                         display='inline'

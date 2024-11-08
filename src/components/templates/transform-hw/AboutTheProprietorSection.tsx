@@ -9,9 +9,9 @@ import ResponsiveBullet from "../../ResponsiveBullet";
 import {FiberManualRecord} from "@mui/icons-material";
 import ColoredPng from "../../colored-png/ColoredPng";
 import PageContext from "../../page-context/PageContext";
-import ImageWithPlaceholder from "../../ImageWithPlaceholder";
 import CustomizedThemeContext from "../../customized-theme-provider/CustomizedThemeContext";
 import FirebaseContext from "../../../common/firebase/firebase-context/FirebaseContext";
+import SanityContext from "../../../common/sanityIo/sanity-context/SanityContext";
 
 export const useStyles = makeStyles(() => ({
     root: {
@@ -115,6 +115,7 @@ const AboutTheProprietorSection: FunctionComponent<IProps> = (props) => {
     const classes = useStyles(TransformHWTheme)
 
     const customizedThemeContext = useContext(CustomizedThemeContext)
+    const sanityContext = useContext(SanityContext)
 
     const smDown = useMediaQuery(customizedThemeContext.customizedTheme.breakpoints.down('sm'))
 
@@ -198,9 +199,8 @@ const AboutTheProprietorSection: FunctionComponent<IProps> = (props) => {
                                 })}
                                 <Grid container item direction='column' alignItems='flex-end'>
                                     <Grid item>
-                                        <ImageWithPlaceholder height={70} width={185}
-                                                              image={props.sectionData.proprietorSignatureImage}
-                                                              text={"Your Signature"}/>
+                                        <img alt={"Your Signature"}
+                                             src={sanityContext.placeholderOrImage && sanityContext.placeholderOrImage(props.sectionData.proprietorSignatureImage, 70, 185)}/>
                                     </Grid>
                                 </Grid>
                             </Grid>

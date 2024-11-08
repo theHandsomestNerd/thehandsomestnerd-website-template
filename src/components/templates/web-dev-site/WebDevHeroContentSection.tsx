@@ -40,15 +40,13 @@ export const useStyles = makeStyles(() => ({
 const WebDevHeroContentSection: FunctionComponent<IProps> = (props) => {
     const sanityContext = useContext(SanityContext)
 
-    let classParameters: CSSProps = {
-        heroBaseImageUrl: sanityContext.urlFor(props.sectionData.heroImageBackground ?? "").url() ?? '',
-    }
-
     const pageContext = useContext(PageContext)
     const theme = useTheme()
     const firebaseContext = useContext(FirebaseContext)
 
-    const classes = useStyles(classParameters)
+    const classes = useStyles({
+        heroBaseImageUrl: (sanityContext.placeholderOrImage && sanityContext.placeholderOrImage(props.sectionData.heroImageBackground)) ?? "",
+    })
     const globalClasses = useCustomStyles({})
     return (
         <Grid container item className={classes.marketingBackground} justifyContent='center'>

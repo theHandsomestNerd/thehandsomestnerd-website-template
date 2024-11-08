@@ -20,7 +20,7 @@ const WebDevTestimonialsSection: FunctionComponent<IProps> = (props: IProps) => 
                 style={{
                     paddingTop: theme.spacing(8),
                     paddingBottom: theme.spacing(8),
-                    backgroundImage: `url('${sanityContext.urlFor(props.sectionData.backgroundImage ?? "").url() ?? ""}')`,
+                    backgroundImage: `url('${sanityContext.placeholderOrImage && sanityContext.placeholderOrImage(props.sectionData.backgroundImage)}')`,
                     backgroundSize: "cover",
                     backgroundRepeat: "no-repeat",
                     backgroundColor: "#1F1F1F"
@@ -74,7 +74,7 @@ const WebDevTestimonialsSection: FunctionComponent<IProps> = (props: IProps) => 
                                     <Grid item container>
                                         <Grid item container xs={3}>
 
-                                            <img src={sanityContext.urlFor(feedbackEntry.imageSrc ?? "").url() ?? ""} height={50}
+                                            <img src={sanityContext.placeholderOrImage && sanityContext.placeholderOrImage(feedbackEntry.imageSrc, 50, 50)} height={50}
                                                  style={{maxWidth: "100%"}}/>
                                         </Grid>
                                         <Grid item container xs={9}>

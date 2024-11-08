@@ -4,9 +4,9 @@ import {Grid, useMediaQuery, useTheme} from '@mui/material'
 import FooterMenuContainer from './FooterMenuContainer'
 import {SanityMenuContainer} from "../../../../common/sanityIo/Types";
 import {COLORS, convertToHexCode} from "../../../../theme/common/ColorPalette";
-import {SanityImageAsset} from "../../../BlockContentTypes";
 import useCustomStyles from "../pages/Styles";
 import SanityContext from "../../../../common/sanityIo/sanity-context/SanityContext";
+import { SanityImageSource } from '@sanity/image-url/lib/types/types';
 
 export const useStyles = makeStyles(() => ({
     root: {
@@ -44,7 +44,7 @@ interface IProps {
     footerMenuSlug?: string
     updateIsLoading?: (value: boolean) => void
     isSocialMediaBlock?: boolean
-    backgroundImgSrc?: SanityImageAsset
+    backgroundImgSrc?: SanityImageSource
     backgroundColor?:string
     topPadding?: string
 }
@@ -68,7 +68,7 @@ const Footer: FunctionComponent<IProps> = (props: IProps) => {
               }}
         >
             <Grid container className={classes.root}  sx={{
-                    backgroundImage: `url(${sanityContext.urlFor(props.backgroundImgSrc ?? "")?.url()})`,
+                    backgroundImage: `url(${sanityContext.placeholderOrImage && sanityContext.placeholderOrImage(props.backgroundImgSrc)})`,
                     backgroundSize: "cover",}}>
             <Grid container justifyContent="flex-start" sx={{paddingTop: mdDown ? 0 : (props.topPadding ?? "0px")}}>
                 <Grid item xs={12}>

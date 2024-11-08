@@ -1,4 +1,4 @@
-import{FunctionComponent, useContext} from 'react'
+import {FunctionComponent, useContext} from 'react'
 import {ThwMottoSectionType} from "../../BlockContentTypes";
 import {Parallax} from 'react-parallax';
 import clsx from "clsx";
@@ -35,9 +35,9 @@ const ThwMottoSection: FunctionComponent<IProps> = (props) => {
     const smDown = useMediaQuery(customizedThemeContext.customizedTheme.breakpoints.down('sm'))
     return (
         <Parallax blur={1}
-                                                          bgImage={sanityContext.urlFor(props.sectionData.parallaxImage).url() ?? undefined}
-                                                          bgImageAlt="the cat"
-                                                          strength={600}>
+                  bgImage={sanityContext.placeholderOrImage && sanityContext.placeholderOrImage(props.sectionData.parallaxImage)}
+                  bgImageAlt="the cat"
+                  strength={600}>
             <Grid container item
                   className={clsx([globalClasses.fullSection, classes.root])}
                   style={{position: "relative", overflow: "hidden"}}>

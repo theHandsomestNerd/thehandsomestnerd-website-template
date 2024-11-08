@@ -5,7 +5,8 @@ import {blockSerializers} from '../common/sanityIo/BlockContentRenderer'
 import {
     AnimatedAboutUsSectionType,
     AnimatedPortfolioSectionType,
-    AnimatedServicesSectionType, BartenderExperienceSectionType,
+    AnimatedServicesSectionType,
+    BartenderExperienceSectionType,
     BartenderHeroSectionType,
     DrinkeryAlbumSectionType,
     DrinkeryOtherSideSectionType,
@@ -26,6 +27,7 @@ import {
     ResumeFeedbackSectionType,
     ResumePortfolioSectionType,
     ResumeSkillSectionType,
+    StatsCounterSectionType,
     TeamSectionType,
     ThwAboutProprietorSectionType,
     ThwContactUsSectionType,
@@ -37,7 +39,6 @@ import {
     ThwWhyChooseUsSectionType,
     WebDevAboutUsSectionType,
     WebDevHeroContentSectionType,
-    StatsCounterSectionType,
     WebDevTestimonialsSectionType,
 } from "./BlockContentTypes";
 import useThwCommonStyles from "../common/sanityIo/ThwCommonStyles";
@@ -77,11 +78,13 @@ import TheDrinkeryOtherSideSection from "./templates/the-drinkery/TheDrinkeryOth
 import TheDrinkeryAlbumSection from "./templates/the-drinkery/TheDrinkeryAlbumSection";
 import HolidayHeadlineSection from "./holiday-headline-section/HolidayHeadlineSection";
 import SanityContext from "../common/sanityIo/sanity-context/SanityContext";
-import {SanityHomePage} from "../common/sanityIo/Types";
+import {SanityTransformHwHomePage} from "../common/sanityIo/Types";
 import {
     AWBallSectionType,
-    AWBallSummarySectionType, AWHouseInfoSectionType,
-    AWSingleBallSectionType, SanityContactUs
+    AWBallSummarySectionType,
+    AWHouseInfoSectionType,
+    AWSingleBallSectionType,
+    SanityContactUs
 } from './templates/anybody-walking/ballroomTypes';
 import AWBallSearchSection from './templates/anybody-walking/AWBallSearchSection';
 import AWSingleBallPageSection from './templates/anybody-walking/AWSingleBallPageSection';
@@ -89,7 +92,7 @@ import AWBallSummarySection from "./templates/anybody-walking/AWBallSummarySecti
 import BallToolsSection from "./templates/anybody-walking/BallToolsSection";
 import AWNewHouseFormSection from "./templates/anybody-walking/AWNewHouseFormSection";
 import AWContactUs from "./templates/anybody-walking/AWContactUs";
-import DJSpadesRulesContentSection from "./dj-40-spades-rules/41AcresSpadesContentSection";
+import SimpleNumberedStringListPage from "./dj-40-spades-rules/SimpleNumberedStringListPage";
 import BartenderHeroSection from "./templates/my-digital-resume/the-bartender/BartenderHeroSection";
 import BartenderExperienceSection from "./templates/my-digital-resume/the-bartender/BartenderExperienceSection";
 import BartenderStatsCounterSection from "./templates/my-digital-resume/the-bartender/BartenderStatsCounterSection";
@@ -97,7 +100,7 @@ import AWHouseInfoSection from "./templates/anybody-walking/AWHouseInfoSection";
 
 export type BlockContentLayoutContainerProps = {
     content?: any,
-    homePage: SanityHomePage
+    homePage: SanityTransformHwHomePage
 }
 
 const BlockContentLayoutContainer: FunctionComponent<BlockContentLayoutContainerProps> = (props) => {
@@ -637,9 +640,8 @@ const BlockContentLayoutContainer: FunctionComponent<BlockContentLayoutContainer
                         </Grid>
                     case 'SimpleStringListSection':
                         const simpleStringListSection: ListSectionType = columnLayoutContainer
-
                         return <Grid key={'spades-rules-list'} container item xs={12} justifyContent='center'>
-                            <DJSpadesRulesContentSection sectionData={simpleStringListSection}/>
+                            <SimpleNumberedStringListPage sectionData={simpleStringListSection} />
                         </Grid>
                     case 'ContactUs':
                         const awContactUsSection: SanityContactUs = columnLayoutContainer

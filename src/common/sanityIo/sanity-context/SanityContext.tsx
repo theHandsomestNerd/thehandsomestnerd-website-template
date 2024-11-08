@@ -4,9 +4,10 @@ import {
     ResumeExperienceType,
     ResumePortfolioItemType,
     ResumeSkillType,
-    SanityImageAsset
 } from "../../../components/BlockContentTypes";
 import {SanityHouse} from "../../../components/templates/anybody-walking/ballroomTypes";
+import { SanityImageSource } from "@sanity/image-url/lib/types/types";
+import {ImageUrlBuilder} from "@sanity/image-url/lib/types/builder";
 
 export type SanityContextType = {
     initSanity?: (
@@ -41,10 +42,9 @@ export type SanityContextType = {
     // useFetchMenuByRefQuery?:any,
     fetchMuiTheme?:any,
     fullTextSearch?:any
-    urlFor?: any
+    urlFor?: (source: SanityImageSource) => undefined | ImageUrlBuilder,
+    placeholderOrImage?:(imageSrc?: SanityImageSource, placeholderWidth?: number, placeholderHeight?: number, text?: string) => string
     cocktailUrlFor?:any
-    getPlaceholderImageUrl?:any
-    placeholderOrImage?:(imageSrc?: SanityImageAsset, placeHolderWidth?: number, placeHolderHeight?: number, text?: string) => string
     // useFetchAllFlashCards?: any,
     useFetchAllBarIngredients?: any,
     useFetchAllLiquorTypes?: any,
