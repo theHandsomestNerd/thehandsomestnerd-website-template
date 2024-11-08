@@ -21,7 +21,7 @@ const LinkedExperiences: FunctionComponent<LinkedExperiencesProps> = ({resumeSki
     if (loading) return <CircularProgress/>;
     if (error) return <Typography color="error">Error loading experiences.</Typography>;
     return (<Grid container item paddingBottom={1}>
-        {skillNumYears && <Typography variant='caption' color='whitesmoke'>{skillNumYears}</Typography>}
+        {skillNumYears && <Typography variant='caption' color='whitesmoke' gutterBottom>{skillNumYears} of <b>{resumeSkill.title}</b> experience</Typography>}
 
         {
             skillExperiences?.map((experience: ResumeExperienceType) => {

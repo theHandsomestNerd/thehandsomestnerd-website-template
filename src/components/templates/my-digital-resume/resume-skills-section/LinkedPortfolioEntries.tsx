@@ -4,6 +4,7 @@ import {ResumePortfolioItemType, ResumeSkillType} from "../../../BlockContentTyp
 import SanityContext from "../../../../common/sanityIo/sanity-context/SanityContext";
 import dateUtils from "../../../../utils/dateUtils";
 import {useCommonStyles} from "../../../../common/sanityIo/CommonStyles";
+import LinkIcon from '@mui/icons-material/Link';
 
 interface IProps {
     resumeSkill: ResumeSkillType
@@ -41,12 +42,17 @@ const LinkedPortfolioEntries: FunctionComponent<IProps> = (props: IProps) => {
                                 color='whitesmoke'>{dateUtils.YearNumeric(portfolioEntry.inceptionDate)}</Typography>
                         </Link>
                     </Grid>
-                    <Grid item xs={9}>
+                    <Grid item xs={8}>
                         <Link href={"#" + portfolioEntry._id} className={classes.toolTiplink}>
                             <Typography
                                 lineHeight={.5}
                                 variant='caption'
                                 color='whitesmoke'>{portfolioEntry.title}</Typography>
+                        </Link>
+                    </Grid>
+                    <Grid item xs={1}>
+                        <Link href={portfolioEntry.linkToProd} style={{color: "whitesmoke"}}>
+                            <LinkIcon />
                         </Link>
                     </Grid>
                 </Grid>

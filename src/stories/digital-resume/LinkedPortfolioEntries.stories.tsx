@@ -1,17 +1,18 @@
 import type {Meta, StoryObj} from '@storybook/react';
-import LinkedExperiences from '../../components/templates/my-digital-resume/resume-skills-section/LinkedExperiences';
+import LinkedPortfolioEntries
+    from '../../components/templates/my-digital-resume/resume-skills-section/LinkedPortfolioEntries';
 import DigitalResumeThemeData from "../data/DigitalResumeThemeData";
-import ResumeExperiencesArrayData from "../data/ResumeExperiencesArrayData";
 import {Grid, Tooltip, useTheme} from "@mui/material";
+import ResumePortfolioItemsArrayData from "../data/ResumePortfolioItemsArrayData";
 import ResumeSkillData from "../data/ResumeSkillData";
 
-const meta: Meta<typeof LinkedExperiences> = {
-    title: "Resume/Page Components/LinkedExperiences",
-    component: LinkedExperiences,
+const meta: Meta<typeof LinkedPortfolioEntries> = {
+    title: "Resume/Page Components/LinkedPortfolioEntries",
+    component: LinkedPortfolioEntries,
 };
 
 export default meta;
-type Story = StoryObj<typeof LinkedExperiences>;
+type Story = StoryObj<typeof LinkedPortfolioEntries>;
 
 
 /*
@@ -20,14 +21,14 @@ type Story = StoryObj<typeof LinkedExperiences>;
  * to learn how to use render functions.
  */
 
-export const LinkedExperiencesCompleteStory: Story = {
+export const LinkedPortfolioEntriesCompleteStory: Story = {
     args: {
         resumeSkill: ResumeSkillData,
 
     },
     parameters: {
-        fetchSkillExperiences: () => {
-            return Promise.resolve(ResumeExperiencesArrayData)
+        fetchPortfolioItems: () => {
+            return Promise.resolve(ResumePortfolioItemsArrayData)
         },
 
         pageTheme: DigitalResumeThemeData
@@ -35,7 +36,7 @@ export const LinkedExperiencesCompleteStory: Story = {
     render: ({resumeSkill}) => {
         const theme = useTheme()
         return <Tooltip open={true} title={<Grid item bgcolor={theme.palette.primary.main} >
-            <LinkedExperiences resumeSkill={resumeSkill}></LinkedExperiences>
+            <LinkedPortfolioEntries resumeSkill={resumeSkill}></LinkedPortfolioEntries>
         </Grid>} componentsProps={{
             tooltip:
                 {
@@ -45,7 +46,7 @@ export const LinkedExperiencesCompleteStory: Story = {
                             backgroundColor: theme.palette.primary.main
                         }
                 }
-        }} children={<Grid item>I have a tooltip</Grid>}>
+        }} children={<Grid item>I have a tooltip Containing Portfolios</Grid>}>
         </Tooltip>
     }
 };

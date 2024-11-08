@@ -610,6 +610,8 @@ const ResumePortfolioItemsArrayData:ResumePortfolioItemType[] = [
             "_type": "ResumePortfolioItem",
             "name": "This Site",
             "title": "Digital Resume",
+            "inceptionDate": "2021-11-19",
+            "linkToProd": "https://terrellsingleton.com",
             "imageGallery": [
                 // {
                 //     "_type": "image",
