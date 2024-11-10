@@ -1,5 +1,5 @@
-import {SanityBusinessContact, SanityMenuContainer, SanityRef, SanitySlug} from "../common/sanityIo/Types";
-import {FileAsset} from "@sanity/types";
+import {SanityBusinessContact, SanityMenuContainer, SanitySlug} from "../common/sanityIo/Types";
+import {FileAsset, Reference, SanityDocumentLike} from "@sanity/types";
 import {SanityImageSource} from "@sanity/image-url/lib/types/types";
 
 export type HeroContentSectionType = {
@@ -93,16 +93,13 @@ export type ThwHeroContentSectionType = {
     ctaButtonLink: string
 }
 
-
-export type ServiceAmenityTypeRef = SanityRef
 export type ServiceAmenityType = {
     name: string
     imageSrc?: SanityImageSource
     title: string
     description: string
     muiIcon?: string
-} & SanityDocumentFields
-
+} & SanityDocumentLike
 
 export type ThwPositivePsychologySectionType = {
     name?: string
@@ -188,7 +185,7 @@ export type ThwServiceItemNoRefType = {
     benefitsOfServiceBullets: string[]
     serviceAmenities: ServiceAmenityType[]
     slug: SanitySlug
-} & SanityDocumentFields
+} & SanityDocumentLike
 
 export type AnimatedServiceItemNoRefType = {
     name?: string
@@ -210,7 +207,7 @@ export type AnimatedServiceItemNoRefType = {
     benefitsOfServiceBullets?: string[]
     serviceAmenities?: ServiceAmenityType[] | undefined
     slug?: SanitySlug
-} & SanityDocumentFields
+} & SanityDocumentLike
 
 export type AnimatedAboutUsSectionType = {
     name: string
@@ -359,6 +356,8 @@ export type BartenderHeroSectionType = {
     textContent?: string
 }
 
+export type SanityRef = Reference
+
 export type ResumeSkillType = {
     _id?: string
     _createdAt?: string
@@ -367,26 +366,28 @@ export type ResumeSkillType = {
     _type?: "ResumeSkill"
     name?: string
     title?: string
-
+    searchableOnPages?: SanityRef[]
     description?:string
     versions?: string[]
     proficiency?: number
     iconPngSrc?: SanityImageSource
-}
+} & SanityDocumentLike
+
 export type ResumeSkillSet = {
-    _type?: "ResumeSkillset"
+    _type: "ResumeSkillset"
     name?: string
     title?: string
     skills?: ResumeSkillType[]
-}
+} & SanityDocumentLike
 
 export type ResumeSkillSectionType = {
+    _type: "ResumeSkillSection"
     name?: string
+    searchableOnPages?: SanityRef[]
     title?: string
     introduction?: string
     skillsets?: ResumeSkillSet[]
-}
-
+} & SanityDocumentLike
 
 export type ResumeExperienceType = {
     name?: string
@@ -411,7 +412,6 @@ export type ResumeExperienceType = {
 export type ResumeExperienceSectionType = {
     name?: string
     _type?: "ResumeExperienceSection"
-
     title?: string
     introduction?: string
     experiences?: ResumeExperienceType[]
@@ -675,13 +675,13 @@ export type FooterSectionType = {
     footerMenuRef: SanityMenuContainer
 }
 
-export type SanityDocumentFields = {
-    _rev?: string
-    _createdAt?: string
-    _updatedAt?: string
-    _type?: string
-    _id?: string
-}
+// export type SanityDocumentFields = {
+//     _rev?: string
+//     _createdAt?: string
+//     _updatedAt?: string
+//     _type?: string
+//     _id?: string
+// }
 
 export type HeadlineCTASectionType = {
     name: string

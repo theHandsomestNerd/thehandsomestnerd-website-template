@@ -1,9 +1,9 @@
 import {SanityAsset} from '@sanity/asset-utils';
-import {SanityRef} from '../../../common/sanityIo/Types';
 import BallSourceEnum from './enums/BallSource.enum'
 import {BallTypeEnum} from './enums/BallType.enum'
 import STEP_BALL_FORM_VALIDATION_STATUS_CODES from './enums/StepFormValidationCodes.enum'
 import {Breakpoint} from "@mui/material";
+import { SanityRef } from '../../BlockContentTypes';
 
 
 export type SearchParams = {

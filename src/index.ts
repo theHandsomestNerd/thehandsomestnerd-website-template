@@ -12,6 +12,7 @@ import SocialMediaBlock from "./components/templates/my-digital-resume/social-me
 import BusinessCardSubmitEmail from "./components/templates/transform-hw/pages/BusinessCardSubmitEmail";
 import dateUtils from "./utils/dateUtils";
 import pdfClient from "./utils/pdfClient";
+import textProcessingUtils from "./utils/textProcessingUtils";
 
 export {
     AppWrapper,
@@ -26,6 +27,7 @@ export {
     getThemeFromSanity,
     ColoredPng,
     dateUtils,
+    textProcessingUtils,
     CustomizedThemeProvider,
     PageProvider
 }

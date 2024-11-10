@@ -20,14 +20,13 @@ import {
     SanityMenuGroup,
     SanityMuiTheme,
     SanityOurStoryPage,
-    SanityRef
 } from "../Types";
 import GroqQueries from "../groqQueries";
 import groqQueries from "../groqQueries";
 import {
     ResumeExperienceType,
     ResumePortfolioItemType,
-    ResumeSkillType,
+    ResumeSkillType, SanityRef,
     WhySwitchSectionType
 } from "../../../components/BlockContentTypes";
 import imageUrlBuilder from "@sanity/image-url";
@@ -449,9 +448,6 @@ const SanityProvider: FunctionComponent<IProps & PropsWithChildren> = (
     }
 
     const fetchRefs = async (sanityRefs: SanityRef[]): Promise<any> => {
-
-        console.log("get these refs", sanityRefs)
-
         let servicesRefs: string[] = []
         let otherContentRefs: string[] = []
 

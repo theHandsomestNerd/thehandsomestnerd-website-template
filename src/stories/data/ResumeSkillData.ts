@@ -1,6 +1,7 @@
 import {ResumeSkillType} from "../../components/BlockContentTypes";
 
 const ResumeSkillData: ResumeSkillType = {
+    "_type": "ResumeSkill",
     "name": "Terrell Singleton",
     "_id": "59fe1d75-a35c-4a6c-8ecd-cf872791821b",
     "title": "React",

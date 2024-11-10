@@ -1,15 +1,8 @@
 import {SanityImageAsset, SanityImageSource} from "@sanity/asset-utils";
-import { ThwServiceItemNoRefType} from "../../components/BlockContentTypes";
+import {SanityRef, ThwServiceItemNoRefType} from "../../components/BlockContentTypes";
 import {Slug} from "@sanity/types";
 
 export type SanitySlug = Slug
-
-export declare type SanityRef = {
-    _type: string;
-    _ref: string;
-    _key?: string;
-};
-
 
 export type SanityHomePage = {
     slug?: SanitySlug,

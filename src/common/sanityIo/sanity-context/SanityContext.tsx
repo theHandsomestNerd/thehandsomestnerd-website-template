@@ -1,9 +1,8 @@
-import {SanityRef} from "../Types";
 import React, { Context } from "react";
 import {
     ResumeExperienceType,
     ResumePortfolioItemType,
-    ResumeSkillType,
+    ResumeSkillType, SanityRef,
 } from "../../../components/BlockContentTypes";
 import {SanityHouse} from "../../../components/templates/anybody-walking/ballroomTypes";
 import { SanityImageSource } from "@sanity/image-url/lib/types/types";

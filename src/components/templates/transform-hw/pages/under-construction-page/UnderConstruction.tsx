@@ -4,13 +4,14 @@ import useCustomStyles from "../../../mackenzies-mind/pages/Styles";
 import CountdownToLaunch from "./CountdownToLaunch";
 import clsx from "clsx";
 import CssFadeToColor from "../../../../css-fade-to-color/CssFadeToColor";
-import {SanityRef, SanityUnderConstructionPageType} from "../../../../../common/sanityIo/Types";
+import {SanityUnderConstructionPageType} from "../../../../../common/sanityIo/Types";
 import Logo from "../../../../logo/Logo";
 import MailTo from "../../../../mail-to/MailTo";
 import {COLORS} from "../../../../../theme/common/ColorPalette";
 import CustomizedThemeContext from "../../../../customized-theme-provider/CustomizedThemeContext";
 import BusinessCardSubmitEmail from "../BusinessCardSubmitEmail";
 import SanityContext from "../../../../../common/sanityIo/sanity-context/SanityContext";
+import {SanityRef} from "../../../../BlockContentTypes";
 
 interface IProps {
     email?: string
