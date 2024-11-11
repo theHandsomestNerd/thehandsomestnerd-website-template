@@ -3,8 +3,8 @@ import {Chip, Grid, List, ListItem, Switch, Typography, useTheme} from "@mui/mat
 import {ResumeExperienceType} from "../../../BlockContentTypes";
 import dateUtils from "../../../../utils/dateUtils";
 import ResumeSkillTooltipWrapper from "../resume-skills-section/ResumeSkillTooltipWrapper";
-import textProcessingUtils from "../../../../utils/textProcessingUtils";
 import {FormatListBulleted, Notes} from "@mui/icons-material";
+import {sortBy} from "lodash";
 
 
 interface IProps {
@@ -116,8 +116,7 @@ const ResumeExperienceItem: FunctionComponent<IProps> = (props: IProps) => {
             {
                 props.experience
                 && props.experience.skillsUsed
-                && textProcessingUtils
-                    .sortByTitle(props.experience.skillsUsed)?.map((skill, index) => {
+                && sortBy(props.experience.skillsUsed, ["title"])?.map((skill, index) => {
                         return <Grid item key={index} onClick={() => {
                             setIsToolTipOpen(index)
                         }}

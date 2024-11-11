@@ -1,6 +1,6 @@
 {
   "name": "the-handsomestnerd-internal",
-  "version": "0.1.307",
+  "version": "0.1.308",
   "files": [
     "dist/esm",
     "dist/cjs",
@@ -36,6 +36,7 @@
     "framer-motion": "^10.16.5",
     "ga-gtag": "^1.1.5",
     "google-maps-react": "^2.0.6",
+    "lodash": "^4.17.21",
     "material-ui-popup-state": "^5.0.9",
     "moment": "^2.29.4",
     "moment-timezone": "^0.5.45",
@@ -123,6 +124,7 @@
     "@types/aos": "^3.0.4",
     "@types/core-js": "^2.5.8",
     "@types/jest": "^29.5.14",
+    "@types/lodash": "^4.17.13",
     "@types/react": "^18.2.70",
     "@types/react-dom": "^18.2.22",
     "@types/react-places-autocomplete": "^7.2.14",

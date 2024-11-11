@@ -21,8 +21,8 @@ import {ResumePortfolioItemType} from "../../../BlockContentTypes";
 import SanityContext from "../../../../common/sanityIo/sanity-context/SanityContext";
 import dateUtils from "../../../../utils/dateUtils";
 import ResumeSkillTooltipWrapper from "../resume-skills-section/ResumeSkillTooltipWrapper";
-import textProcessingUtils from "../../../../utils/textProcessingUtils";
 import { SanityImageSource } from '@sanity/image-url/lib/types/types';
+import {sortBy} from "lodash";
 
 const useStyles = makeStyles(() => ({
     hover: {
@@ -117,8 +117,7 @@ const PortfolioItemModal: FunctionComponent<IProps> = (props: IProps) => {
                     {
                         props.currentItem
                         && props.currentItem.skillsHighlighted
-                        && textProcessingUtils
-                            .sortByTitle(props.currentItem.skillsHighlighted)?.map((skill, index) => (
+                        && sortBy(props.currentItem.skillsHighlighted, ["title"])?.map((skill, index) => (
                                 <Grid item key={index} onClick={() => {
                                     setIsToolTipOpen(index)
                                 }}>

@@ -3,7 +3,7 @@ import {Chip, Grid, Typography, useTheme} from "@mui/material";
 import {ResumeExperienceType} from "../../../BlockContentTypes";
 import dateUtils from "../../../../utils/dateUtils";
 import ResumeSkillTooltipWrapper from "../resume-skills-section/ResumeSkillTooltipWrapper";
-import textProcessingUtils from "../../../../utils/textProcessingUtils";
+import {sortBy} from "lodash";
 
 
 interface IProps {
@@ -87,8 +87,7 @@ const BartenderExperienceItem: FunctionComponent<IProps> = (props: IProps) => {
             {
                 props.experience
                 && props.experience.skillsUsed
-                && textProcessingUtils
-                    .sortByTitle(props.experience.skillsUsed)?.map((skill, index) => {
+                && sortBy(props.experience.skillsUsed, ["title"])?.map((skill, index) => {
                         return <Grid item key={index} onClick={() => {
                             setIsToolTipOpen(index)
                         }}

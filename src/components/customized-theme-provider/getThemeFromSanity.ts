@@ -2,12 +2,12 @@ import {SanityMuiFontFace, SanityMuiTheme} from "../../common/sanityIo/Types";
 import {createTheme} from "@mui/material/styles";
 import {COLORS, convertToHexCode} from "../../theme/common/ColorPalette";
 import {grey} from "@mui/material/colors";
-import textProcessingUtils from "../../utils/textProcessingUtils";
+import {capitalize} from "lodash";
 
 const fonts = `"Raleway", "Oswald"`
 
 const getThemeFromSanity = (theme: SanityMuiTheme) => {
-    const createMuiFontFace = (sanityFontFace: SanityMuiFontFace):SanityMuiFontFace => {
+    const createMuiFontFace = (sanityFontFace: SanityMuiFontFace): SanityMuiFontFace => {
         let processedMediaQuery: any[] | undefined = [];
         if ((sanityFontFace.mediaQueries?.length ?? 0) > 0) {
             processedMediaQuery = sanityFontFace.mediaQueries?.map((mediaQuery) => {
@@ -29,13 +29,14 @@ const getThemeFromSanity = (theme: SanityMuiTheme) => {
             textTransform: sanityFontFace.textTransform
         }
     }
-    const extractSanityFontFace = (fontFaceName: string):SanityMuiFontFace | undefined => {
-        const fontFaceFromSanity = theme.typography?.fontFaces?.find((fontFace: SanityMuiFontFace) => {
-            if (fontFace.name === fontFaceName) {
-                return fontFace
-            }
-            return undefined
-        })
+    const extractSanityFontFace = (fontFaceName: string): SanityMuiFontFace | undefined => {
+        const fontFaceFromSanity =
+            theme.typography?.fontFaces?.find((fontFace: SanityMuiFontFace) => {
+                if (fontFace.name === fontFaceName) {
+                    return fontFace
+                }
+                return undefined
+            })
         return fontFaceFromSanity ? createMuiFontFace(fontFaceFromSanity) : undefined
     }
 
@@ -54,14 +55,18 @@ const getThemeFromSanity = (theme: SanityMuiTheme) => {
         },
         palette: {
             background: {
-                default: theme.colorPalette?.defaultBackground ? convertToHexCode(theme.colorPalette?.defaultBackground) : COLORS.WHITESMOKE,
-                paper: theme.colorPalette?.defaultPaperBackgroundColor ? convertToHexCode(theme.colorPalette?.defaultPaperBackgroundColor) : COLORS.DARKGRAY
+                default: theme.colorPalette?.defaultBackground ?
+                    convertToHexCode(theme.colorPalette?.defaultBackground) : COLORS.WHITESMOKE,
+                paper: theme.colorPalette?.defaultPaperBackgroundColor ?
+                    convertToHexCode(theme.colorPalette?.defaultPaperBackgroundColor) : COLORS.DARKGRAY
             },
             primary: {
-                main: theme.colorPalette?.primaryColor ? convertToHexCode(theme.colorPalette?.primaryColor) : COLORS.RED,
+                main: theme.colorPalette?.primaryColor ?
+                    convertToHexCode(theme.colorPalette?.primaryColor) : COLORS.RED,
             },
             secondary: {
-                main: theme.colorPalette?.secondaryColor ? convertToHexCode(theme.colorPalette?.secondaryColor) : COLORS.ALMOSTWHITE,
+                main: theme.colorPalette?.secondaryColor ?
+                    convertToHexCode(theme.colorPalette?.secondaryColor) : COLORS.ALMOSTWHITE,
             },
             error: {
                 main: '#840E0E',
@@ -79,9 +84,12 @@ const getThemeFromSanity = (theme: SanityMuiTheme) => {
                 dark: '#CF800A'
             },
             text: {
-                primary: theme.colorPalette?.primaryTextColor ? convertToHexCode(theme.colorPalette?.primaryTextColor) : COLORS.DARKGRAY,
-                secondary: theme.colorPalette?.secondaryTextColor ? convertToHexCode(theme.colorPalette?.secondaryTextColor) : grey[100],
-                disabled: theme.colorPalette?.disabledTextColor ? convertToHexCode(theme.colorPalette?.disabledTextColor) : COLORS.LIGHT_GRAY
+                primary: theme.colorPalette?.primaryTextColor ?
+                    convertToHexCode(theme.colorPalette?.primaryTextColor) : COLORS.DARKGRAY,
+                secondary: theme.colorPalette?.secondaryTextColor ?
+                    convertToHexCode(theme.colorPalette?.secondaryTextColor) : grey[100],
+                disabled: theme.colorPalette?.disabledTextColor ?
+                    convertToHexCode(theme.colorPalette?.disabledTextColor) : COLORS.LIGHT_GRAY
             }
         },
         mixins: {
@@ -90,7 +98,7 @@ const getThemeFromSanity = (theme: SanityMuiTheme) => {
             }
         },
         typography: {
-            fontFamily: theme.typography?.fontFamily ? textProcessingUtils.capitalizeArray(theme.typography.fontFamily).join(',') : fonts,
+            fontFamily: theme.typography?.fontFamily ? theme.typography.fontFamily.map(capitalize).join(',') : fonts,
             h1: {
                 ...extractSanityFontFace('h1'),
                 fontFamily: theme.typography?.fontFamily[1]
@@ -164,7 +172,8 @@ const getThemeFromSanity = (theme: SanityMuiTheme) => {
 
                     },
                     contained: {
-                        border: `1px solid ${theme.colorPalette?.buttonOutlineColor ? convertToHexCode(theme.colorPalette.buttonOutlineColor) : "transparent"}`,
+                        border: `1px solid ${theme.colorPalette?.buttonOutlineColor ?
+                            convertToHexCode(theme.colorPalette.buttonOutlineColor) : "transparent"}`,
                         '&.Mui-disabled': {
                             color: '#969284'
                         },
@@ -175,7 +184,7 @@ const getThemeFromSanity = (theme: SanityMuiTheme) => {
                             color: 'rgba(207, 207, 207, .5)',
                         },
                     },
-                    outlined:{
+                    outlined: {
                         borderWidth: '3px',
                         paddingLeft: "64px",
                         paddingRight: "64px"
