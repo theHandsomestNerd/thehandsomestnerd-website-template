@@ -1,90 +1,61 @@
-const YearMonth = (date?:Date) =>{
-    if(!date) return ""
-    return new Date(date).toLocaleDateString('en-us', { year:"numeric", month:"short"})
-}
+import {addMonths, format, intervalToDuration} from "date-fns"
 
-const MonthYear = (date?: Date | string | undefined) =>{
-    if(!date) return ""
-    return new Date(date).toLocaleDateString('en-us', { month:"short", year:"numeric"})
-}
+/**
+ * Returns the year in numeric form MMM yyyy
+ * @param {string} inputDate : "First Date in the format YYYY-MM-DD"
+ * @returns {string}
+ */
+const monthYear = (inputDate?: string): string => inputDate ? format(addMonths(inputDate, 1), 'MMM yyyy') : ""
 
-const MonthDateYear = (date?: Date | string | undefined) =>{
-    if(!date) return ""
-    return new Date(date).toLocaleDateString('en-us', { month:"numeric", day:"2-digit", year:"numeric"})
-}
+/**
+ * Returns the year in numeric form MM/dd/yyyy
+ * @param {string} inputDate : "First Date in the format YYYY-MM-DD"
+ * @returns {string}
+ */
+const monthDateYear = (inputDate?: string): string => inputDate ? format(addMonths(inputDate, 1), 'MM/dd/yyyy') : ""
 
-const YearNumeric = (date?: Date | string | undefined) =>{
-    if(!date) return ""
-    return new Date(date).toLocaleDateString('en-us', { year:"numeric"})
-}
-const getLengthOfTime = (date1?: Date|string, date2?: Date|string) =>{
-    /*
-    * calcDate() : Calculates the difference between two dates
-    * @date1 : "First Date in the format MM-DD-YYYY"
-    * @date2 : "Second Date in the format MM-DD-YYYY"
-    * return : Array
-    */
+/**
+ * Returns the year in numeric form 2024
+ *
+ * @param {string} inputDate : "First Date in the format YYYY-MM-DD"
+ * @returns {string} xx years xx months
+ *
+ * @example
+ * const formattedString = yearNumeric("2024-11-11")
+ *
+ * console.log(formattedString) // Output 2024
+ *
+ */
+const yearNumeric = (inputDate?: string): string => inputDate ? format(addMonths(inputDate, 1), 'yyyy') : ""
 
-    if(!date1 || !date2)
-        return {
-            "total_days": 0,
-            "result": ""
-        }
-    //new date instance
-    const dt_date1 = new Date(date1);
-    const dt_date2 = new Date(date2);
+/**
+ * Calculates the difference between two dates and returns in years and months
+ * @param {string} inputDateStart : "First Date in the format MM-DD-YYYY"
+ * @param {string} inputDateEnd : "Second Date in the format MM-DD-YYYY"
+ * @param {string} isUseTodayAsEndDate : use today's date as the endDate
+ * @returns {string}
+ *
+ * @example
+ * console.log(getLengthOfTime("2022-01-01", "2024-03-01")) // Output 2 years 2 months
+ *
+ */
+const getLengthOfTime = (inputDateStart: string | undefined, inputDateEnd: string | undefined, isUseTodayAsEndDate?: boolean): string => {
+    const dateStart: Date | "" = inputDateStart ? addMonths(new Date(inputDateStart), 1) : ""
+    let dateEnd: Date | "" = ""
 
-    //Get the Timestamp
-    const date1_time_stamp = dt_date1.getTime();
-    const date2_time_stamp = dt_date2.getTime();
-
-    let calc;
-
-    //Check which timestamp is greater
-    if (date1_time_stamp > date2_time_stamp) {
-        calc = new Date(date1_time_stamp - date2_time_stamp);
+    if (isUseTodayAsEndDate) {
+        dateEnd = new Date();
     } else {
-        calc = new Date(date2_time_stamp - date1_time_stamp);
-    }
-    //Retrieve the date, month and year
-    const calcFormatTmp = calc.getDate() + '-' + (calc.getMonth() + 1) + '-' + calc.getFullYear();
-    //Convert to an array and store
-    const calcFormat = calcFormatTmp.split("-");
-    //Subtract each member of our array from the default date
-    const days_passed = Number(Math.abs(parseInt(calcFormat[0])) - 1);
-    let months_passed = Number(Math.abs(parseInt(calcFormat[1])) - 1);
-    let years_passed = Number(Math.abs(parseInt(calcFormat[2])) - 1970);
-
-    if(days_passed > 15){
-        months_passed+=1;
-        if(months_passed >= 12) {
-            years_passed += 1;
-            months_passed -= 1;
-        }
+        dateEnd = inputDateEnd ? addMonths(new Date(inputDateEnd), 1) : ""
     }
 
-    //Set up custom text
-    const yrsTxt = ["year", "years"];
-    const mnthsTxt = ["month", "months"];
-    // const daysTxt = ["day", "days"];
+    const {years: durationYears, months: durationMonths}
+        = intervalToDuration({start: dateStart, end: dateEnd ? dateEnd : ""})
 
-    //Convert to days and sum together
-    const total_days = (years_passed * 365) + (months_passed * 30.417) + days_passed;
+    const durationYearUnit = 'year' + (durationYears !== 1 ? 's' : '')
+    const durationMonthUnit = 'month' + (durationMonths !== 1 ? 's' : '')
 
-    //display result with custom text
-    const result = ((years_passed === 1) ? years_passed + ' ' + yrsTxt[0] + ' ' : (years_passed > 1) ?
-            years_passed + ' ' + yrsTxt[1] + ' ' : '') +
-        ((months_passed === 1) ? months_passed + ' ' + mnthsTxt[0] : (months_passed > 1) ?
-            months_passed + ' ' + mnthsTxt[1] + ' ' : '')
-        // ((days_passed == 1) ? days_passed + ' ' + daysTxt[0] : (days_passed > 1) ?
-        //     days_passed + ' ' + daysTxt[1] : '')
-    ;
-
-    //return the result
-    return {
-        "total_days": Math.round(total_days),
-        "result": result.trim()
-    }
+    return (durationYears ? `${durationYears} ${durationYearUnit}` : '') + (durationMonths ? ` ${durationMonths} ${durationMonthUnit}` : "")
 }
 
-export default {YearMonth, MonthYear, YearNumeric, getLengthOfTime, MonthDateYear}
+export default {monthYear, yearNumeric, getLengthOfTime, monthDateYear}

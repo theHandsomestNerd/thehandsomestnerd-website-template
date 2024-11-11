@@ -106,7 +106,7 @@ const PortfolioItemModal: FunctionComponent<IProps> = (props: IProps) => {
                     </Grid>
                     <Grid item>
                         <Typography color='primary'
-                                    variant='body2'>{dateUtils.MonthYear(props.currentItem?.inceptionDate?.toString())}</Typography>
+                                    variant='body2'>{dateUtils.monthYear(props.currentItem?.inceptionDate)}</Typography>
                     </Grid>
                 </Grid>
                 <Grid item container>

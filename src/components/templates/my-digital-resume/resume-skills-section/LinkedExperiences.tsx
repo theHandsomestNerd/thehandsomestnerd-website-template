@@ -14,15 +14,10 @@ const LinkedExperiences: FunctionComponent<LinkedExperiencesProps> = ({resumeSki
     const {data: skillExperiences, loading, error} = useSkillExperiences(resumeSkill);
     // const sanityContext = useContext(SanityContext)
 
-    const skillNumYears = skillExperiences?.length
-        ? dateUtils.getLengthOfTime(skillExperiences[skillExperiences.length - 1].dateStart, skillExperiences[0].dateEnd).result
-        : undefined;
-
     if (loading) return <CircularProgress/>;
     if (error) return <Typography color="error">Error loading experiences.</Typography>;
     return (<Grid container item paddingBottom={1}>
-        {skillNumYears && <Typography variant='caption' color='whitesmoke' gutterBottom>{skillNumYears} of <b>{resumeSkill.title}</b> experience</Typography>}
-
+        {skillExperiences && <Typography variant='caption' color='whitesmoke' gutterBottom>{dateUtils.getLengthOfTime(skillExperiences[skillExperiences.length - 1].dateStart, skillExperiences[0].dateEnd)} of <b>{resumeSkill.title}</b> experience</Typography>}
         {
             skillExperiences?.map((experience: ResumeExperienceType) => {
             return <Grid item container key={experience._id}>
@@ -30,7 +25,7 @@ const LinkedExperiences: FunctionComponent<LinkedExperiencesProps> = ({resumeSki
                     <Link href={`#${experience._id}`} className={classes.toolTiplink}>
                         <Typography
                             variant='caption'
-                            color='whitesmoke'>{dateUtils.YearNumeric(experience.dateStart)}</Typography>
+                            color='whitesmoke'>{dateUtils.yearNumeric(experience.dateStart)}</Typography>
                     </Link>
                 </Grid>
                 <Grid item xs={9}>

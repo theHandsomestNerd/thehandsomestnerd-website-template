@@ -54,7 +54,7 @@ const ResumePortfolioEntry: FunctionComponent<IProps> = (props: IProps) => {
                             <Typography display='inline'
                                         variant='body1'
                                         color={'textPrimary'}
-                            >{dateUtils.MonthYear(props.portfolioItem?.inceptionDate)}</Typography>
+                            >{dateUtils.monthYear(props.portfolioItem?.inceptionDate)}</Typography>
                         </Grid>
                         <Grid container item justifyContent='center' alignContent={'center'}>
                             <Typography style={{minHeight: "60px"}}

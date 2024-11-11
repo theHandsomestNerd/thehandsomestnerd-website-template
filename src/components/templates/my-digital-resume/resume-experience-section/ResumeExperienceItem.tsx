@@ -46,7 +46,7 @@ const ResumeExperienceItem: FunctionComponent<IProps> = (props: IProps) => {
                 <Grid item>
                     <Typography display='inline'
                                 variant='body1'
-                                fontWeight={'bold'}>{dateUtils.YearMonth(new Date(props.experience.dateStart as string))}</Typography>
+                                fontWeight={'bold'}>{dateUtils.monthYear(props.experience.dateStart)}</Typography>
 
                     <Typography fontWeight={'bold'} display='inline'
                                 variant='body1' style={{margin: theme.spacing(0, 1)}}>—</Typography>
@@ -57,7 +57,7 @@ const ResumeExperienceItem: FunctionComponent<IProps> = (props: IProps) => {
                                 display='inline'
                                 variant='body1'
                             >
-                                {dateUtils.YearMonth(new Date(props.experience.dateEnd as string))}
+                                {dateUtils.monthYear(props.experience.dateEnd)}
                             </Typography>
                             : <Typography
                                 fontWeight='bold'
@@ -71,15 +71,12 @@ const ResumeExperienceItem: FunctionComponent<IProps> = (props: IProps) => {
 
                 </Grid>
             </Grid>
-            <Grid container item  xs={6}>
+            <Grid container item xs={6}>
                 <Typography
                     variant='body1'
                     fontStyle={'italic'}>
                     {
-                        dateUtils.getLengthOfTime(
-                            new Date(props.experience.dateStart ?? ""),
-                            !props.experience.isPresentPosition && props.experience.dateEnd ? new Date(props.experience.dateEnd)
-                                : new Date()).result
+                        dateUtils.getLengthOfTime(props.experience.dateStart, props.experience.dateEnd, props.experience.isPresentPosition)
                     }
                 </Typography>
             </Grid>
@@ -102,7 +99,8 @@ const ResumeExperienceItem: FunctionComponent<IProps> = (props: IProps) => {
                     <List sx={{listStyleType: 'disc'}}>
                         {
                             props.experience.bulletedDescription?.map((aBullet, index) => {
-                                return <ListItem key={"bulleted-description"+index} sx={{display: 'list-item'}}>{aBullet}</ListItem>
+                                return <ListItem key={"bulleted-description" + index}
+                                                 sx={{display: 'list-item'}}>{aBullet}</ListItem>
                             })
                         }
                     </List>

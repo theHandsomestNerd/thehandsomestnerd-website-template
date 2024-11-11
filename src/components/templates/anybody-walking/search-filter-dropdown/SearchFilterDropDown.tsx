@@ -138,7 +138,7 @@ const SearchFilterDropDown: FunctionComponent = () => {
                             }
                         }
                         } color="primary"
-                              label={`dates: ${dateUtils.MonthDateYear(searchContext.searchParams?.startDate)}${searchContext.searchParams?.endDate ? " to " + dateUtils.MonthDateYear(searchContext.searchParams?.endDate) : ""}`}></Chip>
+                              label={`dates: ${dateUtils.monthDateYear(searchContext.searchParams?.startDate)}${searchContext.searchParams?.endDate ? " to " + dateUtils.monthYear(searchContext.searchParams?.endDate) : ""}`}></Chip>
                     </Grid>
                 }
             </Grid>

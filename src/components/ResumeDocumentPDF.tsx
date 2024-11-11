@@ -172,12 +172,12 @@ const ResumeDocumentPDF: FunctionComponent<ResumeDocumentPDFIProps> = (props: Re
                                             <Text
                                                 style={styles.body}>
                                                 {
-                                                    dateUtils.YearMonth(new Date(experience.dateStart as string))
+                                                    dateUtils.monthYear(experience.dateStart)
                                                 }
                                                 -
                                                 {
                                                     !experience.isPresentPosition ?
-                                                        dateUtils.YearMonth(new Date(experience.dateEnd as string))
+                                                        dateUtils.monthYear(experience.dateEnd)
                                                         : "present"
                                                 }
                                             </Text>
@@ -185,9 +185,7 @@ const ResumeDocumentPDF: FunctionComponent<ResumeDocumentPDFIProps> = (props: Re
                                                 style={styles.body}
                                             >
                                                 {
-                                                    dateUtils.getLengthOfTime(new Date(experience.dateStart as string),
-                                                        !experience.isPresentPosition ? new Date(experience.dateEnd as string)
-                                                            : new Date()).result
+                                                    dateUtils.getLengthOfTime(experience.dateStart, experience.dateEnd, experience.isPresentPosition)
                                                 }
                                             </Text>
                                             <View style={{

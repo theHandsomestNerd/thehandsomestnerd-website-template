@@ -23,11 +23,11 @@ const BartenderExperienceItem: FunctionComponent<IProps> = (props: IProps) => {
         sx={{color: "white"}}
     >
         <Grid container item role={'experienceheader'} alignContent='center' alignItems='center'>
-            <Grid item xs={12}  container>
+            <Grid item xs={12} container>
                 <Typography display='inline'
                             variant='body2' color='primary'>{props.experience.companyName}</Typography>
             </Grid>
-            <Grid item xs={12}  container>
+            <Grid item xs={12} container>
                 <Typography
                     variant='body1'>{props.experience.title}</Typography>
             </Grid>
@@ -37,7 +37,7 @@ const BartenderExperienceItem: FunctionComponent<IProps> = (props: IProps) => {
                 <Grid item>
                     <Typography display='inline'
                                 variant='body1'
-                                fontWeight={'bold'}>{dateUtils.YearMonth(new Date(props.experience.dateStart as string))}</Typography>
+                                fontWeight={'bold'}>{dateUtils.monthYear(props.experience.dateStart)}</Typography>
 
                     <Typography fontWeight={'bold'} display='inline'
                                 variant='body1' style={{margin: theme.spacing(0, 1)}}>—</Typography>
@@ -48,7 +48,7 @@ const BartenderExperienceItem: FunctionComponent<IProps> = (props: IProps) => {
                                 display='inline'
                                 variant='body1'
                             >
-                                {dateUtils.YearMonth(new Date(props.experience.dateEnd as string))}
+                                {dateUtils.monthYear(props.experience.dateEnd)}
                             </Typography>
                             : <Typography
                                 fontWeight='bold'
@@ -67,10 +67,7 @@ const BartenderExperienceItem: FunctionComponent<IProps> = (props: IProps) => {
                     variant='body1'
                     fontStyle={'italic'}>
                     {
-                        dateUtils.getLengthOfTime(
-                            new Date(props.experience.dateStart ?? ""),
-                            !props.experience.isPresentPosition && props.experience.dateEnd ? new Date(props.experience.dateEnd)
-                                : new Date()).result
+                        dateUtils.getLengthOfTime(props.experience.dateStart, props.experience.dateEnd, props.experience.isPresentPosition)
                     }
                 </Typography>
             </Grid>

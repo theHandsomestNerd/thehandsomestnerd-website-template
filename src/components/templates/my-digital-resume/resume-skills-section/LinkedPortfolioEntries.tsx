@@ -39,7 +39,7 @@ const LinkedPortfolioEntries: FunctionComponent<IProps> = (props: IProps) => {
                         <Link href={"#" + portfolioEntry._id} className={classes.toolTiplink}>
                             <Typography
                                 variant='caption'
-                                color='whitesmoke'>{dateUtils.YearNumeric(portfolioEntry.inceptionDate)}</Typography>
+                                color='whitesmoke'>{dateUtils.yearNumeric(portfolioEntry.inceptionDate)}</Typography>
                         </Link>
                     </Grid>
                     <Grid item xs={8}>
