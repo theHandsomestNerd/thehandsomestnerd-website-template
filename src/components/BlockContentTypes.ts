@@ -399,15 +399,15 @@ export type ResumeExperienceType = {
     companyName?: string
     locationCity?: string
     locationState?: string
-    dateStart?: Date | string
-    dateEnd?: Date | string
+    dateStart?: string
+    dateEnd?: string
     description?: string
     bulletedDescription?:string[]
     _createdAt?: string
     _updatedAt?: string
     skillsUsed?: ResumeSkillType[]
     isPresentPosition?: boolean
-}
+} & SanityDocumentLike
 
 export type ResumeExperienceSectionType = {
     name?: string
@@ -471,7 +471,7 @@ export type ResumePortfolioItemType = {
     name?: string
     title?: string
     coverImage?: SanityImageSource
-    inceptionDate?: Date | string
+    inceptionDate?: string
     slug?: SanitySlug
     skillsHighlighted?: ResumeSkillType[]
     detailTitle?: string
