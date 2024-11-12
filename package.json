@@ -1,6 +1,6 @@
 {
   "name": "the-handsomestnerd-internal",
-  "version": "0.1.311",
+  "version": "0.1.314",
   "files": [
     "dist/esm",
     "dist/cjs",
@@ -72,12 +72,12 @@
     "start:debug": "yarn build:dev && NODE_ENV=development serve -s build",
     "start:dev": "NODE_ENV=development react-scripts start",
     "build": "npm run build:esm && npm run build:cjs && npm run build:assets && npm run build:fonts && npm run build:esm:babel && npm run build:cjs:babel",
-    "build:cjs": "tsc --module commonjs --outDir dist/cjs",
-    "build:esm": "tsc --outDir dist/esm",
+    "build:cjs": "tsc --module commonjs --outDir dist/cjs/src",
+    "build:esm": "tsc --outDir dist/esm/src",
     "build:cjs:babel": "babel --plugins @babel/plugin-transform-modules-commonjs dist/cjs --out-dir dist/cjs",
     "build:esm:babel": "babel dist/esm --out-dir dist/esm",
     "build:assets": "cp src/logo.png dist/cjs/src && cp src/logo.png dist/esm/src",
-    "build:fonts": "cp -r src/fonts dist/cjs && cp -r src/fonts dist/esm",
+    "build:fonts": "cp -r src/fonts dist/cjs/src && cp -r src/fonts dist/esm/src",
     "build-web": "tsc && react-scripts build",
     "build-publish": "npm run build && npm publish",
     "build-npm": "rm -rf dist && NODE_ENV=production babel src --out-dir dist --copy-files",

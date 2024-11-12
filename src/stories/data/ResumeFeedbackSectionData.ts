@@ -1,47 +1,31 @@
-import {
-    ResumeEducationSectionType,
-    ResumeExperienceSectionType,
-    ResumeFeedbackSectionType
-} from "../../components/BlockContentTypes";
+import {ResumeFeedbackSectionType} from "../../components/BlockContentTypes";
 
 const ResumeFeedbackSectionData:ResumeFeedbackSectionType = {
-    // "_id": "127990c1-8bd4-44f9-b344-b39dcceaf731",
-    // "servicesList": null,
-    // "serviceAmenities": null,
-    // "experiences": null,
-    // "educationExperiences": null,
+    "_id": "b5657011-4100-c526-aabf-204c886c2918",
     "_type": "ResumeFeedbackSection",
-    // "_updatedAt": "2022-12-01T20:55:44Z",
     "feedbackEntries": [
         {
-            // "_id": "b5011657-c526-4100-aabf-886c204c2918",
-            // "_updatedAt": "2022-12-01T21:24:38Z",
+            "_id": "b5011657-c526-4100-aabf-886c204c2918",
             "quote": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable Engl",
-            // "_createdAt": "2022-12-01T20:55:41Z",
-            "companyName": "JamWorks",
+            "companyName": "JamWorks Company",
             "name": "JamWorks",
-            "imageSrc": {
-                "asset": {
-                    "_ref": "image-ba4a7c9c01e632950293be433ab1f95560800ce5-728x290-png",
-                    "_type": "reference"
-                },
-                "_type": "image"
-            },
             "customerName": "JamWorks",
             "customerTitle": "CEO",
-            // "_rev": "QoSfkmWVFCw5OU4CBmXCaz",
+            "_type": "ResumeFeedback"
+        },
+        {
+            "_id": "886c204c2918-4100-c526-aabf-b5011657",
+            "quote": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+            "companyName": "CompanyName",
+            "name": "FeedbackName",
+            "customerName": "CustomerName",
+            "customerTitle": "Customer Title",
             "_type": "ResumeFeedback"
         }
     ],
     "name": "Feedback",
     "title": "Feedback",
     "introduction": "Take a look at the reviews of my customers and ensure the quality of my services.",
-    // "portfolioEntries": null,
-    // "_rev": "YKkjAGOOflKrRktUjzqTwY",
-    // "skillsets": null,
-    // "resumeFile": null,
-    // "cvFile": null,
-    // "_createdAt": "2022-12-01T20:53:45Z"
 }
 
 export default ResumeFeedbackSectionData

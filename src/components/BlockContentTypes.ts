@@ -446,7 +446,7 @@ export type ResumeEducationSectionType = {
     educationExperiences?: ResumeEducationItemType[]
 } & SanityDocumentLike
 
-export type ResumeFeedback = {
+export type ResumeFeedbackItemType = {
     name?: string
     customerName?: string
     customerTitle?: string
@@ -455,15 +455,15 @@ export type ResumeFeedback = {
     quote?: string
     imageSrc?: SanityImageSource
     _type?: "ResumeFeedback"
-}
+} & SanityDocumentLike
 
 export type ResumeFeedbackSectionType = {
     _type?: "ResumeFeedbackSection"
     name?: string
     title?: string
     introduction?: string
-    feedbackEntries?: ResumeFeedback[]
-}
+    feedbackEntries?: ResumeFeedbackItemType[]
+} & SanityDocumentLike
 
 export type ResumePortfolioItemType = {
     _type?: "ResumePortfolioItem"
