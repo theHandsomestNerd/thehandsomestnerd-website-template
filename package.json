@@ -1,6 +1,6 @@
 {
   "name": "the-handsomestnerd-internal",
-  "version": "0.1.308",
+  "version": "0.1.311",
   "files": [
     "dist/esm",
     "dist/cjs",
@@ -82,7 +82,7 @@
     "build-publish": "npm run build && npm publish",
     "build-npm": "rm -rf dist && NODE_ENV=production babel src --out-dir dist --copy-files",
     "build:dev": " NODE_ENV=development tsc --build && react-scripts build && cd functions && npm run build",
-    "test": "react-scripts test",
+    "test": "jest",
     "eject": "react-scripts eject",
     "firebaseDeploy": "firebase deploy --only hosting",
     "storybook": "storybook dev -p 6006",

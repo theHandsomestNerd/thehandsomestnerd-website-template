@@ -426,25 +426,25 @@ export type BartenderExperienceSectionType = {
     experiences?: ResumeExperienceType[]
 }
 
-export type ResumeEducation = {
+export type ResumeEducationItemType = {
+    _type: "ResumeEducation"
     name?: string
     institutionName?: string
     qualification?: string
     locationCity?: string
     locationState?: string
-    dateStart?: Date | string
-    dateEnd?: Date | string
-    _type: "ResumeEducation"
+    dateStart?: string
+    dateEnd?: string
     description?: string
-}
+} & SanityDocumentLike
 
 export type ResumeEducationSectionType = {
     name?: string
     "_type": "ResumeEducationSection"
     title?: string
     introduction?: string
-    educationExperiences?: ResumeEducation[]
-}
+    educationExperiences?: ResumeEducationItemType[]
+} & SanityDocumentLike
 
 export type ResumeFeedback = {
     name?: string
@@ -674,14 +674,6 @@ export type FooterSectionType = {
     topPadding?: string
     footerMenuRef: SanityMenuContainer
 }
-
-// export type SanityDocumentFields = {
-//     _rev?: string
-//     _createdAt?: string
-//     _updatedAt?: string
-//     _type?: string
-//     _id?: string
-// }
 
 export type HeadlineCTASectionType = {
     name: string
