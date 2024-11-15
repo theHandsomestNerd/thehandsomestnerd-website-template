@@ -17,7 +17,7 @@ const ColoredPng: FunctionComponent<ColoredPngProps> = (props: ColoredPngProps) 
     const sanityContext = useContext(SanityContext)
 
     useEffect(() => {
-        if(props.size){
+        if (props.size) {
             setImageSize(props.size)
         }
         if (props.maskUrl) {

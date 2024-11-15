@@ -2,7 +2,7 @@ import {FunctionComponent, useContext, useState} from 'react'
 import {Theme} from "@mui/material/styles";
 import makeStyles from '@mui/styles/makeStyles';
 import {Button, ButtonGroup, Chip, Grid, IconButton, Modal, Typography, useMediaQuery, useTheme} from '@mui/material'
-import {ResumePortfolioItemType, ResumePortfolioSectionType} from "../../BlockContentTypes";
+import {PortfolioSectionType, ResumePortfolioItemType, ResumePortfolioSectionType} from "../../BlockContentTypes";
 import {COLORS} from "../../../theme/common/ColorPalette";
 import {Close} from "@mui/icons-material";
 import PageContext from "../../page-context/PageContext";
@@ -18,15 +18,15 @@ export const useStyles = makeStyles((theme: Theme) => ({
     },
 }))
 
-interface IProps {
-    sectionData: ResumePortfolioSectionType
+interface WebDevPortfolioSectionProps {
+    sectionData: ResumePortfolioSectionType | PortfolioSectionType
     index?: number
 }
 
 const COLOR_ROTATION = ["#d9dde9", "#333784"]
 const COLOR_ROTATION_FONT: any[] = ["textSecondary", "textPrimary",]
 
-const WebDevPortfolioSection: FunctionComponent<IProps> = (props: IProps) => {
+const WebDevPortfolioSection: FunctionComponent<WebDevPortfolioSectionProps> = (props: WebDevPortfolioSectionProps) => {
     const theme = useTheme()
     const classes = useStyles()
     const sanityContext = useContext(SanityContext)

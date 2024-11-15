@@ -26,7 +26,8 @@ import groqQueries from "../groqQueries";
 import {
     ResumeExperienceType,
     ResumePortfolioItemType,
-    ResumeSkillType, SanityRef,
+    ResumeSkillType,
+    SanityRef,
     WhySwitchSectionType
 } from "../../../components/BlockContentTypes";
 import imageUrlBuilder from "@sanity/image-url";
@@ -1376,7 +1377,7 @@ const SanityProvider: FunctionComponent<IProps & PropsWithChildren> = (
             })
     }
 
-    const placeholderOrImage = (imageSrc?: SanityImageSource, placeholderWidth?: number, placeholderHeight?: number, text?: string):string => {
+    const placeholderOrImage = (imageSrc?: SanityImageSource, placeholderWidth?: number, placeholderHeight?: number, text?: string): string => {
         const imageUrlBuilder = imageSrc ? urlFor(imageSrc) : undefined;
         return imageUrlBuilder?.url() || getPlaceholderImageUrl(placeholderWidth, placeholderHeight, text);
     }
@@ -2009,11 +2010,7 @@ const SanityProvider: FunctionComponent<IProps & PropsWithChildren> = (
             fetchSkillExperiences,
             fetchPortfolioItems
         }),
-        [
-            sanityConfig,
-            theSanityClient,
-            urlFor
-        ]
+        [theSanityClient]
     );
 
 

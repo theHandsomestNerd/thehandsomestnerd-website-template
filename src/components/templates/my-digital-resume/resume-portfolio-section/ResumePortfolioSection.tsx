@@ -4,26 +4,25 @@ import {ResumePortfolioItemType, ResumePortfolioSectionType} from "../../../Bloc
 import useThwCommonStyles from "../../../../common/sanityIo/ThwCommonStyles";
 import ResumePortfolioEntry from "./ResumePortfolioEntry";
 
-interface IProps {
+interface ResumePortfolioSectionProps {
     sectionData: ResumePortfolioSectionType
 }
 
-const ResumePortfolioSection: FunctionComponent<IProps> = (props: IProps) => {
-    const globalClasses = useThwCommonStyles()
+const ResumePortfolioSection: FunctionComponent<ResumePortfolioSectionProps> = ({sectionData}: ResumePortfolioSectionProps) => {
     const theme = useTheme()
-
+    const classes = useThwCommonStyles()
     const smDown = useMediaQuery(theme.breakpoints.down('sm'))
 
     return (
         <Grid container item style={{padding: theme.spacing(4, smDown ? 1 : 4)}}
-              className={globalClasses.resumeSection} justifyContent={'center'}>
+              className={classes.resumeSection} justifyContent={'center'}>
             <Grid
                 container item spacing={3} justifyContent='center'>
                 <Grid item container alignContent='flex-start' spacing={1}>
                     <Grid item container>
                         <Typography
                             variant='h6'
-                        >{props.sectionData.title}</Typography>
+                        >{sectionData.title}</Typography>
                         <Typography
                             variant='h6'
                             color='primary'
@@ -32,19 +31,25 @@ const ResumePortfolioSection: FunctionComponent<IProps> = (props: IProps) => {
                         </Typography>
                     </Grid>
                     <Grid item container>
-                        <Typography variant='body1'>{props.sectionData.introduction}</Typography></Grid>
+                        <Typography variant='body1'>{sectionData.introduction}</Typography>
+                    </Grid>
                 </Grid>
-                <Grid item container justifyContent={'center'} xs={11} justifySelf={'center'} spacing={1}>
-                    {
-                        props.sectionData.portfolioEntries?.map((portfolioItem: ResumePortfolioItemType, index2: number) => {
-                            return <Grid key={index2} item xs={12} sm={6} lg={4} xl={4}>
-                                <Link id={portfolioItem._id} underline="hover" position='relative' top={-90}/>
-                                <ResumePortfolioEntry portfolioItem={portfolioItem}/></Grid>
-                        })
-                    }
-                </Grid>
+                {
+                    sectionData.portfolioEntries && sectionData.portfolioEntries.length > 0 &&
+                    <Grid item container justifyContent={'center'} xs={11}
+                          justifySelf='center' spacing={1}>
+                        {
+                            sectionData.portfolioEntries.map(
+                                (portfolioItem: ResumePortfolioItemType, index: number) => {
+                                    return <Grid key={index} item xs={12} sm={6} lg={4} xl={4}>
+                                        <Link id={portfolioItem._id} underline="hover" position='relative' top={-90}/>
+                                        <ResumePortfolioEntry portfolioItem={portfolioItem}/>
+                                    </Grid>
+                                })
+                        }
+                    </Grid>
+                }
             </Grid>
-            {/*<PortfolioItemModal currentItem={currentItem} isOpen={isOpen} setIsOpen={(value)=>{setIsOpen(value)}}/>*/}
         </Grid>
     );
 }

@@ -37,13 +37,13 @@ const WebDevServicesSection: FunctionComponent<IProps> = (props) => {
                         <Typography variant='subtitle2'
                                     color='secondary'
                                     style={{color: COLORS.AQUA}}
-                        >{props.sectionData?.contentPreTitle}</Typography>
+                        >{props.sectionData?.preTitle}</Typography>
                     </Grid>
                     <Grid item container wrap='nowrap'>
                         <Grid item>
                             <Typography color='primary' variant='h2' align='center'
                                         style={{fontFamily: "Elaine Sans"}}
-                                        display='inline'>{props.sectionData?.contentTitle}</Typography>
+                                        display='inline'>{props.sectionData?.title}</Typography>
                         </Grid>
                     </Grid>
                 </Grid>

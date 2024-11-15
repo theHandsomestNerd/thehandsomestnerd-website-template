@@ -359,11 +359,7 @@ export type BartenderHeroSectionType = {
 export type SanityRef = Reference
 
 export type ResumeSkillType = {
-    _id?: string
-    _createdAt?: string
-    _updatedAt?: string
-    _rev?: string
-    _type?: "ResumeSkill"
+    _type: "ResumeSkill"
     name?: string
     title?: string
     searchableOnPages?: SanityRef[]
@@ -391,9 +387,7 @@ export type ResumeSkillSectionType = {
 
 export type ResumeExperienceType = {
     name?: string
-    _id?: string
-    _rev?: string
-    "_type": "ResumeExperience"
+    _type: "ResumeExperience"
     title?: string
     companySubtitle?: string
     companyName?: string
@@ -403,19 +397,17 @@ export type ResumeExperienceType = {
     dateEnd?: string
     description?: string
     bulletedDescription?:string[]
-    _createdAt?: string
-    _updatedAt?: string
     skillsUsed?: ResumeSkillType[]
     isPresentPosition?: boolean
 } & SanityDocumentLike
 
 export type ResumeExperienceSectionType = {
     name?: string
-    _type?: "ResumeExperienceSection"
+    _type: "ResumeExperienceSection"
     title?: string
     introduction?: string
     experiences?: ResumeExperienceType[]
-}
+} & SanityDocumentLike
 
 export type BartenderExperienceSectionType = {
     name?: string
@@ -440,7 +432,7 @@ export type ResumeEducationItemType = {
 
 export type ResumeEducationSectionType = {
     name?: string
-    "_type": "ResumeEducationSection"
+    _type: "ResumeEducationSection"
     title?: string
     introduction?: string
     educationExperiences?: ResumeEducationItemType[]
@@ -454,11 +446,11 @@ export type ResumeFeedbackItemType = {
     qualification?: string
     quote?: string
     imageSrc?: SanityImageSource
-    _type?: "ResumeFeedback"
+    _type: "ResumeFeedback"
 } & SanityDocumentLike
 
 export type ResumeFeedbackSectionType = {
-    _type?: "ResumeFeedbackSection"
+    _type: "ResumeFeedbackSection"
     name?: string
     title?: string
     introduction?: string
@@ -466,8 +458,7 @@ export type ResumeFeedbackSectionType = {
 } & SanityDocumentLike
 
 export type ResumePortfolioItemType = {
-    _type?: "ResumePortfolioItem"
-    _id?: string
+    _type: "ResumePortfolioItem"
     name?: string
     title?: string
     coverImage?: SanityImageSource
@@ -479,7 +470,8 @@ export type ResumePortfolioItemType = {
     linkToProd?: string
     linkToDev?: string
     imageGallery?: SanityImageSource[]
-}
+} & SanityDocumentLike
+
 export type AnimatedPortfolioItemType = {
     _type?: "AnimatedPortfolioItem"
     name?: string
@@ -503,7 +495,8 @@ export type ResumePortfolioSectionType = {
     title?: string
     introduction?: string
     portfolioEntries?: ResumePortfolioItemType[]
-}
+} & SanityDocumentLike
+
 export type AnimatedPortfolioSectionType = {
     name?: string
     _type?: "AnimatedPortfolioSection"
@@ -513,7 +506,6 @@ export type AnimatedPortfolioSectionType = {
     portfolioEntries?: AnimatedPortfolioItemType[]
 }
 
-
 export type ResumeContactUsSectionType = {
     name: string
     _type?: "ResumeContactUsSection"
@@ -521,7 +513,6 @@ export type ResumeContactUsSectionType = {
     introduction?: string
     formSubmitButtonText: string
 }
-
 
 export type WebDevHeroContentSectionType = {
     name: string
@@ -574,13 +565,13 @@ export type ServiceItemNoRefType = {
 export type PortfolioSectionType = {
     name?: string
     introduction?: string
-    contentTitle?: string
-    contentPreTitle?: string
+    title?: string
+    preTitle?: string
     contentText?: string
     contentTexts?: string[]
     portfolioEntries?: ResumePortfolioItemType[]
     servicesList?: ServiceItemNoRefType[]
-}
+} & SanityDocumentLike
 
 export type WebDevTestimonialsType = {
     name?: string
