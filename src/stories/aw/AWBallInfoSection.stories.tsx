@@ -2,13 +2,9 @@ import type {Meta, StoryObj} from '@storybook/react';
 import {ThemeProvider} from "@mui/material/styles";
 import getThemeFromSanity from "../../components/customized-theme-provider/getThemeFromSanity";
 import AWThemeData from "../data/AWThemeData";
-import AWBallsSearchSection from "../../components/templates/anybody-walking/AWBallSearchSection";
 import AWBallsPageData from "../data/AWBallsPageData";
-import AwBallsArrayData from "../data/AwBallsArrayData";
-import {Grid, Typography} from "@mui/material";
 import AppSettingsProvider from "../../components/templates/anybody-walking/app-settings/AppSettingsProvider";
 import {AppSettingsType} from "../../components/templates/anybody-walking/ballroomTypes";
-import BallSearchProvider from "../../components/templates/anybody-walking/ball-search-context/BallSearchProvider";
 import BallToolsSection from "../../components/templates/anybody-walking/BallToolsSection";
 
 const meta: Meta<typeof BallToolsSection> = {
@@ -25,7 +21,7 @@ type Story = StoryObj<typeof BallToolsSection>;
  * See https://storybook.js.org/docs/react/api/csf
  * to learn how to use render functions.
  */
-const settings:AppSettingsType = {
+const settings: AppSettingsType = {
     newAddBallStepsFlow: true
 }
 export const BallToolsSectionComplete: Story = {

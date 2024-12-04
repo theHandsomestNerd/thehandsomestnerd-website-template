@@ -2,7 +2,7 @@ import {FunctionComponent, useContext, useEffect, useState} from 'react'
 
 import makeStyles from "@mui/styles/makeStyles";
 import {Theme} from "@mui/material/styles";
-import {Button, Grid, Typography} from "@mui/material";
+import {Button, Typography} from "@mui/material";
 import {Add, Home, Search} from "@mui/icons-material";
 import theme from "../../../theme/Theme";
 import {RoutesEnum} from "./enums/Routes.enum";
@@ -10,11 +10,12 @@ import {AddBallState, AWBallToolsType} from "./ballroomTypes";
 import PageContext from "../../page-context/PageContext";
 import AddBallModal from "./modal-add-ball/AddBallModal";
 import FirebaseContext from "../../../common/firebase/firebase-context/FirebaseContext";
+import Grid from "@mui/material/Grid2";
 
 export const useStyles = makeStyles((theme: Theme) => ({
     ballInfoButton: {
         [theme.breakpoints.down('sm')]: {
-            maxWidth: '466px',
+            // maxWidth: '466px',
         },
         // width: '210px',
     },
@@ -31,7 +32,6 @@ const BallToolsSection: FunctionComponent<IProps> = (props: IProps) => {
     const pageContext = useContext(PageContext)
     const firebaseContext = useContext(FirebaseContext)
 
-    // const navigate = useNavigate()
     const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
 
     useEffect(() => {
@@ -39,12 +39,12 @@ const BallToolsSection: FunctionComponent<IProps> = (props: IProps) => {
     }, [pageContext])
 
     return <Grid container spacing={3} justifyContent='center'
-                 style={{minHeight: "800px", paddingTop: "128px", paddingLeft: "32px", paddingRight: "32px"}}>
-        <Grid container item xs={12} md={10} justifyContent='center'>
+                 style={{minHeight: "800px", paddingLeft: "32px", paddingRight: "32px"}}>
+        <Grid container  size={{xs: 12, md:10}} justifyContent='center'>
             <Typography variant='h4' color='textSecondary'>Ball Info</Typography>
         </Grid>
-        <Grid container item spacing={2}>
-            <Grid container direction='column' alignItems='center' item sm={12} md={4}>
+        <Grid container>
+            <Grid container size={{xs:12, md:6}}>
                 <Button
                     fullWidth
                     variant='outlined'
@@ -57,14 +57,14 @@ const BallToolsSection: FunctionComponent<IProps> = (props: IProps) => {
                         firebaseContext.ctaClick && firebaseContext.ctaClick('ball-tools', 'ball-submission', pageContext.analyticsId)
                     }}
                 >
-                    <Grid container direction='column'>
-                        <Grid item>
-                            <Add style={{fontSize: "86px"}}/>
+                    <Grid container direction='column' width='100%'>
+                        <Grid >
+                            <Add style={{fontSize: "xxx-large"}}/>
                         </Grid>
-                        <Grid item>
-                            Ball Submission
+                        <Grid >
+                            <Typography variant='button'>Ball Submission</Typography>
                         </Grid>
-                        <Grid item>
+                        <Grid >
                             <Typography variant='caption'>(best on desktop)</Typography>
                         </Grid>
                     </Grid>
@@ -74,7 +74,7 @@ const BallToolsSection: FunctionComponent<IProps> = (props: IProps) => {
                     fileUploaded: props.ballFlyerFile
                 } : {categories: []}}></AddBallModal>
             </Grid>
-            <Grid container direction='column' alignItems='center' item sm={12} md={4}>
+            <Grid container width={'100%'} direction='column' size={{xs:12, md:6}}>
                 <Button
                     fullWidth
                     variant='outlined'
@@ -91,16 +91,16 @@ const BallToolsSection: FunctionComponent<IProps> = (props: IProps) => {
                     // onClick={() => navigate()}
                 >
                     <Grid container direction='column' alignItems='center'>
-                        <Grid item>
-                            <Search style={{fontSize: "86px"}}/>
+                        <Grid >
+                            <Search style={{fontSize: "xxx-large"}}/>
                         </Grid>
-                        <Grid item>
-                            Search for a Ball
+                        <Grid container>
+                            <Typography variant='button' align='center'> Search for a Ball</Typography>
                         </Grid>
                     </Grid>
                 </Button>
             </Grid>
-            <Grid container direction='column' alignItems='center' item sm={12} md={4}>
+            <Grid container direction='column' alignItems='center' size={{xs:12, md:6}}>
                 <Button
                     data-testid='new-house-button'
                     style={{height: '266px'}}
@@ -120,16 +120,16 @@ const BallToolsSection: FunctionComponent<IProps> = (props: IProps) => {
                     }}
                 >
                     <Grid container direction='column' alignItems='center'>
-                        <Grid item>
-                            <Add style={{fontSize: "86px"}}/>
+                        <Grid>
+                            <Add style={{fontSize: "xxx-large"}}/>
                         </Grid>
-                        <Grid item>
-                            New House
+                        <Grid container alignItems='center' alignContent='center'>
+                            <Typography variant='button' align='center'>New House</Typography>
                         </Grid>
                     </Grid>
                 </Button>
             </Grid>
-            <Grid container direction='column' alignItems='center' item sm={12} md={4}>
+            <Grid container direction='column' alignItems='center' size={{xs:12, md:6}}>
                 <Button
                     data-testid='house-info-button'
                     style={{height: '266px'}}
@@ -149,11 +149,11 @@ const BallToolsSection: FunctionComponent<IProps> = (props: IProps) => {
                     }}
                 >
                     <Grid container direction='column' alignItems='center'>
-                        <Grid item>
-                            <Home style={{fontSize: "86px"}}/>
+                        <Grid >
+                            <Home style={{fontSize: "xxx-large"}}/>
                         </Grid>
-                        <Grid item>
-                            House Info
+                        <Grid container alignItems='center' alignContent='center'>
+                            <Typography variant='button' align='center'>House Info</Typography>
                         </Grid>
                     </Grid>
                 </Button>

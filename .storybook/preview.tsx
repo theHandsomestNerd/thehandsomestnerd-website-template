@@ -22,7 +22,7 @@ const preview: Preview = {
                         fetchPortfolioItems={parameters.fetchPortfolioItems}
                     >
                         < BrowserRouter>
-                            < AppSettingsProvider settings={parameters.settings}>
+                            <AppSettingsProvider settings={parameters.settings}>
                                 <PageProvider page={homepageData}>
                                     <CustomizedThemeProvider>
                                         <SnackbarProvider>
