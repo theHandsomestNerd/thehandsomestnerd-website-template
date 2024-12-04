@@ -7,7 +7,7 @@ import Grid from "@mui/material/Grid2";
 import BallDataTile from "./BallDataTile";
 
 type BallDataTilesProps = {
-    tiles?: SanityBallType[];
+    ballsData?: SanityBallType[];
     columnSize?: 3 | 4 | 6 | 12;
     isAgoOn?: boolean;
     tileClickAnalytics?: (tileSlug: string) => void;
@@ -16,7 +16,7 @@ type BallDataTilesProps = {
 const ROWS_PER_PAGE = 9;
 
 const BallDataTiles: React.FC<BallDataTilesProps> = ({
-                                                                   tiles = [],
+                                                                   ballsData = [],
                                                                    columnSize,
                                                                    isAgoOn = false,
                                                                    tileClickAnalytics
@@ -28,16 +28,13 @@ const BallDataTiles: React.FC<BallDataTilesProps> = ({
     const [displayTiles, setDisplayTiles] = useState<SanityBallType[]>()
 
     useEffect(() => {
-        setDisplayTiles(tiles.slice(0, (page + 1) * ROWS_PER_PAGE));
+        setDisplayTiles(ballsData.slice(0, (page + 1) * ROWS_PER_PAGE));
     }, [page])
 
     useEffect(() => {
-        setDisplayTiles(tiles);
-    }, [])
-
-    useEffect(() => {
         setPage(0); // Reset pagination when tiles prop changes
-    }, [tiles]);
+        setDisplayTiles(ballsData);
+    }, [ballsData]);
 
     const fetchMoreData = useCallback(() => {
         setPage((prevPage) => prevPage + 1);
@@ -68,7 +65,7 @@ const BallDataTiles: React.FC<BallDataTilesProps> = ({
         );
     }
 
-    if (!tiles.length) {
+    if (!ballsData.length) {
         return (
             <Grid
                 container
@@ -83,11 +80,11 @@ const BallDataTiles: React.FC<BallDataTilesProps> = ({
     }
 
     return (
-        <Grid container id="scrollDiv" size={{xs: 12}} justifyContent='center'>
+        <Grid container id="scrollDiv" justifyContent='center'>
             {displayTiles && displayTiles.length > 3 ? (
                 <Grid container>
                     <InfiniteScroll
-                        style={{width: "100%", paddingTop: "56px", paddingLeft: "8px"}}
+                        style={{width: "100%"}}
                         dataLength={displayTiles.length}
                         next={fetchMoreData}
                         hasMore
@@ -111,8 +108,7 @@ const BallDataTiles: React.FC<BallDataTilesProps> = ({
             ) : (
                 <Grid container spacing={2}>
                     {displayTiles && displayTiles.map((tile, index) => (
-                        <Grid key={index} container size={4}
-                        >
+                        <Grid key={index} container size={{xs: 12, sm: 12, md: 4}}>
                             <BallDataTile
                                 ballData={tile}
                                 isAgoOn={isAgoOn}

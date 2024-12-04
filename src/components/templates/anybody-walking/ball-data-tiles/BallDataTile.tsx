@@ -29,6 +29,7 @@ const BallDataTile: React.FC<{
     return (
         <Grid
             container size={{xs: 12}}
+            minWidth ="250px"
             onClick={() => onClick(ballData)}
             style={{position: 'relative', padding: '8px'}}
         >

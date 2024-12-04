@@ -132,7 +132,7 @@ const AWBallSearchSection: FunctionComponent<IProps> = (props: IProps) => {
                                                                 pageContext.analyticsId
                                                             )
                                                         }}
-                                                        tiles={searchValue.displayResults}
+                                                        ballsData={searchValue.displayResults}
                                                     />
                                                 }
                                             </Grid>
