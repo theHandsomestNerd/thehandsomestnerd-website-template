@@ -50,7 +50,7 @@ const MainMenuSubMenu: FunctionComponent<MainMenuSubMenuProps> = ({menuGroup}) =
             aria-labelledby="nested-list-subheader"
             className={classes.root}
         >
-            <ListItem button style={{
+            <ListItem style={{
                 paddingTop: theme
                     .spacing(2.25),
                 paddingBottom: theme
@@ -63,7 +63,7 @@ const MainMenuSubMenu: FunctionComponent<MainMenuSubMenuProps> = ({menuGroup}) =
                 <List component="div" disablePadding>
                     {
                         menuGroup.links?.map((menuLink: any, index: number) => (
-                            <ListItem href={menuLink.url} key={index} button className={classes.listItem} style={{}}>
+                            <ListItem key={index} component='div' className={classes.listItem}>
                                 <Button variant='text' href={menuLink.url}
                                         onClick={menuLink.isModalButton ? () => {
                                             // console.log()

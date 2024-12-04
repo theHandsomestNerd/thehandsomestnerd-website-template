@@ -1,184 +1,129 @@
-import {makeStyles} from '@mui/styles'
-import {FunctionComponent, useContext, useEffect, useState} from 'react'
-import {SanityBallType} from '../ballroomTypes'
-import {Grid, GridSize, Typography} from "@mui/material";
+import {useCallback, useContext, useEffect, useState} from 'react';
+import {Typography} from "@mui/material";
 import BallSearchContext from "../ball-search-context/BallSearchContext";
-import InfiniteScroll from 'react-infinite-scroll-component'
-import SingleBallSmallView from '../single-ball-small-view/SingleBallSmallView';
+import InfiniteScroll from 'react-infinite-scroll-component';
+import {SanityBallType} from '../ballroomTypes';
+import Grid from "@mui/material/Grid2";
+import BallDataTile from "./BallDataTile";
 
-import TimeAgo from 'react-timeago'
-import {COLORS} from "../../../../theme/common/ColorPalette";
-
-export const useStyles = makeStyles(() => ({
-    root: {
-        // position: 'relative',
-        // marginTop: '64px',
-    },
-}))
-
-type DataTilesProps = {
-    tiles?: SanityBallType[],
-    numColumns?: GridSize,
-    isAgoOn?: boolean,
-    tileClickAnalytics?: (tileSlug:string)=>void
+type BallDataTilesProps = {
+    tiles?: SanityBallType[];
+    columnSize?: 3 | 4 | 6 | 12;
+    isAgoOn?: boolean;
+    tileClickAnalytics?: (tileSlug: string) => void;
 }
 
-type DataTilesStateType = { displayTiles?: SanityBallType[], page: number, rowsPerPage: number }
+const ROWS_PER_PAGE = 9;
 
-const BallDataTiles: FunctionComponent<DataTilesProps> = (props: DataTilesProps) => {
-    const classes = useStyles()
-    const searchContext = useContext(BallSearchContext)
+const BallDataTiles: React.FC<BallDataTilesProps> = ({
+                                                                   tiles = [],
+                                                                   columnSize,
+                                                                   isAgoOn = false,
+                                                                   tileClickAnalytics
+                                                               }) => {
+    const searchContext = useContext(BallSearchContext);
 
-    const [state, setState] = useState<DataTilesStateType>({displayTiles: [], page: 0, rowsPerPage: 9})
+    const [page, setPage] = useState(0);
+
+    const [displayTiles, setDisplayTiles] = useState<SanityBallType[]>()
 
     useEffect(() => {
-        if (props.tiles) {
-            setState((newState: DataTilesStateType) => ({
-                ...newState,
-                displayTiles: props.tiles,
-            }))
-        }
-    }, [props.tiles])
+        setDisplayTiles(tiles.slice(0, (page + 1) * ROWS_PER_PAGE));
+    }, [page])
 
-    const getTiles = (rows: any, page: any, thisRowsPerPage: any) => rows?.slice(0, (page * thisRowsPerPage) + thisRowsPerPage)
+    useEffect(() => {
+        setDisplayTiles(tiles);
+    }, [])
 
-    const fetchMoreData = () => {
+    useEffect(() => {
+        setPage(0); // Reset pagination when tiles prop changes
+    }, [tiles]);
 
-        setState((pageAndTilesState: DataTilesStateType) => (
-            {
-                ...pageAndTilesState,
-                page: pageAndTilesState.page + 1,
-                displayTiles: getTiles(state.displayTiles, pageAndTilesState.page + 1, pageAndTilesState.rowsPerPage),
-            }))
+    const fetchMoreData = useCallback(() => {
+        setPage((prevPage) => prevPage + 1);
+    }, []);
+
+    const handleTileClick = useCallback(
+        (tile: SanityBallType) => {
+            if (tileClickAnalytics && tile.slug?.current) {
+                tileClickAnalytics(tile.slug.current);
+            }
+            if (searchContext.getBall && tile.slug?.current) {
+                searchContext.getBall(tile.slug.current);
+            }
+        },
+        [tileClickAnalytics, searchContext]
+    );
+
+    if (searchContext.loading) {
+        return (
+            <Grid
+                container
+                style={{width: 'calc(100vw - 20px)', height: 53 * 7}}
+                alignItems="center"
+                justifyContent="center"
+            >
+                Searching for Balls...
+            </Grid>
+        );
     }
 
-    // useEffect(() => {
-    //     console.log('dataTiles mout', props, searchContext)
-    //     if (searchContext.setDisplayResults && props.tiles)
-    //         setDisplayedResults(props.tiles)
-    // },[])
-
-    const tileClick = (tile: SanityBallType) => {
-        console.log('tileCLick', tile)
-        if(props.tileClickAnalytics && tile.slug?.current){
-            props.tileClickAnalytics(tile.slug.current)
-        }
-        if (searchContext.getBall && tile.slug?.current)
-            return searchContext.getBall(tile.slug?.current)
-        return undefined
+    if (!tiles.length) {
+        return (
+            <Grid
+                container
+                style={{width: 'calc(100vw - 20px)', height: 53 * 7, border: '1px solid #9D9D9D'}}
+                alignItems="center"
+                justifyContent="center"
+                direction="column"
+            >
+                <Typography color="textSecondary">No Balls Match your Search</Typography>
+            </Grid>
+        );
     }
-
-    // useEffect(() => {
-    //     console.log('page is ', state)
-    // }, [state.page])
 
     return (
-        <BallSearchContext.Consumer>
-            {
-                searchContextUI =>
-                    searchContextUI.loading ?
-                        <Grid
-                            container
-                            item
-                            style={{width: 'calc(100vw - 20px)', height: 53 * 7}}
-                            alignItems='center'
-                            justifyContent='center'
-                        >Searching for Balls...</Grid>
-                        :
-                        !state.displayTiles || state.displayTiles.length === 0 ?
-                            <Grid
-                                container
-                                item
-                                style={{width: 'calc(100vw - 20px)', height: 53 * 7, border: '1px solid #9D9D9D'}}
-                                alignItems='center'
-                                justifyContent='center'
-                                direction='column'
-                            >
-                                <Grid item>
-                                    <Typography color='textSecondary'>No
-                                        Balls Match your Search</Typography>
+        <Grid container id="scrollDiv" size={{xs: 12}} justifyContent='center'>
+            {displayTiles && displayTiles.length > 3 ? (
+                <Grid container>
+                    <InfiniteScroll
+                        style={{width: "100%", paddingTop: "56px", paddingLeft: "8px"}}
+                        dataLength={displayTiles.length}
+                        next={fetchMoreData}
+                        hasMore
+                        loader={<Typography>Loading...</Typography>}
+                        scrollableTarget="scrollDiv"
+                    >
+                        <Grid container spacing={.5}>
+                            {displayTiles.map((tile, index) => (
+                                <Grid key={index} container size={columnSize || {xs: 12, sm: 6, md: 4}}
+                                >
+                                    <BallDataTile
+                                        ballData={tile}
+                                        isAgoOn={isAgoOn}
+                                        onClick={handleTileClick}
+                                    />
                                 </Grid>
-                            </Grid>
-                            : state.displayTiles && state.displayTiles.length > 0 &&
-                            <Grid container item xs={12} className={classes.root} id='scrollDiv'
-                                  justifyContent='center'>
-                                {
-                                    (state.displayTiles).length > 3 ?
-                                        <Grid item><InfiniteScroll
-                                            style={{width: '100%',paddingTop:"56px",paddingLeft:"8px"}}
-                                            dataLength={state.displayTiles.length}
-                                            next={fetchMoreData}
-                                            hasMore
-                                            loader={<h4></h4>}
-                                            scrollableTarget='scrollDiv'
-                                        >
-                                            <Grid container style={{overflowX: 'hidden'}} spacing={2}>
-                                                {(state.displayTiles).map((tile, index) => (
-                                                    <Grid
-                                                        container
-                                                        key={index}
-                                                        item
-                                                        onClick={() => {
-                                                            console.log('click this tile', tile)
-                                                            tileClick(tile)
-                                                        }}
-                                                        xs={props.numColumns ? props.numColumns : 12}
-                                                        sm={props.numColumns ? props.numColumns : 6}
-                                                        md={props.numColumns ? props.numColumns : 4}
-                                                    >
-                                                        <Grid item style={{padding: '8px'}} container>
-                                                            <SingleBallSmallView key={index} ball={tile}/>
-                                                        </Grid>
+                            ))}
+                        </Grid>
+                    </InfiniteScroll>
+                </Grid>
+            ) : (
+                <Grid container spacing={2}>
+                    {displayTiles && displayTiles.map((tile, index) => (
+                        <Grid key={index} container size={4}
+                        >
+                            <BallDataTile
+                                ballData={tile}
+                                isAgoOn={isAgoOn}
+                                onClick={handleTileClick}
+                            />
+                        </Grid>
+                    ))}
+                </Grid>
+            )}
+        </Grid>
+    );
+};
 
-                                                    </Grid>
-                                                ))}
-                                            </Grid>
-                                        </InfiniteScroll></Grid> :
-                                        <Grid container style={{overflowX: 'hidden'}} spacing={2}>
-                                            {
-                                                (state.displayTiles).map(
-                                                    (tile, index) => (
-                                                        <Grid
-                                                            key={index}
-                                                            item
-                                                            style={{position: "relative"}}
-                                                            onClick={() => {
-                                                                console.log('click this tile', tile)
-                                                                tileClick(tile)
-                                                            }}
-                                                            xs={props.numColumns ? props.numColumns : 12}
-                                                            sm={props.numColumns ? props.numColumns : 6}
-                                                            md={props.numColumns ? props.numColumns : 4}
-                                                        >
-                                                            <Grid item style={{padding: '8px'}}>
-                                                                <SingleBallSmallView key={index} ball={tile}/>
-                                                            </Grid>
-                                                            {
-                                                                props.isAgoOn && tile.functionStartDate &&
-                                                                <Grid item justifyContent='flex-end'
-                                                                      style={{
-                                                                          margin: "8px",
-                                                                          backgroundColor: COLORS.TRANSPARENTDARKGRAY,
-                                                                          padding: '8px',
-                                                                          position: "absolute",
-                                                                          right: 0,
-                                                                          top: 0
-                                                                      }}>
-                                                                    <Typography color='white'>
-                                                                        <TimeAgo date={tile.functionStartDate}/>
-                                                                    </Typography>
-                                                                </Grid>
-                                                            }
-                                                        </Grid>
-                                                    ))
-                                            }
-                                        </Grid>
-                                }
-                            </Grid>
-
-            }</BallSearchContext.Consumer>
-    )
-
-}
-
-export default BallDataTiles
+export default BallDataTiles;

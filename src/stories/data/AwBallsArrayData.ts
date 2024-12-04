@@ -1,6 +1,6 @@
 import {SanityBallType} from "../../components/templates/anybody-walking/ballroomTypes";
 
-const awSingleBallData: SanityBallType[] = [
+const awBallsArrayData: SanityBallType[] = [
     {
         "createdBy": null,
         "functionEndDate": null,
@@ -1080,4 +1080,4 @@ const awSingleBallData: SanityBallType[] = [
     }
 ]
 
-export default awSingleBallData
+export default awBallsArrayData
