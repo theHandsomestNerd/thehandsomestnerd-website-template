@@ -1,4 +1,5 @@
 import {Grid, useTheme} from '@mui/material';
+import {StyledEngineProvider} from '@mui/material/styles';
 import {BrowserRouter, Navigate, Route, Routes} from 'react-router-dom'
 import {FunctionComponent, PropsWithChildren, useContext, useEffect} from 'react'
 import FourOhFour from "./components/templates/transform-hw/pages/error-page/FourOhFour";
@@ -80,48 +81,50 @@ const App: FunctionComponent<PropsWithChildren<AppIProps>> = (props) => {
     }, [props.logo])
 
     return (
-        <BrowserRouter>
-            <PageProvider googleApiKey={props.react_app_googlemaps_embed_api_key}
-                          barInventorySlug={props.react_app_bar_inventory_slug}>
-                <CustomizedThemeProvider logoSrc={props.logo}>
-                    <SnackbarProvider>
-                        <ModalProvider>
-                            <AmenityProvider>
-                                {/*<BallSearchProvider>*/}
-                                <AppSettingsProvider>
-                                    <Grid container item alignItems="center"
-                                          style={{
-                                              backgroundColor: theme.palette.background.default,
-                                              overflow: "hidden",
-                                              width: "100vw"
-                                          }} justifyContent='center'>
+        <StyledEngineProvider injectFirst>
+            <BrowserRouter>
+                <PageProvider googleApiKey={props.react_app_googlemaps_embed_api_key}
+                              barInventorySlug={props.react_app_bar_inventory_slug}>
+                    <CustomizedThemeProvider logoSrc={props.logo}>
+                        <SnackbarProvider>
+                            <ModalProvider>
+                                <AmenityProvider>
+                                    {/*<BallSearchProvider>*/}
+                                    <AppSettingsProvider>
+                                        <Grid container item alignItems="center"
+                                              style={{
+                                                  backgroundColor: theme.palette.background.default,
+                                                  overflow: "hidden",
+                                                  width: "100vw"
+                                              }} justifyContent='center'>
 
-                                        <Grid item style={{
-                                            overflow: "hidden",
-                                        }}>
-                                            <Routes>
-                                                {/*<Route path={"/DJs-40th-spades-rules"}*/}
-                                                {/*       element={<DJSpadesRulesContentSection/>}/>*/}
-                                                <Route
-                                                    path={"/" + props.react_app_base_route + "/:pageSlug/:documentType/:documentSlug"}
-                                                    element={<PageMux baseRoute={props.react_app_base_route}/>}/>
-                                                <Route path={"/" + props.react_app_base_route + "/:pageSlug"}
-                                                       element={<PageMux baseRoute={props.react_app_base_route}/>}/>
-                                                <Route path={'/error'} element={<FourOhFour/>}/>
-                                                <Route path={"/*"}
-                                                       element={<Navigate
-                                                           to={"/" + props.react_app_base_route + "/home"}/>}/>
-                                            </Routes>
+                                            <Grid item style={{
+                                                overflow: "hidden",
+                                            }}>
+                                                <Routes>
+                                                    {/*<Route path={"/DJs-40th-spades-rules"}*/}
+                                                    {/*       element={<DJSpadesRulesContentSection/>}/>*/}
+                                                    <Route
+                                                        path={"/" + props.react_app_base_route + "/:pageSlug/:documentType/:documentSlug"}
+                                                        element={<PageMux baseRoute={props.react_app_base_route}/>}/>
+                                                    <Route path={"/" + props.react_app_base_route + "/:pageSlug"}
+                                                           element={<PageMux baseRoute={props.react_app_base_route}/>}/>
+                                                    <Route path={'/error'} element={<FourOhFour/>}/>
+                                                    <Route path={"/*"}
+                                                           element={<Navigate
+                                                               to={"/" + props.react_app_base_route + "/home"}/>}/>
+                                                </Routes>
+                                            </Grid>
                                         </Grid>
-                                    </Grid>
-                                </AppSettingsProvider>
-                                {/*</BallSearchProvider>*/}
-                            </AmenityProvider>
-                        </ModalProvider>
-                    </SnackbarProvider>
-                </CustomizedThemeProvider>
-            </PageProvider>
-        </BrowserRouter>
+                                    </AppSettingsProvider>
+                                    {/*</BallSearchProvider>*/}
+                                </AmenityProvider>
+                            </ModalProvider>
+                        </SnackbarProvider>
+                    </CustomizedThemeProvider>
+                </PageProvider>
+            </BrowserRouter>
+        </StyledEngineProvider>
     );
 }
 

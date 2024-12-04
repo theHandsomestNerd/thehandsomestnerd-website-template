@@ -2,11 +2,14 @@
   "compilerOptions": {
     "module": "esnext",
     "target": "esnext",
-    "lib": ["dom", "esnext"],
+    "lib": [
+      "dom",
+      "esnext"
+    ],
     "importHelpers": true,
     "declaration": true,
     "sourceMap": true,
-//    "rootDir": "./src",
+    //    "rootDir": "./src",
     "outDir": "./dist/esm",
     "strict": true,
     "noImplicitReturns": true,
@@ -21,20 +24,36 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "downlevelIteration": true,
-    "types": ["node", "jest", "@testing-library/jest-dom"],
-//    "typeRoots": ["node_modules/@types"]  // <-- here
+    "types": [
+      "node",
+      "jest",
+      "@testing-library/jest-dom"
+    ],
+    "paths": {
+      "@mui/styled-engine": [
+        "./node_modules/@mui/styled-engine-sc"
+      ]
+    }
+    //    "typeRoots": ["node_modules/@types"]  // <-- here
   },
   "include": [
     "./src/**/*",
     "./src/setupTests.ts"
     //    "dist"
-//    "src/**/*.ts",
-//    "src/**/*.tsx",
-//    "src/**/*.js",
-//    "node_modules/@types/**/*"
+    //    "src/**/*.ts",
+    //    "src/**/*.tsx",
+    //    "src/**/*.js",
+    //    "node_modules/@types/**/*"
   ],
-  "exclude": ["node_modules/**/*", "dist", "src/stories", "build"],
-  "files": ["src/global.d.ts","src/common/sanityIo/Types.ts", "@types/block-content-to-react.d.ts"
+  "exclude": [
+    "node_modules/**/*",
+    "dist",
+    "src/stories",
+    "build"
   ],
-
+  "files": [
+    "src/global.d.ts",
+    "src/common/sanityIo/Types.ts",
+    "@types/block-content-to-react.d.ts"
+  ]
 }
