@@ -156,6 +156,7 @@ const AWThemeData:SanityMuiTheme ={
         "defaultBackground": "WHITESMOKE",
         "primaryTextColor": "WHITESMOKE",
         "buttonOutlineColor": "ALMOST_BLACK",
+        "buttonOutlineSecondaryColor": "WHITESMOKE",
         "primaryColor": "RED",
         "defaultPaperBackgroundColor": "LIGHTGRAY",
         "secondaryTextColor": "ALMOST_BLACK",

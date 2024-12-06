@@ -254,6 +254,7 @@ export type SanityMuiColorPalette = {
     secondaryTextColor: string
     disabledTextColor: string
     buttonOutlineColor?: string
+    buttonOutlineSecondaryColor?: string
 }
 
 export type SanityBlogCategory = {

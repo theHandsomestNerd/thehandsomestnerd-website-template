@@ -177,12 +177,10 @@ const getThemeFromSanity = (theme: SanityMuiTheme) => {
                         '&.Mui-disabled': {
                             color: '#969284'
                         },
-                    },
-                    colorSecondary: {
-                        border: '1px solid transparent',
-                        '&.Mui-disabled': {
-                            color: 'rgba(207, 207, 207, .5)',
-                        },
+                        "&.MuiButton-colorSecondary": {
+                            border: `1px solid ${theme.colorPalette?.buttonOutlineSecondaryColor ?
+                                convertToHexCode(theme.colorPalette.buttonOutlineSecondaryColor) : "transparent"}`,
+                        }
                     },
                     outlined: {
                         borderWidth: '3px',

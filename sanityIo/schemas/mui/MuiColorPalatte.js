@@ -65,6 +65,12 @@ export default {
             options: {list: ColorListing}
         },
        {
+            name: 'buttonOutlineSecondaryColor',
+            title: 'Button Outline for Secondary Color',
+            type: 'string',
+            options: {list: ColorListing}
+        },
+       {
             name: 'secondaryTextColor',
             title: 'Secondary Text Color',
             type: 'string',
