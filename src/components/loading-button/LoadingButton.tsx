@@ -46,7 +46,7 @@ const useStyles = makeStyles((theme: Theme) => ({
                     return "0 !important"
                 case ButtonGroupMemberEnum.LEFT:
                 default:
-                    return theme.shape.borderRadius
+                    return props.isRounded?theme.shape.borderRadius+"px":"0 !important"
             }
         },
         borderTopRightRadius: (props: CssProps) => {
@@ -57,7 +57,7 @@ const useStyles = makeStyles((theme: Theme) => ({
                     return "0 !important"
                 case ButtonGroupMemberEnum.RIGHT:
                 default:
-                    return theme.shape.borderRadius
+                    return props.isRounded?theme.shape.borderRadius+"px":"0 !important"
             }
         },
         borderBottomRightRadius: (props: CssProps) => {
@@ -68,7 +68,7 @@ const useStyles = makeStyles((theme: Theme) => ({
                     return "0 !important"
                 case ButtonGroupMemberEnum.RIGHT:
                 default:
-                    return theme.shape.borderRadius
+                    return props.isRounded?theme.shape.borderRadius+"px":"0 !important"
 
             }
         },
@@ -80,7 +80,7 @@ const useStyles = makeStyles((theme: Theme) => ({
                     return "0 !important"
                 case ButtonGroupMemberEnum.LEFT:
                 default:
-                    return theme.shape.borderRadius
+                    return props.isRounded?theme.shape.borderRadius+"px":"0 !important"
             }
         },
     }
@@ -88,7 +88,7 @@ const useStyles = makeStyles((theme: Theme) => ({
 
 const LoadingButton: FunctionComponent<PropsWithChildren<LoadingButtonIProps>> = (props) => {
     const theme = useTheme()
-    const classes = useStyles({buttonGroupiness: props.groupiness, width: props.width, isRounded: props.isRounded})
+    const classes = useStyles({buttonGroupiness: props.groupiness, width: props.width, isRounded: props.isRounded, isSlim: props.isSlim})
     const getProgressColor = () => {
         if(props.variant !== 'contained') {
             switch (props.color) {

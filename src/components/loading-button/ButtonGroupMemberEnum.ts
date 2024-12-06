@@ -1,5 +1,6 @@
 export enum ButtonGroupMemberEnum {
     LEFT,
     CENTER,
-    RIGHT
+    RIGHT,
+    NONE
 }

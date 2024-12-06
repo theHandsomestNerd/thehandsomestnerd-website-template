@@ -17,9 +17,129 @@ type Story = StoryObj<typeof LoadingButton>;
 const onClickFunction = async (e: React.MouseEvent<HTMLButtonElement>) => {
     alert("button is clicked")
 }
+
+export const LoadingButtonConfigurable: Story = {
+    args: {
+        disabled: false,
+        isSlim: false,
+        isRounded: false,
+        clickHandler: onClickFunction,
+        isLoading: false,
+        groupiness: ButtonGroupMemberEnum.NONE,
+        width: undefined,
+        href: "",
+        source: "",
+        color: "primary",
+        variant: "contained"
+    },
+    parameters: {
+        pageTheme: AWThemeData
+    },
+    render: ({
+                 disabled, isSlim, isRounded, clickHandler,
+                 color, groupiness, width, href,
+                 source, isLoading, variant
+             }) =>
+            <Grid container size={{xs: 12}} direction="column">
+                    <LoadingButton
+                        disabled={disabled}
+                        isSlim={isSlim}
+                        isRounded={isRounded}
+                        clickHandler={clickHandler}
+                        isLoading={isLoading}
+                        groupiness={groupiness}
+                        width={width}
+                        href={href}
+                        source={source}
+                        color={color}
+                        variant={variant}>Loading Button</LoadingButton>
+            </Grid>
+};
 export const LoadingButtonPrimaryComplete: Story = {
     args: {
         disabled: false,
+        isSlim: false,
+        isRounded: false,
+        clickHandler: onClickFunction,
+        isLoading: false,
+        groupiness: ButtonGroupMemberEnum.NONE,
+        width: undefined,
+        href: "",
+        source: "",
+        color: "primary",
+    },
+    parameters: {
+        pageTheme: AWThemeData
+    },
+    render: ({
+                 disabled, isSlim, isRounded, clickHandler,
+                 color, groupiness, width, href,
+                 source, isLoading
+             }) =>
+        <Grid container>
+            <Grid container size={{xs: 12}} direction="column">
+                <Grid>
+                    <Typography color='primary'>Text Button</Typography>
+                </Grid>
+                <Grid>
+                    <LoadingButton
+                        disabled={disabled}
+                        isLoading={isLoading}
+                        isSlim={isSlim}
+                        isRounded={isRounded}
+                        clickHandler={clickHandler}
+                        color={color}
+                        groupiness={groupiness}
+                        width={width}
+                        href={href}
+                        source={source}
+                        variant='text'>Loading Button</LoadingButton>
+                </Grid>
+            </Grid>
+            <Grid container size={{xs: 12}} direction="column">
+                <Grid>
+                    <Typography color='primary'>Contained Button</Typography>
+                </Grid>
+                <Grid>
+                    <LoadingButton
+                        disabled={disabled}
+                        isLoading={isLoading}
+                        isSlim={isSlim}
+                        isRounded={isRounded}
+                        clickHandler={clickHandler}
+                        color={color}
+                        groupiness={groupiness}
+                        width={width}
+                        href={href}
+                        source={source}
+                        variant='contained'>Loading Button</LoadingButton>
+                </Grid>
+            </Grid>
+            <Grid container size={{xs: 12}} direction="column">
+                <Grid>
+                    <Typography color='primary'>Outlined Button</Typography>
+                </Grid>
+                <Grid>
+                    <LoadingButton
+                        disabled={disabled}
+                        isLoading={isLoading}
+                        isSlim={isSlim}
+                        isRounded={isRounded}
+                        clickHandler={clickHandler}
+                        color={color}
+                        groupiness={groupiness}
+                        width={width}
+                        href={href}
+                        source={source}
+                        variant='outlined'>Loading Button</LoadingButton>
+                </Grid>
+            </Grid>
+        </Grid>
+};
+
+export const LoadingButtonPrimaryDisabled: Story = {
+    args: {
+        disabled: true,
         isSlim: false,
         isRounded: true,
         clickHandler: onClickFunction,
@@ -235,7 +355,82 @@ export const LoadingButtonSecondaryComplete: Story = {
             </Grid>
         </Grid>
 };
-
+export const LoadingButtonSecondaryDisabled: Story = {
+    args: {
+        disabled: true,
+        isSlim: false,
+        isRounded: true,
+        clickHandler: onClickFunction,
+        isLoading: false,
+        groupiness: ButtonGroupMemberEnum.CENTER,
+        href: "",
+        source: "",
+        color: "secondary",
+    },
+    parameters: {
+        pageTheme: AWThemeData
+    },
+    render: ({
+                 disabled, isSlim, isRounded, clickHandler,
+                 color, groupiness, href, source,
+                 isLoading
+             }) =>
+        <Grid container>
+            <Grid container size={{xs: 12}} direction="column">
+                <Grid>
+                    <Typography color='primary'>Text Button</Typography>
+                </Grid>
+                <Grid>
+                    <LoadingButton
+                        disabled={disabled}
+                        isLoading={isLoading}
+                        isSlim={isSlim}
+                        isRounded={isRounded}
+                        clickHandler={clickHandler}
+                        color={color}
+                        groupiness={groupiness}
+                        href={href}
+                        source={source}
+                        variant='text'>Loading Button</LoadingButton>
+                </Grid>
+            </Grid>
+            <Grid container size={{xs: 12}} direction="column">
+                <Grid>
+                    <Typography color='primary'>Contained Button</Typography>
+                </Grid>
+                <Grid><LoadingButton
+                    disabled={disabled}
+                    isLoading={isLoading}
+                    isSlim={isSlim}
+                    isRounded={isRounded}
+                    clickHandler={clickHandler}
+                    color={color}
+                    groupiness={groupiness}
+                    href={href}
+                    source={source}
+                    variant='contained'>Loading Button</LoadingButton>
+                </Grid>
+            </Grid>
+            <Grid container size={{xs: 12}} direction="column">
+                <Grid>
+                    <Typography color='primary'>Outlined Button</Typography>
+                </Grid>
+                <Grid>
+                    <LoadingButton
+                        disabled={disabled}
+                        isLoading={isLoading}
+                        isSlim={isSlim}
+                        isRounded={isRounded}
+                        clickHandler={clickHandler}
+                        color={color}
+                        groupiness={groupiness}
+                        href={href}
+                        source={source}
+                        variant='outlined'>Loading Button</LoadingButton>
+                </Grid>
+            </Grid>
+        </Grid>
+};
 export const LoadingButtonSecondaryContainedGrouped: Story = {
     args: {
         disabled: false,
