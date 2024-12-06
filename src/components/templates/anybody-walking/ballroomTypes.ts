@@ -4,6 +4,7 @@ import {BallTypeEnum} from './enums/BallType.enum'
 import STEP_BALL_FORM_VALIDATION_STATUS_CODES from './enums/StepFormValidationCodes.enum'
 import {Breakpoint} from "@mui/material";
 import { SanityRef } from '../../BlockContentTypes';
+import {SanityDocumentLike} from "@sanity/types";
 
 
 export type SearchParams = {
@@ -155,6 +156,22 @@ export declare type SanityHouse = {
     houseMotherStatus?: string,
     houseMotherContact?: string
 }
+
+export declare type SanityVerifiedHouseType = {
+    isVerified?: boolean,
+    houseName?: string,
+    location?: SanityLocation,
+    firstname?: string,
+    lastname?: string,
+    submittedByFirebaseUUID?: SanityRef,
+    submittedByEmail?: string,
+    houseFather?: string,
+    houseFatherStatus?: string,
+    houseFatherContact?: string
+    houseMother?: string,
+    houseMotherStatus?: string,
+    houseMotherContact?: string
+} & SanityDocumentLike
 
 export declare type SanityCheckinType = {
     _createdAt: string,

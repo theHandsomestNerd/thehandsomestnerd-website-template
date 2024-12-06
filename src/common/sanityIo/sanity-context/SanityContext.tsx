@@ -4,7 +4,7 @@ import {
     ResumePortfolioItemType,
     ResumeSkillType, SanityRef,
 } from "../../../components/BlockContentTypes";
-import {SanityHouse} from "../../../components/templates/anybody-walking/ballroomTypes";
+import {SanityHouse, SanityVerifiedHouseType} from "../../../components/templates/anybody-walking/ballroomTypes";
 import { SanityImageSource } from "@sanity/image-url/lib/types/types";
 import {ImageUrlBuilder} from "@sanity/image-url/lib/types/builder";
 
@@ -62,7 +62,8 @@ export type SanityContextType = {
     createBall?: any,
     getAppSettingsFromSanity?: any,
     createCheckin?: any,
-    createHouse?: any,
+    createHouse?: (house: SanityHouse) => Promise<any>,
+
     createUser?: any,
     updateAwUser?: any,
     updateCheckin?: any,
@@ -84,7 +85,7 @@ export type SanityContextType = {
     createContactUs?: any
 
     addBall?: any
-    fetchVerifiedHouses?: ()=>Promise<SanityHouse[]>
+    fetchVerifiedHouses?: ()=>Promise<SanityVerifiedHouseType[]>
     getSanityDocumentRef?: (sanityId: string) => SanityRef
     fetchSkillExperiences?:(skillType:ResumeSkillType)=>Promise<ResumeExperienceType[]>
     fetchPortfolioItems?:(skillType:ResumeSkillType)=>Promise<ResumePortfolioItemType[]>

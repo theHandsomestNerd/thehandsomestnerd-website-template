@@ -1,28 +1,24 @@
-import {Button, CircularProgress, Grid, useTheme} from '@mui/material';
+import {Button, CircularProgress, useTheme} from '@mui/material';
 import makeStyles from '@mui/styles/makeStyles';
-import{FunctionComponent, PropsWithChildren, useContext} from 'react';
-
+import {FunctionComponent, PropsWithChildren} from 'react';
 import {ButtonGroupMemberEnum} from "./ButtonGroupMemberEnum";
-
 import {OverridableStringUnion} from "@mui/types";
 import {ButtonPropsColorOverrides} from "@mui/material/Button/Button";
-import CustomizedThemeContext from "../customized-theme-provider/CustomizedThemeContext";
 import {Theme} from "@mui/material/styles";
-
+import Grid from "@mui/material/Grid2";
 
 type CssProps = {
     buttonGroupiness?: ButtonGroupMemberEnum,
     width?: number,
-
-    isRounded?: boolean
+    isRounded?: boolean,
+    isSlim?: boolean
 }
-
 
 export interface LoadingButtonIProps {
     disabled?: boolean
     isSlim?: boolean
     isRounded?: boolean
-    clickHandler?: (e: any) => void
+    clickHandler?: React.MouseEventHandler<HTMLButtonElement>
     isLoading?: boolean
     color?: OverridableStringUnion<
         'inherit' | 'primary' | 'secondary' | 'success' | 'error' | 'info' | 'warning',
@@ -35,10 +31,12 @@ export interface LoadingButtonIProps {
     variant?: 'text' | 'outlined' | 'contained'
 }
 
-const useStyles = makeStyles((theme:Theme) => ({
+const useStyles = makeStyles((theme: Theme) => ({
     root: {
         height: "100%",
-        width: (props: any) => props.width ? `${props.width}px` : 'unset',
+        boxShadow: 'none',
+        minHeight: (props: CssProps) => props.isSlim ? "40px" : "60px",
+        width: (props: CssProps) => props.width ? `${props.width}px` : '100%',
         borderRadius: `0 ${theme.shape.borderRadius}px ${theme.shape.borderRadius}px 0`,
         borderTopLeftRadius: (props: CssProps) => {
             switch (props.buttonGroupiness) {
@@ -89,26 +87,35 @@ const useStyles = makeStyles((theme:Theme) => ({
 }))
 
 const LoadingButton: FunctionComponent<PropsWithChildren<LoadingButtonIProps>> = (props) => {
-    const themeContext = useContext(CustomizedThemeContext)
-const theme = useTheme()
+    const theme = useTheme()
     const classes = useStyles({buttonGroupiness: props.groupiness, width: props.width, isRounded: props.isRounded})
-    const getProgressContrastColor = () => {
+    const getProgressColor = () => {
+        if(props.variant !== 'contained') {
+            switch (props.color) {
+                case 'primary':
+                    return theme.palette.primary.main
+                case 'secondary':
+                    return theme.palette.secondary.main
+                default:
+                    return '#000000'
+            }
+        }
         switch (props.color) {
             case 'primary':
-                return theme.palette.primary.main
+                return theme.palette.getContrastText(theme.palette.primary.main)
             case 'secondary':
-                return theme.palette.secondary.main
+                return theme.palette.getContrastText(theme.palette.secondary.main)
             default:
                 return '#FFFFFF'
         }
     }
 
     return (
-        <Grid item style={{minHeight: props.isSlim?"40px":"60px", height: "100%",}}>
+        <Grid style={{minHeight: props.isSlim ? "40px" : "60px", height: "100%",}}>
             <Button
-                sx={props.isSlim?{width: '120px',
-                    }:{}}
-                style={{boxShadow: 'none',  }}
+                sx={props.isSlim ? {
+                    width: '120px',
+                } : {}}
                 href={props.href}
                 disabled={props.disabled}
                 onClick={props.clickHandler}
@@ -119,7 +126,7 @@ const theme = useTheme()
                 {
                     props.isLoading ?
                         <CircularProgress style={{
-                            color: themeContext.customizedTheme?.palette.getContrastText(getProgressContrastColor()),
+                            color: getProgressColor(),
                             width: "22px",
                             height: "22px"
                         }}/>

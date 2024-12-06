@@ -1,12 +1,25 @@
-import {FunctionComponent, useContext, useState} from 'react'
-import {Button, FormControl, FormHelperText, Grid, InputLabel, MenuItem, Select, Typography} from "@mui/material";
+import {FunctionComponent, useCallback, useContext, useReducer, useState} from 'react'
+import {
+    Box,
+    Button,
+    Dialog,
+    DialogActions,
+    DialogContent,
+    DialogTitle,
+    FormControl,
+    FormHelperText,
+    InputLabel,
+    MenuItem,
+    Select,
+    Typography
+} from "@mui/material";
 import {useNavigate} from "react-router-dom";
 import {RoutesEnum} from "./enums/Routes.enum";
 import {AWBallSectionType, SanityHouse} from "./ballroomTypes";
 import SanityContext from "../../../common/sanityIo/sanity-context/SanityContext";
 import StyledTextField from "./styled-text-field/StyledTextField";
-// import firebase from "firebase/compat";
-
+import Grid from "@mui/material/Grid2";
+import LoadingButton from "../../loading-button/LoadingButton";
 
 type NewHouseFormState = {
     newHouseName: string;
@@ -19,7 +32,6 @@ type NewHouseFormState = {
     houseMother: string
     houseMotherContact: string
     houseMotherStatus: string
-
 };
 
 const initialState: NewHouseFormState = {
@@ -35,200 +47,275 @@ const initialState: NewHouseFormState = {
     houseMotherStatus: ''
 };
 
-interface IProps {
+type Action =
+    | { type: 'updateField'; field: keyof NewHouseFormState; value: string }
+    | { type: 'resetForm' };
+
+const formReducer = (state: NewHouseFormState, action: Action): NewHouseFormState => {
+    switch (action.type) {
+        case 'updateField':
+            return {...state, [action.field]: action.value};
+        case 'resetForm':
+            return initialState;
+        default:
+            return state;
+    }
+};
+
+interface NewHouseFormProps {
     sectionData?: AWBallSectionType
 }
 
-const AWNewHouseFormSection: FunctionComponent<IProps> = () => {
-    const [state, setState] = useState<NewHouseFormState>(initialState)
+const AWNewHouseFormSection: FunctionComponent<NewHouseFormProps> = () => {
+    const [state, dispatch] = useReducer(formReducer, initialState);
+    const [isLoading, setIsLoading] = useState<boolean>(false)
+    const [createHouseResponse, setCreateHouseResponse] = useState<any>(undefined)
     const navigate = useNavigate()
     const sanityContext = useContext(SanityContext)
-    const addHouse = async () => {
-        const sanityUserRef = sanityContext.getSanityDocumentRef ? await sanityContext.getSanityDocumentRef("user-id") : undefined
+    const [isStatusDialogOpen, setIsStatusDialogOpen] = useState<boolean>(false)
 
-        let sanityHouse: SanityHouse = {
-            submittedByEmail: state.email,
-            firstname: state.firstName,
-            lastname: state.lastName,
-            houseName: state.newHouseName,
-            houseFather: state.houseFather,
-            houseFatherStatus: state.houseFatherStatus,
-            houseFatherContact: state.houseFatherContact,
-            houseMother: state.houseMother,
-            houseMotherStatus: state.houseMotherStatus,
-            houseMotherContact: state.houseMotherContact,
-        }
+    const updateField = useCallback((field: keyof NewHouseFormState) =>
+        (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+            dispatch({type: 'updateField', field, value: event.target.value});
+        }, []);
 
-        if (sanityUserRef) {
-            sanityHouse = {
-                ...sanityHouse,
-                // submittedByFirebaseUUID: sanityUserRef
+    const addHouse = useCallback(async () => {
+        setIsLoading(true)
+        try {
+            let sanityHouse: SanityHouse = {
+                submittedByEmail: state.email,
+                firstname: state.firstName,
+                lastname: state.lastName,
+                houseName: state.newHouseName,
+                houseFather: state.houseFather,
+                houseFatherStatus: state.houseFatherStatus,
+                houseFatherContact: state.houseFatherContact,
+                houseMother: state.houseMother,
+                houseMotherStatus: state.houseMotherStatus,
+                houseMotherContact: state.houseMotherContact,
             }
+
+            const response = sanityContext.createHouse && await sanityContext.createHouse(sanityHouse)
+
+            setCreateHouseResponse(response)
+        } catch (e) {
+            setCreateHouseResponse(e)
+        } finally {
+            setIsLoading(false);
+            setIsStatusDialogOpen(true)
         }
+    }, [state, sanityContext, navigate]);
 
-        await sanityContext.createHouse(sanityHouse)
-        navigate(RoutesEnum.HOME);
+    const renderStatusOptions = () =>
+        ['STAR', 'STATEMENT', 'LEGEND', 'ICON'].map((status) => (
+            <MenuItem key={status} value={status}>
+                <Typography color="textSecondary"
+                            style={{textTransform: 'capitalize'}}>{status.toLowerCase()}</Typography>
+            </MenuItem>
+        ));
 
-    };
-
-    const updateNewHouseFormParams = (event: any) => {
-        // console.log("this", event)
-        if (event.persist) {
-            event.persist()
-        }
-
-        setState(state => ({
-            ...state,
-            [event.target.name]: event.target.value,
-        }))
+    const handleResubmitNewHouseRequest = () => {
+        setIsStatusDialogOpen(false)
     };
 
     return (
-        <Grid item container justifyContent='center' spacing={3}
-              style={{minHeight: "700px", paddingTop: "128px", paddingLeft: "32px", paddingRight: "32px"}}>
-            <Grid container item xs={12} md={10} justifyContent='center'>
-                <Typography variant='h4' color='textSecondary'>New House</Typography>
+        <Grid size={{xs: 12}} container alignItems='center' spacing={3}
+              direction='column'
+              width='100%'
+              px={4}
+              minHeight='700px'>
+            <Grid container size={{xs: 12}} justifyContent='center'>
+                <Typography variant='h4' color='textSecondary' align='center'>New House</Typography>
             </Grid>
-            <Grid container item xs={8}>
-                <form noValidate autoComplete="off">
-                    <Grid container spacing={3}>
-                        <Grid item xs={12}>
+            <Grid container size={{xs: 12}} width='100%'>
+                <form noValidate autoComplete="off" style={{width: "100%"}}>
+                    <Grid container spacing={3} size={{xs: 12}} direction='column' width='100%'>
+                        <Grid container size={{xs: 12}}>
                             <StyledTextField
                                 label="Official New House Name"
-                                helperText="This should be the official name the house would like to be known by in the Ballroom Scene."
+                                helperText="The official name of the house in the Ballroom Scene."
                                 fullWidth
-                                onChange={updateNewHouseFormParams}
+                                value={state.newHouseName}
+                                onChange={updateField('newHouseName')}
                                 name="newHouseName"
                             />
                         </Grid>
-                        <Grid item xs={12}>
+                        <Grid size={{xs: 12}}>
                             <StyledTextField
                                 label="Overall House Father Name"
-                                helperText="This should be the father of the House's name."
+                                helperText="The name of the House Father."
                                 fullWidth
-                                onChange={updateNewHouseFormParams}
                                 name="houseFather"
+                                value={state.houseFather}
+                                onChange={updateField('houseFather')}
                             />
                         </Grid>
-                        <Grid item xs={12}>
+                        <Grid size={{xs: 12}}>
                             <StyledTextField
                                 label="Overall House Father Contact"
-                                helperText="This should be the contact information for the father of the House."
+                                helperText="Contact information for the House Father."
                                 fullWidth
-                                onChange={updateNewHouseFormParams}
                                 name="houseFatherContact"
+                                value={state.houseFatherContact}
+                                onChange={updateField('houseFatherContact')}
                             />
                         </Grid>
-                        <Grid item xs={12}>
-                            {/*<StyledTextField*/}
-                            {/*    label="Overall House Father Status"*/}
-                            {/*    helperText="This should be the Ballroom status of the father of the House."*/}
-                            {/*    fullWidth*/}
-                            {/*    onChange={updateNewHouseFormParams}*/}
-                            {/*    name="houseFatherStatus"*/}
-                            {/*/>*/}
+                        <Grid size={{xs: 12}}>
                             <FormControl fullWidth>
                                 <InputLabel id="father-status-select-label" style={{top: "-12px"}}>
                                     House Father Status</InputLabel>
-                                <Select onChange={updateNewHouseFormParams} defaultValue={''} id="house-father-status"
-                                        name="houseFatherStatus">
-                                    <MenuItem value={''}></MenuItem>
-                                    <MenuItem value={'STAR'}><Typography
-                                        color={'textSecondary'}>Star</Typography></MenuItem>
-                                    <MenuItem value={'STATEMENT'}><Typography
-                                        color={'textSecondary'}>Statement</Typography></MenuItem>
-                                    <MenuItem value={'LEGEND'}><Typography
-                                        color={'textSecondary'}>Legend</Typography></MenuItem>
-                                    <MenuItem value={'ICON'}><Typography
-                                        color={'textSecondary'}>Icon</Typography></MenuItem>
+                                <Select value={state.houseFatherStatus}
+                                        onChange={(e) => dispatch({
+                                            type: 'updateField',
+                                            field: 'houseFatherStatus',
+                                            value: e.target.value
+                                        })}
+                                        name="houseFatherStatus" id="house-father-status"
+                                >
+                                    <MenuItem value="">
+                                        <em>None</em>
+                                    </MenuItem>
+                                    {renderStatusOptions()}
                                 </Select>
-                                <FormHelperText>This should be the Ballroom status of the father of the
-                                    House.</FormHelperText>
+                                <FormHelperText>Status of the House Father.</FormHelperText>
                             </FormControl>
                         </Grid>
-                        <Grid item xs={12}>
+                        <Grid size={{xs: 12}}>
                             <StyledTextField
                                 label="Overall House Mother Name"
-                                helperText="This should be the mother of the House's name."
+                                helperText="The name of the House Mother."
                                 fullWidth
-                                onChange={updateNewHouseFormParams}
                                 name="houseMother"
+                                value={state.houseMother}
+                                onChange={updateField('houseMother')}
                             />
                         </Grid>
-                        <Grid item xs={12}>
+                        <Grid size={{xs: 12}}>
                             <StyledTextField
                                 label="Overall House Mother Contact"
-                                helperText="This should be the contact information for the mother of the House."
+                                helperText="Contact information for the House Mother."
                                 fullWidth
-                                onChange={updateNewHouseFormParams}
                                 name="houseMotherContact"
+                                value={state.houseMotherContact}
+                                onChange={updateField('houseMotherContact')}
                             />
                         </Grid>
-                        <Grid item xs={12}>
-                            {/*<StyledTextField*/}
-                            {/*    label="Overall House Mother Status"*/}
-                            {/*    helperText="This should be the Ballroom status of the mother of the House."*/}
-                            {/*    fullWidth*/}
-                            {/*    onChange={updateNewHouseFormParams}*/}
-                            {/*    name="houseMotherStatus"*/}
-                            {/*/>*/}
-                            {/*    Dropdown goes here */}
+                        <Grid size={{xs: 12}}>
                             <FormControl fullWidth>
-                                <InputLabel id="mother-status-select-label" style={{top: "-12px"}}>House Mother
-                                    Status</InputLabel>
-                                <Select onChange={updateNewHouseFormParams} defaultValue={''} id="house-mother-status"
-                                        name="houseMotherStatus">
-                                    <MenuItem value={''}></MenuItem>
-                                    <MenuItem value={'STAR'}><Typography
-                                        color={'textSecondary'}>Star</Typography></MenuItem>
-                                    <MenuItem value={'STATEMENT'}><Typography
-                                        color={'textSecondary'}>Statement</Typography></MenuItem>
-                                    <MenuItem value={'LEGEND'}><Typography
-                                        color={'textSecondary'}>Legend</Typography></MenuItem>
-                                    <MenuItem value={'ICON'}><Typography
-                                        color={'textSecondary'}>Icon</Typography></MenuItem>
+                                <InputLabel id="mother-status-select-label" style={{top: "-12px"}}>
+                                    House Mother Status</InputLabel>
+                                <Select value={state.houseMotherStatus}
+                                        onChange={(e) => dispatch({
+                                            type: 'updateField',
+                                            field: 'houseMotherStatus',
+                                            value: e.target.value
+                                        })}
+                                        name="houseMotherStatus"
+                                        id="house-mother-status"
+                                >
+                                    <MenuItem value="">
+                                        <em>None</em>
+                                    </MenuItem>
+                                    {renderStatusOptions()}
                                 </Select>
-                                <FormHelperText>This should be the Ballroom status of the mother of the
-                                    House.</FormHelperText>
+                                <FormHelperText>Status of the House Mother.</FormHelperText>
                             </FormControl>
                         </Grid>
-                        <Grid item xs={6} container>
+                        <Grid size={{sm: 12}} container>
                             <StyledTextField
                                 fullWidth
                                 label="First Name"
                                 helperText="What is your first name?"
-                                onChange={updateNewHouseFormParams}
                                 name="firstName"
+                                value={state.firstName}
+                                onChange={updateField('firstName')}
                             />
                         </Grid>
 
-                        <Grid item xs={6} container>
+                        <Grid size={{sm: 12}} container>
                             <StyledTextField
                                 fullWidth
                                 label="Last Name"
-                                onChange={updateNewHouseFormParams}
                                 helperText="What is your last name?"
                                 name="lastName"
+                                value={state.lastName}
+                                onChange={updateField('lastName')}
                             />
                         </Grid>
-                        <Grid item xs={12}>
+                        <Grid size={{xs: 12}}>
                             <StyledTextField
-                                label="E-mail"
-                                onChange={updateNewHouseFormParams}
-                                helperText="Email to be contacted to verify this submission."
                                 fullWidth
+                                label="E-mail"
+                                helperText="What is your email address?"
                                 name="email"
+                                value={state.email}
+                                onChange={updateField('email')}
                             />
                         </Grid>
-                        <Grid item xs={12} container justifyContent='center'>
-                            <Button variant="contained" color="primary" style={{width: "180px", marginTop: "18px"}}
-                                    onClick={addHouse}>
-                                Submit
-                            </Button>
+                        <Grid size={{xs: 12}} container alignItems='center' direction='column'>
+                            <LoadingButton variant="contained"
+                                           disabled={isLoading || createHouseResponse?.status === 200}
+                                           color="primary"
+                                           width={180}
+                                           clickHandler={addHouse}
+                                           isLoading={isLoading}
+                            >
+                                {createHouseResponse?.status === 200 ? "Thank-you!" : "Submit"}
+                            </LoadingButton>
+                            <Box minHeight='2em'>
+                                {
+                                    createHouseResponse?.status === 200 &&
+                                    <Grid container><Typography color='success'> Success!</Typography></Grid>
+                                }
+                                {
+                                    createHouseResponse?.status === 400 &&
+                                    <Grid container><Typography color='error'> House Request Failed. Please try
+                                        again!</Typography></Grid>
+                                }
+                            </Box>
                         </Grid>
                     </Grid>
                 </form>
             </Grid>
+            <Dialog
+                maxWidth="xs"
+                open={isStatusDialogOpen}
+            >
+                <DialogTitle>New House Submission Status</DialogTitle>
+                <DialogContent dividers>
+                    {
+                        createHouseResponse?.status === 200 &&
+                        <Typography color='success'>
+                            Your new House submission was successful! Look for your submission to be verified on the
+                            House
+                            info page.
+                        </Typography>
+                    }
+                    {
+                        createHouseResponse?.status === 400 &&
+                        <Typography color='error'>
+                            Your new House submission was NOT successful! Please try your new house submission again.
+                        </Typography>
+                    }
+                </DialogContent>
+                <DialogActions>
+                    {
+                        createHouseResponse?.status === 400 &&
+                        <Button variant='contained' onClick={handleResubmitNewHouseRequest} color='error'>
+                            Resubmit
+                        </Button>
+                    }
+                    {
+                        createHouseResponse?.status === 200 &&
+                        <Button href={RoutesEnum.HOME} variant='contained' color='success'>
+                            Go to Home Page
+                        </Button>
+                    }
+                    <Button href={"anybodywalking/" + RoutesEnum.HOUSE_INFO} variant='contained'>
+                        Go To House Info Page
+                    </Button>
+                </DialogActions>
+            </Dialog>
         </Grid>
     );
 }

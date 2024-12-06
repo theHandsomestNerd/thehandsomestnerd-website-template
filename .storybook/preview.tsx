@@ -18,6 +18,9 @@ const preview: Preview = {
             return (
                 < FirebaseProvider>
                     < SanityProvider
+                        fetchVerifiedHouses={parameters.fetchVerifiedHouses}
+                        createHouse={parameters.createHouse}
+                        getSanityDocumentRef={parameters.getSanityDocumentRef}
                         fetchSkillExperiences={parameters.fetchSkillExperiences}
                         fetchPortfolioItems={parameters.fetchPortfolioItems}
                     >

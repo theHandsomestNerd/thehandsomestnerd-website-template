@@ -43,7 +43,7 @@ import {
     SanityComment,
     SanityContactUs,
     SanityHouse,
-    SanityUser
+    SanityUser, SanityVerifiedHouseType
 } from "../../../components/templates/anybody-walking/ballroomTypes";
 import imageUtils from "../../../components/templates/anybody-walking/imageUtils";
 import clientUtils from "../../../components/templates/transform-hw/pages/under-construction-page/clientUtils";
@@ -85,7 +85,8 @@ type IProps = {
     createBall?: any,
     getAppSettingsFromSanity?: any,
     createCheckin?: any,
-    createHouse?: any,
+    createHouse?: (house: SanityHouse) => Promise<any>,
+    fetchVerifiedHouses?: () => Promise<SanityVerifiedHouseType[]>,
     createUser?: any,
     updateAwUser?: any,
     updateCheckin?: any,
@@ -1549,7 +1550,7 @@ const SanityProvider: FunctionComponent<IProps & PropsWithChildren> = (
     }
 
     const createHouse = (house: SanityHouse): Promise<SanityHouse> => {
-        return fetch("/create-new-house",
+        return props.createHouse ? props.createHouse(house):fetch("/create-new-house",
             {
                 method: 'POST',
                 body: JSON.stringify(house),
@@ -1651,7 +1652,7 @@ const SanityProvider: FunctionComponent<IProps & PropsWithChildren> = (
         return response
     }
 
-    const getSanityDocumentRef = (sanityId: string): SanityRef => ({
+    const getSanityDocumentRef = (sanityId: string): SanityRef => (props.getSanityDocumentRef ? props.getSanityDocumentRef(sanityId) : {
         _type: 'reference',
         _ref: sanityId,
     })
@@ -1798,18 +1799,23 @@ const SanityProvider: FunctionComponent<IProps & PropsWithChildren> = (
                 query,
             ).then((data: any[]) => data)
     }
-    const fetchVerifiedHouses = (): Promise<SanityHouse[]> => {
+    const fetchVerifiedHouses = (): Promise<SanityVerifiedHouseType[]> => {
         const query =
             `*[_type=="house" && isVerified == true]{
           _id,
+          _type,
           slug,
-          houseName
+          houseName,
+          houseFather,
+          houseFatherStatus,
+          houseMother,
+          houseMotherStatus,
        }`
 
-        return theSanityClient
+        return props.fetchVerifiedHouses ? props.fetchVerifiedHouses():theSanityClient
             .fetch(
                 query,
-            ).then((data: SanityHouse[]) => data)
+            ).then((data: SanityVerifiedHouseType[]) => data)
     }
 
     const fetchUserBySsoId = (ssoUserId: string): Promise<SanityUser> => theSanityClient

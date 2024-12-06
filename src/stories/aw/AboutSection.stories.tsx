@@ -1,8 +1,7 @@
 import type {Meta, StoryObj} from '@storybook/react';
 import AWAboutSection from "../../components/templates/anybody-walking/AWAboutSection";
 import AWThemeData from "../data/AWThemeData";
-import Grid from "@mui/material/Grid2";
-import {Typography} from "@mui/material";
+import {SitePage} from "../../utils/storybookUtils";
 
 const meta: Meta<typeof AWAboutSection> = {
     title: "AW/Pages/About Page",
@@ -32,28 +31,8 @@ export const AboutSectionComplete: Story = {
     parameters: {
         pageTheme: AWThemeData
     },
-    render: ({sectionData}) => <Grid container>
-        <Grid container alignItems='center' justifyContent='center'
-              style={{
-                  width: "100%",
-                  height: "90px",
-                  border: "1px solid #333333",
-                  backgroundColor: "#DDDDDD"
-              }}>
-            <Typography variant='h6'>The header goes here</Typography>
-        </Grid>
-        <Grid container>
-            <AWAboutSection sectionData={sectionData}/>
-        </Grid>
-        <Grid container alignItems='center' justifyContent='center'
-              style={{
-                  width: "100%",
-                  height: "120px",
-                  border: "1px solid #333333",
-                  backgroundColor: "#DDDDDD"
-              }}>
-            <Typography variant='h6'>The footer goes here</Typography>
-        </Grid>
-    </Grid>
+    render: ({sectionData}) => <SitePage>
+        <AWAboutSection sectionData={sectionData}/>
+    </SitePage>
 
 };
