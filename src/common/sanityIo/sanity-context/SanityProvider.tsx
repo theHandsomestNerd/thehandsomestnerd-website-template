@@ -43,7 +43,8 @@ import {
     SanityComment,
     SanityContactUs,
     SanityHouse,
-    SanityUser, SanityVerifiedHouseType
+    SanityUser,
+    SanityVerifiedHouseType
 } from "../../../components/templates/anybody-walking/ballroomTypes";
 import imageUtils from "../../../components/templates/anybody-walking/imageUtils";
 import clientUtils from "../../../components/templates/transform-hw/pages/under-construction-page/clientUtils";
@@ -105,7 +106,7 @@ type IProps = {
     createComment?: any,
     fetchCommentsByBallId?: any,
     getSanityUserRef?: any,
-    createContactUs?: any
+    createContactUs?: (contactUsRequest: SanityContactUs) => Promise<any>
 
     fetchDocumentByTypeAndSlugQuery?: any
     getSanityDocumentRef?: (sanityId: string) => SanityRef
@@ -1550,7 +1551,7 @@ const SanityProvider: FunctionComponent<IProps & PropsWithChildren> = (
     }
 
     const createHouse = (house: SanityHouse): Promise<SanityHouse> => {
-        return props.createHouse ? props.createHouse(house):fetch("/create-new-house",
+        return props.createHouse ? props.createHouse(house) : fetch("/create-new-house",
             {
                 method: 'POST',
                 body: JSON.stringify(house),
@@ -1812,7 +1813,7 @@ const SanityProvider: FunctionComponent<IProps & PropsWithChildren> = (
           houseMotherStatus,
        }`
 
-        return props.fetchVerifiedHouses ? props.fetchVerifiedHouses():theSanityClient
+        return props.fetchVerifiedHouses ? props.fetchVerifiedHouses() : theSanityClient
             .fetch(
                 query,
             ).then((data: SanityVerifiedHouseType[]) => data)
@@ -1883,20 +1884,19 @@ const SanityProvider: FunctionComponent<IProps & PropsWithChildren> = (
     const getSanityUserRef = async (firebaseUUID: string): Promise<SanityRef> => getSanityIdFromFirebaseUUID(firebaseUUID).then((sanityUserId) => getSanityDocumentRef(sanityUserId ?? ""))
 
     const createContactUs = (contactUs: SanityContactUs): Promise<SanityContactUs> => {
-        return fetch("/create-contact-us",
-            {
-                method: 'POST',
-                body: JSON.stringify(contactUs),
-            },
-        )
-            .then((response: any) => {
-                return clientUtils.processResponse(response, 'ContactUsCreated');
-            })
-            .catch((e: any) => {
-                // console.error(LOG, 'ERROR', 'error', e);
-                // eslint-disable-next-line prefer-promise-reject-errors
-                return Promise.reject({attempt: Error(e)});
-            });
+        return props.createContactUs
+            ? props.createContactUs(contactUs)
+            : fetch("/create-contact-us",
+                {
+                    method: 'POST',
+                    body: JSON.stringify(contactUs),
+                })
+                .then((response: any) => {
+                    return clientUtils.processResponse(response, 'ContactUsCreated');
+                })
+                .catch((e: any) => {
+                    return Promise.reject({attempt: Error(e)});
+                });
     }
 
     const addBall = async (ball: SanityBallType, flyerImage: File) => {

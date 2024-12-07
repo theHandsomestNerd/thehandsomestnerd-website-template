@@ -16,15 +16,16 @@ const preview: Preview = {
         (Story, {parameters}) => {
             const homepageData: SanityTransformHwHomePage = HomePageData.getHomePageResumeData(parameters.pageTheme)
             return (
-                < FirebaseProvider>
-                    < SanityProvider
+                <FirebaseProvider>
+                    <SanityProvider
+                        createContactUs={parameters.createContactUs}
                         fetchVerifiedHouses={parameters.fetchVerifiedHouses}
                         createHouse={parameters.createHouse}
                         getSanityDocumentRef={parameters.getSanityDocumentRef}
                         fetchSkillExperiences={parameters.fetchSkillExperiences}
                         fetchPortfolioItems={parameters.fetchPortfolioItems}
                     >
-                        < BrowserRouter>
+                        <BrowserRouter>
                             <AppSettingsProvider settings={parameters.settings}>
                                 <PageProvider page={homepageData}>
                                     <CustomizedThemeProvider>

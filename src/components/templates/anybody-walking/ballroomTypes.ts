@@ -213,18 +213,17 @@ export type ContactUsFormState = {
     email?: string,
     phone?: string,
     comment?: string,
-    isUpdateConsent?: string,
-    isOther?: string
 }
 
 export type CheckBoxesType = {
-    iAgree: boolean,
-    clickHere: boolean,
-    press: boolean,
-    publicEvents: boolean,
-    privateEvents: boolean,
-    general: boolean,
-    other: boolean
+    isUpdateConsent: boolean,
+    isIAgree: boolean,
+    isClickHere: boolean,
+    isPress: boolean,
+    isPublicEvents: boolean,
+    isPrivateEvents: boolean,
+    isGeneral: boolean,
+    isOther: boolean
 }
 
 export enum CategoryGenderType {
@@ -451,6 +450,9 @@ export type AWSingleBallSectionType = {
 export type  AWHouseInfoSectionType = {
     name: string
 }
+
+export type  AWContactUsSectionType = ContactUsFormState & CheckBoxesType
+
 export type  AWFAQSectionType = {
     name: string
     faqContent: {question:string, answer:string,}[]

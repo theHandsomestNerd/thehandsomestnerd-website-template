@@ -173,6 +173,26 @@ app.post("/get-resume-pdf", async (req, res) => {
     res.send("error")
     }
 })
+app.post("/create-contact-us",
+    async (req, functionRes: any) => {
+        logger.log("create-contact-us", "NOTICE",
+            "Request body raw", req.body);
+        const reqBody = JSON.parse(req.body);
+
+        logger.log("create-contact-us", "NOTICE",
+            "Request to create contact us", reqBody);
+        //
+        try {
+            const response = await cmsClient.createContactUs({
+                ...reqBody
+            });
+            functionRes.send({status: "200", response, email: reqBody.email});
+        } catch (e) {
+            logger.log("create-contact-us", "ERROR",
+                "Could not create Contact Us", {email: reqBody.email});
+            functionRes.error({status: "400", e});
+        }
+    });
 
 app.post("/create-new-house",
     async (req, functionRes:any) => {
