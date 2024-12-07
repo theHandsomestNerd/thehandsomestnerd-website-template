@@ -2,7 +2,7 @@ import {PropsWithChildren} from "react";
 import Grid from "@mui/material/Grid2";
 import {Typography} from "@mui/material";
 
-export const delay = async (milliseconds:number) => {
+export const storybookDelay = async (milliseconds:number) => {
     return new Promise(resolve => {
         setTimeout(resolve, milliseconds);
     });

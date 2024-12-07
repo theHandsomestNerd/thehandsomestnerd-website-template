@@ -281,38 +281,49 @@ const AWNewHouseFormSection: FunctionComponent<NewHouseFormProps> = () => {
                 maxWidth="xs"
                 open={isStatusDialogOpen}
             >
-                <DialogTitle>New House Submission Status</DialogTitle>
+                <DialogTitle color='textSecondary'>New House Submission Status</DialogTitle>
                 <DialogContent dividers>
                     {
                         createHouseResponse?.status === 200 &&
-                        <Typography color='success'>
-                            Your new House submission was successful! Look for your submission to be verified on the
-                            House
-                            info page.
-                        </Typography>
+                        <>
+                            <Typography color='success' align='center' gutterBottom>
+                                Your new House submission was successful!
+                            </Typography>
+                            <Typography color='textSecondary'>
+                                Look for your submission to be verified on the
+                                House
+                                info page.
+                            </Typography>
+                        </>
                     }
                     {
                         createHouseResponse?.status === 400 &&
-                        <Typography color='error'>
-                            Your new House submission was NOT successful! Please try your new house submission again.
-                        </Typography>
+                        <>
+                            <Typography color='error' gutterBottom align='center'>
+                                Error: Your new House submission was NOT successful!
+                            </Typography>
+                            <Typography color='textSecondary'>
+
+                                Please try your new house submission again.
+                            </Typography>
+                        </>
                     }
                 </DialogContent>
                 <DialogActions>
                     {
                         createHouseResponse?.status === 400 &&
-                        <Button variant='contained' onClick={handleResubmitNewHouseRequest} color='error'>
+                        <Button onClick={handleResubmitNewHouseRequest} color='error'>
                             Resubmit
                         </Button>
                     }
                     {
                         createHouseResponse?.status === 200 &&
-                        <Button href={RoutesEnum.HOME} variant='contained' color='success'>
+                        <Button href={RoutesEnum.HOME}>
                             Go to Home Page
                         </Button>
                     }
-                    <Button href={"anybodywalking/" + RoutesEnum.HOUSE_INFO} variant='contained'>
-                        Go To House Info Page
+                    <Button href={"anybodywalking/" + RoutesEnum.HOUSE_INFO}>
+                        Go to House Info Page
                     </Button>
                 </DialogActions>
             </Dialog>

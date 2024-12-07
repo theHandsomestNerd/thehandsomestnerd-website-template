@@ -3,7 +3,7 @@ import AWThemeData from "../data/AWThemeData";
 import AWBallsPageData from "../data/AWBallsPageData";
 import {AppSettingsType, SanityHouse} from "../../components/templates/anybody-walking/ballroomTypes";
 import AWNewHouseFormSection from "../../components/templates/anybody-walking/AWNewHouseFormSection";
-import {SitePage} from "../../utils/storybookUtils";
+import {SitePage, storybookDelay} from "../../utils/storybookUtils";
 
 const meta: Meta<typeof AWNewHouseFormSection> = {
     title: "AW/Pages/New House Form Section",
@@ -35,7 +35,7 @@ export const AWNewHouseFormSectionComplete: Story = {
         },
         createHouse: async (house: SanityHouse) => {
             alert("create this house " + JSON.stringify(house),)
-            await delay(1000)
+            await storybookDelay(1000)
             return Promise.resolve({status: 200, email: "success@email.com"})
         }
     },
@@ -57,7 +57,7 @@ export const AWNewHouseFormSectionFail: Story = {
         },
         createHouse: async (house: SanityHouse) => {
             alert("create this house " + JSON.stringify(house),)
-            await delay(1000)
+            await storybookDelay(1000)
             return Promise.reject({status: 400, e: "There was an error"})
         }
     },
