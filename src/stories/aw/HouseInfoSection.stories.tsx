@@ -6,7 +6,7 @@ import AwVerifiedHousesArrayData from "../data/AwVerifiedHousesArrayData";
 import {SitePage} from "../../utils/storybookUtils";
 
 const meta: Meta<typeof AWHouseInfoSection> = {
-    title: "AW/Pages/House Info Section",
+    title: "AW/Pages/House Info",
     component: AWHouseInfoSection,
 };
 

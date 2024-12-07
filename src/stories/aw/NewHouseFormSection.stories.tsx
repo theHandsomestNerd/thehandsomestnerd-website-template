@@ -6,7 +6,7 @@ import AWNewHouseFormSection from "../../components/templates/anybody-walking/AW
 import {SitePage, storybookDelay} from "../../utils/storybookUtils";
 
 const meta: Meta<typeof AWNewHouseFormSection> = {
-    title: "AW/Pages/New House Form Section",
+    title: "AW/Pages/New House Form",
     component: AWNewHouseFormSection,
 };
 

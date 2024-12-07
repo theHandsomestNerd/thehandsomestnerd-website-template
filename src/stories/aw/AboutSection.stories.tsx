@@ -4,7 +4,7 @@ import AWThemeData from "../data/AWThemeData";
 import {SitePage} from "../../utils/storybookUtils";
 
 const meta: Meta<typeof AWAboutSection> = {
-    title: "AW/Pages/About Page",
+    title: "AW/Pages/About",
     component: AWAboutSection,
 };
 
