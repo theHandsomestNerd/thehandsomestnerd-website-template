@@ -1,11 +1,5 @@
-/**
- *
- * BallPage
- *
- */
-
-import {Button, Grid, Hidden, Link, Typography} from '@mui/material'
 import {FunctionComponent, useContext, useEffect, useState} from 'react'
+import {Button, Link, Typography} from '@mui/material'
 import {AddBallState, Category, SanityBallType} from "../ballroomTypes";
 import {useLocation, useParams} from "react-router-dom";
 import SanityContext from "../../../../common/sanityIo/sanity-context/SanityContext";
@@ -18,13 +12,14 @@ import {getDayFromDate, getMonthFromDate, getPrettyDateStr, getPrettyTimeStr, ge
 import ClosedCategory from "../ball-form-steps/AddCategories/ClosedCategory";
 import BallMapComponent from "../ball-form-steps/BallMapComponent";
 import PageContext from "../../../page-context/PageContext";
+import Grid from "@mui/material/Grid2";
+import {sanitize} from "isomorphic-dompurify";
 
 export type BallPageProps = {
     ball?: AddBallState
     slug?: string;
     isHideBackButton?: boolean;
 }
-
 
 const useStyles = makeStyles((awTheme: Theme) => ({
     heroImage: {
@@ -163,38 +158,27 @@ const BallPage: FunctionComponent<BallPageProps> = (props: BallPageProps): any =
         }
     }, [props.ball])
 
-    // useEffect(() => {
-    //     console.log("this is the ball", ball)
-    // }, [ball])
-
     const pageContext = useContext(PageContext)
 
     const displayDateRange = (startDate: string, endDate?: string) => {
         let dateRangeString = `${getPrettyDateStr(startDate, true)}, ${getPrettyTimeStr(startDate)}`
 
-        if(endDate) {
+        if (endDate) {
             dateRangeString += `- ${getPrettyDateStr(endDate, true)}, ${getPrettyTimeStr(endDate)}`
         }
 
         return dateRangeString
     }
 
-    return <Grid
-        container
-    >
+    return <Grid container size={{xs: 12}}>
+        {props.ball &&
+            <Grid size={{xs: 12}}>
 
-        <Hidden mdDown>
-            <Grid item lg={4} xl={4}/>
-        </Hidden>
-        {props.ball && <Grid item xs={12}>
-            <>
-                {ball && <Grid container item spacing={2}>
-                    <Grid container item>
+                {ball &&
+                    <Grid container spacing={2}>
                         <Grid
                             data-testid={ball?.flyer?.asset.url ? 'flyer-image' : ''}
-                            item
-                            xs={12}
-                            lg={8}
+                            size={{xs: 12}}
                             className={classes.heroImage}
                             style={{
                                 backgroundImage: `url(${ball?.flyer?.asset.url})`,
@@ -203,68 +187,53 @@ const BallPage: FunctionComponent<BallPageProps> = (props: BallPageProps): any =
                                 backgroundSize: 'cover'
                             }}
                         >
-                            {!props.isHideBackButton && <Grid container justifyContent='space-between'>
-                                <Grid item container>
-                                    <Button
-                                        sx={{paddingX: theme.spacing(4), backgroundColor: 'rgba(0,0,0,.5)'}}
-                                        href={`/${pageContext.baseRoute}/${RoutesEnum.SEARCH + "/" + location.search}`}
-                                    >
-                                        <Grid container item>
-                                            <Grid item>
-                                                <ChevronLeft style={{color: "whitesmoke"}}/>
+                            {!props.isHideBackButton &&
+                                <Grid container justifyContent='space-between'>
+                                    <Grid container>
+                                        <Button
+                                            sx={{paddingX: theme.spacing(4), backgroundColor: 'rgba(0,0,0,.5)'}}
+                                            href={`/${pageContext.baseRoute}/${RoutesEnum.SEARCH + "/" + location.search}`}
+                                        >
+                                            <Grid container>
+                                                <Grid>
+                                                    <ChevronLeft style={{color: "whitesmoke"}}/>
+                                                </Grid>
+                                                <Grid>
+                                                    <Typography color='white' variant='h6' sx={{paddingTop: "3px"}}>
+                                                        Goto Search{props.slug}</Typography>
+                                                </Grid>
                                             </Grid>
-                                            <Grid item>
-                                                <Typography color='white' variant='h6' sx={{paddingTop: "3px"}}>
-                                                    Goto Search</Typography>
-                                            </Grid>
-                                        </Grid>
-                                    </Button>
+                                        </Button>
+                                    </Grid>
                                 </Grid>
-                                {/*<Hidden mdUp>*/}
-                                {/*  {typeof firebaseClient.app.auth === 'function' && firebaseClient.app.auth().currentUser &&*/}
-                                {/*    <Grid container item justifyContent='flex-end' style={{position: 'relative'}}>*/}
-                                {/*      <Button variant='contained' className={classes.littleFaves}>*/}
-                                {/*        <Typography component='div' color='textSecondary'>*/}
-                                {/*          <BallFavoriteButton*/}
-                                {/*            ballId={ball._id}*/}
-                                {/*            favorites={props.authentication.awUserDetails.favorites}*/}
-                                {/*          />*/}
-                                {/*        </Typography>*/}
-                                {/*      </Button>*/}
-                                {/*    </Grid>*/}
-                                {/*  }*/}
-                                {/*</Hidden>*/}
-                            </Grid>}
+                            }
                         </Grid>
                         <Grid
                             container
                             direction='column'
                             justifyContent='space-between'
-                            item
-                            xs={12}
-                            md={4}
-                            // spacing={2}
+                            size={{xs: 12}}
                             paddingTop={2}
                             paddingLeft={2}
                             paddingBottom={2}
                         >
-                            <Grid container item direction='column'>
-                                <Grid item>
+                            <Grid container direction='column'>
+                                <Grid>
                                     <Typography color='#c1bebe' variant='subtitle2'>
                                         {getDayFromDate(ball?.functionStartDate).toUpperCase()} &bull; {getYearFromDate(ball?.functionStartDate).toUpperCase()}
                                     </Typography>
                                 </Grid>
-                                <Grid item>
+                                <Grid>
                                     <Typography color='textSecondary' variant='h6'>
                                         {getMonthFromDate(ball?.functionStartDate).toUpperCase()}
                                     </Typography>
                                 </Grid>
-                                <Grid item>
+                                <Grid>
                                     <Typography color='textSecondary'
                                                 variant='h5'>{ball?.functionStartDate?.substring(8, 10)}</Typography>
                                 </Grid>
                             </Grid>
-                            <Grid item>
+                            <Grid>
                                 <Typography
                                     color='textSecondary'>
                                     <Link
@@ -273,196 +242,109 @@ const BallPage: FunctionComponent<BallPageProps> = (props: BallPageProps): any =
                                     >{ball?.ballTitle}</Link>
                                 </Typography>
                             </Grid>
-                            <Grid item>
+                            <Grid>
                                 <Typography
                                     color='textSecondary'>{`by ${ball?.host?.replace(/&amp;/g, '&')}`}</Typography>
                             </Grid>
                         </Grid>
-                    </Grid>
-                    {/*<Hidden smDown>*/}
-                    {/*    <Grid container item className={classes.favoritesShareContainer} alignItems='center'*/}
-                    {/*          paddingBottom={1} paddingTop={2}>*/}
-                    {/*        <Grid item style={{paddingLeft: "16px"}}>*/}
-                    {/*            <Typography color='textSecondary'>*/}
-                    {/*                <Share style={{fontSize: '38px'}}/>*/}
-                    {/*            </Typography>*/}
-                    {/*        </Grid>*/}
-                    {/*        <Grid item>*/}
-                    {/*            <Typography color='textSecondary' component='div'>*/}
-                    {/*                /!*{typeof firebaseClient.app.auth === 'function' && firebaseClient.app.auth().currentUser &&*!/*/}
-                    {/*                /!*  <BallFavoriteButton*!/*/}
-                    {/*                /!*    ballId={ball._id}*!/*/}
-                    {/*                /!*    favorites={props.authentication.awUserDetails.favorites}*!/*/}
-                    {/*                /!*  />}*!/*/}
-                    {/*            </Typography>*/}
-                    {/*        </Grid>*/}
-                    {/*    </Grid>*/}
-                    {/*</Hidden>*/}
-                    <Hidden mdUp>
                         <Grid
                             container
-                            item
                             paddingBottom={2}
                             style={{
                                 borderBottom: '1px solid #DBDAE3'
                             }}
+                            size={{xs: 12}}
                         >
-                            <Grid container item wrap='nowrap' style={{paddingLeft: "16px", paddingBottom: "8px"}}
+                            <Grid size={{md: 6}} container wrap='nowrap'
+                                  style={{paddingLeft: "16px", paddingBottom: "8px"}}
                                   spacing={2}>
-                                <Grid item><CalendarToday color='primary'/></Grid>
-                                <Grid container direction='column' item>
-                                    <Grid item><Typography color='textSecondary' variant='body2'>Date and
+                                <Grid><CalendarToday color='primary'/></Grid>
+                                <Grid container direction='column'>
+                                    <Grid><Typography color='textSecondary' variant='body2'>Date and
                                         time</Typography></Grid>
-                                    <Grid item>
+                                    <Grid>
                                         <Typography
                                             color='textSecondary'>{displayDateRange(ball?.functionStartDate, ball?.functionEndDate)}</Typography>
                                     </Grid>
                                 </Grid>
                             </Grid>
-                            <Grid container item wrap='nowrap' style={{paddingLeft: "16px"}} spacing={2}>
-                                <Grid item><GpsFixed color='primary'/></Grid>
-                                <Grid container direction='column' item>
-                                    <Grid container item>
-                                        <Grid item>
-                                            <Typography color='textSecondary' variant='body2'>Location</Typography>
-                                        </Grid>
-                                        <Grid container direction='column' item>
-                                            <Typography
-                                                color='textSecondary'>{ball?.location?.locationName}</Typography>
-                                            <Typography color='textSecondary'>{ball?.location?.street1}</Typography>
-                                            <Typography color='textSecondary'>{ball?.location?.street2}</Typography>
+                            <Grid size={{md: 6}} container wrap='nowrap' style={{paddingLeft: "16px"}} spacing={2}>
+                                <Grid><GpsFixed color='primary'/></Grid>
+                                <Grid container direction='column'>
+                                    <Grid>
+                                        <Typography color='textSecondary' variant='body2'>Location</Typography>
+                                    </Grid>
+                                    <Grid container direction='column'>
+                                        <Typography
+                                            color='textSecondary'>{ball?.location?.locationName}</Typography>
+                                        {
+                                            ball?.location?.street1 &&
+                                            <Typography color='textSecondary'>{ball.location.street1}</Typography>
+                                        }
+                                        {
+                                            ball?.location?.street2 &&
+                                            <Typography color='textSecondary'>{ball.location.street2}</Typography>
+                                        }
+                                        {
+                                            ball?.location && (ball.location.city || ball.location.state) &&
                                             <Typography
                                                 color='textSecondary'
-                                            >{`${ball?.location?.city}, ${ball?.location?.state}`}</Typography>
-                                        </Grid>
+                                            >{`${ball.location.city}, ${ball.location.state}`}</Typography>}
                                     </Grid>
                                 </Grid>
                             </Grid>
                         </Grid>
-                    </Hidden>
-                    <Grid container item>
-                        <Grid container direction='column' item xs={12} md={8} className={classes.leftContent}>
-                            <Grid item style={{marginBottom: theme.spacing(2)}}>
+                        <Grid container direction='column' className={classes.leftContent}>
+                            <Grid style={{marginBottom: theme.spacing(2)}}>
                                 <Typography variant='h5' color='textSecondary'>About the Function</Typography>
                             </Grid>
-                            <Grid item>
+                            <Grid>
                                 <Typography color='textSecondary' component='div'>
                                     <Grid
-                                        item
                                         className={classes.ballDescription}
 
-                                    >{ball?.description?.toString()}</Grid>
+
+                                    ><Typography color='textSecondary' ><div dangerouslySetInnerHTML={{__html: sanitize(ball?.description ||"")}}></div></Typography></Grid>
                                 </Typography>
                             </Grid>
                             {ball?.categories?.length > 0 &&
-                                <Grid container item style={{margin: theme.spacing(2, 0)}}>
+                                <Grid container style={{margin: theme.spacing(2, 0)}}>
                                     <Typography color='textSecondary' variant='h6'>Categories</Typography>
                                 </Grid>}
-                            {ball?.categories.map((category: Category, index: number) => <Grid container item
-                                                                                               key={index} padding={.5}>
+                            {ball?.categories.map((category: Category, index: number) => <Grid container
+                                                                                               key={index}
+                                                                                               padding={.5}>
                                 <ClosedCategory showDescription category={category} keyValue={index}/>
                             </Grid>)}
                         </Grid>
-                        <Hidden mdDown>
-                            <Grid container direction='column' item xs={4} padding={2} spacing={3}>
-                                <Grid container direction='column' item>
-                                    <Grid item>
-                                        <Typography color='textSecondary' variant='body2' fontWeight={600}>Date and
-                                            time</Typography>
-                                    </Grid>
-                                    <Grid item container>
-                                        <Typography color='textSecondary'>
-                                            {displayDateRange(ball?.functionStartDate, ball?.functionEndDate)}
-                                        </Typography>
-                                    </Grid>
-                                </Grid>
-                                <Grid container direction='column' item>
-                                    <Grid item>
-                                        <Typography color='textSecondary' variant='body2'
-                                                    fontWeight={600}>Location</Typography>
-                                    </Grid>
-                                    <Grid container direction='column' item>
-                                        <Typography color='textSecondary'>{ball?.location?.locationName}</Typography>
-                                        <Typography color='textSecondary'>{`${ball?.location?.street1}`}</Typography>
-                                        <Typography color='textSecondary'>{`${ball?.location?.street2}`}</Typography>
-                                        <Typography color='textSecondary'>
-                                            {`${ball?.location?.city}, ${ball?.location?.state}`}
-                                        </Typography>
-                                    </Grid>
-                                </Grid>
-                                {/*<Grid container direction='column' item>*/}
-                                {/*    <Grid container item>*/}
-                                {/*        <Typography color='textSecondary' variant='body2' fontWeight={600}>Share with*/}
-                                {/*            friends</Typography>*/}
-                                {/*    </Grid>*/}
-                                {/*    <Grid container item spacing={2}>*/}
-                                {/*        <Grid item><Typography color='textSecondary'><Facebook/></Typography></Grid>*/}
-                                {/*        <Grid item><Typography color='textSecondary'><LinkedIn/></Typography></Grid>*/}
-                                {/*        <Grid item><Typography color='textSecondary'><Twitter/></Typography></Grid>*/}
-                                {/*        <Grid item><Typography color='textSecondary'><Email/></Typography></Grid>*/}
-                                {/*    </Grid>*/}
-                                {/*</Grid>*/}
-                                <Hidden mdDown>
-                                    <Grid container justifyContent='center' item>
-                                        {/*{ball.slug?.current && <Grid item><BallCheckinList slug={ball.slug?.current}/></Grid>}*/}
-                                    </Grid>
-                                </Hidden>
+                        <Grid container direction='column' columnSpacing={2} size={{xs:12}}>
+                            {ball?.location &&
+                                <Grid container justifyContent='center'>
+                                    <BallMapComponent
+                                        location={ball?.location}
+                                    />
+                                </Grid>}
+                            <Grid container justifyContent='center' paddingTop={3}>
+                                <Typography color='textSecondary' variant='h6'>{ball?.ballTitle}</Typography>
                             </Grid>
-                        </Hidden>
+                            <Grid container justifyContent='center'>
+                                <Typography color='textSecondary'>at</Typography>
+                            </Grid>
+                            <Grid container justifyContent='center'>
+                                <Typography color='textSecondary'
+                                            fontStyle='oblique'>{ball?.location?.locationName}</Typography>
+                            </Grid>
+                            <Grid container justifyContent='center'>
+                                <Typography color='textSecondary'>
+                                    {`${ball?.location?.street1} ${ball?.location?.city}, ${ball?.location?.state}`}
+                                </Typography>
+                            </Grid>
+                        </Grid>
+                        slug
                     </Grid>
-                    {/* <Grid container item>about the organizer</Grid> */}
-                    <Grid container direction='column' item columnSpacing={2}>
-                        {ball?.location &&
-                            <Grid container item justifyContent='center'>
-                                <BallMapComponent
-                                    location={ball?.location}
-                                />
-                            </Grid>}
-                        <Grid container item justifyContent='center' paddingTop={3}>
-                            <Typography color='textSecondary' variant='h6'>{ball?.ballTitle}</Typography>
-                        </Grid>
-                        <Grid container item justifyContent='center'>
-                            <Typography color='textSecondary'>at</Typography>
-                        </Grid>
-                        <Grid container item justifyContent='center'>
-                            <Typography color='textSecondary'
-                                        fontStyle='oblique'>{ball?.location?.locationName}</Typography>
-                        </Grid>
-                        <Grid container item justifyContent='center'>
-                            <Typography color='textSecondary'>
-                                {`${ball?.location?.street1} ${ball?.location?.city}, ${ball?.location?.state}`}
-                            </Typography>
-                        </Grid>
-                        {/*<Grid container item justifyContent='center' paddingTop={2}>*/}
-                        {/*    <Grid item>*/}
-                        {/*        <Grid container item columnSpacing={3}>*/}
-                        {/*            <Grid item><DriveEta color='primary'/></Grid>*/}
-                        {/*            <Grid item><DirectionsWalk color='primary'/></Grid>*/}
-                        {/*            <Grid item><DirectionsBus color='primary'/></Grid>*/}
-                        {/*            <Grid item><DirectionsBike color='primary'/></Grid>*/}
-                        {/*        </Grid>*/}
-                        {/*    </Grid>*/}
-                        {/*</Grid>*/}
-                    </Grid>
-                    <Hidden lgUp>
-                        <Grid container justifyContent='center' item style={{padding: theme.spacing(3)}}>
-                            {/*{ball.slug?.current && <BallCheckinList slug={ball.slug.current}/>}*/}
-                        </Grid>
-                    </Hidden>
-                    {
-                        ball.slug &&
-                        <Grid container item xs={12}>
-                            <Typography>Comments</Typography>
-                        </Grid>
-                    }
-                    {/*{*/}
-                    {/*  ball.slug && <Grid container item style={{marginTop: theme.spacing(2.5)}} justifyContent='center'>*/}
-                    {/*    <CommentComponent ballId={ball?._id}/>*/}
-                    {/*  </Grid>*/}
-                    {/*}*/}
-                </Grid>}
-            </>
-        </Grid>}
+                }
+            </Grid>
+        }
     </Grid>
 }
 

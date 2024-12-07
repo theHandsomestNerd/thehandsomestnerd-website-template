@@ -1,15 +1,14 @@
 import validator from 'validator'
-
-import moment from 'moment-timezone'
+import {format, parseISO} from "date-fns";
 
 // This was a direct import into the db from the old one
-const firebaseDateFormatStr = 'YYYY-MM-DD';
+const firebaseDateFormatStr = 'yyyy-MM-dd';
 const firebaseTimeFormatStrLong = 'hh:mm a';
 const firebaseTimeFormatStr = 'hh:mm a';
 
-const prettyDateFormatStr = 'MMMM DD, YYYY';
-const prettyDateFormatStrLong = 'MMMM DD';
-const prettyDateFormatStrShort = 'M/DD/YYYY';
+const prettyDateFormatStr = 'MMMM dd, yyyy';
+const prettyDateFormatStrLong = 'MMMM dd';
+const prettyDateFormatStrShort = 'M/DD/yyyy';
 
 /**
  * This is how times are stored in Firebase
@@ -47,15 +46,14 @@ export function getYearFromDate(date: string): string {
  * @param firebaseDate
  */
 export function getPrettyDateStr(firebaseDate: string, long?: boolean, short?: boolean): string {
-  const momentDate = moment(firebaseDate);
   let formatString = prettyDateFormatStr
   if (long) {
     formatString = prettyDateFormatStrLong
   } else if (short) {
     formatString = prettyDateFormatStrShort
   }
-
-  return momentDate.format(formatString);
+  const isoDate = parseISO(firebaseDate)
+  return (format(isoDate , formatString));
 }
 
 /**
@@ -63,8 +61,7 @@ export function getPrettyDateStr(firebaseDate: string, long?: boolean, short?: b
  * @param date string
  */
 export function getPrettyTimeStr(date: string, long?: boolean): string {
-  const momentTime = moment(date);
-  return momentTime.format(long ? firebaseTimeFormatStrLong : firebaseTimeFormatStr);
+  return format(parseISO(date), long ? firebaseTimeFormatStrLong : firebaseTimeFormatStr);
 }
 
 /**
@@ -75,8 +72,7 @@ export function getDateInputValue(date: string): string {
   if (!date || date === '' || date === '0000-00-00'){
     return '0000-00-00'
   }
-  const momentTime = moment(date);
-  return momentTime.format(firebaseDateFormatStr);
+  return format(parseISO(date), firebaseDateFormatStr);
 }
 
 /**
@@ -88,34 +84,13 @@ export function getTimeInputValue(time: string): string {
     return '00:00'
   }
 
-  const momentTime = moment(time, firebaseTimeFormatStr).tz('America/New_York');
-  return momentTime.format(firebaseTimeFormatStr);
+  return format(parseISO(time),firebaseTimeFormatStr);
 }
 
 /**
  * combine date and time into one string the datetime sanity component understands
  * @param date string
  */
-export function combineDateTime(date: string, time: string): string {
-  const dateTokenized = date !== undefined ? date.split('-') : []
-  const timeTokenized = time !== undefined ? time.split(':') : []
-  // const tz = new Date().toLocaleString('en', {timeZoneName: 'short'}).split(' ').pop();
-
-  if (dateTokenized.length === 3) {
-    const year = parseInt(dateTokenized[0], 10)
-    const month = parseInt(dateTokenized[1], 10) - 1
-    const day = parseInt(dateTokenized[2], 10)
-    const hours = parseInt(timeTokenized[0], 10)
-    const minutes = parseInt(timeTokenized[1], 10)
-
-    const returned = !!hours && !!minutes ? new Date(year, month, day, hours, minutes) : new Date(year, month, day)
-
-    return returned.toISOString()
-  }
-
-  return ''
-}
-
 export function combineDateAndTime(date: string, time: string): string {
   const dateTokenized = date !== undefined ? date.split('-') : []
   const timeTokenized = time !== undefined ? time.split(':') : []

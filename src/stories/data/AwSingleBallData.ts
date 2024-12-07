@@ -181,6 +181,7 @@ const awSingleBallData: SanityBallType = {
             "_type": "category"
         },
         {
+            "catGender": "FF",
             "catType": "REGULAR",
             "_key": "61fbcc10f466",
             "catDescription": "Intergalactic Jackpot (GNC Face) - your space odyssey has you on a journey to the first intergalactic casino known to the human race. With all the perfect elements of face; eyes, teeth, nose, structure and skin bring this intergalactic casino to life with your beauty in a futuristic fashionable look. 1 trophy and winner will spin the “Roulette of Champions",
@@ -220,6 +221,7 @@ const awSingleBallData: SanityBallType = {
             "_type": "category"
         },
         {
+            "catGender": "DRAGS",
             "catName": "FACE",
             "_type": "category",
             "_key": "9e334a3f33a6",
@@ -311,11 +313,6 @@ const awSingleBallData: SanityBallType = {
             "catPrize": "MONETARY",
             "monetaryPrize": "1000",
             "catName": "SPECIALTY"
-        },
-        {
-            "_key": "e3ae79cd5c07",
-            "versus": true,
-            "_type": "category"
         }
     ],
     "region": "East Coast, US",

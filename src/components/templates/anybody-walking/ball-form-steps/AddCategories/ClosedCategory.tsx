@@ -7,8 +7,9 @@ import {
     CategoryPrizeType,
     CategoryTypeType
 } from '../../ballroomTypes'
-import {Button, Grid, Typography, useTheme} from '@mui/material'
+import {Button, Typography, useTheme} from '@mui/material'
 import {Delete, Edit} from '@mui/icons-material'
+import Grid from '@mui/material/Grid2'
 
 
 export type ClosedCategoryProps = {
@@ -33,7 +34,6 @@ const ClosedCategory: FunctionComponent<ClosedCategoryProps> = ({
     return (
         <Grid
             container
-            item
             spacing={1}
             // alignItems='stretch'
             style={{
@@ -42,9 +42,9 @@ const ClosedCategory: FunctionComponent<ClosedCategoryProps> = ({
                 marginBottom: theme.spacing(1),
             }}
         >
-            <Grid container item style={{paddingRight: theme.spacing(3)}}>
+            <Grid container style={{paddingRight: theme.spacing(3)}}>
                 <Grid container direction='column' alignContent='space-between' justifyContent='space-between'>
-                    <Grid item>
+                    <Grid container size={{xs:12}}>
                         <Typography
                             data-testid={`category-${keyValue}-closed-catGender`}
                             align='center'
@@ -56,7 +56,7 @@ const ClosedCategory: FunctionComponent<ClosedCategoryProps> = ({
                         >
                             {
                                 //@ts-ignore
-                                CategoryGenderType[category.catGender]
+                                CategoryGenderType[category.catGender] ?? ""
                             }
                         </Typography>
                         <Typography align='center'
@@ -66,12 +66,12 @@ const ClosedCategory: FunctionComponent<ClosedCategoryProps> = ({
                                     style={{textTransform: 'capitalize'}}
                                     display='inline'>{
                             //@ts-ignore
-                            "(" + CategoryGenderSubtitlesType[category.catGender] + ")"
+                            "(" + (CategoryGenderSubtitlesType[category.catGender]??"") + ")"
                         }
                         </Typography>
                     </Grid>
                     {
-                        category.versus && <Grid item>
+                        category.versus && <Grid >
                             <Typography
                                 align='center'
                                 data-testid={`category-${keyValue}-closed-versus`}
@@ -84,7 +84,7 @@ const ClosedCategory: FunctionComponent<ClosedCategoryProps> = ({
                         </Grid>
                     }
                     {
-                        category.versus && <Grid item>
+                        category.versus && <Grid >
                             <Typography
                                 align='center'
                                 data-testid={`category-${keyValue}-closed-catVsGender`}
@@ -101,8 +101,8 @@ const ClosedCategory: FunctionComponent<ClosedCategoryProps> = ({
                         </Grid>
                     }
                 </Grid>
-                <Grid container item justifyContent='space-between'>
-                    <Grid item xs={6}><Typography
+                <Grid container  justifyContent='space-between' size={{xs:12}}>
+                    <Grid  size={{xs:6}}><Typography
                         data-testid={`category-${keyValue}-closed-catType`}
                         color='textSecondary'
                         variant='h6'
@@ -113,7 +113,7 @@ const ClosedCategory: FunctionComponent<ClosedCategoryProps> = ({
                         //@ts-ignore
 
                         CategoryTypeType[category.catType]}</Typography></Grid>
-                    <Grid container item xs={6} justifyContent='flex-end'><Typography
+                    <Grid container  size={{xs:6}} justifyContent='flex-end'><Typography
                         color='textSecondary'
                         variant='h6'
                         noWrap
@@ -123,8 +123,8 @@ const ClosedCategory: FunctionComponent<ClosedCategoryProps> = ({
                     >{                                    //@ts-ignore
                         CategoryNameType[category.catName]}</Typography></Grid>
                 </Grid>
-                <Grid container item justifyContent='space-between'>
-                    <Grid item xs={6}><Typography
+                <Grid container  justifyContent='space-between' size={{xs:12}}>
+                    <Grid  size={{xs:6}}><Typography
                         color='textSecondary'
                         variant='h6'
                         noWrap
@@ -133,8 +133,8 @@ const ClosedCategory: FunctionComponent<ClosedCategoryProps> = ({
                         display='inline'
                     >{`Prize: ${
                         //@ts-ignore
-                        CategoryPrizeType[category.catPrize]}`}</Typography></Grid>
-                    {category.monetaryPrize > 0 && <Grid container item xs={6} justifyContent='flex-end'><Typography
+                        CategoryPrizeType[category.catPrize] ?? "None"}`}</Typography></Grid>
+                    {category.monetaryPrize > 0 && <Grid container  size={{xs:6}} justifyContent='flex-end'><Typography
                         color='textSecondary'
                         variant='h6'
                         noWrap
@@ -144,10 +144,9 @@ const ClosedCategory: FunctionComponent<ClosedCategoryProps> = ({
                     >{`$ ${category.monetaryPrize}`}</Typography></Grid>}
                 </Grid>
                 {
-                    showDescription && <Grid container item data-testid={`category-${keyValue}-description`}>
+                    showDescription && <Grid container  data-testid={`category-${keyValue}-description`}>
                         <Grid
-                            item
-                            xs={12}
+                            size={{xs:12}}
                             style={{
                                 paddingBottom: theme.spacing(1),
                                 paddingTop: theme.spacing(1),
@@ -166,8 +165,7 @@ const ClosedCategory: FunctionComponent<ClosedCategoryProps> = ({
             {showMenu && <Grid
                 data-testid='category-1-menu'
                 container
-                item
-                xs={12}
+                size={{xs:12}}
                 justifyContent='space-around'
                 alignItems='center'
                 style={{

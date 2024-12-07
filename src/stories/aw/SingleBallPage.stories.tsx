@@ -1,14 +1,13 @@
 import type {Meta, StoryObj} from '@storybook/react';
-import {ThemeProvider} from "@mui/material/styles";
-import getThemeFromSanity from "../../components/customized-theme-provider/getThemeFromSanity";
 import AWSingleBallPageSection from "../../components/templates/anybody-walking/AWSingleBallPageSection";
 import awSingleBallData from "../data/AwSingleBallData";
 import AWThemeData from "../data/AWThemeData";
 import AWSingleBallPageData from "../data/AWSingleBallPageData";
-import BallSearchProvider from "../../components/templates/anybody-walking/ball-search-context/BallSearchProvider";
+import {SitePage} from "../../utils/storybookUtils";
+import {AppSettingsType} from "../../components/templates/anybody-walking/ballroomTypes";
 
 const meta: Meta<typeof AWSingleBallPageSection> = {
-    title: "Anybody Walking/Single Ball Page Section",
+    title: "AW/Pages/Single Ball Page",
     component: AWSingleBallPageSection,
 };
 
@@ -21,14 +20,20 @@ type Story = StoryObj<typeof AWSingleBallPageSection>;
  * See https://storybook.js.org/docs/react/api/csf
  * to learn how to use render functions.
  */
+const settings: AppSettingsType = {
+    newAddBallStepsFlow: true
+}
 
 export const AWSingleBallPageSectionComplete: Story = {
     args: {
         sectionData: AWSingleBallPageData
     },
+    parameters: {
+        pageTheme: AWThemeData,
+        settings: settings
+    },
     render: ({sectionData}) =>
-            <BallSearchProvider><ThemeProvider
-                theme={getThemeFromSanity(AWThemeData)}>
-                <AWSingleBallPageSection sectionData={sectionData} ball={awSingleBallData}/>
-            </ThemeProvider></BallSearchProvider>
+        <SitePage>
+            <AWSingleBallPageSection sectionData={sectionData} ball={awSingleBallData}/>
+        </SitePage>
 };

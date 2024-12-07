@@ -1,5 +1,5 @@
 import{FunctionComponent, useContext} from 'react'
-import { Grid } from '@mui/material'
+import Grid from '@mui/material/Grid2'
 import { SanityLocation } from '../ballroomTypes'
 import PageContext from "../../../page-context/PageContext";
 
@@ -41,7 +41,7 @@ const BallMapComponent: FunctionComponent<BallMapComponentProps> = (props: BallM
 
   const pageContext = useContext(PageContext)
 
-  return (<Grid container>
+  return (<Grid container size={{xs:12}}>
     <iframe
       title="googleMapsMap"
       height={`${props.height? props.height: 450}`}
