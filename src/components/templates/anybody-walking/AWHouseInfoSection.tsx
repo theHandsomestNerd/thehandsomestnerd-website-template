@@ -43,7 +43,7 @@ const AWHouseInfoSection: FunctionComponent<IProps> = () => {
     }
 
     return (
-        <Grid container>
+        <Grid container height='max-content'>
             <Grid container justifyItems='flex-start'>
                 <Typography variant="h3" color="textSecondary">House Info</Typography>
             </Grid>

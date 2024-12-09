@@ -5,7 +5,7 @@ import Grid from "@mui/material/Grid2";
 import BallDataTile from "../../components/templates/anybody-walking/ball-data-tiles/BallDataTile";
 
 const meta: Meta<typeof BallDataTile> = {
-    title: "AW/Component/BallDataTile",
+    title: "AW/Components/BallDataTile",
     component: BallDataTile
     ,
 };

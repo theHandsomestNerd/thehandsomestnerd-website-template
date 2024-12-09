@@ -92,7 +92,7 @@ type IProps = {
     updateAwUser?: any,
     updateCheckin?: any,
     addCheckinToCheckinList?: any,
-    fetchAllApprovedBalls?: any,
+    fetchAllApprovedBalls?: (queryString: string, limit?: number) => Promise<SanityBallType[]>,
     uploadImageFromURL?: any,
     uploadBallFlyerImage?: any,
     uploadProfileImage?: any,
@@ -1647,7 +1647,7 @@ const SanityProvider: FunctionComponent<IProps & PropsWithChildren> = (
              }
            },
        }${limitString}`,
-            ) : []
+            ) : (props.fetchAllApprovedBalls ? props.fetchAllApprovedBalls(queryString, limit) : [])
 
         // console.log("aw - result from fetchAllBalls", response)
         return response

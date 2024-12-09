@@ -20,6 +20,7 @@ const preview: Preview = {
                     <SanityProvider
                         createContactUs={parameters.createContactUs}
                         fetchVerifiedHouses={parameters.fetchVerifiedHouses}
+                        fetchAllApprovedBalls={parameters.fetchAllApprovedBalls}
                         createHouse={parameters.createHouse}
                         getSanityDocumentRef={parameters.getSanityDocumentRef}
                         fetchSkillExperiences={parameters.fetchSkillExperiences}

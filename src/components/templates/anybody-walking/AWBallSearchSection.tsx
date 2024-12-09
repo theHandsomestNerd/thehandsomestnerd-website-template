@@ -1,7 +1,7 @@
 import {FunctionComponent, useContext, useEffect, useState} from 'react'
 
 import makeStyles from "@mui/styles/makeStyles";
-import {Fab, Grid, Typography, useTheme} from "@mui/material";
+import {Fab, Typography} from "@mui/material";
 import clsx from "clsx";
 import useCustomStyles from "../mackenzies-mind/pages/Styles";
 import BallSearchContext from "./ball-search-context/BallSearchContext";
@@ -19,22 +19,19 @@ import SanityContext from "../../../common/sanityIo/sanity-context/SanityContext
 import BallSearchProviderWrapper from "./BallSearchProviderWrapper";
 import FirebaseContext from "../../../common/firebase/firebase-context/FirebaseContext";
 import PageContext from "../../page-context/PageContext";
+import Grid from "@mui/material/Grid2";
 
 export const useStyles = makeStyles(() => ({
     preroot: {
         minHeight: '521px',
         overflow: 'hidden',
-        // color: "white",
-        // position: "relative",
     },
 }))
-
 
 interface IProps {
     sectionData?: AWBallSectionType
     balls?: SanityBallType[]
 }
-
 
 const AWBallSearchSection: FunctionComponent<IProps> = (props: IProps) => {
     const sanityContext = useContext(SanityContext)
@@ -61,50 +58,45 @@ const AWBallSearchSection: FunctionComponent<IProps> = (props: IProps) => {
     }, [props.balls])
 
     const getNewData = async () => {
-        const remainingBalls: SanityBallType[] = props.balls ? props.balls : await sanityContext.fetchAllApprovedBalls('')
+        const remainingBalls: SanityBallType[] = props.balls ? props.balls : (sanityContext.fetchAllApprovedBalls && await sanityContext.fetchAllApprovedBalls('')) ?? []
         setDisplayedResults(remainingBalls)
     }
 
     useEffect(() => {
         getNewData().then()
     }, [])
-    const theme=useTheme()
-
 
     return (
         <BallSearchProviderWrapper results={props.balls}>
-            <Grid container item className={theClasses.preroot}
-                  sx={{                      padding: theme.spacing(((pageContext.page?.theme?.appBarHeight ?? 8)/8), 0)
-                  }}>
-                <Grid item container className={clsx(classes.fullSection)}
-                      justifyContent='center' alignItems='center'>
-                    <Grid item alignContent='center' container direction='column'
+            <Grid container className={theClasses.preroot}
+            >
+                <Grid container className={clsx(classes.fullSection)}
+                      justifyContent='center' alignItems='center'
+                      size={{xs: 12}}>
+                    <Grid alignContent='center' container direction='column'
                           style={{overflow: 'hidden', position: "relative",}}>
                         <Grid
-                            item
                             container
                             style={{
                                 zIndex: 1,
                                 position: "fixed",
                                 left: 0,
                                 backgroundColor: "whitesmoke",
-                                padding: "16px"
                             }}
-                        >
-                            <Grid item container justifyContent='center' paddingLeft="32px">
+                            size={{xs: 12}}>
+                            <Grid container justifyContent='center' paddingLeft="32px" size={{xs: 12}}>
                                 <BallSearchBox/>
                             </Grid>
                             <Grid container justifyContent='space-between'
                                   marginTop={1}
                                   alignItems='center'
-                                // paddingX={1.5}
+                                  size={{xs: 12}}
                                   style={{backgroundColor: "white"}}
                             >
-                                <Grid item>
+                                <Grid>
                                     <SearchFilterDropDown/>
                                 </Grid>
                                 <Grid
-                                    item
                                     justifyContent='flex-end'
                                 >
                                     <ViewChange/>
@@ -112,16 +104,17 @@ const AWBallSearchSection: FunctionComponent<IProps> = (props: IProps) => {
                             </Grid>
 
                         </Grid>
-                        <Grid container item spacing={3}
+                        <Grid container spacing={3}
+                              size={{xs: 12}}
                               justifyContent='center'
                               style={{paddingTop: "150px", paddingLeft: "8px", minHeight: "700px"}}>
                             {/*{sectionDataarchContext.loading && <Grid item>*/}
                             {/*    <LinearProgress color='primary' style={{height: '1px'}}/>*/}
                             {/*</Grid>}*/}
                             <AppSettingsContext.Consumer>
-                                {appSettings => <Grid container item>
+                                {appSettings => <Grid container>
                                     <BallSearchContext.Consumer>{
-                                        searchValue => searchValue.viewType ? <Grid item container>
+                                        searchValue => searchValue.viewType ? <Grid container>
                                                 {
                                                     <BallDataTiles
                                                         tileClickAnalytics={(tileSlug: string) => {
@@ -136,8 +129,8 @@ const AWBallSearchSection: FunctionComponent<IProps> = (props: IProps) => {
                                                     />
                                                 }
                                             </Grid>
-                                            : <Grid item container justifyContent="center" paddingTop={'2em'}>
-                                                <Grid item>
+                                            : <Grid container justifyContent="center" paddingTop={'2em'}>
+                                                <Grid>
                                                     <BallDataTable/>
                                                 </Grid>
                                             </Grid>

@@ -1,11 +1,16 @@
-import React, { Context } from "react";
+import React, {Context} from "react";
 import {
     ResumeExperienceType,
     ResumePortfolioItemType,
-    ResumeSkillType, SanityRef,
+    ResumeSkillType,
+    SanityRef,
 } from "../../../components/BlockContentTypes";
-import {SanityHouse, SanityVerifiedHouseType} from "../../../components/templates/anybody-walking/ballroomTypes";
-import { SanityImageSource } from "@sanity/image-url/lib/types/types";
+import {
+    SanityBallType,
+    SanityHouse,
+    SanityVerifiedHouseType
+} from "../../../components/templates/anybody-walking/ballroomTypes";
+import {SanityImageSource} from "@sanity/image-url/lib/types/types";
 import {ImageUrlBuilder} from "@sanity/image-url/lib/types/builder";
 
 export type SanityContextType = {
@@ -18,32 +23,32 @@ export type SanityContextType = {
         cocktailDataset?: string,
     ) => void
     theSanityClient?: any,
-    skillReferenceSearch?:any,
-    fetchRef?:any,
-    fetchRefs?:any,
-    fetchLandingPage?:any,
-    fetchBlogPost?:any,
-    fetchLatestBlogPostPreview?:any,
-    fetchAllBlogPostPreviews?:any,
-    fetchBlogPostPreviewsByCategory?:any,
-    fetchBlogPostPreviewsByKeyword?:any,
-    fetchLandingPageHeaderMenu?:any,
-    fetchLandingPageFooterMenu?:any,
-    fetchBlogCategories?:any,
-    fetchBlogGroup?:any,
-    fetchWhySwitch?:any,
+    skillReferenceSearch?: any,
+    fetchRef?: any,
+    fetchRefs?: any,
+    fetchLandingPage?: any,
+    fetchBlogPost?: any,
+    fetchLatestBlogPostPreview?: any,
+    fetchAllBlogPostPreviews?: any,
+    fetchBlogPostPreviewsByCategory?: any,
+    fetchBlogPostPreviewsByKeyword?: any,
+    fetchLandingPageHeaderMenu?: any,
+    fetchLandingPageFooterMenu?: any,
+    fetchBlogCategories?: any,
+    fetchBlogGroup?: any,
+    fetchWhySwitch?: any,
     // useFetchPageBySlugQuery?:any,
-    fetchPageBySlugQuery?:any,
-    fetchDocumentByTypeAndSlugQuery?:any,
+    fetchPageBySlugQuery?: any,
+    fetchDocumentByTypeAndSlugQuery?: any,
     // useFetchMenuBySlugQuery?:any,
     // useFetchServicesQuery?:any,
     // useFetchRefsQuery?:any,
     // useFetchMenuByRefQuery?:any,
-    fetchMuiTheme?:any,
-    fullTextSearch?:any
+    fetchMuiTheme?: any,
+    fullTextSearch?: any
     urlFor?: (source: SanityImageSource) => undefined | ImageUrlBuilder,
-    placeholderOrImage?:(imageSrc?: SanityImageSource, placeholderWidth?: number, placeholderHeight?: number, text?: string) => string
-    cocktailUrlFor?:any
+    placeholderOrImage?: (imageSrc?: SanityImageSource, placeholderWidth?: number, placeholderHeight?: number, text?: string) => string
+    cocktailUrlFor?: any
     // useFetchAllFlashCards?: any,
     useFetchAllBarIngredients?: any,
     useFetchAllLiquorTypes?: any,
@@ -68,7 +73,7 @@ export type SanityContextType = {
     updateAwUser?: any,
     updateCheckin?: any,
     addCheckinToCheckinList?: any,
-    fetchAllApprovedBalls?: any,
+    fetchAllApprovedBalls?: (queryString: string, limit?: number) => Promise<SanityBallType[]>,
     uploadImageFromURL?: any,
     uploadBallFlyerImage?: any,
     uploadProfileImage?: any,
@@ -85,10 +90,10 @@ export type SanityContextType = {
     createContactUs?: any
 
     addBall?: any
-    fetchVerifiedHouses?: ()=>Promise<SanityVerifiedHouseType[]>
+    fetchVerifiedHouses?: () => Promise<SanityVerifiedHouseType[]>
     getSanityDocumentRef?: (sanityId: string) => SanityRef
-    fetchSkillExperiences?:(skillType:ResumeSkillType)=>Promise<ResumeExperienceType[]>
-    fetchPortfolioItems?:(skillType:ResumeSkillType)=>Promise<ResumePortfolioItemType[]>
+    fetchSkillExperiences?: (skillType: ResumeSkillType) => Promise<ResumeExperienceType[]>
+    fetchPortfolioItems?: (skillType: ResumeSkillType) => Promise<ResumePortfolioItemType[]>
 };
 
 let SanityContext: Context<SanityContextType> = React.createContext<SanityContextType>({});

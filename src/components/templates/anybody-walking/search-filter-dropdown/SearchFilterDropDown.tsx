@@ -3,7 +3,6 @@ import {withStyles} from '@mui/styles'
 import {
     Button,
     Chip,
-    Grid,
     ListItemIcon,
     ListItemText,
     Menu,
@@ -13,6 +12,7 @@ import {
     Typography,
     useTheme
 } from '@mui/material'
+import Grid from '@mui/material/Grid2'
 import BallSearchContext from '../ball-search-context/BallSearchContext'
 import {CalendarToday, FilterList, LocationOn, Web} from '@mui/icons-material'
 import StyledTextField from "../styled-text-field/StyledTextField";
@@ -22,7 +22,8 @@ import {BallTypeEnum, renderBallType} from "../enums/BallType.enum";
 
 const StyledMenu = withStyles({
     paper: {
-        border: '1px solid #d3d4d5',
+        border: '3px solid ' +
+            '#bababa',
         maxWidth: '850px',
         width: '422px',
         backgroundColor: "white !important"
@@ -30,6 +31,7 @@ const StyledMenu = withStyles({
 })((props: MenuProps) => (
     <Menu
         elevation={0}
+
         // getContentAnchorEl={undefined}
         anchorOrigin={{
             vertical: 'bottom',
@@ -89,8 +91,8 @@ const SearchFilterDropDown: FunctionComponent = () => {
     }
 
     return (
-        <Grid container item>
-            <Grid item container>
+        <Grid container>
+            <Grid container>
                 <Button
                     aria-controls="customized-menu"
                     aria-haspopup="true"
@@ -101,10 +103,10 @@ const SearchFilterDropDown: FunctionComponent = () => {
                     <Typography variant='h6' fontWeight={800}>Filters:</Typography> <FilterList fontSize='medium'/>
                 </Button>
             </Grid>
-            <Grid container item alignItems='center' alignContent='center' justifyContent='flex-start'
+            <Grid container alignItems='center' alignContent='center' justifyContent='flex-start'
                   paddingLeft="16px" paddingBottom="8px">
                 {
-                    searchContext.searchParams?.ballType && <Grid item>
+                    searchContext.searchParams?.ballType && <Grid>
                         <Chip onDelete={() => {
                             if (searchContext.updateSearchParams) {
 
@@ -117,7 +119,7 @@ const SearchFilterDropDown: FunctionComponent = () => {
                     </Grid>
                 }
                 {
-                    searchContext.searchParams?.region && <Grid item>
+                    searchContext.searchParams?.region && <Grid>
                         <Chip onDelete={() => {
                             if (searchContext.updateSearchParams) {
 
@@ -130,7 +132,7 @@ const SearchFilterDropDown: FunctionComponent = () => {
                     </Grid>
                 }
                 {
-                    searchContext.searchParams?.startDate && <Grid item>
+                    searchContext.searchParams?.startDate && <Grid>
                         <Chip onDelete={() => {
                             if (searchContext.updateSearchParams) {
                                 searchContext.updateSearchParams({target: {name: "endDate", value: undefined}})
@@ -158,17 +160,18 @@ const SearchFilterDropDown: FunctionComponent = () => {
                                 borderBottom: "1px solid #ece7e7",
                                 paddingBottom: theme.spacing(2)
                             }}
+                            size={{xs: 12}}
                         >
-                            <Grid item xs={1}>
+                            <Grid size={{xs: 1}} pt={1}>
                                 <ListItemIcon>
                                     <Web fontSize="small"/>
                                 </ListItemIcon>
                             </Grid>
-                            <Grid item xs={4}>
+                            <Grid size={{xs: 4}}>
                                 <ListItemText primary={<Typography color='textSecondary'>Ball Type</Typography>}/>
                             </Grid>
-                            <Grid item container xs={7} justifyContent='flex-end'>
-                                <Grid item xs={12}>
+                            <Grid container size={{xs: 7}} justifyContent='flex-end'>
+                                <Grid size={{xs: 12}}>
                                     <Select
                                         sx={style}
                                         fullWidth
@@ -189,19 +192,23 @@ const SearchFilterDropDown: FunctionComponent = () => {
 
                                         <MenuItem value={
                                             BallTypeEnum.BALL}>
-                                            <Typography color='textSecondary'>{renderBallType(BallTypeEnum.BALL)}</Typography>
+                                            <Typography
+                                                color='textSecondary'>{renderBallType(BallTypeEnum.BALL)}</Typography>
                                         </MenuItem>
                                         <MenuItem value={
                                             BallTypeEnum.MINI_BALL}>
-                                            <Typography color='textSecondary'>{renderBallType(BallTypeEnum.MINI_BALL)}</Typography>
+                                            <Typography
+                                                color='textSecondary'>{renderBallType(BallTypeEnum.MINI_BALL)}</Typography>
                                         </MenuItem>
                                         <MenuItem value={
                                             BallTypeEnum.MINI_BALL_DELUXE}>
-                                            <Typography color='textSecondary'>{renderBallType(BallTypeEnum.MINI_BALL_DELUXE)}</Typography>
+                                            <Typography
+                                                color='textSecondary'>{renderBallType(BallTypeEnum.MINI_BALL_DELUXE)}</Typography>
                                         </MenuItem>
                                         <MenuItem value={
                                             BallTypeEnum.KIKI_BALL}>
-                                            <Typography color='textSecondary'>{renderBallType(BallTypeEnum.KIKI_BALL)}</Typography>
+                                            <Typography
+                                                color='textSecondary'>{renderBallType(BallTypeEnum.KIKI_BALL)}</Typography>
                                         </MenuItem>
                                     </Select>
                                 </Grid>
@@ -216,17 +223,18 @@ const SearchFilterDropDown: FunctionComponent = () => {
                                 borderBottom: "1px solid #ece7e7",
                                 paddingBottom: theme.spacing(2)
                             }}
+                            size={{xs: 12}}
                         >
-                            <Grid item xs={1}>
+                            <Grid size={{xs: 1}} pt={1}>
                                 <ListItemIcon>
                                     <LocationOn fontSize="small"/>
                                 </ListItemIcon>
                             </Grid>
-                            <Grid item xs={4}>
+                            <Grid size={{xs: 4}}>
                                 <ListItemText primary={<Typography color='textSecondary'>Region</Typography>}/>
                             </Grid>
-                            <Grid item container xs={7} justifyContent='flex-end'>
-                                <Grid item xs={12}>
+                            <Grid container size={{xs: 7}} justifyContent='flex-end'>
+                                <Grid size={{xs: 12}}>
                                     <Select
                                         sx={style}
                                         fullWidth
@@ -276,17 +284,17 @@ const SearchFilterDropDown: FunctionComponent = () => {
                     </MenuItem>
                     <MenuItem>
 
-                        <Grid container wrap="nowrap" alignItems="flex-start">
-                            <Grid item xs={1}>
+                        <Grid container wrap="nowrap" alignItems="flex-start" size={{xs: 12}}>
+                            <Grid size={{xs: 1}} pt={.25}>
                                 <ListItemIcon>
                                     <CalendarToday fontSize="small"/>
                                 </ListItemIcon>
                             </Grid>
-                            <Grid item xs={4}>
+                            <Grid size={{xs: 4}}>
                                 <ListItemText primary={<Typography color='textSecondary'>Date</Typography>}/>
                             </Grid>
-                            <Grid item container xs={7} direction="column" spacing={2}>
-                                <Grid item>
+                            <Grid container size={{xs: 7}} direction="column" spacing={2}>
+                                <Grid>
                                     <StyledTextField
                                         fullWidth
                                         sx={{input: {color: 'black', paddingRight: "0px"}}}
@@ -306,7 +314,7 @@ const SearchFilterDropDown: FunctionComponent = () => {
                                         value={searchContext.searchParams?.startDate ?? ''}
                                     />
                                 </Grid>
-                                <Grid item>
+                                <Grid>
                                     <StyledTextField
                                         fullWidth
                                         sx={{input: {color: 'black', paddingRight: "0px"}}}
@@ -332,8 +340,6 @@ const SearchFilterDropDown: FunctionComponent = () => {
                         </Grid>
                     </MenuItem>
                 </Grid>
-
-
             </StyledMenu>
         </Grid>
     )

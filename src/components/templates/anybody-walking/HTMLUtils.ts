@@ -8,7 +8,7 @@ const firebaseTimeFormatStr = 'hh:mm a';
 
 const prettyDateFormatStr = 'MMMM dd, yyyy';
 const prettyDateFormatStrLong = 'MMMM dd';
-const prettyDateFormatStrShort = 'M/DD/yyyy';
+const prettyDateFormatStrShort = 'M/dd/yyyy';
 
 /**
  * This is how times are stored in Firebase
