@@ -3,7 +3,7 @@ import AWThemeData from "../data/AWThemeData";
 import BallSearchProvider from "../../components/templates/anybody-walking/ball-search-context/BallSearchProvider";
 import AwBallsArrayData from "../data/AwBallsArrayData";
 import BallSearchBox from "../../components/templates/anybody-walking/ball-search-box/BallSearchBox";
-import {AppSettingsType} from "../../components/templates/anybody-walking/ballroomTypes";
+import {awSettings} from "../../utils/storybookUtils";
 
 const meta: Meta<typeof BallSearchBox> = {
     title: "AW/Components/Ball Search Box",
@@ -19,17 +19,15 @@ type Story = StoryObj<typeof BallSearchBox>;
  * See https://storybook.js.org/docs/react/api/csf
  * to learn how to use render functions.
  */
-const settings: AppSettingsType = {
-    newAddBallStepsFlow: true
-}
+
 export const AWBallSearchBoxComplete: Story = {
     args: {},
     parameters: {
         pageTheme: AWThemeData,
-        settings: settings
+        settings: awSettings.ballStepsSetting
     },
     render: () =>
         <BallSearchProvider balls={AwBallsArrayData}>
-                <BallSearchBox/>
+            <BallSearchBox/>
         </BallSearchProvider>
 };

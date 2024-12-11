@@ -2,8 +2,7 @@ import type {Meta, StoryObj} from '@storybook/react';
 import AWBallsSearchSection from "../../components/templates/anybody-walking/AWBallSearchSection";
 import AWBallsPageData from "../data/AWBallsPageData";
 import AwBallsArrayData from "../data/AwBallsArrayData";
-import {AppSettingsType} from "../../components/templates/anybody-walking/ballroomTypes";
-import {SitePage} from "../../utils/storybookUtils";
+import {awSettings, SitePage} from "../../utils/storybookUtils";
 import AWThemeData from "../data/AWThemeData";
 
 const meta: Meta<typeof AWBallsSearchSection> = {
@@ -20,18 +19,16 @@ type Story = StoryObj<typeof AWBallsSearchSection>;
  * See https://storybook.js.org/docs/react/api/csf
  * to learn how to use render functions.
  */
-const settings: AppSettingsType = {
-    newAddBallStepsFlow: true
-}
+
 export const AWBallsSearchSectionComplete: Story = {
     args: {
         sectionData: AWBallsPageData,
     },
     parameters: {
         pageTheme: AWThemeData,
-        settings: settings,
+        settings: awSettings.ballStepsSetting,
         fetchAllApprovedBalls: async (queryString, limit) => {
-            console.log("fetAllApproved", queryString);
+            console.log("fetchAllApproved", queryString);
             return Promise.resolve(AwBallsArrayData);
         }
     },

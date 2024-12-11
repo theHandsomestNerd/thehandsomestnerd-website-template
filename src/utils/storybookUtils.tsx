@@ -1,11 +1,18 @@
 import {PropsWithChildren} from "react";
 import Grid from "@mui/material/Grid2";
 import {Typography, useTheme} from "@mui/material";
+import {AppSettingsType} from "../components/templates/anybody-walking/ballroomTypes";
 
-export const storybookDelay = async (milliseconds:number) => {
+export const storybookDelay = async (milliseconds: number) => {
     return new Promise(resolve => {
         setTimeout(resolve, milliseconds);
     });
+}
+
+export const awSettings: { ballStepsSetting: AppSettingsType } = {
+    ballStepsSetting: {
+        newAddBallStepsFlow: true
+    }
 }
 
 export const SitePage: React.FunctionComponent<PropsWithChildren> = ({children}) => {
@@ -16,6 +23,8 @@ export const SitePage: React.FunctionComponent<PropsWithChildren> = ({children})
                   width: "100%",
                   position: "fixed",
                   zIndex: 9999,
+                  left: 0,
+                  top: 0,
                   height: theme.mixins.toolbar.height,
                   border: "1px solid #333333",
                   backgroundColor: "#DDDDDD"

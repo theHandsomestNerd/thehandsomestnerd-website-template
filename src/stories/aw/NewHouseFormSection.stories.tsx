@@ -1,9 +1,9 @@
 import type {Meta, StoryObj} from '@storybook/react';
 import AWThemeData from "../data/AWThemeData";
 import AWBallsPageData from "../data/AWBallsPageData";
-import {AppSettingsType, SanityHouse} from "../../components/templates/anybody-walking/ballroomTypes";
+import {SanityHouse} from "../../components/templates/anybody-walking/ballroomTypes";
 import AWNewHouseFormSection from "../../components/templates/anybody-walking/AWNewHouseFormSection";
-import {SitePage, storybookDelay} from "../../utils/storybookUtils";
+import {awSettings, SitePage, storybookDelay} from "../../utils/storybookUtils";
 
 const meta: Meta<typeof AWNewHouseFormSection> = {
     title: "AW/Pages/New House Form",
@@ -19,9 +19,6 @@ type Story = StoryObj<typeof AWNewHouseFormSection>;
  * See https://storybook.js.org/docs/react/api/csf
  * to learn how to use render functions.
  */
-const settings: AppSettingsType = {
-    newAddBallStepsFlow: true
-}
 
 export const AWNewHouseFormSectionComplete: Story = {
     args: {
@@ -29,7 +26,7 @@ export const AWNewHouseFormSectionComplete: Story = {
     },
     parameters: {
         pageTheme: AWThemeData,
-        settings,
+        settings: awSettings.ballStepsSetting,
         getSanityDocumentRef: () => {
             return {}
         },
@@ -51,7 +48,7 @@ export const AWNewHouseFormSectionFail: Story = {
     },
     parameters: {
         pageTheme: AWThemeData,
-        settings,
+        settings: awSettings.ballStepsSetting,
         getSanityDocumentRef: () => {
             return {}
         },

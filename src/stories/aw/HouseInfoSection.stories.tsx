@@ -1,9 +1,8 @@
 import type {Meta, StoryObj} from '@storybook/react';
 import AWThemeData from "../data/AWThemeData";
-import {AppSettingsType} from "../../components/templates/anybody-walking/ballroomTypes";
 import AWHouseInfoSection from "../../components/templates/anybody-walking/AWHouseInfoSection";
 import AwVerifiedHousesArrayData from "../data/AwVerifiedHousesArrayData";
-import {SitePage} from "../../utils/storybookUtils";
+import {awSettings, SitePage} from "../../utils/storybookUtils";
 
 const meta: Meta<typeof AWHouseInfoSection> = {
     title: "AW/Pages/House Info",
@@ -19,9 +18,7 @@ type Story = StoryObj<typeof AWHouseInfoSection>;
  * See https://storybook.js.org/docs/react/api/csf
  * to learn how to use render functions.
  */
-const settings: AppSettingsType = {
-    newAddBallStepsFlow: true
-}
+
 export const AboutSectionComplete: Story = {
     args: {
         sectionData: {
@@ -30,8 +27,8 @@ export const AboutSectionComplete: Story = {
     },
     parameters: {
         pageTheme: AWThemeData,
-        settings: settings,
-        fetchVerifiedHouses: ()=>{
+        settings: awSettings.ballStepsSetting,
+        fetchVerifiedHouses: () => {
             return Promise.resolve(AwVerifiedHousesArrayData)
         }
     },

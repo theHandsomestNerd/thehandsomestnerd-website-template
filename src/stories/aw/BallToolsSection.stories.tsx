@@ -1,9 +1,8 @@
 import type {Meta, StoryObj} from '@storybook/react';
 import AWThemeData from "../data/AWThemeData";
 import AWBallsPageData from "../data/AWBallsPageData";
-import {AppSettingsType} from "../../components/templates/anybody-walking/ballroomTypes";
 import BallToolsSection from "../../components/templates/anybody-walking/BallToolsSection";
-import {SitePage} from "../../utils/storybookUtils";
+import {awSettings, SitePage} from "../../utils/storybookUtils";
 
 const meta: Meta<typeof BallToolsSection> = {
     title: "AW/Pages/Ball Tools",
@@ -19,16 +18,14 @@ type Story = StoryObj<typeof BallToolsSection>;
  * See https://storybook.js.org/docs/react/api/csf
  * to learn how to use render functions.
  */
-const settings: AppSettingsType = {
-    newAddBallStepsFlow: true
-}
+
 export const BallToolsSectionComplete: Story = {
     args: {
         sectionData: AWBallsPageData,
     },
-    parameters:{
+    parameters: {
         pageTheme: AWThemeData,
-        settings
+        settings: awSettings.ballStepsSetting
     },
     render: ({sectionData}) => <SitePage><BallToolsSection sectionData={sectionData}/></SitePage>
 };

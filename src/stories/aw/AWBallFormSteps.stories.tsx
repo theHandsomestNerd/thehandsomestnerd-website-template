@@ -2,16 +2,10 @@ import type {Meta, StoryObj} from '@storybook/react';
 import {ThemeProvider} from "@mui/material/styles";
 import getThemeFromSanity from "../../components/customized-theme-provider/getThemeFromSanity";
 import AWThemeData from "../data/AWThemeData";
-import AWBallSearchSection from "../../components/templates/anybody-walking/AWBallSearchSection";
-import AWBallsPageData from "../data/AWBallsPageData";
 import BallSearchProvider from "../../components/templates/anybody-walking/ball-search-context/BallSearchProvider";
 import AwBallsArrayData from "../data/AwBallsArrayData";
-import BallSearchBox from "../../components/templates/anybody-walking/ball-search-box/BallSearchBox";
-import FiltersMenu from "../../components/templates/cocktail-flash-cards/FiltersMenu";
-import SearchFilterDropDown
-    from "../../components/templates/anybody-walking/search-filter-dropdown/SearchFilterDropDown";
-import ViewChange from "../../components/templates/anybody-walking/view-change/ViewChange";
 import BallFormSteps from "../../components/templates/anybody-walking/ball-form-steps/BallFormSteps";
+import {awSettings} from "../../utils/storybookUtils";
 
 const meta: Meta<typeof BallFormSteps> = {
     title: "Anybody Walking/Steps/Ball Steps",
@@ -29,13 +23,16 @@ type Story = StoryObj<typeof BallFormSteps>;
  */
 
 export const AWBallFormStepsComplete: Story = {
-    args: {
+    args: {},
+    parameters: {
+        pageTheme: AWThemeData,
+        settings: awSettings.ballStepsSetting,
     },
     render: () =>
         <BallSearchProvider balls={AwBallsArrayData}>
             <ThemeProvider
                 theme={getThemeFromSanity(AWThemeData)}>
-                <BallFormSteps />
+                <BallFormSteps/>
             </ThemeProvider>
         </BallSearchProvider>
 };

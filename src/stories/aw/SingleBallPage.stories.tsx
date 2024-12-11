@@ -3,8 +3,7 @@ import AWSingleBallPageSection from "../../components/templates/anybody-walking/
 import awSingleBallData from "../data/AwSingleBallData";
 import AWThemeData from "../data/AWThemeData";
 import AWSingleBallPageData from "../data/AWSingleBallPageData";
-import {SitePage} from "../../utils/storybookUtils";
-import {AppSettingsType} from "../../components/templates/anybody-walking/ballroomTypes";
+import {awSettings, SitePage} from "../../utils/storybookUtils";
 
 const meta: Meta<typeof AWSingleBallPageSection> = {
     title: "AW/Pages/Single Ball Page",
@@ -20,9 +19,6 @@ type Story = StoryObj<typeof AWSingleBallPageSection>;
  * See https://storybook.js.org/docs/react/api/csf
  * to learn how to use render functions.
  */
-const settings: AppSettingsType = {
-    newAddBallStepsFlow: true
-}
 
 export const AWSingleBallPageSectionComplete: Story = {
     args: {
@@ -30,7 +26,7 @@ export const AWSingleBallPageSectionComplete: Story = {
     },
     parameters: {
         pageTheme: AWThemeData,
-        settings: settings
+        settings: awSettings.ballStepsSetting
     },
     render: ({sectionData}) =>
         <SitePage>
